@@ -677,10 +677,29 @@ zh-TW:
       functionality_header: 功能
       description: 腳本皆必須包含一段描述其功能的敘述，且腳本不得做出明顯超出該敘述的行為。使用者都應該在安裝腳本前了解它會做些什麼。
       reason: 腳本必須要有被編寫為腳本的理由。例如：只會將使用者導向到一個網站的腳本沒有必要被編寫為腳本，它可以是個連結。而在當前頁面使用其他網站服務的腳本（例如透過某些方式將其轉換）是被允許的。
-      monetization_html: 對<em>作者</em>而非使用者有利的腳本（例如追蹤、廣告及挖礦等）是被允許的，但必須標註為%{antifeature_link:2@antifeature2 meta keys}。
-      code_header: 代碼
+      monetization_html: 對<em>作者</em>而非使用者有利的腳本（例如追蹤、廣告及挖礦等）是被允許的，但必須標註為%{antifeature_link:<code>@antifeature</code> 元屬性}。
+      code_header: 程式碼
+      obfuscation: 提交到 %{site_name} 的程式碼不得混淆或最小化。用戶必須有可能在安裝前審視並理解腳本的內容。如果腳本使用了 WebPack 之類的工具打包，則必須以非最小化的形式輸出，保留空白和變量名。
+      size_html: |
+          腳本大小不能超過 %{max_code_size}。如果您的腳本接近此限制，可能需考慮：
+          <ul>
+          <li>將 URI、JSON 等非代碼數據移出腳本。 </li>
+          <li>使用 <code>@require</code> 或 %{webpack_externals_link:webpack 的 <code>externals</code> 選項}加載庫。 </li>
+          </ul>
+      libraries_html: 庫是應被 <code>@require</code> 的腳本，除非因為技術原因不能這麼做。如果一個庫被內嵌入了腳本，那麼你必須一併提供庫的來源（比如一行評論指向原始地址、名稱以及版本）。
+      updates: 腳本不得以高於每日一次的頻率檢測更新。請注意用戶腳本管理器都有內置的更新檢查機制，請不要在腳本檢查更新做無用功。腳本不得將在 %{site_name} 上傳的腳本不應被動態插入到頁面，因為這會繞過用戶腳本管理器的緩存。
+      hosting: 腳本的主要功能代碼必鬚髮佈在 %{site_name} 中。不允許在 %{site_name} 發布簡單的從別的網站加載腳本功能的代碼。不允許發布替代源的URL來引導用戶下載非 %{site_name} 版本的代碼.
+      external_js: "%{external_scripts_link:能引用其他網站上託管的 JavaScript 腳本是有限制的}。"
       copyright_header: 版權
+      licensing_html: 您的腳本必須遵守他人的版權，這包括程式碼本身以及所引用的資源（例如圖像）。如果你希望使用他人的內容，請遵守其授權規則或獲得使用授權。你可以使用 <code>@license</code> 元信息名稱來指定腳本使用的授權協議，並通過 %{tldr_legal_link:tldrlegal.com}（英文）獲得更多關於該授權協議的限制。
+      reposts: 即便沒有違反版權商的規則，重複提交已經存在於 %{site_name} 的腳本也是不允許的，除非有做出改進。
       miscellaneous_header: 雜項
+      included_sites_html: 腳本不得在 <code>@include</code> 或者 <code>@match</code> 中包含未提供功能的網站。腳本不得僅為營利而添加與主要功能無關的 <code>@include</code> 或者 <code>@match</code>。
+      keywords: 腳本不得包含不相關的關鍵字或提及不相關的網站以嘗試提升搜索排名。
+      adult_content_rule: 含有成人內容或在成人網站上運行的腳本必須做出相應標記，來讓其他用戶選擇是否在網站上看到它們。
+      reposting_deleted: 不要重新發布因違反規則而被刪除的腳本；請使用申訴功能。重新發布已刪除的腳本可能會導致被封禁。
+      advertising_in_description: 腳本作者不得在 Greasy Fork 的頁面，如腳本描述頁面，放置廣告。但用於推廣腳本作者的首頁、代碼倉庫、Discord 交流群、微信等內容是允許的。
+      reporting: 如果你發現有腳本未能遵守上述規則，請訪問腳本的反饋頁面並選擇“舉報腳本”來舉報。
     external_scripts:
       title: "%{site_name} 對於外部程式碼的政策"
     script_rewriting:
