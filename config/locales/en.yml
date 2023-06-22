@@ -544,7 +544,7 @@ en:
         firefox: You will need to install an extension such as %{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} or %{violentmonkey_link:Violentmonkey} to install this script.
         chrome: You will need to install an extension such as %{tampermonkey_link:Tampermonkey} or %{violentmonkey_link:Violentmonkey} to install this script.
         opera: You will need to install an extension such as %{tampermonkey_link:Tampermonkey} or %{violentmonkey_link:Violentmonkey} to install this script.
-        safari: You will need to install an extension such as %{tampermonkey_link:Tampermonkey} or %{userscripts_link:Userscripts} to install this script.
+        safari: You will need to install an extension such as %{tampermonkey_link:Tampermonkey}, %{userscripts_link:Userscripts}, or %{stay_link:Stay} to install this script.
         other: You will need to install a user script manager extension to install this script.
         bypass: (I already have a user script manager, let me install it!)
       css:
@@ -700,7 +700,7 @@ en:
         <ul>
           <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} or %{chrome_violentmonkey_link:Violentmonkey}</li>
           <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, or %{firefox_violentmonkey_link:Violentmonkey}</li>
-          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} or %{safari_userscripts_link:Userscripts}</li>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey}, %{safari_userscripts_link:Userscripts}, or %{stay_link:Stay}</li>
           <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} or %{edge_violentmonkey_link:Violentmonkey}</li>
           <li>Opera: %{opera_tampermonkey_link:Tampermonkey} or %{opera_violentmonkey_link:Violentmonkey}</li>
           <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
@@ -722,7 +722,7 @@ en:
       title: Mobile (iOS)
       browser_list_html: |
         <ul>
-          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} or %{safari_userscripts_link:Userscripts}</li>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey}, %{safari_userscripts_link:Userscripts} or %{stay_link:Stay}</li>
           <li>%{gear_link:Gear}: (no additional software required)
         </ul>
     # header for step 2 - how to install a user script
@@ -1035,7 +1035,7 @@ en:
       # description of @incompatible. %{browsers} is a comma-separated list of browser codes. You can translate "Broken since Firefox 23", but do not translate "@compatible firefox".
       incompatible_html: "Flags this script as incompatible with a browser. Compatibility information will be shown on a script's page. Optional comments on compatibility can be included in the format <code>@incompatible firefox Broken since Firefox 23</code>. Recognized browsers are: %{browsers}."
       antifeature_html: |
-        Discloses features in a script that are there to benefit the author, not the user. The format of this key is <code>@antifeature type description</code>. <i>type</i> is required, <i>description</i> is optional. %{antifeatures_link:Read here} for info on the <i>type</i>s read by %{site_name}.
+        "Anti-Feature" refers to things that are beneficial to authors (such as additional income), but may be unbeneficial or potentially problematic for end users. You can add <code>@antifeature type description</code> to the metadata to clearly mark these anti-features, so that users can understand these features before installation or use, and make decisions accordingly. The <i>type</i> is required, while the <i>description</i> can be left blank. %{antifeatures_link:Read here} for info on the <i>type</i>s read by %{site_name}.
       antifeature_localized_html: "An <code>@antifeature</code> described in a specific locale, where XX is an <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-letter code</a> and YY is an optional <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 country code</a>. Overrides <code>@antifeature</code>s of the same type when the user is browsing in a matching locale."
     writing_user_scripts:
       # title for Writing user scripts help page
@@ -1214,7 +1214,7 @@ en:
     antifeatures:
       title: Antifeatures
       intro_html: |
-        <p>Antifeatures are things added to scripts to benefit the authors rather than users, such as ads or tracking. Scripts with antifeatures are allowed according to %{rules_link:%{site_name}'s rules} but they must be marked with <code>@antifeature</code> in the script's metadata block. Doing so will ensure the user is aware of the antifeature prior to installing.</p>
+        <p>Antifeatures are things, such as ads and tracking, added to scripts that benefit the authors (e.g., earning additional income), but may be unbeneficial or potentially problematic for end users. Scripts with antifeatures are allowed according to %{rules_link:%{site_name}'s rules} but they must be marked with <code>@antifeature</code> in the script's metadata block. Doing so will ensure the user is aware of the antifeature prior to installing.</p>
         <p>Antifeatures are specified as %{meta_keys_link:script meta keys} with the format <code>@antifeature <i>type</i> <i>description</i></code>. <i>type</i> is required and <i>description</i> is optional.</p>
         <p>This page describes the types of <code>@antifeature</code> recognized by %{site_name}. Other types may be used, but the presence of the antifeature must not be against %{rules_link:%{site_name}'s rules}.</p>
       ads_html: |
@@ -1713,7 +1713,7 @@ en:
           <p>
             Your report on %{script_link:%{script_name}} on %{site_name} has been marked as resolved by a moderator as they believe the author has fixed the issue. The script will remain active. You can %{report_link:review this report}.
           </p>
-      reported_outro: "You received this notification because you are it concerns a report on a script you submitted to %{site_name}. %{notification_preferences_link:Manage your notification preferences.}"
+      reported_outro: "You received this notification because there is report about a script you have submitted to %{site_name}. %{notification_preferences_link:Manage your notification preferences.}"
       reporter_outro: "You received this notification because you created a report on a script on %{site_name}. %{notification_preferences_link:Manage your notification preferences.}"
     consecutive_bad_ratings:
       notify:
