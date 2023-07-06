@@ -39,6 +39,7 @@ ug:
     promoted: "تەۋسىيە قوليازما"
     author_promoted: "ئاپتورنىڭ تەۋسىيەلىگەن قوليازمىسى"
     promoted_text_html: "سىز بەلكىم %{script_link} نى ياقتۇرۇشىڭىز مۇمكىن."
+    library_instructions_html: "بۇ قوليازمىنى بىۋاسىتە قاچىلاشقا بولمايدۇ. بۇ باشقا قوليازمىلارنىڭ ئىشلىتىشى ئۈچۈن تەمىنلەنگەن ئامبار بولۇپ، ئىشلىتىش ئۈچۈن مېتا كۆرسەتمىسىگە قىستۇرىدىغان كود: %{code}"
     deleted_notice: "بۇ قوليازما ئۆچۈرۈلدى."
     deleted_notice_with_reason: "بۇ قوليازما %{report_link:بۇ پاش} سەۋەبلىك ئۆچۈرۈلدى."
     deleted_notice_with_related: "سىز تەلەپ قىلغان قوليازما ئۆچۈرۈلدى، ئەمما مۇناسىۋەتلىك قوليازمىلار بار."
@@ -191,9 +192,14 @@ ug:
     post_updated_script: "يېڭى نەشر يوللاش"
     screenshots_add: "قوشۇش:"
     write_your_own_html: "%{post_a_script_link} (ياكى %{learn_to_write_scripts_link})"
+    post_a_script_link_text: "سىز يازغان قوليازمىنى ئېلان قىلىش"
+    learn_to_write_scripts_link_text: "قانداق يېزىشنى ئۆگىنىش"
     feedback_or_report: "%{feedback_link:سوئال سوراش، ئوبزور يېزىش} ياكى %{report_link:قوليازمىنى پاش قىلىش}."
     support_feedback_or_report: "%{support_url:ياردەم ئۈچۈن ئاپتورنىڭ بېتىنى زىيارەت قىلىش}، %{feedback_link:سوئال سوراش، ئوبزور يېزىش} ياكى %{report_link:قوليازمىنى پاش قىلىش}."
     support_email_feedback_or_report: "%{support_url:ياردەم ئۈچۈن ئاپتورغا تورخەت يوللاش}، %{feedback_link:سوئال سوراش، ئوبزور يېزىش} ياكى %{report_link:قوليازمىنى پاش قىلىش}."
+    library_marker: "(ئامبار)"
+    libraries_title: "ئامبارلار"
+    libraries_description_html: "بۇ يەردە %{site_name} ئىشلەتكۈچىلىرى يوللىغان ئامبارلار بار، قوليازمىلىرىڭىزدا <code>@require</code> قىلالايسىز. باشقا ئامبارلاردا <code>@require</code> قىلىش ئۈچۈن، %{policy_link:%{site_name} نىڭ <code>@require</code> تۈزۈمىنى} ئوقۇڭ."
     search_placeholder: "قوليازما ئىزدەش"
     preview_additional_info: "كۆرۈپ بېقىش"
     authors_heading: "ئاپتورلار"
@@ -201,33 +207,91 @@ ug:
       js: "يېڭى قوليازما يوللاش"
       css: "يېڭى ئۇسلۇب يوللاش"
     update_title: "%{script} نىڭ يېڭى نەشرىنى يوللاش"
+    antifeatures:
+      label: قارشى ئىقتىدارلار
+      warning_title: بۇ قوليازما ئانچە قارشى ئېلىنمايدىغان ئىقتىدارلارنى ئۆز ئىچىگە ئالىدۇ
   script_sets:
     edit_scripts:
       heading: "قوليازمىلار"
+    edit_auto_sets:
+      all_scripts_label: "بارلىق قوليازما"
+    auto_set_types:
+      all_scripts: "بارلىق قوليازما"
+      site: "%{site} نى قوللايدىغان قوليازمىلار"
+      user: "%{user} نىڭ قوليازمىلىرى"
+      locale: "%{locale_name} قوليازمىلار"
   home:
+    welcome: "ئىشلەتكۈچىلەر قوليازما تور بېكىتى %{site_name} غا خۇش كېلىپسىز."
+    sleazy_welcome: "قۇرامىغا يەتكەن ئىشلەتكۈچىلەر قوليازما تور بېكىتى %{site_name} غا خۇش كېلىپسىز."
     search_placeholder: "ئىشلەتكۈچىلەر قوليازمىسىنى ئىزدەش"
+    scripts_for_label: "ماس قوليازمىلار:"
   users:
+    sign_in_title: "%{site_name} غا كىرىش"
+    sign_in_description: "%{site_name} غا كىرسىڭىز، ئۆزىڭىزنىڭ قوليازمىسىنى ھەمدە باشقىلارنىڭ قوليازمىسىغا تەكلىپ-پىكىر يوللىيالايسىز. قوليازمىلارنى كۆرۈش ياكى قاچىلاش ئۈچۈن كىرىشىڭىزنى ھاجىتى يوق."
+    sign_in_external: "سىرتقى مۇلازىمەت بىلەن كىرىش"
+    sign_in_with: "%{provider} بىلەن كىرىش"
+    sign_in_password: "پارول بىلەن كىرىش"
+    sign_in_email_used_sign_in_link: "كىرىش"
+    control_panel: "كونترول تاختىسى"
+    script_list: "قوليازمىلار"
     script_list_none: "يوللانغان قوليازما يوق."
     sign_out: "چېكىنىش"
+    edit: "ھېساباتنى تەھرىرلەش"
+    edit_sign_in: "كىرىش ئۇسۇلىنى تەھرىرلەش"
+    edit_sign_in_title: "كىرىش ئۇسۇلىنى تەھرىرلەش"
     edit_sign_in_password: "پارول"
+    edit_notifications: "ئۇقتۇرۇشنى تەھرىرلەش"
+    no_password_set_info: "ھېساباتىڭىز پارول بىلەن تەڭشەلمىدى."
+    set_password: "پارول بەلگىلەش"
+    update_password: "پارول ئۆزگەرتىش"
+    password_updated: "پارول ئۆزگەرتىلدى."
+    remove_password: "پارولنى چىقىرىۋېتىش."
+    password_removed: "پارول چىقىرىۋېتىلدى."
     author_email_notification_type:
       discussion_only: "قوليازمىڭىزغا مۇنازىرە يوللانغاندا تورخەت تاپشۇرۇۋېلىش"
       discussion_and_comment: "قوليازمىلىرىڭىزغا مۇنازىرە يوللانغاندا ياكى بۇ مۇنازىرىگە يېڭى ئىنكاس كەلگەندە تورخەت تاپشۇرۇۋېلىش"
+    list_display_html:
+      one: "%{user_link} - %{count} قوليازما"
+      other: "%{user_link} - %{count} قوليازما"
+    listing_number_of_scripts: "قوليازمىلار سانى"
+    listing_new_scripts: "يېڭى قوليازمىلار"
+    listing_updated_scripts: "يېڭىلانغان قوليازمىلار"
+    listing_registration_date: "تىزىملاتقان ۋاقتى"
+    listing_title: "ئىشلەتكۈچىلەر"
     listing_banned_filter:
+      banned: "چەكلەنگەن"
+      not_banned: "چەكلەنمىگەن"
       all: "ھەممە"
     listing_author_filter:
+      script_author: "قوليازما ئاپتورى"
+      not_script_author: "قوليازما ئاپتورى ئەمەس"
       all: "ھەممە"
+    search_placeholder: "ئىشلەتكۈچى ئىزدەش"
+    locale_prompt: "(تىل تاللاش)"
     preferred_markup_description: "يېڭى قوليازما ۋە يازمىلارغا ئىشلىتىلىدۇ."
+    delete:
+      submit: "ھېسابات ئۆچۈرۈش"
+      confirmation:
+        completed: "ھېساباتىڭىز ئۆچۈرۈلدى."
     banned_delete:
       intro: "ھېساباتىڭىزنى ئۆچۈرسىڭىز، سىز يوللىغان قوليازمىلارمۇ ئۆچۈرۈلىدۇ. سىزنىڭ مۇنبەر تۆھپىلىرىڭىز ساقلىنىپ قالىدۇ، بىراق ئىشلەتكۈچى نامىڭىز نامسىز بولىدۇ. ئۆچۈرۈلگەندىن كېيىنمۇ ئوخشاش تورخەت ئادرېسى بىلەن قايتا تىزىملىتالمايسىز. ھېساباتىڭىزنى ئۆچۈرۈش ئۈچۈن ئاستىغا كىرىڭ."
     badges:
+      moderator:
+        long: باشقۇرغۇچى
       author:
         short: ئاپتور
+        long: بۇ قوليازمىنىڭ ئاپتورى
   help:
     writing_user_scripts:
       post_new_script_link_text: 'يېڭى قوليازما يوللاش'
     code_rules:
       title: "%{site_name} نىڭ قوليازما يوللاش قائىدىلىرى"
+    credits:
+      translators_credit: "%{site_name} بولسا %{translators_link:Transifex دىكى Greasy Translation Force} تەرىپىدىن تەرجىمە قىلىندى:"
+    privacy_policy:
+      title: "مەخپىيەتلىك تۈزۈمى"
+    antifeatures:
+      title: قارشى ئىقتىدارلار
   search:
     script_search:
       title: "قوليازما ئىزدەش"
@@ -237,8 +301,27 @@ ug:
       description: "ئامبار ئىزدەش. ئامبار نامى، چۈشەندۈرۈلۈشى، قوشۇمچە ئۇچۇرى ۋە ئاپتور نامى بويىچە ئىزدەيدۇ. %{sphinx_link:Sphinx كېڭەيتىلگەن ئىزدەش گىرامماتىكىسى.}"
     code_search:
       title: "كود ئىزدەش"
+      description: "قوليازما كودىنى ئىزدەش. بۇ چوڭلۇقى ماس كەلمىسىمۇ بولىدىغان، ئورتاق بەلگە ئىشلەتمەيدىغان ساپ تېكىستلىك ئىزدەش."
     user_search:
       title: "ئىشلەتكۈچى ئىزدەش"
+      description: "ئىشلەتكۈچىلەر نامى بويىچە ئىزدەش. ساپ تېكىستلىك LIKE ئىزدەش."
+  moderator_logs:
+    date_column: "ۋاقتى"
+    moderator_column: "باشقۇرغۇچى"
+    item_column: "تۈر"
+    action_column: "مەشغۇلات"
+    reason_column: "سەۋەبى"
+    item_script_html: "قوليازما: %{script_link}"
+    item_deleted_script: "ئۆچۈرۈلگەن قوليازما %{id}"
+    item_user_html: "ئىشلەتكۈچى: %{user_link}"
+    item_report: "%{report_link: پاش #%{report_id}}"
+    item_script_lock_appeal: "%{appeal_link:ئەرز #%{appeal_id}}"
+  reports:
+    name: "پاش #%{id}"
+    report_user: "ئىشلەتكۈچىنى پاش قىلىش"
+    report_comment: "ئىنكاسنى پاش قىلىش"
+    report_message: "ئۇچۇرنى پاش قىلىش"
+    loading_diff: "يۈكلىنىۋاتىدۇ..."
   discussions:
     comment_date: "يوللانغان ۋاقتى: %{date}"
     last_comment: "ئاخىرقىسى: %{user} %{date}"
@@ -261,6 +344,7 @@ ug:
       ok: "ياخشى - قوليازما ئىشلەيدۇ، بىراق خاتالىق بار"
       good: "قالتىس - قوليازما ئىشلەيدۇ"
     ratings_short:
+      question: "سوئال / ئىنكاس"
       bad: "ناچار"
       ok: "ياخشى"
       good: "قالتىس"
@@ -270,20 +354,32 @@ ug:
         long: ئۆچۈرۈلدى
     sign_in_to_post_discussion: "ئوبزور، ئىنكاس ياكى سوئال يوللاش ئۈچۈن كىرىش."
     sign_in_to_post_comment: "جاۋاب قايتۇرۇش ئۈچۈن كىرىش."
+    read_filter:
+      all: ھەممە
     user_activity:
       no_recent_activity: "بۇ ئىشلەتكۈچى يېقىندا ھېچقانداق ئىنكاس يوللىمىدى."
       script_review:
         posted_html: "<i>%{script}</i> نىڭ ئوبزورى يوللاندى"
     notify: ھەر قانداق جاۋابنى ماڭا ئۇقتۇرۇش
+    categories:
+      moderators:
+        name: باشقۇرغۇچىلار
   screenshots:
     requirements: "كۆپ بولغاندا %{number} تال PNG، GIF، JPEG، ياكى WebP رەسىمى، ھەر بىرىنىڭ چوڭلۇقى %{size} دىن كىچىك."
   common:
     allowed_elements_link: "(رۇخسەتلىك كودنى كۆرۈش.)"
+    not_found_text: "404 - بەت تېپىلمىدى."
+    not_found_title: "404 - بەت تېپىلمىدى"
+    not_found_link_home: "باشبەتكە قايتىش."
+    incomplete_locale: "%{site_name} نىڭ %{locale_name} تەرجىمىسى پەقەت %{percent} تاماملاندى. بۇنى ياردەم قىلىپ ئۆزگەرتەلەيسىز."
     preview_tab: كۆرۈپ بېقىش
     write_tab: يېزىش
   activerecord:
     attributes:
       user:
         name: "نامى"
+        current_password: "نۆۋەتتىكى پارول"
+        new_password: "يېڭى پارول"
+        new_password_confirmation: "يېڭى پارولنى دەلىللەش"
       discussion:
         rating: "باھالاش"
