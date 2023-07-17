@@ -185,24 +185,46 @@ ug:
     new_css: "سىز يازغان ئۇسلۇبنى ئېلان قىلىش"
     support_site: "ئاپتورنىڭ قوللاش بېتىنى زىيارەت قىلىش."
     support_email: "ياردەم ئۈچۈن ئاپتورغا تورخەت يوللاش"
-    contribution_no_amount: "%{author} غا ھەدىيە ئارقىلىق رەھمەت ئېيتىش."
-    contribution_with_amount: "%{author} غا ھەدىيە ئارقىلىق رەھمەت ئېيتىش. تەۋسىيەلەنگەن ھەدىيە %{amount}."
+    contribution_no_amount: "%{author} غا ئىئانە ئارقىلىق رەھمەت ئېيتىش."
+    contribution_with_amount: "%{author} غا ئىئانە ئارقىلىق رەھمەت ئېيتىش. تەۋسىيەلەنگەن ئىئانە %{amount}."
+    contribution_bitcoin_no_amount_html: "بىت تەڭگىسىنى %{address} غا ئىئانە قىلىش ئارقىلىق %{author} غا رەھمەت ئېيتىش."
+    contribution_bitcoin_with_amount_html: "بىت تەڭگىسىنى %{address} غا ئىئانە قىلىش ئارقىلىق %{author} غا رەھمەت ئېيتىش. تەۋسىيەلەنگەن ئىئانە %{amount}."
     locale_auto_select: "(ئاپتوماتىك بايقاش)"
+    enable_source_code_editor_label: "مەنبە تەھرىرلىگۈچنىڭ گىرامماتىكىلىق يورۇتۇشىنى قوزغىتىش"
+    changelog_note: "بۇ نەشرىدە نېمە ئۆزگىرىش بولدى؟"
     post_new_script: "قوليازما يوللاش"
     post_updated_script: "يېڭى نەشر يوللاش"
+    additional_info_locale_prompt: "(تىل تاللاش)"
+    sync_type_2:
+      name: ئاپتوماتىك
+    sync_name_and_description: "%{name} - %{description}"
     screenshots_add: "قوشۇش:"
+    diff_old_version: "كونىسى:"
+    diff_new_version: "يېڭىسى:"
+    diff_refresh: "يېڭىلاش"
+    diff_no_change: "ھېچقانداق پەرق تېپىلمىدى."
+    good_rating_explanation: "بۇنى قالتىس باھالىغانلارنىڭ ياكى ساقلىۋالغانلارنىڭ سانى."
+    ok_rating_explanation: "بۇنى ياخشى باھالىغانلارنىڭ سانى."
+    bad_rating_explanation: "بۇنى ناچار باھالىغانلارنىڭ سانى."
     write_your_own_html: "%{post_a_script_link} (ياكى %{learn_to_write_scripts_link})"
     post_a_script_link_text: "سىز يازغان قوليازمىنى ئېلان قىلىش"
     learn_to_write_scripts_link_text: "قانداق يېزىشنى ئۆگىنىش"
     feedback_or_report: "%{feedback_link:سوئال سوراش، ئوبزور يېزىش} ياكى %{report_link:قوليازمىنى پاش قىلىش}."
     support_feedback_or_report: "%{support_url:ياردەم ئۈچۈن ئاپتورنىڭ بېتىنى زىيارەت قىلىش}، %{feedback_link:سوئال سوراش، ئوبزور يېزىش} ياكى %{report_link:قوليازمىنى پاش قىلىش}."
     support_email_feedback_or_report: "%{support_url:ياردەم ئۈچۈن ئاپتورغا تورخەت يوللاش}، %{feedback_link:سوئال سوراش، ئوبزور يېزىش} ياكى %{report_link:قوليازمىنى پاش قىلىش}."
+    adult_marker: "(چوڭلار)"
+    deleted_marker: "(ئۆچۈرۈلدى)"
+    locked_marker: "(قۇلۇپلاندى)"
+    unlisted_marker: "(تىزىملىككە كىرگۈزۈلمىدى)"
     library_marker: "(ئامبار)"
     libraries_title: "ئامبارلار"
     libraries_description_html: "بۇ يەردە %{site_name} ئىشلەتكۈچىلىرى يوللىغان ئامبارلار بار، قوليازمىلىرىڭىزدا <code>@require</code> قىلالايسىز. باشقا ئامبارلاردا <code>@require</code> قىلىش ئۈچۈن، %{policy_link:%{site_name} نىڭ <code>@require</code> تۈزۈمىنى} ئوقۇڭ."
     search_placeholder: "قوليازما ئىزدەش"
+    updated: "قوليازما يېڭىلاندى."
     preview_additional_info: "كۆرۈپ بېقىش"
     authors_heading: "ئاپتورلار"
+    remove_author:
+      remove_button: "چىقىرىۋېتىش"
     new_title:
       js: "يېڭى قوليازما يوللاش"
       css: "يېڭى ئۇسلۇب يوللاش"
@@ -210,31 +232,114 @@ ug:
     antifeatures:
       label: قارشى ئىقتىدارلار
       warning_title: بۇ قوليازما ئانچە قارشى ئېلىنمايدىغان ئىقتىدارلارنى ئۆز ئىچىگە ئالىدۇ
+      install_anyway: قوليازما قاچىلاش
+      cancel_install: ئىناۋەتسىز
+    badges:
+      js:
+        short: JS
+        long: ئىشلەتكۈچى قوليازمىسى
+      css:
+        short: CSS
+        long: ئىشلەتكۈچى ئۇسلۇبى
   script_sets:
     edit_scripts:
       heading: "قوليازمىلار"
+      included_none: "(يوق)"
+      excluded_none: "(يوق)"
+    edit_sets:
+      included_none: "(يوق)"
+      excluded_none: "(يوق)"
     edit_auto_sets:
+      included_none: "(يوق)"
+      excluded_none: "(يوق)"
       all_scripts_label: "بارلىق قوليازما"
+    calculated_list_none: "(يوق)"
     auto_set_types:
       all_scripts: "بارلىق قوليازما"
       site: "%{site} نى قوللايدىغان قوليازمىلار"
       user: "%{user} نىڭ قوليازمىلىرى"
       locale: "%{locale_name} قوليازمىلار"
   home:
+    title: "%{site_name} - بىخەتەر ۋە قولايلىق ئىشلەتكۈچىلەر قوليازمىسى"
     welcome: "ئىشلەتكۈچىلەر قوليازما تور بېكىتى %{site_name} غا خۇش كېلىپسىز."
+    sleazy_title: "%{site_name} - بىخەتەر ۋە قولايلىق قۇرامىغا يەتكەن ئىشلەتكۈچىلەر قوليازمىسى"
     sleazy_welcome: "قۇرامىغا يەتكەن ئىشلەتكۈچىلەر قوليازما تور بېكىتى %{site_name} غا خۇش كېلىپسىز."
     search_placeholder: "ئىشلەتكۈچىلەر قوليازمىسىنى ئىزدەش"
     scripts_for_label: "ماس قوليازمىلار:"
+    explain_user_scripts_heading: "ئىشلەتكۈچىلەر قوليازمىسى دېگەن نېمە؟"
+    explain_user_scripts_html: "ئىشلەتكۈچىلەر قوليازمىسى سىزنىڭ تور زىيارەت تەسىراتىڭىزنى ياخشىلايدۇ. قاچىلانغاندىن كېيىن، ئاپتوماتىك سىز زىيارەت قىلىۋاتقان بەتنى ئىقتىدار قوشۇش، ئىشلىتىشنى ئاسانلاشتۇرۇش ياكى بىزار قىلىدىغان بۆلەكلەرنى چىقىرىۋېتىش ئارقىلىق ياخشىلايدۇ. %{site_name} دىكى ئىشلەتكۈچىلەر قوليازمىسى باشقا ئىشلەتكۈچىلەر تەرىپىدىن يېزىلىپ، پۈتۈن دۇنيا بىلەن ئورتاقلىشىش ئۈچۈن يوللانغان. بۇلار ھەقسىز ھەم ئىشلىتىش قولايلىق."
+    installing_step1_header: "1-قەدەم: ئىشلەتكۈچى قوليازما باشقۇرغۇچىنى قاچىلاش"
+    installing_step1_caption: "Chrome دىكى Tampermonkey"
+    installing_step1_description_html: >
+        <p>ئىشلەتكۈچىلەر قوليازمىسىنى ئىشلىتىش ئۈچۈن ئاۋۋال ئىشلەتكۈچى قوليازما باشقۇرغۇچىنى
+        قاچىلاش كېرەك. قايسى ئىشلەتكۈچى قوليازما باشقۇرغۇچىنى ئىشلىتەلەيدىغانلىقىڭىز
+        سىزنىڭ قايسى تور كۆرگۈچنى ئىشلىتىۋاتقانلىقىڭىزغا باغلىق.</p>
+    desktop_browsers:
+      title: ئۈستەليۈزى
+      browser_list_html: |
+          <ul>
+          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} ياكى %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}، %{firefox_tampermonkey_link:Tampermonkey} ياكى %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} ياكى %{safari_userscripts_link:Userscripts}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} ياكى %{edge_violentmonkey_link:Violentmonkey}</li>
+          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} ياكى %{opera_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>AdGuard: (قوشۇمچە يۇمشاق دېتال تەلەپ قىلىنمايدۇ)</li>
+          </ul>
+    android_browsers:
+      title: كۆچمە (Android)
+      browser_list_html: |
+          <ul>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}، %{firefox_tampermonkey_link:Tampermonkey} ياكى %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+          <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+          <li>Kiwi: %{chrome_tampermonkey_link:Tampermonkey} ياكى %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>%{xbrowser_link:XBrowser}</li>
+          %{locale_specific_browsers}
+          </ul>
+    ios_browsers:
+      title: كۆچمە (iOS)
+      browser_list_html: |
+          <ul>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} ياكى %{safari_userscripts_link:Userscripts}</li>
+          <li>%{gear_link:Gear}: (قوشۇمچە يۇمشاق دېتال تەلەپ قىلىنمايدۇ)
+          </ul>
+    installing_step2_header: "2-قەدەم: ئىشلەتكۈچى قوليازمىسى قاچىلاش"
+    installing_step2_caption: "ئىشلەتكۈچى قوليازمىسىنىڭ قاچىلاش كۇنۇپكىسى"
+    installing_step2_description_html: >
+        <p>سىناپ باقماقچى بولغان ئىشلەتكۈچى قوليازمىسىنى تېپىش ئۈچۈن %{browse_link:بۇ
+        بېكەتنى زىيارەت قىلىڭ}. تۆۋەندە ئەڭ ئالقىشلانغان قوليازمىلاردىن ئۈلگە بېرىلدى:</p>
+
+        %{highlighted_scripts_list}
+
+        <p>ئىشلەتكۈچى قوليازمىسىنى تاپقاندىن كېيىن، ئىشلەتكۈچى قوليازما بېتىدىكى يېشىل
+        رەڭلىك قاچىلاش كۇنۇپكىسىنى چەكسىڭىز، ئىشلەتكۈچى قوليازما باشقۇرغۇچىڭىز قاچىلاشنى
+        جەزملەشتۈرۈشنى سورايدۇ.</p>
+    installing_step3_header: "3-قەدەم: ئىشلەتكۈچى قوليازمىسىنى ئىشلىتىش"
+    installing_step3_description_html: >
+        <p>ئىشلەتكۈچى قوليازمىسى تەسىر قىلغان بېكەتكە كىرسىڭىز، قوليازما ئاپتوماتىك
+        كۈچكە ئىگە بولىدۇ. ئىشلەتكۈچى قوليازمىسىنى بىر مەزگىل سىنىغاندىن كېيىن، ئىشلەتكۈچى
+        قوليازمىسىنى قاچىلىغان ئورۇنغا كىرىپ، ئىشلەتكۈچى قوليازمىسىنىڭ ئاپتورىغا بەزى
+        تەكلىپ-پىكىرلەرنى بەرسىڭىز بولىدۇ.</p>
   users:
     sign_in_title: "%{site_name} غا كىرىش"
-    sign_in_description: "%{site_name} غا كىرسىڭىز، ئۆزىڭىزنىڭ قوليازمىسىنى ھەمدە باشقىلارنىڭ قوليازمىسىغا تەكلىپ-پىكىر يوللىيالايسىز. قوليازمىلارنى كۆرۈش ياكى قاچىلاش ئۈچۈن كىرىشىڭىزنى ھاجىتى يوق."
+    sign_in_description: "%{site_name} غا كىرسىڭىز، ئۆزىڭىزنىڭ قوليازمىسىنى ھەمدە باشقىلارنىڭ قوليازمىسىغا تەكلىپ-پىكىر يوللىيالايسىز. قوليازمىلارنى كۆرۈش ياكى قاچىلاش ئۈچۈن كىرىشىڭىزنىڭ ھاجىتى يوق."
     sign_in_external: "سىرتقى مۇلازىمەت بىلەن كىرىش"
     sign_in_with: "%{provider} بىلەن كىرىش"
     sign_in_password: "پارول بىلەن كىرىش"
     sign_in_email_used_sign_in_link: "كىرىش"
     control_panel: "كونترول تاختىسى"
+    discussions_on_scripts: "قوليازمىلىرىڭىزدىكى مۇنازىرىلەر"
+    discussions_on_scripts_none: "تېخى يوق!"
+    discussions_on_scripts_more: "تېخىمۇ كۆپ مۇنازىرىلەر..."
     script_list: "قوليازمىلار"
     script_list_none: "يوللانغان قوليازما يوق."
+    script_list_none_for_filter: "نۆۋەتتىكى سۈزگۈچلەرگە قوليازما يوق."
+    script_list_none_same_user_html: "سىز ھېچقانداق قوليازما يازمىدىڭىز. %{script_list_none_same_user_info_link}"
+    script_list_none_same_user_info_link_text: "قانداق ئۆگىنىشنى خالامسىز؟"
+    deleted_script_list: "ئۆچۈرۈلگەن قوليازمىلار"
+    unlisted_script_list: "تىزىملىككە كىرگۈزۈلمىگەن قوليازمىلار"
     sign_out: "چېكىنىش"
     edit: "ھېساباتنى تەھرىرلەش"
     edit_sign_in: "كىرىش ئۇسۇلىنى تەھرىرلەش"
@@ -244,10 +349,29 @@ ug:
     no_password_set_info: "ھېساباتىڭىز پارول بىلەن تەڭشەلمىدى."
     set_password: "پارول بەلگىلەش"
     update_password: "پارول ئۆزگەرتىش"
+    update_password_no_match: "پارول ماس كەلمىدى."
     password_updated: "پارول ئۆزگەرتىلدى."
+    remove_password_info: "پارولىڭىزنى چىقىرىۋېتەلەيسىز، ئەمما پەقەت سىرتقى كىرىش ئۇسۇلى بىلەنلا كىرەلەيسىز."
     remove_password: "پارولنى چىقىرىۋېتىش."
+    cant_remove_password: "پارولنى چىقىرىۋېتەلمەيسىز - باشقا كىرىش ئۇسۇلىڭىز يوق!"
+    cant_remove_sign_in: "%{provider} بىلەن كىرىشنى چىقىرىۋېتەلمەيسىز - باشقا كىرىش ئۇسۇلىڭىز يوق!"
     password_removed: "پارول چىقىرىۋېتىلدى."
+    edit_sign_in_external: "سىرتقى كىرىش ئۇسۇلى"
+    external_sign_in_info_no_sign_ins: "ھېساباتىڭىزنى باشقا بېكەتلەردە ئىشلىتىپ %{site_name} غا كىرەلەيسىز."
+    external_sign_in_info_with_sign_ins: "سىز ھازىر تۆۋەندە كۆرسىتىلگەن سىرتقى كىرىش ئۇسۇلىنى ئىشلىتىۋاتىسىز. «ماسقەدەملىنىۋاتىدۇ» بەلگىسى سىز كېيىنكى قېتىم كىرگەندە %{site_name} ئۇچۇرلىرىڭىزنىڭ (ئىشلەتكۈچى نامى ۋە تورخەتكە ئوخشاش) يېڭىلىنىدىغانلىقىنى بىلدۈرىدۇ."
+    external_sign_in_added: "%{provider} دا كىرىش قوشۇلدى."
+    external_sign_in_updated: "%{provider} دا كىرىش يېڭىلاندى."
+    external_sign_in_removed: "%{provider} دا كىرىش چىقىرىۋېتىلدى."
+    external_sign_in_failed: "%{provider} دا كىرەلمىدى: %{error}."
+    external_sign_in_already_used: "%{provider} دا كىرىشنى قوشالمىدى: بۇ كىرىش ئىشلەتكۈچى «%{user_name}» تەرىپىدىن ئىشلىتىلىۋاتىدۇ."
+    external_sign_in_confirmation: "%{provider} ھېساباتىڭىز ئاساسىدا يېڭى %{site_name} ھېساباتى قۇرۇلدى. سىزنىڭ ئاشكارا ئىشلەتكۈچى نامىڭىز %{username}."
+    syncing_indicator: "(ماسقەدەملىنىۋاتىدۇ)"
+    enable_syncing: "ماسقەدەملەشنى ئېچىش"
+    disable_syncing: "ماسقەدەملەشنى ئېتىش"
+    remove_external_sign_in: "چىقىرىۋېتىش"
+    add_external_sign_in_info: "كىرىش قوشۇش:"
     author_email_notification_type:
+      none: "قوليازمىلىرىڭىزدىكى مۇنازىرىلەر ھەققىدە تورخەت تاپشۇرۇۋالماسلىق"
       discussion_only: "قوليازمىڭىزغا مۇنازىرە يوللانغاندا تورخەت تاپشۇرۇۋېلىش"
       discussion_and_comment: "قوليازمىلىرىڭىزغا مۇنازىرە يوللانغاندا ياكى بۇ مۇنازىرىگە يېڭى ئىنكاس كەلگەندە تورخەت تاپشۇرۇۋېلىش"
     list_display_html:
@@ -269,6 +393,7 @@ ug:
     search_placeholder: "ئىشلەتكۈچى ئىزدەش"
     locale_prompt: "(تىل تاللاش)"
     preferred_markup_description: "يېڭى قوليازما ۋە يازمىلارغا ئىشلىتىلىدۇ."
+    delete_link: "ھېسابات ئۆچۈرۈش"
     delete:
       submit: "ھېسابات ئۆچۈرۈش"
       confirmation:
@@ -281,15 +406,51 @@ ug:
       author:
         short: ئاپتور
         long: بۇ قوليازمىنىڭ ئاپتورى
+    notifications:
+      discussion_defaults:
+        new_discussion: سۈكۈتتىكى، سىز باشلىغان ھەر قانداق مۇنازىرىگە مۇشتەرى بولۇش
+        new_comment: سۈكۈتتىكى، سىز ئىنكاس يازغان ھەر قانداق مۇنازىرىگە مۇشتەرى بولۇش
+      current_discussion_subscriptions:
+        one: سىز مۇشتەرى بولغان %{discussions_link:%{count} مۇنازىرىگە} مۇشتەرى بولماسلىق
+        other: سىز مۇشتەرى بولغان %{discussions_link:%{count} مۇنازىرىگە} مۇشتەرى بولماسلىق
   help:
+    sections:
+      usage: ئىشلىتىش
+      development: ئىجادىيەت
+      miscellaneous: باشقا
+    open_source: "%{site_name} ئوچۇق كودلۇق (GPLv3 ئىجازەتنامىسىدە). %{github_link:ئۇنىڭ كودىنى GitHub دىن كۆرەلەيسىز}."
+    installing_user_scripts:
+      title: 'ئىشلەتكۈچىلەر قوليازمىسىنى قانداق قاچىلايدۇ'
+    installing_user_styles:
+      title: 'ئىشلەتكۈچىلەر ئۇسلۇبىنى قانداق قاچىلايدۇ'
+      content_html: |
+          <p>%{site_name} دىكى بەزى قوليازمىلارنى ئىشلەتكۈچى ئۇسلۇبى قىلىپ قاچىلاشقا بولىدۇ.</p>
+          <p>ئىشلەتكۈچى ئۇسلۇبىنى %{stylus_firefox_link:Stylus for Firefox}، %{stylus_chrome_link:Stylus for Chrome} ۋە %{stylus_opera_link:Stylus for Opera} بىلەن قاچىلاشقا بولىدۇ.</p>
+          <p>%{styles_link:ئىشلەتكىلى بولىدىغان بارلىق ئىشلەتكۈچىلەر ئۇسلۇبىنى كۆرۈش}</p>.
+    meta_keys:
+      title: "%{site_name} ئوقۇيدىغان قوليازما مېتا خاسلىقلىرى"
     writing_user_scripts:
+      title: "ئىشلەتكۈچىلەر قوليازمىسىنى قانداق يازىدۇ"
+      ask_in_forum_link_text: 'مۇنبەردىن سوراش'
+      user_page_link_text: 'ئىشلەتكۈچىلەر بېتى'
       post_new_script_link_text: 'يېڭى قوليازما يوللاش'
     code_rules:
       title: "%{site_name} نىڭ قوليازما يوللاش قائىدىلىرى"
+    external_scripts:
+      title: "%{site_name} نىڭ سىرتقى قوليازما تۈزۈمى"
+    script_rewriting:
+      title: "%{site_name} يوللانغان قوليازمىلارنى قانداق قايتا يازىدۇ"
+    site_feedback_link: "%{site_name} ئۈچۈن مەسىلە ئىنكاس قىلىش ياكى تەكلىپ-پىكىر يوللاش"
     credits:
+      title: "تۆھپىكارلار"
       translators_credit: "%{site_name} بولسا %{translators_link:Transifex دىكى Greasy Translation Force} تەرىپىدىن تەرجىمە قىلىندى:"
+    help_with_greasymonkey: "Greasemonkey دىن ياردەم"
+    contact:
+      title: "بىرەرسى بىلەن ئالاقىلىشىش"
     privacy_policy:
       title: "مەخپىيەتلىك تۈزۈمى"
+    user_css_to_user_js:
+      title: ئىشلەتكۈچى CSS نى ئىشلەتكۈچى JS قا ئايلاندۇرۇش
     antifeatures:
       title: قارشى ئىقتىدارلار
   search:
@@ -321,9 +482,14 @@ ug:
     report_user: "ئىشلەتكۈچىنى پاش قىلىش"
     report_comment: "ئىنكاسنى پاش قىلىش"
     report_message: "ئۇچۇرنى پاش قىلىش"
+    delete_script: "قوليازما ئۆچۈرۈش"
+    view_discussion: "مۇنازىرىنى كۆرۈش"
     loading_diff: "يۈكلىنىۋاتىدۇ..."
   discussions:
+    title: مۇنازىرىلەر
     comment_date: "يوللانغان ۋاقتى: %{date}"
+    comment_edit_date: "تەھرىرلەنگەن ۋاقتى: %{date}"
+    posted_by_html: "%{user} %{date}"
     last_comment: "ئاخىرقىسى: %{user} %{date}"
     new_discussion_heading: "ئوبزور، ئىنكاس ياكى سوئال يوللاش"
     new_discussion_submit: "ئىنكاس يوللاش"
@@ -337,6 +503,8 @@ ug:
     delete_discussion_confirm: بۇ مۇنازىرىنى راستتىنلا ئۆچۈرەمسىز؟
     update_comment_submit: "ئىنكاسنى يېڭىلاش"
     cancel_update_comment: "ئىناۋەتسىز"
+    quote_comment: "نەقىل"
+    question_heading_html: "سوئال / ئىنكاس"
     update_rating_note: "(يېڭى ئىنكاس يوللاش ئارقىلىق باھايىڭىزنى ئۆزگەرتەلەيسىز.)"
     ratings:
       question: "يوق - پەقەت سوئال، ئىنكاس ياكى ئىقتىدار تەلىپى"
@@ -354,20 +522,61 @@ ug:
         long: ئۆچۈرۈلدى
     sign_in_to_post_discussion: "ئوبزور، ئىنكاس ياكى سوئال يوللاش ئۈچۈن كىرىش."
     sign_in_to_post_comment: "جاۋاب قايتۇرۇش ئۈچۈن كىرىش."
+    user_filter:
+      label: "مەن قاتناشقان مۇنازىرىلەر"
+      all: "بارلىق مۇنازىرىلەر"
+      discussion_by_me: "مەن باشلىغان"
+      comment_by_me: "مەن ئىنكاس يازغان"
+      on_my_scripts: "قوليازمىلىرىمدىكى"
+      subscribed: "مۇشتەرى بولغان"
+    other_user_filter:
+      all: "بارلىق مۇنازىرىلەر"
+      comments_by: "%{user} نىڭ ئىنكاسلىرى"
+    category_filter:
+      label: سەھىپە
+      all: بارلىق سەھىپە
     read_filter:
+      label: ئوقۇش ھالىتى
+      all: ھەممە
+      read: ئوقۇلغان
+      unread: ئوقۇلمىغان
+    locale_filter:
+      label: تىلى
       all: ھەممە
     user_activity:
+      title: "يېقىنقى ئىنكاسلار"
       no_recent_activity: "بۇ ئىشلەتكۈچى يېقىندا ھېچقانداق ئىنكاس يوللىمىدى."
       script_review:
         posted_html: "<i>%{script}</i> نىڭ ئوبزورى يوللاندى"
+    subscribe: مۇشتەرى بولۇش
+    unsubscribe: مۇشتەرى بولماسلىق
     notify: ھەر قانداق جاۋابنى ماڭا ئۇقتۇرۇش
     categories:
+      greasyfork:
+        name: Greasy Fork قا ئىنكاس
+        description: خاتالىق دوكلاتى، ئىقتىدار تەلەپلىرى ۋە Greasy Fork نىڭ ئۆزى ھەققىدىكى باشقا ئىشلار.
+      development:
+        name: ئىجادىيەت
+        description: ئىشلەتكۈچى قوليازمىسى ۋە ئىشلەتكۈچى ئۇسلۇبى ئېچىش ھەققىدىكى تېخنىكىلىق پاراڭلار.
+      requests:
+        name: قۇرۇش تەلىپى
+        description: باشقىلاردىن ئىشلەتكۈچى قوليازمىسى ياكى ئىشلەتكۈچى ئۇسلۇبى يېزىپ بېرىشنى تەلەپ قىلىش.
+      script-discussions:
+        name: قوليازما مۇنازىرىلىرى
+      no-scripts:
+        name: قوليازما مۇنازىرىسىدىن باشقا ھەممىسى
       moderators:
         name: باشقۇرغۇچىلار
+    new_title: يېڭى مۇنازىرە
+    new_button: يېڭى مۇنازىرە
+    script_notice: ئەگەر سىز مەلۇم بىر قوليازمىنى مۇنازىرە قىلماقچى بولسىڭىز، قوليازمىنىڭ ئىنكاس بېتىگە كىرىپ، شۇ يەردىن مۇنازىرىنى باشلاڭ.
+    no_discussions: مۇنازىرە تېپىلمىدى.
+    mark_all_read: ھەممىنى ئوقۇلدى قىلىش
   screenshots:
     requirements: "كۆپ بولغاندا %{number} تال PNG، GIF، JPEG، ياكى WebP رەسىمى، ھەر بىرىنىڭ چوڭلۇقى %{size} دىن كىچىك."
   common:
     allowed_elements_link: "(رۇخسەتلىك كودنى كۆرۈش.)"
+    allowed_elements_and_attributes_title: "HTML مەزمۇنىغا رۇخسەت قىلىنغان ئېلېمېنتلار"
     not_found_text: "404 - بەت تېپىلمىدى."
     not_found_title: "404 - بەت تېپىلمىدى"
     not_found_link_home: "باشبەتكە قايتىش."
@@ -375,11 +584,30 @@ ug:
     preview_tab: كۆرۈپ بېقىش
     write_tab: يېزىش
   activerecord:
+    models:
+      script:
+        one: "%{count} قوليازما"
+        other: "%{count} قوليازما"
+      comment:
+        one: "%{count} ئىنكاس"
+        other: "%{count} ئىنكاس"
     attributes:
       user:
         name: "نامى"
         current_password: "نۆۋەتتىكى پارول"
         new_password: "يېڭى پارول"
         new_password_confirmation: "يېڭى پارولنى دەلىللەش"
+      script:
+        name: "نامى"
+        code: "كودى"
+      script_set:
+        name: "نامى"
       discussion:
         rating: "باھالاش"
+        category: "سەھىپىسى"
+        title: تېمىسى
+      conversation:
+        user_input: ئىشلەتكۈچى
+  importing:
+    previously_imported:
+      unknown_date: "(نامەلۇم)"
