@@ -697,15 +697,6 @@ ja:
       require_html: "外部の JavaScript をスクリプトに含めます。%{external_script_link:外部のスクリプトをコードに含める際の規則}を確認してください。サブリソースの整合性ハッシュ（%{tm_subresource_link:ここ}と%{mdn_subresource_link:ここ}の情報を参照）を使っていて、ハッシュが使用するURLのハッシュと一致しない際に、%{site_name}は警告します。"
       resource_html: "スクリプトに外部のリソース（JavaScript、CSS、画像など）を含めます。%{external_script_link:外部のスクリプトをコードに含める際の規則}を確認してください。サブリソースの整合性ハッシュ（%{tm_subresource_link:ここ}と%{mdn_subresource_link:ここ}の情報を参照）を使っていて、ハッシュが使用するURLのハッシュと一致しない際に、%{site_name}は警告します。"
       updateURL: "ユーザースクリプト管理ツールが更新を取得する方法の記述。%{site_name} はこれらのキーを取り除き、%{site_name}　からインストールされたすべてのスクリプトが　%{site_name}　から更新されるようにします。"
-      license_html: |
-          %{site_name} にスクリプトを投稿することで、あなたは他者にそれをインストールし使用することを許可します。付属させるライセンスは、あなたのスクリプトを、修正したり再配布できるかの許可を説明するものです。ライセンスはスクリプトの情報ページに表示されます。<code>@license</code> は以下のように使用:
-          <ul>
-          <li>ライセンスの名称 (例: <code>@licence GPL3</code>)。%{spdx_link:the SPDX にあるライセンス一覧} にある「完全な名称」Full name または「識別子」Identifier の使用を推奨します。</li>
-          <li>使用を許可する条件 (例: <code>@license You can modify as long as you credit me</code> : 私のクレジットを表記すれば修正を許可します)。既存のライセンスの使用を推奨します。</li>
-          <li>著作権の宣言 (例:<code>@license Copyright MyName</code>)。いずれかのライセンスの使用を望まないということです。</li>
-          <li>まったくない場合、著作権の宣言と同じ意味になりますが、ユーザーに対しては不明確です。</li>
-          </ul>
-          もし、あなたのスクリプトが他者の書いたコードを基にしたスクリプトであれば、選択できるライセンスは、元のスクリプトのライセンスの制限内になります。
       supportURL: "ユーザーがスクリプトのサポートを受けることができるページの URL (例: バグトラッカー、フォーラム、電子メールアドレス)。サポート URL はスクリプトのフィードバックページに表示されます。"
       contributionURL_html: "ユーザーがスクリプト作者に寄付することができるページの URL。貢献 URL はスクリプトのフィードバックページに表示されます。http、https、bitcoin スキームの URL が指定可能です。PayPal の寄付ページにリンクするには、 <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a>のような形式の URL を使用し、サンプルのメールアドレスを自分のものに置き換えます。"
       contributionAmount_html: "提示する寄付金額。<code>@contributionURL</code> と共に使用します。"

@@ -730,15 +730,6 @@ pt-BR:
       require_html: "Inclui JavaScript externo em um código. Veja %{external_script_link:rules for code including external scripts}. Se você usa chaves de integridade de sub recursos (informações %{tm_subresource_link:here} e %{mdn_subresource_link:here}), %{site_name} irá alerta-lo se suas chaves não corresponderem ao conteúdo da URL."
       resource_html: "Incluir um recurso externo (JavaScript, CSS, imagens etc.) em um script. Ver %{external_script_link:regras para código incluindo scripts externos}. Se você usar hashes de integridade de sub-recurso (veja as informações %{tm_subresource_link:aqui} e %{mdn_subresource_link:aqui}), %{site_name} irá alertá-lo se seus hashes não corresponderem ao conteúdo da URL que você usa."
       updateURL: "Descreve como os gerenciadores de script de usuário devem ser atualizados. %{site_name} irá retirar essas chaves, o que faz com que qualquer script instalado a partir de %{site_name} seja atualizado somente a partir de %{site_name}."
-      license_html: |
-          Ao postar seu script em %{site_name}, você dá permissão para que outras pessoas instalem e usem. A licença descreve se e como as pessoas podem modificar e distribuir seu script. A licença é exibida na página de informações do script. <code>@license</code> pode ser:
-          <ul>
-          <li>O nome de uma licença (por exemplo, <code>@licence GPL3</code>). É recomendado usar o "Nome completo" ou "Identificador" da %{spdx_link:Lista de Licenças SPDX}.</li>
-          <li>As condições sob as quais você permite o uso (por exemplo <code>@license Você pode modificar desde que me dê crédito</code>, embora seja recomendado usar uma licença pré-existente.</li>
-          <li>Uma declaração de direitos autorais (por exemplo <code>@license Copyright MeuNome</code>) se você não quiser liberar sob uma licença.</li>
-          <li>Omitido completamente, o que é o mesmo que ter uma declaração de direitos autorais, mas menos claro para os usuários.</li>
-          </ul>
-          Observe que se seu script for baseado em código que outra pessoa escreveu, você pode estar restrito na escolha da licença.
       supportURL: "URL para uma página onde os usuários podem obter suporte para o script, como rastreador de bug, um fórum, endereço de email, etc. A URL de suporte será exibida na página de feedback do script."
       contributionURL_html: "URL de uma página onde os usuários podem fazer doações para o autor do script. A URL de contribuição será exibida na página de feedback do script. As URLs podem ser http, https ou protocolos Bitcoin. Para informar uma página de doação pelo PayPal, use uma URL no formato <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=seu.email.aqui@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=seu.email.aqui@example.com&item_name=Greasy+Fork+donation</a>, substituindo o email de exemplo pelo seu email próprio."
       contributionAmount_html: "Doação sugerida, usado em conjunto com <code>@contributionURL</code>."

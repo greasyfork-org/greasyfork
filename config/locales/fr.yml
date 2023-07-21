@@ -733,12 +733,12 @@ fr:
       resource_html: "Inclut une ressource externe (JavaScript, CSS, images, etc.) dans un script. Voir %{external_script_link:règles pour le code incluant les scripts externes}. Si vous utilisez des hachages d'intégrité de sous-ressources (voir les informations %{tm_subresource_link:ici} et %{mdn_subresource_link:ici}), %{site_name} vous alertera si vos hachages ne correspondent pas au contenu de l'URL que vous utilisez."
       updateURL: "Décrit comment les gestionnaires de scripts utilisateurs doivent obtenir les mises à jours. %{site_name} supprimera ces clés, ce qui fait que n'importe quel script installé de %{site_name} se met à jour seulement de %{site_name}."
       license_html: |
-          En publiant votre script sur %{site_name}, vous autorisez les autres à l'installer et à l'utiliser. La licence décrit si et comment les personnes sont autorisées à modifier et à distribuer votre script. La licence est affichée sur la page d'informations d'un script. <code>@licence</code> peut comprendre:
+          En publiant votre script sur %{site_name}, vous autorisez les autres à l'installer et à l'utiliser. La licence décrit comment et si les personnes sont autorisées à modifier et à distribuer votre script. La licence est affichée sur la page d'informations d'un script. <code>@licence</code> peut être :
           <ul>
-          <li>Le nom d'une licence (par exemple, <code>@licence GPL3</code>). Il est recommandé d'utiliser un "Nom complet" ou un "Identifiant" de %{spdx_link:the SPDX License List}.</li>
-          <li>Les conditions dans lesquelles vous autorisez l'utilisation (par exemple <code>@license Vous pouvez modifier tant que vous me créditez</code>, bien qu'il soit recommandé d'utiliser une licence préexistante.</li>
+          <li>Le nom d'une licence (par exemple: <code>@license GPL3</code>). Il est recommandé d'utiliser un "Nom complet" ou un "Identifiant" de %{spdx_link:the SPDX License List}.</li>
+          <li>Les conditions dans lesquelles vous autorisez l'utilisation (par exemple: <code>@license Vous pouvez modifier tant que vous me créditez</code>, bien qu'il soit recommandé d'utiliser une licence préexistante.</li>
           <li>Une déclaration de copyright (par exemple <code>@license Copyright MyName</code>) si vous ne souhaitez pas publier sous licence.</li>
-          <li>Ne rien renseigner est qui équivaut à avoir une déclaration de droit d'auteur, mais moins clair pour les utilisateurs.</li>
+          <li>Ne rien renseigner équivaut à avoir une déclaration de droit d'auteur, mais moins clair pour les utilisateurs.</li>
           </ul>
           Notez que si votre script est basé sur du code écrit par quelqu'un d'autre, vous pouvez être limité dans la licence que vous choisissez.
       supportURL: "URL de la page où les utilisateurs peuvent obtenir de l'aide sur un script ( un bug tracker, un forum, une adresse e-mail ). L'URL d'aide est affichée sur la page de commentaires du script."
