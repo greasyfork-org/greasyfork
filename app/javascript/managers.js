@@ -11,21 +11,25 @@ export function canInstallUserJS() {
 }
 
 export async function canInstallUserCSS() {
-  if (localStorage.getItem('stylusDetected') == '1') {
+  if (localStorage.getItem('stylusDetected') === '1') {
     return true;
   }
-  postMessage({ type: 'style-version-query', name: "whatever", namespace: "whatever", url: location.href }, location.origin);
-  return new Promise(resolve => setTimeout(function() {
-    resolve(localStorage.getItem('stylusDetected') == '1')
-  }, 200));
+  await new Promise(resolve => {
+    window.stylusDetectedResolve = resolve;
+    postMessage({ type: 'style-version-query', name: "whatever", namespace: "whatever", url: location.href }, location.origin);
+    setTimeout(resolve, 200);
+  });
+  window.stylusDetectedResolve = null;
+  return localStorage.getItem('stylusDetected') === '1';
 }
 
-window.addEventListener("message", function(event) {
+window.addEventListener("message", function (event) {
   if (event.origin !== location.origin)
     return;
 
-  if (event.data.type != "style-version")
-    return;
+  if (event.data.type === "style-version") {
+    localStorage.setItem('stylusDetected', '1');
+    if (window.stylusDetectedResolve) window.stylusDetectedResolve();
+  }
 
-  localStorage.setItem('stylusDetected', '1')
 })
