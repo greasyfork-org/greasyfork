@@ -12,6 +12,7 @@ class UserCheckingJob < ApplicationJob
     return true if user.name.include?('17197055000')
     return true if user.email_domain == '163.com' && "#{user.name}@#{user.email_domain}" == user.email && /^[a-z]{3,5}[0-9]{3,5}$/.match?(user.name)
     return true if user.email_domain == 'qq.com' && repeating?(user.email.split('@').first)
+    return true if user.name.include?('www.xbs')
   end
 
   def repeating?(text)
