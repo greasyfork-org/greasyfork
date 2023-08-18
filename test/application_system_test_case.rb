@@ -1,6 +1,5 @@
 require 'test_helper'
 require 'minitest/around/unit'
-require 'webdrivers/chromedriver'
 
 class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   driven_by :headless_chrome
@@ -43,7 +42,7 @@ end
 Capybara.server = :puma
 
 Capybara.register_driver :headless_chrome do |app|
-  options = Selenium::WebDriver::Chrome::Options.new(
+  options = Selenium::WebDriver::Options.chrome(
     args: ['verbose', 'disable-gpu', 'no-sandbox', 'disable-dev-shm-usage', 'window-size=1400,1400', (ENV['HEADED'] == '1') ? nil : 'headless'].compact
   )
 
