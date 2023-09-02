@@ -41,6 +41,7 @@ sv:
     library_instructions_html: "Detta skript bör inte installeras direkt. Det är ett bibliotek för andra skript att inkludera med meta-direktivet %{code}"
     deleted_notice: "Detta skript har blivit raderat"
     deleted_notice_with_related: "Skripten du har viljat ha har blivit raderad, men här är några relaterade skripter"
+    deleted_notice_with_related_and_reason: "Skriptet du vill ha har blivit borttaget på grund av %{report_link:this report}, men här är några relaterade skripter."
     deleted_undelete_notice_html: "Skripten har blivit låst av en moderator och kan inte bli avraderad. Anledningen till detta: \"<i>%{delete_reason}</i>\"."
     version_notice_html: "Från och med %{date}. Se %{latest_version_link}."
     version_notice_latest_version_link: "den senaste versionen"
@@ -398,6 +399,14 @@ sv:
       title: "Kontakta någon"
     privacy_policy:
       title: "Integritetspolicy"
+  appeals:
+    new:
+      submit: Lämna in överklagande
+    deletion_reason_html: "%{script} är borttaget på grund av: %{reason}"
+    author_reason: "Överklagan inlämnad av skaparen"
+    pending_review: Den här överklagan väntar på granskning av en moderator.
+    dismissed_by_moderator: En moderator har avvisat denna överklagan.
+    upheld_by_moderator: Som ett resultat av denna överklagan
   conversations:
     new_button: skapa konverstation
     send_message: skicka medelande
