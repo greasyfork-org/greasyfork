@@ -1340,7 +1340,7 @@ CREATE TABLE `licenses` (
   `name` varchar(250) NOT NULL,
   `url` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=465 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=571 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `locale_contributors`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1366,7 +1366,7 @@ CREATE TABLE `locales` (
   `ui_available` tinyint(1) NOT NULL DEFAULT 0,
   `percent_complete` int(11) DEFAULT 0,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=191 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=192 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `localized_script_attributes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -2312,6 +2312,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20230227004731'),
 ('20230422004659'),
 ('20230617011356'),
-('20230717184116');
+('20230717184116'),
+('20230906005826');
 
 
