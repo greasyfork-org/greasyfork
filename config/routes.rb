@@ -125,6 +125,8 @@ Rails.application.routes.draw do
       resources :script_sets, only: [:create, :new, :edit, :update, :destroy], path: 'sets'
       get 'ban', to: 'users#ban', as: 'ban'
       post 'ban', to: 'users#do_ban', as: 'do_ban'
+      get 'unban', to: 'users#unban', as: 'unban'
+      post 'unban', to: 'users#do_unban', as: 'do_unban'
       resources :conversations, only: [:new, :create, :show, :index] do
         resources :messages, only: [:create, :update]
         member do

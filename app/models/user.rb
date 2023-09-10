@@ -205,6 +205,16 @@ class User < ApplicationRecord
     end
   end
 
+  def unlock_all_scripts!(moderator:, reason: nil)
+    scripts.where(locked: true).each do |s|
+      s.delete_reason = nil
+      s.locked = false
+      s.delete_type = nil
+      s.save(validate: false)
+      ModeratorAction.create!(moderator:, script: s, action: 'Undelete and unlock', reason:)
+    end
+  end
+
   def confirmed_or_identidied?
     confirmed? || identities.any?
   end
@@ -266,6 +276,21 @@ class User < ApplicationRecord
     # Resolve any reports on the user's deleted scripts
     Report.unresolved.where(item: scripts).find_each do |other_report|
       other_report.uphold!(moderator:)
+    end
+  end
+
+  def unban!(moderator:, reason: nil, undelete_scripts: false)
+    return unless banned?
+
+    User.transaction do
+      ModeratorAction.create!(
+        moderator:,
+        user: self,
+        action: 'Unban',
+        reason:
+      )
+      update_columns(banned_at: nil)
+      unlock_all_scripts!(moderator:, reason:) if undelete_scripts
     end
   end
 

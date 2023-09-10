@@ -72,10 +72,11 @@
       <p>
         <% if @user.banned? %>
           <% if @user.non_locked_scripts.any? %>
-            User has been banned, but has non-locked scripts. <%= link_to 'Delete all', user_ban_path(@user) %>
+            User was banned <%= markup_date(@user.banned_at) %>, but has non-locked scripts. <%= link_to 'Delete all', user_ban_path(@user) %>
           <% else %>
-            User has been banned.
+            User was banned <%= markup_date(@user.banned_at) %>.
           <% end %>
+          <%= link_to 'Unban', user_unban_path(@user) %>
         <% else %>
           <%= link_to 'Ban', user_ban_path(@user) %>
         <% end %>

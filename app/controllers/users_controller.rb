@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:webhook]
 
   before_action :authenticate_user!, except: [:show, :webhook, :index]
-  before_action :authorize_for_moderators_only, only: [:ban, :do_ban]
+  before_action :authorize_for_moderators_only, only: [:ban, :do_ban, :unban, :do_unban]
   before_action :check_read_only_mode, except: [:index, :show]
   before_action :disable_browser_caching!, only: [:edit_sign_in]
 
@@ -225,6 +225,18 @@ class UsersController < ApplicationController
     user.ban!(moderator: current_user, reason: params[:reason]) unless user.banned?
     user.lock_all_scripts!(reason: params[:reason], moderator: current_user, delete_type: params[:delete_type]) if params[:delete_type].present?
     user.delete_all_comments!(by_user: user) if params[:delete_comments] == '1'
+    flash[:notice] = "#{user.name} has been banned."
+    redirect_to user
+  end
+
+  def unban
+    @user = User.find(params[:user_id])
+  end
+
+  def do_unban
+    user = User.find(params[:user_id])
+    user.unban!(moderator: current_user, reason: params[:reason], undelete_scripts: params[:undelete_scripts] == '1')
+    flash[:notice] = "#{user.name} has been unbanned."
     redirect_to user
   end
 
