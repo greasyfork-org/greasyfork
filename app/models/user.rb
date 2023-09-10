@@ -206,7 +206,7 @@ class User < ApplicationRecord
   end
 
   def unlock_all_scripts!(moderator:, reason: nil)
-    scripts.where(locked: true).each do |s|
+    scripts.where(locked: true).find_each do |s|
       s.delete_reason = nil
       s.locked = false
       s.delete_type = nil

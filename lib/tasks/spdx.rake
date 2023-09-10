@@ -15,7 +15,6 @@ namespace :licenses do
       result['licenses'].each do |license_data|
         license = License.find_or_initialize_by(code: license_data['licenseId'])
         license.name = license_data['name']
-        url = license_data['seeAlso']&.first
         license.url = license_data['reference']
         license.save!
       end

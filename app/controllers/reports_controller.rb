@@ -73,12 +73,6 @@ class ReportsController < ApplicationController
   def dismiss
     @report = Report.find(params[:id])
 
-    if current_user.moderator? && !@report.resolvable_by_moderator?(current_user)
-      @text = 'Cannot dismiss, you are involved in this report.'
-      render 'home/error', status: :not_acceptable, layout: 'application'
-      return
-    end
-
     @report.dismiss!(moderator: current_user, moderator_notes: params[:moderator_notes].presence)
     if @report.item.is_a?(Script) && !@report.auto_reporter
       ScriptReportMailer.report_dismissed_offender(@report, site_name).deliver_later
