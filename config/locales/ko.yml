@@ -212,6 +212,7 @@ ko:
     warning_potentially_minified_html: "이 스크립트 코드는 최소화(압축)된 듯 합니다. 만약 최소화된 라이브러리를 사용 중이라면, 그 대신 %{allowed_requires_link}에서 <code>@require</code> 해주세요. 최소화된 코드를 포함하는 스크립트는 삭제될 수 있습니다."
     warning_automatic_sensitive_html: "이 스크립트는 %{sensitive_domains}에서 동작하기에 성인 컨텐츠로 설정되었습니다."
     warning_potentially_minified_allowed_requires_link: "이들 중 한 곳"
+    warning_license_missing_override_html: "라이센스 없이 저장"
     additional_info_locale_prompt: "(로케일을 선택하세요)"
     additional_info_add_localized: "현지화된 추가 정보 추가"
     additional_info_locale_repeated: "'%{locale_code}' 추가 정보가 중복되었습니다."
@@ -242,6 +243,8 @@ ko:
     sync_url_placeholder: "(URL)"
     sync_successful: 스크립트가 성공적으로 동기화되었습니다.
     sync_no_changes: 스크립트가 성공적으로 동기화되었지만 변경 사항이 없습니다.
+    sync_error: 스크립트 싱크가 실패했습니다 - %{error}
+    sync_turned_off: 스크립트 싱크가 꺼졌습니다.
     screenshots_add: "추가:"
     screenshots_remove: "제거"
     replacement_script_explanation: "(선택) 이 스크립트를 대체할 스크립트를 지정해주세요. 스크립트 URL:"
@@ -635,6 +638,7 @@ ko:
       save_success: 알림 설정을 반영했습니다.
       unsubscribe_all: 모든 알림 해제
       unsubscribe_all_success: 모든 알림을 해제했습니다.
+    account_banned: 이 계정은 밴되었습니다.
   webhooks:
     info:
       title: 웹훅 설정
@@ -699,6 +703,13 @@ ko:
       reporting: 만약 이 조항들을 위반하는 스크립트를 발견하면 스크립트의 피드백 탭에서 스크립트를 신고해주세요.
     external_scripts:
       title: "%{site_name}의 외부 스크립트 정책"
+      libraries:
+        title: "%{site_name}라이브러리"
+    cdns:
+      test_url:
+        label: URL을 테스트하기
+        result_ok: URL이 허용되었습니다
+        result_not_ok: URL이 허용되지 않았습니다.
     script_rewriting:
       title: "%{site_name}가 업로드한 스크립트를 변경하는 법"
       content_html: >
@@ -912,6 +923,7 @@ ko:
       unauthorized_code: "표절"
       malware: "악성 코드"
       minified: "최소화된 코드"
+      obfuscated: "난독화된 코드"
       external_code: "금지된 외부 코드"
       undisclosed_antifeature: "숨겨진 %{antifeature_link:역기능} (광고, 추적, 채굴 등)"
       wrong_category: "잘못된 카테고리"
@@ -1137,6 +1149,8 @@ ko:
         user_input: 사용자
       message:
         content: 메시지
+      script_lock_appeal:
+        text: 허용
   errors:
     messages:
       script_missing_name: "@name 정보가 필요합니다."
@@ -1160,7 +1174,7 @@ ko:
     attribution: "저작권은 스크립트 개발자에게 있으며 라이선스는 각 스크립트를 확인하세요"
   importing:
     title: 스크립트 가져오기
-    intro: "깃헙, 개인 서버, 또 다른 유저 스크립트 사이트 같은 데에서 호스팅 중인 스크립트를 %{site_name}로 가져올 수 있습니다."
+    intro: "깃허브, 개인 서버, 또 다른 유저 스크립트 사이트 같은 데에서 호스팅 중인 스크립트를 %{site_name}로 가져올 수 있습니다."
     url_entry_label: 가져올 스크립트 URL을 개행으로 분리해서 입력하세요. 순수 js, css URL이어야 합니다.
     sync_type_label: "가져온 후 이 스크립트를 아래 방식으로 동기화합니다:"
     additional_info_html: |
@@ -1175,7 +1189,7 @@ ko:
     previously_imported:
       heading: 가져온 스크립트 목록
       successful_entry_html: "%{script_link} - %{sync_type} 동기화. %{last_sync_date}에 마지막으로 동기화"
-      unknown_date: "(정보 없음)"
+      unknown_date: "(알수 없음)"
       failed_entry_html: "%{script_link} - %{sync_type} 동기화. %{last_sync_attempt_date}에 마지막으로 동기화 시도 후 %{sync_error}"
     results:
       title: "가져오기 결과"
@@ -1227,4 +1241,4 @@ ko:
       dismiss:
         moderator_notes: "관리자가 다음과 같이 댓글을 남겼습니다."
       unlock:
-        moderator_notes: "진행자가 다음과 같이 댓글을 남겼습니다."
+        moderator_notes: "관리자가 다음과 같이 댓글을 남겼습니다."
