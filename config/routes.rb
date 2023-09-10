@@ -138,6 +138,7 @@ Rails.application.routes.draw do
         get :notifications
         patch :update_notifications
         patch :unsubscribe_all
+        patch :mark_email_as_confirmed
       end
     end
 

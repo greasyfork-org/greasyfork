@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:webhook]
 
   before_action :authenticate_user!, except: [:show, :webhook, :index]
-  before_action :authorize_for_moderators_only, only: [:ban, :do_ban, :unban, :do_unban]
+  before_action :authorize_for_moderators_only, only: [:ban, :do_ban, :unban, :do_unban, :mark_email_as_confirmed]
   before_action :check_read_only_mode, except: [:index, :show]
   before_action :disable_browser_caching!, only: [:edit_sign_in]
 
@@ -285,6 +285,13 @@ class UsersController < ApplicationController
     current_user.send_confirmation_instructions
     flash[:notice] = t('devise.confirmations.send_instructions')
     redirect_to user_path(current_user)
+  end
+
+  def mark_email_as_confirmed
+    user = User.find(params[:id])
+    user.confirm
+    user.save
+    redirect_to user_path(user), notice: 'Email marked as confirmed'
   end
 
   def dismiss_announcement
