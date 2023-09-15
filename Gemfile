@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '3.1.2'
+ruby '3.2.2'
 
 gem 'bootsnap'
 gem 'daemons'
