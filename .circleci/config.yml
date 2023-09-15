@@ -25,6 +25,7 @@ jobs:
       - checkout
       - ruby/install-deps
       - browser-tools/install-chrome
+      - run: sudo apt update
       - run: sudo apt install mariadb-client libvips
       - run:
           name: Install Sphinx
