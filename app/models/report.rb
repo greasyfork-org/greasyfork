@@ -172,6 +172,8 @@ class Report < ApplicationRecord
       [item.poster]
     when Script
       item.users
+    when NilClass
+      []
     else
       raise 'Unknown type'
     end.compact
