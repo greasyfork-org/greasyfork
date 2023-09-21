@@ -46,6 +46,8 @@ es:
     deleted_notice_with_related: "El script que buscabas ha sido eliminado, así que aquí te dejamos algunos scripts alternativos."
     deleted_notice_with_related_and_reason: "El script que solicitaste ha sido eliminado debido a %{report_link:this report}, pero aquí hay algunos scripts relacionados."
     deleted_undelete_notice_html: "Un moderador ha bloqueado este script y no se puede restaurar. La razón es la siguiente: «<i>%{delete_reason}</i>»."
+    deleted_locked_author_notice_html: "Un moderador ha borrado este script y ya no es visible para el resto de usuarios. La razón es la siguiente: «<i>%{delete_reason}</i>». Revisa las %{code_rules_link:reglas de %{site_name}} para que no tengas más problemas de este tipo en el futuro. Puedes %{appeal_link:pedir que lo revisen otra vez} y darle otra oportunidad. No intentes volver a subirlo tal cual porque te pueden echar de %{site_name}."
+    self_deleted_locked_author_notice_html: "Has borrado este script %{report_link:debido a esta denuncia} y ya no es visible para el resto de usuarios. Revisa las %{code_rules_link:reglas de %{site_name}} para que no tengas más problemas de este tipo en el futuro. Puedes %{appeal_link:pedir que lo revisen otra vez} y darle otra oportunidad. No intentes volver a subirlo tal cual porque te pueden echar de %{site_name}."
     deleted_author_notice: "Se ha borrado este script y ya no es visible para el resto de usuarios. Puedes restaurarlo desde la pestaña de borrado."
     version_notice_html: "Versión del día %{date}. Echa un vistazo a %{latest_version_link}."
     version_notice_latest_version_link: "la versión más reciente"
@@ -765,6 +767,7 @@ es:
       licensing_html: Respetar los derechos de autor es importante. El código es primordial, pero los recursos (como imágenes y estilos) que utilices también lo son. Para usar el trabajo de otros respeta sus términos de licencia y pide permiso al autor según sea necesario. Las licencias es especifican con la metaclave <code>@license</code>, puedes ver los derechos y limitaciones de cada licencia en %{tldr_legal_link:tldrlegal.com}.
       reposts: Incluso en casos que no violen los derechos de autor, copiar o duplicar scripts que ya existen en %{site_name} de forma innecesaria sin aportar mejoras está prohibido.
       miscellaneous_header: Miscelaneo
+      keywords: Los scripts no deben contener palabras clave de temas que no vengan al caso, así como mencionar webs de terceros para intentar mejorar su posición en buscadores.
       adult_content_rule: Los scripts que incluyan contenido para adultos o son para sitios con contenido para adultos deben ser marcados como tal para permitir que otros usuarios puedan decidir verlos o no.
       reposting_deleted: No vuelvas a publicar scripts que ya hayan sido borrados; utiliza el sistema de revisión para revertir la decisión. Hacerlo conllevará una suspensión de la cuenta.
       advertising_in_description: Los autores del script no pueden poner publicidad en las páginas de Greasy Fork, por ejemplo en la descripción del script. La promoción de la web del autor, repositorios de código, Discord, WeChat, etc. está permitida.
@@ -1021,14 +1024,15 @@ es:
       wrong_category_with_suggestion: "Categoría incorrecta (sugerencia: %{suggested_category})"
       no_code: 'Sin código, o solo con código de ejemplo tipo «hola mundo»'
       other: "Otros"
-    report_intro: "%{reported_item} ha sido denunciado el %{report_date} por %{reason} por %{reporter}"
-    report_intro_no_reporter: "%{reported_item}fue reportado %{report_date} por %{reason}"
-    report_intro_unauthorized_html: "%{reported_script} ha sido denunciado el %{report_date} como copia no autorizada de %{other_script} por %{reporter}."
+    report_intro: "%{reported_item} ha sido denunciado %{report_date} como %{reason} por %{reporter}"
+    report_intro_no_reporter: "%{reported_item} ha sido denunciado %{report_date} como %{reason}"
+    report_intro_unauthorized_html: "%{reported_script} ha sido denunciado %{report_date} como copia no autorizada de %{other_script} por %{reporter}."
     report_intro_unauthorized_no_reporter_html: "%{reported_script} fue reportado %{report_date} como una copia no autorizada de %{other_script}"
     report_intro_unauthorized_license: "%{other_script} utiliza la licencia %{license_link: %{license_name}}. Visita %{tldr_legal_link:tldrlegal.com} (en inglés) para ayudarte a entender lo que puedes y no puedes hacer."
     report_intro_unauthorized_license_no_url: "%{other_script} utiliza la licencia %{license_name}. Visita %{tldr_legal_link:tldrlegal.com} (en inglés) para ayudarte a entender lo que puedes y no puedes hacer."
     report_intro_unauthorized_no_license: "%{other_script} no lleva asociado ninguna licencia, por lo que no es posible copiarlo si no tienes permiso expreso del autor."
     non_functional_feedback: "Si el script viene roto de serie o ya no funciona, %{feedback_link:deja un comentario} en su página."
+    paid_benefits_feedback: "%{site_name} no guarda registros de transacciones entre creadores y usuarios, por lo que no puede tomar partido en estas cuestiones. Si has pagado por funcionalidades y no estás de acuerdo con el resultado puedes quejarte poniendo %{feedback_link:tu opinión} para dejar constancia."
     unauthorized_code_original_placeholder: "URL del código original"
     explanation_placeholder: "Proporciona más detalles (opcional)"
     create_button: "Denunciar"
@@ -1037,6 +1041,7 @@ es:
     report_message: "Incumple las normas"
     result_dismissed: "Se ha revisado tu denuncia y no parece incumplir las normas."
     result_upheld: "Se ha confirmado tu denuncia y ha sido eliminado."
+    result_self_upheld: "El autor ha decidido borrar su propio script tras ver tu denuncia."
     result_fixed: "Se ha cerrado está denuncia porque un moderador asevera que los problemas que has encontrado se han resuelto."
     result_pending: "Pendiente de que lo revise un moderador. "
     result_pending_author_html: |
@@ -1059,9 +1064,9 @@ es:
   appeals:
     new:
       title: Nueva revisión para eliminar script
-      intro_html: 'Tu script se ha eliminado por: %{reason}. Si crees que ha sido un error, o tienes información adicional que presentar, o has actualizado tu script para hacerte cargo del problema, puedes solicitar que lo revisen. Si el equipo de moderación está de acuerdo con los cambios se restaurará el acceso.'
+      intro_html: 'Tu script se ha eliminado como %{reason}. Si crees que ha sido un error, o tienes información adicional que presentar, o has actualizado tu script para hacerte cargo del problema, puedes solicitar que lo revisen. Si el equipo de moderación está de acuerdo con los cambios se restaurará el acceso.'
       submit: Enviar apelación
-    deletion_reason_html: "%{script} ha sido eliminado porque: %{reason}."
+    deletion_reason_html: "%{script} ha sido borrado por contener %{reason}."
     author_reason: "Apelación enviada por el autor: "
     pending_review: Esta petición está a la espera de que la revise un moderador.
     dismissed_by_moderator: Un moderador ha dado por mala tu petición de revisión.
@@ -1317,6 +1322,8 @@ es:
             <p>
             Su script %{script_link:%{script_name}} ha sido reportado por violar las reglas de %{site_name}. La razón específica dada: %{reason}. puedes %{report_link:revisar este informe y enviar una refutación}. Si no envías una refutación, tu script puede ser eliminado por los moderadores.
             </p>
+
+            Tu script %{script_link:%{script_name}} ha sido denunciado por incumplir las normas de %{site_name}. El motivo específico es: %{reason}. Puedes %{report_link:revisar la denuncia y enviar una reclamación}. Si no envías una reclamación, tu script puede que sea eliminado por los moderadores.
       report_upheld_offender:
         subject: "Tu script %{script_name} en %{site_name} ha sido eliminado."
         body_html: |
