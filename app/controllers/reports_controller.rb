@@ -19,7 +19,6 @@ class ReportsController < ApplicationController
     end
     report_ids = scope
                  .sort_by { |r| [r.awaiting_response? ? 1 : 0, r.created_at] }
-                 .reject { |r| r.item.nil? }
                  .map(&:id)
     @reports = Report
                .where(id: report_ids)
