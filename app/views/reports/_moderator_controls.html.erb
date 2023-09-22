@@ -1,4 +1,4 @@
-<% if report.reason != Report::REASON_WRONG_CATEGORY %>
+<% if report.reason != Report::REASON_WRONG_CATEGORY && report.item %>
   <%= form_tag(mark_fixed_report_path(report, index: i), method: 'POST', class: 'report-resolution-options') do %>
     <%= text_area_tag :moderator_notes, nil, rows: 3, placeholder: 'Moderator notes (optional)' %>
     <br>
@@ -54,7 +54,7 @@
          raise "Unknown item #{report.item}"
        end %>
 
-    <% if report.reason == Report::REASON_SPAM %>
+    <% if report.reason == Report::REASON_SPAM && report.item %>
       <%= submit_tag('Nuke user', name: 'nuke') %>
     <% end %>
 

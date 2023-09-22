@@ -124,15 +124,17 @@ class Report < ApplicationRecord
         raise "Unknown report item #{item}"
       end
 
-      update!(result: RESULT_UPHELD, resolver: moderator, moderator_notes:, self_upheld:)
+      update_columns(result: RESULT_UPHELD, resolver_id: moderator&.id, moderator_notes:, self_upheld:)
       reporter&.update_trusted_report!
     end
 
     return if reason == REASON_WRONG_CATEGORY
 
-    Report.unresolved.where(item:).find_each do |other_report|
-      other_report.update!(result: RESULT_UPHELD)
-      other_report.reporter&.update_trusted_report!
+    if item
+      Report.unresolved.where(item:).find_each do |other_report|
+        other_report.update!(result: RESULT_UPHELD)
+        other_report.reporter&.update_trusted_report!
+      end
     end
   end
 
