@@ -1456,7 +1456,7 @@ CREATE TABLE `moderator_actions` (
   KEY `index_moderator_actions_on_user_id` (`user_id`),
   CONSTRAINT `fk_rails_982b48b755` FOREIGN KEY (`report_id`) REFERENCES `reports` (`id`) ON DELETE SET NULL,
   CONSTRAINT `fk_rails_de8c1b0dd2` FOREIGN KEY (`script_report_id`) REFERENCES `script_reports` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=74728 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=74743 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `redirect_service_domains`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -2313,6 +2313,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20230422004659'),
 ('20230617011356'),
 ('20230717184116'),
-('20230906005826');
+('20230906005826'),
+('20230922233518');
 
 
