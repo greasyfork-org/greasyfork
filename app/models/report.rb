@@ -118,6 +118,8 @@ class Report < ApplicationRecord
         elsif moderator
           ModeratorAction.create!(moderator:, script: item, action: 'Delete and lock', report: self, private_reason: moderator_notes)
         end
+      when NilClass
+        # Do nothing, it's gone already.
       else
         raise "Unknown report item #{item}"
       end

@@ -48,6 +48,8 @@
       <% else %>
         <%= submit_tag('Resolve (user has been deleted)') %>
       <% end %>
+    <% when NilClass %>
+      <%= submit_tag('Resolve') %>
     <% else
          raise "Unknown item #{report.item}"
        end %>
