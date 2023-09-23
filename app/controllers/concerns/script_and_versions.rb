@@ -101,7 +101,7 @@ module ScriptAndVersions
             per_page: 5,
             order: 'daily_installs DESC',
             populate: true,
-            sql: { include: [:script_type, { localized_attributes: :locale }, :users] }
+            sql: { include: [{ localized_attributes: :locale }, :users] }
           )
         end
 
