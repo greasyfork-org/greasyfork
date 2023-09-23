@@ -5,7 +5,7 @@ class Script < ApplicationRecord
   include LocalizingModel
   include DetectsLocale
 
-  self.ignored_columns = ['script_type_id']
+  self.ignored_columns += ['script_type_id']
 
   CONSECUTIVE_BAD_RATINGS_COUNT = 3
   CONSECUTIVE_BAD_RATINGS_GRACE_PERIOD = 2.weeks
@@ -596,20 +596,28 @@ class Script < ApplicationRecord
     return Rails.env.production? ? 'sleazyfork.org' : 'sleazyfork.local'
   end
 
-  def similar_scripts(locale:)
+  def similar_scripts(script_subset:, locale:)
     return @_similar_scripts unless @_similar_scripts.nil?
 
     sas = site_applications.where(domain: true).pluck(:id)
     return Script.none if sas.none?
 
+    with = {
+      script_type: Script.script_types[:public],
+      site_application_id: sas,
+      locale: Locale.find_by(code: locale).id,
+    }
+
+    case script_subset
+    when :greasyfork
+      with[:sensitive] = false
+    when :sleazyfork
+      with[:sensitive] = true
+    end
+
     @_similiar_scripts = Script
                          .search(
-                           with: {
-                             sensitive: false,
-                             script_type: Script.script_types[:public],
-                             site_application_id: sas,
-                             locale: Locale.find_by(code: locale).id,
-                           },
+                           with:,
                            sql: { include: [{ localized_attributes: :locale }, :users] },
                            order: 'daily_installs DESC',
                            per_page: 25

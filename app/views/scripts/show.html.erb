@@ -116,13 +116,13 @@ if localized_additional_info.present? || @script_version.attachments.any? %>
     <%= format_user_text(localized_additional_info.attribute_value, localized_additional_info.value_markup, mentions: localized_additional_info.mentions) if localized_additional_info %>
     <%= render partial: 'screenshots/show', locals: { attachable: @script_version } %>
   </div>
-<% elsif @script.similar_scripts(locale: I18n.locale).any? %>
+<% elsif (similar_scripts = @script.similar_scripts(script_subset: script_subset, locale: I18n.locale)).any? %>
   <hr>
   <p>
     <%= t('scripts.related_scripts') %>
   </p>
   <ul>
-    <% @script.similar_scripts(locale: I18n.locale).each do |script| %>
+    <% similar_scripts.each do |script| %>
       <li><%= render_script(script) %> - <span class="script-description"><%= script.description(I18n.locale) %></span></li>
     <% end %>
   </ul>

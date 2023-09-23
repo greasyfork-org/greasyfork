@@ -130,11 +130,11 @@ class Report < ApplicationRecord
 
     return if reason == REASON_WRONG_CATEGORY
 
-    if item
-      Report.unresolved.where(item:).find_each do |other_report|
-        other_report.update!(result: RESULT_UPHELD)
-        other_report.reporter&.update_trusted_report!
-      end
+    return unless item
+
+    Report.unresolved.where(item:).find_each do |other_report|
+      other_report.update!(result: RESULT_UPHELD)
+      other_report.reporter&.update_trusted_report!
     end
   end
 
