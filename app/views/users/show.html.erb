@@ -180,20 +180,21 @@
   </section>
 <% end %>
 
-<% if @same_user || (@user.script_sets.any? && (current_user&.moderator? || @show_profile)) %>
+<%= script_sets = @user.script_sets.order(:name) %>
+<% if @same_user || ((current_user&.moderator? || @show_profile) && script_sets.load.any?) %>
   <section id="user-script-sets-section">
     <header>
       <h3>Script Sets</h3>
     </header>
     <section class="text-content">
       <ul id="user-script-sets">
-        <% favorites_set = @user.script_sets.find{|ss| ss.favorite}
+        <% favorites_set = script_sets.find(&:favorite)
         if !favorites_set.nil? %>
           <li><%= t('script_sets.favorites_name') %> <%= link_to 'View scripts', scripts_path(set: favorites_set.id), rel: :nofollow %> <% if @same_user %><%= link_to 'Edit', edit_user_script_set_path(@user, favorites_set) %><% end %></li>
         <% elsif @same_user %>
           <li><%= t('script_sets.favorites_name') %> <%= link_to 'Edit', new_user_script_set_path(@user, fav: 1) %></li>
         <% end
-        @user.script_sets.order(:name).select{|ss| !ss.favorite}.each do |ss| %>
+         script_sets.reject(&:favorite).each do |ss| %>
           <li><%= ss.name %>: <%= ss.description %> <%= link_to 'View scripts', scripts_path(set: ss.id), rel: :nofollow %> <% if @same_user %><%= link_to 'Edit', edit_user_script_set_path(@user, ss) %><% end %></li>
         <% end %>
       </ul>

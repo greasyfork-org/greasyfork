@@ -92,6 +92,7 @@ class UsersController < ApplicationController
         @by_sites = TopSitesService.get_top_by_sites(script_subset:, user_id: @user.id)
 
         @scripts = (@same_user || (!current_user.nil? && current_user.moderator?)) ? @user.scripts : @user.scripts.listable_including_libraries(script_subset)
+        @scripts = @scripts.includes(:users, :localized_attributes)
         @user_has_scripts = !@scripts.empty?
         @scripts = ScriptsController.apply_filters(@scripts, params.reverse_merge(language: 'all'), script_subset).paginate(per_page: 100, page: params[:page] || 1)
         @other_site_scripts = (script_subset == :sleazyfork) ? @user.scripts.listable(:greasyfork).count : 0
