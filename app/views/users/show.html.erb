@@ -45,12 +45,13 @@
 </section>
 
 <% if @same_user && @user.scripts.any?
-     dosr = @user.discussions_on_scripts_written.visible %>
+  dosr = @user.discussions_on_scripts_written.visible.includes(:poster, :stat_last_replier, :stat_first_comment, script: [:localized_attributes, :users]) %>
   <section id="user-discussions-on-scripts-written">
     <header>
       <h3><%= t('users.discussions_on_scripts') %></h3>
     </header>
     <section class="text-content">
+      <% dosr = dosr.limit(11).load %>
       <% if dosr.empty? %>
         <p><%= t('users.discussions_on_scripts_none') %></p>
       <% else %>
