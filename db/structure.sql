@@ -1850,6 +1850,7 @@ CREATE TABLE `scripts` (
   `disable_stats` tinyint(1) NOT NULL DEFAULT 0,
   `pure_404` tinyint(1) NOT NULL DEFAULT 0,
   `missing_license_warned` tinyint(1) NOT NULL DEFAULT 0,
+  `script_type` int(11) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   KEY `index_scripts_on_delta` (`delta`),
   KEY `index_scripts_on_script_type_id` (`script_type_id`),
@@ -2314,6 +2315,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20230617011356'),
 ('20230717184116'),
 ('20230906005826'),
-('20230922233518');
+('20230922233518'),
+('20230922235219');
 
 

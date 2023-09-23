@@ -1,6 +1,6 @@
 <% if script.active?
-  case script.script_type_id
-    when 1, 2 %>
+  case script.script_type
+    when 'public', 'unlisted' %>
       <div id="install-area">
         <% if script.css? %>
           <% if script.css_convertible_to_js? %>
@@ -21,7 +21,7 @@
         <% end %>
       </div>
 
-    <% when 3 %>
+    <% when :library %>
       <p>
         <% library_code_snippet = if params[:version].nil?
           "<code>// @require #{library_js_script_url(script, version: script_version.id, name: script.url_name, locale_override: nil)}</code>"

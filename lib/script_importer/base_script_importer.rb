@@ -38,7 +38,7 @@ module ScriptImporter
 
       script = Script.new
       script.authors.build(user:)
-      script.script_type_id = 1
+      script.script_type = :public
       script.script_sync_type_id = sync_type_id
       script.language = sync_id.ends_with?('.css') ? 'css' : 'js'
       script.locale = locale

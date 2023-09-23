@@ -268,7 +268,7 @@ class ApplicationController < ActionController::Base
            else
              {}
            end
-    with[:script_type_id] = ScriptType::PUBLIC_TYPE_ID
+    with[:script_type] = Script.script_types[:public]
     with
   end
 

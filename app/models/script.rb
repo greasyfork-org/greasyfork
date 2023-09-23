@@ -5,11 +5,14 @@ class Script < ApplicationRecord
   include LocalizingModel
   include DetectsLocale
 
+  self.ignored_columns = ['script_type_id']
+
   CONSECUTIVE_BAD_RATINGS_COUNT = 3
   CONSECUTIVE_BAD_RATINGS_GRACE_PERIOD = 2.weeks
   CONSECUTIVE_BAD_RATINGS_NOTIFICATION_DELAY = 1.day
 
   enum delete_type: { 'keep' => 1, 'blanked' => 2, 'redirect' => 3 }, _prefix: true
+  enum script_type: { 'public' => 1, 'unlisted' => 2, 'library' => 3 }, _prefix: true
 
   belongs_to :promoted_script, class_name: 'Script', optional: true
 
@@ -39,7 +42,6 @@ class Script < ApplicationRecord
 
   has_one :cleaned_code, dependent: :delete
 
-  belongs_to :script_type
   belongs_to :script_sync_type, optional: true
   belongs_to :license, optional: true
   belongs_to :locale
@@ -64,9 +66,9 @@ class Script < ApplicationRecord
       raise ArgumentError, "Invalid argument #{script_subset}"
     end
   }
-  scope :listable, ->(script_subset) { active(script_subset).where(script_type_id: 1).where.not(review_state: 'required') }
-  scope :libraries, ->(script_subset) { active(script_subset).where(script_type_id: ScriptType::LIBRARY_TYPE_ID) }
-  scope :listable_including_libraries, ->(script_subset) { active(script_subset).where(script_type_id: [1, 3]) }
+  scope :listable, ->(script_subset) { active(script_subset).where(script_type: :public).where.not(review_state: 'required') }
+  scope :libraries, ->(script_subset) { active(script_subset).where(script_type: :library) }
+  scope :listable_including_libraries, ->(script_subset) { active(script_subset).where(script_type: [:public, :library]) }
   scope :reported, -> { not_deleted.joins(:reports).where(reports: { result: nil }).distinct }
   scope :reported_not_adult, -> { not_deleted.includes(:users).where.not(not_adult_content_self_report_date: nil) }
   scope :for_all_sites, -> { includes(:script_applies_tos).references(:script_applies_tos).where('script_applies_tos.id' => nil) }
@@ -410,7 +412,7 @@ class Script < ApplicationRecord
   end
 
   def library?
-    script_type_id == ScriptType::LIBRARY_TYPE_ID
+    script_type_library?
   end
 
   def listable?
@@ -418,11 +420,11 @@ class Script < ApplicationRecord
   end
 
   def public?
-    script_type_id == ScriptType::PUBLIC_TYPE_ID
+    script_type_public?
   end
 
   def unlisted?
-    script_type_id == ScriptType::UNLISTED_TYPE_ID
+    script_type_unlisted?
   end
 
   def can_be_added_to_set?
@@ -604,7 +606,7 @@ class Script < ApplicationRecord
                          .search(
                            with: {
                              sensitive: false,
-                             script_type_id: ScriptType::PUBLIC_TYPE_ID,
+                             script_type: Script.script_types[:public],
                              site_application_id: sas,
                              locale: Locale.find_by(code: locale).id,
                            },

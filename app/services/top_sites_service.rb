@@ -26,7 +26,7 @@ class TopSitesService
           WHERE
             domain
             AND blocked = 0
-            AND script_type_id = 1
+            AND script_type = 1
             AND delete_type IS NULL
             AND !tld_extra
             #{subset_clause}
@@ -58,7 +58,7 @@ class TopSitesService
           sum(daily_installs) install_count, count(distinct scripts.id) script_count
         FROM scripts
         WHERE
-          script_type_id = 1
+          script_type = 1
           AND delete_type is null
           AND NOT EXISTS (SELECT * FROM script_applies_tos WHERE script_id = scripts.id)
         SQL
