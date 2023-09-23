@@ -5,8 +5,6 @@ class Script < ApplicationRecord
   include LocalizingModel
   include DetectsLocale
 
-  self.ignored_columns += ['script_type_id']
-
   CONSECUTIVE_BAD_RATINGS_COUNT = 3
   CONSECUTIVE_BAD_RATINGS_GRACE_PERIOD = 2.weeks
   CONSECUTIVE_BAD_RATINGS_NOTIFICATION_DELAY = 1.day
