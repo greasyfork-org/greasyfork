@@ -181,7 +181,7 @@
   </section>
 <% end %>
 
-<%= script_sets = @user.script_sets.order(:name) %>
+<% script_sets = @user.script_sets.order(:name) %>
 <% if @same_user || ((current_user&.moderator? || @show_profile) && script_sets.load.any?) %>
   <section id="user-script-sets-section">
     <header>
