@@ -94,7 +94,7 @@ class UsersController < ApplicationController
         @scripts = (@same_user || (!current_user.nil? && current_user.moderator?)) ? @user.scripts : @user.scripts.listable_including_libraries(script_subset)
         @scripts = @scripts.includes(:users, :localized_attributes)
         @user_has_scripts = !@scripts.empty?
-        @scripts = ScriptsController.apply_filters(@scripts, params.reverse_merge(language: 'all'), script_subset).paginate(per_page: 100, page: params[:page] || 1)
+        @scripts = ScriptsController.apply_filters(@scripts, params.reverse_merge(language: 'all'), script_subset).paginate(per_page: 50, page: params[:page] || 1)
         @other_site_scripts = (script_subset == :sleazyfork) ? @user.scripts.listable(:greasyfork).count : 0
 
         @bots = 'noindex,follow' if [:per_page, :set, :site, :sort, :language].any? { |name| params[name].present? }
@@ -106,7 +106,7 @@ class UsersController < ApplicationController
         @canonical_params = [:id, :page, :per_page, :set, :site, :sort, :language]
 
         if @same_user
-          conversation_scope = current_user.conversations.includes(:users, :stat_last_poster)
+          conversation_scope = @user.conversations.includes(:users, :stat_last_poster)
           @recent_conversations = conversation_scope.order(stat_last_message_date: :desc).where(stat_last_message_date: 1.month.ago..)
           @more_conversations = conversation_scope.count > @recent_conversations.count
           scripts_with_bad_hashes = @scripts.not_deleted.with_bad_integrity_hashes.load
