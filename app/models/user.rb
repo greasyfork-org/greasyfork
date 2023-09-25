@@ -172,8 +172,9 @@ class User < ApplicationRecord
   end
 
   def serializable_hash(options = nil)
+    sleazy = options&.[](:sleazy)
     h = super({ only: [:id, :name] }.merge(options || {})).merge({
-                                                                   url: Rails.application.routes.url_helpers.user_url(nil, self),
+                                                                   url: Rails.application.routes.url_helpers.user_url(nil, self, **(sleazy ? { host: 'sleazyfork.org' } : {})),
                                                                  })
     # rename listable_scripts to scripts
     unless h['listable_scripts'].nil?

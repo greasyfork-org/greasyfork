@@ -82,12 +82,12 @@ module ScriptListings
       format.json do
         return if load_scripts_for_index
 
-        render json: (params[:meta] == '1') ? { count: @scripts.count } : @scripts.as_json(include: :users)
+        render json: (params[:meta] == '1') ? { count: @scripts.count } : scripts_as_json(@scripts)
       end
       format.jsonp do
         return if load_scripts_for_index
 
-        render json: (params[:meta] == '1') ? { count: @scripts.count } : @scripts.as_json(include: :users), callback: clean_json_callback_param
+        render json: (params[:meta] == '1') ? { count: @scripts.count } : scripts_as_json(@scripts), callback: clean_json_callback_param
       end
     end
   end
@@ -190,10 +190,10 @@ module ScriptListings
         render action: 'index'
       end
       format.json do
-        render json: (params[:meta] == '1') ? { count: @scripts.count } : @scripts.as_json(include: :users)
+        render json: (params[:meta] == '1') ? { count: @scripts.count } : scripts_as_json(@scripts)
       end
       format.jsonp do
-        render json: (params[:meta] == '1') ? { count: @scripts.count } : @scripts.as_json(include: :users), callback: clean_json_callback_param
+        render json: (params[:meta] == '1') ? { count: @scripts.count } : scripts_as_json(@scripts), callback: clean_json_callback_param
       end
     end
   end
@@ -351,5 +351,9 @@ module ScriptListings
     @scripts = @scripts.load
 
     false
+  end
+
+  def scripts_as_json(scripts)
+    scripts.as_json(include: { users: { sleazy: sleazy? } }, sleazy: sleazy?)
   end
 end

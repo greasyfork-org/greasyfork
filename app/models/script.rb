@@ -483,14 +483,18 @@ class Script < ApplicationRecord
     self.license_text = text
   end
 
-  def url(locale: nil)
-    url_helpers.script_url(self, locale:)
+  def host_arg(sleazy: false)
+    ((sleazy && sensitive) ? { host: 'sleazyfork.org' } : {})
   end
 
-  def code_url
-    return url_helpers.library_js_script_url(self, version: newest_saved_script_version.id, name: url_name) if library?
+  def url(locale: nil, sleazy: false)
+    url_helpers.script_url(self, locale:, **host_arg(sleazy:))
+  end
 
-    return url_helpers.user_js_script_url(self, name: url_name)
+  def code_url(sleazy: false)
+    return url_helpers.library_js_script_url(self, version: newest_saved_script_version.id, name: url_name, **host_arg(sleazy:)) if library?
+
+    return url_helpers.user_js_script_url(self, name: url_name, **host_arg(sleazy:))
   end
 
   def code_path
@@ -500,16 +504,21 @@ class Script < ApplicationRecord
   end
 
   def serializable_hash(options = nil)
-    super({ only: [:id, :daily_installs, :total_installs, :fan_score, :good_ratings, :ok_ratings, :bad_ratings, :created_at, :code_updated_at, :namespace, :support_url, :contribution_url, :contribution_amount] }.merge(options || {})).merge({
-                                                                                                                                                                                                                                                  name: default_name,
-                                                                                                                                                                                                                                                  description: default_localized_value_for('description'),
-                                                                                                                                                                                                                                                  url: url_helpers.script_url(nil, self),
-                                                                                                                                                                                                                                                  code_url:,
-                                                                                                                                                                                                                                                  license: license&.name || license_text,
-                                                                                                                                                                                                                                                  version:,
-                                                                                                                                                                                                                                                  locale: locale&.code,
-                                                                                                                                                                                                                                                  deleted: deleted?,
-                                                                                                                                                                                                                                                })
+    sleazy = options&.[](:sleazy)
+    super(
+      {
+        only: [:id, :daily_installs, :total_installs, :fan_score, :good_ratings, :ok_ratings, :bad_ratings, :created_at, :code_updated_at, :namespace, :support_url, :contribution_url, :contribution_amount],
+      }.merge(options || {}))
+      .merge({
+               name: default_name,
+               description: default_localized_value_for('description'),
+               url: url(sleazy:),
+               code_url: code_url(sleazy:),
+               license: license&.name || license_text,
+               version:,
+               locale: locale&.code,
+               deleted: deleted?,
+             })
   end
 
   # all text content of non-localized attributes for this script (for language detection)
