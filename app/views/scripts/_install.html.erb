@@ -21,7 +21,7 @@
         <% end %>
       </div>
 
-    <% when :library %>
+    <% when 'library' %>
       <p>
         <% library_code_snippet = if params[:version].nil?
           "<code>// @require #{library_js_script_url(script, version: script_version.id, name: script.url_name, locale_override: nil)}</code>"
