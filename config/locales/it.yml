@@ -42,7 +42,9 @@ it:
     promoted_text_html: "Potresti essere interessato/a anche a %{script_link}"
     library_instructions_html: "Questo script non dovrebbe essere installato direttamente. È una libreria per altri script da includere con la chiave %{code}"
     deleted_notice: "Questo script è stato rimosso."
+    deleted_notice_with_reason: "Questo script è stato eliminato a causa : %{report_link:this report}."
     deleted_notice_with_related: "Lo script che hai cercato è stato rimosso, ma ci sono alcuni script simili."
+    deleted_notice_with_related_and_reason: "Lo script che hai richiesto è stato eliminato a causa di %{report_link:this report}, ma ecco alcuni script correlati."
     deleted_undelete_notice_html: "Lo script è stato bloccato da un moderatore e non può essere cancellato. La motivazione fornita è: \"<i>%{delete_reason}</i>\"."
     deleted_locked_author_notice_html: "Questo script è stato eliminato da un moderatore in risposta a %{report_link:this report} e non sara accessibile ad altri. La spiegazione fornita e' \"<i>%{delete_reason}</i>\". Perfavore controlla %{code_rules_link:%{site_name}il regolamento}. Se pensi la cancellazione sia un errore, puoi %{appeal_link:submit una richiesta} per questa cancellazione. Non ripubblicare questo script; ciò potrebbe comportare il divieto di%{site_name}."
     deleted_author_notice: "Lo script è stato cancellato e non è accessibile da altri. Puoi ripristinarlo dalla finestra Elimina."
@@ -760,6 +762,7 @@ it:
       licensing_html: Il tuo script deve rispettare i copyrights degli altri. Questo include il codice stesso e qualsiasi risorsa (ad esempio immagini) che utilizza. Se intendi usare il contenuto di altri, conformati ai loro termini di licenza o ottieni il loro permesso prima di farlo. Le licenze per gli script sono specificate dalla meta key <code>@license</code>, e puoi apprendere cosa puoi e non puoi fare usando %{tldr_legal_link:tldrlegal.com}.
       reposts: Anche nei casi che non violano la regola sul copyright, la ripubblicazione di scripts che siano già su %{site_name} non è permessa a meno che non apportino dei miglioramenti rispetto all'originale.
       miscellaneous_header: Miste
+      keywords: Gli script non devono includere parole chiave non correlate o menzionare siti non correlati per tentare di migliorare il posizionamento nella ricerca.
       adult_content_rule: Gli scripts che includono contenuti per adulti o che sono per siti con contenuti per adulti devono essere segnati come tali per garantire agli altri utenti l'opzione di vederli o meno.
       reposting_deleted: Non ripubblicare gli scripts che sono stati eliminati a causa di violazioni delle regole; usa la funzione ricorso invece. Ripubblicare gli scripts eliminati potrebbe risultare in un ban.
       advertising_in_description: Gli autori degli script non possono pubblicare pubblicità sulle pagine di Greasy Fork, ad esempio nella descrizione dello script. La promozione della pagina dell'autore dello script, della repository per il codice, di Discord, di WeChat, ecc. è consentita.
@@ -1032,6 +1035,7 @@ it:
     report_message: "Segnala messaggio"
     result_dismissed: "Questa segnalazione è stata rigettata da un moderatore."
     result_upheld: "Questa segnalazione è stata confermata da un moderatore."
+    result_self_upheld: "L'autore ha eliminato il proprio script in seguito a questa segnalazione."
     result_fixed: "Questa segnalazione è stata risolta da un moderatore poiché ritiene che l'autore abbia risolto il problema."
     result_pending: "Questa segnalazione non è ancora stata controllata da un moderatore."
     result_pending_author_html: |
