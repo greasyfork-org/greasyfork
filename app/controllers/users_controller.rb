@@ -86,6 +86,12 @@ class UsersController < ApplicationController
         @scripts = (@same_user || (!current_user.nil? && current_user.moderator?)) ? @user.scripts : @user.scripts.listable_including_libraries(script_subset)
         @scripts = @scripts.includes(:users, :localized_attributes)
         @user_has_scripts = !@scripts.empty?
+
+        @libraries = @scripts.not_deleted.where(script_type: :library)
+        @unlisted_scripts = @scripts.not_deleted.where(script_type: :unlisted)
+        @deleted_scripts = @scripts.deleted
+        @scripts = @scripts.not_deleted.where(script_type: :public)
+
         @scripts = ScriptsController.apply_filters(@scripts, params.reverse_merge(language: 'all'), script_subset).paginate(per_page: 50, page: params[:page] || 1)
         @other_site_scripts = (script_subset == :sleazyfork) ? @user.scripts.listable(:greasyfork).count : 0
 

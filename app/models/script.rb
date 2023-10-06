@@ -51,6 +51,7 @@ class Script < ApplicationRecord
   delegate :meta, to: :newest_saved_script_version
 
   scope :not_deleted, -> { where(delete_type: nil) }
+  scope :deleted, -> { where.not(delete_type: nil) }
   scope :active, lambda { |script_subset|
     f = not_deleted
     case script_subset

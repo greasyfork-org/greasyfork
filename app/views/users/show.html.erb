@@ -211,11 +211,6 @@
       </div>
     <% end %>
 
-    <% # Show non-public in a separate section if we're going to show any
-    deleted_script_list = @scripts.select(&:deleted?)
-    unlisted_script_list = @scripts.select(&:unlisted?)
-    library_script_list = @scripts.select(&:library?)
-    script_list = @scripts.where.not(id: (deleted_script_list + unlisted_script_list + library_script_list).map(&:id)) %>
     <section id="user-script-list-section">
       <header>
         <h3><%= t('users.script_list') %></h3>
@@ -226,46 +221,46 @@
         <% else %>
           <p><%= t('users.script_list_none') %></p>
         <% end
-      elsif script_list.empty? %>
+      elsif @scripts.empty? %>
         <p><%= t('users.script_list_none_for_filter') %></p>
       <% else %>
         <ol id="user-script-list" class="script-list <%= 'showing-all-languages' if params[:language].nil? %>">
-          <%= render partial: 'scripts/script', collection: script_list, locals: {show_author_details: true}, cached: (params[:locale_override].nil? && greasy?) ? ->(script) { ['user', script, I18n.locale] } : false %>
+          <%= render partial: 'scripts/script', collection: @scripts, locals: {show_author_details: true}, cached: (params[:locale_override].nil? && greasy?) ? ->(script) { ['user', script, I18n.locale] } : false %>
         </ol>
       <% end %>
 
-      <%= will_paginate script_list %>
+      <%= will_paginate @scripts %>
     </section>
 
-    <% unless unlisted_script_list.empty? %>
+    <% unless @unlisted_scripts.empty? %>
       <section id="user-unlisted-script-list-section">
         <header>
           <h3><%= t('users.unlisted_script_list') %></h3>
         </header>
         <ol id="user-unlisted-script-list" class="script-list">
-          <%= render partial: 'scripts/script', collection: unlisted_script_list %>
+          <%= render partial: 'scripts/script', collection: @unlisted_scripts %>
         </ol>
       </section>
     <% end %>
 
-    <% unless library_script_list.empty? %>
+    <% unless @libraries.empty? %>
       <section id="user-library-list-section">
         <header>
           <h3><%= t('scripts.libraries_title') %></h3>
         </header>
         <ol id="user-library-script-list" class="script-list">
-          <%= render partial: 'scripts/script', collection: library_script_list %>
+          <%= render partial: 'scripts/script', collection: @libraries %>
         </ol>
       </section>
     <% end %>
 
-    <% unless deleted_script_list.empty? %>
+    <% unless @deleted_scripts.empty? %>
       <section id="user-deleted-script-list-section">
         <header>
           <h3><%= t('users.deleted_script_list') %></h3>
         </header>
         <ol id="user-deleted-script-list" class="script-list">
-          <%= render partial: 'scripts/script', collection: deleted_script_list %>
+          <%= render partial: 'scripts/script', collection: @deleted_scripts %>
         </ol>
       </section>
     <% end %>
@@ -281,7 +276,7 @@
         <div class="sidebar-title"><%= t('common.listing_options_title') %></div>
         <div>☰</div>
       </div>
-      <%= render partial: 'scripts/list_options', locals: { by_sites: @by_sites, scripts: script_list, skip_all_sites_link: true, rel: :nofollow } %>
+      <%= render partial: 'scripts/list_options', locals: { by_sites: @by_sites, scripts: @scripts, skip_all_sites_link: true, rel: :nofollow } %>
     </div>
   <% end %>
 </div>
