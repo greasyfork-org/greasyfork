@@ -168,7 +168,7 @@
   <% end %>
 
   <% if report.reporter %>
-    <%= render partial: 'reporter_stats', locals: { reporter: report.reporter, ignore_report: report} %>
+    <%= render partial: 'reports/reporter_stats', locals: { reporter: report.reporter, ignore_report: report} %>
   <% end %>
 <% end %>
 
