@@ -45,6 +45,12 @@ module ScriptsHelper
     return script.license.code if script.license
     return tag.i { I18n.t('scripts.no_license') } if script.license_text.nil?
 
+    name_and_url_match = /\A(.+); (.+)\z/.match(script.license_text)
+    if name_and_url_match
+      name, url = name_and_url_match.captures.map(&:strip)
+      return link_to(name, url, rel: :nofollow) if URI::DEFAULT_PARSER.make_regexp(%w[http https]).match?(url)
+    end
+
     return script.license_text
   end
 
