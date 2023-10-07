@@ -394,6 +394,8 @@ en:
     sync_type_3:
       name: Webhook
       description: it will be updated when you push changes to this file on your repository
+    sync_webhook_info_without_sync: After you set up syncing above, if you are syncing to a GitHub, GitLab, or BitBucket repository, you can also %{webhook_info_link:set up a webhook} to automatically update %{site_name} when you push to your repository.
+    sync_webhook_info_with_sync: If you are syncing to a GitHub, GitLab, or BitBucket repository, you can %{webhook_info_link:set up a webhook} to automatically update %{site_name} when you push to your repository.
     sync_name_and_description: "%{name} - %{description}"
     # text when the last attempted sync failed. date is the date of the error run through markup_date. error is the technical error.
     sync_failed_info_html: "Last attempted sync was %{date}, which resulted in %{error}."

@@ -24,6 +24,17 @@
       <% end %>
     </div>
 
+    <% case @script.script_sync_type_id %>
+    <% when nil %>
+      <p>
+        <%= it('scripts.sync_webhook_info_without_sync', site_name: site_name, webhook_info_link: user_webhook_info_path) %>
+      </p>
+    <% when 1, 2 %>
+      <p>
+        <%= it('scripts.sync_webhook_info_with_sync', site_name: site_name, webhook_info_link: user_webhook_info_path) %>
+      </p>
+    <% end %>
+
     <div>
       <p><%= t('scripts.sync_additional_info') %></p>
       <div class="indented">
@@ -37,7 +48,7 @@
       </div>
     </div>
 
-    <% if !@script.script_sync_type_id %>
+    <% if @script.script_sync_type_id %>
       <p>
         <% if !@script_sync_error.nil? %>
           <%= t('scripts.sync_failed_info_html', date: markup_date(@script.last_attempted_sync_date), error: @script.sync_error) %>
@@ -49,6 +60,7 @@
         <% end %>
       </p>
     <% end %>
+
     <p>
       <% if @script.script_sync_type_id.nil? %>
         <input type="submit" name="update-and-sync" value="<%= t('scripts.update_and_sync') %>">
