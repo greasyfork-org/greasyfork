@@ -99,6 +99,7 @@
     <tr>
       <th></th>
       <th>Script</th>
+      <th>Author</th>
       <th>License</th>
       <th>Created</th>
       <th>Updated</th>
@@ -108,6 +109,7 @@
     <tr>
       <td>Reported</td>
       <td><%= render_script(report.item) %></td>
+      <td><%= report.item.users.map { |u| link_to(u.name, u) }.to_sentence.html_safe %></td>
       <td><%= license_display(report.item) %></td>
       <td><%= report.item.created_at %></td>
       <td><%= report.item.code_updated_at %></td>
@@ -116,6 +118,7 @@
       <td>Original</td>
       <% if report.reference_script %>
         <td><%= render_script(report.reference_script) %></td>
+        <td><%= report.reference_script.users.map { |u| link_to(u.name, u) }.to_sentence.html_safe %></td>
         <td><%= license_display(report.reference_script) %></td>
         <td><%= report.reference_script.created_at %></td>
         <td><%= report.reference_script.code_updated_at %></td>
