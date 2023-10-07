@@ -160,16 +160,7 @@
   <% end %>
 
   <% if report.reporter %>
-    <% reporter_stats = report.reporter.report_stats(ignore_report: report) %>
-    <% if reporter_stats.values.any?{ |v| v > 0 } %>
-      <p>
-        <%= link_to(report.reporter.name, user_path(report.reporter)) %> (reporter) has made
-        <%= reporter_stats[:pending] %> pending <%= 'report'.pluralize(reporter_stats[:pending]) %>,
-        <%= reporter_stats[:dismissed] %> dismissed <%= 'report'.pluralize(reporter_stats[:dismissed]) %>,
-        <%= reporter_stats[:fixed] %> <%= 'report'.pluralize(reporter_stats[:fixed]) %> marked as fixed,
-        and <%= reporter_stats[:upheld] %> upheld <%= 'report'.pluralize(reporter_stats[:upheld]) %>.
-      </p>
-    <% end %>
+    <%= render partial: 'reporter_stats', locals: { reporter: report.reporter, ignore_report: report} %>
   <% end %>
 <% end %>
 

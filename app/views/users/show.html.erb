@@ -91,27 +91,35 @@
         <% end %>
         <%= link_to 'Users with the same IP', users_path(same_ip: @user.id) %>
       </p>
+    </section>
+  </section>
 
-      <% all_reports = @user.reports_as_reporter.order(id: :desc) %>
-      <p>This user has filed <%= all_reports.count %> <%= 'report'.pluralize(all_reports.count) %>.</p>
-      <% reports = all_reports.limit(5) %>
-      <% reports_with_item = reports.select{ |r| r.item.present? } %>
-      <% if reports_with_item.any? %>
-        <ul>
-          <% reports_with_item.each do |report| %>
-            <li>
-              <%= render partial: 'reports/report', locals: { report: report } %>
-            </li>
-          <% end %>
-        </ul>
-        <% if all_reports.count > 5 && params[:all_reports] != '1' %>
+  <% all_reports = @user.reports_as_reporter.order(id: :desc) %>
+  <% if all_reports.any? %>
+    <section>
+      <header>
+        <h3>Recent reports</h3>
+      </header>
+      <section class="text-content">
+        <%= render partial: 'reports/reporter_stats', locals: { reporter: @user } %>
+        <% recent_reports = all_reports.where(created_at: 1.week.ago..).limit(5) %>
+        <% if recent_reports.any? %>
+          <ul>
+            <% recent_reports.each do |report| %>
+              <li>
+                <%= render partial: 'reports/report', locals: { report: report } %>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
+        <% if all_reports.count > recent_reports.count %>
           <p>
             <%= link_to "See all #{all_reports.count} reports.", reports_path(user_id: @user.id) %>
           </p>
         <% end %>
-      <% end %>
+      </section>
     </section>
-  </section>
+  <% end %>
 <% end %>
 
 <section id="user-discussions">
