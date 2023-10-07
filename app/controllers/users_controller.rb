@@ -92,7 +92,7 @@ class UsersController < ApplicationController
         @deleted_scripts = @scripts.deleted
         @scripts = @scripts.not_deleted.where(script_type: :public)
 
-        @scripts = ScriptsController.apply_filters(@scripts, params.reverse_merge(language: 'all'), script_subset).paginate(per_page: 50, page: params[:page] || 1)
+        @scripts = ScriptsController.apply_filters(@scripts, params.reverse_merge(language: 'all'), script_subset).paginate(per_page: 50, page: page_number)
         @other_site_scripts = (script_subset == :sleazyfork) ? @user.scripts.listable(:greasyfork).count : 0
 
         @bots = 'noindex,follow' if [:per_page, :set, :site, :sort, :language].any? { |name| params[name].present? }
