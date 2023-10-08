@@ -243,6 +243,8 @@ ru:
     sync_type_3:
       name: Webhook
       description: обновлять после изменения этого файла в вашем репозитории
+    sync_webhook_info_without_sync: После настройки синхронизации выше, если вы синхронизируетесь с репозиторием на GitHub, GitLab, или BitBucket, то вы можете %{webhook_info_link:настроить webhook} для автоматического обновления %{site_name} после изменений в репозитории.
+    sync_webhook_info_with_sync: Если вы синхронизируетесь с репозиторием на GitHub, GitLab, или BitBucket, то вы можете %{webhook_info_link:настроить webhook} для автоматического обновления %{site_name} после изменений в репозитории.
     sync_name_and_description: "%{name} - %{description}"
     sync_failed_info_html: "Последняя попытка синхронизации была %{date}, её результат: %{error}."
     sync_success_info_html: "Последняя успешная синхронизация была %{date}."
