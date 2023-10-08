@@ -24,7 +24,7 @@ class CssToJsConverter
       if doc_blocks_and_code.count > 1
         namespace_only_blocks = doc_blocks_and_code.select { |doc_block, block_code| doc_block.matches.none? && only_global_directives?(block_code) }
         if namespace_only_blocks.any?
-          namespace_code = "#{namespace_only_blocks.map(&:last).map(&:strip).join("\n")}\n"
+          namespace_code = "#{namespace_only_blocks.map { |b| b.last.strip }.join("\n")}\n"
           doc_blocks_and_code -= namespace_only_blocks
           doc_blocks_and_code.each do |doc_block_and_code|
             doc_block_and_code[1] = namespace_code + doc_block_and_code[1]

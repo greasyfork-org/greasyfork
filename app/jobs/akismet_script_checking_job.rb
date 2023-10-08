@@ -9,7 +9,7 @@ class AkismetScriptCheckingJob < ApplicationJob
     return if descriptions.empty? && additional_infos.empty?
 
     content = (descriptions + additional_infos).map(&:attribute_value).join("\n\n")
-    locales = (descriptions + additional_infos).map(&:locale).map(&:code).uniq
+    locales = (descriptions + additional_infos).map { |av| av.locale.code }.uniq
 
     akismet_params = [
       ip, user_agent, {

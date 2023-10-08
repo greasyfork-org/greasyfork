@@ -5,10 +5,10 @@ class MentionsUsersTest < ActiveSupport::TestCase
 
   test 'updating references' do
     comment = create_comment('@"Gordon J. Canada", have you met @Geoffrey?')
-    assert_equal ['Geoffrey', 'Gordon J. Canada'], comment.mentions.map(&:user).map(&:name).sort
+    assert_equal ['Geoffrey', 'Gordon J. Canada'], comment.mentions.map { |m| m.user.name }.sort
 
     comment = create_comment('@"Junior J. Junior, Sr.", have you met @Geoffrey?', comment:)
-    assert_equal ['Geoffrey', 'Junior J. Junior, Sr.'], comment.mentions.map(&:user).map(&:name).sort
+    assert_equal ['Geoffrey', 'Junior J. Junior, Sr.'], comment.mentions.map { |m| m.user.name }.sort
   end
 
   def create_comment(text, comment: nil)

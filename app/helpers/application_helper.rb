@@ -9,10 +9,10 @@ module ApplicationHelper
     content_for(:description) { page_description }
   end
 
-  def markup_date(date, **html_options)
+  def markup_date(date, **)
     return '?' if date.nil?
 
-    tag.relative_time(datetime: date.to_datetime.rfc3339, **html_options, prefix: '') { I18n.l(date.to_date) }
+    tag.relative_time(datetime: date.to_datetime.rfc3339, **, prefix: '') { I18n.l(date.to_date) }
   end
 
   def self_link(name, text)
@@ -64,7 +64,7 @@ module ApplicationHelper
     # If we don't have enough, use scripts that aren't in the passed locale.
     if highlighted_scripts.length < TOP_SCRIPTS_COUNT
       total_script_count = highlightable_scripts.count
-      highlightable_scripts.order('daily_installs DESC').limit((total_script_count * TOP_SCRIPTS_PERCENTAGE).to_i).select(:id).map(&:id).shuffle.each do |id|
+      highlightable_scripts.order('daily_installs DESC').limit((total_script_count * TOP_SCRIPTS_PERCENTAGE).to_i).pluck(:id).shuffle.each do |id|
         highlighted_scripts << id
         break if highlighted_scripts.length >= TOP_SCRIPTS_COUNT
       end

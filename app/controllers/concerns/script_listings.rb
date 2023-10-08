@@ -35,7 +35,7 @@ module ScriptListings
 
             status = 500 # We'll render a nice page but with an error code so monitoring will notice.
             Sentry.capture_exception(e)
-            flash.now[:alert] = "Something went wrong loading your results. Some search functionality may not be working. We've been notified of the issue."
+            flash.now[:alert] = t('scripts.search_failed')
             return if load_scripts_for_index_without_sphinx
           end
 

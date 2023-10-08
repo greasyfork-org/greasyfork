@@ -290,7 +290,9 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
     user.confirm
     user.save
+    # rubocop:disable Rails/I18nLocaleTexts
     redirect_to user_path(user), notice: 'Email marked as confirmed'
+    # rubocop:enable Rails/I18nLocaleTexts
   end
 
   def dismiss_announcement

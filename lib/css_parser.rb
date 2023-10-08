@@ -87,7 +87,7 @@ class CssParser
       replacements.update(additions_if_missing)
       unless replacements.empty?
         # nils here would indicate a removal that wasn't there, so ignore that
-        new_lines = replacements.delete_if { |_k, v| v.nil? }.map { |k, v| "@#{k} #{v}" }
+        new_lines = replacements.compact.map { |k, v| "@#{k} #{v}" }
         close_meta = meta_lines.pop
         meta_lines.concat(new_lines)
         meta_lines << close_meta
