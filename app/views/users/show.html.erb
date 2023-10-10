@@ -204,7 +204,7 @@
           <li><%= t('script_sets.favorites_name') %> - <%= link_to 'Edit', new_user_script_set_path(@user, fav: 1) %></li>
         <% end
          script_sets.reject(&:favorite).each do |ss| %>
-          <li><%= link_to "#{ss.name}: #{ss.description}", scripts_path(set: ss.id), rel: :nofollow %><% if @same_user %> - <%= link_to 'Edit', edit_user_script_set_path(@user, ss) %><% end %></li>
+          <li><%= link_to ss.name, scripts_path(set: ss.id), rel: :nofollow %>: <%= ss.description %><% if @same_user %> - <%= link_to 'Edit', edit_user_script_set_path(@user, ss) %><% end %></li>
         <% end %>
       </ul>
     </section>
