@@ -199,12 +199,12 @@
       <ul id="user-script-sets">
         <% favorites_set = script_sets.find(&:favorite)
         if !favorites_set.nil? %>
-          <li><%= t('script_sets.favorites_name') %> <%= link_to 'View scripts', scripts_path(set: favorites_set.id), rel: :nofollow %> <% if @same_user %><%= link_to 'Edit', edit_user_script_set_path(@user, favorites_set) %><% end %></li>
+          <li><%= link_to t('script_sets.favorites_name'), scripts_path(set: favorites_set.id), rel: :nofollow %><% if @same_user %> - <%= link_to 'Edit', edit_user_script_set_path(@user, favorites_set) %><% end %></li>
         <% elsif @same_user %>
-          <li><%= t('script_sets.favorites_name') %> <%= link_to 'Edit', new_user_script_set_path(@user, fav: 1) %></li>
+          <li><%= t('script_sets.favorites_name') %> - <%= link_to 'Edit', new_user_script_set_path(@user, fav: 1) %></li>
         <% end
          script_sets.reject(&:favorite).each do |ss| %>
-          <li><%= ss.name %>: <%= ss.description %> <%= link_to 'View scripts', scripts_path(set: ss.id), rel: :nofollow %> <% if @same_user %><%= link_to 'Edit', edit_user_script_set_path(@user, ss) %><% end %></li>
+          <li><%= link_to "#{ss.name}: #{ss.description}", scripts_path(set: ss.id), rel: :nofollow %><% if @same_user %> - <%= link_to 'Edit', edit_user_script_set_path(@user, ss) %><% end %></li>
         <% end %>
       </ul>
     </section>
