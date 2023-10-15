@@ -32,7 +32,8 @@
       <% if comment %>
         <%= comment_snippet(comment) %>
       <% else %>
-        <% if discussion.actual_rating? -%><span class="rating-icon rating-icon-<%= discussion.rating_key %>"><%= t("discussions.ratings_short.#{discussion.rating_key}") %></span><% end %><span class="discussion-snippet">
+        <% if discussion.actual_rating? -%><span class="rating-icon rating-icon-<%= discussion.rating_key %>"><%= t("discussions.ratings_short.#{discussion.rating_key}") %></span><% end %>
+        <span class="discussion-snippet">
           <%= discussion_snippet(discussion) %>
         </span>
       <% end %>

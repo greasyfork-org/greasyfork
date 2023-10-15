@@ -11,39 +11,74 @@ class DiscussionsController < ApplicationController
   before_action :greasy_only, only: :new
   before_action :check_ip, only: :create
 
-  layout 'discussions', only: [:index, :search]
+  layout 'discussions', only: :index
   layout 'application', only: [:new, :create]
 
   def index
     should_cache_page = current_user.nil? && request.format.html? && (params.keys - %w[locale controller action site page]).none?
     cache_page(should_cache_page ? "discussion_index/#{params.values.join('/')}" : nil, ttl: 15.seconds) do
-      @discussions = Discussion
-                     .includes(:poster, :script, :discussion_category, :stat_first_comment, :stat_last_replier)
-                     .order(stat_last_reply_date: :desc)
 
-      case script_subset
-      when :sleazyfork
-        @discussions = @discussions.where(scripts: { sensitive: true })
-      when :greasyfork
-        @discussions = @discussions.where(scripts: { sensitive: [nil, false] })
-      when :all
-        # No restrictions
+      if params[:q].presence
+        with = { discussion_category_id: discussion_category_filter.pluck(:id) }
+
+        if current_user
+          case params[:me]
+          when 'started'
+            with[:discussion_starter_id] = current_user.id
+          when 'comment'
+            with[:poster_id] = current_user.id
+          when 'script'
+            with[:script_id] = current_user.script_ids
+          when 'subscribed'
+            with[:discussion_id] = current_user.discussion_subscriptions.pluck(:discussion_id)
+          else
+            params[:me] = nil
+          end
+        end
+
+        if params[:show_locale]
+          locale = Locale.find_by(code: params[:show_locale])
+          with[:locale_id] = locale.id if locale
+        end
+
+        @comments = Comment.search(
+          params[:q],
+          with: with,
+          page: page_number,
+          per_page: per_page(default: 25)
+        )
+        @comments_to_discussions = @comments.map{|c| [c, c.discussion]}
+        @discussions = @comments_to_discussions.map(&:last)
+        @filter_result = FILTER_RESULT.new(category: params[:category], related_to_me: params[:me], locale: locale)
+        @bots = 'noindex'
       else
-        raise "Unknown subset #{script_subset}"
+        @discussions = Discussion
+                       .includes(:poster, :script, :discussion_category, :stat_first_comment, :stat_last_replier)
+                       .order(stat_last_reply_date: :desc)
+
+        case script_subset
+        when :sleazyfork
+          @discussions = @discussions.where(scripts: { sensitive: true })
+        when :greasyfork
+          @discussions = @discussions.where(scripts: { sensitive: [nil, false] })
+        when :all
+          # No restrictions
+        else
+          raise "Unknown subset #{script_subset}"
+        end
+
+        @discussions = @discussions.where(scripts: { delete_type: nil }).where(report_id: nil) unless current_user&.moderator?
+
+        @filter_result = apply_filters(@discussions)
+
+        @discussions = @filter_result.result
+        @discussions = @discussions.paginate(page: page_number, per_page: per_page(default: 25))
+        @bots = 'noindex' unless page_number == 1
+
+        @discussion_ids_read = DiscussionRead.read_ids_for(@discussions, current_user) if current_user
       end
 
-      @discussions = @discussions.where(scripts: { delete_type: nil }).where(report_id: nil) unless current_user&.moderator?
-
-      @filter_result = apply_filters(@discussions)
-
-      @discussions = @filter_result.result
-      @discussions = @discussions.paginate(page: page_number, per_page: per_page(default: 25))
-      @bots = 'noindex' unless page_number == 1
-
-      @discussion_ids_read = DiscussionRead.read_ids_for(@discussions, current_user) if current_user
-
       @possible_locales = Locale.with_discussions.order(:code)
-
       render_to_string
     end
   end
@@ -196,17 +231,6 @@ class DiscussionsController < ApplicationController
     redirect_back(fallback_location: discussions_path)
   end
 
-  def search
-    @comments = Comment.search(
-      params[:q],
-      page: page_number, per_page: per_page(default: 25))
-    @comments_to_discussions = @comments.map{|c| [c, c.discussion]}
-    @discussions = @comments_to_discussions.map(&:last)
-    @filter_result = FILTER_RESULT.new
-    @possible_locales = []
-    render 'index'
-  end
-
   private
 
   def discussion_scope(permissive: false)
@@ -236,18 +260,21 @@ class DiscussionsController < ApplicationController
     DiscussionRead.upsert({ user_id: current_user.id, discussion_id: discussion.id, read_at: Time.current })
   end
 
-  def apply_filters(discussions)
+  def discussion_category_filter
     category_scope = DiscussionCategory.visible_to_user(current_user)
     case params[:category]
     when DiscussionCategory::NO_SCRIPTS_KEY
-      category = params[:category]
-      discussions = discussions.where(discussion_category_id: category_scope.non_script.pluck(:id))
+      category_scope.non_script
     when nil
-      discussions = discussions.where(discussion_category_id: category_scope.pluck(:id))
+      category_scope
     else
-      category = params[:category]
-      discussions = discussions.where(discussion_category_id: category_scope.find_by!(category_key: category).id)
+      category_scope.where(category_key: params[:category])
     end
+  end
+
+  def apply_filters(discussions)
+    discussions = discussions.where(discussion_category_id: discussion_category_filter.pluck(:id))
+    category = params[:category]
 
     if current_user
       related_to_me = params[:me]

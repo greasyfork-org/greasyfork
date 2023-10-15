@@ -14,9 +14,11 @@ class Comment < ApplicationRecord
   validates :text, presence: true, length: { maximum: 65_535 }
   validates :text_markup, inclusion: { in: %w[html markdown] }, presence: true
 
-  delegate :script, :discussion_category, to: :discussion
+  delegate :script, :script_id, :discussion_category, :discussion_category_id, :locale_id, to: :discussion
 
   strip_attributes only: :text
+
+  ThinkingSphinx::Callbacks.append(self, :behaviours => [:real_time])
 
   def path(locale: nil)
     discussion_path = discussion.path(locale:)
@@ -118,5 +120,13 @@ class Comment < ApplicationRecord
     return discussion.deletable_by?(user) if first_comment?
 
     editable_by?(user)
+  end
+
+  def indexable_text
+    ApplicationController.helpers.format_user_text_as_plain(text, text_markup, use_line_breaks: true)
+  end
+
+  def discussion_starter_id
+    discussion.poster_id
   end
 end
