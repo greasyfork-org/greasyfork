@@ -19,7 +19,6 @@ class ReportsController < ApplicationController
     end
     report_ids = scope
                  .sort_by { |r| [r.awaiting_response? ? 1 : 0, r.created_at] }
-                 .reject { |r| r.item.nil? }
                  .map(&:id)
     @reports = Report
                .where(id: report_ids)
@@ -72,12 +71,6 @@ class ReportsController < ApplicationController
 
   def dismiss
     @report = Report.find(params[:id])
-
-    if current_user.moderator? && !@report.resolvable_by_moderator?(current_user)
-      @text = 'Cannot dismiss, you are involved in this report.'
-      render 'home/error', status: :not_acceptable, layout: 'application'
-      return
-    end
 
     @report.dismiss!(moderator: current_user, moderator_notes: params[:moderator_notes].presence)
     if @report.item.is_a?(Script) && !@report.auto_reporter

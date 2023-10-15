@@ -37,13 +37,15 @@ pl:
     update: "Aktualizacja do wersji %{version}"
     downgrade: "Powrót do wersji %{version}"
     reinstall: "Ponowna instalacja wersji %{version}"
-    old_version_warning: "To nie jest najnowsza wersja tego skryptu. Jeśli go zainstalujesz, nigdy nie zostaniesz zaktualizowany do nowszej wersji. Zainstalować mimo to?"
+    old_version_warning: "To nie jest najnowsza wersja tego skryptu. Jeśli go zainstalujesz, nigdy nie zostanie on zaktualizowany do nowszej wersji. Zainstalować mimo to?"
     promoted: "Skrypt promowany"
     author_promoted: "Skrypt zaproponowany przez autora"
     promoted_text_html: "Może Ci się również spodobać. %{script_link}"
     library_instructions_html: "Ten skrypt nie powinien być instalowany bezpośrednio. Jest to biblioteka dla innych skyptów do włączenia dyrektywą meta %{code}"
     deleted_notice: "Ten skrypt został usunięty."
+    deleted_notice_with_reason: "Ten skrypt został usunięty z powodu %{report_link:this report}."
     deleted_notice_with_related: "Żądany skrypt został usunięty. Oto kilka podobnych skryptów."
+    deleted_notice_with_related_and_reason: "Żądany skrypt został usunięty z powodu %{report_link:this report}, ale oto kilka powiązanych skryptów."
     deleted_undelete_notice_html: "Skrypt został zablokowany przez moderatora i nie można go usunąć. Podany powód to: \"<i>%{delete_reason}</i>\"."
     deleted_author_notice: "Ten skrypt został usunięty i nie jest dostępny dla innych. Możesz go przywrócić poprzez podstronę \"Usuń\"."
     version_notice_html: "Stan na %{date}. Zobacz %{latest_version_link}."
@@ -263,6 +265,7 @@ pl:
     diff_new_version: "Nowy:"
     diff_lines_of_context: "Linii w kontekście:"
     diff_ignore_whitespace: "Ignoruj zmiany w białych znakach"
+    diff_terser: "Wyczyść kod przed porównaniem"
     diff_refresh: "Odśwież"
     diff_no_change: "Nie znaleziono zmian."
     good_rating_explanation: "Ilość osób, które oceniły jako 'Dobry' lub dodały do ulubionych."
@@ -748,13 +751,22 @@ pl:
       licensing_html: Twój skrypt musi respektować prawa autorskie innych. Dotyczy to kodu oraz wszelkich zasobów (np. grafik), których używa. Jeżeli planujesz używać czyichś zasobów, upewnij się, że robisz to zgodnie z prawami, na jakich są one udostępniane lub uzyskaj na to zgodę autora. Licencje skryptów określane są meta-znacznikiem <code>@license</code>. Odwiedź %{tldr_legal_link:tldrlegal.com}, aby dowiedzieć się więcej na temat działania licencji oprogramowania.
       reposts: Nawet jeśli prawa autorskie nie są naruszone to ponowne publikowanie skryptów, które znajdują się na %{site_name}, jest zabronione, chyba że wprowadzają usprawnienia różniące się od oryginału.
       miscellaneous_header: Inne
-      keywords_html: Skrypty nie mogą zawierać <code>@include</code>, <code>@match</code>, lub słów kluczowych, do których stron nie wprowadzają żadnej funkcjonalności.
       adult_content_rule: Skrypty, które zawierają treści dla dorosłych lub są przeznaczone do stron dla dorosłych, muszą być oznaczone jako takie, aby użytkownicy mogli zdecydować czy chcą je zobaczyć.
       reposting_deleted: Nie publikuj ponownie skryptów, które zostały usunięte z powodu naruszeń zasad. Zamiast tego użyj funkcji wysyłania odwołania. Publikacja usuniętych skryptów będzie skutkowało blokadą konta.
       advertising_in_description: Autorzy skryptów nie mogą umieszczać reklam na stronach Greasy Fork, na przykład w opisie skryptu. Autopromocja w postaci linku do strony autora, repozytorium autora, społeczności Discord, WeChat itp. jest dozwolone.
       reporting: Jeśli zauważysz skrypt, który nie przestrzega wyżej wymienionych zasad, zgłoś go na stronie skryptu, przechodząc na podstronę Opinie, a następnie klikając "zgłoś ten skrypt".
     external_scripts:
       title: "Polityka %{site_name} dot. zewnętrznych skryptów"
+      rationale:
+        title: Racja bytu
+      origin_host:
+        title: Wklejanie skryptów z hosta źródłowego
+    cdns:
+      title: Dozwolone CDN
+      test_url:
+        label: Przetestuj adres URL
+        result_ok: Adres URL jest dozwolony
+        result_not_ok: Adres URL nie jest dozwolony
     script_rewriting:
       title: "Jak %{site_name} przepisze udostępnione skrypty"
       content_html: >
@@ -934,6 +946,7 @@ pl:
         </ul>
     reason:
       non_functional: "Skrypt nie działa"
+      paid_benefits: "Zapłacono za funkcje, ale nie otrzymano tego, co zostało zakupione"
       spam: "Spam"
       abuse: "Obraźliwe lub nienawistne treści"
       illegal: "Nielegalne treści"

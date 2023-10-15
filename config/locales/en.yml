@@ -74,7 +74,9 @@ en:
     library_instructions_html: "This script should not be not be installed directly. It is a library for other scripts to include with the meta directive %{code}"
     # text displayed for deleted scripts
     deleted_notice: "This script has been deleted."
+    deleted_notice_with_reason: "This script has been deleted due to %{report_link:this report}."
     deleted_notice_with_related: "The script you requested has been deleted, but here are some related scripts."
+    deleted_notice_with_related_and_reason: "The script you requested has been deleted due to %{report_link:this report}, but here are some related scripts."
     deleted_undelete_notice_html: "This script has been locked by a moderator and cannot be undeleted. Reason provided is: \"<i>%{delete_reason}</i>\"."
     deleted_locked_author_notice_html: "This script has been deleted by a moderator in response to %{report_link:this report} and is not accessible to others. Reason provided is: \"<i>%{delete_reason}</i>\". Please review %{code_rules_link:%{site_name}'s rules}. If you believe the deletion to be in error, you can %{appeal_link:submit an appeal} of this deletion. Do not repost this script; doing so may result in a ban from %{site_name}."
     self_deleted_locked_author_notice_html: "This script was deleted by you in response to %{report_link:this report} and is not accessible to others. If you have updated your script to be in line with  %{code_rules_link:%{site_name}'s rules}, you can %{appeal_link:submit an appeal} of this deletion. Do not repost this script; doing so may result in a ban from %{site_name}."
@@ -280,6 +282,7 @@ en:
     listing_language_all: "All"
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
+    search_failed: Something went wrong loading your results. Some search functionality may not be working. We've been notified of the issue.
     # link to start the process of importing (creating from an external place) scripts
     import: "Import scripts"
     # link to create a new script
@@ -392,6 +395,8 @@ en:
     sync_type_3:
       name: Webhook
       description: it will be updated when you push changes to this file on your repository
+    sync_webhook_info_without_sync: After you set up syncing above, if you are syncing to a GitHub, GitLab, or BitBucket repository, you can also %{webhook_info_link:set up a webhook} to automatically update %{site_name} when you push to your repository.
+    sync_webhook_info_with_sync: If you are syncing to a GitHub, GitLab, or BitBucket repository, you can %{webhook_info_link:set up a webhook} to automatically update %{site_name} when you push to your repository.
     sync_name_and_description: "%{name} - %{description}"
     # text when the last attempted sync failed. date is the date of the error run through markup_date. error is the technical error.
     sync_failed_info_html: "Last attempted sync was %{date}, which resulted in %{error}."
@@ -1016,7 +1021,7 @@ en:
       license_html: |
         By posting your script to %{site_name}, you give others permission to install and use it. The license describes whether and how people are allowed to modify and distribute your script. License is displayed on a script's info page. <code>@license</code> can be:
         <ul>
-          <li>The name of a license (for example, <code>@licence GPL3</code>). Using a "Full name" or "Identifier" from %{spdx_link:the SPDX License List} is recommended.</li>
+          <li>The name of a license (for example, <code>@license GPL3</code>). Using a "Full name" or "Identifier" from %{spdx_link:the SPDX License List} is recommended.</li>
           <li>The conditions under which you allow use (for example <code>@license You can modify as long as you credit me</code>, though using a pre-existing license is recommended.</li>
           <li>A copyright statement (for example <code>@license Copyright MyName</code>) if you don't want to release under a license.</li>
           <li>Omitted entirely, which is the same as having a copyright statement, but less clear to users.</li>
@@ -1070,7 +1075,8 @@ en:
       licensing_html: Your script must respect others' copyrights. This includes the code itself and any resources (for example images) it uses. If you intend on using someone else's content, abide by their licensing terms or get their permission before doing so. Licenses on scripts are specified by the <code>@license</code> meta key, and you can learn about what you can and cannot do by using %{tldr_legal_link:tldrlegal.com}.
       reposts: Even in cases not violating the copyright rule, reposts of scripts that are already on %{site_name} are not allowed unless they are improving upon the original.
       miscellaneous_header: Miscellaneous
-      keywords_html: Scripts must not include <code>@include</code>s, <code>@match</code>es, or keywords for sites they do not provide functionality on.
+      included_sites_html: Scripts must not include <code>@include</code>s or <code>@match</code>es for sites they do not provide functionality on. Scripts must not add <code>@include</code>s or <code>@match</code>es for the sole purpose adding antifeatures.
+      keywords: Scripts must not include unrelated keywords or mention unrelated sites to attempt to improve search placement.
       adult_content_rule: Scripts that include adult content or are for sites with adult content must be marked as such to allow other users the option of whether to see them.
       reposting_deleted: Do not repost scripts that were deleted due to rule violations; use the appeal function instead. Reposting deleted scripts may result in a ban.
       advertising_in_description: Script authors may not place advertising on pages on Greasy Fork, for example in a script's description. Promotion of the script author's homepage, code repository, Discord, WeChat, etc. is allowed.
@@ -1360,6 +1366,7 @@ en:
     load_cleaned_diff: "Load cleaned code diff"
     loading_diff: "Loading…"
     reported_user_activity_html: "%{user} (the reported user) has made:"
+    script_updated_since_report: "This script has been updated since the report was filed."
   appeals:
     new:
       title: New script delete appeal

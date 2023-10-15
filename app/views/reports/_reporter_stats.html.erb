@@ -1,0 +1,11 @@
+<% ignore_report = nil unless defined?(ignore_report) %>
+<% reporter_stats = reporter.report_stats(ignore_report: ignore_report) %>
+<% if reporter_stats.values.any?{ |v| v > 0 } %>
+  <p>
+    <%= render_user(reporter, reporter.id) %> (reporter) has made
+    <%= reporter_stats[:pending] %> pending <%= 'report'.pluralize(reporter_stats[:pending]) %>,
+    <%= reporter_stats[:dismissed] %> dismissed <%= 'report'.pluralize(reporter_stats[:dismissed]) %>,
+    <%= reporter_stats[:fixed] %> <%= 'report'.pluralize(reporter_stats[:fixed]) %> marked as fixed,
+    and <%= reporter_stats[:upheld] %> upheld <%= 'report'.pluralize(reporter_stats[:upheld]) %>.
+  </p>
+<% end %>

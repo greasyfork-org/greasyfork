@@ -41,8 +41,12 @@ tr:
     promoted_text_html: "Bunu da sevebilirsiniz: %{script_link}."
     library_instructions_html: "Bu script direkt olarak kurulamaz. Başka scriptler için bir kütüphanedir ve meta yönergeleri içerir %{code}"
     deleted_notice: "Bu script silinmiş."
+    deleted_notice_with_reason: "Bu script %{report_link:this report}. nedeniyle silindi."
     deleted_notice_with_related: "Baktığınız betik silinmiş, ama burada benzer betikleri bulabilirsiniz"
+    deleted_notice_with_related_and_reason: "İstediğiniz script %{report_link:this report} nedeniyle silinmiştir, ancak buradan ilişkili diğer scriptleri bulabilirsiniz."
     deleted_undelete_notice_html: "Bu betik bir moderatör tarafından kilitlenmiş ve geri alınamaz.\nGerekçe: \"<i>%{delete_reason}</i>\"."
+    deleted_locked_author_notice_html: "Bu betik bir moderatör tarafından %{report_link:this report} dolayısıyla silinmiş ve başkaları tarafından erişilemez. Sebebi ise: \"<i>%{delete_reason}</i>\". Lütfen %{code_rules_link: %{site_name} kurallarını} gözden geçirin. Eğer silinmenin bir hata olduğunu düşünüyorsanız, sorun hakkında %{appeal_link:başvuru yapabilirsiniz}. Lütfen betiği tekrar yüklemeyin; bu tip bir davranış %{site_name}'dan menedilmenize yol açabilir."
+    self_deleted_locked_author_notice_html: "Bu betik bir moderatör tarafından %{report_link:this report} dolayısıyla silinmiş ve başkaları tarafından erişilemez. Eğer ki %{code_rules_link:'in kuralları} çerçevesinde scriptinizi güncellediyseniz,bu silinmeye %{appeal_link:itiraz edebilirsiniz}.  Lütfen betiği tekrar yüklemeyin; bu tip bir davranış %{site_name}'dan men edilmenize sebep olabilir."
     deleted_author_notice: "Bu betik silinmiş ve başkaları tarafından erişilemez. \"Sil\" menüsünden silme işlemini geri alabilirsiniz."
     version_notice_html: "%{date} itibariyledir. %{latest_version_link} görün."
     version_notice_latest_version_link: "En son verisyonu"
@@ -299,6 +303,7 @@ tr:
     must_confirm: "Script paylaşabilmek için hesabınızı onaylamanız gerekmektedir. İki onaylama seçeneği bulunmakta - harici bir giriş yöntemi ekleyin veya bir onay epostası gönderin"
     must_confirm_email_button: "%{email} adresine doğrulama e-postası yolla"
     authors_heading: "Yazarlar"
+    error_unauthorized_copy: "Bu kod parçası görünüşe göre %{script} betiğinin izinsiz olarak kullanılmış bir kopyası. Lütfen %{site_name}'un betik yayınlamak hakkında ki %{rules_link:kurallarına} bakınız."
     invitations:
       form_title: "Diğer yazarları davet edin"
       explanation: "Diğer Greasy Fork kullanıcılarını bu betiğin yazarları olarak ekleyebilirsiniz. Bu komut dosyasında sizinle aynı haklara sahip olacaklar."
@@ -309,6 +314,7 @@ tr:
       already_author: "Belirttiğin kullanıcı zaten script sahiplerinden biri."
       sent: "Davet gönderildi"
       subject: "%{script_name}için davet"
+      body: "Size %{script_name}(%{script_url}) isimli betiğin %{site_name} üzerinden yazar/sahiplik davetinde bulunuldu. Bu daveti kabul etmek için lütfen %{accept_url} adresini ziyaret edin."
       current_user_already_author: "Sen zaten bu script 'in yazarısın"
       invitation_not_found: "Davet bulunamadı"
       invitation_expired: "Davet süresi doldu"
@@ -332,7 +338,10 @@ tr:
     update_title: "%{script} scriptinin yeni sürümünü paylaş"
     install_help_dialog:
       js:
-        firefox: sen, Bu komut dosyasını yüklemek için %{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} veya %{violentmonkey_link:Violentmonkey} gibi bir uzantı yüklemeniz gerekecek.
+        firefox: 'Bu betiği kurabilmeniz için %{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} ya da %{violentmonkey_link:Violentmonkey} gibi bir kullanıcı betiği eklentisini kurmanız gerekmektedir. '
+        chrome: 'Bu betiği kurabilmeniz için %{tampermonkey_link:Tampermonkey} ya da %{violentmonkey_link:Violentmonkey} gibi bir kullanıcı betiği eklentisini kurmanız gerekmektedir. '
+        opera: 'Bu betiği kurabilmeniz için %{tampermonkey_link:Tampermonkey} ya da %{violentmonkey_link:Violentmonkey} gibi bir kullanıcı betiği eklentisini kurmanız gerekmektedir. '
+        safari: 'Bu betiği kurabilmeniz için %{tampermonkey_link:Tampermonkey} ya da %{userscripts_link:Userscripts} gibi bir kullanıcı betiği eklentisini kurmanız gerekmektedir. '
         other: Bu komut dosyasını yüklemek için bir kullanıcı komut dosyası yöneticisi uzantısı yüklemeniz gerekecek.
         bypass: (Zaten bir kullanıcı komut dosyası yöneticim var, kurmama izin verin!)
       css:
@@ -344,6 +353,7 @@ tr:
         bypass: (Zateb bir user-style yöneticim var, yükleyeyim!)
       close_dialog: Tamam
     antifeatures:
+      label: İstenmeyen Özellikler
       warning_title: Bu script bazı istenmeyecek içerikler barındırıyor
       intro: Yüklemeden önce, %{site_name}, bu betiğin anti-özellikler içerdiğini bilmenizi ister; bunlar sizin değil, betik yazarının yararına olan şeylerdir.
       author_explanation_intro: "Script sahibi şöyle açıklıyor:"
@@ -376,6 +386,9 @@ tr:
         short: CSS
         long: Kullanıcı görünümü
     related_scripts: "Bu ilgili komut dosyalarını da deneyebilirsiniz:"
+    integrity_hashes:
+      script_notice:
+        detail: "<code>%{url}</code> hash kullanmalıdır <code>%{expected_hash}</code> (son denetim tarihi %{last_checked_at}) "
   script_sets:
     description: "Komut dizileri, Greasey Fork ile göz atmak için özelleştirilmiş bir komut listesi oluşturmanıza izin verir. Tek tek komut dosyalarını, diğer kullanıcıların kümelerini veya otomatik olarak oluşturulan setleri ekleyerek kümenize komut dosyaları ekleyebilirsiniz. Komut dosyalarını da kümenizden aynı yöntemlerle hariç tutabilirsiniz."
     favorites_name: "Favoriler"
@@ -461,12 +474,46 @@ tr:
         bağlıdır.</p>
     desktop_browsers:
       title: Masaüstü
+      browser_list_html: |
+          <ul>
+          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} ya da %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, ya da %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} ya da %{safari_userscripts_link:Userscripts}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} ya da %{edge_violentmonkey_link:Violentmonkey}</li>
+          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} ya da %{opera_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>AdGuard: (ek bir yazılım gerekmemektedir)</li>
+          </ul>
     android_browsers:
       title: Mobil (Android)
+      browser_list_html: |
+          <ul>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, ya da %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+          <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+          <li>Kiwi: %{chrome_tampermonkey_link:Tampermonkey} ya da %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>%{xbrowser_link:XBrowser}</li>
+          %{locale_specific_browsers}
+          </ul>
     ios_browsers:
       title: Mobil (iOS)
+      browser_list_html: |
+          <ul>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} ya da %{safari_userscripts_link:Userscripts}</li>
+          <li>%{gear_link:Gear}: (ek bir yazılım gerekmemektedir)
+          </ul>
     installing_step2_header: "Adım 2: Bir kullanıcı skripti kur"
     installing_step2_caption: "Bir kullanıcı scriptinin yükleme düğmesi"
+    installing_step2_description_html: >
+        <p>%{browse_link:Bu sitede} denemek isteyeceğiniz kullanıcı betiklerini bulabilirsiniz.
+        İşte en popüler betiklerden bazıları:</p>
+
+        %{highlighted_scripts_list}
+
+        <p>Kullanmak istediğiniz bir kullanıcı betiği bulduğunuzda, kullanıcı betiğinin
+        sayfasındaki yeşil yükle butonuna tıklayın, kullanıcı betiği yöneticiniz sizden
+        yüklemeyi onaylamanızı isteyecektir.</p>
     installing_step3_header: "Adım 3: Kullanıcı scripti kullan"
     installing_step3_description_html: >
         <p>Kullanıcı komut dosyasının etkilediği siteye gidin. İşini otomatik olarak
@@ -557,6 +604,9 @@ tr:
     greasy_fork_scripts_link:
       one: "%{user_name}'nin ayrıca Greasy Fork'da %{count} scripti var."
       other: "%{user_name}'nin ayrıca Greasy Fork'da %{count} scripti var."
+    update_sync_warning:
+      one: "Kullanıcı adın ve ismin %{providers} ile giriş yaptığın zaman eşitlenmeye ayarlanmıştır. Eğer ki kalıcı olarak özel bir isim ya da e-posta ayarlamak istiyorsanız %{edit_sign_in_link:eşitlemeyi kaldırmak için giriş yönteminizi güncelleyin}."
+      other: "Kullanıcı adın ve ismin %{providers} ile giriş yaptığın zaman eşitlenmeye ayarlanmıştır. Eğer ki kalıcı olarak özel bir isim ya da e-posta ayarlamak istiyorsanız %{edit_sign_in_link:eşitlemeyi kaldırmak için giriş yönteminizi güncelleyin}."
     delete_link: "Hesap Sil"
     delete:
       intro: "Sizin %{site_name}, %{user_name}hesap silmeniz şu sonuçlara sebep olur:"
@@ -587,7 +637,10 @@ tr:
         completed: "Hesap silindi."
     banned_notice:
       no_report_no_reason: "Hesabınızın yasaklanmış. İsterseniz %{delete_link:hesabınızı silebilirsiniz}."
+      with_report: "Bu %{report_link:raporlama} göze alınarak hesabınız banlanmıştır. İsterseniz hesabınızı %{delete_link:silebilirsiniz}."
+      with_reason: "Hesabınız banlanmıştır. Bir moderatör sebep olarak şunu gösterdi: \"%{reason}\". İsterseniz hesabınızı %{delete_link:silebilirsiniz}"
     banned_delete:
+      intro: "Hesabını silmek aynı zamanda gönderdiğin tüm betikleri de silecektir. Forumlara yaptığınız katkılar silinmeyecektir, ancak kullanıcı isminiz belirsizleştirilecektir. Hesabınızı sildikten sonra aynı e-posta adresiyle tekrardan kayıt olamazsınız. Aşağıdan giriş yaparak hesabını silebilirsin."
       complete: "Hesabınız silindi."
     badges:
       banned:
@@ -612,8 +665,12 @@ tr:
       report_defaults:
         title: Rapor bildirimleri
         reporter: Sizin oluşturduğunuz rapor çözümlendiğinde bildirim alın
+        reported: Gönderdiğiniz şeylere karşı bir rapor oluşturulduğunda ya da çözüldüğünde bildirim alın.
       save_button: Bildirim ayarlarını güncelle
       title: Bildirimler
+      current_discussion_subscriptions:
+        one: 'Abone olduğunuz %{discussions_link: %{count} tartışmanın} aboneliğinden çıkın.'
+        other: 'Abone olduğunuz %{discussions_link: %{count}adet tartışmanın} aboneliğinden çıkın.'
       save_success: Bildirim tercihleriniz güncellendi.
       unsubscribe_all: Tüm bildirim aboneliklerinden ayrıl
       unsubscribe_all_success: Tüm bildirim aboneliklerinden ayrıldınız.
@@ -621,15 +678,27 @@ tr:
   webhooks:
     info:
       title: Web kancası kurma
+      intro_html: |
+          <p>%{site_name} ile bağlantılı bir webhook reponda olan değişikliklere göre %{site_name}'u otomatik olarak güncellemeni sağlar. %{site_name} "push" webhooklarını GitHub, GitLab ve Bitbucket için destekler, "release" webhookları içinse GitHub ve GitLab'ı destekler.</p>
+          <p>Bu özelliği kullanabilmen için %{site_name} üzerinde bir betiğin olmalıdır, ayrıca reponla URL aracılığıyla eşitlenmeye ayarlanmış olmalıdır. Yeni betikleri %{site_name}'un %{import_link: içine aktararak ekleyebilirisin}, ya da daha önce gönderdiğin betiklerin sayfasındayken "Admin" penceresinden eşitlemeye ayarlayabilirsin.</p>
+          <p>Betiklertin ilk webhook tamamlanana kadar "Otomatik" ya da "Manuel" eşitleme tipini göstermeye devam edecektir.</p>
+      already_syncing_list: "İşte desteklenen sağlayıcılardan eşitlemeye ayarladığın betikler:"
+      synced_item_html: "%{script_name} - %{sync_type} %{sync_url}'dan eştilenmektedir"
+      language_note: GitHub, GitLab ve Bitbucket'In arayüzleri İngilizce olduğu için aşağıda ki taliamtlarda İngilizce olarak sağlanacaktır.
   help:
     sections:
       usage: Kullanım
       development: Geliştirme
       miscellaneous: Çeşitli
+    open_source: "%{site_name} açık kaynaktır (GPLv3 lisanslıdır). %{github_link:kaynak koduna} GitHub'dan bakabilirsiniz."
     installing_user_scripts:
       title: 'Kullanıcı scriptleri nasıl yüklenir?'
     installing_user_styles:
       title: 'Kullanıcı stilleri nasıl yüklenir'
+      content_html: |
+          <p>%{site_name}'ta ki bazı betikler kullanıcı stili olarkta yüklenebilirler.</p>
+          <p>Kullanıcı stilleri şunlarla yüklenebilirler; %{stylus_firefox_link:Firefox için Sytlus}, %{stylus_chrome_link:Chrome için Stylus} ve  %{stylus_opera_link:Opera için Sytlus}.</p>
+          <p>%{styles_link:Tüm kullanıcı stillerini görün}</p>.
     meta_keys:
       title: "Script meta anahtarları %{site_name} tarafından okundu"
       intro_html: "Bu, %{site_name} sitesinin okuyacağı bir <a href=\"http://wiki.greasespot.net/Metadata_Block\">kullanıcı betiği meta anahtarları </a> listesi. Bu listenin dışındaki anahtarlar, betiğe eklenmiş olabilir, ve yüklenmiş betikte bulunabilir, fakat %{site_name}sitesinin Kullanıcı Arayüzü'nde bulunmayabilir."

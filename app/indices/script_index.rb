@@ -10,14 +10,14 @@ ThinkingSphinx::Index.define :script, with: :active_record, delta: Rails.env.tes
   indexes users.name, as: :author
 
   # attributes
-  has :created_at, :code_updated_at, :total_installs, :daily_installs, :default_name, :sensitive, :script_type_id
+  has :created_at, :code_updated_at, :total_installs, :daily_installs, :default_name, :sensitive, :script_type
   has :fan_score, type: :float
   has script_applies_tos.site_application_id, as: 'site_application_id'
   has localized_attributes.locale_id, as: 'locale'
   has "language = 'js' OR css_convertible_to_js = TRUE", as: 'available_as_js', type: :boolean
   has "language = 'css'", as: 'available_as_css', type: :boolean
 
-  where 'script_type_id IN (1,3) and delete_type is null and review_state != "required"'
+  where 'script_type IN (1,3) and delete_type is null and review_state != "required"'
 
   set_property field_weights: {
     # name: 10,

@@ -3,7 +3,8 @@ include_script_sets = true if !defined?(include_script_sets) || include_script_s
 by_sites = nil unless defined?(by_sites)
 include_search = false if !defined?(include_search) || include_search.nil?
 sort_options = %w[daily_installs total_installs ratings created updated name] if !defined?(sort_options) || sort_options.nil?
-default_sort = @set&.default_sort || (params[:q].present? ? 'relevance' : ScriptListings::DEFAULT_SORT)
+libraries = false if !defined?(libraries) || libraries.nil?
+default_sort = @set&.default_sort || (params[:q].present? ? 'relevance' : (libraries ? 'created' : ScriptListings::DEFAULT_SORT))
 rel = nil unless defined?(rel)
 
 current_options = params.to_unsafe_h.slice(:sort, :site, :set, :language, :filter_locale).map {|k, v| [k.to_sym, v] }.to_h.merge(default_sort: default_sort)
@@ -75,14 +76,16 @@ skip_all_sites_link = false unless defined?(skip_all_sites_link)
     </div>
   <% end %>
 
-  <div id="script-language-filter" class="list-option-group"><%= t('scripts.listing_filter_by_language_label') %>
-    <ul>
-      <% default_language_option = controller.is_a?(UsersController) ? 'all' : 'js' %>
-      <% { t('scripts.listing_language_all') => 'all', t('scripts.listing_language_js') => 'js', t('scripts.listing_language_css') => 'css' }.each do |language_option, key| %>
-        <%= script_list_link(language_option, **current_options.merge(language: default_language_option == key ? nil : key)) %>
-      <% end %>
-    </ul>
-  </div>
+  <% unless libraries %>
+    <div id="script-language-filter" class="list-option-group"><%= t('scripts.listing_filter_by_language_label') %>
+      <ul>
+        <% default_language_option = controller.is_a?(UsersController) ? 'all' : 'js' %>
+        <% { t('scripts.listing_language_all') => 'all', t('scripts.listing_language_js') => 'js', t('scripts.listing_language_css') => 'css' }.each do |language_option, key| %>
+          <%= script_list_link(language_option, **current_options.merge(language: default_language_option == key ? nil : key)) %>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
   <% # This doesn't work for search
   if include_script_sets && (action_name != 'index' || params[:q].blank?)  && user_signed_in? && !current_user.script_sets.empty? %>

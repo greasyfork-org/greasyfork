@@ -172,8 +172,9 @@ class User < ApplicationRecord
   end
 
   def serializable_hash(options = nil)
+    sleazy = options&.[](:sleazy)
     h = super({ only: [:id, :name] }.merge(options || {})).merge({
-                                                                   url: Rails.application.routes.url_helpers.user_url(nil, self),
+                                                                   url: Rails.application.routes.url_helpers.user_url(nil, self, **(sleazy ? { host: 'sleazyfork.org' } : {})),
                                                                  })
     # rename listable_scripts to scripts
     unless h['listable_scripts'].nil?
@@ -202,6 +203,16 @@ class User < ApplicationRecord
       s.delete_type = delete_type
       s.save(validate: false)
       ModeratorAction.create!(moderator:, script: s, action: 'Delete and lock', reason:, report:)
+    end
+  end
+
+  def unlock_all_scripts!(moderator:, reason: nil)
+    scripts.where(locked: true).find_each do |s|
+      s.delete_reason = nil
+      s.locked = false
+      s.delete_type = nil
+      s.save(validate: false)
+      ModeratorAction.create!(moderator:, script: s, action: 'Undelete and unlock', reason:)
     end
   end
 
@@ -269,6 +280,21 @@ class User < ApplicationRecord
     end
   end
 
+  def unban!(moderator:, reason: nil, undelete_scripts: false)
+    return unless banned?
+
+    User.transaction do
+      ModeratorAction.create!(
+        moderator:,
+        user: self,
+        action: 'Unban',
+        reason:
+      )
+      update_columns(banned_at: nil)
+      unlock_all_scripts!(moderator:, reason:) if undelete_scripts
+    end
+  end
+
   def report_stats(ignore_report: nil)
     report_scope = reports_as_reporter
     report_scope = report_scope.where.not(id: ignore_report) if ignore_report
@@ -290,8 +316,8 @@ class User < ApplicationRecord
   end
 
   # Override devise's method to send async. https://github.com/heartcombo/devise#activejob-integration
-  def send_devise_notification(notification, *args)
-    devise_mailer.send(notification, self, *args).deliver_later
+  def send_devise_notification(notification, *)
+    devise_mailer.send(notification, self, *).deliver_later
   end
 
   def needs_to_recaptcha?

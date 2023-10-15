@@ -40,7 +40,7 @@
               <% if same_user %>
                 <%= it('scripts.self_deleted_locked_author_notice_html', delete_reason: delete_reason(@script), appeal_link: new_script_script_lock_appeal_path(@script), code_rules_link: help_code_rules_path, site_name: site_name, report_link: report_path(report)) %>
               <% else %>
-                <p>This script was deleted by the author in response to <%= link_to "report ##{report.id}", report_path(report) %>.</p>
+                This script was deleted by the author in response to <%= link_to "report ##{report.id}", report_path(report) %>.
               <% end %>
             <% else %>
               <%= it('scripts.deleted_locked_author_notice_html', delete_reason: delete_reason(@script), appeal_link: new_script_script_lock_appeal_path(@script), code_rules_link: help_code_rules_path, site_name: site_name, report_link: report_path(report)) %>

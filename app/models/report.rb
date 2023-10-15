@@ -118,15 +118,19 @@ class Report < ApplicationRecord
         elsif moderator
           ModeratorAction.create!(moderator:, script: item, action: 'Delete and lock', report: self, private_reason: moderator_notes)
         end
+      when NilClass
+        # Do nothing, it's gone already.
       else
         raise "Unknown report item #{item}"
       end
 
-      update!(result: RESULT_UPHELD, resolver: moderator, moderator_notes:, self_upheld:)
+      update_columns(result: RESULT_UPHELD, resolver_id: moderator&.id, moderator_notes:, self_upheld:)
       reporter&.update_trusted_report!
     end
 
     return if reason == REASON_WRONG_CATEGORY
+
+    return unless item
 
     Report.unresolved.where(item:).find_each do |other_report|
       other_report.update!(result: RESULT_UPHELD)
@@ -172,6 +176,8 @@ class Report < ApplicationRecord
       [item.poster]
     when Script
       item.users
+    when NilClass
+      []
     else
       raise 'Unknown type'
     end.compact

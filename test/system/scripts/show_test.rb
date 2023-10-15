@@ -34,4 +34,11 @@ class ShowTest < ApplicationSystemTestCase
     visit script_path(script, locale: :en)
     assert_current_path script_path(replacing_script, locale: :en)
   end
+
+  test 'license text format shows properly' do
+    script = Script.find(2)
+    script.update!(license_text: 'Example License; https://example.com')
+    visit script_path(script, locale: :en)
+    assert_link('Example License', href: 'https://example.com')
+  end
 end

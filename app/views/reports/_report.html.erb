@@ -24,13 +24,13 @@
              other_script: report.reference_script ? render_script(report.reference_script) : link_to(report.script_url, report.script_url, rel: :nofollow),
              license_link: report.reference_script.license.url,
              license_name: report.reference_script.license.name,
-             tldr_legal_link: It.link("https://tldrlegal.com/search?q=#{URI.encode_www_form_component(report.reference_script.license.code)}", target: 'tldrlegal'))
+             tldr_legal_link: It.link("https://tldrlegal.com/search?query=#{URI.encode_www_form_component(report.reference_script.license.code)}", target: 'tldrlegal'))
       %>
     <% elsif report.reference_script.license || report.reference_script.license_text %>
       <%= it('reports.report_intro_unauthorized_license_no_url',
              other_script: report.reference_script ? render_script(report.reference_script) : link_to(report.script_url, report.script_url, rel: :nofollow),
              license_name: report.reference_script.license&.name || report.reference_script.license_text,
-             tldr_legal_link: It.link("https://tldrlegal.com/search?q=#{URI.encode_www_form_component(report.reference_script.license&.name || report.reference_script.license_text)}", target: 'tldrlegal'))
+             tldr_legal_link: It.link("https://tldrlegal.com/search?query=#{URI.encode_www_form_component(report.reference_script.license&.name || report.reference_script.license_text)}", target: 'tldrlegal'))
       %>
     <% else %>
       <%= it('reports.report_intro_unauthorized_no_license',
@@ -99,6 +99,7 @@
     <tr>
       <th></th>
       <th>Script</th>
+      <th>Author</th>
       <th>License</th>
       <th>Created</th>
       <th>Updated</th>
@@ -108,6 +109,7 @@
     <tr>
       <td>Reported</td>
       <td><%= render_script(report.item) %></td>
+      <td><%= report.item.users.map { |u| link_to(u.name, u) }.to_sentence.html_safe %></td>
       <td><%= license_display(report.item) %></td>
       <td><%= report.item.created_at %></td>
       <td><%= report.item.code_updated_at %></td>
@@ -116,6 +118,7 @@
       <td>Original</td>
       <% if report.reference_script %>
         <td><%= render_script(report.reference_script) %></td>
+        <td><%= report.reference_script.users.map { |u| link_to(u.name, u) }.to_sentence.html_safe %></td>
         <td><%= license_display(report.reference_script) %></td>
         <td><%= report.reference_script.created_at %></td>
         <td><%= report.reference_script.code_updated_at %></td>
@@ -135,6 +138,11 @@
     </div>
   <% end %>
 <% end %>
+
+<% if report.item.is_a?(Script) && report.item.updated_at > report.created_at %>
+  <p><%= t('reports.script_updated_since_report') %></p>
+<% end %>
+
 
 <% if current_user&.moderator? %>
   <% ror = report.recent_other_reports.load %>
@@ -160,16 +168,7 @@
   <% end %>
 
   <% if report.reporter %>
-    <% reporter_stats = report.reporter.report_stats(ignore_report: report) %>
-    <% if reporter_stats.values.any?{ |v| v > 0 } %>
-      <p>
-        <%= link_to(report.reporter.name, user_path(report.reporter)) %> (reporter) has made
-        <%= reporter_stats[:pending] %> pending <%= 'report'.pluralize(reporter_stats[:pending]) %>,
-        <%= reporter_stats[:dismissed] %> dismissed <%= 'report'.pluralize(reporter_stats[:dismissed]) %>,
-        <%= reporter_stats[:fixed] %> <%= 'report'.pluralize(reporter_stats[:fixed]) %> marked as fixed,
-        and <%= reporter_stats[:upheld] %> upheld <%= 'report'.pluralize(reporter_stats[:upheld]) %>.
-      </p>
-    <% end %>
+    <%= render partial: 'reports/reporter_stats', locals: { reporter: report.reporter, ignore_report: report} %>
   <% end %>
 <% end %>
 
@@ -272,6 +271,12 @@
     <%= submit_tag(t('reports.delete_script')) %>
   <% end %>
 <% elsif current_user&.moderator? %>
+  <%= form_tag(dismiss_report_path(report, index: i), method: 'POST', class: 'report-resolution-options') do %>
+    <%= text_area_tag :moderator_notes, nil, rows: 3, placeholder: 'Moderator notes (optional)' %>
+    <br>
+
+    <%= submit_tag 'Dismiss report' %>
+  <% end %>
   <% if report.resolvable_by_moderator?(current_user) %>
     <%= render partial: 'reports/moderator_controls', locals: { report: report, i: i } %>
   <% else %>

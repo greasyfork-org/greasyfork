@@ -15,7 +15,7 @@ module ScriptChecking
     end
 
     test 'checking on script for library' do
-      script = Script.new(script_type_id: ScriptType::LIBRARY_TYPE_ID)
+      script = Script.new(script_type: :library)
       script.localized_attributes.build(attribute_key: 'additional_info', locale: locales(:english), attribute_value: 'horribleguytext')
       assert_equal ScriptChecking::Result::RESULT_CODE_BAN, check_script_with_additional_info('goodguytext', script:).code
     end

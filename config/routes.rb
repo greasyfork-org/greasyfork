@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   get '/forum', to: redirect('/discussions'), status: 301
 
-  scope '(:locale)', locale: /ar|bg|cs|da|de|el|en|es|fi|fr|fr-CA|he|hu|id|it|ja|ka|ko|nb|nl|eo|pl|pt-BR|ro|ru|sk|sr|sv|th|tr|uk|ug|vi|zh-CN|zh-TW/ do
+  scope '(:locale)', locale: /ar|bg|ckb|cs|da|de|el|en|es|fi|fr|fr-CA|he|hr|hu|id|it|ja|ka|ko|nb|nl|eo|pl|pt-BR|ro|ru|sk|sr|sv|th|tr|uk|ug|vi|zh-CN|zh-TW/ do
     get '/users', to: 'users#index', as: 'users'
     get '/users/webhook-info', to: 'users#webhook_info', as: 'user_webhook_info'
     post 'users/webhook-info', to: 'users#webhook_info'
@@ -125,6 +125,8 @@ Rails.application.routes.draw do
       resources :script_sets, only: [:create, :new, :edit, :update, :destroy], path: 'sets'
       get 'ban', to: 'users#ban', as: 'ban'
       post 'ban', to: 'users#do_ban', as: 'do_ban'
+      get 'unban', to: 'users#unban', as: 'unban'
+      post 'unban', to: 'users#do_unban', as: 'do_unban'
       resources :conversations, only: [:new, :create, :show, :index] do
         resources :messages, only: [:create, :update]
         member do
@@ -136,6 +138,7 @@ Rails.application.routes.draw do
         get :notifications
         patch :update_notifications
         patch :unsubscribe_all
+        patch :mark_email_as_confirmed
       end
     end
 

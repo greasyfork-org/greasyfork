@@ -47,10 +47,11 @@ class Github
     def urls_for_ref(repo_url, ref, file, release: false)
       # construct the raw URLs from the provided info. This will be used to find the related scripts. Need handle spaces as %20 and +.
       urls = possible_sync_urls_for_repo_url(repo_url, release:).map do |url|
-        next "#{url}#{file.tr(' ', '+')}" if url.ends_with?('latest/download/')
+        next ["#{url}#{file.tr(' ', '+')}", "#{url}#{CGI.escape(file).tr(' ', '+').gsub('%2F', '/')}"] if url.ends_with?('latest/download/')
 
-        "#{url}#{ref}/#{file.tr(' ', '+')}"
+        ["#{url}#{ref}/#{file.tr(' ', '+')}", "#{url}#{ref}/#{CGI.escape(file).tr(' ', '+').gsub('%2F', '/')}"]
       end
+      urls = urls.flatten
       (urls + urls.map { |url| url.gsub('+', '%20') }).uniq
     end
 

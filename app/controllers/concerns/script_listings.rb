@@ -35,7 +35,7 @@ module ScriptListings
 
             status = 500 # We'll render a nice page but with an error code so monitoring will notice.
             Sentry.capture_exception(e)
-            flash.now[:alert] = "Something went wrong loading your results. Some search functionality may not be working. We've been notified of the issue."
+            flash.now[:alert] = t('scripts.search_failed')
             return if load_scripts_for_index_without_sphinx
           end
 
@@ -82,12 +82,12 @@ module ScriptListings
       format.json do
         return if load_scripts_for_index
 
-        render json: (params[:meta] == '1') ? { count: @scripts.count } : @scripts.as_json(include: :users)
+        render json: (params[:meta] == '1') ? { count: @scripts.count } : scripts_as_json(@scripts)
       end
       format.jsonp do
         return if load_scripts_for_index
 
-        render json: (params[:meta] == '1') ? { count: @scripts.count } : @scripts.as_json(include: :users), callback: clean_json_callback_param
+        render json: (params[:meta] == '1') ? { count: @scripts.count } : scripts_as_json(@scripts), callback: clean_json_callback_param
       end
     end
   end
@@ -102,7 +102,7 @@ module ScriptListings
       end
       format.json do
         result = self.class.cache_with_log('applies_to_counts', expires_in: 1.hour) do
-          ScriptAppliesTo.joins(:script, :site_application).where(scripts: { script_type_id: 1, delete_type: nil }, tld_extra: false, site_applications: { domain: true }).group('site_applications.text').count
+          ScriptAppliesTo.joins(:script, :site_application).where(scripts: { script_type: :public, delete_type: nil }, tld_extra: false, site_applications: { domain: true }).group('site_applications.text').count
         end
         cache_request(result.to_json)
         render json: result
@@ -123,7 +123,7 @@ module ScriptListings
            else
              {}
            end
-    with[:script_type_id] = 3
+    with[:script_type] = Script.script_types[:library]
 
     begin
       # :ranker => "expr('top(user_weight)')" means that it will be sorted on the top ranking match rather than
@@ -136,7 +136,7 @@ module ScriptListings
         per_page:,
         order: self.class.get_sort(params, for_sphinx: true, set: nil, default_sort: 'created'),
         populate: true,
-        sql: { include: [:script_type, { localized_attributes: :locale }, :users] },
+        sql: { include: [{ localized_attributes: :locale }, :users] },
         select: '*, weight() myweight',
         ranker: "expr('top(user_weight)')"
       )
@@ -162,7 +162,7 @@ module ScriptListings
     end
 
     script_ids = ScriptCodeSearch.search(params[:c])
-    @scripts = Script.order(self.class.get_sort(params)).includes(:users, :script_type, :localized_attributes).where(id: script_ids)
+    @scripts = Script.order(self.class.get_sort(params)).includes(:users, :localized_attributes).where(id: script_ids)
     include_deleted = current_user&.moderator? && params[:include_deleted] == '1'
     @scripts = @scripts.listable(script_subset) unless include_deleted
     @scripts = @scripts.paginate(page: params[:page], per_page:)
@@ -190,10 +190,10 @@ module ScriptListings
         render action: 'index'
       end
       format.json do
-        render json: (params[:meta] == '1') ? { count: @scripts.count } : @scripts.as_json(include: :users)
+        render json: (params[:meta] == '1') ? { count: @scripts.count } : scripts_as_json(@scripts)
       end
       format.jsonp do
-        render json: (params[:meta] == '1') ? { count: @scripts.count } : @scripts.as_json(include: :users), callback: clean_json_callback_param
+        render json: (params[:meta] == '1') ? { count: @scripts.count } : scripts_as_json(@scripts), callback: clean_json_callback_param
       end
     end
   end
@@ -313,7 +313,7 @@ module ScriptListings
           per_page:,
           order: self.class.get_sort(params, for_sphinx: true),
           populate: true,
-          sql: { include: [:script_type, { localized_attributes: :locale }, :users] },
+          sql: { include: [{ localized_attributes: :locale }, :users] },
           select: '*, weight() myweight, LENGTH(site_application_id) AS site_count',
           ranker: "expr('top(user_weight)')"
         )
@@ -344,12 +344,16 @@ module ScriptListings
 
     @scripts = Script
                .listable(script_subset)
-               .includes({ users: {}, script_type: {}, localized_attributes: :locale })
+               .includes({ users: {}, localized_attributes: :locale })
                .paginate(page: page_number, per_page:)
     @scripts = self.class.apply_filters(@scripts, params, script_subset)
     # Force a load as will be doing empty?, size, etc. and don't want separate queries for each.
     @scripts = @scripts.load
 
     false
+  end
+
+  def scripts_as_json(scripts)
+    scripts.as_json(include: { users: { sleazy: sleazy? } }, sleazy: sleazy?)
   end
 end

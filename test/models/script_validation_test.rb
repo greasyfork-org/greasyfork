@@ -22,7 +22,7 @@ class ScriptValidationTest < ActiveSupport::TestCase
       // ==/UserScript==
       foo.baz();
     JS
-    assert script.name.length > 500
+    assert_operator script.name.length, :>, 500
     assert_not script.valid?
     assert_equal(1, script.errors.to_a.length, script.errors.full_messages)
     assert_includes script.errors.full_messages.first, '@name', script.errors.full_messages
@@ -40,7 +40,7 @@ class ScriptValidationTest < ActiveSupport::TestCase
       // ==/UserScript==
       foo.baz();
     JS
-    assert script.description.length > 500
+    assert_operator script.description.length, :>, 500
     assert_not script.valid?
     assert_equal(1, script.errors.to_a.length, script.errors.full_messages)
     assert_includes script.errors.full_messages.first, '@description', script.errors.full_messages

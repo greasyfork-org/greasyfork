@@ -28,18 +28,26 @@ th:
       other: "ดูสคริปต์อื่น ๆ อีก %{count} สคริปต์ สำหรับ %{site}"
     applies_to_all: "ไซต์ทั้งหมด"
     install: "ติดตั้งสคริปต์นี้"
+    install_css: "ติดตั้ง ตามสไตล์ของของคุณ"
     install_help: "?"
     install_help_title: "วิธีการติดตั้ง"
     update: "อัปเดตเป็นเวอร์ชัน %{version}"
     downgrade: "ดาวน์เกรดเป็นเวอร์ชัน %{version}"
     reinstall: "ติดตั้งเวอร์ชัน %{version} ใหม่อีกครั้ง"
     old_version_warning: "นี่ไม่ใช่เวอร์ชันใหม่ล่าสุดของสคริปต์นี้ หากคุณติดตั้ง คุณจะไม่ถูกอัปเดตให้เป็นเวอร์ชันใหม่ ติดตั้งต่อไป?"
+    promoted: "สคริปต์ที่ได้รับการส่งเสริม"
     author_promoted: "สคริปต์ที่แนะนำของผู้เขียน"
     promoted_text_html: "คุณอาจชื่นชอบ %{script_link}"
     library_instructions_html: "สคริปต์นี้ไม่ควรถูกติดตั้งโดยตรง มันเป็นคลังสำหรับสคริปต์อื่น ๆ เพื่อบรรจุด้วยคำสั่งเมทา %{code}"
     deleted_notice: "สคริปต์นี้ถูกลบออกแล้ว"
+    deleted_notice_with_reason: "สคริปต์นี้ถูกลบเนื่องจาก %{report_link:this report}"
+    deleted_notice_with_related: "สคริปต์ที่คุณขอถูกลบแล้ว แต่นี่คือสคริปต์ที่เกี่ยวข้องบางส่วน"
+    deleted_notice_with_related_and_reason: "สคริปต์ที่คุณขอ ถูกลบเนื่องจาก %{report_link:this report} แต่นี่คือ สคริปต์ที่เกี่ยวข้องบางส่วน"
+    deleted_author_notice: "สคริปต์นี้ถูกลบแล้วและผู้อื่นไม่สามารถเข้าถึงได้ คุณสามารถยกเลิกการลบ ได้จากแท็บลบ"
     version_notice_html: "ของเมื่อวันที่ %{date} ดู %{latest_version_link}"
     version_notice_latest_version_link: "เวอร์ชันล่าสุด"
+    reported_notice: "\"%{script_name}\" ได้รับรายงานแล้วและอยู่ระหว่างรอการตรวจสอบโดยผู้ดูแล"
+    reported_notice_for_author: "สคริปต์นี้ไม่สามารถใช้งานได้สำหรับผู้ใช้รายอื่น จนกว่าจะได้รับการตรวจสอบโดยผู้ดูแล"
     info_page: "ข้อมูล"
     code_page: "โค้ด"
     history_page: "ประวัติ"
@@ -50,28 +58,41 @@ th:
     delete_page: "ลบ"
     delete_explanation: "การลบสคริปต์ของคุณจะทำให้ไม่มีใครสามารถเข้าถึงได้นอกจากคุณและผู้ช่วยดูแล Greasy Fork คุณสามารถเลิกลบได้ตลอดเวลา"
     delete_update_behaviour: "คุณต้องการให้ผู้ใช้ที่ได้ติดตั้งเวอร์ชันก่อนของสคริปต์ของคุณได้รับผลอย่างไร?"
+    delete_update_behaviours:
+      keep: "พวกเขาจะรักษามันไว้เหมือนเดิม"
+      redirect: "พวกเขาจะถูกเปลี่ยนเส้นทางและอัปเดตเป็นสคริปต์ที่คุณระบุด้านล่าง"
     delete_permanently_heading: "การลบถาวร"
+    delete_permanently_confirm: "คุณแน่ใจหรือไม่ว่า ต้องการลบสคริปต์ของคุณอย่างถาวร"
     delete_permanently_submit: "ร้องขอการลบถาวร"
     delete_permanently_immediate_submit: "ลบอย่างถาวร"
+    delete_permanently_notice: "บันทึกคำขอลบถาวรแล้ว สคริปต์ของคุณจะถูกลบอย่างถาวรใน 7 วัน"
+    delete_permanently_already_requested: "คุณได้ร้องขอการลบถาวรเมื่อ %{datetime}"
     delete_permanently_notice_immediate: "สคริปต์ถูกลบอย่างถาวรแล้ว"
     cancel_delete_permanently_submit: "ยกเลิกคำขอการลบถาวร"
+    cancel_delete_permanently_notice: "คำขอลบถาวรของคุณถูกยกเลิกแล้ว สคริปต์ของคุณยังไม่ปรากฏแก่ผู้อื่น"
     delete_permanently_rejected_locked: "สคริปต์นี้ถูกล็อคอยู่และไม่สามารถถูกลบอย่างถาวรได้"
     admin_page: "ผู้ดูแล"
     admin:
       title: "%{script_name} - ผู้ดูแล"
+      promoted_heading: "สคริปต์ที่ได้รับการโปรโหมด"
+      promoted_explanation: "หลังจากติดตั้งสคริปต์นี้แล้ว %{site_name} สามารถแนะนำให้ผู้ใช้ลองสคริปต์อื่นที่คุณเลือก"
+      promoted_script_label: "URL ของสคริปต์ที่จะโปรโมต"
       sync_heading: "แหล่งการซิงค์"
       locale_heading: "ภาษาเริ่มต้น"
       locale_example_html: "ภาษาของข้อความนี้: <i>%{text}</i>"
       update_locale: "อัปเดตภาษา"
+      compare_button: "เปรียบเทียบ"
     history_title: "%{script_name} - ประวัติเวอร์ชัน"
     history_only_code_changes_info: "นี่คือเวอร์ชันของสคริปต์นี้ที่โค้ดมีการอัปเดต"
     history_all_changes_link: "แสดงเวอร์ชันทั้งหมด"
     history_all_changes_info: "นี่คือเวอร์ชันทั้งหมดของสคริปต์นี้"
     history_only_code_changes_link: "แสดงเฉพาะเวอร์ชันที่โค้ดมีการเปลี่ยนแปลง"
     diff_button: "ความแตกต่างระหว่างเวอร์ชันที่เลือก"
+    list_all_script_versions: "แสดงเวอร์ชันสคริปต์ทั้งหมด"
     code_title: "%{script_name} - ซอร์ซโค้ด"
     feedback_title: "%{script_name} - ขอเสนอแนะ"
     feedback_no_discussions_html: "ยังไม่มีกระทู้ที่ถูกโพสต์ %{start_first_discussion_link}"
+    feedback_no_discussions_on_page_form: "ยังไม่มีการโพสต์การสนทนา"
     feedback_start_first_discussion_link: "เป็นคนแรกที่สนทนาเกี่ยวกับสคริปต์นี้"
     stats_title: "%{script_name} - สถิติ"
     stats_daily_installs_heading: "จำนวนการติดตั้งรายวัน"
@@ -83,7 +104,17 @@ th:
     stats_raw_data_header: "ข้อมูลดิบ"
     stats_download_raw_data_html: "ดาวโหลดข้อมูลทั้งหมดแบบ: %{links}"
     stats_no_data: "ไม่มี"
+    stats_filter_options:
+      month: 30 วันที่ผ่านมา
+      year: 365 วันที่ผ่านมา
+      all: ตลอดเวลา
     derivatives_title: "%{script_name} - คล้ายคลึง"
+    derivatives_intro: "สคริปต์เหล่านี้อาจอ้างอิงมาจากของคุณ (หรือของคุณอาจอ้างอิงมาจากสคริปต์เหล่านี้) หากคุณพบการใช้โค้ดของคุณโดยไม่ได้รับอนุญาต ให้รายงานจากแท็บคำติชมของสคริปต์นั้น"
+    derivatives_exact_copies_heading: "สำเนาถูกต้อง"
+    derivatives_exact_copies_list_intro: "สคริปต์ต่อไปนี้มีโค้ดเดียวกันกับของคุณทุกประการ"
+    derivatives_exact_copies_item_html: "%{script_link} โดย %{author_links} เวอร์ชั่น %{version_list}"
+    derivatives_similar_heading: "สคริปต์ที่คล้ายกัน"
+    derivatives_similar_info: "เราตรวจสอบเวอร์ชันล่าสุดของสคริปต์อื่นๆ ทั้งหมดเป็นระยะๆ เพื่อค้นหาสคริปต์ที่คล้ายกับของคุณมากที่สุด เรายังตรวจสอบทุกครั้งที่คุณโพสต์การอัปเดตสคริปต์และตามคำขอของคุณ"
     listing_title_all_sites: "สคริปต์ผู้ใช้สำหรับไซต์ทั้งหมด"
     listing_description_all_sites: "สคริปต์ผู้ใช้ที่เพิ่มคุณสมบัติและลบจุดบกพร่องต่าง ๆ บนไซต์ทั้งหมด"
     listing_title_for_site: "สคริปต์ผู้ใช้สำหรับ %{site}"
@@ -190,6 +221,11 @@ th:
     search_placeholder: "ค้นหาสคริปต์"
     updated: "สคริปต์ถูกอัพเดทแล้ว"
     preview_additional_info: "แสดงตัวอย่าง"
+    install_help_dialog:
+      js:
+        firefox: คุณจะต้องติดตั้งส่วนขยาย เช่น %{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} หรือ %{violentmonkey_link:Violentmonkey} เพื่อติดตั้งสคริปต์นี้
+        chrome: คุณจะต้องติดตั้งส่วนขยาย เช่น %{tampermonkey_link:Tampermonkey} หรือ %{violentmonkey_link:Violentmonkey} เพื่อติดตั้งสคริปต์นี้
+        opera: คุณจะต้องติดตั้งส่วนขยาย เช่น %{tampermonkey_link:Tampermonkey} หรือ %{violentmonkey_link:Violentmonkey} เพื่อติดตั้งสคริปต์นี้
   script_sets:
     favorites_name: "ชื่นชอบ"
     delete: "ลบชุดสคริปต์"
@@ -266,6 +302,34 @@ th:
     explain_user_scripts_html: "สคริปต์ผู้ใช้จะทำให้คุณควบคุมประสบการณ์การเปิดหาของคุณ เมื่อติดตั้งแล้ว สคริปต์จะทำให้ไซต์ที่คุณเยี่ยมชมดีขึ้นกว่าเดิมโดยอัตโนมัติได้โดยเพิ่มคุณสมบัติ ทำให้ใช้งานง่ายขึ้น หรือกำจัดสิ่งที่น่ารำคาญออก สคริปต์ผู้ใช้บน %{site_name} ถูกเขียนโดนผู้ใช้อื่นและถูกโพสต์เพื่อแบ่งปันกันทั่วโลก ซึ่งสามารถติดตั้งได้ฟรีและใช้งานง่าย"
     installing_step1_header: "ขั้นตอนที่ 1: ติดตั้งเครื่องมือจัดการสคริปต์ผู้ใช้"
     installing_step1_caption: "Tampermonkey บน Chrome"
+    installing_step1_description_html: >
+        <p>หากคุณต้องการใช้สคริปต์ คุณต้องติดตั้งตัวจัดการสคริปต์ของคุณก่อน ตัวจัดการสคริปต์ที่คุณสามารถใช้ได้ขึ้นอยู่กับเบราว์เซอร์ที่คุณใช้</p>
+    desktop_browsers:
+      title: เดสก์ทอป
+      browser_list_html: |
+          <ul>
+          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} หรือ %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, หรือ %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} หรือ %{safari_userscripts_link:Userscripts}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} หรือ %{edge_violentmonkey_link:Violentmonkey}</li>
+          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} หรือ %{opera_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>AdGuard: (no additional software required)</li>
+          </ul>
+    android_browsers:
+      title: มือถือ (แอนดรอยด์)
+      browser_list_html: |
+          <ul>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, หรือ %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+          <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+          <li>Kiwi: %{chrome_tampermonkey_link:Tampermonkey} หรือ %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>%{xbrowser_link:XBrowser}</li>
+          %{locale_specific_browsers}
+          </ul>
+    ios_browsers:
+      title: มือถือ (ไอโพน)
     installing_step2_header: "ขั้นตอนที่ 2: ติดตั้งสคริปต์ผู้ใช้"
     installing_step2_caption: "ปุ่มติดตั้งของสคริปต์ผู้ใช้"
     installing_step2_description_html: >
@@ -368,9 +432,31 @@ th:
         request_expired: "ไม่สามารถลบผู้ใช้ได้ - คำขอหมดอายุ"
         cancelled: "การลบถูกยกเลิกแล้ว"
         completed: "บัญชีของคุณได้ถูกลบแล้ว"
+    notifications:
+      discussion_defaults:
+        title: การแจ้งเตือน ฟอรัม
+      conversation_defaults:
+        receiver: ตามค่าเริ่มต้น ให้สมัครรับข้อมูลการสนทนาใดๆ ที่เกี่ยวข้องกับคุณโดยที่คุณไม่ได้เป็นคนเริ่ม
+      report_defaults:
+        title: รายงานการแจ้งเตือน
+        reporter: รับการแจ้งเตือนเมื่อรายงานที่คุณสร้างได้รับการแก้ไข
+        reported: รับการแจ้งเตือนเมื่อมีการสร้างหรือแก้ไขรายงานเกี่ยวกับสิ่งที่คุณโพสต์
+      save_button: อัปเดตการตั้งค่าการแจ้งเตือน
+      title: การแจ้งเตือน
+      save_success: อัปเดตการตั้งค่าการแจ้งเตือนของคุณแล้ว
+      unsubscribe_all: ยกเลิกการสมัครรับการแจ้งเตือนทั้งหมด
+      unsubscribe_all_success: คุณได้ยกเลิกการสมัครรับการแจ้งเตือนทั้งหมดแล้ว
+    account_banned: บัญชีนี้ถูกแบน
+  webhooks:
+    info:
+      title: การตั้งค่า webhook
   help:
+    sections:
+      usage: การใช้งาน
     installing_user_scripts:
       title: 'วิธีติดตั้งสคริปต์ผู้ใช้'
+    installing_user_styles:
+      title: 'วิธีติดตั้ง สไตล์ผู้ใช้'
     meta_keys:
       title: "การอ่านคีย์เมทาสคริปต์โดย %{site_name}"
       name: "ชื่อของสคริปต์ โดยจะถูกใช้เป็นหัวเรื่องและลิงก์ ซึ่งจำเป็นต้องมี"
@@ -383,6 +469,11 @@ th:
       post_new_script_link_text: 'โพสต์สคริปต์ใหม่'
     code_rules:
       title: "กฎของ %{site_name} สำหรับสคริปต์ที่ถูกโพสต์"
+      functionality_header: ฟังก์ชั่น
+      code_header: โค้ด
+      hosting: ฟังก์ชันหลักของสคริปต์ต้องอยู่ภายในโค้ดบน %{site_name}สคริปต์ที่โพสต์เมื่อ %{site_name} ไม่อนุญาตให้โหลดสคริปต์จำนวนมากจากที่อื่น การโพสต์ URL สำหรับดาวน์โหลดสำรอง โดยมีจุดประสงค์ให้ผู้ใช้ใช้แหล่งข้อมูลอื่นแทนเวอร์ชันที่โพสต์ %{site_name} ไม่ได้รับอนุญาต
+      external_js: "%{external_scripts_link:การใช้ JavaScript ภายนอกถูกจำกัด.}"
+      copyright_header: ลิขสิทธิ์
     external_scripts:
       title: "นโยบายของ %{site_name} เกี่ยวกับสคริปต์ภายนอก"
     script_rewriting:
@@ -473,3 +564,21 @@ th:
     description: "ค้นหาสคริปต์ผู้ใช้บน %{site_name}"
     long_name: "การค้นหาสคริปต์ผู้ใช้ %{site_name}"
     attribution: "มีลิขสิทธิ์โดยผู้เขียนสคริปต์ ดูแต่ละสคริปต์สำหรับการอนุญาต"
+  mailers:
+    comment_mentioned:
+      subject: "ผู้ใช้ '%{commenter_name}' พูดถึงคุณเมื่อ %{site_name}."
+      intro: "การสนทนา %{discussion_link:%{discussion_title}} ใน %{site_name} ได้รับความคิดเห็นจาก ผู้ใช้ %{commenter_link:%{commenter_name}}  ที่กล่าวถึงคุณ"
+      outro: "%{comment_link:View and reply to this comment.} คุณได้รับการแจ้งเตือนนี้เนื่องจาก คุณเลือกที่จะรับการแจ้งเตือนเมื่อคุณถูกกล่าวถึง %{notification_preferences_link:Manage your notification preferences.}</p>"
+    new_message:
+      subject: "%{user} ส่งข้อความถึงคุณเมื่อ %{site_name}"
+      intro: "ผู้ใช้ %{user_link:%{user_name}} ได้ส่งข้อความถึงคุณเมื่อ %{site_name}."
+      outro: "%{conversation_link:View and reply to this message.} คุณได้รับการแจ้งเตือนนี้เนื่องจากคุณสมัครรับการแจ้งเตือนข้อมูลการสนทนานี้ %{notification_preferences_link:Manage your notification preferences.}"
+    script_lock_appeal:
+      dismiss:
+        subject: อุทธรณ์การลบสคริปต์ของคุณเมื่อ %{site_name} ถูกปฏิเสธ
+        intro_html: การอุทธรณ์การลบของคุณ %{script} ถูกปฏิเสธโดยผู้ดูแล สคริปต์จะยังคงถูกลบ
+        outro: หากคุณยังต้องการยกเลิกการลบสคริปต์นี้ โปรดอ่าน %{report_link:original report} and %{rules_link:%{site_name}'s rules}.
+      unlock:
+        subject: อุทธรณ์การลบสคริปต์ของคุณเมื่อ %{site_name} ได้รับการเห็นชอบแล้ว
+        intro_html: การอุทธรณ์การลบของคุณ %{script} ได้รับการอนุมัติโดยผู้ดูแล ขณะนี้สคริปต์ถูกยกเลิกการลบและเข้าถึงได้แบบสาธารณะอีกครั้ง
+        outro: โปรดตรวจสอบ %{rules_link:%{site_name}'s rules} เพื่อป้องกันการลบอีกในอนาคต

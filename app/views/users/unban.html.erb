@@ -1,0 +1,24 @@
+<%= form_tag(user_do_unban_path) do |f| %>
+  <% if !@user.banned? %>
+    <p>(User not banned.)</p>
+  <% else %>
+    <p>
+      <label for="reason">Why are you unbanning <%= @user.name %>?</label>
+      <br>
+      <textarea id="reason" name="reason" rows="5" cols="100" maxlength="500" required></textarea>
+    </p>
+    <% locked_script_count = @user.scripts.where(locked: true).count %>
+    <% if locked_script_count > 0 %>
+      <p><%= @user.name %> has <%= locked_script_count %> locked <%= 'script'.pluralize(locked_script_count) %>:</p>
+      <ul>
+        <% @user.scripts.where(locked: true).each do |script| %>
+          <li><%= link_to script.name(request_locale), script %></li>
+        <% end %>
+      </ul>
+      <p>
+        <input id="undelete_scripts" name="undelete_scripts" type="checkbox" value="1"><label for="undelete_scripts">Undelete and unlock scripts</label>
+      </p>
+    <% end %>
+    <input type="submit" value="Unban">
+  <% end %>
+<% end %>

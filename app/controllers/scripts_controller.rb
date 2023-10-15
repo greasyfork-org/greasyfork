@@ -74,11 +74,10 @@ class ScriptsController < ApplicationController
     end
 
     return if handle_publicly_deleted(@script)
+    return if handle_wrong_url(@script, :id)
 
     respond_to do |format|
       format.html do
-        return if handle_wrong_url(@script, :id)
-
         provision_session_install_key(@script)
 
         page_key = "#{script_subset}/script/show/#{@script.id}/#{@script.updated_at&.to_i}/#{params[:version].to_i}/#{request_locale.id}" if cachable_request
@@ -105,8 +104,8 @@ class ScriptsController < ApplicationController
       format.js do
         redirect_to @script.code_path
       end
-      format.json { render json: @script.as_json(include: :users) }
-      format.jsonp { render json: @script.as_json(include: :users), callback: clean_json_callback_param }
+      format.json { render json: @script.as_json(include: :users, sleazy: sleazy?) }
+      format.jsonp { render json: @script.as_json(include: :users, sleazy: sleazy?), callback: clean_json_callback_param }
       format.user_script_meta do
         route_params = { id: params[:id], name: @script.name, format: nil }
         route_params[:version] = params[:version] unless params[:version].nil?

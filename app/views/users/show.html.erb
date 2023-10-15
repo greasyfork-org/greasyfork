@@ -45,12 +45,13 @@
 </section>
 
 <% if @same_user && @user.scripts.any?
-     dosr = @user.discussions_on_scripts_written.visible %>
+  dosr = @user.discussions_on_scripts_written.visible.includes(:poster, :stat_last_replier, :stat_first_comment, script: [:localized_attributes, :users]) %>
   <section id="user-discussions-on-scripts-written">
     <header>
       <h3><%= t('users.discussions_on_scripts') %></h3>
     </header>
     <section class="text-content">
+      <% dosr = dosr.limit(11).load %>
       <% if dosr.empty? %>
         <p><%= t('users.discussions_on_scripts_none') %></p>
       <% else %>
@@ -72,10 +73,11 @@
       <p>
         <% if @user.banned? %>
           <% if @user.non_locked_scripts.any? %>
-            User has been banned, but has non-locked scripts. <%= link_to 'Delete all', user_ban_path(@user) %>
+            User was banned <%= markup_date(@user.banned_at) %>, but has non-locked scripts. <%= link_to 'Delete all', user_ban_path(@user) %>
           <% else %>
-            User has been banned.
+            User was banned <%= markup_date(@user.banned_at) %>.
           <% end %>
+          <%= link_to 'Unban', user_unban_path(@user) %>
         <% else %>
           <%= link_to 'Ban', user_ban_path(@user) %>
         <% end %>
@@ -84,29 +86,40 @@
         <% if @user.email_domain %>
           Email domain: <%= link_to @user.email_domain, users_path(email_domain: @user.email_domain) %><br>
         <% end %>
+        <% if !@user.confirmed? %>
+          <%= link_to 'Mark email as confirmed', mark_email_as_confirmed_user_path(@user), method: :PATCH %><br>
+        <% end %>
         <%= link_to 'Users with the same IP', users_path(same_ip: @user.id) %>
       </p>
+    </section>
+  </section>
 
-      <% all_reports = @user.reports_as_reporter.order(id: :desc) %>
-      <p>This user has filed <%= all_reports.count %> <%= 'report'.pluralize(all_reports.count) %>.</p>
-      <% reports = all_reports.limit(5) %>
-      <% reports_with_item = reports.select{ |r| r.item.present? } %>
-      <% if reports_with_item.any? %>
-        <ul>
-          <% reports_with_item.each do |report| %>
-            <li>
-              <%= render partial: 'reports/report', locals: { report: report } %>
-            </li>
-          <% end %>
-        </ul>
-        <% if all_reports.count > 5 && params[:all_reports] != '1' %>
+  <% all_reports = @user.reports_as_reporter.order(id: :desc) %>
+  <% if all_reports.any? %>
+    <section>
+      <header>
+        <h3>Recent reports</h3>
+      </header>
+      <section class="text-content">
+        <%= render partial: 'reports/reporter_stats', locals: { reporter: @user } %>
+        <% recent_reports = all_reports.where(created_at: 1.week.ago..).limit(5) %>
+        <% if recent_reports.any? %>
+          <ul>
+            <% recent_reports.each do |report| %>
+              <li>
+                <%= render partial: 'reports/report', locals: { report: report } %>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
+        <% if all_reports.count > recent_reports.count %>
           <p>
             <%= link_to "See all #{all_reports.count} reports.", reports_path(user_id: @user.id) %>
           </p>
         <% end %>
-      <% end %>
+      </section>
     </section>
-  </section>
+  <% end %>
 <% end %>
 
 <section id="user-discussions">
@@ -116,7 +129,7 @@
     </h3>
   </header>
   <section class="text-content">
-    <% recent_comments = @user.comments.not_deleted.joins(:discussion).merge(Discussion.visible).where(created_at: 1.month.ago..).includes(discussion: :script).order(created_at: :desc).limit(10).load %>
+    <% recent_comments = @user.comments.not_deleted.joins(:discussion).merge(Discussion.visible).where(created_at: 1.month.ago..).includes(discussion: [:script, :discussion_category]).order(created_at: :desc).limit(10).load %>
     <% if recent_comments.any? %>
       <ul>
         <% recent_comments.each do |comment| %>
@@ -159,38 +172,39 @@
           <% end %>
         </ul>
         <% if @more_conversations %>
-          <p><%= link_to t('conversations.recent.more'), user_conversations_path(current_user) %></p>
+          <p><%= link_to t('conversations.recent.more'), user_conversations_path(@user) %></p>
         <% end %>
       <% elsif @more_conversations %>
         <p>
           <%= t('conversations.no_recent_conversations') %>
-          <%= link_to t('conversations.recent.more'), user_conversations_path(current_user) %>
+          <%= link_to t('conversations.recent.more'), user_conversations_path(@user) %>
         </p>
       <% else %>
         <p>
           <%= t('conversations.no_conversations') %>
         </p>
       <% end %>
-      <p><%= link_to t('conversations.new_link'), new_user_conversation_path(current_user) %></p>
+      <p><%= link_to t('conversations.new_link'), new_user_conversation_path(@user) %></p>
     </section>
   </section>
 <% end %>
 
-<% if @same_user || (@user.script_sets.any? && (current_user&.moderator? || @show_profile)) %>
+<% script_sets = @user.script_sets.order(:name) %>
+<% if @same_user || ((current_user&.moderator? || @show_profile) && script_sets.load.any?) %>
   <section id="user-script-sets-section">
     <header>
       <h3>Script Sets</h3>
     </header>
     <section class="text-content">
       <ul id="user-script-sets">
-        <% favorites_set = @user.script_sets.find{|ss| ss.favorite}
+        <% favorites_set = script_sets.find(&:favorite)
         if !favorites_set.nil? %>
-          <li><%= t('script_sets.favorites_name') %> <%= link_to 'View scripts', scripts_path(set: favorites_set.id), rel: :nofollow %> <% if @same_user %><%= link_to 'Edit', edit_user_script_set_path(@user, favorites_set) %><% end %></li>
+          <li><%= link_to t('script_sets.favorites_name'), scripts_path(set: favorites_set.id), rel: :nofollow %><% if @same_user %> - <%= link_to 'Edit', edit_user_script_set_path(@user, favorites_set) %><% end %></li>
         <% elsif @same_user %>
-          <li><%= t('script_sets.favorites_name') %> <%= link_to 'Edit', new_user_script_set_path(@user, fav: 1) %></li>
+          <li><%= t('script_sets.favorites_name') %> - <%= link_to 'Edit', new_user_script_set_path(@user, fav: 1) %></li>
         <% end
-        @user.script_sets.order(:name).select{|ss| !ss.favorite}.each do |ss| %>
-          <li><%= ss.name %>: <%= ss.description %> <%= link_to 'View scripts', scripts_path(set: ss.id), rel: :nofollow %> <% if @same_user %><%= link_to 'Edit', edit_user_script_set_path(@user, ss) %><% end %></li>
+         script_sets.reject(&:favorite).each do |ss| %>
+          <li><%= link_to ss.name, scripts_path(set: ss.id), rel: :nofollow %>: <%= ss.description %><% if @same_user %> - <%= link_to 'Edit', edit_user_script_set_path(@user, ss) %><% end %></li>
         <% end %>
       </ul>
     </section>
@@ -205,11 +219,6 @@
       </div>
     <% end %>
 
-    <% # Show non-public in a separate section if we're going to show any
-    deleted_script_list = @scripts.select(&:deleted?)
-    unlisted_script_list = @scripts.select(&:unlisted?)
-    library_script_list = @scripts.select(&:library?)
-    script_list = @scripts.where.not(id: (deleted_script_list + unlisted_script_list + library_script_list).map(&:id)) %>
     <section id="user-script-list-section">
       <header>
         <h3><%= t('users.script_list') %></h3>
@@ -220,46 +229,46 @@
         <% else %>
           <p><%= t('users.script_list_none') %></p>
         <% end
-      elsif script_list.empty? %>
+      elsif @scripts.empty? %>
         <p><%= t('users.script_list_none_for_filter') %></p>
       <% else %>
         <ol id="user-script-list" class="script-list <%= 'showing-all-languages' if params[:language].nil? %>">
-          <%= render partial: 'scripts/script', collection: script_list, locals: {show_author_details: true}, cached: (params[:locale_override].nil? && greasy?) ? ->(script) { ['user', script, I18n.locale] } : false %>
+          <%= render partial: 'scripts/script', collection: @scripts, locals: {show_author_details: true}, cached: (params[:locale_override].nil? && greasy?) ? ->(script) { ['user', script, I18n.locale] } : false %>
         </ol>
       <% end %>
 
-      <%= will_paginate script_list %>
+      <%= will_paginate @scripts %>
     </section>
 
-    <% unless unlisted_script_list.empty? %>
+    <% unless @unlisted_scripts.empty? %>
       <section id="user-unlisted-script-list-section">
         <header>
           <h3><%= t('users.unlisted_script_list') %></h3>
         </header>
         <ol id="user-unlisted-script-list" class="script-list">
-          <%= render partial: 'scripts/script', collection: unlisted_script_list %>
+          <%= render partial: 'scripts/script', collection: @unlisted_scripts %>
         </ol>
       </section>
     <% end %>
 
-    <% unless library_script_list.empty? %>
+    <% unless @libraries.empty? %>
       <section id="user-library-list-section">
         <header>
           <h3><%= t('scripts.libraries_title') %></h3>
         </header>
         <ol id="user-library-script-list" class="script-list">
-          <%= render partial: 'scripts/script', collection: library_script_list %>
+          <%= render partial: 'scripts/script', collection: @libraries %>
         </ol>
       </section>
     <% end %>
 
-    <% unless deleted_script_list.empty? %>
+    <% unless @deleted_scripts.empty? %>
       <section id="user-deleted-script-list-section">
         <header>
           <h3><%= t('users.deleted_script_list') %></h3>
         </header>
         <ol id="user-deleted-script-list" class="script-list">
-          <%= render partial: 'scripts/script', collection: deleted_script_list %>
+          <%= render partial: 'scripts/script', collection: @deleted_scripts %>
         </ol>
       </section>
     <% end %>
@@ -275,7 +284,7 @@
         <div class="sidebar-title"><%= t('common.listing_options_title') %></div>
         <div>☰</div>
       </div>
-      <%= render partial: 'scripts/list_options', locals: { by_sites: @by_sites, scripts: script_list, skip_all_sites_link: true, rel: :nofollow } %>
+      <%= render partial: 'scripts/list_options', locals: { by_sites: @by_sites, scripts: @scripts, skip_all_sites_link: true, rel: :nofollow } %>
     </div>
   <% end %>
 </div>

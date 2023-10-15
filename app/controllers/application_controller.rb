@@ -129,7 +129,7 @@ class ApplicationController < ActionController::Base
   end
 
   def banned?
-    return unless current_user.present? && current_user.banned?
+    return false unless current_user.present? && current_user.banned?
 
     sign_out current_user
     flash[:alert] = t('users.account_banned')
@@ -268,7 +268,7 @@ class ApplicationController < ActionController::Base
            else
              {}
            end
-    with[:script_type_id] = ScriptType::PUBLIC_TYPE_ID
+    with[:script_type] = Script.script_types[:public]
     with
   end
 

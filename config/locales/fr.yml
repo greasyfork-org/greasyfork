@@ -42,7 +42,9 @@ fr:
     promoted_text_html: "Vous pourriez également aimer %{script_link}."
     library_instructions_html: "Ce script ne doit pas être installé directement. C'est une librairie destinée à être incluse dans d'autres scripts avec la méta-directive %{code}"
     deleted_notice: "Ce script a été supprimé."
+    deleted_notice_with_reason: "Ce script a été supprimé en raison de %{report_link:ce rapport}."
     deleted_notice_with_related: "Le script que vous avez demandé a été supprimé, mais voici quelques scripts similaires."
+    deleted_notice_with_related_and_reason: "Le script que vous avez demandé a été supprimé en raison de %{report_link:ce rapport}, mais voici quelques scripts associés."
     deleted_undelete_notice_html: "Ce script a été bloqué par un modérateur et ne peut pas être restauré. Pour les raisons suivantes: \"<i>%{delete_reason}</i>\"."
     deleted_locked_author_notice_html: "Ce script a été supprimé par un modérateur en réponse à %{report_link:ce rapport} et n'est pas accessible aux autres. La raison fournie est : \"<i>%{delete_reason}</i>\". Veuillez consulter les règles de %{code_rules_link:%{site_name}}. Si vous pensez que la suppression est une erreur, vous pouvez %{appeal_link:fare appel} pour cette suppression. Ne republiez pas ce script ; cela peut entraîner un ban sur %{site_name}."
     self_deleted_locked_author_notice_html: "Ce script a été supprimé par vous en réponse à %{report_link:ce rapport} et n'est pas accessible aux autres. Si vous avez mis à jour votre script pour être conforme aux %{code_rules_link:règles%{site_name}}, vous pouvez %{appeal_link:submit an appeal} de cette suppression. Ne republiez pas ce script ; cela peut entraîner une interdiction de %{site_name}."
@@ -731,12 +733,12 @@ fr:
       resource_html: "Inclut une ressource externe (JavaScript, CSS, images, etc.) dans un script. Voir %{external_script_link:règles pour le code incluant les scripts externes}. Si vous utilisez des hachages d'intégrité de sous-ressources (voir les informations %{tm_subresource_link:ici} et %{mdn_subresource_link:ici}), %{site_name} vous alertera si vos hachages ne correspondent pas au contenu de l'URL que vous utilisez."
       updateURL: "Décrit comment les gestionnaires de scripts utilisateurs doivent obtenir les mises à jours. %{site_name} supprimera ces clés, ce qui fait que n'importe quel script installé de %{site_name} se met à jour seulement de %{site_name}."
       license_html: |
-          En publiant votre script sur %{site_name}, vous autorisez les autres à l'installer et à l'utiliser. La licence décrit si et comment les personnes sont autorisées à modifier et à distribuer votre script. La licence est affichée sur la page d'informations d'un script. <code>@licence</code> peut comprendre:
+          En publiant votre script sur %{site_name}, vous autorisez les autres à l'installer et à l'utiliser. La licence décrit comment et si les personnes sont autorisées à modifier et à distribuer votre script. La licence est affichée sur la page d'informations d'un script. <code>@licence</code> peut être :
           <ul>
-          <li>Le nom d'une licence (par exemple, <code>@licence GPL3</code>). Il est recommandé d'utiliser un "Nom complet" ou un "Identifiant" de %{spdx_link:the SPDX License List}.</li>
-          <li>Les conditions dans lesquelles vous autorisez l'utilisation (par exemple <code>@license Vous pouvez modifier tant que vous me créditez</code>, bien qu'il soit recommandé d'utiliser une licence préexistante.</li>
+          <li>Le nom d'une licence (par exemple: <code>@license GPL3</code>). Il est recommandé d'utiliser un "Nom complet" ou un "Identifiant" de %{spdx_link:the SPDX License List}.</li>
+          <li>Les conditions dans lesquelles vous autorisez l'utilisation (par exemple: <code>@license Vous pouvez modifier tant que vous me créditez</code>, bien qu'il soit recommandé d'utiliser une licence préexistante.</li>
           <li>Une déclaration de copyright (par exemple <code>@license Copyright MyName</code>) si vous ne souhaitez pas publier sous licence.</li>
-          <li>Ne rien renseigner est qui équivaut à avoir une déclaration de droit d'auteur, mais moins clair pour les utilisateurs.</li>
+          <li>Ne rien renseigner équivaut à avoir une déclaration de droit d'auteur, mais moins clair pour les utilisateurs.</li>
           </ul>
           Notez que si votre script est basé sur du code écrit par quelqu'un d'autre, vous pouvez être limité dans la licence que vous choisissez.
       supportURL: "URL de la page où les utilisateurs peuvent obtenir de l'aide sur un script ( un bug tracker, un forum, une adresse e-mail ). L'URL d'aide est affichée sur la page de commentaires du script."
@@ -776,7 +778,8 @@ fr:
       licensing_html: Votre script doit respecter les droits d'auteur des autres. Cela inclut le code lui-même et toutes les ressources (par exemple les images) qu'il utilise. Si vous avez l'intention d'utiliser le contenu de quelqu'un d'autre, respectez ses conditions de licence ou obtenez son autorisation avant de le faire. Les licences sur les scripts sont spécifiées par la clé de métadonnée <code>@license</code>, et pour savoir ce que vous pouvez ou non faire utiliser %{tldr_legal_link:tldrlegal.com}.
       reposts: Même dans les cas ne violant pas la règle de copyright, les repositionnements de scripts qui sont déjà sur %{site_name} ne sont pas autorisés à moins qu'ils ne s'améliorent par rapport à l'original.
       miscellaneous_header: Divers
-      keywords_html: Les scripts ne doivent pas inclure de <code>@include</code>, <code>@match</code> ou des mots-clés pour les sites sur lesquels ils ne fournissent pas de fonctionnalités.
+      included_sites_html: Les scripts ne doivent pas inclure <code>@include</code>s ou <code>@match</code>es pour les sites sur lesquels ils ne fournissent pas de fonctionnalités. Les scripts ne doivent pas ajouter <code>@include</code>s ou <code>@match</code>es dans le seul but d'ajouter des antifeatures/antifonctionnalités.
+      keywords: Les scripts ne doivent pas contenir de mots clés ou/et mentionner de sites qui sont sans rapport dans le but d'améliorer leur placement de la recherche.
       adult_content_rule: Les scripts incluant du contenu pour adulte ou sont destinés à des sites avec du contenu pour adulte doivent être marqués comme tels pour permettre aux autres utilisateurs de les voir ou non.
       reposting_deleted: Ne republiez pas les scripts qui ont été supprimés en raison de violations des règles; utilisez plutôt la fonction faire appel. Republier des scripts supprimés peut entraîner un ban.
       advertising_in_description: Les auteurs de scripts ne peuvent pas placer de publicité sur les pages de Greasy Fork, par exemple dans la description d'un script. La promotion de la page d'accueil de l'auteur du script, du référentiel de code, de Discord, de WeChat, etc. est autorisée.

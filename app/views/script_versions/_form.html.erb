@@ -152,8 +152,9 @@
   <div class="form-section">
     <div class="form-control radio-group">
       <label><%= t('activerecord.attributes.script.type') %></label><br>
-      <% ScriptType.for_language(script_version.script.language).each do |st| %>
-        <%= radio_button('script', 'script_type_id', st.id) %> <label class="radio-label" for="script_script_type_id_<%= st.id %>"><%= t("scripts.type_#{st.id}_html", site_name: site_name) %></label><br>
+      <% (script_version.script.language == 'css' ? ['public', 'unlisted'] : ['public', 'unlisted', 'library']).each do |st| %>
+        <% st_id = Script.script_types[st] %>
+        <%= radio_button('script', 'script_type', st_id, required: true, checked: script_version.script.script_type == st) %> <label class="radio-label" for="script_script_type_<%= st_id %>"><%= t("scripts.type_#{st_id}_html", site_name: site_name) %></label><br>
       <% end %>
     </div>
   </div>

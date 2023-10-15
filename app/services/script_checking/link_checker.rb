@@ -41,7 +41,7 @@ module ScriptChecking
 
       def scan_for_direct_url_references(script_version)
         attributes_to_check(script_version).each do |thing_to_check|
-          BlockedScriptUrl.all.each do |bu|
+          BlockedScriptUrl.find_each do |bu|
             return ScriptChecking::Result.new(ScriptChecking::Result::RESULT_CODE_BAN, bu.public_reason, bu.private_reason, bu) if thing_to_check.include?(bu.url)
           end
         end
@@ -68,7 +68,7 @@ module ScriptChecking
 
         begin
           res = Net::HTTP.get_response(URI(url))
-        rescue Errno::ECONNREFUSED
+        rescue Errno::ECONNREFUSED, URI::InvalidURIError
           return url
         end
 

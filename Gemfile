@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '3.1.2'
+ruby '3.2.2'
 
 gem 'bootsnap'
 gem 'daemons'
@@ -82,5 +82,4 @@ group :test do
   gem 'minitest-around'
   gem 'mocha'
   gem 'selenium-webdriver'
-  gem 'webdrivers'
 end

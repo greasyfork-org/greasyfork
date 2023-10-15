@@ -10,6 +10,7 @@ class Script < ApplicationRecord
   CONSECUTIVE_BAD_RATINGS_NOTIFICATION_DELAY = 1.day
 
   enum delete_type: { 'keep' => 1, 'blanked' => 2, 'redirect' => 3 }, _prefix: true
+  enum script_type: { 'public' => 1, 'unlisted' => 2, 'library' => 3 }, _prefix: true
 
   belongs_to :promoted_script, class_name: 'Script', optional: true
 
@@ -39,7 +40,6 @@ class Script < ApplicationRecord
 
   has_one :cleaned_code, dependent: :delete
 
-  belongs_to :script_type
   belongs_to :script_sync_type, optional: true
   belongs_to :license, optional: true
   belongs_to :locale
@@ -51,6 +51,7 @@ class Script < ApplicationRecord
   delegate :meta, to: :newest_saved_script_version
 
   scope :not_deleted, -> { where(delete_type: nil) }
+  scope :deleted, -> { where.not(delete_type: nil) }
   scope :active, lambda { |script_subset|
     f = not_deleted
     case script_subset
@@ -64,9 +65,9 @@ class Script < ApplicationRecord
       raise ArgumentError, "Invalid argument #{script_subset}"
     end
   }
-  scope :listable, ->(script_subset) { active(script_subset).where(script_type_id: 1).where.not(review_state: 'required') }
-  scope :libraries, ->(script_subset) { active(script_subset).where(script_type_id: ScriptType::LIBRARY_TYPE_ID) }
-  scope :listable_including_libraries, ->(script_subset) { active(script_subset).where(script_type_id: [1, 3]) }
+  scope :listable, ->(script_subset) { active(script_subset).where(script_type: :public).where.not(review_state: 'required') }
+  scope :libraries, ->(script_subset) { active(script_subset).where(script_type: :library) }
+  scope :listable_including_libraries, ->(script_subset) { active(script_subset).where(script_type: [:public, :library]) }
   scope :reported, -> { not_deleted.joins(:reports).where(reports: { result: nil }).distinct }
   scope :reported_not_adult, -> { not_deleted.includes(:users).where.not(not_adult_content_self_report_date: nil) }
   scope :for_all_sites, -> { includes(:script_applies_tos).references(:script_applies_tos).where('script_applies_tos.id' => nil) }
@@ -374,7 +375,7 @@ class Script < ApplicationRecord
       url, integrity_hashes = url.split('#', 2)
       if integrity_hashes
         integrity_hashes = integrity_hashes.split(/[;,]/, 2)
-        integrity_hashes = integrity_hashes.map { |entry| entry.split('=', 2) }
+        integrity_hashes = integrity_hashes.map { |entry| entry.split(/[=-]/, 2) }
         integrity_hashes = integrity_hashes.select { |algorithm, hash| algorithm.present? && hash.present? }
       end
       subresource = Subresource.find_or_initialize_by(url:)
@@ -410,7 +411,7 @@ class Script < ApplicationRecord
   end
 
   def library?
-    script_type_id == ScriptType::LIBRARY_TYPE_ID
+    script_type_library?
   end
 
   def listable?
@@ -418,11 +419,11 @@ class Script < ApplicationRecord
   end
 
   def public?
-    script_type_id == ScriptType::PUBLIC_TYPE_ID
+    script_type_public?
   end
 
   def unlisted?
-    script_type_id == ScriptType::UNLISTED_TYPE_ID
+    script_type_unlisted?
   end
 
   def can_be_added_to_set?
@@ -483,14 +484,18 @@ class Script < ApplicationRecord
     self.license_text = text
   end
 
-  def url(locale: nil)
-    url_helpers.script_url(self, locale:)
+  def host_arg(sleazy: false)
+    ((sleazy && sensitive) ? { host: 'sleazyfork.org' } : {})
   end
 
-  def code_url
-    return url_helpers.library_js_script_url(self, version: newest_saved_script_version.id, name: url_name) if library?
+  def url(locale: nil, sleazy: false)
+    url_helpers.script_url(self, locale:, **host_arg(sleazy:))
+  end
 
-    return url_helpers.user_js_script_url(self, name: url_name)
+  def code_url(sleazy: false)
+    return url_helpers.library_js_script_url(self, version: newest_saved_script_version.id, name: url_name, **host_arg(sleazy:)) if library?
+
+    return url_helpers.user_js_script_url(self, name: url_name, **host_arg(sleazy:))
   end
 
   def code_path
@@ -500,16 +505,21 @@ class Script < ApplicationRecord
   end
 
   def serializable_hash(options = nil)
-    super({ only: [:id, :daily_installs, :total_installs, :fan_score, :good_ratings, :ok_ratings, :bad_ratings, :created_at, :code_updated_at, :namespace, :support_url, :contribution_url, :contribution_amount] }.merge(options || {})).merge({
-                                                                                                                                                                                                                                                  name: default_name,
-                                                                                                                                                                                                                                                  description: default_localized_value_for('description'),
-                                                                                                                                                                                                                                                  url: url_helpers.script_url(nil, self),
-                                                                                                                                                                                                                                                  code_url:,
-                                                                                                                                                                                                                                                  license: license&.name || license_text,
-                                                                                                                                                                                                                                                  version:,
-                                                                                                                                                                                                                                                  locale: locale&.code,
-                                                                                                                                                                                                                                                  deleted: deleted?,
-                                                                                                                                                                                                                                                })
+    sleazy = options&.[](:sleazy)
+    super(
+      {
+        only: [:id, :daily_installs, :total_installs, :fan_score, :good_ratings, :ok_ratings, :bad_ratings, :created_at, :code_updated_at, :namespace, :support_url, :contribution_url, :contribution_amount],
+      }.merge(options || {}))
+      .merge({
+               name: default_name,
+               description: default_localized_value_for('description'),
+               url: url(sleazy:),
+               code_url: code_url(sleazy:),
+               license: license&.name || license_text,
+               version:,
+               locale: locale&.code,
+               deleted: deleted?,
+             })
   end
 
   # all text content of non-localized attributes for this script (for language detection)
@@ -594,20 +604,28 @@ class Script < ApplicationRecord
     return Rails.env.production? ? 'sleazyfork.org' : 'sleazyfork.local'
   end
 
-  def similar_scripts(locale:)
+  def similar_scripts(script_subset:, locale:)
     return @_similar_scripts unless @_similar_scripts.nil?
 
     sas = site_applications.where(domain: true).pluck(:id)
     return Script.none if sas.none?
 
+    with = {
+      script_type: Script.script_types[:public],
+      site_application_id: sas,
+      locale: Locale.find_by(code: locale).id,
+    }
+
+    case script_subset
+    when :greasyfork
+      with[:sensitive] = false
+    when :sleazyfork
+      with[:sensitive] = true
+    end
+
     @_similiar_scripts = Script
                          .search(
-                           with: {
-                             sensitive: false,
-                             script_type_id: ScriptType::PUBLIC_TYPE_ID,
-                             site_application_id: sas,
-                             locale: Locale.find_by(code: locale).id,
-                           },
+                           with:,
                            sql: { include: [{ localized_attributes: :locale }, :users] },
                            order: 'daily_installs DESC',
                            per_page: 25

@@ -1,16 +1,16 @@
-body:lang(he), body:lang(ar), body:lang(ug) {
+body:lang(he), body:lang(ar), body:lang(ug), body:lang(ckb) {
   direction: rtl;
 }
-:not(:lang(he)):not(:lang(ar)):not(:lang(ug)) {
+:not(:lang(he)):not(:lang(ar)):not(:lang(ug)):not(:lang(ckb)) {
   direction: ltr;
 }
-body:lang(he) #main-header, body:lang(ar) #main-header, body:lang(ug) #main-header {
+body:lang(he) #main-header, body:lang(ar) #main-header, body:lang(ug) #main-header, body:lang(ckb) #main-header {
   direction: ltr;
 }
 /* float: inline-start would be good but it's not widely supported. */
-:lang(ar) #home-step-1 figure, :lang(he) #home-step-1 figure, :lang(ug) #home-step-1 figure {
+:lang(ar) #home-step-1 figure, :lang(he) #home-step-1 figure, :lang(ug) #home-step-1 figure, :lang(ckb) #home-step-1 figure {
   float: left;
 }
-:lang(ar) #home-step-2 figure, :lang(he) #home-step-2 figure, :lang(ug) #home-step-2 figure {
+:lang(ar) #home-step-2 figure, :lang(he) #home-step-2 figure, :lang(ug) #home-step-2 figure, :lang(ckb) #home-step-2 figure {
   float: right;
 }

@@ -43,7 +43,9 @@ sk:
     promoted_text_html: "Tiež sa vám môže páčiť %{script_link}."
     library_instructions_html: "Tento skript by nemal byť nainštalovaný priamo. Je to knižnica pre ďalšie skripty, ktorú by mali používať cez meta príkaz  %{code}"
     deleted_notice: "Tento skript bol odstránený."
+    deleted_notice_with_reason: "Tento skript bol odstránený na základe %{report_link:tejto sťažnosti}."
     deleted_notice_with_related: "Skript, ktorý požadujete bol odstránený, ale tu sú podobné skripty."
+    deleted_notice_with_related_and_reason: "Skript, ktorý ste požadovali, bol odstránený na základe %{report_link:tejto sťažnosti}, ale tu sú niektoré súvisiace skripty."
     deleted_undelete_notice_html: "Tento skript bol zamknutý moderátorom a nemôže byť obnovený. Uvedený dôvod je \"<i>%{delete_reason}</i>\"."
     deleted_locked_author_notice_html: "Tento skript bol odstránený moderátorom ako reakcia na %{report_link:túto sťažnosť} a nie je pre ostatných dostupný. Dôvodom je : \"<i>%{delete_reason}</i>\". Prosím, prečítajte si %{code_rules_link:% Pravidlá {site_name}}. Ak sa domnievate, že odstránenie je neoprávnené, môžete %{appeal_link:podať odvolanie} voči tomuto odstráneniu. Opätovné zverejnenie odstránených skriptov môže viesť k banu zo stránky %{site_name}."
     self_deleted_locked_author_notice_html: "Tento skript bol vami odstránený ako reakcia na %{report_link:túto sťažnosť} a nie je pre ostatných dostupný. Ak ste skript aktualizovali, aby bol v súlade s %{code_rules_link:pravidlami %{site_name}}, %{appeal_link:môžete podať odvolanie} na toto odstránenie. Nezverejňujte tento skript opätovne; môže to mať za následok zákaz vstupu na %{site_name}."
@@ -179,6 +181,7 @@ sk:
     listing_language_all: "Všetky"
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
+    search_failed: Pri načítavaní výsledkov sa niečo pokazilo. Niektoré funkcie vyhľadávania nemusia fungovať. Boli sme upozornení na problém.
     import: "Importovať skripty"
     new: "Zverejniť skript, ktorý ste napísali"
     new_css: "Zverejniť štýl, ktorý ste napísali"
@@ -240,6 +243,8 @@ sk:
     sync_type_3:
       name: Webhook
       description: aktualizuje sa, ak odošlete zmeny do tohto súboru vo svojom repozitári
+    sync_webhook_info_without_sync: Ak synchronizujete do repozitára GitHub, GitLab alebo BitBucket, po nastavení synchronizácie vyššie môžete tiež %{webhook_info_link:nastaviť webhook}, ktorý automaticky aktualizuje %{site_name} pri odosielaní do vášho repozitára.
+    sync_webhook_info_with_sync: Ak synchronizujete do repozitára GitHub, GitLab alebo BitBucket, môžete tiež %{webhook_info_link:nastaviť webhook}, ktorý automaticky aktualizuje %{site_name} pri odosielaní do vášho repozitára.
     sync_name_and_description: "%{name} - %{description}"
     sync_failed_info_html: "Posledný pokus o synchronizáciu prebehol %{date}, s výsledkom %{error}."
     sync_success_info_html: "Posledná úspešná synchronizácia prebehla %{date}."
@@ -740,14 +745,14 @@ sk:
       resource_html: "Zahŕňa externý zdroj (JavaScript, CSS, obrázky, atď.) do skriptu. Pozrite si %{external_script_link:pravidlá pre kód vrátane externých skriptov}. Ak používate hashe integrity podzdroja (pozri informácie %{tm_subresource_link:tu} a %{mdn_subresource_link:tu}), %{site_name} vás upozorní, ak sa vaše hashe nezhodujú s obsahom URL, ktoré používate."
       updateURL: "Popis ako správcovia používateľských skriptov môžu získať aktualizácie. %{site_name} vymaže tieto kľúče, všetky skripty z %{site_name} musia byť aktualizované cez %{site_name}."
       license_html: |
-          Zverejnením svojho skriptu na %{site_name} dávate ostatným povolenie na jeho inštaláciu a používanie. Licencia popisuje, či a ako môžu ľudia váš skript upravovať a šíriť. Licencia sa zobrazuje na informačnej stránke skriptu. <code>@license</code> môže byť:
+          By posting your script to %{site_name}, you give others permission to install and use it. The license describes whether and how people are allowed to modify and distribute your script. License is displayed on a script's info page. <code>@license</code> can be:
           <ul>
-          <li>Názov licencie (napríklad <code>@licence GPL3</code>). Odporúča sa použiť "Úplný názov" alebo "Identifikátor" z %{spdx_link:zoznam licencií SPDX}.</li>
-          <li>Podmienky, za ktorých povoľujete použitie (napríklad <code>@licencia Môžete upravovať, pokiaľ uvediete moje meno</code>, hoci sa odporúča použiť už existujúcu licenciu.</li>
-          <li>Vyhlásenie o autorských právach (napríklad <code>@license Autorské práva MojeMeno</code>), ak nechcete zverejniť licenciu.</li>
-          <li>Povolená úplne, čo je to isté ako mať vyhlásenie o autorských právach, ale menej jasné pre používateľov.</li>
+          <li>The name of a license (for example, <code>@license GPL3</code>). Using a "Full name" or "Identifier" from %{spdx_link:the SPDX License List} is recommended.</li>
+          <li>The conditions under which you allow use (for example <code>@license You can modify as long as you credit me</code>, though using a pre-existing license is recommended.</li>
+          <li>A copyright statement (for example <code>@license Copyright MyName</code>) if you don't want to release under a license.</li>
+          <li>Omitted entirely, which is the same as having a copyright statement, but less clear to users.</li>
           </ul>
-          Upozorňujeme, že ak je váš skript založený na kóde, ktorý napísal niekto iný, môžete byť obmedzení v tom, akú licenciu si vyberiete.
+          Note that if your script is based on code someone else wrote, you may be restricted in what license you choose.
       supportURL: "Adresa stránky, kde používatelia môžu podporiť vývoj skriptu (napr. bug tracker, fórum, emailová adresa). URL adresa pre podporu je uvedená na stránke spätnej väzby skriptu."
       contributionURL_html: "URL adresa, kde používatelia môžu finančne podporiť autora skriptu. URL adresa pre prispievateľov je uvedená na stránke spätnej väzby skriptu. Adresy môžu používať  http, https, alebo BItcoin protokoly. Pre odkaz na stránku podpory PayPal, použite adresu vo formáte <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+podpora\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=vas.email@priklad.com&item_name=Greasy+Fork+podpora</a>, nahraďte ukážkovú emailovú adresu vašou."
       contributionAmount_html: "Navrhnutá suma príspevku, spojená v súvislosti s <code>@contributionURL</code>."
@@ -785,7 +790,8 @@ sk:
       licensing_html: Váš skript musí rešpektovať autorské práva ostatných. Zahŕňa to samotný kód a všetky zdroje (napríklad obrázky), ktoré používa. Ak máte v úmysle použiť obsah niekoho iného, ​​riaďte sa jeho licenčnými podmienkami alebo pred tým získajte jeho povolenie. Licencie na skripty sa udávajú do metakľúča <code>@license</code> a to, čo môžete a čo nemôžete robiť sa môžete dozvedieť na %{tldr_legal_link:tldrlegal.com}.
       reposts: Dokonca v prípadoch neporušovania autorského práva, preposielanie skriptov, ktoré už sú na %{site_name} nie je povolené, aj keď vylepšujú pôvodný skript
       miscellaneous_header: Rôzne
-      keywords_html: Skripty nesmú obsahovať <code>@include</code>, <code>@match</code>,  ani kľúčové slová pre weby, na ktorých neposkytujú funkcie.
+      included_sites_html: Skripty nesmú obsahovať <code>@include</code> alebo <code>@match</code> pre stránky, na ktorých neposkytujú funkcie. Skripty nesmú pridávať <code>@include</code> alebo <code>@match</code> len s účelom pridania antifunkcií.
+      keywords: Skripty nesmú obsahovať nesúvisiace kľúčové slová ani uvádzať nesúvisiace stránky s cieľom zlepšiť umiestnenie vo vyhľadávaní.
       adult_content_rule: Skripty, ktoré obsahujú obsah pre dospelých, alebo sú určené pre stránky s obsahom pre dospelých, musia byť takto označené, aby mali ostatní používatelia možnosť ich zobraziť.
       reposting_deleted: Skripty, ktoré boli odstránené z dôvodu porušenia pravidiel, opätovne nezverejňujte; namiesto toho použite funkciu odvolania. Opätovné zverejnenie odstránených skriptov môže viesť k banu.
       advertising_in_description: Autori skriptov nesmú umiestňovať reklamu na stránky Greasy Forku, napríklad v popise skriptu. Propagácia domovskej stránky autora skriptu, repozitára kódu, Discordu, WeChatu atď. je povolená.
@@ -1105,6 +1111,7 @@ sk:
     load_cleaned_diff: "Načítať vyčistený kód s rozdielom"
     loading_diff: "Načítava sa…"
     reported_user_activity_html: "%{user} (nahlásený používateľ) urobil:"
+    script_updated_since_report: "Tento skript bol od nahlásenia aktualizovaný."
   appeals:
     new:
       title: Nové odvolanie proti odstráneniu skriptu

@@ -66,7 +66,7 @@ module ScriptAndVersions
     script = Script.new
 
     # this is not versionned information
-    script.script_type_id = current_script.script_type_id
+    script.script_type = current_script.script_type
     script.locale = current_script.locale
     script.default_name = current_script.default_name
     script.sensitive = current_script.sensitive
@@ -88,11 +88,11 @@ module ScriptAndVersions
   def render_deleted(script: nil, http_code: 404)
     respond_to do |format|
       format.html do
+        locale = request_locale
+
         if script && script.site_applications.where(blocked: true).none?
           with = sphinx_options_for_request
           with[:site_application_id] = script.site_applications.pluck(:id)
-
-          locale = request_locale
           with[:locale] = locale.id if locale.scripts?(script_subset)
 
           @scripts = Script.search(
@@ -101,19 +101,28 @@ module ScriptAndVersions
             per_page: 5,
             order: 'daily_installs DESC',
             populate: true,
-            sql: { include: [:script_type, { localized_attributes: :locale }, :users] }
+            sql: { include: [{ localized_attributes: :locale }, :users] }
           )
         end
 
         @ad_method = AdMethod.no_ad(:script_deleted)
 
+        report = @script.reports.upheld.last if @script&.locked
         if @scripts&.any?
-          @page_description = t('scripts.deleted_notice_with_related')
+          @page_description = if report
+                                It.it('scripts.deleted_notice_with_related_and_reason', report_link: report_path(report, locale: locale.code))
+                              else
+                                t('scripts.deleted_notice_with_related')
+                              end
           @paginate = false
           @skip_search_options = true
           render 'scripts/index', layout: 'list', status: http_code
         else
-          @text = t('scripts.deleted_notice')
+          @text = if report
+                    It.it('scripts.deleted_notice_with_reason', report_link: report_path(report, locale: locale.code))
+                  else
+                    t('scripts.deleted_notice')
+                  end
           render 'home/error', status: http_code, layout: 'application'
         end
       end

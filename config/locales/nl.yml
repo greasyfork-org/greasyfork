@@ -41,9 +41,12 @@ nl:
     promoted_text_html: "Wellicht ook leuk: %{script_link}."
     library_instructions_html: "Dit script moet niet direct worden geïnstalleerd - het is een bibliotheek voor andere scripts om op te nemen met de meta-richtlijn %{code}"
     deleted_notice: "Dit script is verwijderd."
+    deleted_notice_with_reason: "Dit script is verwijderd op basis van %{report_link:deze melding}."
     deleted_notice_with_related: "Het gevraagde script is verwijderd, maar er zijn enkele verwante scripts."
+    deleted_notice_with_related_and_reason: "Het opgevraagde script is verwijderd op basis van %{report_link:deze melding}. Er worden enkele verwante scripts getoond."
     deleted_undelete_notice_html: "Dit script is vergrendeld door een moderator en kan niet worden hersteld. Opgegeven reden: “<i>%{delete_reason}</i>”"
     deleted_locked_author_notice_html: "Dit script is op basis van %{report_link:deze melding} verwijderd door een moderator en is ontoegankelijk gemaakt voor anderen omwille van de volgende reden: “<i>%{delete_reason}</i>”. Neem %{code_rules_link:%{site_name}s regels} door. Als je het hier niet mee eens bent, dan kun je %{appeal_link:bezwaar indienen}. Let op: plaats het script niet opnieuw, anders loop je het risico dat je permanent wordt verbannen van %{site_name}."
+    self_deleted_locked_author_notice_html: "Dit script is op basis van %{report_link:deze melding} verwijderd en is ontoegankelijk gemaakt voor anderen. Neem %{code_rules_link:%{site_name}s regels} door. Als je het hier niet mee eens bent, dan kun je %{appeal_link:bezwaar indienen}. Let op: plaats het script niet opnieuw, anders loop je het risico dat je permanent wordt verbannen van %{site_name}."
     deleted_author_notice: "Dit script is verwijderd door een moderator en kan niet worden getoond. Herstel het op het tabblad ‘Verwijderen’."
     version_notice_html: "Per %{date}. Zie %{latest_version_link}."
     version_notice_latest_version_link: "de nieuwste versie"
@@ -179,6 +182,7 @@ nl:
     listing_language_all: "Alles"
     listing_language_js: "JavaScript"
     listing_language_css: "Css"
+    search_failed: Er is iets misgegaan tijdens het laden van de resultaten. De zoekfunctie werkt mogelijk niet geheel naar behoren. Ons team is op de hoogte van dit probleem.
     import: "Scripts importeren"
     new: "Zelfgeschreven script publiceren"
     new_css: "Zelfgeschreven stijl publiceren"
@@ -240,6 +244,8 @@ nl:
     sync_type_3:
       name: Webkoppeling
       description: er wordt bijgewerkt zodra je wijzigingen aanbrengt aan dit bestand in je repo
+    sync_webhook_info_without_sync: Na het instellen van synchronisatie - bij gebruik van een GitHub-, GitLab- of BitBucket-repo - kun je %{webhook_info_link:een webhook instellen} om %{site_name} automatisch bij te werken als je repo is bijgewerkt.
+    sync_webhook_info_with_sync: Bij gebruik van een GitHub-, GitLab- of BitBucket-repo kun je %{webhook_info_link:een webhook instellen} om %{site_name} automatisch bij te werken als je repo is bijgewerkt.
     sync_name_and_description: "%{name} - %{description}"
     sync_failed_info_html: "De recentste getrachte synchronisatie was op %{date}, welke resulteerde in %{error}."
     sync_success_info_html: "De recentste geslaagde synchronisatie was op %{date}."
@@ -764,7 +770,8 @@ nl:
       licensing_html: Je script dient auteursrechten en copyrights van anderen te respecteren. Dit geldt voor zowel de code als bronnen (bijvoorbeeld afbeeldingen). Als je van plan bent items van anderen te gebruiken, zorg dan dat je voldoet aan de licentie-overeenkomst of om toestemming vraagt. Licenties op scripts kunnen worden gespecificeerd met <code>@license</code>. Meer informatie over wat wel en niet mag is te vinden op %{tldr_legal_link:tldrlegal.com}.
       reposts: Zelfs als scripts geen auteursrechten schenden, mogen ze niet opnieuw worden geplaatst als ze al op %{site_name} staan, tenzij ze het origineel merkbaar verbeteren.
       miscellaneous_header: Overig
-      keywords_html: Scripts mogen geen <code>@include</code>s, <code>@match</code>es of trefwoorden bevatten van sites waarop ze niet actief zijn.
+      included_sites_html: Scripts mogen geen <code>@include</code>s of <code>@match</code>es bevatten van sites waarop geen functionaliteit wordt geboden. Scripts mogen geen <code>@include</code>s of <code>@match</code>es bevatten voor het gebruik van antifuncties.
+      keywords: Scripts mogen geen ongerelateerde trefwoorden bevatten die ongerelateerde websites benoemen om het zoeken te bevorderen.
       adult_content_rule: Scripts met content voor volwassenen of scripts voor sites voor volwassenen moeten gemarkeerd worden, om andere gebruikers te laten kiezen of ze deze scripts willen zien.
       reposting_deleted: Repost geen scripts die waren verwijderd door het schenden van regels; gebruik in plaats van dat de appeal functie. Het reposten van scripts kan leiden tot een ban.
       advertising_in_description: Scriptmakers mogen niet adverteren op Greasy Fork, bijvoorbeeld in de scriptomschrijving. Promotion van scripts op de website van de maker, repo, Discord, WeChat, etc. is wél toegestaan.
@@ -1084,6 +1091,7 @@ nl:
     load_cleaned_diff: "Nette code met verschil laden"
     loading_diff: "Bezig met laden…"
     reported_user_activity_html: "%{user} (de gebruiker waarvan melding is gemaakt) heeft het volgende gedaan:"
+    script_updated_since_report: "Dit script is bijgewerkt na het opstellen van de melding."
   appeals:
     new:
       title: Bezwaar ingediend tegen scriptverwijdering

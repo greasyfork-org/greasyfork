@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:webhook]
 
   before_action :authenticate_user!, except: [:show, :webhook, :index]
-  before_action :authorize_for_moderators_only, only: [:ban, :do_ban]
+  before_action :authorize_for_moderators_only, only: [:ban, :do_ban, :unban, :do_unban, :mark_email_as_confirmed]
   before_action :check_read_only_mode, except: [:index, :show]
   before_action :disable_browser_caching!, only: [:edit_sign_in]
 
@@ -73,15 +73,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    # TODO: sort scripts by name, keeping into account localization
-    user = User.order('scripts.default_name')
-    # current user will display discussions
-    user = if !current_user.nil? && (current_user.id == params[:id].to_i)
-             user.includes(scripts: [:discussions, :script_type, { localized_attributes: :locale }])
-           else
-             user.includes(scripts: [:script_type, { localized_attributes: :locale }])
-           end
-    @user = user.find(params[:id])
+    @user = User.find(params[:id])
 
     return if redirect_to_slug(@user, :id)
 
@@ -92,8 +84,15 @@ class UsersController < ApplicationController
         @by_sites = TopSitesService.get_top_by_sites(script_subset:, user_id: @user.id)
 
         @scripts = (@same_user || (!current_user.nil? && current_user.moderator?)) ? @user.scripts : @user.scripts.listable_including_libraries(script_subset)
+        @scripts = @scripts.includes(:users, :localized_attributes)
         @user_has_scripts = !@scripts.empty?
-        @scripts = ScriptsController.apply_filters(@scripts, params.reverse_merge(language: 'all'), script_subset).paginate(per_page: 100, page: params[:page] || 1)
+
+        @libraries = @scripts.not_deleted.where(script_type: :library)
+        @unlisted_scripts = @scripts.not_deleted.where(script_type: :unlisted)
+        @deleted_scripts = @scripts.deleted
+        @scripts = @scripts.not_deleted.where(script_type: :public)
+
+        @scripts = ScriptsController.apply_filters(@scripts, params.reverse_merge(language: 'all'), script_subset).paginate(per_page: 50, page: page_number)
         @other_site_scripts = (script_subset == :sleazyfork) ? @user.scripts.listable(:greasyfork).count : 0
 
         @bots = 'noindex,follow' if [:per_page, :set, :site, :sort, :language].any? { |name| params[name].present? }
@@ -105,7 +104,7 @@ class UsersController < ApplicationController
         @canonical_params = [:id, :page, :per_page, :set, :site, :sort, :language]
 
         if @same_user
-          conversation_scope = current_user.conversations.includes(:users, :stat_last_poster)
+          conversation_scope = @user.conversations.includes(:users, :stat_last_poster)
           @recent_conversations = conversation_scope.order(stat_last_message_date: :desc).where(stat_last_message_date: 1.month.ago..)
           @more_conversations = conversation_scope.count > @recent_conversations.count
           scripts_with_bad_hashes = @scripts.not_deleted.with_bad_integrity_hashes.load
@@ -132,14 +131,16 @@ class UsersController < ApplicationController
 
   def webhook
     user = User.find(params[:user_id])
+    changelog_markup = 'text'
     changes, git_url = if request.headers['User-Agent'] == 'Bitbucket-Webhooks/2.0'
                          process_bitbucket_webhook(user)
                        elsif request.headers['X-Gitlab-Token'].present?
                          process_gitlab_webhook(user)
                        else
+                         changelog_markup = 'markdown'
                          process_github_webhook(user)
                        end
-    process_webhook_changes(changes, git_url) if changes
+    process_webhook_changes(changes, git_url, changelog_markup:) if changes
   end
 
   def edit_sign_in; end
@@ -223,6 +224,18 @@ class UsersController < ApplicationController
     user.ban!(moderator: current_user, reason: params[:reason]) unless user.banned?
     user.lock_all_scripts!(reason: params[:reason], moderator: current_user, delete_type: params[:delete_type]) if params[:delete_type].present?
     user.delete_all_comments!(by_user: user) if params[:delete_comments] == '1'
+    flash[:notice] = "#{user.name} has been banned."
+    redirect_to user
+  end
+
+  def unban
+    @user = User.find(params[:user_id])
+  end
+
+  def do_unban
+    user = User.find(params[:user_id])
+    user.unban!(moderator: current_user, reason: params[:reason], undelete_scripts: params[:undelete_scripts] == '1')
+    flash[:notice] = "#{user.name} has been unbanned."
     redirect_to user
   end
 
@@ -271,6 +284,15 @@ class UsersController < ApplicationController
     current_user.send_confirmation_instructions
     flash[:notice] = t('devise.confirmations.send_instructions')
     redirect_to user_path(current_user)
+  end
+
+  def mark_email_as_confirmed
+    user = User.find(params[:id])
+    user.confirm
+    user.save
+    # rubocop:disable Rails/I18nLocaleTexts
+    redirect_to user_path(user), notice: 'Email marked as confirmed'
+    # rubocop:enable Rails/I18nLocaleTexts
   end
 
   def dismiss_announcement

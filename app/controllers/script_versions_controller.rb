@@ -65,7 +65,7 @@ class ScriptVersionsController < ApplicationController
     @script_version = ScriptVersion.new(changelog_markup: current_user.preferred_markup)
 
     if params[:script_id].nil?
-      @script = Script.new(script_type_id: ScriptType::PUBLIC_TYPE_ID, language: params[:language] || 'js')
+      @script = Script.new(script_type: :public, language: params[:language] || 'js')
       @script.authors.build(user: current_user)
       @script_version.script = @script
       ensure_default_additional_info(@script_version, current_user.preferred_markup)
@@ -131,7 +131,7 @@ class ScriptVersionsController < ApplicationController
     end
 
     @script_version.script = @script
-    @script.script_type_id = params['script']['script_type_id']
+    @script.script_type = params['script']['script_type'].to_i
     @script.locale_id = params['script']['locale_id'] if params['script'].key?('locale_id')
 
     if !@script.sensitive? && params['script']['adult_content_self_report'] == '1'
@@ -229,7 +229,7 @@ class ScriptVersionsController < ApplicationController
         # get the original script for display within the scripts layout
         @script.reload
         # but retain the script type!
-        @script.script_type_id = params['script']['script_type_id']
+        @script.script_type = params['script']['script_type'].to_i
         render :new, layout: 'scripts'
       end
       return

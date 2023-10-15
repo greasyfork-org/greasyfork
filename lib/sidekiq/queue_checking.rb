@@ -64,51 +64,51 @@ module Sidekiq
       end
 
       # Returns true if a job matching the args is enqueued, scheduled, or will be retried.
-      def will_run_in_any_queue_with_args?(*args)
+      def will_run_in_any_queue_with_args?(*)
         return false unless runs_sidekiq?
 
-        currently_enqueued_in_any_queue_with_args?(*args) ||
-          currently_scheduled_with_args?(*args) ||
-          currently_will_retry_with_args?(*args)
+        currently_enqueued_in_any_queue_with_args?(*) ||
+          currently_scheduled_with_args?(*) ||
+          currently_will_retry_with_args?(*)
       end
 
       # Returns true if a job matching the args is enqueued, scheduled, or will be retried.
-      def will_run_with_args?(*args)
+      def will_run_with_args?(*)
         return false unless runs_sidekiq?
 
-        currently_enqueued_with_args?(*args) ||
-          currently_scheduled_with_args?(*args) ||
-          currently_will_retry_with_args?(*args)
+        currently_enqueued_with_args?(*) ||
+          currently_scheduled_with_args?(*) ||
+          currently_will_retry_with_args?(*)
       end
 
-      def currently_running_with_args?(*args)
+      def currently_running_with_args?(*)
         return false unless runs_sidekiq?
 
-        currently_running.any? { |job_hash| job_hash_matches_args?(job_hash, *args) }
+        currently_running.any? { |job_hash| job_hash_matches_args?(job_hash, *) }
       end
 
-      def currently_enqueued_with_args?(*args)
+      def currently_enqueued_with_args?(*)
         return false unless runs_sidekiq?
 
-        currently_enqueued.any? { |job| job_hash_matches_args?(job.item, *args) }
+        currently_enqueued.any? { |job| job_hash_matches_args?(job.item, *) }
       end
 
-      def currently_enqueued_in_any_queue_with_args?(*args)
+      def currently_enqueued_in_any_queue_with_args?(*)
         return false unless runs_sidekiq?
 
-        currently_enqueued(any_queue: true).any? { |job| job_hash_matches_args?(job.item, *args) }
+        currently_enqueued(any_queue: true).any? { |job| job_hash_matches_args?(job.item, *) }
       end
 
-      def currently_scheduled_with_args?(*args)
+      def currently_scheduled_with_args?(*)
         return false unless runs_sidekiq?
 
-        currently_scheduled.any? { |job| job_hash_matches_args?(job.item, *args) }
+        currently_scheduled.any? { |job| job_hash_matches_args?(job.item, *) }
       end
 
-      def currently_will_retry_with_args?(*args)
+      def currently_will_retry_with_args?(*)
         return false unless runs_sidekiq?
 
-        currently_will_retry.any? { |job| job_hash_matches_args?(job.item, *args) }
+        currently_will_retry.any? { |job| job_hash_matches_args?(job.item, *) }
       end
 
       def job_hash_matches_args?(job_hash, *args)

@@ -124,7 +124,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
     sv = ScriptVersion.new
     sv.code = js
     script = Script.find(13)
-    script.script_type_id = 3
+    script.script_type = 3
     sv.script = script
     sv.calculate_all(script.description)
     script.apply_from_script_version(sv)
@@ -135,7 +135,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
     sv = ScriptVersion.new
     sv.code = 'this is just words and not script'
     script = Script.find(13)
-    script.script_type_id = 3
+    script.script_type = 3
     sv.script = script
     sv.calculate_all(script.description)
     script.apply_from_script_version(sv)
@@ -594,7 +594,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
     sv = ScriptVersion.new
     sv.code = js
     script = Script.find(13)
-    script.script_type_id = 3
+    script.script_type = 3
     sv.script = script
     sv.calculate_all(script.description)
     script.apply_from_script_version(sv)
@@ -911,7 +911,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
     sv.code = js
     sv.calculate_all
     script.apply_from_script_version(sv)
-    assert script.description.length > 500
+    assert_operator script.description.length, :>, 500
     assert_not script.valid?
     assert_equal(1, script.errors.to_a.length, script.errors.full_messages)
     assert_includes script.errors.full_messages.first, '@description', script.errors.full_messages
