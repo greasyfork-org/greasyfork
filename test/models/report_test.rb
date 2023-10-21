@@ -3,6 +3,10 @@ require 'test_helper'
 class ReportTest < ActiveSupport::TestCase
   include ActiveJob::TestHelper
 
+  def around(&)
+    with_sphinx(&)
+  end
+
   test 'move report on script discussion' do
     discussion = discussions(:script_discussion)
     category = discussion_categories(:greasyfork)

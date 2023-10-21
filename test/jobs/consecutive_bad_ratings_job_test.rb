@@ -1,6 +1,10 @@
 require 'test_helper'
 
 class ConsecutiveBadRatingsJobTest < ActiveSupport::TestCase
+  def around(&)
+    with_sphinx(&)
+  end
+
   test 'date is cleared if it no longer applies' do
     script = Script.first
     script.update(consecutive_bad_ratings_at: Time.current)

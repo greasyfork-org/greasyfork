@@ -11,6 +11,13 @@ class Comment < ApplicationRecord
   belongs_to :poster, class_name: 'User', optional: true
   has_many :reports, as: :item, dependent: :destroy
 
+  scope :indexable, -> { not_deleted
+                           .left_joins(discussion: :script)
+                           .includes(:discussion)
+                           .merge(Discussion.visible)
+                           .where('discussions.script_id is null or scripts.delete_type IS NULL')
+  }
+
   validates :text, presence: true, length: { maximum: 65_535 }
   validates :text_markup, inclusion: { in: %w[html markdown] }, presence: true
 
@@ -18,7 +25,7 @@ class Comment < ApplicationRecord
 
   strip_attributes only: :text
 
-  ThinkingSphinx::Callbacks.append(self, :behaviours => [:real_time])
+  after_save_commit :update_sphinx
 
   def path(locale: nil)
     discussion_path = discussion.path(locale:)
@@ -128,5 +135,13 @@ class Comment < ApplicationRecord
 
   def discussion_starter_id
     discussion.poster_id
+  end
+
+  def update_sphinx
+    return unless Comment.indexable.where(id: self.id).any?
+
+    ThinkingSphinx::RealTime::Callbacks::RealTimeCallbacks.new(
+      :comment
+    ).after_save self
   end
 end

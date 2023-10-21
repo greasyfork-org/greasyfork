@@ -3,6 +3,10 @@ require 'test_helper'
 class MentionsUsersTest < ActiveSupport::TestCase
   include UserTextHelper
 
+  def around(&)
+    with_sphinx(&)
+  end
+
   test 'updating references' do
     comment = create_comment('@"Gordon J. Canada", have you met @Geoffrey?')
     assert_equal ['Geoffrey', 'Gordon J. Canada'], comment.mentions.map { |m| m.user.name }.sort

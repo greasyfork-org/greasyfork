@@ -1,7 +1,7 @@
 <%
   comment, discussion = discussion if discussion.is_a?(Array)
   discussion_ids_read = [] unless defined?(discussion_ids_read) && discussion_ids_read
-  highlight_comments = nil unless defined?(highlight_comments)
+  show_script = false unless defined?(show_script)
 %>
 
 <div class="discussion-list-container <%= discussion_ids_read.include?(discussion.id) ? ' discussion-read' : ' discussion-not-read' if current_user %>">

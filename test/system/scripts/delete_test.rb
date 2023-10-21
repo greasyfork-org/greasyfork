@@ -1,6 +1,10 @@
 require 'application_system_test_case'
 
 class DeleteTest < ApplicationSystemTestCase
+  def around(&)
+    with_sphinx(&)
+  end
+
   test 'script delete' do
     script = Script.find(1)
     login_as(script.users.first, scope: :user)

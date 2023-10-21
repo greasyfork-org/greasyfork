@@ -5,6 +5,10 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   driven_by :headless_chrome
   include Warden::Test::Helpers
 
+  def around(&)
+    with_sphinx(&)
+  end
+
   def allow_js_error(pattern)
     pre_messages = page.driver.browser.logs.get(:browser).map(&:message).reject { |message| js_error_ignored?(message) }
     raise pre_messages.first if pre_messages.any?

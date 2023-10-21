@@ -8,11 +8,6 @@ ThinkingSphinx::Index.define :comment, with: :real_time do
   has poster_id, type: :integer
 
   scope do
-    Comment
-      .not_deleted
-      .left_joins(discussion: :script)
-      .includes(:discussion)
-      .merge(Discussion.visible)
-      .where('discussions.script_id is null or scripts.delete_type IS NULL')
+    Comment.indexable
   end
 end

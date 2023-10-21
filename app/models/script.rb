@@ -20,6 +20,7 @@ class Script < ApplicationRecord
   has_many :script_applies_tos, dependent: :destroy, autosave: true
   has_many :site_applications, through: :script_applies_tos
   has_many :discussions, dependent: nil
+  has_many :comments, through: :discussions
   has_many :script_set_script_inclusions, foreign_key: 'child_id', dependent: :destroy, inverse_of: :child
   has_many :favorited_in_sets, -> { includes(:users).where(favorite: true) }, through: :script_set_script_inclusions, class_name: 'ScriptSet', source: 'parent'
   has_many :favoriters, through: :favorited_in_sets, class_name: 'User', source: 'user'
@@ -77,6 +78,7 @@ class Script < ApplicationRecord
   scope :with_bad_integrity_hashes, -> { joins(:subresource_usages).joins('INNER JOIN subresource_integrity_hashes sih ON script_subresource_usages.subresource_id = sih.subresource_id AND script_subresource_usages.algorithm = sih.algorithm AND script_subresource_usages.encoding = sih.encoding AND script_subresource_usages.integrity_hash != sih.integrity_hash').distinct }
 
   ThinkingSphinx::Callbacks.append(self, behaviours: [:sql, :deltas])
+  after_save_commit :update_sphinx_for_comments
 
   # Must have a default name and description
   validates :default_name, presence: { message: :script_missing_name, unless: proc { |s| s.library? } }
@@ -710,5 +712,16 @@ class Script < ApplicationRecord
     end
     # Anything left in the search array, mark for destruction
     existing_children.each(&:mark_for_destruction)
+  end
+
+  def update_sphinx_for_comments
+    return unless saved_changes.keys.include?("delete_type")
+
+    index = ThinkingSphinx::Configuration.instance.index_set_class.new(classes: [Comment]).to_a.first
+    if deleted?
+      ThinkingSphinx::Deletion.perform(index, comment_ids)
+    else
+      ThinkingSphinx::RealTime::Transcriber.new(index).copy(*comments.indexable)
+    end
   end
 end

@@ -1,6 +1,10 @@
 require 'test_helper'
 
 class CommentSpamCheckJobTest < ActiveSupport::TestCase
+  def around(&)
+    with_sphinx(&)
+  end
+
   test "when it's not spam" do
     comment = comments(:script_comment)
 
