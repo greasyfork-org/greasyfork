@@ -149,25 +149,32 @@ class ScriptsController < ApplicationController
   def feedback
     @script, @script_version = versionned_script(params[:id], params[:version])
 
-    return if handle_publicly_deleted(@script)
+    cachable_request = request.query_parameters.empty? && current_user.nil? && request.format.html?
+    page_key = "script/feedback/#{@script.id}/#{@script.updated_at&.to_i}/#{request_locale.id}" if cachable_request
 
-    return if handle_wrong_url(@script, :id)
+    cache_page(page_key) do
+      return if handle_publicly_deleted(@script)
 
-    @discussions = @script.discussions
-                          .visible
-                          .where(report_id: nil)
-                          .includes(:stat_first_comment, :poster)
-                          .order(stat_last_reply_date: :desc)
-                          .paginate(page: page_number, per_page: per_page(default: 25))
-    @discussion = @discussions.build(discussion_category: DiscussionCategory.script_discussions, poster: current_user)
-    @discussion.rating = Discussion::RATING_QUESTION if @discussion.by_script_author?
+      return if handle_wrong_url(@script, :id)
 
-    @discussion.comments.build(text_markup: current_user&.preferred_markup)
+      @discussions = @script.discussions
+                            .visible
+                            .where(report_id: nil)
+                            .includes(:stat_first_comment, :poster)
+                            .order(stat_last_reply_date: :desc)
+                            .paginate(page: page_number, per_page: per_page(default: 25))
+      @discussion = @discussions.build(discussion_category: DiscussionCategory.script_discussions, poster: current_user)
+      @discussion.rating = Discussion::RATING_QUESTION if @discussion.by_script_author?
 
-    @subscribe = current_user&.subscribe_on_discussion
+      @discussion.comments.build(text_markup: current_user&.preferred_markup)
 
-    set_bots_directive
-    @canonical_params = [:id, :version]
+      @subscribe = current_user&.subscribe_on_discussion
+
+      set_bots_directive
+      @canonical_params = [:id, :version]
+
+      render_to_string
+    end
   end
 
   def user_js
