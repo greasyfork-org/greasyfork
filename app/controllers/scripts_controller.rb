@@ -537,68 +537,73 @@ class ScriptsController < ApplicationController
   def stats
     @script, @script_version = versionned_script(params[:id], params[:version])
 
-    return if handle_publicly_deleted(@script)
+    cachable_request = request.query_parameters.empty? && current_user.nil? && request.format.html?
+    page_key = "script/stats/#{@script.id}//#{request_locale.id}" if cachable_request
 
-    return if handle_wrong_url(@script, :id)
+    cache_page(page_key) do
+      return if handle_publicly_deleted(@script)
 
-    @bots = 'noindex' unless params[:period].nil?
+      return if handle_wrong_url(@script, :id)
 
-    if request.format.html?
-      @start_date = case params[:period]
-                    when 'year'
-                      1.year.ago.to_date
-                    when 'all'
-                      nil
-                    else
-                      30.days.ago.to_date
-                    end
-    end
-
-    if @script.disable_stats && !current_user&.moderator?
-      @stats_disabled = true
-      return
-    end
-
-    install_sql = "SELECT install_date, installs FROM install_counts where script_id = #{Script.connection.quote(@script.id)}"
-    install_sql += " and install_date >= #{Script.connection.quote(@start_date)}" if @start_date
-    install_values = Script.connection.select_rows(install_sql).to_h
-
-    daily_install_sql = "SELECT DATE(install_date) d, COUNT(*) FROM daily_install_counts where script_id = #{Script.connection.quote(@script.id)}"
-    daily_install_sql += " and install_date >= #{Script.connection.quote(@start_date)}" if @start_date
-    daily_install_sql += ' GROUP BY d'
-    daily_install_values = Script.connection.select_rows(daily_install_sql).to_h
-
-    update_check_sql = "SELECT update_check_date, update_checks FROM update_check_counts where script_id = #{@script.id}"
-    update_check_sql += " and update_check_date >= #{Script.connection.quote(@start_date)}" if @start_date
-    update_check_values = Script.connection.select_rows(update_check_sql).to_h
-
-    @stats = {}
-    update_check_start_date = Date.parse('2014-10-23')
-    ([@start_date, @script.created_at.to_date].compact.max..Time.now.utc.to_date).each do |d|
-      stat = {}
-      stat[:installs] = install_values[d] || daily_install_values[d] || 0
-      # this stat not available before that date
-      stat[:update_checks] = (d >= update_check_start_date) ? (update_check_values[d] || 0) : nil
-      @stats[d] = stat
-    end
-    respond_to do |format|
-      format.html do
-        @canonical_params = [:id, :version]
-        set_bots_directive
+      if request.format.html?
+        @start_date = case params[:period]
+                      when 'year'
+                        1.year.ago.to_date
+                      when 'all'
+                        nil
+                      else
+                        30.days.ago.to_date
+                      end
       end
-      format.csv do
-        data = CSV.generate do |csv|
-          csv << ['Date', 'Installs', 'Update checks']
-          @stats.each do |d, stat|
-            csv << [d, stat.values].flatten
-          end
+
+      if @script.disable_stats && !current_user&.moderator?
+        @stats_disabled = true
+        return
+      end
+
+      install_sql = "SELECT install_date, installs FROM install_counts where script_id = #{Script.connection.quote(@script.id)}"
+      install_sql += " and install_date >= #{Script.connection.quote(@start_date)}" if @start_date
+      install_values = Script.connection.select_rows(install_sql).to_h
+
+      daily_install_sql = "SELECT DATE(install_date) d, COUNT(*) FROM daily_install_counts where script_id = #{Script.connection.quote(@script.id)}"
+      daily_install_sql += " and install_date >= #{Script.connection.quote(@start_date)}" if @start_date
+      daily_install_sql += ' GROUP BY d'
+      daily_install_values = Script.connection.select_rows(daily_install_sql).to_h
+
+      update_check_sql = "SELECT update_check_date, update_checks FROM update_check_counts where script_id = #{@script.id}"
+      update_check_sql += " and update_check_date >= #{Script.connection.quote(@start_date)}" if @start_date
+      update_check_values = Script.connection.select_rows(update_check_sql).to_h
+
+      @stats = {}
+      update_check_start_date = Date.parse('2014-10-23')
+      ([@start_date, @script.created_at.to_date].compact.max..Time.now.utc.to_date).each do |d|
+        stat = {}
+        stat[:installs] = install_values[d] || daily_install_values[d] || 0
+        # this stat not available before that date
+        stat[:update_checks] = (d >= update_check_start_date) ? (update_check_values[d] || 0) : nil
+        @stats[d] = stat
+      end
+      respond_to do |format|
+        format.html do
+          @bots = 'noindex' unless params[:period].nil?
+          @canonical_params = [:id, :version]
+          set_bots_directive
+          render_to_string
         end
-        render plain: data
-        response.content_type = 'text/csv'
-      end
-      format.json do
-        cache_request(@stats.to_json) if request.fullpath.ends_with?('json')
-        render json: @stats
+        format.csv do
+          data = CSV.generate do |csv|
+            csv << ['Date', 'Installs', 'Update checks']
+            @stats.each do |d, stat|
+              csv << [d, stat.values].flatten
+            end
+          end
+          render plain: data
+          response.content_type = 'text/csv'
+        end
+        format.json do
+          cache_request(@stats.to_json) if request.fullpath.ends_with?('json')
+          render json: @stats
+        end
       end
     end
   end
