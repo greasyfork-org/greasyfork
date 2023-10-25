@@ -535,12 +535,12 @@ class ScriptsController < ApplicationController
   end
 
   def stats
-    @script, @script_version = versionned_script(params[:id], params[:version])
-
     cachable_request = request.query_parameters.empty? && current_user.nil? && request.format.html?
-    page_key = "script/stats/#{@script.id}//#{request_locale.id}" if cachable_request
+    page_key = "script/stats/#{params[:id].to_i}/#{request_locale.id}" if cachable_request
 
     cache_page(page_key) do
+      @script, @script_version = versionned_script(params[:id], params[:version])
+
       return if handle_publicly_deleted(@script)
 
       return if handle_wrong_url(@script, :id)
