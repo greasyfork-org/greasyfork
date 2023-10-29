@@ -124,7 +124,7 @@ class ScriptReportMailer < ApplicationMailer
   def mail_to_user(user:, report:, subject:, site_name:, template_name: nil)
     @report = report
     @site_name = site_name
-    @locale = user.available_locale_code || :en
+    @locale = I18n.locale = user.available_locale_code || :en
     unsubscribe_for_user(user)
     mail(to: user.email, subject: subject.call(user), template_name:)
   end
