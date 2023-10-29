@@ -44,6 +44,12 @@ if Rails.env.production?
       req.ip if req.post? && req.path.include?('install-ping')
     end
   end
+
+  if Rails.application.config.ip_address_tracking
+    Rack::Attack.throttle('super-feedbackers', limit: 1, period: 3) do |req|
+      req.ip if req.post? && req.path.ends_with?('/feedback')
+    end
+  end
 end
 
 ActiveSupport::Notifications.subscribe('throttle.rack_attack') do |_name, _start, _finish, _request_id, payload|
