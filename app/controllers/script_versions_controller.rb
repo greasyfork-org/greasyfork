@@ -1,6 +1,7 @@
 class ScriptVersionsController < ApplicationController
   include ScriptAndVersions
   include UserTextHelper
+  include PageCache
 
   before_action :authenticate_user!, except: [:index]
   before_action :authorize_by_script_id, except: [:index, :delete, :do_delete]
@@ -12,44 +13,50 @@ class ScriptVersionsController < ApplicationController
   layout 'scripts', only: [:index]
 
   def index
-    @script, @script_version = versionned_script(params[:script_id], params[:version])
-    return if handle_publicly_deleted(@script)
-    return if redirect_to_slug(@script, :script_id)
+    cachable_request = request.query_parameters.empty? && current_user.nil? && request.format.html?
+    page_key = "script/versions/#{params[:id].to_s}/#{request_locale.id}" if cachable_request
 
-    @script_versions = @script.script_versions.order(id: :desc)
+    cache_page(page_key) do
+      @script, @script_version = versionned_script(params[:script_id], params[:version])
+      return if handle_publicly_deleted(@script)
+      return if redirect_to_slug(@script, :script_id)
 
-    unless params[:show_all_versions] == '1'
-      version_ids_to_show = []
-      @script_versions.each_with_index do |sv, i|
-        version_ids_to_show << sv.id if (i + 1 >= @script_versions.length) || sv.rewritten_script_code_id != @script_versions[i + 1].rewritten_script_code_id
-      end
-      @script_versions = @script_versions.where(id: version_ids_to_show)
-    end
+      @script_versions = @script.script_versions.order(id: :desc)
 
-    if params[:list_all] == '1'
-      @paginate = false
-    else
-      @script_versions = @script_versions.paginate(page: page_number, per_page:)
-    end
-
-    respond_to do |format|
-      format.html do
-        if params[:show_all_versions].present? || params[:version].present? || params[:page].present?
-          @bots = 'noindex'
-        elsif @script.unlisted?
-          @bots = 'noindex,follow'
+      unless params[:show_all_versions] == '1'
+        version_ids_to_show = []
+        @script_versions.each_with_index do |sv, i|
+          version_ids_to_show << sv.id if (i + 1 >= @script_versions.length) || sv.rewritten_script_code_id != @script_versions[i + 1].rewritten_script_code_id
         end
-        @canonical_params = [:script_id, :version, :show_all_versions]
-        @link_alternates = [
-          { url: current_path_with_params(format: :json), type: 'application/json' },
-          { url: current_path_with_params(format: :jsonp, callback: 'callback'), type: 'application/javascript' },
-        ]
+        @script_versions = @script_versions.where(id: version_ids_to_show)
       end
-      format.json do
-        render json: @script_versions.map { |sv| { version: sv.version, created_at: sv.created_at, url: script_url(id: @script, version: sv.id), code_url: sv.code_url } }
+
+      if params[:list_all] == '1'
+        @paginate = false
+      else
+        @script_versions = @script_versions.paginate(page: page_number, per_page:)
       end
-      format.jsonp do
-        render json: @script_versions.map { |sv| { version: sv.version, created_at: sv.created_at, url: script_url(id: @script, version: sv.id), code_url: sv.code_url } }, callback: clean_json_callback_param
+
+      respond_to do |format|
+        format.html do
+          if params[:show_all_versions].present? || params[:version].present? || params[:page].present?
+            @bots = 'noindex'
+          elsif @script.unlisted?
+            @bots = 'noindex,follow'
+          end
+          @canonical_params = [:script_id, :version, :show_all_versions]
+          @link_alternates = [
+            { url: current_path_with_params(format: :json), type: 'application/json' },
+            { url: current_path_with_params(format: :jsonp, callback: 'callback'), type: 'application/javascript' },
+          ]
+          render_to_string
+        end
+        format.json do
+          render json: @script_versions.map { |sv| { version: sv.version, created_at: sv.created_at, url: script_url(id: @script, version: sv.id), code_url: sv.code_url } }
+        end
+        format.jsonp do
+          render json: @script_versions.map { |sv| { version: sv.version, created_at: sv.created_at, url: script_url(id: @script, version: sv.id), code_url: sv.code_url } }, callback: clean_json_callback_param
+        end
       end
     end
   end
