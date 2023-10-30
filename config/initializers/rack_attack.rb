@@ -47,7 +47,7 @@ if Rails.env.production?
 
   if Rails.application.config.ip_address_tracking
     Rack::Attack.throttle('super-feedbackers', limit: 1, period: 3) do |req|
-      req.ip if req.post? && req.path.ends_with?('/feedback')
+      req.ip if req.path.ends_with?('/feedback')
     end
   end
 end
