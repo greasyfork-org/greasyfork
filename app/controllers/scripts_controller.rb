@@ -148,7 +148,7 @@ class ScriptsController < ApplicationController
 
   def feedback
     cachable_request = request.query_parameters.empty? && current_user.nil? && request.format.html?
-    page_key = "script/feedback/#{params[:id].to_s}/#{request_locale.id}" if cachable_request
+    page_key = "script/feedback/#{params[:id]}/#{request_locale.id}" if cachable_request
 
     cache_page(page_key) do
       @script, @script_version = versionned_script(params[:id], params[:version])
