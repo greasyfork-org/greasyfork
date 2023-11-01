@@ -165,7 +165,7 @@ class ScriptSetsController < ApplicationController
       @child_set_user = parse_user(params['child-set-user'])
 
       if @child_set_user.nil?
-        @child_set_user = user
+        @child_set_user = current_user
         errors << "Could not parse user '#{CGI.escapeHTML(params['child-set-user'])}'"
       end
     end
