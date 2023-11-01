@@ -111,6 +111,7 @@ class User < ApplicationRecord
   validates :profile_markup, inclusion: { in: %w[html markdown] }
   validates :preferred_markup, inclusion: { in: %w[html markdown] }
   validates :author_email_notification_type_id, inclusion: { in: [AUTHOR_NOTIFICATION_NONE, AUTHOR_NOTIFICATION_DISCUSSION, AUTHOR_NOTIFICATION_COMMENT] }
+  validates :locale, presence: { message: :invalid }, if: ->{ locale_id.present? }
 
   validate do
     errors.add(:email) if new_record? && identities.none? && !EmailAddress.valid?(email)
