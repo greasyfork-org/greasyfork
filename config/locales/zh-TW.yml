@@ -918,7 +918,7 @@ zh-TW:
     category_display: "%{name} - %{description}"
     new_title: 建立討論
     new_button: 建立討論
-    script_notice: 如果需要對一個特定腳本開始討論，請前往腳本的反應頁面開始討論。
+    script_notice: 如果您想討論特定腳本，請轉到該腳本的相應討論頁面。
     no_discussions: 未找到貼文。
     mark_all_read: 全部標為已讀
     pending_moderator_review: 這篇貼文暫時不可用，請等候管理員審核通過。
@@ -942,6 +942,7 @@ zh-TW:
   screenshots:
     requirements: "最多上傳 %{number} 張 PNG、GIF 、 JPEG 、或 WEBP 圖片，且每張圖片不得超過 %{size}。"
   common:
+    error_preamble: "在你所發布的內容中有一些問題..."
     allowed_elements_link: "(檢視允許使用的 HTML/Markdown 代碼。)"
     allowed_elements_and_attributes_title: "允許使用的 HTML 元素"
     allowed_elements_intro: "下列是允許使用的元素和屬性。它們可用於 HTML 和 Markdown (在轉化為HTML後)。"
@@ -995,6 +996,8 @@ zh-TW:
         user_input: 使用者
       message:
         content: 訊息
+      script_lock_appeal:
+        text: 申訴
   errors:
     messages:
       script_missing_name: "必填 - 請透過 <code>@name</code> 指定。"
@@ -1018,6 +1021,8 @@ zh-TW:
     attribution: "版權屬於腳本作者，請在各腳本的頁面查詢相關授權"
   importing:
     title: 匯入腳本
+    url_entry_label: 提供要導入的URL，以新行分隔。這些URL應該指向原始的JavaScript或CSS文件。
+    submit: 導入
   mailers:
     script_report:
       report_created_offender:
@@ -1049,3 +1054,8 @@ zh-TW:
       subject: "使用者「%{commenter_name}」在 %{site_name} 提及您。"
     new_message:
       subject: "%{user} 在 %{site_name} 傳送訊息給您"
+    script_lock_appeal:
+      dismiss:
+        moderator_notes: "版主已留下留言："
+      unlock:
+        outro: 為了防止將來的刪除，請審查%{rules_link:%{site_name}'s rules}中的規則。

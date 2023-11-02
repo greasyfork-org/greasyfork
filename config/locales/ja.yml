@@ -23,7 +23,7 @@ ja:
     compatibility: "互換性"
     compatible_with_browser: "%{browser} への互換性あり"
     incompatible_with_browser: "%{browser} への互換性なし"
-    applies_to: "適用サイト"
+    applies_to: "対象サイト"
     applies_to_link_title:
       other: "%{site} で実行されるスクリプト一覧 (%{count}件)"
     applies_to_all: "すべてのサイト"
@@ -31,9 +31,9 @@ ja:
     install_css: "ユーザースタイルとしてインストール"
     install_help: "?"
     install_help_title: "インストール方法"
-    update: "バージョン %{version} へアップデート"
-    downgrade: "バージョン %{version} へダウングレード"
-    reinstall: "バージョン %{version} を再インストール"
+    update: "バージョン%{version}へアップデート"
+    downgrade: "バージョン%{version}へダウングレード"
+    reinstall: "バージョン%{version}を再インストール"
     old_version_warning: "これはこのスクリプトの最新バージョンではありません。最新バージョンへの自動更新は行われませんが、インストールを続行しますか?"
     promoted: "推奨スクリプト"
     author_promoted: "作者が勧める他のスクリプト"
@@ -41,8 +41,8 @@ ja:
     library_instructions_html: "このスクリプトは単体で利用できません。右のようなメタデータを含むスクリプトから、ライブラリとして読み込まれます: %{code}"
     deleted_notice: "このスクリプトは削除されました。"
     deleted_notice_with_reason: "このスクリプトは、%{report_link:こちらの通報}のため削除されました。"
-    deleted_notice_with_related: "このスクリプトは削除されています。以下の関連するスクリプトを試すこともできます。"
-    deleted_notice_with_related_and_reason: "スクリプトは%{report_link:こちらの通報}により削除されています。関連するスクリプトはこちらです。"
+    deleted_notice_with_related: "このスクリプトは削除されました。関連するスクリプトがあります。"
+    deleted_notice_with_related_and_reason: "スクリプトは%{report_link:こちらの通報}により削除されました。関連するスクリプトがあります。"
     deleted_undelete_notice_html: "このスクリプトは管理担当者によりロックされており、削除の取り消しはできません。理由:  \"<i>%{delete_reason}</i>\""
     deleted_locked_author_notice_html: "このスクリプトは、%{report_link:こちらの通報}のため管理担当者によって削除されており、第三者はアクセスできません。理由: <i>%{delete_reason}</i>。{code_rules_link:%{site_name}の規則}を確認してください。誤って削除された場合、%{appeal_link:抗議}も行えます。スクリプトの再投稿は行わないでください。%{site_name}へのアクセス禁止になる可能性があります。"
     self_deleted_locked_author_notice_html: "このスクリプトは、%{report_link:こちらの通報}のため、あなたによって削除され、ほかの人はアクセスできなくなっています。If you have updated your script to be in line with  %{code_rules_link:%{site_name} の規則}に従ってスクリプトを更新すれば、削除への%{appeal_link:抗議を提出}できます。スクリプトの再投稿は行わないでください。%{site_name}へのアクセス禁止になる可能性があります。"
@@ -161,20 +161,21 @@ ja:
     listing_sort_created: "作成日"
     listing_sort_updated: "更新日"
     listing_sort_name: "名前"
-    listing_filter_by_site_label: "実行されるサイト:"
+    listing_filter_by_site_label: "対象サイト:"
     listing_filter_by_site_disable: "すべて"
     listing_filter_by_site_all_sites: "(すべてのサイト用)"
-    listing_filter_by_language_label: "対象:"
-    listing_filter_by_site_more_sites: "さらに表示…"
+    listing_filter_by_language_label: "言語:"
+    listing_filter_by_site_more_sites: "もっと見る…"
     listing_no_scripts: "スクリプトはありませんでした。"
     listing_created_feed: "新しいスクリプト"
     listing_updated_feed: "更新されたスクリプト"
     listing_none: "(なし)"
     listing_set_locale_filter: "すべての言語の結果を表示しています。%{set_filter_link:%{language}で絞り込む。}"
-    listing_remove_locale_filter: "%{language}で絞り込んだ結果を表示しています。%{remove_filter_link:すべての言語の結果を表示。}"
+    listing_remove_locale_filter: "%{language}で絞り込んだ結果を表示しています。%{remove_filter_link:すべての言語で表示。}"
     listing_language_all: "すべて"
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
+    search_failed: 結果を読み込めませんでした。検索機能の一部が動作していない可能性があります。私たちはこの問題について通知を受けています。
     import: "スクリプトのインポート"
     new: "スクリプトを投稿する"
     new_css: "スタイルを投稿する"
@@ -236,6 +237,8 @@ ja:
     sync_type_3:
       name: ウェブフック
       description: このファイルへの変更をリポジトリにプッシュすると更新される
+    sync_webhook_info_without_sync: 上記で同期を設定した後、GitHub、GitLab、BitBucket のリポジトリに同期しプッシュしたら %{site_name} も自動更新されるよう%{webhook_info_link:ウェブフックを設定する}こともできます。
+    sync_webhook_info_with_sync: GitHub、GitLab、BitBucket のリポジトリに同期しプッシュしたら %{site_name} も自動更新されるよう%{webhook_info_link:ウェブフックを設定する}こともできます。
     sync_name_and_description: "%{name} - %{description}"
     sync_failed_info_html: "%{date} に同期に失敗しました。結果: %{error}"
     sync_success_info_html: "%{date} に同期に成功しました。"
@@ -252,7 +255,7 @@ ja:
     sync_no_changes: スクリプトの同期に成功しましが、変更点はありません。
     sync_error: スクリプトの同期に失敗 - %{error}。
     sync_turned_off: スクリプトの同期はオフです。
-    screenshots_add: "追加:"
+    screenshots_add: "添付:"
     screenshots_remove: "削除"
     replacement_script_explanation: "(任意) このスクリプトを置き換える他のスクリプトのURLを入力:"
     diff_title: "%{script} のバージョン差分"
@@ -335,16 +338,16 @@ ja:
     update_title: "%{script}を更新する"
     install_help_dialog:
       js:
-        firefox: このスクリプトをインストールするには、%{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} や %{violentmonkey_link:Violentmonkey} のような拡張機能のインストールが必要です。
-        chrome: このスクリプトをインストールするには、%{tampermonkey_link:Tampermonkey} や %{violentmonkey_link:Violentmonkey} のような拡張機能のインストールが必要です。
-        opera: このスクリプトをインストールするには、%{tampermonkey_link:Tampermonkey} や %{violentmonkey_link:Violentmonkey} のような拡張機能のインストールが必要です。
-        safari: このスクリプトをインストールするには、%{tampermonkey_link:Tampermonkey} や %{userscripts_link:Userscripts} のような拡張機能のインストールが必要です。
+        firefox: スクリプトをインストールするには、%{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} や %{violentmonkey_link:Violentmonkey} のような拡張機能のインストールが必要です。
+        chrome: スクリプトをインストールするには、%{tampermonkey_link:Tampermonkey} や %{violentmonkey_link:Violentmonkey} のような拡張機能のインストールが必要です。
+        opera: スクリプトをインストールするには、%{tampermonkey_link:Tampermonkey} や %{violentmonkey_link:Violentmonkey} のような拡張機能のインストールが必要です。
+        safari: スクリプトをインストールするには、%{tampermonkey_link:Tampermonkey} や %{userscripts_link:Userscripts} のような拡張機能のインストールが必要です。
         other: このスクリプトをインストールするには、ユーザースクリプト管理ツールの拡張機能をインストールする必要があります。
         bypass: (ユーザースクリプト管理ツールはあるのでインストールする！)
       css:
-        firefox: このスクリプトをインストールするには、%{stylus_link:Stylus} のような拡張機能のインストールが必要です。
-        chrome: このスクリプトをインストールするには、%{stylus_link:Stylus} のような拡張機能のインストールが必要です。
-        opera: このスクリプトをインストールするには、%{stylus_link:Stylus} のような拡張機能のインストールが必要です。
+        firefox: スクリプトをインストールするには、%{stylus_link:Stylus} のような拡張機能のインストールが必要です。
+        chrome: スクリプトをインストールするには、%{stylus_link:Stylus} のような拡張機能のインストールが必要です。
+        opera: スクリプトをインストールするには、%{stylus_link:Stylus} のような拡張機能のインストールが必要です。
         safari: このスクリプトをインストールするには、ユーザースタイル管理ツールの拡張機能をインストール必要があります。
         other: このスクリプトをインストールするには、ユーザースタイル管理ツールの拡張機能をインストール必要があります。
         bypass: (ユーザースタイル管理ツールはあるのでインストールする！)
@@ -382,7 +385,7 @@ ja:
       css:
         short: CSS
         long: ユーザースタイル
-    related_scripts: "以下の関連するスクリプトを試すこともできます:"
+    related_scripts: "関連するスクリプトがあります:"
     integrity_hashes:
       user_notice_html:
         other: "正しくないサブリソース整合用のハッシュを持つスクリプトがあります: %{script_links}。"
@@ -465,7 +468,7 @@ ja:
     search_placeholder: "ユーザースクリプトを検索"
     scripts_for_label: "サイト別のスクリプト:"
     explain_user_scripts_heading: "ユーザースクリプトについて"
-    explain_user_scripts_html: "ユーザースクリプトは、あなたにウェブサイト閲覧時の主導権をもたらします。サイトを使いやすくしたり、機能を追加したり、余分なものをなくしたり。いったんインストールすれば自動でサイトを改善します。%{site_name} は、ユーザーが作成し投稿したスクリプトを共有しています。自由にインストールでき、使うのも簡単です。"
+    explain_user_scripts_html: "ユーザースクリプトは、あなたにウェブサイト閲覧時の主導権をもたらします。サイトを使いやすくしたり、機能を追加したり、余分なものをなくしたり。いったんインストールすれば自動でサイトを改善します。%{site_name} は、ユーザーが作成し投稿したスクリプトを共有しています。自由にインストールでき使うのも簡単です。"
     installing_step1_header: "1. ユーザースクリプト管理ツールをインストール"
     installing_step1_caption: "Tampermonkey (Chrome 版)"
     installing_step1_description_html: >
@@ -480,7 +483,7 @@ ja:
           <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}、%{edge_violentmonkey_link:Violentmonkey}</li>
           <li>Opera: %{opera_tampermonkey_link:Tampermonkey}、%{opera_violentmonkey_link:Violentmonkey}</li>
           <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
-          <li>AdGuard: (ソフトの追加は不要)</li>
+          <li>AdGuard: (ソフトの追加不要)</li>
           </ul>
     android_browsers:
       title: モバイル (Android)
@@ -499,19 +502,19 @@ ja:
       browser_list_html: |
           <ul>
           <li>Safari: %{safari_tampermonkey_link:Tampermonkey}、%{safari_userscripts_link:Userscripts}</li>
-          <li>%{gear_link:Gear}: (ソフトの追加は不要)
+          <li>%{gear_link:Gear}: (ソフトの追加不要)
           </ul>
     installing_step2_header: "2. スクリプトをインストール"
     installing_step2_caption: "ユーザースクリプトのインストールボタン"
     installing_step2_description_html: >
-        <p>%{browse_link:当サイトを回り}使いたいユーザースクリプトを探します。以下は人気のスクリプトの例です。</p>
+        <p>%{browse_link:当サイトから探し}好きなユーザースクリプトを見つけます。人気のスクリプトの例です。</p>
 
         %{highlighted_scripts_list}
 
-        <p>スクリプトのページにある緑のインストールボタンをクリックすると、インストールするかという確認がスクリプト管理ツールにより表示されます。</p>
+        <p>スクリプトのページにある緑のインストールボタンをクリックすると、インストールするかの確認が、スクリプト管理ツールにより表示されます。</p>
     installing_step3_header: "3. ユーザースクリプトを使う"
     installing_step3_description_html: >
-        <p>これで、スクリプトは実行対象のページで動作するようになります。スクリプトを試したあと、インストールしたページに戻り、作者宛てにフィードバックを投稿することもできます。</p>
+        <p>これでスクリプトが対象のページで動作するようになります。スクリプトを試したあと、インストール用のページに戻り作者に意見や報告を投稿することもできます。</p>
   users:
     sign_in_title: "%{site_name} にログイン"
     sign_in_description: "%{site_name} にログインすると、スクリプトやフィードバックが投稿できるようになります。スクリプトを探したりインストールしたりするだけなら、ログインする必要はありません。"
@@ -1031,6 +1034,7 @@ ja:
     load_cleaned_diff: "整えたコードでの差分を読込"
     loading_diff: "読み込み中..."
     reported_user_activity_html: "%{user} (通報されたユーザー) の活動:"
+    script_updated_since_report: "このスクリプトは通報後に更新されています。"
   appeals:
     new:
       title: スクリプト削除への新しい抗議
@@ -1148,7 +1152,7 @@ ja:
     mark_all_read: すべて既読にする
     pending_moderator_review: この議論は、管理担当者により審査されるまで他のユーザーに表示されません。
   conversations:
-    user_input_note: ユーザー名またはプロフィールのあるURLを入力。
+    user_input_note: ユーザー名またはプロフィールのあるURLを入力
     new_title: 新しい会話の作成
     new_link: 新しい会話の作成
     new_button: 会話の作成
