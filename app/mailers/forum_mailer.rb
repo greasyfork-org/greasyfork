@@ -7,15 +7,14 @@ class ForumMailer < ApplicationMailer
     @comment = comment
     @site_name = 'Greasy Fork'
     @receiving_user = author_user
-    I18n.locale = @locale = @receiving_user.available_locale_code
+    set_locale_for_user(author_user, backup_locale: @comment.script.locale)
     unsubscribe_for_user(@receiving_user)
 
     mail(
       to: @receiving_user.email,
       subject: t('mailers.script_comment.subject',
                  script_name: @comment.script.name(@locale),
-                 site_name: @site_name,
-                 locale: @locale)
+                 site_name: @site_name)
     )
   end
 
@@ -23,14 +22,13 @@ class ForumMailer < ApplicationMailer
     @comment = comment
     @site_name = 'Greasy Fork'
     @receiving_user = user
-    I18n.locale = @locale = @receiving_user.available_locale_code
+    set_locale_for_user(user)
     unsubscribe_for_user(@receiving_user)
 
     mail(
       to: user.email,
       subject: t('mailers.subscribed_discussion.subject',
                  site_name: @site_name,
-                 locale: @locale,
                  **localization_params_for_comment(@comment, @locale))
     )
   end
@@ -39,14 +37,13 @@ class ForumMailer < ApplicationMailer
     @comment = comment
     @site_name = 'Greasy Fork'
     @receiving_user = user
-    I18n.locale = @locale = user.available_locale_code
+    set_locale_for_user(user)
     unsubscribe_for_user(@receiving_user)
 
     mail(
       to: user.email,
       subject: t('mailers.comment_mentioned.subject',
                  site_name: @site_name,
-                 locale: @locale,
                  **localization_params_for_comment(@comment, @locale))
     )
   end

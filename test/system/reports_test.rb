@@ -71,7 +71,8 @@ class ReportsTest < ApplicationSystemTestCase
     choose 'Spam'
     fill_in 'Provide additional details (optional)', with: 'and eggs'
     assert_difference -> { Report.count } => 1 do
-      assert_enqueued_emails(1) do
+      # 2 emails - one for each author
+      assert_enqueued_emails(2) do
         click_button 'Create report'
         assert_content 'Your report will be reviewed by a moderator.'
       end

@@ -64,7 +64,11 @@ class ReportsController < ApplicationController
       end
     end
 
-    ScriptReportMailer.report_created(@report, site_name).deliver_later if @report.item.is_a?(Script)
+    if @report.item.is_a?(Script)
+      UserEmailService.notify_authors_for_report(@report) do |user, locale|
+        ScriptReportMailer.report_created(@report, user, locale, site_name).deliver_later
+      end
+    end
 
     redirect_to report_path(@report), notice: t('reports.report_filed')
   end
@@ -74,8 +78,12 @@ class ReportsController < ApplicationController
 
     @report.dismiss!(moderator: current_user, moderator_notes: params[:moderator_notes].presence)
     if @report.item.is_a?(Script) && !@report.auto_reporter
-      ScriptReportMailer.report_dismissed_offender(@report, site_name).deliver_later
-      ScriptReportMailer.report_dismissed_reporter(@report, site_name).deliver_later
+      UserEmailService.notify_authors_for_report(@report) do |user, locale|
+        ScriptReportMailer.report_dismissed_offender(@report, user, locale, site_name).deliver_later
+      end
+      UserEmailService.notify_reporter(@report) do |user, locale|
+        ScriptReportMailer.report_dismissed_reporter(@report, user, locale, site_name).deliver_later
+      end
     end
     redirect_to reports_path(anchor: (params[:index] == '0') ? nil : "open-report-#{params[:index]}")
   end
@@ -91,8 +99,12 @@ class ReportsController < ApplicationController
 
     @report.fixed!(moderator: current_user, moderator_notes: params[:moderator_notes].presence)
     if @report.item.is_a?(Script) && !@report.auto_reporter
-      ScriptReportMailer.report_fixed_offender(@report, site_name).deliver_later
-      ScriptReportMailer.report_fixed_reporter(@report, site_name).deliver_later
+      UserEmailService.notify_authors_for_report(@report) do |user, locale|
+        ScriptReportMailer.report_fixed_offender(@report, user, locale, site_name).deliver_later
+      end
+      UserEmailService.notify_reporter(@report) do |user, locale|
+        ScriptReportMailer.report_fixed_reporter(@report, user, locale, site_name).deliver_later
+      end
     end
     redirect_to reports_path(anchor: (params[:index] == '0') ? nil : "open-report-#{params[:index]}")
   end
@@ -133,8 +145,15 @@ class ReportsController < ApplicationController
     end
 
     if @report.item.is_a?(Script) && !@report.auto_reporter
-      ScriptReportMailer.report_upheld_offender(@report, site_name).deliver_later
-      ScriptReportMailer.report_upheld_reporter(@report, user_is_script_author, site_name).deliver_later unless user_is_script_author
+      UserEmailService.notify_authors_for_report(@report) do |user, locale|
+        ScriptReportMailer.report_upheld_offender(@report, user, locale, site_name).deliver_later
+      end
+
+      unless user_is_script_author
+        UserEmailService.notify_reporter(@report) do |user, locale|
+          ScriptReportMailer.report_upheld_reporter(@report, user, locale, user_is_script_author, site_name).deliver_later
+        end
+      end
     end
 
     if user_is_script_author
@@ -155,7 +174,9 @@ class ReportsController < ApplicationController
 
     if rebuttal.present?
       @report.rebut!(rebuttal:, by: current_user)
-      ScriptReportMailer.report_rebutted(@report, site_name).deliver_later
+      UserEmailService.notify_reporter(@report) do |user, locale|
+        ScriptReportMailer.report_rebutted(@report, user, locale, site_name).deliver_later
+      end
     end
 
     redirect_to report_path(@report), notice: t('reports.rebuttal_submitted')

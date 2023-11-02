@@ -7,13 +7,13 @@ class ConversationMailer < ApplicationMailer
     @message = conversation.messages.first
     @receiving_user = receiving_user
     @site_name = 'Greasy Fork'
-    I18n.locale = @locale = @receiving_user.available_locale_code
+    set_locale_for_user(@receiving_user)
     @conversation_url = user_conversation_url(@receiving_user, conversation, locale: @locale)
     unsubscribe_for_user(@receiving_user)
 
     mail(
       to: @receiving_user.email,
-      subject: t('mailers.new_message.subject', site_name: @site_name, locale: @locale, user: initiator_user.name),
+      subject: t('mailers.new_message.subject', site_name: @site_name, user: initiator_user.name),
       template_name: 'new_message'
     )
   end
@@ -22,13 +22,13 @@ class ConversationMailer < ApplicationMailer
     @message = message
     @receiving_user = receiving_user
     @site_name = 'Greasy Fork'
-    I18n.locale = @locale = @receiving_user.available_locale_code
+    set_locale_for_user(@receiving_user)
     @conversation_url = @message.conversation.latest_url(@receiving_user, locale: @locale)
     unsubscribe_for_user(@receiving_user)
 
     mail(
       to: @receiving_user.email,
-      subject: t('mailers.new_message.subject', site_name: @site_name, locale: @locale, user: message.poster.name)
+      subject: t('mailers.new_message.subject', site_name: @site_name, user: message.poster.name)
     )
   end
 end
