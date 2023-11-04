@@ -146,7 +146,7 @@
 <% if report.item.is_a?(Script) %>
   <% previous_report_count = report.item.reports.where(result: [Report::RESULT_FIXED, Report::RESULT_UPHELD]).count %>
   <% if previous_report_count > 0 %>
-    <p><%= t('reports.script_previous_reports', count: previous_report_count) %></p>
+    <p><%= link_to t('reports.script_previous_reports', count: previous_report_count), reports_path(script_id: report.item_id, non_dismissed: '1') %></p>
   <% end %>
 <% end %>
 
