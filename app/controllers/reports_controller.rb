@@ -13,10 +13,15 @@ class ReportsController < ApplicationController
             .order(:created_at)
     if params[:user_id].present?
       scope = scope.where(reporter_id: params[:user_id])
-    else
+    elsif params[:script_id].present?
+      scope = scope.where(item_type: 'Script', item_id: params[:script_id])
+    elsif params[:non_dismissed] != '1'
       @show_separator = true
       scope = scope.unresolved
     end
+
+    scope = scope.where(result: [Report::RESULT_FIXED, Report::RESULT_UPHELD]) if params[:non_dismissed] == '1'
+
     report_ids = scope
                  .sort_by { |r| [r.awaiting_response? ? 1 : 0, r.created_at] }
                  .map(&:id)
