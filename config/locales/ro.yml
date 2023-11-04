@@ -46,6 +46,8 @@ ro:
     deleted_notice_with_related: "Script-ul pe care îl cauți a fost șters, dar aici sunt cateva script-uri asemănătoare."
     deleted_notice_with_related_and_reason: "Scriptul pe care l-ati solicitat a fost sters din cauza %{report_link:this report}, dar aici sunt niste scripturi asemanatoare."
     deleted_undelete_notice_html: "Acest script a fost blocat de un moderator și nu poate fi șters. Motivul este: \"<i>%{delete_reason}</i>\"."
+    deleted_locked_author_notice_html: "Acest script a fost sters de un moderator ca raspuns la %{report_link:this report} si nu este accesibil altora. Motivul este: \"<i>%{delete_reason}</i>\". Va rugam sa revizuiti %{code_rules_link:%{site_name}'s rules}. Daca credeti ca stergerea este o eroare, puteti sa %{appeal_link:submit an appeal} of this deletion. Nu repostati acest script; repostand-ul poate duce la interzicerea accesului pe %{site_name}."
+    self_deleted_locked_author_notice_html: "Acest script a fost sters de dumneavoastra ca raspuns la %{report_link:this report} si nu este accesibil altora. Daca ati actualizat script-ul pentru a fi in conformitate cu %{code_rules_link:%{site_name}'s rules}, puteti sa %{appeal_link:submit an appeal} a acestei stergeri. Nu repostati acest script; repostand-ul s-ar putea sa va fie interzis accesul pe %{site_name}."
     deleted_author_notice: "Acest script a fost șters si nu poate fi accesat de alții. Poti restabili script-ul din casuța de Ștergere."
     version_notice_html: "La data de %{date}. Vezi %{latest_version_link}."
     version_notice_latest_version_link: "ultima versiune"
@@ -64,6 +66,7 @@ ro:
     delete_update_behaviours:
       keep: "Îl vor păstra așa cum este."
       blanked: "Acesta se va actualiza la un script gol. Acest lucru este adecvat atunci când scriptul are un efect negativ pe siturile pe care se execută."
+      redirect: "Acestea vor fi redirecționate și actualizate la scriptul pe care îl specificați mai jos."
     delete_permanently_heading: "Șterge-l permanent"
     delete_permanently_explanation_html: >-
         <p>Ștergerea permanentă a script-ului tau va șterge și înregistrările asociate
@@ -146,6 +149,7 @@ ro:
     derivatives_similar_last_check_soon: "O sa cautam script-uri similare cu al tău in scurt timp."
     derivatives_similar_last_check_again_soon_html: "Ultima oara am cautat script-uri asemănătoare cu al tău în %{date}. O să cautăm iarăși în scurt timp."
     derivatives_similar_check_now: "Verifică din nou acum"
+    derivatives_similiar_queued: Verificarea similarității va fi finalizată în câteva minute.
     listing_title_all_sites: "Scripturi pentru toate site-urile"
     listing_description_all_sites: "Scripturi de utilizator care adaugă caracteristici și rezolvă bug-uri pe toate siteurile"
     listing_title_for_site: "Scripturi pentru %{site}"
@@ -177,6 +181,7 @@ ro:
     listing_language_all: "Tot"
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
+    search_failed: A apărut o eroare la încărcarea rezultatelor dvs. Este posibil ca unele funcții de căutare să nu funcționeze. Am fost anunțați despre problemă.
     import: "Importă scripturi"
     new: "Publică un script scris de tine"
     new_css: "Publică un stil scris de tine"
@@ -209,11 +214,17 @@ ro:
     type_1_html: "Script al utilizatorului public - un script al utilizatorului pentru toți sa vedem și să folosim."
     type_2_html: "Script al utilizatorului nelistat - un script al utilizatorului pentru folosire semi(-privată). Valabil cu acces direct, dar nu ești trimis la el de nicăieri de pe %{site_name}."
     type_3_html: "Librarie - un script creat sa fie <code>@folosit</code> de alte scripturi și nu instalat direct."
+    override_warning_checkbox_label: "Salvati oricum"
     warning_version_not_incremented_html: "Ați actualizat codul dar nu ați crescut numărul de <code>@versiune</code>. Acei care au instalat anterior scriptul dvs. ar putea să nu obțină codul actualizat."
+    warning_version_missing_html: "Nu ati specificat<code>@version</code>.<code>@version</code>este necesara pentru ca utilizatorii sa primeasca actualizari. Puteti sa specificati una ca asa: <code>// @version 1.0</code>."
+    warning_version_missing_generate_automatically_html: "Genereaza <code>@version</code> automat"
+    warning_namespace_missing_html: "Nu ati specificat <code>@namespace</code>. <code>@namespace</code> ajuta la prevenirea coliziunilor daca utilizatorii instaleaza alt script cu acleasi nume. <code>@namespace</code> doar trebuie sa fie un string unic; de multe ori un URL pe care il controlati este utilizat."
+    warning_namespace_missing_generate_automatically_html: "Genereaza un <code>@namespace</code> automat"
     warning_namespace_changed_html: "<code>@namespace</code> a fost schimbat. Un <code>@namespace</code> consistent dă libertatea utilizatorilor de a re-instala script-ul sa iî actualizeze."
     warning_potentially_minified_html: "Script-ul tău pare ca ar conține cod micșorat (compresat). Dacă folosești o librărie micoșrată, te rog în loc de <code>@cere</code> de pe %{allowed_requires_link}. Script-urile micșorate sunt supuse ștergerii."
     warning_automatic_sensitive_html: "Script-ul tau este pentru %{sensitive_domains} și va fi marcat ca fiind conținut pentru adulți."
     warning_potentially_minified_allowed_requires_link: "unul din aceste locuri"
+    warning_code_previously_posted_html: "Acest cod a fost postat anterior in %{script_links}. Repostările sunt supuse eliminării de către moderatori."
     additional_info_locale_prompt: "(Alege o limbă)"
     additional_info_add_localized: "Adaugă informații adiționale bazate pe o limbă anume"
     additional_info_locale_repeated: "Furnizează doar o informație adițională pentru locala '%{locale_code}'."
