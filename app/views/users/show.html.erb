@@ -89,6 +89,9 @@
         <% if !@user.confirmed? %>
           <%= link_to 'Mark email as confirmed', mark_email_as_confirmed_user_path(@user), method: :PATCH %><br>
         <% end %>
+        <% if @user.unconfirmed_email %>
+          <%= link_to "Confirm email change to #{redacted_email(@user.unconfirmed_email)}", mark_email_as_confirmed_user_path(@user), method: :PATCH %><br>
+        <% end %>
         <%= link_to 'Users with the same IP', users_path(same_ip: @user.id) %>
       </p>
     </section>

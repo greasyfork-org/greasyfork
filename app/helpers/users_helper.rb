@@ -78,4 +78,9 @@ module UsersHelper
     title = t("users.badges.#{key}.long")
     tag.span(class: "badge badge-#{key}", title: (text == title) ? nil : title) { text }
   end
+
+  def redacted_email(email)
+    parts = email.split('@', 2)
+    "#{parts[0][0]}…#{parts[0][parts.length-1]}@#{parts[1]}"
+  end
 end
