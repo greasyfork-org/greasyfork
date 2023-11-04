@@ -231,6 +231,8 @@ class ScriptVersionsController < ApplicationController
       ensure_default_additional_info(@script_version, current_user.preferred_markup)
 
       if @script.new_record?
+        # This is a pointless message
+        @script_version.errors.delete(:rewritten_script_code)
         render :new
       else
         # get the original script for display within the scripts layout

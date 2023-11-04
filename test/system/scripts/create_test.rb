@@ -49,6 +49,24 @@ class CreateTest < ApplicationSystemTestCase
     end
   end
 
+  test 'css script creation without meta' do
+    with_sphinx do
+      user = User.first
+      login_as(user, scope: :user)
+      visit new_script_version_url(language: 'css')
+      code = <<~JS
+        @-moz-document domain("example.com") {
+          a {
+            color: red;
+          }
+        }
+      JS
+      fill_in 'Code', with: code
+      click_button 'Post script'
+      assert_content 'is missing its metadata block'
+    end
+  end
+
   test 'library creation with meta block' do
     user = User.first
     login_as(user, scope: :user)

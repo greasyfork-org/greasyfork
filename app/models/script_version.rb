@@ -30,6 +30,10 @@ class ScriptVersion < ApplicationRecord
 
   validates :code, presence: true, length: { minimum: 20, maximum: MAX_CODE_LENGTH }, on: :create
 
+  validate do
+    errors.add(:code, :style_missing_meta) if css? && code.exclude?('/* ==UserStyle==')
+  end
+
   # Code has to look code-y.
   validate on: :create do
     errors.add(:code, :invalid) unless /[=.:\[(]/.match?(code)
