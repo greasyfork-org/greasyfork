@@ -139,7 +139,7 @@
   <% end %>
 <% end %>
 
-<% if report.item.is_a?(Script) && report.item.updated_at > report.created_at %>
+<% if report.item.is_a?(Script) && report.item.code_updated_at > report.created_at %>
   <p><%= t('reports.script_updated_since_report') %></p>
 <% end %>
 
