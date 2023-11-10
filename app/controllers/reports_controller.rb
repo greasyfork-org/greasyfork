@@ -156,7 +156,7 @@ class ReportsController < ApplicationController
 
       unless user_is_script_author
         UserEmailService.notify_reporter(@report) do |user, locale|
-          ScriptReportMailer.report_upheld_reporter(@report, user, locale, user_is_script_author, site_name).deliver_later
+          ScriptReportMailer.report_upheld_reporter(@report, user_is_script_author, user, locale, site_name).deliver_later
         end
       end
     end

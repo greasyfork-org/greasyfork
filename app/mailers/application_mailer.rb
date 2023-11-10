@@ -3,7 +3,8 @@ class ApplicationMailer < ActionMailer::Base
   layout 'mailer'
 
   def unsubscribe_for_user(user)
-    @unsubscribe_url = notifications_user_url(user, locale: user.available_locale_code)
+    # Assuming set_locale was called first
+    @unsubscribe_url = notifications_user_url(user, locale: I18n.locale)
     headers['List-Unsubscribe'] = "<#{@unsubscribe_url}>"
   end
 
