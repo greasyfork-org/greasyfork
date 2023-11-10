@@ -1112,6 +1112,11 @@ sk:
     loading_diff: "Načítava sa…"
     reported_user_activity_html: "%{user} (nahlásený používateľ) urobil:"
     script_updated_since_report: "Tento skript bol od nahlásenia aktualizovaný."
+    script_previous_reports:
+      one: "Tento skript už mal %{count} potvrdené alebo opravené hlásenie."
+      few: "Tento skript už mal %{count} potvrdené alebo opravené hlásenia."
+      many: "Tento skript už mal %{count} potvrdených alebo opravených hlásení."
+      other: "Tento skript už mal %{count} potvrdených alebo opravených hlásení."
   appeals:
     new:
       title: Nové odvolanie proti odstráneniu skriptu
@@ -1344,6 +1349,7 @@ sk:
       invalid_meta: "má neplatný meta príkaz. Správny formát je // @foo"
       no_executable: "neobsahuje žiadny spustiteľný kód"
       meta_too_long: "%{key} je príliš dlhý (max. je %{count} znakov)"
+      style_missing_meta: "chýba blok metaúdajov. Pozri napr. https://github.com/openstyles/stylus/wiki/Writing-UserCSS"
   opensearch:
     short_name: "hľadať %{site_name}"
     description: "Hľadanie skriptov na %{site_name}."

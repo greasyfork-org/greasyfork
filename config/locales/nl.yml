@@ -1092,6 +1092,9 @@ nl:
     loading_diff: "Bezig met laden…"
     reported_user_activity_html: "%{user} (de gebruiker waarvan melding is gemaakt) heeft het volgende gedaan:"
     script_updated_since_report: "Dit script is bijgewerkt na het opstellen van de melding."
+    script_previous_reports:
+      one: "Dit script bevat %{count} eerdere (on)opgeloste melding."
+      other: "Dit script bevat %{count} eerdere (on)opgeloste meldingen."
   appeals:
     new:
       title: Bezwaar ingediend tegen scriptverwijdering
@@ -1316,6 +1319,7 @@ nl:
       invalid_meta: "bevat een ongeldige metarichting. De juiste opmaak is // @foo"
       no_executable: "bevat geen uitvoerbare code"
       meta_too_long: "%{key} is te lang (maximaal toegestaan: %{count} tekens)"
+      style_missing_meta: "bevat geen metagegevensblok. Bekijk de voorbeelden op https://github.com/openstyles/stylus/wiki/Writing-UserCSS"
   opensearch:
     short_name: "Zoeken op %{site_name}"
     description: "Zoek naar gebruikersscripts op %{site_name}."

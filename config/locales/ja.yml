@@ -468,7 +468,7 @@ ja:
     search_placeholder: "ユーザースクリプトを検索"
     scripts_for_label: "サイト別のスクリプト:"
     explain_user_scripts_heading: "ユーザースクリプトについて"
-    explain_user_scripts_html: "ユーザースクリプトは、あなたにウェブサイト閲覧時の主導権をもたらします。サイトを使いやすくしたり、機能を追加したり、余分なものをなくしたり。いったんインストールすれば自動でサイトを改善します。%{site_name} は、ユーザーが作成し投稿したスクリプトを共有しています。自由にインストールでき使うのも簡単です。"
+    explain_user_scripts_html: "ユーザースクリプトは、サイト閲覧時の主導権をあなたにもたらします。サイトを使いやすく。機能を追加する。余分なものを消す、など。いったんインストールすれば自動でサイトを改善します。%{site_name} は、ユーザーが作成し投稿したスクリプトを共有しています。自由にインストールでき使うのも簡単です。"
     installing_step1_header: "1. ユーザースクリプト管理ツールをインストール"
     installing_step1_caption: "Tampermonkey (Chrome 版)"
     installing_step1_description_html: >
@@ -1035,6 +1035,8 @@ ja:
     loading_diff: "読み込み中..."
     reported_user_activity_html: "%{user} (通報されたユーザー) の活動:"
     script_updated_since_report: "このスクリプトは通報後に更新されています。"
+    script_previous_reports:
+      other: " このスクリプトには、承認または修正済みの%{count}回の通報があります。"
   appeals:
     new:
       title: スクリプト削除への新しい抗議
@@ -1255,6 +1257,7 @@ ja:
       invalid_meta: "は、正しくないメタ指定です。適切な形式は // @foo"
       no_executable: "実行可能なコードを含んでいません。"
       meta_too_long: "%{key} が長すぎます (最大%{count}文字)"
+      style_missing_meta: "がメタデータ内にありません。例をご覧くださいhttps://github.com/openstyles/stylus/wiki/Writing-UserCSS "
   opensearch:
     short_name: "%{site_name} 検索"
     description: "%{site_name} 上のユーザースクリプトを検索します。"
@@ -1319,7 +1322,7 @@ ja:
         subject: "%{script_name} (%{site_name}) に関するあなたの通報が承認されました"
         body_html: |
             <p>
-            %{site_name} 上のスクリプト %{script_link: %{script_name}} のあなたの報告は、管理担当者に支持されました。このスクリプトは削除されました。%{report_link:報告を確認}できます。
+            %{site_name} 上のスクリプト %{script_link: %{script_name}} のあなたの報告は、管理担当者に承認されました。このスクリプトは削除されました。%{report_link:報告を確認}できます。
             </p>
       report_script_deleted_reporter:
         subject: "%{site_name} 上のスクリプト %{script_name} の報告は閉じられました"
@@ -1373,7 +1376,7 @@ ja:
         moderator_notes: "管理担当者がコメントしました:"
         outro: まだこのスクリプトの削除を取り消したいなら、%{report_link:元の通報}と%{rules_link:%{site_name}の規則}を確認してください。
       unlock:
-        subject: '%{site_name}のスクリプトの削除への抗議が支持されました'
-        intro_html: '%{script}の削除に対するあなたの抗議は、管理担当者によって支持されました。現在、このスクリプトの削除が取り消され、再び誰もがアクセスできるよう公開されています。'
+        subject: '%{site_name}のスクリプトの削除への抗議が承認されました'
+        intro_html: '%{script}の削除に対するあなたの抗議は、管理担当者により承認されました。このスクリプトの削除は取り消され、再び公開されており誰でもアクセスできます。'
         moderator_notes: "管理担当者がコメントしました:"
         outro: 今後も削除されないよう%{rules_link:%{site_name} の規則}を確認してください。
