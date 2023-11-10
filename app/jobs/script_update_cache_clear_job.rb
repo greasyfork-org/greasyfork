@@ -1,7 +1,7 @@
 require 'aws-sdk-cloudfront'
 
 class ScriptUpdateCacheClearJob < ApplicationJob
-  queue_as :medium
+  queue_as :default
 
   def perform(script_id)
     if !Rails.application.secrets.aws && !Rails.env.production?
