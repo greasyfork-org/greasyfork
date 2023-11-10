@@ -230,12 +230,15 @@ class Script < ApplicationRecord
   # Check saved_change_to to determine whether to run, but have to run after_commit for the changes to be visible to the
   # Job.
   after_save do |script|
-    @_run_duplicate_checker = script.saved_change_to_code_updated_at? && !Rails.env.development?
+    @_code_changed = script.saved_change_to_code_updated_at? && !Rails.env.development?
   end
 
   after_commit do |script|
-    ScriptDuplicateCheckerJob.perform_later_unless_will_run(script.id) if @_run_duplicate_checker
-    @_run_duplicate_checker = false
+    if @_code_changed
+      ScriptDuplicateCheckerJob.perform_later_unless_will_run(script.id)
+      ScriptUpdateCacheClearJob.perform_later(script.id)
+    end
+    @_code_changed = false
   end
 
   after_commit do |script|
