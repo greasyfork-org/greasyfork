@@ -7,6 +7,13 @@ Rails.application.routes.draw do
 
   get '/forum', to: redirect('/discussions'), status: 301
 
+  # Canonical script paths
+  get '/scripts/:id.user.js', to: 'scripts#user_js'
+  get '/scripts/:id.meta.js', to: 'scripts#meta_js'
+  get '/scripts/:id.js', to: 'scripts#user_js'
+  get '/scripts/:id.user.css', to: 'scripts#user_css'
+  get '/scripts/:id.meta.css', to: 'scripts#meta_css'
+
   scope '(:locale)', locale: /ar|bg|ckb|cs|da|de|el|en|es|fi|fr|fr-CA|he|hr|hu|id|it|ja|ka|ko|nb|nl|eo|pl|pt-BR|ro|ru|sk|sr|sv|th|tr|uk|ug|vi|zh-CN|zh-TW/ do
     get '/users', to: 'users#index', as: 'users'
     get '/users/webhook-info', to: 'users#webhook_info', as: 'user_webhook_info'
