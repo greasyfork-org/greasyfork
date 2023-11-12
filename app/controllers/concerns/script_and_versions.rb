@@ -70,6 +70,8 @@ module ScriptAndVersions
     script.locale = current_script.locale
     script.default_name = current_script.default_name
     script.sensitive = current_script.sensitive
+    script.language = current_script.language
+    script.css_convertible_to_js = current_script.css_convertible_to_js
 
     current_script.localized_attributes.each { |la| script.build_localized_attribute(la) }
 
