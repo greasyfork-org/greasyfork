@@ -23,11 +23,10 @@
 
     <% when 'library' %>
       <p>
-        <% library_code_snippet = if params[:version].nil?
-          "<code>// @require #{library_js_script_url(script, version: script_version.id, name: script.url_name, locale_override: nil)}</code>"
-        else
-          "<code>// @require #{library_js_script_url(script, version: params[:version], name: script.url_name, locale_override: nil)}</code>"
-                               end %>
+        <%
+          library_url = script.code_url(sleazy: sleazy?, version_id: params[:version])
+          library_code_snippet = "<code>// @require #{library_url}</code>"
+        %>
         <%= t('scripts.library_instructions_html', code: library_code_snippet.html_safe) %>
       </p>
   <% end %>

@@ -491,20 +491,26 @@ class Script < ApplicationRecord
     ((sleazy && sensitive) ? { host: 'sleazyfork.org' } : {})
   end
 
+  def update_host(sleazy: false)
+    return Rails.env.production? ? 'update.sleazyfork.org' : 'sleazyfork.local' if sleazy && sensitive
+
+    Rails.env.production? ? 'update.greasyfork.org' : 'greasyfork.local'
+  end
+
   def url(locale: nil, sleazy: false)
     url_helpers.script_url(self, locale:, **host_arg(sleazy:))
   end
 
-  def code_url(sleazy: false)
-    return url_helpers.library_js_script_url(self, version: newest_saved_script_version.id, name: url_name, **host_arg(sleazy:)) if library?
-
-    return url_helpers.user_js_script_url(self, name: url_name, **host_arg(sleazy:))
+  def code_url(sleazy: false, format_override: nil, version_id: nil)
+    "https://#{update_host(sleazy:)}#{code_path(format_override:, version_id:)}"
   end
 
-  def code_path
-    return url_helpers.library_js_script_path(self, version: newest_saved_script_version.id, name: url_name) if library?
+  def code_path(format_override: nil, version_id: nil)
+    return "/scripts/#{id}.js?version=#{version_id || newest_saved_script_version.id}" if library?
 
-    return url_helpers.user_js_script_path(self, name: url_name)
+    extension = (js? || format_override == 'js') ? '.user.js' : '.user.css'
+    # Add extension on the end if we're using query params for Greasemonkey - https://github.com/greasemonkey/greasemonkey/issues/1683
+    "/scripts/#{id}#{extension}#{"?version=#{version_id}&d=#{extension}" if version_id}"
   end
 
   def serializable_hash(options = nil)
