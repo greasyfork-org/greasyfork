@@ -7,13 +7,13 @@ class InstallTest < ApplicationSystemTestCase
     assert_difference -> { Script.connection.select_value('select count(*) from daily_install_counts') } => 1 do
       click_link 'Install this script'
       click_link 'I already have a user script manager, let me install it!'
-      assert_current_path '/scripts/2.user.js'
+      assert_current_path '/scripts/2/A%20Test%21.user.js'
     end
 
     visit script_url(script, locale: :en)
     assert_no_difference -> { Script.connection.select_value('select count(*) from daily_install_counts') } do
       click_link 'Install this script'
-      assert_current_path '/scripts/2.user.js'
+      assert_current_path '/scripts/2/A%20Test%21.user.js'
     end
   end
 
@@ -26,7 +26,7 @@ class InstallTest < ApplicationSystemTestCase
 
     assert_difference -> { Script.connection.select_value('select count(*) from daily_install_counts') } => 1 do
       click_button 'Install script'
-      assert_current_path '/scripts/22.user.js'
+      assert_current_path '/scripts/22/A%20Test%20with%20antifeatures%21.user.js'
     end
   end
 
@@ -36,13 +36,13 @@ class InstallTest < ApplicationSystemTestCase
     assert_difference -> { Script.connection.select_value('select count(*) from daily_install_counts') } => 1 do
       click_link 'Install this script'
       click_link 'I already have a user script manager, let me install it!'
-      assert_current_path '/scripts/23.user.js'
+      assert_current_path '/scripts/23/CSS%20test.user.js'
     end
 
     visit script_url(script, locale: :en)
     assert_no_difference -> { Script.connection.select_value('select count(*) from daily_install_counts') } do
       click_link 'Install this script'
-      assert_current_path '/scripts/23.user.js'
+      assert_current_path '/scripts/23/CSS%20test.user.js'
     end
   end
 
@@ -55,7 +55,7 @@ class InstallTest < ApplicationSystemTestCase
 
     assert_difference -> { Script.connection.select_value('select count(*) from daily_install_counts') } => 1 do
       click_button 'Install script'
-      assert_current_path '/scripts/24.user.js'
+      assert_current_path '/scripts/24/CSS%20test%20with%20antifeatures%21.user.js'
     end
   end
 
@@ -65,13 +65,13 @@ class InstallTest < ApplicationSystemTestCase
     assert_difference -> { Script.connection.select_value('select count(*) from daily_install_counts') } => 1 do
       click_link 'Install as user style'
       click_link 'I already have a user style manager, let me install it!'
-      assert_current_path '/scripts/23.user.css'
+      assert_current_path '/scripts/23/CSS%20test.user.css'
     end
 
     visit script_url(script, locale: :en)
     assert_no_difference -> { Script.connection.select_value('select count(*) from daily_install_counts') } do
       click_link 'Install as user style'
-      assert_current_path '/scripts/23.user.css'
+      assert_current_path '/scripts/23/CSS%20test.user.css'
     end
   end
 
@@ -84,7 +84,7 @@ class InstallTest < ApplicationSystemTestCase
 
     assert_difference -> { Script.connection.select_value('select count(*) from daily_install_counts') } => 1 do
       click_button 'Install script'
-      assert_current_path '/scripts/24.user.css'
+      assert_current_path '/scripts/24/CSS%20test%20with%20antifeatures%21.user.css'
     end
   end
 end
