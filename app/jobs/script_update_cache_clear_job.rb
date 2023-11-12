@@ -21,7 +21,7 @@ class ScriptUpdateCacheClearJob < ApplicationJob
                                       invalidation_batch: {
                                         paths: {
                                           quantity: 1,
-                                          items: ["/scripts/#{script_id}-*"],
+                                          items: ["/scripts/#{script_id}-*", "/scripts/#{script_id}.*"],
                                         },
                                         caller_reference: DateTime.now.to_s,
                                       },
