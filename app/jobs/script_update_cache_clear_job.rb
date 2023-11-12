@@ -17,7 +17,7 @@ class ScriptUpdateCacheClearJob < ApplicationJob
 
     Rails.application.secrets.aws[:script_cloudfront_distributions].each do |distribution_id|
       resp = cf.create_invalidation({
-                                      distribution_id: distribution_id,
+                                      distribution_id:,
                                       invalidation_batch: {
                                         paths: {
                                           quantity: 2,
