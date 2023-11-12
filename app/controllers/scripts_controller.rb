@@ -231,6 +231,11 @@ class ScriptsController < ApplicationController
         script, script_version = minimal_versionned_script(script_id, script_version_id)
         return if handle_replaced_script(script)
 
+        if script.js?
+          head :not_found
+          return
+        end
+
         user_css_code = if script.delete_type_blanked?
                           script_version.generate_blanked_code
                         elsif script.deleted?
