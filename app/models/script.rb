@@ -506,11 +506,19 @@ class Script < ApplicationRecord
   end
 
   def code_path(format_override: nil, version_id: nil)
+    extension = if library?
+                  '.js'
+                elsif js? || format_override == 'js'
+                  '.user.js'
+                else
+                  '.user.css'
+                end
+
     # We want a nice filename for two reasons:
     # 1. After installing, the browser console will associate any errors/logs for the script with the filename.
     # 2. Greasemonkey requires the URL ends with .user.js. If you include query params, it doesn't recognize it.
     #    https://github.com/greasemonkey/greasemonkey/issues/1683
-    filename = "#{CGI.escapeURIComponent(url_name)}#{(js? || format_override == 'js') ? '.user.js' : '.user.css'}"
+    filename = "#{CGI.escapeURIComponent(url_name)}#{extension}"
 
     return "/scripts/#{id}/#{version_id || newest_saved_script_version.id}/#{filename}" if library?
 
