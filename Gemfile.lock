@@ -95,6 +95,9 @@ GEM
     ast (2.4.2)
     aws-eventstream (1.2.0)
     aws-partitions (1.752.0)
+    aws-sdk-athena (1.67.0)
+      aws-sdk-core (~> 3, >= 3.165.0)
+      aws-sigv4 (~> 1.1)
     aws-sdk-cloudfront (1.76.0)
       aws-sdk-core (~> 3, >= 3.165.0)
       aws-sigv4 (~> 1.1)
@@ -521,6 +524,7 @@ PLATFORMS
 DEPENDENCIES
   active_storage_validations
   akismet
+  aws-sdk-athena
   aws-sdk-cloudfront
   aws-sdk-s3
   better_errors
