@@ -5,6 +5,29 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
 
+  # Script update paths
+  constraints subdomain: 'update-source' do
+    get '/scripts/:id.user.js', to: 'scripts#user_js'
+    get '/scripts/:id/:name.user.js', to: 'scripts#user_js'
+    get '/scripts/:id/:version/:name.user.js', to: 'scripts#user_js'
+
+    get '/scripts/:id.meta.js', to: 'scripts#meta_js'
+    get '/scripts/:id/:name.meta.js', to: 'scripts#meta_js'
+    get '/scripts/:id/:version/:name.meta.js', to: 'scripts#meta_js'
+
+    get '/scripts/:id.js', to: 'scripts#user_js'
+    get '/scripts/:id/:name.js', to: 'scripts#user_js'
+    get '/scripts/:id/:version/:name.js', to: 'scripts#user_js'
+
+    get '/scripts/:id.user.css', to: 'scripts#user_css'
+    get '/scripts/:id/:name.user.css', to: 'scripts#user_css'
+    get '/scripts/:id/:version/:name.user.css', to: 'scripts#user_css'
+
+    get '/scripts/:id.meta.css', to: 'scripts#meta_css'
+    get '/scripts/:id/:name.meta.css', to: 'scripts#meta_css'
+    get '/scripts/:id/:version/:name.meta.css', to: 'scripts#meta_css'
+  end
+
   get '/forum', to: redirect('/discussions'), status: 301
 
   scope '(:locale)', locale: /ar|bg|ckb|cs|da|de|el|en|es|fi|fr|fr-CA|he|hr|hu|id|it|ja|ka|ko|nb|nl|eo|pl|pt-BR|ro|ru|sk|sr|sv|th|tr|uk|ug|vi|zh-CN|zh-TW/ do
@@ -228,27 +251,6 @@ Rails.application.routes.draw do
   get '/forum/discussion/:id' => 'discussions#old_redirect'
   get '/forum/discussion/comment/:id' => 'comments#old_redirect'
   get '/forum/discussion/:id/:slug' => 'discussions#old_redirect'
-
-  # Script update paths
-  get '/scripts/:id.user.js', to: 'scripts#user_js'
-  get '/scripts/:id/:name.user.js', to: 'scripts#user_js'
-  get '/scripts/:id/:version/:name.user.js', to: 'scripts#user_js'
-
-  get '/scripts/:id.meta.js', to: 'scripts#meta_js'
-  get '/scripts/:id/:name.meta.js', to: 'scripts#meta_js'
-  get '/scripts/:id/:version/:name.meta.js', to: 'scripts#meta_js'
-
-  get '/scripts/:id.js', to: 'scripts#user_js'
-  get '/scripts/:id/:name.js', to: 'scripts#user_js'
-  get '/scripts/:id/:version/:name.js', to: 'scripts#user_js'
-
-  get '/scripts/:id.user.css', to: 'scripts#user_css'
-  get '/scripts/:id/:name.user.css', to: 'scripts#user_css'
-  get '/scripts/:id/:version/:name.user.css', to: 'scripts#user_css'
-
-  get '/scripts/:id.meta.css', to: 'scripts#meta_css'
-  get '/scripts/:id/:name.meta.css', to: 'scripts#meta_css'
-  get '/scripts/:id/:version/:name.meta.css', to: 'scripts#meta_css'
 
   get '404', to: 'home#routing_error'
 end
