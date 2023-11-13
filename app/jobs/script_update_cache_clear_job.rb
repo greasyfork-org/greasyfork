@@ -20,8 +20,8 @@ class ScriptUpdateCacheClearJob < ApplicationJob
                                       distribution_id:,
                                       invalidation_batch: {
                                         paths: {
-                                          quantity: 3,
-                                          items: ["/scripts/#{script_id}-*", "/scripts/#{script_id}.*", "/scripts/#{script_id}/*"],
+                                          quantity: 1,
+                                          items: ["/scripts/#{script_id}/*"],
                                         },
                                         caller_reference: "#{DateTime.now}-#{script_id}",
                                       },
