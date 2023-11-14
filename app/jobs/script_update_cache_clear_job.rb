@@ -15,7 +15,11 @@ class ScriptUpdateCacheClearJob < ApplicationJob
       region: Rails.application.secrets.aws[:region]
     )
 
-    Rails.application.secrets.aws[:script_cloudfront_distributions].each do |distribution_id|
+    script = Script.find(script_id)
+    distributions = [Rails.application.secrets.aws[:script_cloudfront_distributions][:greasyfork]]
+    distributions << Rails.application.secrets.aws[:script_cloudfront_distributions][:sleazyfork] if script.sensitive?
+
+    distributions.each do |distribution_id|
       resp = cf.create_invalidation({
                                       distribution_id:,
                                       invalidation_batch: {
