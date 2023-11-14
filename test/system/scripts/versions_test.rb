@@ -22,4 +22,9 @@ class VersionsTest < ApplicationSystemTestCase
     visit script_script_versions_path(script_id: script, locale: :en)
     assert_current_path script_script_versions_path(script_id: replacing_script, locale: :en)
   end
+
+  test 'script versions json' do
+    script = Script.find(2)
+    visit script_script_versions_path(script_id: script, locale: :en, format: :json)
+  end
 end

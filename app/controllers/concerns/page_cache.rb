@@ -8,7 +8,7 @@ module PageCache
 
     if page_key.nil? || current_user
       html, status = yield
-      render(html:, status: status || 200)
+      render(html:, status: status || 200) unless performed?
       return
     end
 
