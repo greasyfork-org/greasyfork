@@ -141,7 +141,7 @@
   <% if !script_version.script.new_record? %>
     <div class="form-section">
       <div class="form-control">
-        <label for="changelog"><%= t('activerecord.attributes.script.changelog') %></label> <span class="label-note"><%= t('scripts.changelog_note') %></span><br>
+        <label for="script_version_changelog"><%= t('activerecord.attributes.script.changelog') %></label> <span class="label-note"><%= t('scripts.changelog_note') %></span><br>
         <%= with_user_text_preview_for_form(form: s, markup_name: :changelog_markup) do
           s.text_area :changelog, rows: 5
         end %>

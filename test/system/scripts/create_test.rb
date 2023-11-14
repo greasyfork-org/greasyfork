@@ -1,6 +1,8 @@
 require 'application_system_test_case'
 
 class CreateTest < ApplicationSystemTestCase
+  include ActiveJob::TestHelper
+
   test 'script creation' do
     user = User.first
     login_as(user, scope: :user)
@@ -17,8 +19,10 @@ class CreateTest < ApplicationSystemTestCase
       var foo = 1;
     JS
     fill_in 'Code', with: code
-    click_button 'Post script'
-    assert_selector 'h2', text: 'A Test!'
+    assert_no_enqueued_jobs(only: ScriptUpdateCacheClearJob) do
+      click_button 'Post script'
+      assert_selector 'h2', text: 'A Test!'
+    end
     assert_includes(Script.last.users, user)
   end
 

@@ -1,6 +1,8 @@
 require 'application_system_test_case'
 
 class UpdateTest < ApplicationSystemTestCase
+  include ActiveJob::TestHelper
+
   test 'script update' do
     script = Script.find(1)
     login_as(script.users.first, scope: :user)
@@ -18,10 +20,25 @@ class UpdateTest < ApplicationSystemTestCase
     JS
     fill_in 'Code', with: code
     assert_reindexes do
-      click_button 'Post new version'
-      assert_selector 'h2', text: 'A Test Update!'
+      assert_enqueued_with(job: ScriptUpdateCacheClearJob) do
+        click_button 'Post new version'
+        assert_selector 'h2', text: 'A Test Update!'
+      end
     end
     assert_selector 'dd', text: '1.3'
+  end
+
+  test 'non-code update does not enqueue cache clear' do
+    script = Script.find(6)
+    login_as(script.users.first, scope: :user)
+    visit new_script_script_version_url(script_id: script.id)
+    fill_in 'Changelog', with: 'A change'
+    assert_reindexes do
+      assert_no_enqueued_jobs(only: ScriptUpdateCacheClearJob) do
+        click_button 'Post new version'
+        assert_content 'Daily installs'
+      end
+    end
   end
 
   test 'library update with meta block' do
