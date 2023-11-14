@@ -182,6 +182,7 @@ fr:
     listing_language_all: "Tout"
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
+    search_failed: Une erreur s'est produite lors du chargement de vos résultats. Certaines fonctionnalités de recherche peuvent ne pas fonctionner. Nous avons été informés du problème.
     import: "Importer des scripts"
     new: "Publiez un script que vous avez écrit"
     new_css: "Publiez un style que vous avez écrit"
@@ -243,6 +244,8 @@ fr:
     sync_type_3:
       name: Webhook
       description: il sera mis à jour lorsque vous enverrez des modifications à ce fichier sur votre référentiel
+    sync_webhook_info_without_sync: Après avoir configuré la synchronisation ci-dessus, si vous effectuez une synchronisation avec un référentiel comme GitHub, GitLab ou BitBucket, vous pouvez également %{webhook_info_link:configurer un webhook} pour mettre à jour automatiquement %{site_name} lorsque vous transférez vers votre référentiel.
+    sync_webhook_info_with_sync: Si vous effectuez une synchronisation avec un référentiel comme GitHub, GitLab ou BitBucket, vous pouvez %{webhook_info_link:configurer un webhook} pour mettre à jour automatiquement %{site_name} lorsque vous effectuez un transfert vers votre référentiel.
     sync_name_and_description: "%{name} - %{description}"
     sync_failed_info_html: "Dernière tentative de synchronisation le %{date}, interrompue par %{error}."
     sync_success_info_html: "La dernière synchronisation réussie a été faite le %{date}."
@@ -1108,6 +1111,11 @@ fr:
     load_cleaned_diff: "Charger le code nettoyé différent"
     loading_diff: "Chargement…"
     reported_user_activity_html: "%{user}(l'utilisateur signalé) a effectué:"
+    script_updated_since_report: "Ce script a été mis à jour depuis le dépôt du rapport."
+    script_previous_reports:
+      one: "Ce script a fait l'objet d' %{count} rapport précédemment confirmé ou corrigé."
+      many: "Ce script a déjà fait l'objet de %{count} rapports confirmés ou corrigés."
+      other: "Ce script a déjà fait l'objet de %{count} rapports confirmés ou corrigés."
   appeals:
     new:
       title: Appel de suppression de nouveau script
@@ -1336,6 +1344,7 @@ fr:
       invalid_meta: "a une directive méta invalide. Le format approprié est // @foo"
       no_executable: "ne contient aucun code exécutable"
       meta_too_long: "%{key} est trop long (le maximum est de %{count} caractères)"
+      style_missing_meta: "il manque une partie des métadonnées. Voir https://github.com/openstyles/stylus/wiki/Writing-UserCSS pour des exemples"
   opensearch:
     short_name: "%{site_name} recherche"
     description: "Recherche de scripts utilisateur sur %{site_name}."
