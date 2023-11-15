@@ -47,4 +47,8 @@ class ScriptTest < ActiveSupport::TestCase
     discussion.dup.update!(created_at: 1.week.ago)
     assert_not script.consecutive_bad_ratings?
   end
+
+  test 'code_path limits length' do
+    assert_operator Script.new(id: 0, language: :js, default_name: '好' * 1000).code_path.split('/').last.length, :<=, 255
+  end
 end

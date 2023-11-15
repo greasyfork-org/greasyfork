@@ -522,13 +522,16 @@ class Script < ApplicationRecord
     # 1. After installing, the browser console will associate any errors/logs for the script with the filename.
     # 2. Greasemonkey requires the URL ends with .user.js. If you include query params, it doesn't recognize it.
     #    https://github.com/greasemonkey/greasemonkey/issues/1683
-    filename = "#{CGI.escapeURIComponent(url_name)}#{extension}"
+    filename = CGI.escapeURIComponent(url_name)
 
-    return "/scripts/#{id}/#{version_id || newest_saved_script_version.id}/#{filename}" if library?
+    # Limit to 255 bytes so that when the request comes, we can create a filename for the cache
+    filename = filename.mb_chars.limit(255 - extension.mb_chars.length).to_s
 
-    return "/scripts/#{id}/#{version_id}/#{filename}" if version_id
+    return "/scripts/#{id}/#{version_id || newest_saved_script_version.id}/#{filename}#{extension}" if library?
 
-    "/scripts/#{id}/#{filename}"
+    return "/scripts/#{id}/#{version_id}/#{filename}#{extension}" if version_id
+
+    "/scripts/#{id}/#{filename}#{extension}"
   end
 
   def serializable_hash(options = nil)
