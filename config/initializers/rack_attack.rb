@@ -52,10 +52,8 @@ if Rails.env.production?
   end
 
   if Rails.application.config.ip_address_tracking
-    Rack::Attack.blocklist('super-discussioners') do |req|
-      Rack::Attack::Fail2Ban.filter("super-discussioners-#{req.ip}", maxretry: 10, findtime: 5.seconds, bantime: 5.minutes) do
-        req.path == '/en/discussions'
-      end
+    Rack::Attack.throttle('super-discussionners', limit: 3, period: 3, ban_time: 5.minutes) do |req|
+      req.ip if req.path == '/en/discussions'
     end
   end
 end
