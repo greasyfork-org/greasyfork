@@ -42,7 +42,7 @@ tr:
     library_instructions_html: "Bu script direkt olarak kurulamaz. Başka scriptler için bir kütüphanedir ve meta yönergeleri içerir %{code}"
     deleted_notice: "Bu script silinmiş."
     deleted_notice_with_reason: "Bu script %{report_link:this report}. nedeniyle silindi."
-    deleted_notice_with_related: "Baktığınız betik silinmiş, ama burada benzer betikleri bulabilirsiniz"
+    deleted_notice_with_related: "İlgilendiniz script artık yok, Ama isterseniz buna benzer script önerimiz:"
     deleted_notice_with_related_and_reason: "İstediğiniz script %{report_link:this report} nedeniyle silinmiştir, ancak buradan ilişkili diğer scriptleri bulabilirsiniz."
     deleted_undelete_notice_html: "Bu betik bir moderatör tarafından kilitlenmiş ve geri alınamaz.\nGerekçe: \"<i>%{delete_reason}</i>\"."
     deleted_locked_author_notice_html: "Bu betik bir moderatör tarafından %{report_link:this report} dolayısıyla silinmiş ve başkaları tarafından erişilemez. Sebebi ise: \"<i>%{delete_reason}</i>\". Lütfen %{code_rules_link: %{site_name} kurallarını} gözden geçirin. Eğer silinmenin bir hata olduğunu düşünüyorsanız, sorun hakkında %{appeal_link:başvuru yapabilirsiniz}. Lütfen betiği tekrar yüklemeyin; bu tip bir davranış %{site_name}'dan menedilmenize yol açabilir."
@@ -233,7 +233,7 @@ tr:
     sync_type_intro: "Script senkronize olacak:"
     sync_type_1:
       name: Manuel
-      description: yalnızca tetiklediğinizde güncellemeler kontrol edilecek.
+      description: Güncelemeler siz tetiklediniz zaman konttrol edilecek
     sync_type_2:
       name: Otomatik
       description: güncellemeler periyodik olarak kontrol edilecek
@@ -329,13 +329,13 @@ tr:
     rate_limited: "Son zamanlarda çok script paylaştınız. Lütfeb daha sonra tekrar deneyin."
     delayed: "Spam sorununundan dolayı, yeni hesaplar hemen script paylaşamayabilirler. Lütfen sonradan tekrar deneyiniz."
     new_script_notice:
-      title: "Ne yapmak istiyorsunuz?"
-      install_link_html: "Bir script <b>yüklemek ve kullanmak</b> istiyorum."
+      title: "Ne yapmaya çalışıyorsunuz?"
+      install_link_html: "Bir betik<b>yükleyip vede kulanmak</b> istiyorum."
       share_link_html: "Bir script <b>yazdım</b> ve bunu diğerleriyle <b>paylaşmak</b> istiyorum. "
     new_title:
-      js: "Yeni script paylaş"
+      js: "Yeni betik paylaş"
       css: "Yeni stil paylaş"
-    update_title: "%{script} scriptinin yeni sürümünü paylaş"
+    update_title: "Betikin yeni sürümünü paylaş"
     install_help_dialog:
       js:
         firefox: 'Bu betiği kurabilmeniz için %{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} ya da %{violentmonkey_link:Violentmonkey} gibi bir kullanıcı betiği eklentisini kurmanız gerekmektedir. '
@@ -360,21 +360,21 @@ tr:
       types:
         ads:
           title: Reklamlar
-          description_html: Bu script ziyaret ettiğiniz sitelere <b>reklam kodu yükler</b>.
+          description_html: Bu betik ziyaret ettiğiniz sitelere <b>reklam kodu yükler</b>.
         tracking:
           title: Hareket izleme
-          description_html: Bu script <b>internette gezinme hareketlerinizi izleyen</b> kod içeriyor.
+          description_html: Bu betik <b>internet dolaşımınızın izini takip eden</b> kod içeriyor.
         miner:
           title: Kripto madencilik
-          description_html: Bu script <b>cihazınızın kaynaklarını kullanarak kripto para madenciliği</b> yapan kod içeriyor.
+          description_html: Bu betik çalışırken <b>cihaz istemcilerini kulanarak bilgisayarınızda kripto madencilik</b> yapan bir kod içeriyor.
         referral-link:
           title: Referans bağlantıları
           description_html: Bu komut dosyası, örneğin bağlantıları yeniden yazarak veya bir yönlendirme veya bağlı kuruluş kodu içerecek şekilde kupon kodları sağlayarak yazara <b>komisyon kazandırır</b>.
         membership:
           title: Üyelik
-          description_html: Bu scriptin tüm özelliklerini kullanabilmek için <b>bir şeylere kayıt olmanız</b> gerekiyor. Örneğin bir gruba katılmak, bir kanala abone olmak veya bir sayfayı beğenmek...
+          description_html: Bu betiğin tüm özelliklerini kullanabilmek için <b>bir şey(ve şeylere) üye olmanızı istiyor</b>, yani bir gruba kattılmak bir yere abone olmak ve benzeri...
         payment:
-          title: Ücretli içerik
+          title: Ödeme
           description_html: Bu scriptin tüm özelliklerini kullanabilmek için <b>ödeme yapmanız</b> isteniyor. %{site_name} ödeme işleminden sorumlu değildir, bu sebeple ödediğiniz ücretin karşılığını alacağınızın veya ücret iadesi alabileceğinizin garantisini veremiyor.
       install_anyway: Script yükle
       cancel_install: İptal
@@ -1026,6 +1026,10 @@ tr:
         subject: "%{site_name} sitesindeki %{script_name} scriptiniz birisi tarafından raporlandı"
       report_upheld_offender:
         subject: "%{site_name} sitesindeki %{script_name} scriptiniz silinmiştir"
+      report_fixed_offender:
+        subject: "%{site_name} sayfasındaki %{script_name} adlı betik üzerindeki şikayetiniz çözümlendi olarak işaretlendi"
+      report_rebutted_reporter:
+        subject: "%{site_name}sayfasındaki %{script_name}  üzerindeki şikayetiniz cevaplanmıştır"
       report_upheld_reporter:
         subject: "%{site_name}  sitesindeki %{script_name} scriptine karşı verdiğiniz rapor onaylandı"
       report_script_deleted_reporter:
