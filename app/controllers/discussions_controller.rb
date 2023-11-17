@@ -16,7 +16,7 @@ class DiscussionsController < ApplicationController
 
   def index
     should_cache_page = current_user.nil? && request.format.html? && (params.keys - %w[locale controller action site page]).none?
-    cache_page(should_cache_page ? "discussion_index/#{params.values.join('/')}" : nil, ttl: 15.seconds) do
+    cache_page(should_cache_page ? "discussion_index/#{params.values.join('/')}" : nil, ttl: 5.minutes) do
       @discussions = Discussion
                      .includes(:poster, :script, :discussion_category, :stat_first_comment, :stat_last_replier)
                      .order(stat_last_reply_date: :desc)
