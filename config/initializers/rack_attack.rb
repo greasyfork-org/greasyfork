@@ -49,6 +49,10 @@ if Rails.env.production?
     Rack::Attack.throttle('super-feedbackers', limit: 3, period: 3) do |req|
       req.ip if req.path.ends_with?('/feedback') || req.path.ends_with?('/stats')
     end
+
+    Rack::Attack.throttle('super-discussionners', limit: 3, period: 3, ban_time: 5.minutes) do |req|
+      req.ip if req.path == '/en/discussions'
+    end
   end
 end
 
