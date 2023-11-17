@@ -22,7 +22,7 @@ set :default_env, {
 
 append :linked_files, 'config/database.yml', 'config/newrelic.yml', 'config/production.sphinx.conf', 'config/secrets.yml', 'config/skylight.yml', 'config/initializers/omniauth.rb', 'config/initializers/detect_language.rb', 'bin/git', 'config/application.yml'
 
-append :linked_dirs, '.bundle', 'log', 'tmp', 'public/data', 'public/cached_pages', 'db/sphinx/production'
+append :linked_dirs, '.bundle', 'log', 'tmp', 'public/data', 'public/cached_pages', 'public/cached_code', 'db/sphinx/production'
 
 namespace :deploy do
   after :published, 'thinking_sphinx:index'
