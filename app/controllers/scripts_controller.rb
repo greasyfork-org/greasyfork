@@ -851,9 +851,9 @@ class ScriptsController < ApplicationController
     base_path = Rails.application.config.cached_code_path.join(sleazy? ? 'sleazyfork' : 'greasyfork')
 
     base_path = if script_version_id_param == 0
-                  base_path.join('latest', "#{script_id}#{extension}")
+                  base_path.join('latest', 'scripts', "#{script_id}#{extension}")
                 else
-                  base_path.join('versioned', script_id.to_s, "#{script_version_id_param}#{extension}")
+                  base_path.join('versioned', 'scripts', script_id.to_s, "#{script_version_id_param}#{extension}")
                 end
 
     cache_path = base_path.cleanpath
