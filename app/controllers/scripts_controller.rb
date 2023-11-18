@@ -255,7 +255,7 @@ class ScriptsController < ApplicationController
         # - It's a .user.css extension (client's Accept header may not match path).
         cache_request(user_css_code) if script_version_id == 0 && request.fullpath.end_with?('.user.css')
 
-        cache_code_request(user_js_code, script_id:, script_version_id_param: script_version_id, extension: '.user.css')
+        cache_code_request(user_css_code, script_id:, script_version_id_param: script_version_id, extension: '.user.css')
 
         render body: user_css_code, content_type: 'text/css'
       end
