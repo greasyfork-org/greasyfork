@@ -49,6 +49,6 @@ class ScriptTest < ActiveSupport::TestCase
   end
 
   test 'code_path limits length' do
-    assert_operator Script.new(id: 0, language: :js, default_name: '好' * 1000).code_path.split('/').last.length, :<=, 255
+    assert_operator CGI.unescapeURIComponent(Script.new(id: 0, language: :js, default_name: '好' * 1000).code_path.split('/').last).length, :<=, 255
   end
 end
