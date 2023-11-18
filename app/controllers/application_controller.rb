@@ -186,7 +186,7 @@ class ApplicationController < ActionController::Base
   end
 
   def sleazy?
-    ['sleazyfork.org', 'sleazyfork.local', 'www.sleazyfork.org'].include?(request.domain)
+    ['sleazyfork.org', 'sleazyfork.local', 'www.sleazyfork.org', 'update-source.sleazyfork.org', 'update.sleazyfork.org'].include?(request.domain)
   end
 
   def site_name

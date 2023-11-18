@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   end
 
   # Script update paths
-  constraints subdomain: 'update-source' do
+  constraints subdomain: %w[update update-source] do
     get '/scripts/:id.user.js', to: 'scripts#user_js'
     get '/scripts/:id/:name.user.js', to: 'scripts#user_js'
     get '/scripts/:id/:version/:name.user.js', to: 'scripts#user_js'
