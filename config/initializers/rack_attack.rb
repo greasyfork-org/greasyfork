@@ -78,7 +78,7 @@ if Rails.env.production?
   if Rails.application.config.ip_address_tracking
     # If you exceed any of the specified throttles and then make another request, go to the penalty box. Requests while
     # in the penalty box don't count, so you'll be back after the ban is over.
-    THROTTLE_BANNER_THROTTLE_NAMES = ['super-discussionners', 'super-feedbackers'].freeze
+    THROTTLE_BANNER_THROTTLE_NAMES = %w[super-discussionners super-feedbackers].freeze
     Rack::Attack.blocklist('throttle-banner') do |req|
       # maxretry - how many requests after the throttle before they get banned
       # findtime - how far back should we look for requests for maxretry

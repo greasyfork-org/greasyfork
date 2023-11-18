@@ -214,6 +214,8 @@ class ScriptsController < ApplicationController
         # - It's a .user.js extension (client's Accept header may not match path).
         cache_request(user_js_code) if script_version_id == 0 && request.fullpath.end_with?('.user.js')
 
+        cache_code_request(user_js_code, script_id:, script_version_id_param: script_version_id, extension: '.user.js')
+
         render body: user_js_code, content_type: 'text/javascript'
       end
       format.user_script_meta do
@@ -252,6 +254,8 @@ class ScriptsController < ApplicationController
         # - It's not for a specific version (as the caching does not work with query params)
         # - It's a .user.css extension (client's Accept header may not match path).
         cache_request(user_css_code) if script_version_id == 0 && request.fullpath.end_with?('.user.css')
+
+        cache_code_request(user_js_code, script_id:, script_version_id_param: script_version_id, extension: '.user.css')
 
         render body: user_css_code, content_type: 'text/css'
       end
@@ -841,6 +845,26 @@ class ScriptsController < ApplicationController
     system('gzip', '--keep', cache_path.to_s) unless File.exist?("#{cache_path}.gz")
   end
 
+  def cache_code_request(response_body, script_id:, script_version_id_param:, extension:)
+    script_version_id_param = script_version_id_param.to_i
+
+    base_path = Rails.application.config.cached_code_path.join(sleazy? ? 'sleazyfork' : 'greasyfork')
+
+    base_path = if script_version_id_param == 0
+                  base_path.join('latest', "#{script_id}#{extension}")
+                else
+                  base_path.join('versioned', script_id.to_s, "#{script_version_id_param}#{extension}")
+                end
+
+    cache_path = base_path.cleanpath
+
+    FileUtils.mkdir_p(cache_path.parent)
+
+    File.write(cache_path, response_body) unless File.exist?(cache_path)
+    # nginx does not seem to automatically compress with try_files, so give it a .gz to use, but keep the original.
+    system('gzip', '--keep', cache_path.to_s) unless File.exist?("#{cache_path}.gz")
+  end
+
   def handle_wrong_url(resource, id_param_name)
     raise ActiveRecord::RecordNotFound if resource.nil?
     return true if handle_wrong_site(resource)
@@ -934,6 +958,8 @@ class ScriptsController < ApplicationController
     # - It's not for a specific version (as the caching does not work with query params)
     # - It's a .meta.js extension (client's Accept header may not match path).
     cache_request(meta_js_code) if !is_css && script_version_id == 0 && request.fullpath.end_with?('.meta.js')
+
+    cache_code_request(meta_js_code, script_id:, script_version_id_param: script_version_id, extension: is_css ? '.meta.css' : '.meta.js')
 
     render body: meta_js_code, content_type: is_css ? 'text/css' : 'text/x-userscript-meta'
   end
