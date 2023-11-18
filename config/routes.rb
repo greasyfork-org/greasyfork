@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   end
 
   # Script update paths
-  constraints subdomain: %w[update update-source] do
+  constraints subdomain: %w[update-source] do
     get '/scripts/:id.user.js', to: 'scripts#user_js'
     get '/scripts/:id/:name.user.js', to: 'scripts#user_js'
     get '/scripts/:id/:version/:name.user.js', to: 'scripts#user_js'
@@ -26,6 +26,23 @@ Rails.application.routes.draw do
     get '/scripts/:id.meta.css', to: 'scripts#meta_css'
     get '/scripts/:id/:name.meta.css', to: 'scripts#meta_css'
     get '/scripts/:id/:version/:name.meta.css', to: 'scripts#meta_css'
+  end
+
+  constraints subdomain: %w[update] do
+    get '/scripts/:id.user.js', to: 'scripts#user_js', id: /[0-9]+/
+    get '/scripts/:id/:version.user.js', to: 'scripts#user_js', id: /[0-9]+/, version: /[0-9]+/
+
+    get '/scripts/:id.meta.js', to: 'scripts#meta_js', id: /[0-9]+/
+    get '/scripts/:id/:version.meta.js', to: 'scripts#meta_js', id: /[0-9]+/, version: /[0-9]+/
+
+    get '/scripts/:id.js', to: 'scripts#user_js', id: /[0-9]+/
+    get '/scripts/:id/:version.js', to: 'scripts#user_js', id: /[0-9]+/, version: /[0-9]+/
+
+    get '/scripts/:id.user.css', to: 'scripts#user_css', id: /[0-9]+/
+    get '/scripts/:id/:version.user.css', to: 'scripts#user_css', id: /[0-9]+/, version: /[0-9]+/
+
+    get '/scripts/:id.meta.css', to: 'scripts#meta_css', id: /[0-9]+/
+    get '/scripts/:id/:version.meta.css', to: 'scripts#meta_css', id: /[0-9]+/, version: /[0-9]+/
   end
 
   get '/forum', to: redirect('/discussions'), status: 301
