@@ -1,3 +1,23 @@
+# https://github.com/rack/rack-attack/issues/210#issuecomment-786859918
+module Rack
+  module Attack
+    class Throttle
+      def exceeded?(request)
+        discriminator = discriminator_for(request)
+        return false unless discriminator
+
+        current_period = period_for(request)
+        current_limit = limit_for(request)
+
+        key = [Time.now.to_i / current_period, name, discriminator].join(':')
+        count = cache.read(key).to_i
+
+        count > current_limit
+      end
+    end
+  end
+end
+
 SIGNUP_PATH_PATTERN = Regexp.new("\\A/(#{Rails.application.config.available_locales.keys.map { |locale| Regexp.escape(locale) }.join('|')})/users\\z")
 LOGIN_PATH_PATTERN = Regexp.new("\\A/(#{Rails.application.config.available_locales.keys.map { |locale| Regexp.escape(locale) }.join('|')})/users/sign_in\\z")
 
@@ -46,14 +66,28 @@ if Rails.env.production?
   end
 
   if Rails.application.config.ip_address_tracking
-    Rack::Attack.throttle('super-feedbackers', limit: 3, period: 3) do |req|
+    Rack::Attack.throttle('super-feedbackers', limit: 5, period: 10.seconds) do |req|
       req.ip if req.path.ends_with?('/feedback') || req.path.ends_with?('/stats')
     end
   end
 
   if Rails.application.config.ip_address_tracking
-    Rack::Attack.throttle('super-discussionners', limit: 3, period: 3, ban_time: 5.minutes) do |req|
+    Rack::Attack.throttle('super-discussionners', limit: 5, period: 10.seconds) do |req|
       req.ip if req.path == '/en/discussions'
+    end
+  end
+
+  if Rails.application.config.ip_address_tracking
+    # If you exceed any of the specified throttles and then make another request, go to the penalty box. Requests while
+    # in the penalty box don't count, so you'll be back after the ban is over.
+    THROTTLE_BANNER_THROTTLE_NAMES = ['super-discussionners', 'super-feedbackers'].freeze
+    Rack::Attack.blocklist('throttle-banner') do |req|
+      # maxretry - how many requests after the throttle before they get banned
+      # findtime - how far back should we look for requests for maxretry
+      # bantime - how long to ban
+      Rack::Attack::Fail2Ban.filter("throttled/#{req.ip}", maxretry: 0, findtime: 1.second, bantime: 1.minute) do
+        THROTTLE_BANNER_THROTTLE_NAMES.any? { |name| Rack::Attack.throttles[name]&.exceeded?(req) }
+      end
     end
   end
 end
