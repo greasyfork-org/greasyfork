@@ -214,7 +214,7 @@ class ScriptsController < ApplicationController
         # - It's a .user.js extension (client's Accept header may not match path).
         cache_request(user_js_code) if script_version_id == 0 && request.fullpath.end_with?('.user.js')
 
-        cache_code_request(user_js_code, script_id:, script_version_id_param: script_version_id, extension: '.user.js')
+        cache_code_request(user_js_code, script_id:, script_version_id_param: script_version_id, extension: script.library? ? '.js' : '.user.js')
 
         render body: user_js_code, content_type: 'text/javascript'
       end
