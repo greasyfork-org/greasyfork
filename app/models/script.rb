@@ -234,13 +234,16 @@ class Script < ApplicationRecord
   # Check saved_change_to to determine whether to run, but have to run after_commit for the changes to be visible to the
   # Job.
   after_update do |script|
-    @_code_changed = script.saved_change_to_code_updated_at? && !Rails.env.development?
+    @_code_changed = script.saved_change_to_code_updated_at?
   end
 
   after_update_commit do |script|
     if @_code_changed
-      ScriptDuplicateCheckerJob.perform_later_unless_will_run(script.id)
-      ScriptUpdateCacheClearJob.perform_later(script.id)
+      unless Rails.env.development?
+        ScriptDuplicateCheckerJob.perform_later_unless_will_run(script.id)
+        ScriptUpdateCacheClearJob.perform_later(script.id)
+      end
+      clear_latest_cached_code
     end
     @_code_changed = false
   end
@@ -741,5 +744,15 @@ class Script < ApplicationRecord
     end
     # Anything left in the search array, mark for destruction
     existing_children.each(&:mark_for_destruction)
+  end
+
+  def clear_latest_cached_code
+    %w[greasyfork sleazyfork].each do |site_name|
+      Dir.glob(Rails.application.config.cached_code_path.join(site_name, 'latest', 'scripts', "#{id}.*")).each do |path|
+        File.delete(path)
+      rescue Errno::ENOENT
+        # Already gone
+      end
+    end
   end
 end
