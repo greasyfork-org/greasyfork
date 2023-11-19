@@ -20,10 +20,10 @@ class UpdateTest < ApplicationSystemTestCase
     JS
     fill_in 'Code', with: code
     assert_reindexes do
-      assert_enqueued_with(job: ScriptUpdateCacheClearJob) do
-        click_button 'Post new version'
-        assert_selector 'h2', text: 'A Test Update!'
-      end
+      # assert_enqueued_with(job: ScriptUpdateCacheClearJob) do
+      click_button 'Post new version'
+      assert_selector 'h2', text: 'A Test Update!'
+      # end
     end
     assert_selector 'dd', text: '1.3'
   end
@@ -34,10 +34,10 @@ class UpdateTest < ApplicationSystemTestCase
     visit new_script_script_version_url(script_id: script.id)
     fill_in 'Changelog', with: 'A change'
     assert_reindexes do
-      assert_no_enqueued_jobs(only: ScriptUpdateCacheClearJob) do
-        click_button 'Post new version'
-        assert_content 'Daily installs'
-      end
+      # assert_no_enqueued_jobs(only: ScriptUpdateCacheClearJob) do
+      click_button 'Post new version'
+      assert_content 'Daily installs'
+      # end
     end
   end
 

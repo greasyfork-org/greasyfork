@@ -241,7 +241,7 @@ class Script < ApplicationRecord
     if @_code_changed
       unless Rails.env.development?
         ScriptDuplicateCheckerJob.perform_later_unless_will_run(script.id)
-        ScriptUpdateCacheClearJob.perform_later(script.id)
+        # ScriptUpdateCacheClearJob.perform_later(script.id)
       end
       clear_latest_cached_code
     end
