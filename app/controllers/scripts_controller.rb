@@ -191,6 +191,7 @@ class ScriptsController < ApplicationController
           return
         end
 
+        force_js = false
         user_js_code = if script.delete_type_blanked?
                          script_version.generate_blanked_code
                        elsif script.deleted?
@@ -201,20 +202,22 @@ class ScriptsController < ApplicationController
                            head :not_found
                            return
                          end
+                         force_js = true
                          CssToJsConverter.convert(script_version.rewritten_code)
                        else
                          script_version.rewritten_code
                        end
 
         # If the request specifies a specific version, the code will never change, so inform the manager not to check for updates.
-        user_js_code = script_version.parser_class.inject_meta(user_js_code, downloadURL: 'none') if params[:version].present? && !script.library?
+        user_js_code = (force_js ? JsParser : script_version.parser_class).inject_meta(user_js_code, downloadURL: 'none') if params[:version].present? && !script.library?
 
         # Only cache if:
         # - It's not for a specific version (as the caching does not work with query params)
         # - It's a .user.js extension (client's Accept header may not match path).
         cache_request(user_js_code) if script_version_id == 0 && request.fullpath.end_with?('.user.js')
 
-        cache_code_request(user_js_code, script_id:, script_version_id_param: script_version_id, extension: script.library? ? '.js' : '.user.js')
+        code_time = (script_version_id == 0) ? script.code_updated_at : script_version.created_at
+        cache_code_request(user_js_code, script_id:, script_version_id_param: script_version_id, extension: script.library? ? '.js' : '.user.js', code_updated_at: code_time)
 
         render body: user_js_code, content_type: 'text/javascript'
       end
@@ -255,7 +258,8 @@ class ScriptsController < ApplicationController
         # - It's a .user.css extension (client's Accept header may not match path).
         cache_request(user_css_code) if script_version_id == 0 && request.fullpath.end_with?('.user.css')
 
-        cache_code_request(user_css_code, script_id:, script_version_id_param: script_version_id, extension: '.user.css')
+        code_time = (script_version_id == 0) ? script.code_updated_at : script_version.created_at
+        cache_code_request(user_css_code, script_id:, script_version_id_param: script_version_id, extension: '.user.css', code_updated_at: code_time)
 
         render body: user_css_code, content_type: 'text/css'
       end
@@ -845,7 +849,7 @@ class ScriptsController < ApplicationController
     system('gzip', '--keep', cache_path.to_s) unless File.exist?("#{cache_path}.gz")
   end
 
-  def cache_code_request(response_body, script_id:, script_version_id_param:, extension:)
+  def cache_code_request(response_body, script_id:, script_version_id_param:, extension:, code_updated_at:)
     script_version_id_param = script_version_id_param.to_i
 
     base_path = Rails.application.config.cached_code_path.join(sleazy? ? 'sleazyfork' : 'greasyfork')
@@ -860,9 +864,16 @@ class ScriptsController < ApplicationController
 
     FileUtils.mkdir_p(cache_path.parent)
 
-    File.write(cache_path, response_body) unless File.exist?(cache_path)
+    unless File.exist?(cache_path)
+      File.write(cache_path, response_body)
+      File.utime(code_updated_at.to_time, code_updated_at.to_time, cache_path)
+    end
+
     # nginx does not seem to automatically compress with try_files, so give it a .gz to use, but keep the original.
-    system('gzip', '--keep', cache_path.to_s) unless File.exist?("#{cache_path}.gz")
+    return if File.exist?("#{cache_path}.gz")
+
+    system('gzip', '--keep', cache_path.to_s)
+    File.utime(code_updated_at.to_time, code_updated_at.to_time, "#{cache_path}.gz")
   end
 
   def handle_wrong_url(resource, id_param_name)
@@ -893,7 +904,8 @@ class ScriptsController < ApplicationController
                 scripts.language,
                 delete_type,
                 scripts.replaced_by_script_id,
-                script_codes.code
+                script_codes.code,
+                script_versions.created_at
               FROM scripts
               JOIN script_versions on script_versions.script_id = scripts.id
               JOIN script_codes on script_versions.rewritten_script_code_id = script_codes.id
@@ -908,7 +920,8 @@ class ScriptsController < ApplicationController
                 scripts.language,
                 delete_type,
                 scripts.replaced_by_script_id,
-                script_codes.code
+                script_codes.code,
+                scripts.code_updated_at
               FROM scripts
               JOIN script_versions on script_versions.script_id = scripts.id
               JOIN script_codes on script_versions.rewritten_script_code_id = script_codes.id
@@ -922,7 +935,7 @@ class ScriptsController < ApplicationController
 
     raise ActiveRecord::RecordNotFound if script_info.nil?
 
-    Struct.new(:language, :delete_type, :replaced_by_script_id, :code).new(*script_info.values)
+    Struct.new(:language, :delete_type, :replaced_by_script_id, :code, :code_updated_at).new(*script_info.values)
   end
 
   def handle_meta_request(language)
@@ -959,7 +972,7 @@ class ScriptsController < ApplicationController
     # - It's a .meta.js extension (client's Accept header may not match path).
     cache_request(meta_js_code) if !is_css && script_version_id == 0 && request.fullpath.end_with?('.meta.js')
 
-    cache_code_request(meta_js_code, script_id:, script_version_id_param: script_version_id, extension: is_css ? '.meta.css' : '.meta.js')
+    cache_code_request(meta_js_code, script_id:, script_version_id_param: script_version_id, extension: is_css ? '.meta.css' : '.meta.js', code_updated_at: script_info.code_updated_at)
 
     render body: meta_js_code, content_type: is_css ? 'text/css' : 'text/x-userscript-meta'
   end

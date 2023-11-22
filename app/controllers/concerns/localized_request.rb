@@ -21,7 +21,7 @@ module LocalizedRequest
 
     # Don't want to redirect on POSTs and API stuff, even if they're missing a locale
     if !(request.get? || request.head?) ||
-       %w[omniauth_callback omniauth_failure sso webhook user_js meta_js user_css].include?(params[:action]) ||
+       %w[omniauth_callback omniauth_failure sso webhook user_js meta_js user_css meta_css].include?(params[:action]) ||
        action_name == 'routing_error' ||
        %w[js json jsonp].include?(params[:format])
       params[:locale] = params[:locale] || 'en'
