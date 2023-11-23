@@ -13,7 +13,7 @@ class DiscussionSpamCheckJob < ApplicationJob
     # WeChat spam
     # return false unless discussion.first_comment.text.match?(/\p{Han}/) && discussion.first_comment.text.match?(/[0-9]{5,}\z/)
 
-    return false unless discussion.first_comment.text.include?('yxd02040608')
+    return false unless discussion.first_comment.text.include?('yxd02040608') || discussion.first_comment.text.include?('zrnq')
 
     discussion.update(review_reason: Discussion::REVIEW_REASON_RAINMAN)
     Report.create!(item: discussion, auto_reporter: 'rainman', reason: Report::REASON_SPAM)
