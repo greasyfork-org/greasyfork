@@ -219,6 +219,7 @@ class ScriptsController < ApplicationController
         code_time = (script_version_id == 0) ? script.code_updated_at : script_version.created_at
         cache_code_request(user_js_code, script_id:, script_version_id_param: script_version_id, extension: script.library? ? '.js' : '.user.js', code_updated_at: code_time)
 
+        headers['Last-Modified'] = code_time.httpdate
         render body: user_js_code, content_type: 'text/javascript'
       end
       format.user_script_meta do
@@ -261,6 +262,7 @@ class ScriptsController < ApplicationController
         code_time = (script_version_id == 0) ? script.code_updated_at : script_version.created_at
         cache_code_request(user_css_code, script_id:, script_version_id_param: script_version_id, extension: '.user.css', code_updated_at: code_time)
 
+        headers['Last-Modified'] = code_time.httpdate
         render body: user_css_code, content_type: 'text/css'
       end
     end
@@ -974,6 +976,7 @@ class ScriptsController < ApplicationController
 
     cache_code_request(meta_js_code, script_id:, script_version_id_param: script_version_id, extension: is_css ? '.meta.css' : '.meta.js', code_updated_at: script_info.code_updated_at)
 
+    headers['Last-Modified'] = script_info.code_updated_at.httpdate
     render body: meta_js_code, content_type: is_css ? 'text/css' : 'text/x-userscript-meta'
   end
 
