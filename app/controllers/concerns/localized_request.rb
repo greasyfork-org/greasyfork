@@ -101,6 +101,10 @@ module LocalizedRequest
     return [top_displayable_locale, top_undisplayable_locale]
   end
 
+  def detect_locale_code
+    detect_locale(current_user, request.headers['Accept-Language']).first.code
+  end
+
   # Returns an array of locales for the passed Accept-Language value
   def parse_accept_language(value)
     return [] if value.nil?
