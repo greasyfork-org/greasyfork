@@ -84,7 +84,7 @@ Rails.application.configure do
   routes.default_url_options[:protocol] = 'https'
 
   config.enable_detect_locale = true
-  config.log_cache_misses = true
+  config.log_cache_misses = false
 
   config.eager_load_namespaces << I18n
 
