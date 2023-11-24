@@ -10,6 +10,7 @@ class DiscussionsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :subscribe, :unsubscribe]
   before_action :greasy_only, only: :new
   before_action :check_ip, only: :create
+  skip_before_action :set_locale, only: [:old_redirect]
 
   layout 'discussions', only: :index
   layout 'application', only: [:new, :create]
