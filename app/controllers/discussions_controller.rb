@@ -51,6 +51,7 @@ class DiscussionsController < ApplicationController
   def show
     # Allow mods and the poster to see discussions under review.
     @discussion = discussion_scope(permissive: true).find(params[:id])
+    @canonical_params = [:id, :script_id, :category, :page, :per_page]
 
     if @discussion.script
       return if handle_publicly_deleted(@discussion.script)
