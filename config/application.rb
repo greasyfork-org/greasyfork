@@ -41,8 +41,6 @@ module Greasyfork
 
     config.active_record.observers = :script_observer
 
-    config.active_record.schema_format = :sql
-
     config.exceptions_app = routes
 
     config.active_storage.variable_content_types << 'image/webp'
