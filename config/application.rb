@@ -43,8 +43,6 @@ module Greasyfork
 
     config.exceptions_app = routes
 
-    config.active_storage.variable_content_types << 'image/webp'
-
     config.ip_address_tracking = true
   end
 end
