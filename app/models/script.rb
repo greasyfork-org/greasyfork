@@ -499,9 +499,9 @@ class Script < ApplicationRecord
   end
 
   def update_host(sleazy: false)
-    return Rails.env.production? ? 'update.sleazyfork.org' : 'update-source.sleazyfork.local' if sleazy && sensitive
+    return Rails.env.production? ? 'update.sleazyfork.org' : 'update.sleazyfork.local' if sleazy && sensitive
 
-    Rails.env.production? ? 'update.greasyfork.org' : 'update-source.greasyfork.local'
+    Rails.env.production? ? 'update.greasyfork.org' : 'update.greasyfork.local'
   end
 
   def url(locale: nil, sleazy: false)

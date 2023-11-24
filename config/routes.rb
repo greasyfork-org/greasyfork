@@ -5,29 +5,6 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
 
-  # Script update paths
-  constraints subdomain: %w[update-source] do
-    get '/scripts/:id.user.js', to: 'scripts#user_js'
-    get '/scripts/:id/:name.user.js', to: 'scripts#user_js'
-    get '/scripts/:id/:version/:name.user.js', to: 'scripts#user_js'
-
-    get '/scripts/:id.meta.js', to: 'scripts#meta_js'
-    get '/scripts/:id/:name.meta.js', to: 'scripts#meta_js'
-    get '/scripts/:id/:version/:name.meta.js', to: 'scripts#meta_js'
-
-    get '/scripts/:id.js', to: 'scripts#user_js'
-    get '/scripts/:id/:name.js', to: 'scripts#user_js'
-    get '/scripts/:id/:version/:name.js', to: 'scripts#user_js'
-
-    get '/scripts/:id.user.css', to: 'scripts#user_css'
-    get '/scripts/:id/:name.user.css', to: 'scripts#user_css'
-    get '/scripts/:id/:version/:name.user.css', to: 'scripts#user_css'
-
-    get '/scripts/:id.meta.css', to: 'scripts#meta_css'
-    get '/scripts/:id/:name.meta.css', to: 'scripts#meta_css'
-    get '/scripts/:id/:version/:name.meta.css', to: 'scripts#meta_css'
-  end
-
   constraints subdomain: %w[update] do
     get '/scripts/:id.user.js', to: 'scripts#user_js', id: /[0-9]+/
     get '/scripts/:id/:version.user.js', to: 'scripts#user_js', id: /[0-9]+/, version: /[0-9]+/
