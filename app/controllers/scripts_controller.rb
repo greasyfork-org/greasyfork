@@ -191,7 +191,6 @@ class ScriptsController < ApplicationController
           return
         end
 
-        force_js = false
         user_js_code = if script.delete_type_blanked?
                          script_version.generate_blanked_code
                        elsif script.deleted?
@@ -202,14 +201,25 @@ class ScriptsController < ApplicationController
                            head :not_found
                            return
                          end
-                         force_js = true
                          CssToJsConverter.convert(script_version.rewritten_code)
                        else
                          script_version.rewritten_code
                        end
 
-        # If the request specifies a specific version, the code will never change, so inform the manager not to check for updates.
-        user_js_code = (force_js ? JsParser : script_version.parser_class).inject_meta(user_js_code, downloadURL: 'none') if params[:version].present? && !script.library?
+        unless script.library?
+          meta_changes = if script_version_id == 0
+                           # Set canonical update URLs.
+                           {
+                             downloadURL: script.code_url(sleazy: sleazy?, format_override: 'js'),
+                             updateURL: script.code_url(sleazy: sleazy?, format_override: 'meta.js'),
+                           }
+                         else
+                           # If the request specifies a specific version, the code will never change, so inform the manager not to check for updates.
+                           { downloadURL: 'none' }
+                         end
+
+          user_js_code = JsParser.inject_meta(user_js_code, meta_changes)
+        end
 
         # Only cache if:
         # - It's not for a specific version (as the caching does not work with query params)
@@ -251,8 +261,20 @@ class ScriptsController < ApplicationController
                           script_version.rewritten_code
                         end
 
-        # If the request specifies a specific version, the code will never change, so inform the manager not to check for updates.
-        user_css_code = script_version.parser_class.inject_meta(user_css_code, downloadURL: 'none') if params[:version].present? && !script.library?
+        unless script.library?
+          meta_changes = if script_version_id == 0
+                           # Set canonical update URLs.
+                           {
+                             downloadURL: script.code_url(sleazy: sleazy?, format_override: 'css'),
+                             updateURL: script.code_url(sleazy: sleazy?, format_override: 'meta.css'),
+                           }
+                         else
+                           # If the request specifies a specific version, the code will never change, so inform the manager not to check for updates.
+                           { downloadURL: 'none' }
+                         end
+
+          user_css_code = script_version.parser_class.inject_meta(user_css_code, meta_changes)
+        end
 
         # Only cache if:
         # - It's not for a specific version (as the caching does not work with query params)
