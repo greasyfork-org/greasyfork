@@ -29,5 +29,15 @@ module ScriptVersionJs
         end
       end
     end
+
+    validate on: :create do |record|
+      next unless record.js?
+
+      resources = meta['resource'] || []
+      allowed_resource_regex = URI::DEFAULT_PARSER.make_regexp(%w[http https data])
+      resources.map { |resource| [resource, resource.split(/\s+/, 2).last] }.reject { |_full_value, url| allowed_resource_regex.match?(url) || url.starts_with?('//') }.each do |full_value, _url|
+        record.errors.add(:code, I18n.t('errors.messages.script_disallowed_resource', code: "@resource #{full_value}"))
+      end
+    end
   end
 end
