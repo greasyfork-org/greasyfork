@@ -43,9 +43,9 @@ module Webhooks
 
     if changed_files.empty?
       if request.headers['X-GitHub-Event'] == 'release'
-        render json: { message: 'No scripts found for this release.' }
+        render json: { 'updated_scripts' => [], 'updated_failed' => [], message: 'No scripts found for this release.' }
       else
-        render json: { message: 'No commits found in this push.' }
+        render json: { 'updated_scripts' => [], 'updated_failed' => [], message: 'No commits found in this push.' }
       end
       return nil, nil
     end
@@ -132,13 +132,18 @@ module Webhooks
     changed_files = changed_files.select { |_filename, info| info[:scripts].any? || info[:script_attributes].any? }
 
     if changed_files.empty?
-      render json: { updated_scripts: [], updated_failed: [] }
+      render json: { 'updated_scripts' => [], 'updated_failed' => [], message: 'No scripts found.' }
       return
     end
 
     # Get the contents of the files.
-    Git.get_contents(repo_url, changed_files.transform_values { |info| info[:commit] || info[:ref] }) do |file_path, _commit, content|
-      changed_files[file_path][:content] = content
+    begin
+      Git.get_contents(repo_url, changed_files.transform_values { |info| info[:commit] || info[:ref] }) do |file_path, _commit, content|
+        changed_files[file_path][:content] = content
+      end
+    rescue Git::Exception => e
+      render json: { 'updated_scripts' => [], 'updated_failed' => changed_files.values.pluck(:scripts).flatten.map(&:url), message: "Could not pull contents from git: #{e}" }
+      return
     end
 
     # Apply the new contents to the DB.

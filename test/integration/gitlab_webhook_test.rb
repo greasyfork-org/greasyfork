@@ -153,7 +153,7 @@ class GitlabWebhookTest < ActionDispatch::IntegrationTest
     Script.find_by(sync_identifier: 'https://github.com/JasonBarnabe/webhooktest/raw/master/test.user.js').update!(sync_identifier: nil)
     push_webhook_request(user)
     assert_equal '200', response.code
-    assert_equal({ 'updated_scripts' => [], 'updated_failed' => [] }, response.parsed_body)
+    assert_equal({ 'updated_scripts' => [], 'updated_failed' => [], 'message' => 'No scripts found.' }, response.parsed_body)
   end
 
   def test_webhook_change

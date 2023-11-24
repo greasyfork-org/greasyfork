@@ -39,7 +39,7 @@ class GithubWebhookTest < ActionDispatch::IntegrationTest
     Script.find_by(sync_identifier: 'https://github.com/JasonBarnabe/webhooktest/raw/master/test.user.js').update!(sync_identifier: nil)
     push_webhook_request(user)
     assert_equal '200', response.code
-    assert_equal({ 'updated_scripts' => [], 'updated_failed' => [] }, response.parsed_body)
+    assert_equal({ 'updated_scripts' => [], 'updated_failed' => [], 'message' => 'No scripts found.' }, response.parsed_body)
   end
 
   def test_webhook_push
@@ -106,6 +106,193 @@ class GithubWebhookTest < ActionDispatch::IntegrationTest
     user = User.find(1)
     release_webhook_request(user)
     assert_equal '200', response.code
-    assert_equal({ 'message' => 'No scripts found for this release.' }, response.parsed_body)
+    assert_equal({ 'updated_scripts' => [], 'updated_failed' => [], 'message' => 'No scripts found for this release.' }, response.parsed_body)
+  end
+
+  def test_webhook_release_file_not_in_git
+    body = <<~JSON
+      {
+        "action": "published",
+        "release": {
+          "url": "https://api.github.com/repos/a1mersnow/aliyundrive-rename/releases/130333374",
+          "assets_url": "https://api.github.com/repos/a1mersnow/aliyundrive-rename/releases/130333374/assets",
+          "upload_url": "https://uploads.github.com/repos/a1mersnow/aliyundrive-rename/releases/130333374/assets{?name,label}",
+          "html_url": "https://github.com/a1mersnow/aliyundrive-rename/releases/tag/0.2.5",
+          "id": 130333374,
+          "author": {
+            "login": "github-actions[bot]",
+            "id": 41898282,
+            "node_id": "MDM6Qm90NDE4OTgyODI=",
+            "avatar_url": "https://avatars.githubusercontent.com/in/15368?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/github-actions%5Bbot%5D",
+            "html_url": "https://github.com/apps/github-actions",
+            "followers_url": "https://api.github.com/users/github-actions%5Bbot%5D/followers",
+            "following_url": "https://api.github.com/users/github-actions%5Bbot%5D/following{/other_user}",
+            "gists_url": "https://api.github.com/users/github-actions%5Bbot%5D/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/github-actions%5Bbot%5D/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/github-actions%5Bbot%5D/subscriptions",
+            "organizations_url": "https://api.github.com/users/github-actions%5Bbot%5D/orgs",
+            "repos_url": "https://api.github.com/users/github-actions%5Bbot%5D/repos",
+            "events_url": "https://api.github.com/users/github-actions%5Bbot%5D/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/github-actions%5Bbot%5D/received_events",
+            "type": "Bot",
+            "site_admin": false
+          },
+          "node_id": "RE_kwDOKqzSoc4HxLq-",
+          "tag_name": "0.2.5",
+          "target_commitish": "main",
+          "name": "0.2.5",
+          "draft": false,
+          "prerelease": false,
+          "created_at": "2023-11-20T11:54:49Z",
+          "published_at": "2023-11-20T11:55:35Z",
+          "assets": [
+
+          ],
+          "tarball_url": "https://api.github.com/repos/a1mersnow/aliyundrive-rename/tarball/0.2.5",
+          "zipball_url": "https://api.github.com/repos/a1mersnow/aliyundrive-rename/zipball/0.2.5",
+          "body": ""
+        },
+        "repository": {
+          "id": 715969185,
+          "node_id": "R_kgDOKqzSoQ",
+          "name": "aliyundrive-rename",
+          "full_name": "a1mersnow/aliyundrive-rename",
+          "private": false,
+          "owner": {
+            "login": "a1mersnow",
+            "id": 13799160,
+            "node_id": "MDQ6VXNlcjEzNzk5MTYw",
+            "avatar_url": "https://avatars.githubusercontent.com/u/13799160?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/a1mersnow",
+            "html_url": "https://github.com/a1mersnow",
+            "followers_url": "https://api.github.com/users/a1mersnow/followers",
+            "following_url": "https://api.github.com/users/a1mersnow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/a1mersnow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/a1mersnow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/a1mersnow/subscriptions",
+            "organizations_url": "https://api.github.com/users/a1mersnow/orgs",
+            "repos_url": "https://api.github.com/users/a1mersnow/repos",
+            "events_url": "https://api.github.com/users/a1mersnow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/a1mersnow/received_events",
+            "type": "User",
+            "site_admin": false
+          },
+          "html_url": "https://github.com/a1mersnow/aliyundrive-rename",
+          "description": "Aliyun Drive batch rename Tampermonkey script",
+          "fork": false,
+          "url": "https://api.github.com/repos/a1mersnow/aliyundrive-rename",
+          "forks_url": "https://api.github.com/repos/a1mersnow/aliyundrive-rename/forks",
+          "keys_url": "https://api.github.com/repos/a1mersnow/aliyundrive-rename/keys{/key_id}",
+          "collaborators_url": "https://api.github.com/repos/a1mersnow/aliyundrive-rename/collaborators{/collaborator}",
+          "teams_url": "https://api.github.com/repos/a1mersnow/aliyundrive-rename/teams",
+          "hooks_url": "https://api.github.com/repos/a1mersnow/aliyundrive-rename/hooks",
+          "issue_events_url": "https://api.github.com/repos/a1mersnow/aliyundrive-rename/issues/events{/number}",
+          "events_url": "https://api.github.com/repos/a1mersnow/aliyundrive-rename/events",
+          "assignees_url": "https://api.github.com/repos/a1mersnow/aliyundrive-rename/assignees{/user}",
+          "branches_url": "https://api.github.com/repos/a1mersnow/aliyundrive-rename/branches{/branch}",
+          "tags_url": "https://api.github.com/repos/a1mersnow/aliyundrive-rename/tags",
+          "blobs_url": "https://api.github.com/repos/a1mersnow/aliyundrive-rename/git/blobs{/sha}",
+          "git_tags_url": "https://api.github.com/repos/a1mersnow/aliyundrive-rename/git/tags{/sha}",
+          "git_refs_url": "https://api.github.com/repos/a1mersnow/aliyundrive-rename/git/refs{/sha}",
+          "trees_url": "https://api.github.com/repos/a1mersnow/aliyundrive-rename/git/trees{/sha}",
+          "statuses_url": "https://api.github.com/repos/a1mersnow/aliyundrive-rename/statuses/{sha}",
+          "languages_url": "https://api.github.com/repos/a1mersnow/aliyundrive-rename/languages",
+          "stargazers_url": "https://api.github.com/repos/a1mersnow/aliyundrive-rename/stargazers",
+          "contributors_url": "https://api.github.com/repos/a1mersnow/aliyundrive-rename/contributors",
+          "subscribers_url": "https://api.github.com/repos/a1mersnow/aliyundrive-rename/subscribers",
+          "subscription_url": "https://api.github.com/repos/a1mersnow/aliyundrive-rename/subscription",
+          "commits_url": "https://api.github.com/repos/a1mersnow/aliyundrive-rename/commits{/sha}",
+          "git_commits_url": "https://api.github.com/repos/a1mersnow/aliyundrive-rename/git/commits{/sha}",
+          "comments_url": "https://api.github.com/repos/a1mersnow/aliyundrive-rename/comments{/number}",
+          "issue_comment_url": "https://api.github.com/repos/a1mersnow/aliyundrive-rename/issues/comments{/number}",
+          "contents_url": "https://api.github.com/repos/a1mersnow/aliyundrive-rename/contents/{+path}",
+          "compare_url": "https://api.github.com/repos/a1mersnow/aliyundrive-rename/compare/{base}...{head}",
+          "merges_url": "https://api.github.com/repos/a1mersnow/aliyundrive-rename/merges",
+          "archive_url": "https://api.github.com/repos/a1mersnow/aliyundrive-rename/{archive_format}{/ref}",
+          "downloads_url": "https://api.github.com/repos/a1mersnow/aliyundrive-rename/downloads",
+          "issues_url": "https://api.github.com/repos/a1mersnow/aliyundrive-rename/issues{/number}",
+          "pulls_url": "https://api.github.com/repos/a1mersnow/aliyundrive-rename/pulls{/number}",
+          "milestones_url": "https://api.github.com/repos/a1mersnow/aliyundrive-rename/milestones{/number}",
+          "notifications_url": "https://api.github.com/repos/a1mersnow/aliyundrive-rename/notifications{?since,all,participating}",
+          "labels_url": "https://api.github.com/repos/a1mersnow/aliyundrive-rename/labels{/name}",
+          "releases_url": "https://api.github.com/repos/a1mersnow/aliyundrive-rename/releases{/id}",
+          "deployments_url": "https://api.github.com/repos/a1mersnow/aliyundrive-rename/deployments",
+          "created_at": "2023-11-08T07:50:03Z",
+          "updated_at": "2023-11-19T02:18:27Z",
+          "pushed_at": "2023-11-20T11:55:09Z",
+          "git_url": "git://github.com/a1mersnow/aliyundrive-rename.git",
+          "ssh_url": "git@github.com:a1mersnow/aliyundrive-rename.git",
+          "clone_url": "https://github.com/a1mersnow/aliyundrive-rename.git",
+          "svn_url": "https://github.com/a1mersnow/aliyundrive-rename",
+          "homepage": null,
+          "size": 1446,
+          "stargazers_count": 1,
+          "watchers_count": 1,
+          "language": "TypeScript",
+          "has_issues": true,
+          "has_projects": true,
+          "has_downloads": true,
+          "has_wiki": true,
+          "has_pages": false,
+          "has_discussions": false,
+          "forks_count": 0,
+          "mirror_url": null,
+          "archived": false,
+          "disabled": false,
+          "open_issues_count": 0,
+          "license": {
+            "key": "mit",
+            "name": "MIT License",
+            "spdx_id": "MIT",
+            "url": "https://api.github.com/licenses/mit",
+            "node_id": "MDc6TGljZW5zZTEz"
+          },
+          "allow_forking": true,
+          "is_template": false,
+          "web_commit_signoff_required": false,
+          "topics": [
+
+          ],
+          "visibility": "public",
+          "forks": 0,
+          "open_issues": 0,
+          "watchers": 1,
+          "default_branch": "main"
+        },
+        "sender": {
+          "login": "github-actions[bot]",
+          "id": 41898282,
+          "node_id": "MDM6Qm90NDE4OTgyODI=",
+          "avatar_url": "https://avatars.githubusercontent.com/in/15368?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/github-actions%5Bbot%5D",
+          "html_url": "https://github.com/apps/github-actions",
+          "followers_url": "https://api.github.com/users/github-actions%5Bbot%5D/followers",
+          "following_url": "https://api.github.com/users/github-actions%5Bbot%5D/following{/other_user}",
+          "gists_url": "https://api.github.com/users/github-actions%5Bbot%5D/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/github-actions%5Bbot%5D/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/github-actions%5Bbot%5D/subscriptions",
+          "organizations_url": "https://api.github.com/users/github-actions%5Bbot%5D/orgs",
+          "repos_url": "https://api.github.com/users/github-actions%5Bbot%5D/repos",
+          "events_url": "https://api.github.com/users/github-actions%5Bbot%5D/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/github-actions%5Bbot%5D/received_events",
+          "type": "Bot",
+          "site_admin": false
+        }
+      }
+    JSON
+
+    user = User.find(1)
+    Script.find_by(sync_identifier: 'https://github.com/JasonBarnabe/webhooktest/raw/master/test.user.js').update!(sync_identifier: 'https://github.com/a1mersnow/aliyundrive-rename/releases/latest/download/aliyundrive-rename.user.js')
+
+    signature = OpenSSL::HMAC.hexdigest(UsersController::HMAC_DIGEST, user.webhook_secret, body)
+    post user_webhook_url(user_id: user.id),
+         headers: { 'Host' => 'greasyfork.org', 'Accept' => '*/*', 'User-Agent' => 'GitHub-Hookshot/8e03811', 'X-GitHub-Event' => 'release', 'X-GitHub-Delivery' => '2fdd0ba2-df8a-11e8-9fba-09ae25713944', 'content-type' => 'application/json', 'X-Hub-Signature' => "sha1=#{signature}", 'Content-Length' => body.bytesize, 'X-Forwarded-Proto' => 'https', 'X-Forwarded-For' => '192.30.252.44' },
+         params: body
+    assert_equal '200', response.code
+    assert_equal({ 'updated_scripts' => [], 'updated_failed' => ['http://localhost/scripts/18-mystring'], 'message' => "Could not pull contents from git: fatal: path 'aliyundrive-rename.user.js' does not exist in '0.2.5'" }, response.parsed_body)
   end
 end

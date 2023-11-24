@@ -7,7 +7,7 @@ class Git
     with_repo(repo_url) do |directory|
       file_paths_and_commits.each do |file_path, commit|
         content, stderr, status = Open3.capture3(GIT_PATH, 'show', "#{commit}:#{file_path}", chdir: directory)
-        raise stderr unless status.success?
+        raise Git::Exception, stderr.strip unless status.success?
 
         yield [file_path, commit, content]
       end
@@ -37,5 +37,8 @@ class Git
     ensure
       system('rm', '-rf', directory)
     end
+  end
+
+  class Exception < StandardError
   end
 end
