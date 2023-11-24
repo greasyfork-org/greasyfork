@@ -44,7 +44,8 @@ zh-TW:
     deleted_notice_with_related: "您請求的腳本已被刪除，但是這裡有一些相關的腳本。"
     deleted_notice_with_related_and_reason: "您請求的腳本因{report_link:此舉報}已被刪除，但是這裡有一些相關的腳本。"
     deleted_undelete_notice_html: "此腳本已被管理員鎖定，無法復原。原因：「<i>%{delete_reason}</i>」。"
-    self_deleted_locked_author_notice_html: "此腳本因%{report_link:此舉報}已在存儲庫中被刪除 ，並且不再對其他人可見，如果你已經根據%{code_rules_link:%{site_name}'s 規則}進行更改腳本， 您可以本次刪除 %{appeal_link:提出申訴} 請不要重新發佈這個腳本，否則您將可能會被%{site_name}封禁。"
+    deleted_locked_author_notice_html: "此腳本因 %{report_link:此舉報}已在數據庫中被管理員刪除，並且不再對其他人可見。原因為「<i>%{delete_reason}</i>」。請查看 %{code_rules_link:%{site_name}的規定}。如果您認為刪除有誤，您可以對本次刪除 %{appeal_link:提出申訴} 。請不要重新發佈這個腳本，否則您將可能會被%{site_name}封禁。"
+    self_deleted_locked_author_notice_html: "此腳本因%{report_link:此舉報}已在存儲庫中被刪除 ，並且不再對其他人可見，如果你已經根據%{code_rules_link:%{site_name}的規定}進行更改腳本， 您可以對本次刪除 %{appeal_link:提出申訴} 。請不要重新發佈這個腳本，否則您將可能會被%{site_name}封禁。"
     deleted_author_notice: "此腳本已被刪除，其他人無法訪問。您可以從「刪除」分頁將其復原。"
     version_notice_html: "目前為 %{date} 提交的版本，檢視 %{latest_version_link}。"
     version_notice_latest_version_link: "最新版本"
@@ -235,7 +236,8 @@ zh-TW:
       description: 定時檢查更新
     sync_type_3:
       name: Webhook
-      description: 當您推送更新到倉庫的這個檔案時才更新
+      description: 當您推送更新到數據庫的這個檔案時將會更新
+    sync_webhook_info_without_sync: 在您設定同步後，如果您正同步到的是GitHub、GitLab或BitBucket數據庫，您也可以 %{webhook_info_link:設定webhook}以在您推送更新到數據庫時自動更新 %{site_name}。
     sync_name_and_description: "%{name} - %{description}"
     sync_failed_info_html: "上次嘗試同步於 %{date}，發生了錯誤：%{error}。"
     sync_success_info_html: "上次成功同步於 %{date}。"
@@ -1052,10 +1054,14 @@ zh-TW:
       subject: "網站%{site_name}的討論%{discussion_title}收到了一個評論。"
     comment_mentioned:
       subject: "使用者「%{commenter_name}」在 %{site_name} 提及您。"
+      outro: "%{comment_link:查看並回覆此評論。} 您會收到此通知是因為您選擇在您被提及時收到通知。 %{notification_preferences_link:管理您的通知設定。}</p>"
     new_message:
       subject: "%{user} 在 %{site_name} 傳送訊息給您"
+      intro: "使用者 %{user_link:%{user_name}} 在 %{site_name}向您傳送了一則訊息。"
     script_lock_appeal:
       dismiss:
         moderator_notes: "版主已留下留言："
+        outro: 如果您仍希望復原此腳本，請查看 %{report_link:原舉報} 和 %{rules_link:%{site_name}的規定}。
       unlock:
+        moderator_notes: "管理員回覆："
         outro: 為了防止將來的刪除，請審查%{rules_link:%{site_name}'s rules}中的規則。
