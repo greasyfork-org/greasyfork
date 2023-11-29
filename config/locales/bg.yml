@@ -1309,6 +1309,7 @@ bg:
       must_be_greasy_fork_script: "трябва да бъде адрес (URL) на скрипт в %{site_name}"
       script_update_not_utf8: "трябва да използвате UTF-8 кодировка"
       script_disallowed_require: "използва неодобрен външен скрипт: %{code}"
+      script_disallowed_resource: "използва невалиден @resource: %{code}. Ресурсите трябва да бъдат http, https, или data URLs"
       script_malformed_require: "използва счупена препратка към външен скрипт: %{code}"
       script_rate_limit: "Надхвърлили сте лимита за публикуване. Опитайте отново по-късно."
       missing_include_or_match: "трябва да съдържа поне един @match или @include"
