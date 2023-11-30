@@ -1145,7 +1145,7 @@ en:
       content_html: >
         <p>Scripts posted to %{site_name} will be rewritten in the following ways:</p>
         <ul>
-          <li><code>@updateURL</code>, <code>@installURL</code>, and <code>@downloadURL</code> directives will be stripped, if present. The lack of these directives means that any script installed from %{site_name} will be updated from %{site_name}.</li>
+          <li><code>@updateURL</code> and <code>@downloadURL</code> directives will be added or updated to point to %{site_name}. <code>@installURL</code> will be removed, if present.</li>
           <li><code>@version</code> and <code>@namespace</code> directives will be inserted if the script is missing them. These directives are needed for proper updating.</li>
           <li><code>@description</code> will be inserted if a new version of a script is missing it and a previous version of the script had it.</li>
           <li>CRLF and CR line breaks will be converted to standard/Unix-style line breaks.</li>
