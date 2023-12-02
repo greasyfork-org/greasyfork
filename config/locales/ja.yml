@@ -809,20 +809,6 @@ ja:
         result_not_ok: この URL は許可されていません
     script_rewriting:
       title: "%{site_name} は投稿されたスクリプトをどのように書き直すか"
-      content_html: >
-          <p>%{site_name} に投稿されたスクリプトは、以下のように書き直されます。</p> <ul>
-
-          <li><code>@updateURL</code>、<code>@installURL</code>、<code>@downloadURL</code>
-          ディレクティブは取り除かれます。これらのディレクティブが欠けているということは、%{site_name} からインストールされたスクリプトが %{site_name}
-          からアップデートされるということです。</li>
-
-          <li><code>@version</code>、<code>@namespace</code> ディレクティブを書き忘れている場合は、そのディレクティブを補います。これらのディレクティブは、スクリプトの更新を正常に行うために必要とされます。</li>
-
-          <li><code>@description</code> ディレクティブをスクリプトの新しいバージョンで書き忘れており、以前のバージョンには存在していた場合、これを補います。</li>
-
-          <li>改行コード CRLF、および CR は、標準の改行 (Unix スタイルの改行) に変換されます。</li>
-
-          </ul>
     site_feedback_link: "%{site_name} 自体について問題の報告やアイデアの投稿をする"
     credits:
       title: "クレジット"

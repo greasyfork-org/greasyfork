@@ -712,21 +712,6 @@ ko:
         result_not_ok: URL이 허용되지 않았습니다.
     script_rewriting:
       title: "%{site_name}가 업로드한 스크립트를 변경하는 법"
-      content_html: >
-          <p>%{site_name}에 올라온 스크립트는 다음 절차에 따라 재작성됩니다:</p> <ul>
-
-          <li><code>@updateURL</code>, <code>@installURL</code>, <code>@downloadURL</code>
-          지시문이 있으면 제거합니다. 이 지시문들이 없으면 %{site_name}에서 설치한 모든 스크립트는 %{site_name}에서 업데이트하게
-          됩니다.</li>
-
-          <li><code>@version</code>, <code>@namespace</code> 지시문이 없으면 삽입합니다. 이 지시문은
-          정상적인 업데이트에 필요합니다.</li>
-
-          <li>스크립트 이전 버전이 <code>@description</code>을 가지고 있고 새 버전에서 누락되면 삽입합니다.</li>
-
-          <li>CRLF와 CR 개행은 유닉스 스타일 개행으로 변환됩니다.</li>
-
-          </ul>
     site_feedback_link: "%{site_name} 자체의 이슈나 아이디어를 공유하세요"
     credits:
       title: "크레딧"

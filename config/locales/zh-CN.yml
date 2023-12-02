@@ -766,19 +766,6 @@ zh-CN:
         result_not_ok: 不允许此网址
     script_rewriting:
       title: "%{site_name} 将如何改写已发布的脚本"
-      content_html: >
-          <p>发布到 %{site_name} 的脚本将会被系统重写以下属性：</p> <ul>
-
-          <li>如有提供，<code>@updateURL</code>、<code>@installURL</code> 和 <code>@downloadURL</code>
-          的信息将被删除。任何从 %{site_name} 安装的脚本将通过 %{site_name} 更新。</li>
-
-          <li>若未提供，<code>@version</code> 和 <code>@namespace</code> ，将会被插入到脚本，并根据需要会被适当更新。</li>
-
-          <li>若新版本缺失 <code>@description</code> 信息，系统将使用之前旧版本的对应信息并插入到脚本最新的版本。</li>
-
-          <li>CRLF 和 CR 换行符将被转换为标准的 Unix 样式换行符。</li>
-
-          </ul>
     site_feedback_link: "报告问题或发帖吐槽 %{site_name} 这个网站"
     credits:
       title: "致谢名单"

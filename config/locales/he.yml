@@ -482,22 +482,6 @@ he:
       title: "תקנות %{site_name} על סקריפטים חיצוניים"
     script_rewriting:
       title: "איך %{site_name} יכתוב מחדש סקריפטים שפורסמו"
-      content_html: >
-          <p>סקריפטים שמפורסמים ל-%{site_name} יכתבו מחדש בדרכים הבאות:</p><ul>
-
-          <li>תגי ה<code>@updateURL</code>, <code>@installURL</code>, ו-<code>@downloadURL</code>
-          יוסרו, אם קיימים. החוסר בתגים אלו גורם לכך שכל סקריפט שהותקן מ-%{site_name}
-          יעודכן מ-%{site_name}.</li>
-
-          <li>תגי ה-<code>@version</code> ו<code>@namespace</code> יוכנסו אם הם חסרים
-          בסקריפט. תגים אלו נחוצים לעדכון נכון.</li>
-
-          <li>תג ה -<code>@description</code> יוכנס אם הוא חסר בגרסה חדשה של סקריפט
-          והיה קיים בגרסה קודמת.</li>
-
-          <li>ירידת שורות מסוג  CR ו-CRLF יומרו לירידת שורות תקנית/בסגנון-יוניקס.</li>
-
-          </ul>
     site_feedback_link: "דווח על בעיה או שלח רעיון ל-%{site_name} עצמו"
     credits:
       title: "קרדיטים"

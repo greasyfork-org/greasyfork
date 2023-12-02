@@ -844,26 +844,6 @@ fr:
         result_not_ok: L'URL n'est pas autorisée
     script_rewriting:
       title: "Comment %{site_name} va récrire les scripts postés"
-      content_html: >
-          <p>Les scripts posté sur%{site_name} seront réécrits de la manière suivante:</p>
-          <ul>
-
-          <li>Les directives <code>@updateURL</code>, <code>@installURL</code>, et
-          <code>@downloadURL</code> seront supprimées, le cas échéant. L'absence de
-          ces directives signifie que tout les scripts installé à partir de %{site_name}
-          sera mis à jour à partir de %{site_name}.</li>
-
-          <li>Les directives <code>@version</code> et <code>@namespace</code> seront
-          ajouter aux script si manquant. Ces directives sont nécessaires pour les
-          mise à jour.</li>
-
-          <li><code>@description</code> sera ajouté s'il manque une nouvelle version
-          d'un script et si une version précédente du script est disponible.</li>
-
-          <li>Les retour a la ligne CRLF et CR seront convertis en retour a la ligne
-          standard/style-Unix.</li>
-
-          </ul>
     site_feedback_link: "Signaler un problème ou suggérer une idée pour %{site_name} lui-même"
     credits:
       title: "Crédits"

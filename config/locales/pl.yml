@@ -47,6 +47,8 @@ pl:
     deleted_notice_with_related: "Żądany skrypt został usunięty. Oto kilka podobnych skryptów."
     deleted_notice_with_related_and_reason: "Żądany skrypt został usunięty z powodu %{report_link:this report}, ale oto kilka powiązanych skryptów."
     deleted_undelete_notice_html: "Skrypt został zablokowany przez moderatora i nie można go usunąć. Podany powód to: \"<i>%{delete_reason}</i>\"."
+    deleted_locked_author_notice_html: "Ten skrypt został usunięty przez moderatora w odpowiedzi na %{report_link:this report} i nie jest już dostępny dla innych. Jako powód podano „<i>%{delete_reason}</i>”. Proszę sprawdzić %{code_rules_link: zasady %{site_name}}, aby uzyskać więcej informacji. Jeżeli uważasz, że usunięcie było rezultatem pomyłki, możesz %{appeal_link: odwołać się} od tej decyzji. Nie wysyłaj tego skryptu ponownie, ponieważ może to skutkować blokadą konta na %{site_name}."
+    self_deleted_locked_author_notice_html: "Ten skrypt został skasowany przez ciebie w odpowiedzi na %{report_link:this report} i nie jest już dostępny dla innych. Jeśli zaktualizowałeś swój skrypt zgodnie z %{code_rules_link:zasadami %{site_name}}, możesz %{appeal_link:wnieść odwołanie} do usunięcia. Nie wysyłaj tego skryptu ponownie, ponieważ może to skutkować blokadą konta na %{site_name}."
     deleted_author_notice: "Ten skrypt został usunięty i nie jest dostępny dla innych. Możesz go przywrócić poprzez podstronę \"Usuń\"."
     version_notice_html: "Stan na %{date}. Zobacz %{latest_version_link}."
     version_notice_latest_version_link: "najnowsza wersja"
@@ -241,6 +243,8 @@ pl:
     sync_type_3:
       name: Webhook
       description: zostanie zaktualizowany po wprowadzeniu zmian do tego pliku w repozytorium
+    sync_webhook_info_without_sync: Po ustawieniu powyższej synchronizacji, jeżeli synchronizujesz się z repozytoriami GitHub, GitLab lub BitBucket, możesz %{webhook_info_link:skonfigurować webhook}, by automatycznie aktualizować %{site_name} podczas wysyłki zmian do swojego repozytorium.
+    sync_webhook_info_with_sync: Jeżeli synchronizujesz się z repozytoriami GitHub, GitLab lub BitBucket, możesz %{webhook_info_link:skonfigurować webhook}, by automatycznie aktualizować %{site_name} podczas wysyłki zmian do swojego repozytorium.
     sync_name_and_description: "%{name} - %{description}"
     sync_failed_info_html: "Synchronizacji próbowano ostatnio %{date}, co przyczyniło się do %{error}."
     sync_success_info_html: "Ostatnia sukcesywna synchronizacja była %{date}."
@@ -387,6 +391,19 @@ pl:
         short: CSS
         long: Styl użytkownika
     related_scripts: "Sprawdź również te powiązane skrypty:"
+    integrity_hashes:
+      user_notice_html:
+        one: "Masz skrypt z nieprawidłowym skrótem integralności zasobów: %{script_links}."
+        few: "Masz skrypty z nieprawidłowymi skrótami integralności podzasobów: %{script_links}."
+        many: "Masz skrypty z nieprawidłowymi skrótami integralności podzasobów: %{script_links}."
+        other: "Masz skrypty z nieprawidłowymi skrótami integralności podzasobów: %{script_links}."
+      script_notice:
+        text_html:
+          one: "Ten skrypt używa nieprawidłowego skrótu integralności podzasobów: %{detail}."
+          few: "Ten skrypt używa nieprawidłowych skrótów integralności podzasobów: %{detail}."
+          many: "Ten skrypt używa nieprawidłowych skrótów integralności podzasobów: %{detail}."
+          other: "Ten skrypt używa nieprawidłowych skrótów integralności podzasobów: %{detail}."
+        detail: "<code>%{url}</code> powinien używać skrótu <code>%{expected_hash}</code> (ostatnio sprawdzono %{last_checked_at})"
   script_sets:
     description: "Zestawy skryptów umożliwiają Ci stworzenie zmodyfikowanej listy skryptów do przeglądania Greasy Fork'a. Możesz dodać skrypty do Twojego zestawu poprzez dołączanie pojedynczych skryptów, zestawów innych użytkowników lub automatycznie generowanych zestawów. Możesz także usunąć skrypty z Twojego zestawów w taki sam sposób."
     favorites_name: "Ulubione"
@@ -515,6 +532,7 @@ pl:
     sign_in_external: "Zaloguj się za pomocą serwisu zewnętrznego"
     sign_in_with: "Zaloguj się z %{provider}"
     sign_in_password: "Zaloguj się z hasłem"
+    sign_in_email_used_no_external_services_html: "'%{email}' jest już w użyciu przez użytkownika '%{user_name}'. Jeśli to jesteś Ty i chcesz dodać dodatkową metodę logowania za pomocą serwisu %{provider}, %{sign_in_link} najpierw do swojego konta, a następnie dodaj serwis %{provider} do logowania."
     sign_in_email_used_with_external_services_html: "'%{email}' jest już w użyciu przez użytkownika '%{user_name}', który loguje się za pomocą %{existing_providers}. Jeśli to jesteś Ty i chcesz dodać dodatkową metodę logowania za pomocą serwisu %{provider}, %{sign_in_link} najpierw do Twojego konta, potem dodaj twój %{provider} do logowania."
     sign_in_email_used_sign_in_link: "zaloguj się"
     sign_in_email_missing: "%{site_name} wymaga poczty elektronicznej do stworzenia nowego konta, ale serwis %{provider} nie podał jednego dla Ciebie. Możesz jednak później zaktualizować Twoje konto w serwisie %{provider}, by uzyskać jedno i spróbować zalogować się ponownie lub stworzyć normalne konto z pocztą elektroniczną i hasłem na %{site_name}, a później dodać Twoje konto w serwisie %{provider} do konta na %{site_name}."
@@ -759,8 +777,17 @@ pl:
       title: "Polityka %{site_name} dot. zewnętrznych skryptów"
       rationale:
         title: Racja bytu
+      cdns:
+        title: Sieci CDN (content delivery networks)
+      allowed_external_codes:
+        heading: Dozwolone zewnętrzne kody
+      libraries:
+        title: "biblioteki %{site_name}"
       origin_host:
         title: Wklejanie skryptów z hosta źródłowego
+        content_html: |
+            <p>Wstrzyknięcie zewnętrznych skryptów w tej samej domenie, z której pochodzą jest dozwolone. Jeśli skrypt zostaje uruchomiony na https://example.com, pobiera https://example.com/script.js, modyfikuje oraz wstrzykuje do https://example.com/, to jest to dozwolone.</p>
+            <p>Jeśli https://example.com/script.js jest wstrzykiwany do https://differentsite.com, to jest to niedozwolone.</p>
     cdns:
       title: Dozwolone CDN
       test_url:
@@ -769,25 +796,6 @@ pl:
         result_not_ok: Adres URL nie jest dozwolony
     script_rewriting:
       title: "Jak %{site_name} przepisze udostępnione skrypty"
-      content_html: >
-          <p>Skrypty zamieszczone na %{site_name} zostaną przepisane w następujący
-          sposób:</p> <ul>
-
-          <li>Jeśli występują dyrektywy </code>@updateURL</code>, <code>@installURL</code>,
-          i <code>@downloadURL</code> , to zostaną usunięte. Brak tych dyrektyw oznacza,
-          iż jakikolwiek skrypt zainstalowany z %{site_name} zostanie zaktualizowany
-          z %{site_name}.</li>
-
-          <li>Jeśli skrypt nie posiada dyrektyw </code>@version</code> i <code>@namespace</code>,
-          to zostaną dopisane. Te dyrektywy są potrzebne dla prawidłowego aktualizowania.</li>
-
-          <li>Jeśli nowa wersja skryptu nie posiada dyrektywy </code>@description</code>,
-          a poprzednia wersja ją miała, to zostanie dopisana.</li>
-
-          <li>Znaki końca linii CRLF i CR zostaną zamienione na standardowy styl końca
-          linii/styl końca linii systemu Unix.</li>
-
-          </ul>
     site_feedback_link: "Zgłoś problem lub podziel się pomysłem na %{site_name}"
     credits:
       title: "Twórcy"
@@ -953,11 +961,13 @@ pl:
       unauthorized_code: "Nieautoryzowana kopia"
       malware: "Szkodliwy kod"
       minified: "Zminifikowany kod"
+      obfuscated: "Zaciemniony kod"
       external_code: "Niedozwolony zewnętrzny kod"
       undisclosed_antifeature: "Niesprecyzowana %{antifeature_link:złośliwa funkcjonalność} (np. reklamy, śledzenie, koparka kryptowalut itp.)"
       no_description: "Brakujący, nieinformatywny lub wprowadzający w błąd opis."
       wrong_category: "Niewłaściwa kategoria"
       wrong_category_with_suggestion: "Niewłaściwa kategoria (sugestia: %{suggested_category})"
+      no_code: 'Brak kodu/hello world'
       other: "Inne"
     report_intro: "%{reported_item} został zgłoszony %{report_date} przez %{reporter} , bo%{reason}"
     report_intro_no_reporter: "%{reported_item} został zgłoszony %{report_date}, bo %{reason} "
@@ -975,6 +985,7 @@ pl:
     report_message: "Zgłoś wiadomość"
     result_dismissed: "Twoje zgłoszenie zostało odrzucone przez moderatora."
     result_upheld: "Twoje zgłoszenie zostało uznane przez moderatora."
+    result_self_upheld: "Autor skasował swój skrypt w następstwie tego zgłoszenia."
     result_fixed: "Te zgłoszenie zostało rozwiązane przez moderatora, bo uważa on że autor naprawił problem."
     result_pending: "Twoje zgłoszenie oczekuje na sprawdzenie przez moderatora."
     result_pending_author_html: |
@@ -991,11 +1002,14 @@ pl:
     delete_script: "Usuń skrypt"
     view_discussion: "Zobacz dyskusję"
     load_diff: "Załaduj diff"
+    load_cleaned_diff: "Załaduj wyczyszczoną różnicę kodu"
     loading_diff: "Ładowanie..."
     reported_user_activity_html: "%{user} (zgłoszony użytkownik) zrobił:"
+    script_updated_since_report: "Ten skrypt został zaktualizowany po wysłaniu zgłoszenia."
   appeals:
     new:
       title: Nowe zgłoszenie usunięcia skryptu
+      intro_html: 'Twój skrypt został usunięty z powodu %{reason}. Jeśli uważasz, że to pomyłka lub chcesz przekazać dodatkowe informacje, lub też skrypt został zaktualizowany w celu naprawy błędu, możesz złożyć odwołanie. Jeśli moderator uzna poprawki lub wyjaśnienia za odpowiednie, przywróci dostęp do twojego skryptu.'
       submit: Złóż zgłoszenie
     deletion_reason_html: "%{script} został usunięty z powodu: %{reason}."
     author_reason: "Zgłoszenie złożone przez autora:"
@@ -1218,11 +1232,14 @@ pl:
       must_be_greasy_fork_script: "musi być adresem URL dla skryptu na %{site_name}u"
       script_update_not_utf8: "wymaga kodowania UTF-8"
       script_disallowed_require: "używa niezatwierdzonego zewnętrznego skryptu: %{code}"
+      script_disallowed_resource: "używa nieprawidłowej @metody: %{code}. Dozwolone metody to http, https lub data."
+      script_malformed_require: "używa zdeformowanego odwołania do zewnętrznego skryptu: %{code}"
       script_rate_limit: "Przekroczono limit udostępniania. Spróbuj ponownie później."
       missing_include_or_match: "musi zawierać co najmniej jeden klucz @match lub @include"
       invalid_meta: "posiada niewłaściwy znacznik. Prawidłowy format to // @foo"
       no_executable: "Nie zawiera kodu wykonywalnego"
       meta_too_long: "%{key} jest zbyt długi (maksymalna dozwolona ilość znaków to %{count})"
+      style_missing_meta: "nie zawiera bloku metadanych. Zobacz przykłady https://github.com/openstyles/stylus/wiki/Writing-UserCSS"
   opensearch:
     short_name: "%{site_name} wyszukaj"
     description: "Szukaj skryptów użytkownika na %{site_name}."

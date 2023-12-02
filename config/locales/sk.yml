@@ -857,15 +857,15 @@ sk:
           <p>Skripty poslané na %{site_name} budú prepísané nasledovným spôsobom:</p>
           <ul>
 
-          <li><code>@updateURL</code>, <code>@installURL</code>, a <code>@downloadURL</code>
-          tieto príkazy budú odstránené, ak existujú. Absencia týchto príkazov bude
-          znamenať, že skript nainštalovaný z %{site_name} bude aktualizovaný z %{site_name}.</li>
+          direktívy<li><code>@updateURL</code> a <code>@downloadURL</code>sa pridajú
+          alebo aktualizujú tak, aby smerovali na %{site_name}. <code>@installURL</code>
+          bude odstránená, ak existuje.
 
-          <li><code>@version</code> a <code>@namespace</code> tieto príkazy budú vložené
-          do skriptu, ak chýbajú. Tieto skripty sú potrebné pre správnu aktualizáciu.</li>
+          <li>direktívy<code>@version</code> a <code>@namespace</code> sa pridajú
+          do skriptu, ak chýbajú. Tieto direktívy sú potrebné pre správnu aktualizáciu.</li>
 
-          <li><code>@description</code> tento príkaz bude vložený, ak nová verzia
-          skriptu chýba a predchádzajúca verzia ju mala.</li>
+          <li><code>@description</code> sa vloží, ak nová verzia skriptu chýba a predchádzajúca
+          verzia ju mala.</li>
 
           <li>Zalomenie riadkov CRLF a CR bude prevedené na štandardný štýl Unixu.</li>
 

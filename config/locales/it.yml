@@ -789,25 +789,6 @@ it:
         result_not_ok: L' URL non è permesso
     script_rewriting:
       title: "Come %{site_name} riscriverà gli script postati"
-      content_html: >
-          <p>Gli script caricati a %{site_name} saranno riscritti come segue:</p>
-          <ul>
-
-          <li>Le direttive <code>@updateURL</code>, <code>@installURL</code> e <code>@downloadURL</code>
-          saranno rimosse, se presenti. L'assenza di tali direttive significa che
-          ogni script installato da %{site_name} riceverà gli aggiornamenti da %{site_name}.</li>
-
-          <li>Le direttive <code>@version</code> e <code>@namespace</code> saranno
-          inserite se non presenti nello script. Tali direttive sono necessarie per
-          il corretto funzionamento degli aggiornamenti.</li>
-
-          <li><code>@description</code> sarà inserita se una versione più recente
-          dello script non la include e una versione precedente dello script la aveva.</li>
-
-          <li>Le terminazioni di riga CRLF e CR saranno convertite in terminazioni
-          di riga standard/in stile Unix.</li>
-
-          </ul>
     site_feedback_link: "Riporta un problema o invia un'idea per %{site_name}"
     credits:
       title: "Crediti"

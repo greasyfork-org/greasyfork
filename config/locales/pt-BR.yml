@@ -807,25 +807,6 @@ pt-BR:
         result_not_ok: URL não é permitida
     script_rewriting:
       title: "Como o %{site_name} irá sobrescrever scripts postados"
-      content_html: >
-          <p>Scripts publicados no %{site_name} serão reescritos seguindo as seguintes
-          regras:</p> <ul>
-
-          <li>As propriedades <code>@updateURL</code>, <code>@installURL</code>, e
-          <code>@downloadURL</code> serão removidas, quando existirem. A ausência
-          dessas propriedades significa que qualquer script instalado a partir do
-          %{site_name} será atualizado por meio do %{site_name}.</li>
-
-          <li>As propriedades <code>@version</code> e <code>@namespace</code> serão
-          inseridas caso o script já não as possua. Essas propriedades são necessárias
-          para que as atualizações possam ocorrer.</li>
-
-          <li><code>@description</code> será inserida caso uma nova versão do script
-          não a possua e ela esteja presente em uma versão anterior do script.</li>
-
-          <li>Quebras de linha CRLF e CR serão convertidas para quebras de linha padrão/Unix-style.</li>
-
-          </ul>
     site_feedback_link: "Reporte um problema ou poste uma ideia para %{site_name}"
     credits:
       title: "Créditos"

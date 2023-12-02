@@ -683,26 +683,6 @@ de:
       title: "%{site_name}s Richtlinie für externe Skripte"
     script_rewriting:
       title: "Wie %{site_name} veröffentlichte Skripte umschreibt"
-      content_html: >
-          <p>Skripte, welche auf %{site_name} veröffentlicht werden, werden wie folgt
-          umgeschrieben:</p><ul>
-
-          <li>Die Anweisungen <code>@updateURL</code>, <code>@installURL</code> und
-          <code>@downloadURL</code> werden entfernt, falls vorhanden. Das Fehlen dieser
-          Anweisungen bedeutet, dass jedes Skript, was von %{site_name} installiert
-          wurde auch Aktualisierungen von %{site_name} erhält.</li>
-
-          <li>Die Anweisungen <code>@version</code> und <code>@namespace</code> werden
-          eingefügt, falls sie im Skript fehlen. Diese Anweisungen werden fürs ordnungsgemäße
-          Aktualisieren benötigt.</li>
-
-          <li><code>@description</code> wird eingefügt, falls sie in einer neuen Skriptversion
-          fehlt, aber eine vorherige Version des Skriptes sie hatte.</li>
-
-          <li>CRLF- und CR-Zeilenumbrüche werden in Standard-/Unix-Zeilenumbrüche
-          umgewandelt.</li>
-
-          </ul>
     site_feedback_link: "Melde ein Problem oder veröffentliche eine Idee für %{site_name} selbst"
     credits:
       title: "Mitwirkende"
