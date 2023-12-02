@@ -204,6 +204,10 @@ class ApplicationController < ActionController::Base
     render_404 unless greasy?
   end
 
+  def update_host?
+    request.subdomain == 'update'
+  end
+
   helper_method :cache_with_log, :greasy?, :sleazy?, :script_subset, :site_name
 
   def get_script_from_input(value, allow_deleted: false)

@@ -963,6 +963,12 @@ class ScriptsController < ApplicationController
   end
 
   def handle_meta_request(language)
+    unless update_host?
+      script = Script.find(params[:id].to_i)
+      redirect_to(script.code_url(sleazy: sleazy?, format_override: (language == :css) ? 'meta.css' : 'meta.js', version_id: params[:version].presence), status: :moved_permanently, allow_other_host: true)
+      return
+    end
+
     is_css = language == :css
     script_id = params[:id].to_i
     script_version_id = (params[:version] || 0).to_i
@@ -990,11 +996,6 @@ class ScriptsController < ApplicationController
     parser = is_css ? CssParser : JsParser
     # Strip out some thing that could contain a lot of data (data: URIs).
     meta_js_code = parser.inject_meta(parser.get_meta_block(script_info.code), { icon: nil, resource: nil })
-
-    # Only cache if:
-    # - It's not for a specific version (as the caching does not work with query params)
-    # - It's a .meta.js extension (client's Accept header may not match path).
-    cache_request(meta_js_code) if !is_css && script_version_id == 0 && request.fullpath.end_with?('.meta.js')
 
     cache_code_request(meta_js_code, script_id:, script_version_id_param: script_version_id, extension: is_css ? '.meta.css' : '.meta.js', code_updated_at: script_info.code_updated_at)
 
