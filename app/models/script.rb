@@ -513,6 +513,8 @@ class Script < ApplicationRecord
   end
 
   def code_path(format_override: nil, version_id: nil)
+    version_id = nil if version_id == 0
+
     extension = if library?
                   '.js'
                 elsif format_override == 'meta.js'
