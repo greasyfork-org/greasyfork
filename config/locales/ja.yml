@@ -809,6 +809,19 @@ ja:
         result_not_ok: この URL は許可されていません
     script_rewriting:
       title: "%{site_name} は投稿されたスクリプトをどのように書き直すか"
+      content_html: >
+          <p>%{site_name} に投稿されたスクリプトは、以下のように書き直されます。</p> <ul>
+
+          <li><code>@updateURL</code> と <code>@downloadURL</code> の指定は、%{site_name}
+          になります。<code>@installURL</code> があれば除去されます。</li>
+
+          <li><code>@version</code> と <code>@namespace</code> がなければ補います。これらはスクリプトを適切に更新するために必要です。</li>
+
+          <li><code>@description</code> が新しいバージョンにないけど、以前のバージョンに存在していたらその内容で補います。</li>
+
+          <li>CRLF と CR は、標準/Unix の改行コードに変換されます。</li>
+
+          </ul>
     site_feedback_link: "%{site_name} 自体について問題の報告やアイデアの投稿をする"
     credits:
       title: "クレジット"
