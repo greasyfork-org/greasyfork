@@ -183,7 +183,8 @@ class ScriptsController < ApplicationController
 
     unless update_host?
       script = Script.find(script_id)
-      redirect_to(script.code_url(sleazy: sleazy?, version_id: script_version_id, format_override: 'js'), status: :moved_permanently, allow_other_host: true)
+      meta_request = request.headers['Accept']&.include?('text/x-userscript-meta')
+      redirect_to(script.code_url(sleazy: sleazy?, version_id: script_version_id, format_override: meta_request ? 'meta.js' : 'js'), status: :moved_permanently, allow_other_host: true)
       return
     end
 
