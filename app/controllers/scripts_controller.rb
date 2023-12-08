@@ -178,64 +178,58 @@ class ScriptsController < ApplicationController
   end
 
   def user_js
-    respond_to do |format|
-      format.any(:html, :all, :js) do
-        script_id = params[:id].to_i
-        script_version_id = params[:version].to_i
+    script_id = params[:id].to_i
+    script_version_id = params[:version].to_i
 
-        script, script_version = minimal_versionned_script(script_id, script_version_id)
-        return if handle_replaced_script(script)
-
-        if script.library? && request.path.ends_with?('.user.js')
-          head :not_found
-          return
-        end
-
-        user_js_code = if script.delete_type_blanked?
-                         script_version.generate_blanked_code
-                       elsif script.deleted?
-                         head :not_found
-                         return
-                       elsif script.css?
-                         unless script.css_convertible_to_js?
-                           head :not_found
-                           return
-                         end
-                         CssToJsConverter.convert(script_version.rewritten_code)
-                       else
-                         script_version.rewritten_code
-                       end
-
-        unless script.library?
-          meta_changes = if script_version_id == 0
-                           # Set canonical update URLs.
-                           {
-                             downloadURL: script.code_url(sleazy: sleazy?, format_override: 'js'),
-                             updateURL: script.code_url(sleazy: sleazy?, format_override: 'meta.js'),
-                           }
-                         else
-                           # If the request specifies a specific version, the code will never change, so inform the manager not to check for updates.
-                           { downloadURL: 'none' }
-                         end
-
-          user_js_code = JsParser.inject_meta(user_js_code, meta_changes)
-        end
-
-        # Only cache if:
-        # - It's not for a specific version (as the caching does not work with query params)
-        # - It's a .user.js extension (client's Accept header may not match path).
-        cache_request(user_js_code) if script_version_id == 0 && request.fullpath.end_with?('.user.js')
-
-        code_time = (script_version_id == 0) ? script.code_updated_at : script_version.created_at
-        cache_code_request(user_js_code, script_id:, script_version_id_param: script_version_id, extension: script.library? ? '.js' : '.user.js', code_updated_at: code_time)
-
-        headers['Last-Modified'] = code_time.httpdate
-        render body: user_js_code, content_type: 'text/javascript'
-      end
-      format.user_script_meta do
-        meta_js
-      end
+    unless update_host?
+      script = Script.find(script_id)
+      redirect_to(script.code_url(sleazy: sleazy?, version_id: script_version_id, format_override: 'js'), status: :moved_permanently, allow_other_host: true)
+      return
     end
+
+    script, script_version = minimal_versionned_script(script_id, script_version_id)
+    return if handle_replaced_script(script)
+
+    if script.library? && request.path.ends_with?('.user.js')
+      head :not_found
+      return
+    end
+
+    user_js_code = if script.delete_type_blanked?
+                     script_version.generate_blanked_code
+                   elsif script.deleted?
+                     head :not_found
+                     return
+                   elsif script.css?
+                     unless script.css_convertible_to_js?
+                       head :not_found
+                       return
+                     end
+                     CssToJsConverter.convert(script_version.rewritten_code)
+                   else
+                     script_version.rewritten_code
+                   end
+
+    unless script.library?
+      meta_changes = if script_version_id == 0
+                       # Set canonical update URLs.
+                       {
+                         downloadURL: script.code_url(sleazy: sleazy?, format_override: 'js'),
+                         updateURL: script.code_url(sleazy: sleazy?, format_override: 'meta.js'),
+                       }
+                     else
+                       # If the request specifies a specific version, the code will never change, so inform the manager not to check for updates.
+                       { downloadURL: 'none' }
+                     end
+
+      user_js_code = JsParser.inject_meta(user_js_code, meta_changes)
+    end
+
+    code_time = (script_version_id == 0) ? script.code_updated_at : script_version.created_at
+    cache_code_request(user_js_code, script_id:, script_version_id_param: script_version_id, extension: script.library? ? '.js' : '.user.js', code_updated_at: code_time)
+
+    headers['Last-Modified'] = code_time.httpdate
+    render body: user_js_code, content_type: 'text/javascript'
   end
 
   def user_css
