@@ -72,7 +72,7 @@ module UserTextHelper
 
   # Returns the plain text representation of the passed markup
   def format_user_text_as_plain(text, markup_type, use_line_breaks: false)
-    Sanitize.clean(format_user_text(text, markup_type), use_line_breaks ? USE_LINE_BREAK_OPTIONS : {}).strip
+    Sanitize.fragment(format_user_text(text, markup_type), use_line_breaks ? USE_LINE_BREAK_OPTIONS : {}).strip
   end
 
   # Returns an inline-only representation of the passed markup.
