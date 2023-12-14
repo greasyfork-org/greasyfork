@@ -20,6 +20,7 @@ class UserEmailService
   end
 
   def self.locale_for(user, backup_locale: nil)
+    backup_locale = nil unless I18n.locale_available?(backup_locale&.code)
     user.available_locale_code || backup_locale&.code || :en
   end
 end
