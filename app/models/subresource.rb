@@ -15,7 +15,7 @@ class Subresource < ApplicationRecord
 
     begin
       contents = download
-    rescue OpenURI::HTTPError, Timeout::Error
+    rescue OpenURI::HTTPError, Timeout::Error, Errno::ECONNREFUSED
       return
     end
 
