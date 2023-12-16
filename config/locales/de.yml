@@ -41,8 +41,12 @@ de:
     promoted_text_html: "Ihnen könnte auch %{script_link} gefallen."
     library_instructions_html: "Dieses Skript sollte nicht direkt installiert werden. Es handelt sich hier um eine Bibliothek für andere Skripte, welche über folgenden Befehl in den Metadaten eines Skriptes eingebunden wird %{code}"
     deleted_notice: "Dieses Skript wurde gelöscht."
+    deleted_notice_with_reason: "Dieses Skript wurde gelöscht wegen %{report_link:this report}."
     deleted_notice_with_related: "Das gewählte Skript wurde gelöscht, hier sind einige ähnliche Skripte."
+    deleted_notice_with_related_and_reason: "Das von Ihnen angeforderte Skript wurde wegen %{report_link:this report}, gelöscht, aber hier sind einige verwandte Skripte."
     deleted_undelete_notice_html: "Das Skript wurde von einem Moderator gesperrt kann nicht wiederhergestellt werden. Mit der Begründung: \"<i>%{delete_reason}</i>\"."
+    deleted_locked_author_notice_html: "Dieses Skript wurde von einem Moderator als Reaktion auf %{report_link:diesen Bericht} gelöscht und ist für andere nicht zugänglich. Der angegebene Grund lautet: \"%{delete_reason}\". Bitte überprüfen Sie %{code_rules_link:%{site_name}'s rules}. Wenn Sie glauben, dass die Löschung fehlerhaft ist, können Sie %{appeal_link:submit an appeal}. Veröffentlichen Sie dieses Skript nicht erneut; dies kann zu einem Bann von %{site_name}."
+    self_deleted_locked_author_notice_html: "Dieses Skript wurde von Ihnen als Antwort auf %{report_link:this report} gelöscht und ist für andere nicht zugänglich. Wenn Sie Ihr Skript aktualisiert haben, um es mit %{code_rules_link:%{site_name}'s rules} in Einklang zu bringen, können Sie %{appeal_link:submit an appeal} von dieser Löschung in Kenntnis setzen. Veröffentlichen Sie dieses Skript nicht erneut; dies kann zu einem Bann von %{site_name}."
     deleted_author_notice: "Das Skript wurde gelöscht und ist nicht mehr öffentlich. Es kann über den Gelöscht-Tab wiederhergestellt werden."
     version_notice_html: "Version vom %{date}. %{latest_version_link}"
     version_notice_latest_version_link: "Aktuellste Version"
@@ -145,6 +149,7 @@ de:
     derivatives_similar_last_check_soon: "Wir werden in Kürze nach ähnlichen Skripten wie Ihrem suchen."
     derivatives_similar_last_check_again_soon_html: "Wir haben zuletzt am %{date} nach Skripten, die ihrem ähneln gesucht. Wir werden bald erneut suchen."
     derivatives_similar_check_now: "erneut überprüfen"
+    derivatives_similiar_queued: Die Übereinstimmungsprüfung wird in wenigen Minuten abgeschlossen sein.
     listing_title_all_sites: "Benutzerskripte für alle Seiten"
     listing_description_all_sites: "Benutzerskripte, welche auf allen Seiten Funktionen hinzufügen und Fehler beheben"
     listing_title_for_site: "Benutzerskripte für %{site}"
@@ -176,6 +181,7 @@ de:
     listing_language_all: "Alle"
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
+    search_failed: Beim Laden Ihrer Ergebnisse ist ein Fehler aufgetreten. Einige Suchfunktionen funktionieren möglicherweise nicht. Wir wurden auf das Problem aufmerksam gemacht.
     import: "Skripte importieren"
     new: "Veröffentliche ein Skript, welches Du geschrieben hast"
     new_css: "Veröffentliche einen Style, den Du geschrieben hast"
@@ -258,6 +264,7 @@ de:
     diff_new_version: "Neu:"
     diff_lines_of_context: "Kontextzeilen:"
     diff_ignore_whitespace: "Leerzeichenänderungen vernachlässigen"
+    diff_terser: "Quelltext vor dem Vergleich bereinigen"
     diff_refresh: "Auffrischen"
     diff_no_change: "Keine Unterschiede gefunden."
     good_rating_explanation: "Anzahl an Nutzern, die es mit »Gut« bewertet oder ihren Favoriten hinzugefügt haben."
@@ -337,6 +344,7 @@ de:
         bypass: (Ich habe schon ein Skript Manager, Lass mich es installieren!)
       close_dialog: OK
     antifeatures:
+      label: Antifeatures
       warning_title: Dieses Skript enthält Antifeatures
       author_explanation_intro: "Der Autor dieses Skriptes erklärt:"
       types:
@@ -359,11 +367,12 @@ de:
       cancel_install: Abbrechen
     badges:
       js:
-        short: JS
-        long: Benutzerskript
+        short: Java Script
+        long: Benutzer-Skript
       css:
         short: CSS
-        long: Benutzer-Style
+        long: Benutzerstil
+    related_scripts: "Sie können auch diese verwandten Skripte ausprobieren:"
   script_sets:
     description: "Mit Skriptsammlungen können individuelle Listen von Skripten angelegt werden, um Greasy Fork zu durchstöbern. Sie können Ihrer Sammlung einzelne Skripte, die Skripte anderer Nutzer und automatisch erzeugte Listen hinzufügen. Auf dem selben Weg können Sie auch Skripte aus Ihrer Sammlung entfernen."
     favorites_name: "Favoriten"
@@ -618,6 +627,7 @@ de:
       save_success: Ihre Benachrichtigungseinstellungen wurden aktualisiert.
       unsubscribe_all: Von allen Benachrichtungen abmelden
       unsubscribe_all_success: Sie sind von allen Benachrichtungenen abgemeldet worden.
+    account_banned: Dieses Benutzerkonto wurde gesperrt.
   webhooks:
     info:
       title: Webhook einrichten
@@ -1063,9 +1073,12 @@ de:
     title: Importiertes Skript
     submit: Importiert
     previously_imported:
+      heading: Zuvor importierte Skripte
       unknown_date: "(unbekannt)"
     results:
       title: "Importierergebnis"
+      success: "Die folgenden Skripte wurden erfolgreich importiert:"
+      needs_description: "Die folgenden Skripte benötigen eine Beschreibung, um importiert zu werden:"
       existing: "Die folgenden Skripte wurden bereits importiert:"
       failure: "Die folgenden Skripte konnten nicht importiert werden:"
   mailers:
@@ -1107,4 +1120,7 @@ de:
       dismiss:
         moderator_notes: "Der Moderator hat kommentiert:"
       unlock:
+        subject: Ihrem Einspruch gegen die Löschung von %{site_name} wurde hochgeholfen.
+        intro_html: Ihrem Einspruch gegen die Löschung von %{script} wurde von einem Moderator hochgeholfen. Das Skript ist nun wiederhergestellt und wieder öffentlich zugänglich.
         moderator_notes: "Der Moderator hat kommentiert:"
+        outro: Bitte überprüfen Sie %{rules_link:%{site_name}'s rules} , um weitere Löschungen in Zukunft zu verhindern.
