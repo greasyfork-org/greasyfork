@@ -651,24 +651,6 @@ ro:
       title: "Politicile site-ului %{site_name} despre scripturile externe"
     script_rewriting:
       title: "Cum va rescrie site-ul %{site_name} scripturile postate"
-      content_html: >
-          <p>Script-urile postate pe %{site_name} vor fi rescrise în următoarele metode:</p><ul>
-
-          <li>directivele<code>@updateURL</code>, <code>@installURL</code>. și <code>@downloadURL</code>
-          vor fi scoase, daca vor fi prezente. Lipsa lor va însemna ca orice script
-          instalat de pe %{site_name} va ramâne actualizat de pe %{site_name}.</li>
-
-          <li>directivele <code>@versiunea</code> și <code>@namespace</code> vor fi
-          adăugate daca scriptul nu le are. Aceste directive vor fi necesare pentru
-          o actualizare corectă</li>
-
-          <li><code>@descrierea</code> va fi inserată dacă o nouă versiune nu le are
-          și o versiune anterioară le-a avut.</li>
-
-          <li>Pauzele între linii CRLF și CF vor fi convertite la pauzele între linii
-          în format standard/Unix.</li>
-
-          </ul>
     site_feedback_link: "Raportează o problemă sau postează o idee pentru site-ul %{site_name}."
     credits:
       title: "Credite"

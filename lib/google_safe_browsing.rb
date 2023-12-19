@@ -3,9 +3,9 @@ require 'net/http'
 class GoogleSafeBrowsing
   def self.check(urls)
     return [] if urls.empty?
-    return [] unless Rails.application.secrets.google_safe_browsing_api_key
+    return [] unless Rails.application.credentials.google_safe_browsing_api_key
 
-    uri = URI("https://safebrowsing.googleapis.com/v4/threatMatches:find?key=#{Rails.application.secrets.google_safe_browsing_api_key}")
+    uri = URI("https://safebrowsing.googleapis.com/v4/threatMatches:find?key=#{Rails.application.credentials.google_safe_browsing_api_key}")
     body = {
       client: {
         clientId: 'Greasy Fork',

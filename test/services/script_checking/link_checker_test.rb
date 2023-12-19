@@ -103,7 +103,7 @@ module ScriptChecking
     end
 
     test 'safe browsing' do
-      skip unless Rails.application.secrets.google_safe_browsing_api_key
+      skip unless Rails.application.credentials.google_safe_browsing_api_key
       assert_equal ScriptChecking::Result::RESULT_CODE_BLOCK, check_script_with_code('location.href = "https://testsafebrowsing.appspot.com/s/phishing.html"').code
     end
 

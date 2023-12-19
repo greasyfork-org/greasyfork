@@ -186,7 +186,7 @@ class ApplicationController < ActionController::Base
   end
 
   def sleazy?
-    ['sleazyfork.org', 'sleazyfork.local', 'www.sleazyfork.org', 'update-source.sleazyfork.org', 'update.sleazyfork.org'].include?(request.domain)
+    ['sleazyfork.org', 'sleazyfork.local', 'www.sleazyfork.org', 'update.sleazyfork.org'].include?(request.domain)
   end
 
   def site_name
@@ -202,6 +202,10 @@ class ApplicationController < ActionController::Base
 
   def greasy_only
     render_404 unless greasy?
+  end
+
+  def update_host?
+    request.subdomain == 'update'
   end
 
   helper_method :cache_with_log, :greasy?, :sleazy?, :script_subset, :site_name

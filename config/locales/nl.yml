@@ -838,9 +838,7 @@ nl:
           de volgende manieren:</p> <ul>
 
           <li><code>@updateURL</code>, <code>@installURL</code>, en <code>@downloadURL</code>
-          richtlijnen zullen worden gestript wanneer ze aanwezig zijn. Het gebrek
-          aan deze richtlijnen betekent dat elk script geïnstalleerd van %{site_name}
-          geupdate zal worden op %{site_name}.</li>
+          richtlijnen zullen worden gestript wanneer ze aanwezig zijn.
 
           <li><code>@version</code> en <code>@namespace</code> richtlijnen zullen
           worden ingevoegd wanneer het script ze mist. Deze richtlijnen zijn nodig
@@ -1313,6 +1311,7 @@ nl:
       must_be_greasy_fork_script: "dient een url te zijn van een script op %{site_name}"
       script_update_not_utf8: "de upload dient utf-8-tekst te bevatten"
       script_disallowed_require: "maakt gebruik van een nog niet goedgekeurd extern script: %{code}"
+      script_disallowed_resource: "maakt gebruik van een ongeldige @resource: %{code}. Resources dienen http, https of gegevensurl's te zijn."
       script_malformed_require: "maakt gebruik van een onjuist extern script: %{code}"
       script_rate_limit: "Je hebt het publicatielimiet overschreden. Probeer het later opnieuw."
       missing_include_or_match: "dient ten minste eenmaal @match of @include key te bevatten"

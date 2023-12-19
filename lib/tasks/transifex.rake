@@ -13,7 +13,7 @@ namespace :transifex do
 
     request = Net::HTTP::Get.new(url)
     request['accept'] = 'application/vnd.api+json'
-    request['authorization'] = "Bearer #{Rails.application.secrets.transifex_api_key}"
+    request['authorization'] = "Bearer #{Rails.application.credentials.transifex_api_key!}"
 
     response = http.request(request)
     body = JSON.parse(response.read_body)

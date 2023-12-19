@@ -367,27 +367,6 @@ sv:
       title: "%{site_name}s integritetspolicy om externa skript"
     script_rewriting:
       title: "Hur %{site_name} kommer skriva om publicerade skript"
-      content_html: >+
-          <p>Skript som läggs upp till %{site_name} kommer att skrivas om på följande
-          sätt:</p> <ul>
-
-          <li><code>@updateURL</code>, <code>@installURL</code>, och <code>@downloadURL</code>
-          direktiven kommer att demonteras, om de är närvarande. Bristen på dessa
-          direktiv innebär att alla skript installerade från %{site_name} kommer att
-          uppdateras från %{site_name}.</li>
-
-          <li><code>@version</code> och <code>@namespace</code> direktiven kommer
-          att införas om skriptet saknas dem. Dessa direktiv behövs för ordentlig
-          uppdatering.</li>
-
-          <li><code>@description</code> kommer att införas om en ny version av ett
-          skript saknas det och en tidigare version av skriptet hade det.</li>
-
-          <li>CRLF och CR radbrytningar kommer att konverteras till vanliga / Unix-stil
-          radbrytningar.</li>
-
-          </ul>
-
     site_feedback_link: "Rapportera ett problem eller dela med dig av idéer för själva %{site_name}"
     credits:
       title: "Medverkande"

@@ -287,6 +287,7 @@ class GithubWebhookTest < ActionDispatch::IntegrationTest
 
     user = User.find(1)
     Script.find_by(sync_identifier: 'https://github.com/JasonBarnabe/webhooktest/raw/master/test.user.js').update!(sync_identifier: 'https://github.com/a1mersnow/aliyundrive-rename/releases/latest/download/aliyundrive-rename.user.js')
+    Git.expects(:get_contents).with('https://github.com/a1mersnow/aliyundrive-rename.git', { 'aliyundrive-rename.user.js' => '0.2.5' }).raises(Git::Exception.new("fatal: path 'aliyundrive-rename.user.js' does not exist in '0.2.5'"))
 
     signature = OpenSSL::HMAC.hexdigest(UsersController::HMAC_DIGEST, user.webhook_secret, body)
     post user_webhook_url(user_id: user.id),

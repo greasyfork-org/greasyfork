@@ -499,9 +499,9 @@ class Script < ApplicationRecord
   end
 
   def update_host(sleazy: false)
-    return Rails.env.production? ? 'update.sleazyfork.org' : 'update-source.sleazyfork.local' if sleazy && sensitive
+    return Rails.env.production? ? 'update.sleazyfork.org' : 'update.sleazyfork.local' if sleazy && sensitive
 
-    Rails.env.production? ? 'update.greasyfork.org' : 'update-source.greasyfork.local'
+    Rails.env.production? ? 'update.greasyfork.org' : 'update.greasyfork.local'
   end
 
   def url(locale: nil, sleazy: false)
@@ -513,8 +513,12 @@ class Script < ApplicationRecord
   end
 
   def code_path(format_override: nil, version_id: nil)
+    version_id = nil if version_id == 0
+
     extension = if library?
                   '.js'
+                elsif format_override == 'meta.js'
+                  '.meta.js'
                 elsif js? || format_override == 'js'
                   '.user.js'
                 else

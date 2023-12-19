@@ -271,10 +271,10 @@ ja:
     bad_rating_explanation: "「不可」と評価した人数"
     write_your_own_html: "%{post_a_script_link} (または %{learn_to_write_scripts_link})"
     post_a_script_link_text: "スクリプトを投稿する"
-    learn_to_write_scripts_link_text: "スクリプトの書き方を見る"
-    feedback_or_report: "このスクリプトの質問や評価の%{feedback_link:投稿はこちら}、%{report_link:通報はこちら}へお寄せください。"
-    support_feedback_or_report: "%{support_url:作者のサイト}でサポートを受ける。または、このスクリプトの質問や評価の%{feedback_link:投稿はこちら}、%{report_link:通報はこちら}へお寄せください。"
-    support_email_feedback_or_report: "%{support_url:作者にメール}してサポートを受ける。またはこのスクリプトの質問や評価の%{feedback_link:投稿はこちら}、スクリプトの%{report_link:通報はこちら}へお寄せください。"
+    learn_to_write_scripts_link_text: "スクリプトの書き方を学ぶ"
+    feedback_or_report: "このスクリプトの%{feedback_link:質問や評価の投稿はこちら}、%{report_link:通報はこちら}へお寄せください。"
+    support_feedback_or_report: "%{support_url:作者のサイト}でサポートを受ける。または、このスクリプトの%{feedback_link:質問や評価の投稿はこちら}、%{report_link:通報はこちら}へお寄せください。"
+    support_email_feedback_or_report: "%{support_url:作者にメール}してサポートを受ける。またはこのスクリプトの%{feedback_link:質問や評価の投稿はこちら}、スクリプトの%{report_link:通報はこちら}へお寄せください。"
     adult_content: "アダルトコンテンツ"
     adult_content_self_report: "このスクリプトはアダルトコンテンツを含んでいます。または、アダルトコンテンツを含むサイト向けのスクリプトです。"
     adult_content_self_report_explanation: "%{site_name} はアダルトコンテンツに関するスクリプトを許容しますが、その旨を示す必要があります。これはユーザーが表示するかを選択できるようにするためです。"
@@ -812,15 +812,14 @@ ja:
       content_html: >
           <p>%{site_name} に投稿されたスクリプトは、以下のように書き直されます。</p> <ul>
 
-          <li><code>@updateURL</code>、<code>@installURL</code>、<code>@downloadURL</code>
-          ディレクティブは取り除かれます。これらのディレクティブが欠けているということは、%{site_name} からインストールされたスクリプトが %{site_name}
-          からアップデートされるということです。</li>
+          <li><code>@updateURL</code> と <code>@downloadURL</code> の指定は、%{site_name}
+          になります。<code>@installURL</code> があれば除去されます。</li>
 
-          <li><code>@version</code>、<code>@namespace</code> ディレクティブを書き忘れている場合は、そのディレクティブを補います。これらのディレクティブは、スクリプトの更新を正常に行うために必要とされます。</li>
+          <li><code>@version</code> と <code>@namespace</code> がなければ補います。これらはスクリプトを適切に更新するために必要です。</li>
 
-          <li><code>@description</code> ディレクティブをスクリプトの新しいバージョンで書き忘れており、以前のバージョンには存在していた場合、これを補います。</li>
+          <li><code>@description</code> が新しいバージョンにないけど、以前のバージョンに存在していたらその内容で補います。</li>
 
-          <li>改行コード CRLF、および CR は、標準の改行 (Unix スタイルの改行) に変換されます。</li>
+          <li>CRLF と CR は、標準/Unix の改行コードに変換されます。</li>
 
           </ul>
     site_feedback_link: "%{site_name} 自体について問題の報告やアイデアの投稿をする"
@@ -1185,7 +1184,7 @@ ja:
     not_found_text: "404エラー: ページは見つかりませんでした。"
     not_found_title: "404 – ページ未検出"
     not_found_link_home: "トップページに戻る。"
-    suggest_locale: "%{site_name} は %{locale_name} で閲覧できます。"
+    suggest_locale: "%{site_name} は%{locale_name}でも閲覧できます。"
     incomplete_locale: "%{site_name} の%{locale_name}訳は %{percent} しか完了していません。改善に参加しませんか？"
     preview_tab: プレビュー
     write_tab: 編集
@@ -1251,6 +1250,7 @@ ja:
       must_be_greasy_fork_script: "は %{site_name} 上のスクリプトの URL にする必要があります"
       script_update_not_utf8: "アップロードされるテキストはUTF-8形式にしてだくさい"
       script_disallowed_require: "で許可されていない外部スクリプトが使用されています: %{code}"
+      script_disallowed_resource: "@resource が正しくないです: %{code}。リソースは http や https、データ URL にしてください"
       script_malformed_require: "不正な形式で外部のスクリプトを参照: %{code}"
       script_rate_limit: "投稿制限です。時間をおいて再投稿してください。"
       missing_include_or_match: "@match か @include キーを 1 回以上含めてください"

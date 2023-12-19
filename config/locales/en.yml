@@ -1145,7 +1145,7 @@ en:
       content_html: >
         <p>Scripts posted to %{site_name} will be rewritten in the following ways:</p>
         <ul>
-          <li><code>@updateURL</code>, <code>@installURL</code>, and <code>@downloadURL</code> directives will be stripped, if present. The lack of these directives means that any script installed from %{site_name} will be updated from %{site_name}.</li>
+          <li><code>@updateURL</code> and <code>@downloadURL</code> directives will be added or updated to point to %{site_name}. <code>@installURL</code> will be removed, if present.</li>
           <li><code>@version</code> and <code>@namespace</code> directives will be inserted if the script is missing them. These directives are needed for proper updating.</li>
           <li><code>@description</code> will be inserted if a new version of a script is missing it and a previous version of the script had it.</li>
           <li>CRLF and CR line breaks will be converted to standard/Unix-style line breaks.</li>
@@ -1626,6 +1626,7 @@ en:
       script_update_not_utf8: "uploaded must be UTF-8 text"
       # validation when user uploads code that contains a disallowed @require
       script_disallowed_require: "uses an unapproved external script: %{code}"
+      script_disallowed_resource: "uses an invalid @resource: %{code}. Resources must be http, https, or data URLs"
       script_malformed_require: "uses a malformed external script reference: %{code}"
       script_rate_limit: "You have exceeded the posting limit. Try again later."
       missing_include_or_match: "must include at least one @match or @include key"

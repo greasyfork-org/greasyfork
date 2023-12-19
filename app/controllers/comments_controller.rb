@@ -6,6 +6,7 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!, except: :old_redirect
   before_action :load_discussion, except: :old_redirect
   before_action :check_ip, only: :create
+  skip_before_action :set_locale, only: [:old_redirect]
 
   def create
     Comment.transaction do
@@ -75,7 +76,7 @@ class CommentsController < ApplicationController
   end
 
   def old_redirect
-    redirect_to Discussion.find_by!(migrated_from: ForumComment.find(params[:id]).DiscussionID).path(locale: request_locale.code), status: :moved_permanently
+    redirect_to Discussion.find_by!(migrated_from: ForumComment.find(params[:id]).DiscussionID).path(locale: detect_locale_code), status: :moved_permanently
   end
 
   private

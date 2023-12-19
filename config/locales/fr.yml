@@ -845,23 +845,22 @@ fr:
     script_rewriting:
       title: "Comment %{site_name} va récrire les scripts postés"
       content_html: >
-          <p>Les scripts posté sur%{site_name} seront réécrits de la manière suivante:</p>
-          <ul>
+          <p>Les scripts publiés sur %{site_name} seront réécrits de la manière suivante
+          :</p> <ul>
 
-          <li>Les directives <code>@updateURL</code>, <code>@installURL</code>, et
-          <code>@downloadURL</code> seront supprimées, le cas échéant. L'absence de
-          ces directives signifie que tout les scripts installé à partir de %{site_name}
-          sera mis à jour à partir de %{site_name}.</li>
+          <li>Les directives  <code>@updateURL</code> et <code>@downloadURL</code>
+          seront ajoutées ou mises à jour pour pointer vers %{site_name}. La directive
+          <code>@installURL</code> sera supprimée, si elle est présente.</li>
 
           <li>Les directives <code>@version</code> et <code>@namespace</code> seront
-          ajouter aux script si manquant. Ces directives sont nécessaires pour les
-          mise à jour.</li>
+          insérées si le script ne les contient pas. Ces directives sont nécessaires
+          pour une mise à jour correcte.</li>
 
-          <li><code>@description</code> sera ajouté s'il manque une nouvelle version
-          d'un script et si une version précédente du script est disponible.</li>
+          <li>La directive <code>@description</code> sera inséré s'il elle manque
+          dans une nouvelle version d'un script et si au qu'une version précédente
+          du script l'avait.</li>
 
-          <li>Les retour a la ligne CRLF et CR seront convertis en retour a la ligne
-          standard/style-Unix.</li>
+          <li>Les sauts de ligne CRLF et CR seront convertis en sauts de ligne standard/Unix-style.</li>
 
           </ul>
     site_feedback_link: "Signaler un problème ou suggérer une idée pour %{site_name} lui-même"
@@ -1338,6 +1337,7 @@ fr:
       must_be_greasy_fork_script: "doit être l'URL d'un script %{site_name}"
       script_update_not_utf8: "téléchargé sur le serveur doit être du texte encodé en UTF-8"
       script_disallowed_require: "utilise un script externe non approuvé: %{code}"
+      script_disallowed_resource: "Utilisée une ressource invalide t'elle que @resource: %{code}. Les ressources doivent être t'elles que: http, https ou de type data URLs."
       script_malformed_require: "utilisation d'une référence de script externe mal formuler: %{code}"
       script_rate_limit: "Vous avez atteint la limite d'envois. Essayez plus tard."
       missing_include_or_match: "doit inclure au moins une clé @match ou @include"

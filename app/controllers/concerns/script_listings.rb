@@ -321,7 +321,7 @@ module ScriptListings
         @scripts.empty?
       end
     rescue ThinkingSphinx::SyntaxError, ThinkingSphinx::ParseError, ThinkingSphinx::QueryError
-      flash[:alert] = "Invalid search query - '#{params[:q]}'."
+      flash[:alert] = "Invalid search query - '#{params[:q]&.truncate(100)}'."
       # back to the main listing
       redirect_to scripts_path
       return true

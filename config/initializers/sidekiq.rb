@@ -15,7 +15,7 @@ if Rails.env.production?
 
       config.server_middleware do |chain|
         chain.add Sidekiq::WorkerKiller,
-                  max_rss: 15_000 * 0.9 / 2,  # 90% of memory spread across n processes
+                  max_rss: 15_000 * 0.9 / 2, # 90% of memory spread across n processes
                   shutdown_wait: 90
       end
     end

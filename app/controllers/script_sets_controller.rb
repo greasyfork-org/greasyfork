@@ -26,6 +26,7 @@ class ScriptSetsController < ApplicationController
     if params[:favorite] == '1'
       # check to make sure the user doesn't already have a favorite set
       unless @set.user.favorite_script_set.nil?
+        @child_set_user = @set.user
         render action: :new
         return
       end

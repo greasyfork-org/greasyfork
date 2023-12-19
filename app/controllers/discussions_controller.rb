@@ -10,6 +10,7 @@ class DiscussionsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :subscribe, :unsubscribe]
   before_action :greasy_only, only: :new
   before_action :check_ip, only: :create
+  skip_before_action :set_locale, only: [:old_redirect]
 
   layout 'discussions', only: :index
   layout 'application', only: [:new, :create]
@@ -51,6 +52,7 @@ class DiscussionsController < ApplicationController
   def show
     # Allow mods and the poster to see discussions under review.
     @discussion = discussion_scope(permissive: true).find(params[:id])
+    @canonical_params = [:id, :script_id, :category, :page, :per_page]
 
     if @discussion.script
       return if handle_publicly_deleted(@discussion.script)
@@ -179,7 +181,7 @@ class DiscussionsController < ApplicationController
   end
 
   def old_redirect
-    redirect_to Discussion.find_by!(migrated_from: params[:id]).path(locale: request_locale.code), status: :moved_permanently
+    redirect_to Discussion.find_by!(migrated_from: params[:id]).path(locale: detect_locale_code), status: :moved_permanently
   end
 
   def mark_all_read

@@ -1,7 +1,7 @@
 module Admin
   class ScriptSimilaritiesController < BaseController
     def index
-      @page = params[:page]&.to_i || 0
+      @page = params[:page].to_i
       @page = 0 unless @page.between?(0, 100)
 
       @top_similarities = ScriptSimilarity
