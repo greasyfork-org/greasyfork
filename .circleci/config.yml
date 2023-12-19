@@ -43,7 +43,7 @@ jobs:
       - run:
           name: Copy test config
           command: |
-            cp .circleci/application.yml .circleci/database.yml .circleci/secrets.yml config/
+            cp .circleci/application.yml .circleci/database.yml config/
       - run: bundle exec rake db:create
       - run: bin/rails db:schema:load
       - restore_cache:

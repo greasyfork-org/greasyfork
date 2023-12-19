@@ -50,7 +50,7 @@ class GoogleAnalytics
 
   def self.client
     Google::Analytics::Data::V1beta::AnalyticsData::Client.new do |config|
-      config.credentials = Rails.application.secrets.google_analytics[:credentials]
+      config.credentials = Rails.application.credentials.google_analytics.credentials!
     end
   end
 end
