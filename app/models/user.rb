@@ -9,7 +9,7 @@ class User < ApplicationRecord
   AUTHOR_NOTIFICATION_DISCUSSION = 2
   AUTHOR_NOTIFICATION_COMMENT = 3
 
-  serialize :announcements_seen, Array
+  serialize :announcements_seen, type: Array
 
   scope :moderators, -> { joins(:roles).where(roles: { name: 'moderator' }) }
   scope :administrators, -> { joins(:roles).where(roles: { name: 'administrator' }) }

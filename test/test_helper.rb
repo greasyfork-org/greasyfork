@@ -7,7 +7,7 @@ require 'application_system_test_case'
 
 module ActiveSupport
   class TestCase
-    ActiveRecord::Migration.check_pending!
+    ActiveRecord::Migration.check_all_pending!
 
     # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
     #
