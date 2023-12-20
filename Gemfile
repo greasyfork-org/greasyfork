@@ -4,7 +4,7 @@ ruby '3.2.2'
 
 gem 'bootsnap'
 gem 'daemons'
-gem 'devise'
+gem 'devise', git: 'https://github.com/heartcombo/devise.git', ref: 'e2242a95f3bb2e68ec0e9a064238ff7af6429545'
 gem 'devise-i18n', git: 'https://github.com/tigrish/devise-i18n.git'
 gem 'diffy'
 gem 'google-analytics-data'
