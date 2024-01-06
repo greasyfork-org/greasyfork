@@ -672,7 +672,7 @@ class Script < ApplicationRecord
                          .sort_by { |script| [(script.users & users).any? ? 0 : 1, script.daily_installs * -1] }
                          .first(5)
 
-    @_similiar_scripts.select(&:adsense_approved) if adsense_approved
+    @_similiar_scripts.select!(&:adsense_approved) if adsense_approved
 
     @_similiar_scripts
   end
