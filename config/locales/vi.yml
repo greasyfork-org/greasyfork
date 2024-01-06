@@ -214,7 +214,7 @@ vi:
     warning_namespace_missing_generate_automatically_html: "Tạo <code>@namespace</code>một cách tự động"
     warning_namespace_changed_html: "<code>@namespace</code> của bạn đã được thay đổi. Một <code>@namespace</code> trùng khớp cho phép người dùng cài đặt lại script của bạn để cập nhật"
     warning_potentially_minified_html: "Script của bạn có vẻ đã được tối ưu (đã nén) code. Nếu bạn đang sử dụng một thư viện đã tối ưu, Hãy đưa <code>@require</code> nó từ %{allowed_requires_link}. Những script đã tối ưu hóa code sẽ được miễn xóa."
-    warning_automatic_sensitive_html: "Script của bản dành cho %{sensitive_domains} và sẽ được dánh dấu có nội dung người lớn"
+    warning_automatic_sensitive_html: "Script của bạn dành cho %{sensitive_domains} và sẽ được đánh dấu có nội dung người lớn"
     warning_potentially_minified_allowed_requires_link: "một trong những chỗ này"
     warning_license_missing_override_html: "Lưu mà không cần giấy phép"
     additional_info_locale_prompt: "(Chọn một khu vực)"
@@ -228,6 +228,7 @@ vi:
       name: Thủ công
     sync_type_2:
       name: Tự động
+    sync_name_and_description: "%{name} - %{description}"
     sync_failed_info_html: "Lần đồng bộ cuối là %{date}, kết quả %{error}"
     sync_success_info_html: "Lần đồng bộ thành công cuối là %{date}."
     sync_never_succeeded: "Đồng bộ chưa bao giờ hoàn thành tốt đẹp."
@@ -249,7 +250,7 @@ vi:
     diff_new_version: "Mới:"
     diff_lines_of_context: "Những dòng của nội dung:"
     diff_ignore_whitespace: "Bỏ qua thay đổi khoảng trắng."
-    diff_terser: "Clean code trước khi so sánh"
+    diff_terser: "Xoá mã trước khi so sánh"
     diff_refresh: "Làm mới"
     diff_no_change: "Không tìm thấy khác biệt."
     good_rating_explanation: "Số lượng những người đã đánh giá Tốt hoặc thêm vào yêu thích."
@@ -267,7 +268,7 @@ vi:
     adult_content_on_greasy_logged_in_error: "Script này không còn khả dụng với thiết lập tài khoản của bạn :%{edit_account_link:Greasy Fork account settings}."
     adult_content_on_greasy_not_logged_in_error: "Script này không còn ẩn danh trên trang. %{login_link:Log in} vui lòng kiểm tra thiết lập tài khoản của bạn."
     non_adult_content_on_sleazy: "Script không có sẵn trên trang web này."
-    not_js_convertible_override_header: "Chuyển thành Js"
+    not_js_convertible_override_header: "Chuyển thành JS"
     adult_marker: "(Dành cho người lớn)"
     deleted_marker: "(Đã xóa)"
     locked_marker: "(Đã khóa)"
@@ -282,7 +283,20 @@ vi:
     updated: "Script đã được cập nhật."
     preview_additional_info: "Xem trước"
     must_confirm_email_button: "Gửi liên kết xác nhận đến %{email}"
+    invitations:
+      submit: "Gửi lời mời"
+    remove_author:
+      remove_button: "Xoá"
+    new_title:
+      js: "Đăng script mới"
+      css: "Đăng user style mới"
+    update_title: "Đăng phiên bản mới của %{script}"
     install_help_dialog:
+      js:
+        chrome: Bạn sẽ cần cài đặt một tiện ích mở rộng như %{tampermonkey_link:Tampermonkey} hoặc %{violentmonkey_link:Violentmonkey} để cài đặt kịch bản này.
+      css:
+        opera: Bạn sẽ cần cài đặt một tiện ích mở rộng như %{stylus_link:Stylus} để cài đặt kịch bản này.
+        other: Bạn sẽ cần cài đặt tiện ích "Quản lý kiểu người dùng" để cài đặt tập lệnh này.
       close_dialog: OK
     antifeatures:
       author_explanation_intro: "Tác giả script này giải thích:"
@@ -293,10 +307,17 @@ vi:
           title: Theo dõi
         referral-link:
           title: Link tiếp thị
+        membership:
+          title: Thành viên
         payment:
           title: Thanh toán
-      install_anyway: Script đã cài đặt
+      install_anyway: Cài đặt script
       cancel_install: Hủy
+    badges:
+      js:
+        short: JS
+      css:
+        short: CSS
   script_sets:
     description: "Bộ sưu tập Script giúp bạn tạo và chỉnh sửa danh sách các scripts để tìm kiếm với Greasy Fork. Bạn có thể thêm scripts này vào bộ sưu tập bao gồm cả script cá nhân, hoặc cho người dùng khác, hoặc là tạo một cách tự động một bộ sưa tập. Bạn cũng có thể hủy bỏ script từ bộ sưu tập của bạn bằng cách tương tự."
     favorites_name: "Mục ưa thích"
@@ -463,6 +484,8 @@ vi:
       banned: "Đã bị ban"
       not_banned: "Chưa bị ban"
       all: "Tất cả"
+    listing_author_filter:
+      all: "Tất cả"
     search_placeholder: "Tìm người dùng"
     locale_prompt: "(Chọn một khu vực)"
     show_ads_description: "Ủng hộ %{site_name} bằng cách cho phép nó hiển thị quảng cáo"
@@ -493,7 +516,22 @@ vi:
         request_expired: "Không thể xoá người dùng - yêu cầu đã hết hạn"
         cancelled: "Đã huỷ xoá"
         completed: "Tài khoản của bạn đã bị xoá"
+    banned_delete:
+      complete: "Đã XOÁ tài khoản của bạn"
+    badges:
+      banned:
+        short: Bị cấm
+        long: Bị cấm
+      moderator:
+        long: Quản trị viên
+      author:
+        short: Tác giả
+    notifications:
+      title: Thông báo
   help:
+    sections:
+      development: Nhà phát triển
+      miscellaneous: Điều khoản khác
     installing_user_scripts:
       title: 'Làm sao để cài đặt các user script?'
     meta_keys:
@@ -534,6 +572,8 @@ vi:
       title: "Liên hệ một ai đó"
     privacy_policy:
       title: "Chính sách bảo mật"
+    antifeatures:
+      title: Phản tính năng
   search:
     script_search:
       title: "Tim kiếm Script"
@@ -556,7 +596,38 @@ vi:
     item_script_html: "Script: %{script_link}"
     item_deleted_script: "Đã xoá script %{id}"
     item_user_html: "Người dùng: %{user_link}"
+  reports:
+    unauthorized_code_original_placeholder: "URL của mã gốc"
+    loading_diff: "Đang tải ..."
   discussions:
+    new_comment_submit: "Trả lời bình luận"
+    edit_comment_link: "Chỉnh sửa"
+    delete_comment: "Xoá"
+    delete_discussion: "Xoá"
+    cancel_update_comment: "Hủy"
+    question_heading_html: "Câu hỏi/Bình luận"
+    ratings:
+      bad: "Tệ - Script không hoạt động"
+    ratings_short:
+      question: "Câu hỏi/bình luận"
+      bad: "Tệ"
+      ok: "Xong"
+    badges:
+      deleted:
+        short: Đã xoá
+        long: Đã xóa
+    sign_in_to_post_comment: "Đăng nhập để bình luận"
+    user_filter:
+      all: "Tất cả thảo luận"
+    category_filter:
+      label: Danh mục
+    read_filter:
+      all: Tất cả
+    locale_filter:
+      label: Ngôn ngữ
+      all: Tất cả
+    new_title: Thảo luận mới
+    new_button: Thảo luận mới
     mark_all_read: Đánh dấu đã đọc
   conversations:
     user_input_note: Nhập tên người dùng hoặc URL dẫn tới profile của họ
@@ -598,6 +669,7 @@ vi:
         show_ads: "Hiện quảng cáo"
         show_sensitive: "Nội dung người lớn"
         preferred_markup: "Đánh dấu ưa thích"
+        filter_locale_default: "Lọc theo địa điểm"
         current_password: "Mật khẩu hiện tại"
         new_password: "Mật khẩu mới"
         new_password_confirmation: "Xác nhận mật khẩu mới"
@@ -616,9 +688,9 @@ vi:
         description: "Mô tả"
         default_sort: "Sắp xếp mặc định"
       report:
-        reason: "Lý do tố cáo"
+        reason: "Lý do báo cáo"
       discussion:
-        rating: "đánh giá"
+        rating: "Xếp hạng"
         category: "Thể loại"
         title: Tiêu đề
       conversation:
@@ -645,6 +717,7 @@ vi:
     long_name: "%{site_name} tìm kiếm script người dùng"
     attribution: "Bản quyền thuộc về tác giả script, xem từng script để biết thông tin giấy phép"
   importing:
+    title: Nhập scripts
     submit: Nhập
     previously_imported:
       heading: Script đã nhập trước đó
@@ -660,3 +733,6 @@ vi:
         subject: "Script %{script_name}trên %{site_name} đã bị tố cáo"
       report_upheld_offender:
         subject: "Script %{script_name}của bạn trên %{site_name}đã bị xóa"
+    script_lock_appeal:
+      dismiss:
+        moderator_notes: "QTV đã bình luận:"

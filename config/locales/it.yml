@@ -46,7 +46,7 @@ it:
     deleted_notice_with_related: "Lo script che hai cercato è stato rimosso, ma ci sono alcuni script simili."
     deleted_notice_with_related_and_reason: "Lo script che hai richiesto è stato eliminato a causa di %{report_link:this report}, ma ecco alcuni script correlati."
     deleted_undelete_notice_html: "Lo script è stato bloccato da un moderatore e non può essere cancellato. La motivazione fornita è: \"<i>%{delete_reason}</i>\"."
-    deleted_locked_author_notice_html: "Questo script è stato eliminato da un moderatore in risposta a %{report_link:this report} e non sara accessibile ad altri. La spiegazione fornita e' \"<i>%{delete_reason}</i>\". Perfavore controlla %{code_rules_link:%{site_name}il regolamento}. Se pensi la cancellazione sia un errore, puoi %{appeal_link:submit una richiesta} per questa cancellazione. Non ripubblicare questo script; ciò potrebbe comportare il divieto di%{site_name}."
+    deleted_locked_author_notice_html: "Questo script è stato eliminato da un moderatore in risposta a %{report_link:this report} e non sarà accessibile ad altri. La spiegazione fornita è \"<i>%{delete_reason}</i>\". Per favore controlla il %{code_rules_link:regolamento di %{site_name}}. Se pensi che la cancellazione sia un errore, puoi %{appeal_link:presentare ricorso} per questa cancellazione. Non ripubblicare questo script; ciò potrebbe portarti ad essere bandito da %{site_name}."
     deleted_author_notice: "Lo script è stato cancellato e non è accessibile da altri. Puoi ripristinarlo dalla finestra Elimina."
     version_notice_html: "Versione datata %{date}. Vedi la nuova versione %{latest_version_link}."
     version_notice_latest_version_link: "l'ultima versione"
@@ -181,6 +181,7 @@ it:
     listing_language_all: "Tutti"
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
+    search_failed: Qualcosa è andato storto nel caricamento dei tuoi risultati. Alcune delle funzioni di ricerca potrebbero non funzionare correttamente. Siamo stati notificati del problema.
     import: "Importa script"
     new: "Pubblica uno script che hai creato"
     new_css: "Pubblica uno stile che hai creato"
@@ -391,7 +392,7 @@ it:
     related_scripts: "Puoi provare anche questi scripts collegati:"
     integrity_hashes:
       script_notice:
-        detail: "<code>%{url}</code>dovresti usare l'hash <code>%{expected_hash}</code> (l'ultimo controllato %{last_checked_at})"
+        detail: "<code>%{url}</code>dovresti usare l'hash <code>%{expected_hash}</code> (ultimo controllo: %{last_checked_at})"
   script_sets:
     description: "Gli insiemi di script ti permettono di creare una lista personalizzata di script con cui navigare su Greasy Fork. Puoi aggiungere script al tuo insieme includendo script individuali, insiemi di altri utenti, o insiemi generati automaticamente. Puoi inoltre escludere degli script dal tuo insieme con gli stessi metodi."
     favorites_name: "Preferiti"
@@ -723,7 +724,7 @@ it:
       namespace_html: "I gestori script utente utilizzano una combinazione di <code>@namespace</code> e <code>@name</code> per controllare se uno script è già installato. %{site_name} richiede questo campo ed emetterà un avviso se viene modificato durante un aggiornamento."
       version: "Identificatore per una versione specifica di uno script nel %{version_format_link:formato versione Mozilla}. La versione è mostrata nella pagina di informazioni dello script. %{site_name} richiede questo campo e avviserà se è stato decrementato o se non è stato incrementato quando il codice dello script viene cambiato."
       include_html: "Descrivi su quali pagine lo script lavorerà. Questa lista verrà processata, mostrata sulla pagina di informazioni dello script e usata per categorizzare gli scripts. Ogni script deve avere almeno un <code>@match</code> o un <code>@include</code>. <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">Leggi qui per quanto riguarda il formato.</a>"
-      require_html: "Include codice JavaScript esterno in uno script. Controlla {external_script_link:rules per codice che include script esterni}. Se tu usi gli hash di integrità delle sottorisorse (controlla info %{tm_subresource_link:here}  e %{mdn_subresource_link:here}), %{site_name} ti notificheremo se il tuo hash non combacia con la risorsa all' URL che stai usando."
+      require_html: "Include codice JavaScript esterno in uno script. Controlla le {external_script_link:regole per codice che include script esterni}. Se tu usi gli hash di integrità delle sottorisorse (controlla info %{tm_subresource_link:qui}  e %{mdn_subresource_link:qui}), %{site_name} ti notificherà se il tuo hash non combacia con la risorsa all'URL che stai usando."
       updateURL: "Descrive come i gestori script utente debbano ottenere gli aggiornamenti. %{site_name} rimuoverà queste chiavi, il che farà sì che ogni script installato da %{site_name} riceva gli aggiornamenti solo da %{site_name}."
       supportURL: "URL che punta a una pagina dove gli utenti possano ottenere supporto per uno script (ad es. un bug tracker, un forum, un indirizzo e-mail). L'URL di supporto viene visualizzato nella pagina dei feedback dello script."
       contributionURL_html: "URL che punta a una pagina dove gli utenti possano fare una donazione all'autore dello script. L'URL può avere come protocollo HTTP, HTTPS o Bitcoin. Per inserire un collegamento a una pagina per le donazioni di PayPal, utilizza un URL nel formato <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Donazione+Greasy+Fork\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Donazione+Greasy+Fork</a>, sostituendo l'indirizzo e-mail di esempio con il tuo."
@@ -778,15 +779,15 @@ it:
       allowed_external_codes:
         heading: Codici esterni permessi
       libraries:
-        title: "%{site_name}librerie"
+        title: "Librerie di %{site_name}"
       origin_host:
-        title: Iniezione degli scripts dal host originale
+        title: Iniezione degli scripts dall'host originale
     cdns:
       title: CDN Permessi
       test_url:
         label: Prova un URL
-        result_ok: L' URL è permesso
-        result_not_ok: L' URL non è permesso
+        result_ok: L'URL è permesso
+        result_not_ok: L'URL non è permesso
     script_rewriting:
       title: "Come %{site_name} riscriverà gli script postati"
     site_feedback_link: "Riporta un problema o invia un'idea per %{site_name}"

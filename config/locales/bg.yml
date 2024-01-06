@@ -831,6 +831,24 @@ bg:
         result_not_ok: URL не е разрешен
     script_rewriting:
       title: "Как %{site_name} ще презапише публикуваните скриптове"
+      content_html: >
+          <p>Скриптовете, публикувани на %{site_name} , ще бъдат презаписани по следните
+          начини:</p> <ul>
+
+          <li><code>@updateURL</code> и <code>@downloadURL</code> ще бъдат добавени
+          или сменени с адреса на %{site_name}. Ако съществува <code>@installURL</code>
+          ще бъде премахнат.</li>
+
+          <li> Ако не съществуват<code>@version</code> и <code>@namespace</code>,
+          ще бъдат добавени. Тези директиви са необходими за правилно обновяване.</li>
+
+          <li> Ако в новата версия на скрипта липсва <code>@description</code>, но
+          я има в предишната, тя ще бъде добавена. </li>
+
+          <li>Символи CRLF и CR за край на ред ще бъдат конвертирани до стандартните/Unix-style
+          край на ред.</li>
+
+          </ul>
     site_feedback_link: "Докладвайте нередност или споделете идея за самия %{site_name}"
     credits:
       title: "Кредити"
