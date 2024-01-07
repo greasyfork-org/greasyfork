@@ -36,6 +36,10 @@ class DiscussionsController < ApplicationController
       @discussions = @discussions.where(scripts: { delete_type: nil }).where(report_id: nil) unless current_user&.moderator?
 
       @filter_result = apply_filters(@discussions)
+      if @filter_result.is_a?(String)
+        render_404(@filter_result)
+        return
+      end
 
       @discussions = @filter_result.result
       @discussions = @discussions.paginate(page: page_number, per_page: per_page(default: 25))
@@ -186,6 +190,10 @@ class DiscussionsController < ApplicationController
 
   def mark_all_read
     filter_result = apply_filters(Discussion.all)
+    if filter_result.is_a?(String)
+      render_404(filter_result)
+      return
+    end
 
     if filter_result.category || filter_result.related_to_me || filter_result.by_user
       now = Time.current
@@ -227,6 +235,7 @@ class DiscussionsController < ApplicationController
     DiscussionRead.upsert({ user_id: current_user.id, discussion_id: discussion.id, read_at: Time.current })
   end
 
+  # Returns a FILTER_RESULT Struct representing the query, or a String if there was an error.
   def apply_filters(discussions)
     category_scope = DiscussionCategory.visible_to_user(current_user)
     case params[:category]
@@ -258,7 +267,9 @@ class DiscussionsController < ApplicationController
 
     if params[:user].to_i > 0
       by_user = User.find_by(id: params[:user].to_i)
-      discussions = discussions.with_comment_by(by_user) if by_user
+      return 'User does not exist.' unless by_user
+
+      discussions = discussions.with_comment_by(by_user)
     end
 
     if params[:show_locale].present?
