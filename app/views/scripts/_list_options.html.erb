@@ -16,9 +16,10 @@ skip_all_sites_link = false unless defined?(skip_all_sites_link)
 
   <% if include_search %>
     <form class="sidebar-search">
-      <% [:filter_locale, :sort, :site, :language, :locale_override].each do |p| %>
+      <% [:filter_locale, :sort, :site, :language].each do |p| %>
         <% if params[p] %><input type="hidden" name="<%= p %>" value="<%= params[p] %>"><% end %>
       <% end %>
+      <%= render partial: 'shared/locale_override_field' %>
       <input type="search" name="q" value="<%= params[:q] %>" placeholder="<%= t('scripts.search_placeholder') %>"><input class="search-submit" type="submit" value="🔎">
     </form>
   <% end %>

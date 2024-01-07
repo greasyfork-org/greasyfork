@@ -15,7 +15,7 @@
       <p><%= t('scripts.listing_no_scripts') %></p>
     <% else %>
       <ol id="browse-script-list" class="script-list">
-        <%= render partial: 'script', collection: @scripts, cached: params[:locale_override].nil? ? ->(script) { ['libraries', script, I18n.locale] } : false %>
+        <%= render partial: 'script', collection: @scripts, cached: overriding_locale? ? false : ->(script) { ['libraries', script, I18n.locale] } %>
       </ol>
     <% end %>
 

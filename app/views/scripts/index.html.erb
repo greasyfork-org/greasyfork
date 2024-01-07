@@ -46,7 +46,7 @@
             <div id="script-list-ea" class="flat ethical-ads" data-ea-publisher="greasyfork" data-ea-type="text"></div>
           </li>
         <% end %>
-        <%= render partial: 'scripts/script', collection: @scripts, cached: params[:locale_override].nil? ? ->(script) { [script, request_locale] } : false %>
+        <%= render partial: 'scripts/script', collection: @scripts, cached: overriding_locale? ? false : ->(script) { [script, request_locale] } %>
       </ol>
     <% end %>
 

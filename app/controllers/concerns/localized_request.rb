@@ -4,7 +4,8 @@ module LocalizedRequest
 
   included do
     before_action :set_locale
-    helper_method :request_locale
+    before_action :nobots_overriding_locale
+    helper_method :request_locale, :overriding_locale?
   end
 
   def request_locale
@@ -30,7 +31,7 @@ module LocalizedRequest
     end
 
     # Redirect a logged-in user to their preferred locale, if it's available
-    if current_user&.locale_id && current_user.locale.ui_available && params[:locale] != current_user.locale.code && (params[:locale_override].nil? || params[:locale].nil?)
+    if current_user&.locale_id && current_user.locale.ui_available && params[:locale] != current_user.locale.code && (!overriding_locale? || params[:locale].nil?)
       redirect_to current_path_with_params(locale: current_user.locale.code, locale_override: nil), status: :found
       return
     end
@@ -71,7 +72,7 @@ module LocalizedRequest
 
   def default_url_options(_options = {})
     h = { locale: I18n.locale }
-    h[:locale_override] = params[:locale_override] unless params[:locale_override].nil?
+    h[:locale_override] = '1' if overriding_locale?
     return h
   end
 
@@ -115,5 +116,13 @@ module LocalizedRequest
       locale_parts[1].upcase! if locale_parts.length > 1
       next locale_parts.join('-')
     end
+  end
+
+  def overriding_locale?
+    params[:locale_override] == '1'
+  end
+
+  def nobots_overriding_locale
+    @bots = 'noindex' if overriding_locale?
   end
 end

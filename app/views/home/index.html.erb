@@ -5,9 +5,7 @@
 
 <div id="home-script-nav">
   <%= form_tag(scripts_path, class: 'home-search', method: :get) do %>
-    <% [:locale_override].each do |p| %>
-      <% if params[p] %><input type="hidden" name="<%= p %>" value="<%= params[p] %>"><% end %>
-    <% end %>
+    <%= render partial: 'shared/locale_override_field' %>
     <input type="search" name="q" placeholder="<%= t('home.search_placeholder') %>">
     <input type="submit" value="🔎" class="search-submit">
   <% end %>
