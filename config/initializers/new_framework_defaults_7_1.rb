@@ -64,7 +64,7 @@ Rails.application.config.active_record.encryption.support_sha1_for_non_determini
 # state which matches what was committed to the database, typically the last
 # instance to save.
 #++
-# Rails.application.config.active_record.run_commit_callbacks_on_first_saved_instances_in_transaction = false
+Rails.application.config.active_record.run_commit_callbacks_on_first_saved_instances_in_transaction = false
 
 ###
 # Configures SQLite with a strict strings mode, which disables double-quoted string literals.
@@ -80,7 +80,7 @@ Rails.application.config.active_record.sqlite3_adapter_strict_strings_by_default
 ###
 # Disable deprecated singular associations names.
 #++
-# Rails.application.config.active_record.allow_deprecated_singular_associations_name = false
+Rails.application.config.active_record.allow_deprecated_singular_associations_name = false
 
 ###
 # Enable the Active Job `BigDecimal` argument serializer, which guarantees
