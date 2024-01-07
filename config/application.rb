@@ -26,6 +26,8 @@ module Greasyfork
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
+    config.active_support.cache_format_version = 7.1
+
     # https://github.com/rails/rails/issues/44005
     config.active_support.executor_around_test_case = false
 
