@@ -30,6 +30,9 @@ class Locale < ApplicationRecord
     locales = where(code: locale_codes_to_look_up).order(ui_available: :asc, code: :desc).load
     return locales if locales.any?
 
+    # Special case for Chinese locales that are more similar to zh-TW than zh-CN.
+    return where(code: 'zh-TW') if %w[zh-HK zh-MO].include?(locale_code)
+
     return where('code like ?', "#{language_part_only}-%").order(:ui_available, :code)
   end
 

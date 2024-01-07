@@ -21,4 +21,9 @@ class LocalizedRequestTest < ActionDispatch::IntegrationTest
     assert_equal 'fr', top.code
     assert_equal 'zu', preferred.code
   end
+
+  test 'traditional Chinese locales' do
+    top, _preferred = detect_locale(nil, 'zh-MO, fr-FR;q=0.8, fr;q=0.7')
+    assert_equal 'zh-TW', top.code
+  end
 end
