@@ -16,7 +16,7 @@
 # This will reduce the size of the load path, making `require` faster if you don't use bootsnap, or reduce the size
 # of the bootsnap cache if you use it.
 #++
-# Rails.application.config.add_autoload_paths_to_load_path = false
+Rails.application.config.add_autoload_paths_to_load_path = false
 
 ###
 # Remove the default X-Download-Options headers since it is used only by Internet Explorer.
