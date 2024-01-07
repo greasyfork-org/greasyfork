@@ -24,7 +24,7 @@ class MessagesController < ApplicationController
     end
 
     notification_job = MessageNotificationJob
-    notification_job = notification_job.set(wait: Message::EDITABLE_PERIOD) unless Rails.env.development? || Rails.env.test?
+    notification_job = notification_job.set(wait: Message::EDITABLE_PERIOD) unless Rails.env.local?
     notification_job.perform_later(@message)
 
     redirect_to user_conversation_path(current_user, @conversation, anchor: "message-#{@message.id}")

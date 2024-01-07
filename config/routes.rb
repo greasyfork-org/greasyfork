@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   end
 
   # In production, these routes are handled by nginx rewrites.
-  if Rails.env.development? || Rails.env.test?
+  if Rails.env.local?
     constraints subdomain: %w[update] do
       get '/scripts/:id/:name.user.js', to: 'scripts#user_js'
       get '/scripts/:id/:version/:name.user.js', to: 'scripts#user_js'
