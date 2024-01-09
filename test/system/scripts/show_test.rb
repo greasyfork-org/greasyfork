@@ -7,7 +7,7 @@ class ShowTest < ApplicationSystemTestCase
     script.users.each do |user|
       login_as(user, scope: :user)
       visit script_path(script, locale: :en)
-      click_link 'Update'
+      click_on 'Update'
     end
   end
 

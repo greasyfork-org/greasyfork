@@ -11,22 +11,22 @@ class DiscussionsTest < ApplicationSystemTestCase
     fill_in 'discussion_comments_attributes_0_text', with: 'this is my comment'
     choose 'Greasy Fork Feedback'
     assert_difference -> { Discussion.count } => 1 do
-      click_button 'Post comment'
+      click_on 'Post comment'
       assert_content 'this is my comment'
     end
     assert user.subscribed_to?(Discussion.last)
 
-    click_link 'Edit'
+    click_on 'Edit'
     within '.edit-comment-form' do
       fill_in 'comment_text', with: 'this is an updated reply'
     end
 
-    click_button 'Update comment'
+    click_on 'Update comment'
     assert_content 'this is an updated reply'
 
     assert_difference -> { Discussion.not_deleted.count } => -1 do
       accept_confirm do
-        click_link 'Delete'
+        click_on 'Delete'
       end
       assert_no_content 'this is an updated reply'
     end
@@ -46,7 +46,7 @@ class DiscussionsTest < ApplicationSystemTestCase
     choose 'Greasy Fork Feedback'
     assert_no_emails do
       assert_difference -> { Discussion.count } => 1 do
-        click_button 'Post comment'
+        click_on 'Post comment'
         assert_content 'Hey @Geoffrey what is up? I heard from @Junior J. Junior, Sr. that you are named @Geoffrey!'
       end
     end
@@ -71,7 +71,7 @@ class DiscussionsTest < ApplicationSystemTestCase
     choose 'Greasy Fork Feedback'
     perform_enqueued_jobs(only: CommentNotificationJob) do
       assert_difference -> { Discussion.count } => 1 do
-        click_button 'Post comment'
+        click_on 'Post comment'
         assert_content 'Hey @Geoffrey'
       end
     end
@@ -87,18 +87,18 @@ class DiscussionsTest < ApplicationSystemTestCase
     check 'Notify me of any replies'
 
     assert_difference -> { Comment.count } => 1 do
-      click_button 'Post reply'
+      click_on 'Post reply'
       assert_content 'this is a reply'
     end
 
     assert user.subscribed_to?(discussion)
 
-    click_link 'Edit'
+    click_on 'Edit'
     within '.edit-comment-form' do
       fill_in 'comment_text', with: 'this is an updated reply'
     end
     assert_difference -> { Comment.count } => 0 do
-      click_button 'Update comment'
+      click_on 'Update comment'
       assert_content 'this is an updated reply'
     end
 
@@ -108,7 +108,7 @@ class DiscussionsTest < ApplicationSystemTestCase
     end
 
     assert_difference -> { Comment.count } => 1 do
-      click_button 'Post reply'
+      click_on 'Post reply'
       assert_content 'this is an another reply'
     end
 
@@ -117,7 +117,7 @@ class DiscussionsTest < ApplicationSystemTestCase
     assert_difference -> { Comment.not_deleted.count } => -1 do
       accept_confirm do
         within "#comment-#{Comment.last.id}" do
-          click_link 'Delete'
+          click_on 'Delete'
         end
       end
       assert_no_content 'this is an another reply'
@@ -135,7 +135,7 @@ class DiscussionsTest < ApplicationSystemTestCase
       discussion = discussions(:non_script_discussion)
       visit discussion.url
       fill_in 'comment_text', with: 'Hey @Geoffrey'
-      click_button 'Post reply'
+      click_on 'Post reply'
       assert_content 'Hey @Geoffrey'
     end
 
@@ -148,7 +148,7 @@ class DiscussionsTest < ApplicationSystemTestCase
     discussion = discussions(:non_script_discussion)
     visit discussion.url
     within '.discussion-header + .comment' do
-      click_link 'Quote'
+      click_on 'Quote'
     end
     assert_field('comment_text', with: "<blockquote><p>this is a test discussion</p></blockquote>\n\n")
   end
@@ -159,11 +159,11 @@ class DiscussionsTest < ApplicationSystemTestCase
     discussion = discussions(:non_script_discussion)
     visit discussion.url
     assert_difference -> { DiscussionSubscription.count } => 1 do
-      click_link 'Subscribe'
+      click_on 'Subscribe'
       assert_selector 'a', text: 'Unsubscribe'
     end
     assert_difference -> { DiscussionSubscription.count } => -1 do
-      click_link 'Unsubscribe'
+      click_on 'Unsubscribe'
       assert_selector 'a', text: 'Subscribe'
     end
   end
@@ -178,12 +178,12 @@ class DiscussionsTest < ApplicationSystemTestCase
     attach_file 'Add:', [Rails.public_path.join('images/blacklogo16.png'), Rails.public_path.join('images/blacklogo32.png')]
 
     assert_difference -> { Discussion.count } => 1 do
-      click_button 'Post comment'
+      click_on 'Post comment'
       assert_content 'this is my comment'
       assert_selector '.user-screenshots img', count: 2
     end
 
-    click_link 'Edit'
+    click_on 'Edit'
     assert_selector '.comment-screenshot-control img', count: 2
     within '.edit-comment-form' do
       fill_in 'comment_text', with: 'this is an updated reply'
@@ -192,7 +192,7 @@ class DiscussionsTest < ApplicationSystemTestCase
       check 'Remove'
     end
 
-    click_button 'Update comment'
+    click_on 'Update comment'
     assert_content 'this is an updated reply'
     assert_selector '.user-screenshots img', count: 1
   end

@@ -9,7 +9,7 @@ class DerivativesTest < ApplicationSystemTestCase
     with_sphinx do
       visit derivatives_script_url(script, locale: :en)
     end
-    click_button 'Recheck now'
+    click_on 'Recheck now'
     assert_content 'Similarity check will be completed in a few minutes.'
   end
 end

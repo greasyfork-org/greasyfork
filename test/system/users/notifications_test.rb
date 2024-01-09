@@ -9,7 +9,7 @@ module Users
       visit notifications_user_path(user, locale: :en)
       assert_changes -> { user.reload.subscribe_on_discussion }, to: true do
         check 'By default, subscribe to any discussions you start'
-        click_button 'Update notification settings'
+        click_on 'Update notification settings'
         assert_content 'Your notification preferences have been updated.'
       end
     end
@@ -21,7 +21,7 @@ module Users
       visit notifications_user_path(user, locale: :en)
       assert_changes -> { user.reload.subscribe_on_discussion }, to: false do
         check 'By default, subscribe to any discussions you start'
-        click_button 'Unsubscribe from all notifications'
+        click_on 'Unsubscribe from all notifications'
         assert_content 'You have been unsubscribed from all notifications.'
       end
       visit notifications_user_path(user, locale: :en)

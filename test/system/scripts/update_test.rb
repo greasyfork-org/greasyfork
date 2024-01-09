@@ -21,7 +21,7 @@ class UpdateTest < ApplicationSystemTestCase
     fill_in 'Code', with: code
     assert_reindexes do
       # assert_enqueued_with(job: ScriptUpdateCacheClearJob) do
-      click_button 'Post new version'
+      click_on 'Post new version'
       assert_selector 'h2', text: 'A Test Update!'
       # end
     end
@@ -35,7 +35,7 @@ class UpdateTest < ApplicationSystemTestCase
     fill_in 'Changelog', with: 'A change'
     assert_reindexes do
       # assert_no_enqueued_jobs(only: ScriptUpdateCacheClearJob) do
-      click_button 'Post new version'
+      click_on 'Post new version'
       assert_content 'Daily installs'
       # end
     end
@@ -58,7 +58,7 @@ class UpdateTest < ApplicationSystemTestCase
       var foo = 1;
     JS
     fill_in 'Code', with: code
-    click_button 'Post new version'
+    click_on 'Post new version'
     # @name is ignored in favour of the separate field on the form
     assert_selector 'h2', text: original_name
     assert_selector 'dd', text: '1.2'
@@ -82,14 +82,14 @@ class UpdateTest < ApplicationSystemTestCase
     JS
     fill_in 'Code', with: code
     check 'This script contains adult content or is for a site that contains adult content.'
-    click_button 'Post new version'
+    click_on 'Post new version'
     assert_selector 'h2', text: 'A Test Update!'
     assert script.reload.sensitive?
     assert_equal user, script.marked_adult_by_user
 
     visit new_script_script_version_url(script_id: script.id)
     check 'This script does not contain adult content and is not for a site that contains adult content.'
-    click_button 'Post new version'
+    click_on 'Post new version'
     assert_selector 'h2', text: 'A Test Update!'
     assert_not script.reload.sensitive?
     assert_nil script.not_adult_content_self_report_date
@@ -114,7 +114,7 @@ class UpdateTest < ApplicationSystemTestCase
     JS
     fill_in 'Code', with: code
     check 'This script does not contain adult content and is not for a site that contains adult content.'
-    click_button 'Post new version'
+    click_on 'Post new version'
     assert_selector 'h2', text: 'A Test Update!'
     assert script.reload.sensitive?
     assert_not_nil script.not_adult_content_self_report_date
@@ -138,11 +138,11 @@ class UpdateTest < ApplicationSystemTestCase
         var foo = 1;
       JS
       fill_in 'Code', with: code
-      click_button 'Post new version'
+      click_on 'Post new version'
 
       assert_content 'Your script is for pornonthecob.com and so will be marked as adult content.'
       check 'Save anyway'
-      click_button 'Post new version'
+      click_on 'Post new version'
 
       assert_selector 'h2', text: 'A Test Update!'
       assert script.reload.sensitive?
@@ -150,7 +150,7 @@ class UpdateTest < ApplicationSystemTestCase
 
       visit new_script_script_version_url(script_id: script.id)
       assert_content 'Your script has been marked as having adult content due to being for pornonthecob.com.'
-      click_button 'Post new version'
+      click_on 'Post new version'
 
       assert_selector 'h2', text: 'A Test Update!'
       assert script.reload.sensitive?

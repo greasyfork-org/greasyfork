@@ -21,7 +21,7 @@ class AdditionalInfoTest < ApplicationSystemTestCase
     JS
     fill_in 'Code', with: code
     fill_in 'Additional info', with: 'Hey @Geoffrey this is for you!'
-    click_button 'Post script'
+    click_on 'Post script'
     assert_selector 'h2', text: 'A Test!'
     script = Script.last
 
@@ -29,7 +29,7 @@ class AdditionalInfoTest < ApplicationSystemTestCase
 
     visit new_script_script_version_url(script_id: script.id)
     fill_in 'Additional info', with: 'Hey @"Gordon J. Canada" this is for you!'
-    click_button 'Post new version'
+    click_on 'Post new version'
     assert_selector 'h2', text: 'A Test!'
     assert_link '@Gordon J. Canada', href: user_path(mentioned_user2, locale: :en)
 
@@ -58,7 +58,7 @@ class AdditionalInfoTest < ApplicationSystemTestCase
     JS
     fill_in 'Code', with: code
     fill_in 'Additional info', with: 'Hey @Geoffrey this is for you!'
-    click_button 'Post script'
+    click_on 'Post script'
     assert_selector 'h2', text: 'A Test!'
     script = Script.last
     script_version = script.script_versions.last
@@ -69,7 +69,7 @@ class AdditionalInfoTest < ApplicationSystemTestCase
 
     # No update
     visit new_script_script_version_url(script_id: script.id)
-    click_button 'Post new version'
+    click_on 'Post new version'
     assert_selector 'h2', text: 'A Test!'
     script.reload
     script_version = script.script_versions.last
@@ -81,7 +81,7 @@ class AdditionalInfoTest < ApplicationSystemTestCase
     # Update the additional info, but retain the mention
     visit new_script_script_version_url(script_id: script.id)
     fill_in 'Additional info', with: 'Hey @Geoffrey this is for you!!!!!!'
-    click_button 'Post new version'
+    click_on 'Post new version'
     assert_selector 'h2', text: 'A Test!'
     script.reload
     script_version = script.script_versions.last
@@ -93,7 +93,7 @@ class AdditionalInfoTest < ApplicationSystemTestCase
     # Update the additional info, mentioning a different user
     visit new_script_script_version_url(script_id: script.id)
     fill_in 'Additional info', with: 'Hey @"Gordon J. Canada" this is for you!'
-    click_button 'Post new version'
+    click_on 'Post new version'
     assert_selector 'h2', text: 'A Test!'
     script.reload
     script_version = script.script_versions.last
@@ -105,7 +105,7 @@ class AdditionalInfoTest < ApplicationSystemTestCase
     # No longer mention anyone
     visit new_script_script_version_url(script_id: script.id)
     fill_in 'Additional info', with: 'This is for no one'
-    click_button 'Post new version'
+    click_on 'Post new version'
     assert_selector 'h2', text: 'A Test!'
     script.reload
     script_version = script.script_versions.last
@@ -121,7 +121,7 @@ class AdditionalInfoTest < ApplicationSystemTestCase
     fill_in 'Additional info', with: 'New, different content'
     assert_reindexes do
       assert_difference -> { ScriptVersion.count } => 1 do
-        click_button 'Post new version'
+        click_on 'Post new version'
         assert_content 'New, different content'
       end
     end

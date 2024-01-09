@@ -7,11 +7,11 @@ class ReportsTest < ApplicationSystemTestCase
     user = users(:one)
     login_as(user, scope: :user)
     visit user_url(users(:consumer), locale: :en)
-    click_link 'Report'
+    click_on 'Report'
     choose 'Spam'
     fill_in 'Provide additional details (optional)', with: 'and eggs'
     assert_difference -> { Report.count } => 1 do
-      click_button 'Create report'
+      click_on 'Create report'
       assert_content 'Your report will be reviewed by a moderator.'
     end
     assert_equal users(:consumer), Report.last.item
@@ -22,11 +22,11 @@ class ReportsTest < ApplicationSystemTestCase
     login_as(user, scope: :user)
     comment = comments(:non_script_comment)
     visit comment.url
-    click_link 'Report comment'
+    click_on 'Report comment'
     choose 'Spam'
     fill_in 'Provide additional details (optional)', with: 'and eggs'
     assert_difference -> { Report.count } => 1 do
-      click_button 'Create report'
+      click_on 'Create report'
       assert_content 'Your report will be reviewed by a moderator.'
     end
     assert_equal comment.discussion, Report.last.item
@@ -37,11 +37,11 @@ class ReportsTest < ApplicationSystemTestCase
     login_as(user, scope: :user)
     comment = comments(:non_script_comment_2)
     visit comment.url
-    click_link 'Report comment'
+    click_on 'Report comment'
     choose 'Spam'
     fill_in 'Provide additional details (optional)', with: 'and eggs'
     assert_difference -> { Report.count } => 1 do
-      click_button 'Create report'
+      click_on 'Create report'
       assert_content 'Your report will be reviewed by a moderator.'
     end
     assert_equal comment, Report.last.item
@@ -52,11 +52,11 @@ class ReportsTest < ApplicationSystemTestCase
     conversation = conversations(:geoff_and_junior)
     login_as(user, scope: :user)
     visit user_conversation_url(user, conversation, locale: :en)
-    click_link 'Report message'
+    click_on 'Report message'
     choose 'Spam'
     fill_in 'Provide additional details (optional)', with: 'and eggs'
     assert_difference -> { Report.count } => 1 do
-      click_button 'Create report'
+      click_on 'Create report'
       assert_content 'Your report will be reviewed by a moderator.'
     end
     assert_equal conversation.messages.first, Report.last.item
@@ -67,13 +67,13 @@ class ReportsTest < ApplicationSystemTestCase
     login_as(user, scope: :user)
     script = scripts(:two)
     visit script_url(script, locale: :en)
-    click_link 'report the script'
+    click_on 'report the script'
     choose 'Spam'
     fill_in 'Provide additional details (optional)', with: 'and eggs'
     assert_difference -> { Report.count } => 1 do
       # 2 emails - one for each author
       assert_enqueued_emails(2) do
-        click_button 'Create report'
+        click_on 'Create report'
         assert_content 'Your report will be reviewed by a moderator.'
       end
     end
@@ -89,7 +89,7 @@ class ReportsTest < ApplicationSystemTestCase
     assert_changes -> { report.reload.result }, from: nil, to: 'dismissed' do
       assert_no_changes -> { report.item.reload.deleted? } do
         assert_enqueued_emails(2) do
-          click_button 'Dismiss'
+          click_on 'Dismiss'
           assert_content 'There are currently no actionable reports.'
         end
       end
@@ -105,7 +105,7 @@ class ReportsTest < ApplicationSystemTestCase
     assert_changes -> { report.reload.result }, from: nil, to: 'fixed' do
       assert_no_changes -> { report.item.reload.deleted? } do
         assert_enqueued_emails(2) do
-          click_button 'Mark as fixed'
+          click_on 'Mark as fixed'
           assert_content 'There are currently no actionable reports.'
         end
       end
@@ -121,7 +121,7 @@ class ReportsTest < ApplicationSystemTestCase
     assert_changes -> { report.reload.result }, from: nil, to: 'upheld' do
       assert_changes -> { report.item.reload.deleted? }, from: false, to: true do
         assert_enqueued_emails(2) do
-          click_button 'Delete script'
+          click_on 'Delete script'
           assert_content 'There are currently no actionable reports.'
         end
       end
@@ -137,14 +137,14 @@ class ReportsTest < ApplicationSystemTestCase
     assert_changes -> { report.reload.result }, from: nil, to: 'upheld' do
       assert_changes -> { report.item.reload.deleted? }, from: false, to: true do
         assert_enqueued_emails(1) do
-          click_button 'Delete script'
+          click_on 'Delete script'
           assert_content 'This script was deleted by you'
         end
       end
     end
-    click_link 'this report'
+    click_on 'this report'
     assert_content 'This is total spam!'
-    click_link 'submit an appeal'
+    click_on 'submit an appeal'
     assert_content 'If a moderator is satisfied by your updates'
   end
 
@@ -157,7 +157,7 @@ class ReportsTest < ApplicationSystemTestCase
     fill_in 'Explain to a moderator why this script should not be deleted.', with: 'No it is not!'
     assert_changes -> { report.reload.rebuttal } do
       assert_enqueued_emails(1) do
-        click_button 'Submit rebuttal'
+        click_on 'Submit rebuttal'
         assert_content 'A moderator will review this report and your explanation and make a decision.'
         assert_content "#{user.name} said:\nNo it is not!"
       end

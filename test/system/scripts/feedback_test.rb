@@ -7,10 +7,10 @@ class FeedbackTest < ApplicationSystemTestCase
     user.save!
 
     visit script_url(Script.first, locale: :en)
-    click_link 'report the script'
+    click_on 'report the script'
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
-    click_button 'Log in'
+    click_on 'Log in'
     assert_selector 'p', text: 'Before reporting, please note'
   end
 end

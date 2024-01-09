@@ -5,10 +5,10 @@ module Users
     def log_in(user)
       user.update!(password: 'password')
       visit root_url
-      click_link 'Sign in'
+      click_on 'Sign in'
       fill_in 'Email', with: user.email
       fill_in 'Password', with: 'password'
-      click_button 'Log in'
+      click_on 'Log in'
     end
 
     test 'can log in' do
@@ -47,11 +47,11 @@ module Users
         user.update!(banned_at: Time.zone.now)
         log_in(user)
         assert_content 'Your account has been banned.'
-        click_link 'delete your account'
+        click_on 'delete your account'
         fill_in 'Email', with: user.email
         fill_in 'Password', with: 'password'
         assert_changes -> { User.find_by(id: user.id) }, to: nil do
-          click_button 'Log in'
+          click_on 'Log in'
           assert_content 'Your account has been deleted.'
         end
       end

@@ -15,7 +15,7 @@ module Conversations
         uncheck 'Notify me of any replies'
       end
 
-      click_button 'Create conversation'
+      click_on 'Create conversation'
 
       assert_content "Conversation with #{to_user.name}"
     end
@@ -26,7 +26,7 @@ module Conversations
 
       visit user_conversation_url(as_user, conversation, locale: :en)
       fill_in 'Message', with: 'This is a reply'
-      click_button 'Post reply'
+      click_on 'Post reply'
 
       assert_content 'This is a reply'
     end

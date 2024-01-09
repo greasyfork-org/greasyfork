@@ -6,11 +6,11 @@ class DeleteTest < ApplicationSystemTestCase
     login_as(script.users.first, scope: :user)
     visit delete_script_url(script, locale: :en)
     choose 'They will keep it as it is.'
-    click_button 'Delete'
+    click_on 'Delete'
     assert_content 'Daily installs'
     assert script.reload.deleted?
     click_on 'Delete'
-    click_button 'Undelete'
+    click_on 'Undelete'
     assert_content 'Daily installs'
     assert_not script.reload.deleted?
   end

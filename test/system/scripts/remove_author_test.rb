@@ -16,7 +16,7 @@ class RemoveAuthorTest < ApplicationSystemTestCase
     assert_selector('h4', text: 'Remove Authors')
     within '#user-remove-list li:last-child' do
       accept_prompt 'Are you sure you want to remove Geoffrey as an author?' do
-        click_button 'Remove'
+        click_on 'Remove'
       end
     end
     assert_content 'Geoffrey has been removed as an author.'

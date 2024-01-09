@@ -15,7 +15,7 @@ class AnnouncementsTest < ApplicationSystemTestCase
     visit root_url(locale: :en, test: 1)
     assert_content 'This is a test announcement'
     within '.announcement' do
-      click_button '✖'
+      click_on '✖'
     end
     assert_no_content 'This is a test announcement'
     visit root_url(locale: :en, test: 1)

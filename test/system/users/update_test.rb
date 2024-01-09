@@ -8,9 +8,9 @@ module Users
 
       login_as(user)
       visit user_path(user, locale: :en)
-      click_link 'Edit account'
+      click_on 'Edit account'
       fill_in 'Profile', with: 'My best friend is @Geoffrey'
-      click_button 'Update'
+      click_on 'Update'
       assert_selector 'h2', text: user.name
       assert_link '@Geoffrey', href: user_path(mentioned_user, locale: :en)
     end
@@ -19,10 +19,10 @@ module Users
       user = users(:one)
       login_as(user)
       visit user_path(user, locale: :en)
-      click_link 'Edit account'
+      click_on 'Edit account'
       fill_in 'Name', with: 'Jerome'
       assert_reindexes do
-        click_button 'Update'
+        click_on 'Update'
         assert_selector 'h2', text: 'Jerome'
       end
     end

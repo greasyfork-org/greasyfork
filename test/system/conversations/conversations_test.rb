@@ -10,7 +10,7 @@ class ConversationsTest < ApplicationSystemTestCase
     fill_in 'User', with: "https://greasyfork.org/users/#{to_user.id}"
     fill_in 'Message', with: '1 2 3 4'
     assert_difference -> { Conversation.count } => 1, -> { Message.count } => 1 do
-      click_button 'Create conversation'
+      click_on 'Create conversation'
       assert_content "Conversation with #{to_user.name}"
     end
 
@@ -18,7 +18,7 @@ class ConversationsTest < ApplicationSystemTestCase
 
     fill_in 'Message', with: '5 6 7 8'
     assert_difference -> { Conversation.count } => 0, -> { Message.count } => 1 do
-      click_button 'Post reply'
+      click_on 'Post reply'
       assert_content '5 6 7 8'
     end
   end
@@ -29,7 +29,7 @@ class ConversationsTest < ApplicationSystemTestCase
 
     to_user = users(:junior)
     visit user_url(to_user, locale: :en)
-    click_link 'Send message'
+    click_on 'Send message'
 
     assert_content "Conversation with #{to_user.name}"
   end
@@ -44,7 +44,7 @@ class ConversationsTest < ApplicationSystemTestCase
 
     fill_in 'Message', with: '1 2 3 4'
     assert_difference -> { Conversation.count } => 0, -> { Message.count } => 1 do
-      click_button 'Create conversation'
+      click_on 'Create conversation'
       assert_content "Conversation with #{to_user.name}"
     end
   end
@@ -59,7 +59,7 @@ class ConversationsTest < ApplicationSystemTestCase
     fill_in 'User', with: "https://greasyfork.org/users/#{to_user.id}"
     fill_in 'Message', with: 'Hey @Geoffrey'
     assert_difference -> { Conversation.count } => 1, -> { Message.count } => 1 do
-      click_button 'Create conversation'
+      click_on 'Create conversation'
       assert_content "Conversation with #{to_user.name}"
     end
     assert_link '@Geoffrey', href: user_path(mentioned_user1, locale: :en)
@@ -69,7 +69,7 @@ class ConversationsTest < ApplicationSystemTestCase
     mentioned_user2 = users(:consumer)
     fill_in 'Message', with: 'Hello @"Gordon J. Canada"'
     assert_difference -> { Conversation.count } => 0, -> { Message.count } => 1 do
-      click_button 'Post reply'
+      click_on 'Post reply'
       assert_link '@Gordon J. Canada', href: user_path(mentioned_user2, locale: :en)
     end
   end
@@ -83,7 +83,7 @@ class ConversationsTest < ApplicationSystemTestCase
     visit user_conversation_url(user, conversation, locale: :en)
 
     fill_in 'Message', with: 'a' * 100_001
-    click_button 'Post reply'
+    click_on 'Post reply'
     assert_content 'Message is too long'
   end
 end

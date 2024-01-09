@@ -6,7 +6,7 @@ class MarkAsReadTest < ApplicationSystemTestCase
     login_as(user, scope: :user)
     visit discussions_path(locale: :en)
     assert_selector '.discussion-not-read'
-    click_link 'Mark all read'
+    click_on 'Mark all read'
     assert_no_selector '.discussion-not-read'
   end
 
@@ -15,7 +15,7 @@ class MarkAsReadTest < ApplicationSystemTestCase
     login_as(user, scope: :user)
     visit discussions_path(locale: :en, category: 'greasyfork')
     assert_selector '.discussion-not-read'
-    click_link 'Mark all read'
+    click_on 'Mark all read'
     assert_no_selector '.discussion-not-read'
     visit discussions_path(locale: :en)
     assert_selector '.discussion-not-read'

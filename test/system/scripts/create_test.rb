@@ -20,7 +20,7 @@ class CreateTest < ApplicationSystemTestCase
     JS
     fill_in 'Code', with: code
     # assert_no_enqueued_jobs(only: ScriptUpdateCacheClearJob) do
-    click_button 'Post script'
+    click_on 'Post script'
     assert_selector 'h2', text: 'A Test!'
     # end
     assert_includes(Script.last.users, user)
@@ -47,7 +47,7 @@ class CreateTest < ApplicationSystemTestCase
         }
       JS
       fill_in 'Code', with: code
-      click_button 'Post script'
+      click_on 'Post script'
       assert_selector 'h2', text: 'Example UserCSS style'
       assert_includes(Script.last.users, user)
     end
@@ -66,7 +66,7 @@ class CreateTest < ApplicationSystemTestCase
         }
       JS
       fill_in 'Code', with: code
-      click_button 'Post script'
+      click_on 'Post script'
       assert_content 'is missing its metadata block'
     end
   end
@@ -88,7 +88,7 @@ class CreateTest < ApplicationSystemTestCase
     JS
     fill_in 'Code', with: code
     choose 'Library - a script intended to be @require-d from other scripts and not installed directly.'
-    click_button 'Post script'
+    click_on 'Post script'
     assert_selector 'h2', text: 'My library'
     assert_includes(Script.last.users, user)
   end
@@ -103,10 +103,10 @@ class CreateTest < ApplicationSystemTestCase
     JS
     fill_in 'Code', with: code
     choose 'Library - a script intended to be @require-d from other scripts and not installed directly.'
-    click_button 'Post script'
+    click_on 'Post script'
     fill_in 'Name', with: 'My library'
     fill_in 'Description', with: 'My library description'
-    click_button 'Post script'
+    click_on 'Post script'
     assert_selector 'h2', text: 'My library'
     assert_includes(Script.last.users, user)
   end

@@ -5,7 +5,7 @@ class BlockTest < ApplicationSystemTestCase
     user = User.find(4)
     login_as(user, scope: :user)
     visit new_script_version_url
-    click_link "I've written a script and want to share it with others."
+    click_on "I've written a script and want to share it with others."
     code = <<~JS
       // ==UserScript==
       // @name A Test!
@@ -20,7 +20,7 @@ class BlockTest < ApplicationSystemTestCase
     fill_in 'Code', with: code
     assert_changes -> { user.reload.banned? }, from: false, to: true do
       assert_script_deleted_page do
-        click_button 'Post script'
+        click_on 'Post script'
       end
     end
   end
@@ -28,7 +28,7 @@ class BlockTest < ApplicationSystemTestCase
   test 'blocked with originating script' do
     login_as(User.find(4))
     visit new_script_version_url
-    click_link "I've written a script and want to share it with others."
+    click_on "I've written a script and want to share it with others."
     code = <<~JS
       // ==UserScript==
       // @name A Test!
@@ -41,7 +41,7 @@ class BlockTest < ApplicationSystemTestCase
       some.unique[value]
     JS
     fill_in 'Code', with: code
-    click_button 'Post script'
+    click_on 'Post script'
     assert_content 'This appears to be an unauthorized copy'
   end
 
@@ -62,7 +62,7 @@ class BlockTest < ApplicationSystemTestCase
     JS
     fill_in 'Code', with: code
     assert_difference -> { ScriptVersion.count } => 1 do
-      click_button 'Post script'
+      click_on 'Post script'
     end
   end
 
@@ -83,7 +83,7 @@ class BlockTest < ApplicationSystemTestCase
     JS
     fill_in 'Code', with: code
     assert_difference -> { ScriptVersion.count } => 1 do
-      click_button 'Post new version'
+      click_on 'Post new version'
     end
   end
 
@@ -91,7 +91,7 @@ class BlockTest < ApplicationSystemTestCase
     user = User.find(4)
     login_as(user, scope: :user)
     visit new_script_version_url
-    click_link "I've written a script and want to share it with others."
+    click_on "I've written a script and want to share it with others."
     code = <<~JS
       // ==UserScript==
       // @name badguytext
@@ -105,7 +105,7 @@ class BlockTest < ApplicationSystemTestCase
     JS
     fill_in 'Code', with: code
     assert_difference -> { Script.count } => 1 do
-      click_button 'Post script'
+      click_on 'Post script'
       assert_content 'This script is unavailable to other users until it is reviewed by a moderator.'
     end
     assert_equal 'required', Script.last.review_state
