@@ -114,11 +114,15 @@ module Webhooks
   def inject_script_info(user, changed_files)
     # Associate scripts to each file.
     changed_files.each do |_file, info|
-      # Scripts syncing code to this file
-      info[:scripts] = user.scripts.not_deleted.where(sync_identifier: info[:urls])
-
-      # Scripts syncing additional info to this file
-      info[:script_attributes] = LocalizedScriptAttribute.where(sync_identifier: info[:urls]).joins(script: :authors).where(authors: { user_id: user.id })
+      script_scope = user.scripts.not_deleted
+      script_attribute_scope = LocalizedScriptAttribute.joins(script: :authors).where(authors: { user_id: user.id })
+      prefixes, urls = info[:urls].partition { |url| url.is_a?(Hash) }
+      info[:scripts] = script_scope.where(sync_identifier: urls)
+      info[:script_attributes] = script_attribute_scope.where(sync_identifier: urls)
+      prefixes.pluck(:prefix).each do |prefix|
+        info[:scripts] = info[:scripts].or(script_scope.where('sync_identifier LIKE ?', "#{Script.sanitize_sql_like(prefix)}%"))
+        info[:script_attributes] = info[:script_attributes].or(script_attribute_scope.where('localized_script_attributes.sync_identifier LIKE ?', "#{Script.sanitize_sql_like(prefix)}%"))
+      end
     end
   end
 

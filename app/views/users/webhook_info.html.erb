@@ -20,6 +20,14 @@
 
 <h3>GitHub</h3>
 
+<p>The sync URL you supply to <%= site_name %> must be one of the following formats:</p>
+
+<ul>
+  <li>https://raw.githubusercontent.com/<b>YourRepoName</b>/<b>YourProjectName</b>/<b>main</b>/<b>path/to/script.user.js</b></li>
+  <li>https://github.com/<b>YourRepoName</b>/<b>YourProjectName</b>/raw/<b>main</b>/<b>path/to/script.user.js</b></li>
+  <li>https://github.com/<b>YourRepoName</b>/<b>YourProjectName</b>/releases/latest/download/<b>path/to/script.user.js</b> (only for release events)</li>
+</ul>
+
 <p>To set up the webhook on GitHub, access your GitHub repository and go to Settings, Webhooks, Add webhook, then enter the data below.</p>
 
 <dl>
@@ -50,6 +58,12 @@
 
 <h3>Bitbucket</h3>
 
+<p>The sync URL you supply to <%= site_name %> must be one of the following formats:</p>
+
+<ul>
+  <li>https://bitbucket.org/<b>YourRepoName</b>/<b>YourProjectName</b>/raw/<b>master</b>/<b>path/to/script.user.js</b></li>
+</ul>
+
 <p>To set up the webhook on Bitbucket, access your Bitbucket repository and go to Repository Settings, Webhooks, Add webhook, then enter the data below.</p>
 
 <dl>
@@ -76,6 +90,14 @@
 </dl>
 
 <h3>GitLab</h3>
+
+<p>The sync URL you supply to <%= site_name %> must be one of the following formats:</p>
+
+<ul>
+  <li>https://gitlab.com/<b>YourRepoName</b>/<b>YourProjectName</b>/raw/<b>master</b>/<b>path/to/script.user.js</b></li>
+  <li>https://gitlab.com/<b>YourRepoName</b>/<b>YourProjectName</b>/-/raw/<b>master</b>/<b>path/to/script.user.js</b></li>
+  <li>https://gitlab.com/api/v4/projects/<b>YourNumericalProjectID</b>/repository/files/<b>path/to/script.user.js</b>/raw?ref=<b>master</b> (can include further parameters - this is mostly useful for private repos)</li>
+</ul>
 
 <p>To set up the webhook on GitLab, access your GitLab repository and go to Settings, Integrations, then enter the data below.</p>
 

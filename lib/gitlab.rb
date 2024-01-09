@@ -5,6 +5,7 @@ class Gitlab
 
       repo_url = params[:repository][:git_http_url].delete_suffix('.git')
       ref = params[:ref]
+      project_id = params[:project][:id]
 
       # Get a list of changed files and the commit info that goes with them.
       # We will keep all commit messages but only the most recent commit.
@@ -16,7 +17,7 @@ class Gitlab
           changed_files[m] ||= {}
           changed_files[m][:commit] = c[:id]
           (changed_files[m][:messages] ||= []) << c[:message]
-          changed_files[m][:urls] ||= urls_for_ref(repo_url, ref, m)
+          changed_files[m][:urls] ||= urls_for_ref(repo_url, ref, m, project_id)
         end
       end
 
@@ -28,15 +29,18 @@ class Gitlab
       release_name = params[:name]
       ref = params[:tag]
       default_branch = params[:project][:default_branch]
+      project_id = params[:project][:id]
 
       sync_identifiers = Script.where('sync_identifier LIKE ?', "#{Script.sanitize_sql_like(repo_url)}%").pluck(:sync_identifier)
-      sync_identifiers.map { |file| file_from_root_for_url(file, repo_url) }.index_with { |file| { messages: [release_name], urls: urls_for_ref(repo_url, ref, file) + urls_for_ref(repo_url, default_branch, file), ref: } }
+      sync_identifiers.map { |file| file_from_root_for_url(file, repo_url) }.index_with { |file| { messages: [release_name], urls: urls_for_ref(repo_url, ref, file, project_id) + urls_for_ref(repo_url, default_branch, file, project_id), ref: } }
     end
 
-    def urls_for_ref(repo_url, ref, file)
+    def urls_for_ref(repo_url, ref, file, project_id)
+      branch = ref.split('/').last
       [
-        "#{repo_url}/raw/#{ref.split('/').last}/#{file}",
-        "#{repo_url}/-/raw/#{ref.split('/').last}/#{file}",
+        "#{repo_url}/raw/#{branch}/#{file}",
+        "#{repo_url}/-/raw/#{branch}/#{file}",
+        { prefix: "https://gitlab.com/api/v4/projects/#{project_id}/repository/files/#{file}/raw?ref=#{branch}" },
       ]
     end
 
