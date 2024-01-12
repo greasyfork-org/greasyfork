@@ -1,5 +1,6 @@
 require 'test_helper'
 require 'git'
+require 'script_importer/base_script_importer'
 
 class GitlabWebhookTest < ActionDispatch::IntegrationTest
   CHANGE_BODY = <<~'JSON'.freeze
@@ -250,7 +251,7 @@ class GitlabWebhookTest < ActionDispatch::IntegrationTest
 
     script = Script.find_by(sync_identifier: 'https://github.com/JasonBarnabe/webhooktest/raw/master/test.user.js')
     script.update!(sync_identifier: 'https://gitlab.com/api/v4/projects/456789/repository/files/script.user.js/raw?ref=main&private_token=glpat-XXXX')
-    Git.expects(:get_contents).with('https://gitlab.com/username-or-group/repository.git', { 'script.user.js' => 'ea6c525a17d2c6f23ebd36b2acfbfb1eb7b36cd1' }).yields('script.user.js', 'abc123', script.newest_saved_script_version.rewritten_code)
+    ScriptImporter::BaseScriptImporter.expects(:download).with(script.sync_identifier).returns(script.newest_saved_script_version.rewritten_code)
     user = User.find(1)
     push_webhook_request(user, body: json)
     assert_equal '200', response.code

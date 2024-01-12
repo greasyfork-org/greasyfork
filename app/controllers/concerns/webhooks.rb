@@ -140,14 +140,25 @@ module Webhooks
       return
     end
 
-    # Get the contents of the files.
-    begin
-      Git.get_contents(repo_url, changed_files.transform_values { |info| info[:commit] || info[:ref] }) do |file_path, _commit, content|
-        changed_files[file_path][:content] = content
+
+    # Get the contents of the files. Some we will have to pull from the URL if it's a private repo.
+    pull_from_url, pull_from_git = changed_files.partition{|k, v| v[:scripts].any?{|s| s.sync_identifier.include?('private_token')}}
+    pull_from_url = pull_from_url.to_h
+    pull_from_git = pull_from_git.to_h
+
+    pull_from_url.values.each do |h|
+      h[:content]= ScriptImporter::BaseScriptImporter.download(h[:scripts].first.sync_identifier)
+    end
+
+    if pull_from_git.any?
+      begin
+        Git.get_contents(repo_url, pull_from_git.transform_values { |info| info[:commit] || info[:ref] }) do |file_path, _commit, content|
+          changed_files[file_path][:content] = content
+        end
+      rescue Git::Exception => e
+        render json: { 'updated_scripts' => [], 'updated_failed' => changed_files.values.pluck(:scripts).flatten.map(&:url), message: "Could not pull contents from git: #{e}" }
+        return
       end
-    rescue Git::Exception => e
-      render json: { 'updated_scripts' => [], 'updated_failed' => changed_files.values.pluck(:scripts).flatten.map(&:url), message: "Could not pull contents from git: #{e}" }
-      return
     end
 
     # Apply the new contents to the DB.
