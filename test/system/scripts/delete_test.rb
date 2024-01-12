@@ -6,7 +6,7 @@ class DeleteTest < ApplicationSystemTestCase
     login_as(script.users.first, scope: :user)
     visit delete_script_url(script, locale: :en)
     choose 'They will keep it as it is.'
-    click_on 'Delete'
+    click_button 'Delete'
     assert_content 'Daily installs'
     assert script.reload.deleted?
     click_on 'Delete'
