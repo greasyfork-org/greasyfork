@@ -696,7 +696,7 @@ class ScriptsController < ApplicationController
       render :admin
       return
     when :non_script_url
-      @script.errors.add(:promoted_script_id, :must_be_greasy_fork_script)
+      @script.errors.add(:promoted_script_id, I18n.t('errors.messages.must_be_greasy_fork_script', site_name:))
       render :admin
       return
     when :not_found
