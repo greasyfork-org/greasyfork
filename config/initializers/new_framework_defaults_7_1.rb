@@ -185,7 +185,7 @@ Rails.application.config.precompile_filter_parameters = true
 # The previous behavior was to only run the callbacks on the first copy of a record
 # if there were multiple copies of the same record enrolled in the transaction.
 #++
-# Rails.application.config.active_record.before_committed_on_all_records = true
+Rails.application.config.active_record.before_committed_on_all_records = true
 
 ###
 # Disable automatic column serialization into YAML.
