@@ -1,7 +1,7 @@
 class AkismetSubmission < ApplicationRecord
   belongs_to :item, polymorphic: true
 
-  serialize :akismet_params, type: Array
+  serialize :akismet_params, type: Array, coder: YAML
 
   def self.mark_as_ham(item)
     akismet_submission = find_by(item:, result_spam: true)
