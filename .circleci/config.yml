@@ -5,6 +5,7 @@ orbs:
 
 jobs:
   build:
+    resource_class: large
     docker:
       - image: cimg/ruby:3.3.0-browsers
         environment:
