@@ -56,3 +56,5 @@ module ActiveSupport
     end
   end
 end
+
+Searchkick.disable_callbacks

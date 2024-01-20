@@ -211,6 +211,14 @@ GEM
     drb (2.2.0)
       ruby2_keywords
     dry-cli (1.0.0)
+    elastic-transport (8.3.0)
+      faraday (< 3)
+      multi_json
+    elasticsearch (8.12.0)
+      elastic-transport (~> 8.3)
+      elasticsearch-api (= 8.12.0)
+    elasticsearch-api (8.12.0)
+      multi_json
     email_address (0.2.2)
       simpleidn
     erb_lint (0.1.1)
@@ -485,6 +493,9 @@ GEM
     sanitize (6.0.2)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
+    searchkick (5.3.1)
+      activemodel (>= 6.1)
+      hashie
     selenium-webdriver (4.11.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -583,6 +594,7 @@ DEPENDENCIES
   devise!
   devise-i18n!
   diffy
+  elasticsearch
   email_address
   erb_lint
   google-analytics-data
@@ -620,6 +632,7 @@ DEPENDENCIES
   rubocop-performance
   rubocop-rails
   sanitize
+  searchkick
   selenium-webdriver
   sentry-rails
   sentry-ruby

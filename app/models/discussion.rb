@@ -66,6 +66,10 @@ class Discussion < ApplicationRecord
     comments.not_deleted.each(&:soft_destroy!)
   end
 
+  after_commit on: :update do
+    comments.reindex if saved_change_to_attribute?('review_reason') && !Rails.env.test?
+  end
+
   strip_attributes
 
   def replies?
@@ -167,5 +171,9 @@ class Discussion < ApplicationRecord
     return false unless script
 
     script.users.include?(poster)
+  end
+
+  def visible?
+    !soft_deleted? && review_reason.nil? && (script.nil? || !script.deleted?)
   end
 end

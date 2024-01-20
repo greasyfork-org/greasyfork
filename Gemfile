@@ -38,6 +38,9 @@ gem 'will-paginate-i18n'
 gem 'hiredis'
 gem 'redis'
 
+gem 'elasticsearch'
+gem 'searchkick'
+
 gem 'akismet'
 gem 'detect_language'
 gem 'email_address'
