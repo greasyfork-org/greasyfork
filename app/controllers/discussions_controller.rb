@@ -41,6 +41,18 @@ class DiscussionsController < ApplicationController
           with[:locale_id] = locale.id if locale
         end
 
+        case script_subset
+        when :sleazyfork
+          with[:sensitive] = true
+        when :greasyfork
+          with[:sensitive] = false
+        when :all
+          # No restrictions
+        else
+          raise "Unknown subset #{script_subset}"
+        end
+
+
         @comments = Comment.search(
           params[:q],
           where: with,

@@ -20,6 +20,7 @@ module CommentIndexing
       discussion_title: discussion.title,
       discussion_category_id: discussion.discussion_category_id,
       script_id: discussion.script_id,
+      sensitive: !!discussion.script&.sensitive,
       discussion_id: discussion_id,
       discussion_starter_id: discussion.poster_id,
       locale_id: discussion.locale_id,
