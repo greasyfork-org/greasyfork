@@ -13,7 +13,7 @@ module DiscussionHelper
   end
 
   def comment_snippet(comment)
-    comment.plain_text.truncate(200)
+    comment.plain_text&.truncate(200)
   end
 
   def scoped_comment_create_path(discussion, anchor: nil)
