@@ -1,1 +1,1 @@
-ENV["ELASTICSEARCH_URL"] = Rails.application.credentials.elasticsearch_url
+ENV['ELASTICSEARCH_URL'] = Rails.application.credentials.elasticsearch_url

@@ -52,16 +52,15 @@ class DiscussionsController < ApplicationController
           raise "Unknown subset #{script_subset}"
         end
 
-
         @comments = Comment.search(
           params[:q],
           where: with,
           page: page_number,
           per_page: per_page(default: 25)
         )
-        @comments_to_discussions = @comments.map{|c| [c, c.discussion]}
+        @comments_to_discussions = @comments.map { |c| [c, c.discussion] }
         @discussions = @comments_to_discussions.map(&:last)
-        @filter_result = FILTER_RESULT.new(category: params[:category], related_to_me: params[:me], locale: locale)
+        @filter_result = FILTER_RESULT.new(category: params[:category], related_to_me: params[:me], locale:)
         @bots = 'noindex'
 
       else
