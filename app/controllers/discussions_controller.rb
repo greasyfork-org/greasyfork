@@ -54,7 +54,7 @@ class DiscussionsController < ApplicationController
 
         @comments = Comment.search(
           params[:q],
-          fields: ["discussion_title^2", "text"],
+          fields: ['discussion_title^2', 'text'],
           where: with,
           page: page_number,
           per_page: per_page(default: 25)
@@ -92,10 +92,9 @@ class DiscussionsController < ApplicationController
         @discussions = @filter_result.result
         @discussions = @discussions.paginate(page: page_number, per_page: per_page(default: 25))
         @bots = 'noindex' unless page_number == 1
-
-        @discussion_ids_read = DiscussionRead.read_ids_for(@discussions, current_user) if current_user
       end
 
+      @discussion_ids_read = DiscussionRead.read_ids_for(@discussions, current_user) if current_user
       @possible_locales = Locale.with_discussions.order(:code)
 
       render_to_string
