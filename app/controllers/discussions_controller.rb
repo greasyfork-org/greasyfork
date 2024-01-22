@@ -54,6 +54,7 @@ class DiscussionsController < ApplicationController
 
         @comments = Comment.search(
           params[:q],
+          fields: ["discussion_title^2", "text"],
           where: with,
           page: page_number,
           per_page: per_page(default: 25)

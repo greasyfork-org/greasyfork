@@ -17,7 +17,7 @@ module CommentIndexing
 
   def search_data
     {
-      discussion_title: discussion.title,
+      discussion_title: (discussion.title if first_comment?),
       discussion_category_id: discussion.discussion_category_id,
       script_id: discussion.script_id,
       sensitive: !!discussion.script&.sensitive,
