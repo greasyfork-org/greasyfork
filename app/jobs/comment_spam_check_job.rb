@@ -11,13 +11,11 @@ class CommentSpamCheckJob < ApplicationJob
     check_with_akismet(comment, ip, user_agent, referrer)
   end
 
-  def pattern_check(_comment)
-    return false
-    # WeChat spam
-    # return false unless discussion.first_comment.text.match?(/\p{Han}/) && discussion.first_comment.text.match?(/[0-9]{5,}\z/)
+  def pattern_check(comment)
+    return false unless comment.text.include?('gmkm.zrnq.one')
 
-    # discussion.update(review_reason: Discussion::REVIEW_REASON_RAINMAN)
-    # Report.create!(item: discussion, auto_reporter: 'rainman', reason: Report::REASON_SPAM)
+    discussion.update(review_reason: Discussion::REVIEW_REASON_RAINMAN)
+    Report.create!(item: discussion, auto_reporter: 'rainman', reason: Report::REASON_SPAM)
   end
 
   def repeat_check(comment)
