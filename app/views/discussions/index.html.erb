@@ -36,6 +36,14 @@
         <%= link_to t('discussions.new_button'), new_discussion_path(category: (@filter_result.category unless [DiscussionCategory::SCRIPT_DISCUSSIONS_KEY, DiscussionCategory::NO_SCRIPTS_KEY].include?(@filter_result.category))), class: 'list-option-button' %>
       </p>
 
+      <form class="sidebar-search">
+        <% [:me, :read, :show_locale, :visibility].each do |p| %>
+          <% if params[p] %><input type="hidden" name="<%= p %>" value="<%= params[p] %>"><% end %>
+        <% end %>
+        <%= render partial: 'shared/locale_override_field' %>
+        <input type="search" name="q" value="<%= params[:q] %>" placeholder="<%= t('discussions.search_placeholder') %>"><input class="search-submit" type="submit" value="🔎">
+      </form>
+
       <% if current_user %>
         <div class="list-option-group">
           <%= t('discussions.user_filter.label') %>
