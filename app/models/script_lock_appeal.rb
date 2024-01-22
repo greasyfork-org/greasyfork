@@ -6,4 +6,10 @@ class ScriptLockAppeal < ApplicationRecord
 
   validates :text_markup, inclusion: { in: %w[html markdown] }, presence: true
   validates :text, presence: true
+
+  def other_appeals_on_report
+    return ScriptLockAppeal.none unless report_id
+
+    ScriptLockAppeal.where.not(id:).where(report_id:)
+  end
 end
