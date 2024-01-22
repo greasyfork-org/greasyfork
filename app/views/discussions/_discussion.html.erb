@@ -27,7 +27,7 @@
         <% end %>
       </div>
     </div>
-    <%= link_to discussion.path(locale: request_locale.code), class: 'discussion-title' do %>
+    <%= link_to (comment || discussion).path(locale: request_locale.code), class: 'discussion-title' do %>
       <%= render_discussion_badge('deleted') if discussion.soft_deleted? %>
       <% if comment %>
         <%= comment_snippet(comment) %>
