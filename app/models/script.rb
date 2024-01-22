@@ -46,6 +46,7 @@ class Script < ApplicationRecord
   belongs_to :locale
   belongs_to :replaced_by_script, class_name: 'Script', optional: true
   belongs_to :marked_adult_by_user, class_name: 'User', optional: true
+  belongs_to :delete_report, class_name: 'Report', optional: true
 
   attr_accessor :adult_content_self_report, :not_adult_content_self_report
 

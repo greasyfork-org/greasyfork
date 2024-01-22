@@ -108,9 +108,9 @@ class Report < ApplicationRecord
         end
       when Script
         if unauthorized_code? && reference_script
-          item.assign_attributes(delete_type: redirect ? 'redirect' : 'keep', locked: true, replaced_by_script: reference_script, self_deleted: moderator.nil?)
+          item.assign_attributes(delete_type: redirect ? 'redirect' : 'keep', locked: true, replaced_by_script: reference_script, self_deleted: moderator.nil?, delete_report: self)
         else
-          item.assign_attributes(delete_type: warrants_blanking? ? 'blanked' : 'keep', locked: true, self_deleted: moderator.nil?)
+          item.assign_attributes(delete_type: warrants_blanking? ? 'blanked' : 'keep', locked: true, self_deleted: moderator.nil?, delete_report: self)
         end
         item.save(validate: false)
         if ban_user

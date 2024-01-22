@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_22_005613) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_22_162848) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -653,6 +653,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_22_005613) do
     t.boolean "pure_404", default: false, null: false
     t.boolean "missing_license_warned", default: false, null: false
     t.integer "script_type", default: 1, null: false
+    t.integer "delete_report_id"
     t.index ["delete_type"], name: "index_scripts_on_delete_type"
     t.index ["delta"], name: "index_scripts_on_delta"
     t.index ["promoted"], name: "index_scripts_on_promoted"

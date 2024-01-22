@@ -47,6 +47,7 @@ class ScriptLockAppealsController < ApplicationController
     @script.delete_type = nil
     @script.replaced_by_script_id = nil
     @script.delete_reason = nil
+    @script.delete_report = nil
     @script.permanent_deletion_request_date = nil
     @script.locked = false
     @script.save!
