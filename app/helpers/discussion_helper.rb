@@ -6,11 +6,14 @@ module DiscussionHelper
   def discussion_snippet(discussion)
     if discussion.for_script?
       first_comment = discussion.stat_first_comment
-      text = first_comment ? format_user_text_as_plain(first_comment.text, first_comment.text_markup).html_safe : '(No text)'
-    else
-      text = discussion.title
+      return first_comment ? comment_snippet(first_comment) : '(No text)'
     end
-    text.truncate(200)
+
+    discussion.title.truncate(200)
+  end
+
+  def comment_snippet(comment)
+    format_user_text_as_plain(comment.text, comment.text_markup).truncate(200)
   end
 
   def scoped_comment_create_path(discussion, anchor: nil)

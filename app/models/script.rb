@@ -20,6 +20,7 @@ class Script < ApplicationRecord
   has_many :script_applies_tos, dependent: :destroy, autosave: true
   has_many :site_applications, through: :script_applies_tos
   has_many :discussions, dependent: nil
+  has_many :comments, through: :discussions
   has_many :script_set_script_inclusions, foreign_key: 'child_id', dependent: :destroy, inverse_of: :child
   has_many :favorited_in_sets, -> { includes(:users).where(favorite: true) }, through: :script_set_script_inclusions, class_name: 'ScriptSet', source: 'parent'
   has_many :favoriters, through: :favorited_in_sets, class_name: 'User', source: 'user'
@@ -250,6 +251,10 @@ class Script < ApplicationRecord
 
   after_commit do |script|
     script.users.each(&:update_stats!)
+  end
+
+  after_commit on: :update do
+    comments.reindex if saved_change_to_attribute?('delete_type') && !Rails.env.test?
   end
 
   before_save do |script|

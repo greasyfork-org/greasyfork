@@ -5,6 +5,7 @@ class Comment < ApplicationRecord
   include HasAttachments
   include SoftDeletable
   include MentionsUsers
+  include CommentIndexing
 
   belongs_to :discussion
   # Optional because the user may no longer exist.

@@ -1,6 +1,7 @@
 <%
-  show_script = defined?(show_script) && show_script && !discussion.script.nil?
+  comment, discussion = discussion if discussion.is_a?(Array)
   discussion_ids_read = [] unless defined?(discussion_ids_read) && discussion_ids_read
+  show_script = false unless defined?(show_script)
 %>
 
 <div class="discussion-list-container <%= discussion_ids_read.include?(discussion.id) ? ' discussion-read' : ' discussion-not-read' if current_user %>">
@@ -28,9 +29,14 @@
     </div>
     <%= link_to discussion.path(locale: request_locale.code), class: 'discussion-title' do %>
       <%= render_discussion_badge('deleted') if discussion.soft_deleted? %>
-      <% if discussion.actual_rating? -%><span class="rating-icon rating-icon-<%= discussion.rating_key %>"><%= t("discussions.ratings_short.#{discussion.rating_key}") %></span><% end %><span class="discussion-snippet">
-        <%= discussion_snippet(discussion) %>
-      </span>
+      <% if comment %>
+        <%= comment_snippet(comment) %>
+      <% else %>
+        <% if discussion.actual_rating? -%><span class="rating-icon rating-icon-<%= discussion.rating_key %>"><%= t("discussions.ratings_short.#{discussion.rating_key}") %></span><% end %>
+        <span class="discussion-snippet">
+          <%= discussion_snippet(discussion) %>
+        </span>
+      <% end %>
     <% end %>
   </div>
 </div>
