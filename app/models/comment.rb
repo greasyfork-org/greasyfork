@@ -31,6 +31,15 @@ class Comment < ApplicationRecord
     discussion_url
   end
 
+  before_create :set_plain_text
+  before_update do
+    set_plain_text if will_save_change_to_attribute?('text') || will_save_change_to_attribute?('text_markup')
+  end
+
+  def set_plain_text
+    self.plain_text = ApplicationController.helpers.format_user_text_as_plain(text, text_markup).truncate_bytes(65_535)
+  end
+
   before_destroy do
     discussion.destroy if first_comment?
   end

@@ -163,7 +163,7 @@ class Discussion < ApplicationRecord
   def full_text
     parts = [title]
     comment = comments.first
-    parts << ApplicationController.helpers.format_user_text_as_plain(comment.text, comment.text_markup) if comment
+    parts << comment.plain_text if comment
     parts.join("\n")
   end
 

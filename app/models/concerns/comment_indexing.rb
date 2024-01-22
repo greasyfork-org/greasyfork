@@ -25,12 +25,8 @@ module CommentIndexing
       discussion_starter_id: discussion.poster_id,
       locale_id: discussion.locale_id,
       poster_id:,
-      text: indexable_text,
+      text: plain_text,
     }
-  end
-
-  def indexable_text
-    ApplicationController.helpers.format_user_text_as_plain(text, text_markup, use_line_breaks: true)
   end
 
   def should_index?
