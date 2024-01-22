@@ -21,12 +21,15 @@ class ConversationsController < ApplicationController
     @messages = @conversation.messages.paginate(page: params[:page], per_page:)
     @message = @conversation.messages.build(poster: current_user, content_markup: current_user&.preferred_markup)
     @subscribe = current_user.subscribed_to_conversation?(@conversation)
+    @show_moderator_notice = self.class.show_moderator_notice?(current_user, @conversation.users)
   end
 
   def new
     @conversation = Conversation.new(user_input: params[:other_user])
+    other_user = get_user_from_input(@conversation.user_input)
     @conversation.messages.build(poster: current_user, content_markup: current_user&.preferred_markup)
     @subscribe = current_user.subscribe_on_conversation_starter
+    @show_moderator_notice = self.class.show_moderator_notice?(current_user, [other_user].compact)
   end
 
   def create
@@ -54,6 +57,7 @@ class ConversationsController < ApplicationController
     message.construct_mentions(detect_possible_mentions(message.content, message.content_markup))
 
     unless @conversation.save
+      @show_moderator_notice = self.class.show_moderator_notice?(current_user, @conversation.users)
       render :new
       return
     end
@@ -79,6 +83,10 @@ class ConversationsController < ApplicationController
       format.js { head :ok }
       format.all { redirect_to @conversation.path }
     end
+  end
+
+  def self.show_moderator_notice?(current_user, conversation_users)
+    !current_user.moderator? && conversation_users.any?(&:moderator?)
   end
 
   private

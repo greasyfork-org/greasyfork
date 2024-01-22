@@ -61,6 +61,11 @@
 
 <div id="post-reply" class="post-reply">
   <h3><%= t('discussions.new_comment_heading') %></h3>
+  <% if @show_moderator_notice %>
+    <p class="notice">
+      <%= t('conversations.moderator_notice', site_name:) %>
+    </p>
+  <% end %>
   <%= render partial: 'shared/errors', locals: { resource: @message } %>
   <% if @conversation.users.include?(current_user) %>
     <%= form_with(model: @message, url: user_conversation_messages_path(current_user, @conversation), method: :POST) do |f| %>

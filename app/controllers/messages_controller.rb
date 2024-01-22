@@ -13,6 +13,7 @@ class MessagesController < ApplicationController
 
     unless @message.save
       @messages = @conversation.messages.paginate(page: params[:page], per_page:)
+      @show_moderator_notice = ConversationsController.show_moderator_notice?(current_user, @conversation.users)
       render 'conversations/show'
       return
     end

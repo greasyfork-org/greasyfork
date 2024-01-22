@@ -1,5 +1,11 @@
 <h2><%= t('conversations.new_title') %></h2>
 
+<% if @show_moderator_notice %>
+  <p class="notice">
+    <%= t('conversations.moderator_notice', site_name:) %>
+  </p>
+<% end %>
+
 <%= form_with(model: @conversation, url: user_conversations_path(current_user), method: :POST) do |f| %>
   <%= render partial: 'shared/errors', locals: { resource: @conversation} %>
 
