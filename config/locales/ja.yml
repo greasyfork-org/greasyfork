@@ -1152,6 +1152,7 @@ ja:
     no_discussions: 議論はありません。
     mark_all_read: すべて既読にする
     pending_moderator_review: この議論は、管理担当者により審査されるまで他のユーザーに表示されません。
+    search_placeholder: 議論を検索
   conversations:
     user_input_note: ユーザー名またはプロフィールのあるURLを入力
     new_title: 新しい会話の作成
@@ -1171,6 +1172,7 @@ ja:
       more: すべての会話を見る
     edit_message_header: メッセージの編集
     update_message_submit: メッセージの更新
+    moderator_notice: '%{site_name}の規則への侵害を通報したければ、そのスクリプト、ユーザー、コメントにある通報用のリンクを押してください。ダイレクトメッセージからの通報では、管理担当者はコンテンツを削除できません。'
   screenshots:
     requirements: "画像は最大%{number}枚、PNG、GIF、JPEG、WebP に対応、それぞれ%{size}までです。"
   common:
@@ -1364,6 +1366,7 @@ ja:
     comment_mentioned:
       subject: "%{site_name} でユーザー 「%{commenter_name}」があなたに言及"
       intro: " %{site_name} の議論「%{discussion_link:%{discussion_title}}」でユーザー%{commenter_link:%{commenter_name}}があなたに言及:"
+      outro: "%{comment_link:このコメントを表示し返信。}あなたへの言及は通知されています。%{notification_preferences_link:通知の設定を管理。}"
     new_message:
       subject: "%{site_name} で %{user} があなたにメッセージ送信"
       intro: "%{site_name} でユーザー %{user_link:%{user_name}} があなたにメッセージを送信しました。"
