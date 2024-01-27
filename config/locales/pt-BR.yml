@@ -181,6 +181,7 @@ pt-BR:
     listing_language_all: "Todos"
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
+    search_failed: Algo deu errado ao carregar seus resultados. Algumas funcionalidades de pesquisa podem não estar funcionando. Fomos notificados do problema.
     import: "Scripts importantes"
     new: "Publicar um script que você escreveu"
     new_css: "Publicar um estilo que você escreveu"
@@ -242,6 +243,8 @@ pt-BR:
     sync_type_3:
       name: Webhook
       description: ele será atualizado quando você enviar alterações para este arquivo em seu repositório
+    sync_webhook_info_without_sync: 'Após configurar a sincronização acima, se você estiver sincronizando com um repositório do GitHub, GitLab ou BitBucket, você também pode %{webhook_info_link: configurar um webhook} para atualizar automaticamente %{site_name} quando você fizer push para o seu repositório.'
+    sync_webhook_info_with_sync: 'Se você estiver sincronizando com um repositório do GitHub, GitLab ou BitBucket, você pode %{webhook_info_link: configurar um webhook} para atualizar automaticamente %{site_name} quando você fizer push para o seu repositório.'
     sync_name_and_description: "%{name} - %{description}"
     sync_failed_info_html: "Última tentativa de sincronia foi %{date}, que resultou em %{error}."
     sync_success_info_html: "Úlitma sincronia com sucesso foi %{date}."
@@ -730,6 +733,15 @@ pt-BR:
       require_html: "Inclui JavaScript externo em um código. Veja %{external_script_link:rules for code including external scripts}. Se você usa chaves de integridade de sub recursos (informações %{tm_subresource_link:here} e %{mdn_subresource_link:here}), %{site_name} irá alerta-lo se suas chaves não corresponderem ao conteúdo da URL."
       resource_html: "Incluir um recurso externo (JavaScript, CSS, imagens etc.) em um script. Ver %{external_script_link:regras para código incluindo scripts externos}. Se você usar hashes de integridade de sub-recurso (veja as informações %{tm_subresource_link:aqui} e %{mdn_subresource_link:aqui}), %{site_name} irá alertá-lo se seus hashes não corresponderem ao conteúdo da URL que você usa."
       updateURL: "Descreve como os gerenciadores de script de usuário devem ser atualizados. %{site_name} irá retirar essas chaves, o que faz com que qualquer script instalado a partir de %{site_name} seja atualizado somente a partir de %{site_name}."
+      license_html: |
+          Ao postar seu script em %{site_name}, você dá permissão para que outras pessoas instalem e usem. A licença descreve se e como as pessoas podem modificar e distribuir seu script. A licença é exibida na página de informações do script. <code>@license</code> pode ser:
+          <ul>
+          <li>O nome de uma licença (por exemplo, <code>@licence GPL3</code>). É recomendado usar o "Nome completo" ou "Identificador" da %{spdx_link: Lista de Licenças SPDX}.</li>
+          <li>As condições sob as quais você permite o uso (por exemplo, <code>@license Você pode modificar desde que me dê crédito</code>, embora seja recomendado usar uma licença pré-existente.</li>
+          <li>Uma declaração de direitos autorais (por exemplo, <code>@license Copyright MeuNome</code>) se você não quiser liberar sob uma licença.</li>
+          <li>Omitido completamente, o que é o mesmo que ter uma declaração de direitos autorais, mas menos claro para os usuários.</li>
+          </ul>
+          Observe que se seu script for baseado em código que outra pessoa escreveu, você pode estar restrito na escolha da licença.
       supportURL: "URL para uma página onde os usuários podem obter suporte para o script, como rastreador de bug, um fórum, endereço de email, etc. A URL de suporte será exibida na página de feedback do script."
       contributionURL_html: "URL de uma página onde os usuários podem fazer doações para o autor do script. A URL de contribuição será exibida na página de feedback do script. As URLs podem ser http, https ou protocolos Bitcoin. Para informar uma página de doação pelo PayPal, use uma URL no formato <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=seu.email.aqui@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=seu.email.aqui@example.com&item_name=Greasy+Fork+donation</a>, substituindo o email de exemplo pelo seu email próprio."
       contributionAmount_html: "Doação sugerida, usado em conjunto com <code>@contributionURL</code>."
@@ -767,6 +779,8 @@ pt-BR:
       licensing_html: Seu script deve respeitar os direitos autorais de terceiros. Isto inclui o código em si e qualquer recurso (imagens, por exemplo) que ele usar. Se você pretende usar o conteúdo de alguém, siga as suas regras de licença ou obtenha permissão antes de utilizá-lo. As licenças nos scripts são especificadas pela chave meta <code>@license</code>, e você pode aprender mais sobre o que é ou não permitido usando %{tldr_legal_link:tldrlegal.com}.
       reposts: Mesmo nos casos em que não há violação dass regras de direitos autorais, repostagem de scripts que já estão no %{site_name} não é permitida a menos que hajam melhorias em relação ao original.
       miscellaneous_header: Diversos
+      included_sites_html: Scripts não devem incluir <code>@include</code>s ou <code>@match</code>es para sites nos quais eles não fornecem funcionalidade. Scripts não devem adicionar <code>@include</code>s ou <code>@match</code>es com o único propósito de adicionar antifeatures.
+      keywords: Os scripts não devem incluir palavras-chave não relacionadas ou mencionar sites não relacionados na tentativa de melhorar o posicionamento de busca.
       adult_content_rule: Scripts que incluam conteúdo adulto ou que sejam destinados a sites de conteúdo adulto devem ser marcados como tal para que os usuários possam decidir vê-lo ou não.
       reposting_deleted: Não reposte scripts que foram excluídos devido a violação das regras; em vez disso, utilize a função de apelação. Repostar scripts excluídos pode resultar em banimento.
       advertising_in_description: Os autores de scripts não podem colocar publicidade nas páginas do Greasy Fork, por exemplo, na descrição de um script. É permitida a promoção da homepage do autor do script, repositório de código, Discord, WeChat, etc.
@@ -1051,6 +1065,11 @@ pt-BR:
     load_cleaned_diff: "Carregar a diferença de código limpo"
     loading_diff: "Carregando..."
     reported_user_activity_html: "%{user}(o usuário denunciado) fez:"
+    script_updated_since_report: "Este script foi atualizado desde que o relatório foi registrado."
+    script_previous_reports:
+      one: "Este script teve %{count} relatório anterior mantido ou corrigido."
+      many: "Este script teve %{count} relatórios anteriores mantidos ou corrigidos."
+      other: "Este script teve %{count} relatórios anteriores mantidos ou corrigidos."
   appeals:
     new:
       title: Novo recurso de exclusão de script
@@ -1167,6 +1186,7 @@ pt-BR:
     no_discussions: Nenhuma discussão encontrada.
     mark_all_read: Marcar tudo como lido
     pending_moderator_review: A discussão está indisponível para outros usuários até que seja analisada por um moderador.
+    search_placeholder: Buscar discussões
   conversations:
     user_input_note: Digite o nome do usuário ou a URL do seu perfil.
     new_title: Criar uma nota conversa
@@ -1190,6 +1210,7 @@ pt-BR:
       more: Ver todas as conversas
     edit_message_header: Editar mensagem
     update_message_submit: Atualizar mensagem
+    moderator_notice: Se você deseja relatar uma violação das regras do %{site_name}, use o link de Relatório naquele script, usuário ou comentário. Moderadores não podem remover conteúdo com base em relatórios por meio de mensagens diretas.
   screenshots:
     requirements: "Máximo de %{number} imagens PNG, GIF, JPEG, ou WebP, com menos de %{size} cada."
   common:
@@ -1273,12 +1294,14 @@ pt-BR:
       must_be_greasy_fork_script: "deve ser uma URL para um script em %{site_name}"
       script_update_not_utf8: "envio deve ser em texto UTF-8"
       script_disallowed_require: "usa um script externo não aprovado: %{code}"
+      script_disallowed_resource: "usa um @resource inválido: %{code}. Os recursos devem ser URLs http, https ou data."
       script_malformed_require: "usa uma referência de script externo malformada: %{code}"
       script_rate_limit: "Você atingiu o limite de postagens. Tente novamente mais tarde."
       missing_include_or_match: "deve incluir pelo menos uma chave @match ou @include"
       invalid_meta: "tem uma meta-diretiva inválida. O formato adequado é // @foo"
       no_executable: "não contém código executável"
       meta_too_long: "%{key} é muito longa (o máximo são %{count} caracteres)"
+      style_missing_meta: "está faltando o seu bloco de metadados. Veja https://github.com/openstyles/stylus/wiki/Writing-UserCSS para exemplos"
   opensearch:
     short_name: "%{site_name} busca"
     description: "Busca por scripts de usuário em %{site_name}."
@@ -1308,6 +1331,8 @@ pt-BR:
     script_report:
       report_created_offender:
         subject: "O seu script %{script_name} no %{site_name} foi denunciado"
+        body_html: |
+            <p>Seu script %{script_link:%{script_name}} foi reportado por violar as regras do %{site_name}. O motivo específico foi: %{reason}. Você pode %{report_link: analisar este reporte e refutá-lo}. Caso não seja enviada uma refutação, seu script pode ser removido pelos moderadores.</p>
       report_upheld_offender:
         subject: "Seu script %{script_name} no %{site_name} foi removido"
       report_dismissed_offender:
@@ -1322,8 +1347,17 @@ pt-BR:
         subject: "Sua denúncia sobre %{script_name} em %{site_name} foi fechada"
       report_dismissed_reporter:
         subject: "Sua denúncia no %{script_name} no %{site_name} foi indeferida"
+        body_html: |
+            <p>
+            Seu relatório em %{script_link:%{script_name}} em %{site_name} foi rejeitado por um moderador e o script que você relatou permanecerá ativo. Você pode %{report_link: revisar o relatório}.
+            </p>
       report_fixed_reporter:
         subject: "Seu relatório em %{script_name} em %{site_name} foi marcado como resolvido"
+        body_html: |
+            <p>
+            Seu relatório em %{script_link:%{script_name}} em %{site_name} foi marcado como resolvido por um moderador, pois eles acreditam que o autor corrigiu o problema. O script vai permanecer ativo. Você pode %{report_link: revisar este relatório}.
+            </p>
+      reported_outro: "Você recebeu esta notificação porque se trata de um relatório sobre um script que você enviou para %{site_name}. %{notification_preferences_link: Gerencie suas preferências de notificação.}"
       reporter_outro: "Você recebeu esta notificação porque criou um relatório sobre um script em %{site_name}.%{notification_preferences_link:Manage your notification preferences.}"
     consecutive_bad_ratings:
       notify:
@@ -1345,6 +1379,7 @@ pt-BR:
     comment_mentioned:
       subject: "O usuário '%{commenter_name}' mencionou você no %{site_name}."
       intro: "A discussão %{discussion_link:%{discussion_title}} em %{site_name} recebeu um comentário do usuário %{commenter_link:%{commenter_name}} que mencionou você:"
+      outro: "%{comment_link: Visualize e responda a este comentário.} Você recebeu esta notificação porque optou por ser notificado quando for mencionado. {notification_preferences_link: Gerenciar suas preferências de notificação.}"
     new_message:
       subject: "%{user} te enviou uma mensagem no %{site_name}"
       intro: "O usuário %{user_link:%{user_name}} te enviou uma mensagem em %{site_name}."
