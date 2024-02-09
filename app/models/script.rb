@@ -230,7 +230,7 @@ class Script < ApplicationRecord
   end
 
   after_create_commit do |script|
-    ScriptDuplicateCheckerJob.perform_later_unless_will_run(script.id)
+    ScriptDuplicateCheckerJob.perform_async(script.id)
   end
 
   # Check saved_change_to to determine whether to run, but have to run after_commit for the changes to be visible to the
@@ -242,7 +242,7 @@ class Script < ApplicationRecord
   after_update_commit do |script|
     if @_code_changed
       unless Rails.env.development?
-        ScriptDuplicateCheckerJob.perform_later_unless_will_run(script.id)
+        ScriptDuplicateCheckerJob.perform_async(script.id)
         # ScriptUpdateCacheClearJob.perform_later(script.id)
       end
       clear_latest_cached_code

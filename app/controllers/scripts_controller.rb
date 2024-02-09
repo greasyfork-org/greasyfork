@@ -815,8 +815,9 @@ class ScriptsController < ApplicationController
   end
 
   def request_duplicate_check
-    ScriptDuplicateCheckerJob.set(queue: 'user_low').perform_later(@script.id)
+    ScriptDuplicateCheckerJob.set(queue: 'user_low').perform_async(@script.id)
     flash[:notice] = t('scripts.derivatives_similiar_queued')
+    flash[:duplicates_enqueued] = true
     redirect_to derivatives_script_path(@script)
   end
 

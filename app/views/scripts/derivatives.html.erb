@@ -24,7 +24,6 @@
 <h3><%= t('scripts.derivatives_similar_heading') %></h3>
 
 <% check_date = @script.script_similarities.minimum(:checked_at) %>
-<% enqueued = ScriptDuplicateCheckerJob.will_run_in_any_queue_with_args?(@script.id) %>
 
 <p><%= t('scripts.derivatives_similar_info') %></p>
 
@@ -46,7 +45,7 @@
 <% end %>
 
 <p>
-  <% if enqueued && check_date %>
+  <% if flash[:duplicates_enqueued] && check_date %>
     <%= t('scripts.derivatives_similar_last_check_again_soon_html', date: markup_date(check_date)) %>
   <% elsif check_date %>
     <%= t('scripts.derivatives_similar_last_check_html', date: markup_date(check_date)) %>
@@ -54,7 +53,7 @@
     <%= t('scripts.derivatives_similar_last_check_soon') %>
   <% end %>
 
-  <% if !enqueued && check_date && check_date < 1.day.ago %>
+  <% if !flash[:duplicates_enqueued] && check_date && check_date < 1.day.ago %>
     <%= button_to t('scripts.derivatives_similar_check_now'), request_duplicate_check_script_path(@script), method: :POST %>
   <% end %>
 </p>

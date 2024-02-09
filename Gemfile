@@ -24,9 +24,9 @@ gem 'sentry-rails'
 gem 'sentry-ruby'
 # Need redis 6.2+ for sidekiq 7
 gem 'sidekiq', '< 7'
-gem 'sidekiq-worker-killer'
 gem 'sidekiq-scheduler'
 gem 'sidekiq-unique-jobs'
+gem 'sidekiq-worker-killer'
 gem 'strip_attributes'
 # https://github.com/pat/thinking-sphinx/pull/1252
 gem 'thinking-sphinx', git: 'https://github.com/jdelStrother/thinking-sphinx.git', branch: 'logsubscriber-deprecations'
