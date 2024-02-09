@@ -26,6 +26,7 @@ gem 'sentry-ruby'
 gem 'sidekiq', '< 7'
 gem 'sidekiq-worker-killer'
 gem 'sidekiq-scheduler'
+gem 'sidekiq-unique-jobs'
 gem 'strip_attributes'
 # https://github.com/pat/thinking-sphinx/pull/1252
 gem 'thinking-sphinx', git: 'https://github.com/jdelStrother/thinking-sphinx.git', branch: 'logsubscriber-deprecations'

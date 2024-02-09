@@ -1,7 +1,7 @@
 class SubresourceCheckQueueingJob
   include Sidekiq::Job
 
-  sidekiq_options queue: 'background'
+  sidekiq_options queue: 'background', lock: :until_executed,  on_conflict: :log
 
   def perform
     Subresource

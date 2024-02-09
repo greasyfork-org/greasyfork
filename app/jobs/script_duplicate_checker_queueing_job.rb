@@ -1,7 +1,7 @@
 class ScriptDuplicateCheckerQueueingJob
   include Sidekiq::Job
 
-  sidekiq_options queue: 'background'
+  sidekiq_options queue: 'background', lock: :until_executed,  on_conflict: :log
 
   def perform
     number_to_enqueue = ScriptDuplicateCheckerJob::DESIRED_RUN_COUNT - ScriptDuplicateCheckerJob.currently_queued_script_ids.count
