@@ -1,5 +1,7 @@
-class SubresourceCheckQueueingJob < ApplicationJob
-  queue_as :low
+class SubresourceCheckQueueingJob
+  include Sidekiq::Job
+
+  sidekiq_options queue: 'background'
 
   def perform
     Subresource

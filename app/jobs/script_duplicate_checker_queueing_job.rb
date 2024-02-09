@@ -1,5 +1,7 @@
-class ScriptDuplicateCheckerQueueingJob < ApplicationJob
-  queue_as :low
+class ScriptDuplicateCheckerQueueingJob
+  include Sidekiq::Job
+
+  sidekiq_options queue: 'background'
 
   def perform
     number_to_enqueue = ScriptDuplicateCheckerJob::DESIRED_RUN_COUNT - ScriptDuplicateCheckerJob.currently_queued_script_ids.count

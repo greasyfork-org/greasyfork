@@ -6,7 +6,7 @@ class SubresourceCheckQueueingJobTest < ActiveSupport::TestCase
     subresource.script_subresource_usages.create!(script: Script.first, algorithm: 'md5', integrity_hash: 'abc123')
 
     assert_changes -> { subresource.reload.last_attempt_at } do
-      SubresourceCheckQueueingJob.perform_now
+      SubresourceCheckQueueingJob.perform_inline
     end
   end
 end

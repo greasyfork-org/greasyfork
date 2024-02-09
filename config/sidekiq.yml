@@ -16,3 +16,9 @@
     script_sync_queueing_job:
       interval: '1m'
       class: ScriptSyncQueueingJob
+    subresource_check_queueing_job:
+      interval: '1m'
+      class: SubresourceCheckQueueingJob
+    script_duplicate_checker_queueing_job:
+      interval: '1m'
+      class: ScriptDuplicateCheckerQueueingJob
