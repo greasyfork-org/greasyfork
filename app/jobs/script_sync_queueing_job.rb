@@ -1,5 +1,7 @@
-class ScriptSyncQueueingJob < ApplicationJob
-  queue_as :low
+class ScriptSyncQueueingJob
+  include Sidekiq::Job
+
+  sidekiq_options queue: 'background'
 
   def perform
     Script

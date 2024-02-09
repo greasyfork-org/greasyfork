@@ -220,6 +220,8 @@ GEM
       rubocop
       smart_properties
     erubi (1.12.0)
+    et-orbi (1.2.7)
+      tzinfo
     faraday (2.9.0)
       faraday-net_http (>= 2.0, < 3.2)
     faraday-net_http (3.1.0)
@@ -227,6 +229,9 @@ GEM
     faraday-retry (2.2.0)
       faraday (~> 2.0)
     ffi (1.16.3)
+    fugit (1.9.0)
+      et-orbi (~> 1, >= 1.2.7)
+      raabro (~> 1.4)
     gapic-common (0.21.1)
       faraday (>= 1.9, < 3.a)
       faraday-retry (>= 1.0, < 3.a)
@@ -384,6 +389,7 @@ GEM
     puma_worker_killer (0.3.1)
       get_process_mem (~> 0.2)
       puma (>= 2.7)
+    raabro (1.4.0)
     racc (1.7.3)
     rack (2.2.8)
     rack-attack (6.7.0)
@@ -485,6 +491,8 @@ GEM
       ffi (~> 1.12)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
+    rufus-scheduler (3.9.1)
+      fugit (~> 1.1, >= 1.1.6)
     sanitize (6.1.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -504,6 +512,10 @@ GEM
       connection_pool (>= 2.2.5, < 3)
       rack (~> 2.0)
       redis (>= 4.5.0, < 5)
+    sidekiq-scheduler (5.0.3)
+      rufus-scheduler (~> 3.2)
+      sidekiq (>= 6, < 8)
+      tilt (>= 1.4.0)
     sidekiq-unique-jobs (7.1.31)
       brpoplpush-redis_script (> 0.1.1, <= 2.0.0)
       concurrent-ruby (~> 1.0, >= 1.0.5)
@@ -533,6 +545,7 @@ GEM
     strip_attributes (1.13.0)
       activemodel (>= 3.0, < 8.0)
     thor (1.3.0)
+    tilt (2.3.0)
     timeout (0.4.1)
     ts-sidekiq-delta (0.4.0)
       sidekiq (>= 2.5.4)
@@ -633,6 +646,7 @@ DEPENDENCIES
   sentry-rails
   sentry-ruby
   sidekiq (< 7)
+  sidekiq-scheduler
   sidekiq-worker-killer
   strip_attributes
   thinking-sphinx!
