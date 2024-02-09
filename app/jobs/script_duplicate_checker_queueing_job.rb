@@ -5,6 +5,10 @@ class ScriptDuplicateCheckerQueueingJob
 
   def perform
     number_to_enqueue = ScriptDuplicateCheckerJob.spare_processes
+    if number_to_enqueue <= 0
+      Rails.logger.info("Should enqueue #{number_to_enqueue}, skipping.")
+      return
+    end
 
     script_ids = Rails.cache.fetch('ScriptDuplicateCheckerQueueingJob.queue') { [] }
     Rails.logger.warn("Cached script IDs are: #{script_ids}")

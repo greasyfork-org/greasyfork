@@ -66,16 +66,21 @@ class ScriptDuplicateCheckerJob
   end
 
   def self.spare_processes
-    DESIRED_RUN_COUNT - Rails.cache.fetch(RUN_COUNTER_KEY, expires_in: RUN_CACHE_EXPIRY) { 0 }
+    running_processes = Rails.cache.fetch(RUN_COUNTER_KEY, raw: true, expires_in: RUN_CACHE_EXPIRY) { 0 }
+    if running_processes < 0
+      Rails.cache.write(RUN_COUNTER_KEY, 0, raw: true, expires_in: RUN_CACHE_EXPIRY)
+      running_processes = 0
+    end
+    DESIRED_RUN_COUNT - running_processes
   end
 
   def self.lock_run!
-    Rails.cache.increment(RUN_COUNTER_KEY, expires_in: RUN_CACHE_EXPIRY)
-    Rails.cache.write(run_process_cache_key)
+    Rails.cache.increment(RUN_COUNTER_KEY, 1, expires_in: RUN_CACHE_EXPIRY, raw: true)
+    Rails.cache.write(run_process_cache_key, true)
   end
 
   def self.unlock_run!
-    Rails.cache.decrement(RUN_COUNTER_KEY, expires_in: RUN_CACHE_EXPIRY)
+    Rails.cache.decrement(RUN_COUNTER_KEY, 1, expires_in: RUN_CACHE_EXPIRY, raw: true)
     Rails.cache.delete(run_process_cache_key)
   end
 
