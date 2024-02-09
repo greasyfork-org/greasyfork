@@ -66,7 +66,7 @@ class ScriptDuplicateCheckerJob
   end
 
   def self.spare_processes
-    running_processes = Rails.cache.fetch(RUN_COUNTER_KEY, raw: true, expires_in: RUN_CACHE_EXPIRY) { 0 }
+    running_processes = Rails.cache.fetch(RUN_COUNTER_KEY, raw: true, expires_in: RUN_CACHE_EXPIRY) { 0 }.to_i
     if running_processes < 0
       Rails.cache.write(RUN_COUNTER_KEY, 0, raw: true, expires_in: RUN_CACHE_EXPIRY)
       running_processes = 0
