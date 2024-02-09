@@ -18,12 +18,11 @@ class ScriptDuplicateCheckerJob
 
   sidekiq_options queue: 'low', lock: :until_executed, on_conflict: :log, retry: 10_000
 
-  # Retry more quickly so that we can stay at the start of the queue and not have ScriptDuplicateCheckerQueueingJob
-  # slide in others before us.
+  # Retry more quickly on max concurrency so that we can stay at the start of the queue and not have
+  # ScriptDuplicateCheckerQueueingJob slide in others before us. Returning nil means default behaviour (exponential
+  # backoff).
   sidekiq_retry_in do |_count, exception|
-    return 5.seconds if exception.is_a?(Sidekiq::MaxConcurrencyException)
-
-    nil # Default behaviour
+    5 if exception.is_a?(Sidekiq::MaxConcurrencyException)
   end
 
   def perform(script_id)
