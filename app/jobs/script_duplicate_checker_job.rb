@@ -1,4 +1,5 @@
 require 'zlib'
+require 'sidekiq/max_concurrency_exception'
 
 # This job should have three levels of locks on it:
 #
@@ -72,14 +73,15 @@ class ScriptDuplicateCheckerJob
   end
 
   def self.lock_run!
-    Rails.cache.increment(RUN_COUNTER_KEY, 1, expires_in: RUN_CACHE_EXPIRY, raw: true)
     # This will raise if it's already true in the cache.
     raise Sidekiq::MaxConcurrencyException unless Rails.cache.write(run_process_cache_key, true, unless_exist: true)
+
+    Rails.cache.increment(RUN_COUNTER_KEY, 1, expires_in: RUN_CACHE_EXPIRY, raw: true)
   end
 
   def self.unlock_run!
-    Rails.cache.decrement(RUN_COUNTER_KEY, 1, expires_in: RUN_CACHE_EXPIRY, raw: true)
     Rails.cache.delete(run_process_cache_key)
+    Rails.cache.decrement(RUN_COUNTER_KEY, 1, expires_in: RUN_CACHE_EXPIRY, raw: true)
   end
 
   def self.run_process_cache_key
