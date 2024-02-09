@@ -26,8 +26,6 @@ class ScriptDuplicateCheckerJob
   end
 
   def perform(script_id)
-    raise Sidekiq::MaxConcurrencyException if self.class.running_in_current_process?
-
     self.class.lock_run!
 
     begin
@@ -75,7 +73,8 @@ class ScriptDuplicateCheckerJob
 
   def self.lock_run!
     Rails.cache.increment(RUN_COUNTER_KEY, 1, expires_in: RUN_CACHE_EXPIRY, raw: true)
-    Rails.cache.write(run_process_cache_key, true)
+    # This will raise if it's already true in the cache.
+    raise Sidekiq::MaxConcurrencyException unless Rails.cache.write(run_process_cache_key, true, unless_exist: true)
   end
 
   def self.unlock_run!
@@ -85,9 +84,5 @@ class ScriptDuplicateCheckerJob
 
   def self.run_process_cache_key
     RUN_PROCESS_KEY_PREFIX + Process.pid.to_s
-  end
-
-  def self.running_in_current_process?
-    Rails.cache.fetch(run_process_cache_key)
   end
 end
