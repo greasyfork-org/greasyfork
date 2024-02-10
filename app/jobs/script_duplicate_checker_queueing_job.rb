@@ -20,7 +20,7 @@ class ScriptDuplicateCheckerQueueingJob
 
     # Set it up for the next run if we've run out. That way, it can immediately enqueue some jobs when it runs rather
     # than having to wait for the query again.
-    script_ids = calculate_script_ids - enqueued_script_ids if script_ids.empty?
+    script_ids = calculate_script_ids - script_ids_to_enqueue if script_ids.empty?
 
     Rails.logger.warn("Caching script IDs: #{script_ids}")
     Rails.cache.write('ScriptDuplicateCheckerQueueingJob.queue', script_ids)
