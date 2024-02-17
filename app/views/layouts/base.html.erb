@@ -14,6 +14,9 @@
   <% if defined?(@bots) %>
     <meta name="robots" content="<%= @bots %>">
   <% end %>
+  <% if sleazy? %>
+    <meta name="clckd" content="1eb37c8f8f91e75152a85f734fdb0867">
+  <% end %>
   <link rel="canonical" href="<%= canonical_url(@canonical_params) %>">
   <link rel="icon" href="<%= vite_asset_path('images/blacklogo16.png') %>">
   <%= non_blocking_stylesheet_tag('https://fonts.googleapis.com/css?family=Open+Sans&display=swap') unless Rails.env.test? %>
