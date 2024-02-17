@@ -21,11 +21,7 @@
       <% elsif @ad_method&.ca? %>
         <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CKYI5KQU&placement=greasyforkorg" id="_carbonads_js"></script>
       <% elsif @ad_method&.ea? %>
-        <% if [1, 2].sample == 1 %>
-          <div id="script-show-ea" class="flat ethical-ads" data-ea-publisher="greasyfork" data-ea-type="text"></div>
-        <% else %>
-          <div id="script-show-ea-image" class="flat ethical-ads" data-ea-publisher="greasyfork" data-ea-type="image"></div>
-        <% end %>
+        <div id="script-show-ea-image" class="flat ethical-ads" data-ea-publisher="greasyfork" data-ea-type="image"></div>
         <div class="ad carbon-ad" style="display: none">
           <div id="_carbonads_js" data-src="https://cdn.carbonads.com/carbon.js?serve=CKYI5KQU&placement=greasyforkorg"></div>
         </div>
