@@ -20,8 +20,6 @@ module ShowsAds
 
     return AdMethod.ga if script.adsense_approved && locale_allows_adsense? && (script.localized_attributes.where(attribute_key: 'additional_info').any? || script.newest_saved_script_version.attachments.any? || script.similar_scripts(script_subset:, locale: I18n.locale).any?)
 
-    return AdMethod.mt if rand(10) == 0
-
     AdMethod.ea
   end
 

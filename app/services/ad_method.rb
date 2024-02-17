@@ -35,10 +35,6 @@ class AdMethod
     @ad_method == 'ev'
   end
 
-  def mt?
-    @ad_method = 'mt'
-  end
-
   def self.ga
     new('ga')
   end
@@ -53,10 +49,6 @@ class AdMethod
 
   def self.ev
     new('ev')
-  end
-
-  def self.mt
-    new('mt')
   end
 
   def self.no_ad(reason)
