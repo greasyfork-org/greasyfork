@@ -92,6 +92,12 @@ module ScriptAndVersions
       format.html do
         locale = request_locale
 
+        if script&.deletion_message
+          @text = script&.deletion_message&.html_safe
+          render 'home/error', status: http_code, layout: 'application'
+          return
+        end
+
         if script && script.site_applications.where(blocked: true).none?
           with = sphinx_options_for_request
           with[:site_application_id] = script.site_applications.pluck(:id)

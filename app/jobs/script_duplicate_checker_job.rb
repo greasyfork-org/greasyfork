@@ -81,10 +81,10 @@ class ScriptDuplicateCheckerJob
 
   def self.unlock_run!
     Rails.cache.delete(run_process_cache_key)
-    if Rails.cache.decrement(RUN_COUNTER_KEY, 1, expires_in: RUN_CACHE_EXPIRY, raw: true) < 0
-      # Sanity check to not set it to under 0.
-      Rails.cache.write(RUN_COUNTER_KEY, 0, raw: true, expires_in: RUN_CACHE_EXPIRY)
-    end
+    return unless Rails.cache.decrement(RUN_COUNTER_KEY, 1, expires_in: RUN_CACHE_EXPIRY, raw: true) < 0
+
+    # Sanity check to not set it to under 0.
+    Rails.cache.write(RUN_COUNTER_KEY, 0, raw: true, expires_in: RUN_CACHE_EXPIRY)
   end
 
   def self.run_process_cache_key
