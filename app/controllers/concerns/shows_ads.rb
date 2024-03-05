@@ -3,7 +3,7 @@ module ShowsAds
     no_ads = general_ads_setting
     return no_ads if no_ads
 
-    return AdMethod.ev if sleazy?
+    return [AdMethod.ev, AdMethod.cd].sample if sleazy?
 
     AdMethod.ga
   end
@@ -27,7 +27,7 @@ module ShowsAds
     no_ads = general_ads_setting
     return no_ads if no_ads
 
-    return AdMethod.ev if sleazy?
+    return [AdMethod.ev, AdMethod.cd].sample if sleazy?
 
     # #size, not #count, here because #count does things wrong with will_paginate, which is used when this is filtered
     # by a ScriptSet.
