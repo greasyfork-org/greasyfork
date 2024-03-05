@@ -1,5 +1,5 @@
 <% i = 0 unless defined?(i) %>
-<% show_reporter = current_user && (current_user.moderator? || current_user == report.reporter) %>
+<% show_reporter = current_user && (current_user.moderator? || current_user == report.reporter || report.reporter.moderator?) %>
 
 <h4 id="open-report-<%= i %>">
   <% if report.unauthorized_code? && (report.reference_script || report.script_url.present?) %>
