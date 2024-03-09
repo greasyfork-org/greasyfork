@@ -14,7 +14,9 @@
   <% if defined?(@bots) %>
     <meta name="robots" content="<%= @bots %>">
   <% end %>
-  <% if sleazy? %>
+  <% if greasy? %>
+    <meta name="clckd" content="bf6242cc3039bff31a7815dff8ee247b" />
+  <% else %>
     <meta name="clckd" content="1eb37c8f8f91e75152a85f734fdb0867" />
   <% end %>
   <link rel="canonical" href="<%= canonical_url(@canonical_params) %>">
