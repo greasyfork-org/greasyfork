@@ -48,29 +48,18 @@
   <% end %>
 
   <% if Rails.env.production? %>
-    <% if sleazy? %>
-      <!-- Global site tag (gtag.js) - Google Analytics -->
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZB1G3ZKC89"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-ZB1G3ZKC89', {
-          'ad_method': '<%= @ad_method&.tracking_key %>'
-        });
-      </script>
-    <% else %>
-      <!-- Global site tag (gtag.js) - Google Analytics -->
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-7NMRNRYW7C"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-7NMRNRYW7C', {
-          'ad_method': '<%= @ad_method&.tracking_key %>'
-        });
-      </script>
-    <% end %>
+    <% gtm_id = sleazy? ? 'G-ZB1G3ZKC89' : 'G-7NMRNRYW7C' %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<%= gtm_id %>"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '<%= gtm_id %>', {
+        'ad_method': '<%= @ad_method&.tracking_key %>',
+        'action': '<%= j controller_name %>/<%= j action_name %>'
+      });
+    </script>
   <% end %>
 
   <% if content_for(:head_bottom) %><%= yield(:head_bottom) %><% end %>
