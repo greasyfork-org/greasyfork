@@ -27,10 +27,6 @@ class AdMethod
     @ad_method == 'ea'
   end
 
-  def ca?
-    @ad_method == 'ca'
-  end
-
   def ev?
     @ad_method == 'ev'
   end
@@ -41,10 +37,6 @@ class AdMethod
 
   def self.ga
     new('ga')
-  end
-
-  def self.ca
-    new('ca')
   end
 
   def self.ea

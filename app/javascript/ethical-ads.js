@@ -1,30 +1,32 @@
 function setupEthicalAdsFallback() {
-  if (typeof ethicalads === "undefined") {
-    setTimeout(setupEthicalAdsFallback, 100);
-    return;
+  if (typeof window.ethicalads === "undefined") {
+    setTimeout(setupEthicalAdsFallback, 100)
+    return
   }
-  ethicalads.wait.then((placements) => {
+  window.ethicalads.wait.then((placements) => {
     if (placements.length > 0) {
-      return;
+      return
     }
 
-    var carbonPlaceholder = document.getElementById("_carbonads_js");
-    if (!carbonPlaceholder) {
-      return;
+    let placeholder = document.querySelector(".ea-fallback")
+    if (!placeholder) {
+      return
     }
-    var carbonScript = document.createElement('script');
-    carbonScript.type= 'text/javascript';
-    carbonScript.src= carbonPlaceholder.getAttribute("data-src");
-    carbonScript.setAttribute("id", carbonPlaceholder.getAttribute("id"));
+    placeholder.classList.remove('ea-fallback')
 
-    var parent = carbonPlaceholder.parentNode;
-    parent.removeChild(carbonPlaceholder);
-    parent.appendChild(carbonScript);
-    parent.style.display = "block";
+    let element = document.createElement(placeholder.getAttribute('data-element-name'))
+    placeholder.removeAttribute('data-element-name')
 
-    var ethicalAdsElement = document.querySelector(".ethical-ads");
-    ethicalAdsElement.parentNode.removeChild(ethicalAdsElement);
+    Array.from(placeholder.attributes).forEach((attr) => element.setAttributeNode(attr.cloneNode(true)))
+
+    let parent = placeholder.parentNode
+    parent.removeChild(placeholder)
+    parent.appendChild(element)
+    parent.style.display = "block"
+
+    let ethicalAdsElement = document.querySelector(".ethical-ads")
+    ethicalAdsElement.parentNode.removeChild(ethicalAdsElement)
   })
 }
 
-window.addEventListener("DOMContentLoaded", setupEthicalAdsFallback);
+window.addEventListener("DOMContentLoaded", setupEthicalAdsFallback)

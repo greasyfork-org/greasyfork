@@ -32,11 +32,6 @@ skip_all_sites_link = false unless defined?(skip_all_sites_link)
     </ul>
   </div>
 
-  <% if @ad_method&.ea? %>
-    <div class="ad carbon-ad" style="display: none">
-      <div id="_carbonads_js" data-src="https://cdn.carbonads.com/carbon.js?serve=CKYI5KQU&placement=greasyforkorg"></div>
-    </div>
-  <% end %>
   <% if @ad_method&.ga? %>
     <div class="ad adsense-ad" style="max-height: 200px">
       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2247465624637408"
