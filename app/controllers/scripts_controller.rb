@@ -135,6 +135,9 @@ class ScriptsController < ApplicationController
         set_bots_directive
         @canonical_params = [:id, :version]
         show_integrity_hash_warning
+
+        @ad_method = choose_ad_method_for_script(@script)
+        @placed_ads = @ad_method&.ea?
       end
       format.js do
         redirect_to @script.code_path
@@ -173,6 +176,9 @@ class ScriptsController < ApplicationController
 
       set_bots_directive
       @canonical_params = [:id, :version]
+
+      @ad_method = choose_ad_method_for_script(@script)
+      @placed_ads = @ad_method&.ea?
 
       render_to_string
     end
