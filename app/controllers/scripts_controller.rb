@@ -97,6 +97,7 @@ class ScriptsController < ApplicationController
           @canonical_params = [:id, :version]
           set_bots_directive
           @ad_method = choose_ad_method_for_script(@script)
+          @placed_ads = true
           show_integrity_hash_warning
           render_to_string
         end
