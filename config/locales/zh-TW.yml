@@ -687,8 +687,11 @@ zh-TW:
       code_header: 代碼
       copyright_header: 版權
       miscellaneous_header: 雜項
+      reposting_deleted: 請勿重新發布因違反規則而被刪除的腳本； 請改用申訴功能。 重新發布已刪除的腳本可能會導致禁止。
     external_scripts:
       title: "%{site_name} 對於外部程式碼的政策"
+      cdns:
+        title: 內容傳遞網路（CDNs）
     script_rewriting:
       title: "%{site_name} 會如何改寫發表的腳本"
     site_feedback_link: "回報關於 %{site_name} 的問題或想法。"
@@ -776,6 +779,7 @@ zh-TW:
     consecutive_bad_ratings:
       other: "%{script_names}已連續收到不良評價。請查看您的腳本並回複評分中提出的問題。"
   reports:
+    name: "檢舉#%{id}"
     report_filed: "您的檢舉將由管理員審核。"
     new_report_title:
       user: "檢舉%{user}"
@@ -791,6 +795,7 @@ zh-TW:
       malware: "惡意軟體"
       minified: "極簡化代碼"
       external_code: "未允許的外部代碼"
+      wrong_category: "分類錯誤"
       other: "其他"
     report_intro_unauthorized_html: "%{reported_script}於%{report_date}被%{reporter}檢舉為%{other_script}的未授權副本。"
     non_functional_feedback: "請在腳本頁面的%{feedback_link:意見回饋}回報無效的腳本。"
@@ -928,6 +933,7 @@ zh-TW:
     recent:
       title: 最近的會話
       more: 查看全部會話
+    edit_message_header: 編輯訊息
   screenshots:
     requirements: "最多上傳 %{number} 張 PNG、GIF 、 JPEG 、或 WEBP 圖片，且每張圖片不得超過 %{size}。"
   common:
@@ -948,6 +954,9 @@ zh-TW:
     quote:
       prefix_html: "%{user}說："
   activerecord:
+    models:
+      script:
+        other: "%{count}個腳本"
     attributes:
       user:
         name: "使用者名稱"
@@ -1012,6 +1021,14 @@ zh-TW:
     title: 匯入腳本
     url_entry_label: 提供要導入的URL，以新行分隔。這些URL應該指向原始的JavaScript或CSS文件。
     submit: 導入
+    previously_imported:
+      unknown_date: "（未知）"
+    results:
+      title: "匯入結果"
+      success: "以下的腳本已經成功地匯入："
+      needs_description: "以下的腳本需要說明能才能匯："
+      existing: "以下的腳本已經匯入："
+      failure: "以下的腳本無法匯入："
   mailers:
     script_report:
       report_created_offender:
