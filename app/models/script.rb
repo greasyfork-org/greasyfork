@@ -4,6 +4,7 @@ require 'css_to_js_converter'
 class Script < ApplicationRecord
   include LocalizingModel
   include DetectsLocale
+  include ScriptIndexing
 
   CONSECUTIVE_BAD_RATINGS_COUNT = 3
   CONSECUTIVE_BAD_RATINGS_GRACE_PERIOD = 2.weeks
