@@ -12,7 +12,7 @@ class CommentSpamCheckJob < ApplicationJob
   end
 
   def pattern_check(comment)
-    return false unless comment.text.include?('gmkm.zrnq.one')
+    return false unless ['gmkm.zrnq.one', '🐧'].any? { |s| comment.text.include?(s) }
 
     discussion.update(review_reason: Discussion::REVIEW_REASON_RAINMAN)
     Report.create!(item: discussion, auto_reporter: 'rainman', reason: Report::REASON_SPAM)
