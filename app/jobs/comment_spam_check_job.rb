@@ -14,7 +14,7 @@ class CommentSpamCheckJob < ApplicationJob
   def pattern_check(comment)
     return unless self.class.text_is_spammy?(comment.text)
 
-    Report.create!(item: discussion, auto_reporter: 'rainman', reason: Report::REASON_SPAM)
+    Report.create!(item: comment, auto_reporter: 'rainman', reason: Report::REASON_SPAM)
   end
 
   def repeat_check(comment)
