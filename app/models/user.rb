@@ -44,6 +44,8 @@ class User < ApplicationRecord
 
   ThinkingSphinx::Callbacks.append(self, :script, behaviours: [:sql, :deltas], path: [:scripts])
 
+  generates_token_for(:one_click_unsubscribe)
+
   before_destroy(prepend: true) do
     scripts.select { |script| script.authors.where.not(user_id: id).none? }.each do |script|
       if banned?
@@ -373,6 +375,20 @@ class User < ApplicationRecord
       stats_script_last_created: script_stat_results[:last_created],
       stats_script_last_updated: script_stat_results[:last_updated],
     }
+  end
+
+  def unsubscribe_all!
+    update!(
+      author_email_notification_type_id: User::AUTHOR_NOTIFICATION_NONE,
+      subscribe_on_discussion: false,
+      subscribe_on_comment: false,
+      subscribe_on_conversation_starter: false,
+      subscribe_on_conversation_receiver: false,
+      notify_on_mention: false,
+      notify_as_reporter: false,
+      notify_as_reported: false
+    )
+    discussion_subscriptions.destroy_all
   end
 
   protected

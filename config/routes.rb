@@ -268,5 +268,7 @@ Rails.application.routes.draw do
   get '/forum/discussion/comment/:id' => 'comments#old_redirect'
   get '/forum/discussion/:id/:slug' => 'discussions#old_redirect'
 
+  post '/unsubscribe/:token' => 'unsubscribe#process_one_click', as: :one_click_unsubscribe
+
   get '404', to: 'home#routing_error'
 end

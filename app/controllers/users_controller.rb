@@ -319,17 +319,7 @@ class UsersController < ApplicationController
   end
 
   def unsubscribe_all
-    current_user.update!(
-      author_email_notification_type_id: User::AUTHOR_NOTIFICATION_NONE,
-      subscribe_on_discussion: false,
-      subscribe_on_comment: false,
-      subscribe_on_conversation_starter: false,
-      subscribe_on_conversation_receiver: false,
-      notify_on_mention: false,
-      notify_as_reporter: false,
-      notify_as_reported: false
-    )
-    current_user.discussion_subscriptions.destroy_all
+    current_user.unsubscribe_all!
     flash[:notice] = t('users.notifications.unsubscribe_all_success')
     redirect_to user_path(current_user)
   end
