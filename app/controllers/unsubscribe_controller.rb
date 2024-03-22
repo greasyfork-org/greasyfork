@@ -1,4 +1,4 @@
-class UnsubscribeController < ActionController::Base
+class UnsubscribeController < ActionController::Base # rubocop:disable Rails/ApplicationController
   skip_forgery_protection
 
   def process_one_click

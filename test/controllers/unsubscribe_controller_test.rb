@@ -6,7 +6,7 @@ class UnsubscribeControllerTest < ActionDispatch::IntegrationTest
     user.update!(subscribe_on_discussion: true)
     post one_click_unsubscribe_url(token: user.generate_token_for(:one_click_unsubscribe))
     assert_response :ok
-    refute user.reload.subscribe_on_discussion
+    assert_not user.reload.subscribe_on_discussion
   end
 
   test 'bad token' do
