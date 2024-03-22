@@ -23,7 +23,7 @@ class ScriptDuplicateCheckerJob
   # ScriptDuplicateCheckerQueueingJob slide in others before us. Returning nil means default behaviour (exponential
   # backoff).
   sidekiq_retry_in do |_count, exception|
-    5 if exception.is_a?(Sidekiq::MaxConcurrencyException)
+    5 if [Sidekiq::MaxConcurrencyException, ActiveRecord::Deadlocked].any? { |klass| exception.is_a?(klass) }
   end
 
   def perform(script_id)
