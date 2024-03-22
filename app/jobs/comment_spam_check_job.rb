@@ -12,7 +12,7 @@ class CommentSpamCheckJob < ApplicationJob
   end
 
   def pattern_check(comment)
-    return false unless ['gmkm.zrnq.one', '🐧'].any? { |s| comment.text.include?(s) }
+    return unless self.class.text_is_spammy?(comment.text)
 
     discussion.update(review_reason: Discussion::REVIEW_REASON_RAINMAN)
     Report.create!(item: discussion, auto_reporter: 'rainman', reason: Report::REASON_SPAM)
@@ -52,5 +52,16 @@ class CommentSpamCheckJob < ApplicationJob
 
     Report.create!(item: comment, auto_reporter: 'akismet', reason: Report::REASON_SPAM)
     comment.update(review_reason: Discussion::REVIEW_REASON_AKISMET)
+  end
+
+  def self.text_is_spammy?(text)
+    [
+      'yxd02040608',
+      'zrnq',
+      'gmkm.zrnq.one',
+      '🐧',
+      'CBD ',
+      'Keto ',
+    ].any? { |s| text.include?(s) }
   end
 end
