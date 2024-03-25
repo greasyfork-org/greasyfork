@@ -38,6 +38,8 @@ class Report < ApplicationRecord
 
   REASONS_WARRANTING_BLANKING = [REASON_SPAM, REASON_ABUSE, REASON_ILLEGAL, REASON_MALWARE].freeze
 
+  NON_BLOCKING_REASONS = [REASON_NO_DESCRIPTION, REASON_OTHER].freeze
+
   RESULT_DISMISSED = 'dismissed'.freeze
   RESULT_UPHELD = 'upheld'.freeze
   RESULT_FIXED = 'fixed'.freeze
@@ -46,7 +48,7 @@ class Report < ApplicationRecord
   scope :resolved, -> { where.not(result: nil) }
   scope :upheld, -> { where(result: RESULT_UPHELD) }
   scope :resolved_and_valid, -> { where(result: [RESULT_UPHELD, RESULT_FIXED]) }
-  scope :block_on_pending, -> { unresolved.trusted_reporter }
+  scope :block_on_pending, -> { unresolved.trusted_reporter.where.not(reason: NON_BLOCKING_REASONS) }
   scope :trusted_reporter, -> { joins(:reporter).where(users: { trusted_reports: true }) }
 
   belongs_to :item, polymorphic: true
