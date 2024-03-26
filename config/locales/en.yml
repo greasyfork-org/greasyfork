@@ -1058,7 +1058,7 @@ en:
       functionality_header: Functionality
       description: Scripts must include a description of what they do and may not do things unreasonably outside of this description. Users must know what a script will do before installing it.
       reason: Scripts must have a reason to be a script. For example, a script that just directs a user to a website doesn't need to be a script; it could be a link. Scripts that use a web service to perform an action on the current page (e.g. to convert it in some way) are allowed.
-      monetization_html: Scripts that contain features for the benefit of the <em>author</em> rather than the user (such as tracking, ads, and miners) are allowed, but these must be disclosed with %{antifeature_link:<code>@antifeature</code> meta keys}.
+      monetization_html: Scripts that contain features for the benefit of the <em>author</em> rather than the user (such as tracking, ads, and miners) are allowed, but these must be disclosed with %{antifeature_link:<code>@antifeature</code> meta keys}. Scripts must not add <code>@include</code>s or <code>@match</code>es for the sole purpose adding antifeatures.
       code_header: Code
       obfuscation: Code posted to %{site_name} must not be obfuscated or minified. Users must be given the opportunity to inspect and understand a script before installing it. If the script is bundled by a tool such as webpack, it must be output in non-minified form, with whitespace and variable names retained.
       size_html: |
@@ -1075,12 +1075,14 @@ en:
       licensing_html: Your script must respect others' copyrights. This includes the code itself and any resources (for example images) it uses. If you intend on using someone else's content, abide by their licensing terms or get their permission before doing so. Licenses on scripts are specified by the <code>@license</code> meta key, and you can learn about what you can and cannot do by using %{tldr_legal_link:tldrlegal.com}.
       reposts: Even in cases not violating the copyright rule, reposts of scripts that are already on %{site_name} are not allowed unless they are improving upon the original.
       miscellaneous_header: Miscellaneous
-      included_sites_html: Scripts must not include <code>@include</code>s or <code>@match</code>es for sites they do not provide functionality on. Scripts must not add <code>@include</code>s or <code>@match</code>es for the sole purpose adding antifeatures.
       keywords: Scripts must not include unrelated keywords or mention unrelated sites to attempt to improve search placement.
       adult_content_rule: Scripts that include adult content or are for sites with adult content must be marked as such to allow other users the option of whether to see them.
       reposting_deleted: Do not repost scripts that were deleted due to rule violations; use the appeal function instead. Reposting deleted scripts may result in a ban.
       advertising_in_description: Script authors may not place advertising on pages on Greasy Fork, for example in a script's description. Promotion of the script author's homepage, code repository, Discord, WeChat, etc. is allowed.
       reporting: If you notice a script that falls outside of these parameters, please report it by going to the Feedback link for that script and choosing the "Report script" option.
+      excessive_updates: Script authors may not update scripts excessively with the sole purpose of ranking higher on the script list.
+      non_functional_includes_html: Scripts may not include <code>@include</code>s or <code>@match</code>es for sites they do not provide functionality on.
+      content_language: Scripts' include names, descriptions, and other content must be marked with the proper language.
     external_scripts:
       # title of the external script rules page
       title: "%{site_name}'s policy on external scripts"
