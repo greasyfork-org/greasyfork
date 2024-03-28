@@ -762,7 +762,6 @@ pt-BR:
       functionality_header: Funcionalidade
       description: Scripts devem ter uma descrição do que eles fazem e não podem fazer coisas fora do escopo da descrição sem uma razão. Os usuários devem saber o que o script fará antes de instalá-lo.
       reason: Scripts deve ter um motivo para serem um script. Por exemplo, um script que apenas direciona um usuário para um site não precisa ser um script; poderia ser um link. Scripts que utilizam um web service para executar uma ação na página atual (para realizar uma conversão, por exemplo) são permitidos.
-      monetization_html: Scripts que contenham funcionalidades que beneficiem o <em>autor</em> em vez do usuário (como rastreadores,  anúncios e mineradores) são permitidos, mas devem informar isso através de %{antifeature_link:meta keys <code>@antifeature</code>}.
       code_header: Código
       obfuscation: Códigos publicados no %{site_name} não devem ser obfuscados ou minificados. Os usuários devem ser capazes de inspecionar e compreender um script antes de instalá-lo. Caso o script seja empacotado por ferramentas como webpack, ele deve ser exportado de forma não minificada, preservando espaços e nomes de variáveis.
       size_html: |
@@ -779,7 +778,6 @@ pt-BR:
       licensing_html: Seu script deve respeitar os direitos autorais de terceiros. Isto inclui o código em si e qualquer recurso (imagens, por exemplo) que ele usar. Se você pretende usar o conteúdo de alguém, siga as suas regras de licença ou obtenha permissão antes de utilizá-lo. As licenças nos scripts são especificadas pela chave meta <code>@license</code>, e você pode aprender mais sobre o que é ou não permitido usando %{tldr_legal_link:tldrlegal.com}.
       reposts: Mesmo nos casos em que não há violação dass regras de direitos autorais, repostagem de scripts que já estão no %{site_name} não é permitida a menos que hajam melhorias em relação ao original.
       miscellaneous_header: Diversos
-      included_sites_html: Scripts não devem incluir <code>@include</code>s ou <code>@match</code>es para sites nos quais eles não fornecem funcionalidade. Scripts não devem adicionar <code>@include</code>s ou <code>@match</code>es com o único propósito de adicionar antifeatures.
       keywords: Os scripts não devem incluir palavras-chave não relacionadas ou mencionar sites não relacionados na tentativa de melhorar o posicionamento de busca.
       adult_content_rule: Scripts que incluam conteúdo adulto ou que sejam destinados a sites de conteúdo adulto devem ser marcados como tal para que os usuários possam decidir vê-lo ou não.
       reposting_deleted: Não reposte scripts que foram excluídos devido a violação das regras; em vez disso, utilize a função de apelação. Repostar scripts excluídos pode resultar em banimento.

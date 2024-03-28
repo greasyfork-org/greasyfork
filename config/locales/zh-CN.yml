@@ -716,7 +716,6 @@ zh-CN:
       functionality_header: 功能性
       description: 脚本必须提供描述来说明这个脚本会做什么，而脚本也不应实现超过其描述的功能。用户必须提前知晓脚本会干的事情。
       reason: 脚本必须有一个成为脚本的理由。例如，一个只是跳转到某个网页的脚本可以只是一个超链接而非脚本；使用第三方接口来为当前页面提供服务的脚本（如转换数据）是允许的。
-      monetization_html: 脚本含为作者而非用户获益的功能（如追踪、广告、挖矿等）非绝对禁止，但是其必须通过 %{antifeature_link:<code>@antifeature</code> 元属性} 公开披露。
       code_header: 代码
       obfuscation: 提交到 %{site_name} 的代码不得混淆或最小化。用户必须有可能在安装前审视并理解脚本的内容。如果脚本使用了 WebPack 之类的工具打包，则必须以非最小化的形式输出，保留空白和变量名。
       size_html: |
@@ -733,7 +732,6 @@ zh-CN:
       licensing_html: 您的脚本必须遵守他人的版权，这包括代码本身以及所引用的资源（例如图像）。如果你希望使用他人的内容，请遵守其授权规则或获得使用授权。你可以使用 <code>@license</code> 元信息名称来指定脚本使用的授权协议，并通过 %{tldr_legal_link:tldrlegal.com}（英文）获得更多关于该授权协议的限制。
       reposts: 即便没有违反版权商的规则，重复提交已经存在于 %{site_name} 的脚本也是不允许的，除非有做出改进。
       miscellaneous_header: 其它
-      included_sites_html: 对于不提供功能的站点，脚本不得包含 一个或多个 <code>@include</code> 或 <code>@match</code>。脚本不得仅出于添加反特征的目的而添加一个或多个的 <code>@include</code> 或 <code>@match</code>。
       keywords: 脚本不得包含不相关的关键字或提及不相关的网站以尝试改善搜索排名.
       adult_content_rule: 含有成人内容或在成人网站上运行的脚本必须做出相应标记，来让其他用户选择是否在网站上看到它们。
       reposting_deleted: 不要重新发布因违反规则而被删除的脚本；请使用申诉功能。重新发布已删除的脚本可能会导致被封禁。

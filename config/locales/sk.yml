@@ -773,7 +773,7 @@ sk:
       functionality_header: Funkčnosť
       description: Skripty musia obsahovať opis toho, čo robia, a nesmú robiť veci bezdôvodne mimo neho. Používatelia musia pred inštaláciou skriptu vedieť, čo urobí.
       reason: Skripty musia mať dôvod na to, aby boli skriptom. Napríklad skript, ktorý iba nasmeruje používateľa na web, nemusí byť skript; môže to byť odkaz. Skripty, ktoré používajú webovú službu na vykonanie akcie na aktuálnej stránke (napr. prevod na iný formát), sú povolené.
-      monetization_html: Skripty obsahujúce funkcie viac prospešné pre <em>autora</em> ako pre používateľa (ako sledovanie, reklamy, ťaženie, atď.) sú povolené, ale autor to musí uviesť do %{antifeature_link:metakľúčov <code>@antifeature</code>}.
+      monetization_html: Skripty obsahujúce funkcie viac prospešné pre <em>autora</em> ako pre používateľa (ako sledovanie, reklamy, ťaženie, atď.) sú povolené, ale autor to musí uviesť do %{antifeature_link:metakľúčov <code>@antifeature</code>}. Skripty nemôžu pridávať <code>@includes</code> alebo <code>@match</code> za jediným účelom pridania antifunkcií.
       code_header: Kód
       obfuscation: Kód zverejnený na webe %{site_name} nesmie byť zmätočný ani minifikovaný. Používateľom musí byť poskytnutá príležitosť skontrolovať a porozumieť skriptu pred jeho inštaláciou. Ak je skript zabalený s nástrojom, ako je webpack, musí byť vydaný v neminifikovanej podobe, so zachovaním medzier a názvov premenných.
       size_html: |
@@ -790,12 +790,15 @@ sk:
       licensing_html: Váš skript musí rešpektovať autorské práva ostatných. Zahŕňa to samotný kód a všetky zdroje (napríklad obrázky), ktoré používa. Ak máte v úmysle použiť obsah niekoho iného, ​​riaďte sa jeho licenčnými podmienkami alebo pred tým získajte jeho povolenie. Licencie na skripty sa udávajú do metakľúča <code>@license</code> a to, čo môžete a čo nemôžete robiť sa môžete dozvedieť na %{tldr_legal_link:tldrlegal.com}.
       reposts: Dokonca v prípadoch neporušovania autorského práva, preposielanie skriptov, ktoré už sú na %{site_name} nie je povolené, aj keď vylepšujú pôvodný skript
       miscellaneous_header: Rôzne
-      included_sites_html: Skripty nesmú obsahovať <code>@include</code> alebo <code>@match</code> pre stránky, na ktorých neposkytujú funkcie. Skripty nesmú pridávať <code>@include</code> alebo <code>@match</code> len s účelom pridania antifunkcií.
       keywords: Skripty nesmú obsahovať nesúvisiace kľúčové slová ani uvádzať nesúvisiace stránky s cieľom zlepšiť umiestnenie vo vyhľadávaní.
       adult_content_rule: Skripty, ktoré obsahujú obsah pre dospelých, alebo sú určené pre stránky s obsahom pre dospelých, musia byť takto označené, aby mali ostatní používatelia možnosť ich zobraziť.
       reposting_deleted: Skripty, ktoré boli odstránené z dôvodu porušenia pravidiel, opätovne nezverejňujte; namiesto toho použite funkciu odvolania. Opätovné zverejnenie odstránených skriptov môže viesť k banu.
       advertising_in_description: Autori skriptov nesmú umiestňovať reklamu na stránky Greasy Forku, napríklad v popise skriptu. Propagácia domovskej stránky autora skriptu, repozitára kódu, Discordu, WeChatu atď. je povolená.
       reporting: Ak spozorujete skript, ktorý nespĺňa tieto parametre, nahláste ho kliknutím na odkaz Spätná väzba pre tento skript a vyberte  možnosť "Nahlásiť skript".
+      excessive_updates: Autori skriptov nemôžu nadmerne aktualizovať skripty s jediným cieľom, aby sa umiestnili vyššie v zozname skriptov.
+      non_functional_includes_html: Skripty nemôžu obsahovať <code>@include</code>, <code>@match</code> pre stránky, na ktorých neposkytujú funkcie.
+      content_language: Názvy skriptov, popisy a ďalší obsah musia byť označené správnym jazykom.
+      listing_header: Zoznam
     external_scripts:
       title: "Zásady %{site_name} používania externých skriptov"
       intro_html: |
