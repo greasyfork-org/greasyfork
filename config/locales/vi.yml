@@ -301,8 +301,14 @@ vi:
     must_confirm_email_button: "Gửi liên kết xác nhận đến %{email}"
     invitations:
       submit: "Gửi lời mời"
+      sent: "Lời mời đã được gửi"
+      invitation_not_found: "Không tìm thấy lời mời"
+      invitation_expired: "Lời mời đã hết hạn"
+      invitation_accepted: "Bây giờ bạn là tác giả của script này "
     remove_author:
       remove_button: "Xoá"
+    new_script_notice:
+      install_link_html: "Tôi muốn<b>cài đặt và sử dụng</b>một script"
     new_title:
       js: "Đăng script mới"
       css: "Đăng user style mới"
@@ -532,6 +538,8 @@ vi:
         request_expired: "Không thể xoá người dùng - yêu cầu đã hết hạn"
         cancelled: "Đã huỷ xoá"
         completed: "Tài khoản của bạn đã bị xoá"
+    banned_notice:
+      no_report_no_reason: "Tài khoản của bạn đã bị cấm. Bạn có thể%[delete_link:delete your account], nếu bạn muốn"
     banned_delete:
       complete: "Đã XOÁ tài khoản của bạn"
     badges:
@@ -571,10 +579,21 @@ vi:
       post_new_script_link_text: 'Đăng script mới'
     code_rules:
       title: "Quy định của %{site_name} cho script đã đăng"
+      functionality_header: Chức năng
       code_header: Code
       copyright_header: Bản quyền
+      listing_header: Danh sách
     external_scripts:
       title: "Điều khoản của %{site_name}' về script mở rộng"
+      cdns:
+        title: Mạng phân phối nội dung (CDN)
+      allowed_external_codes:
+        heading: Cho phép mã bên ngoài
+    cdns:
+      title: Cho phép CDN
+      test_url:
+        result_ok: URL được cho phép
+        result_not_ok: URL không được cho phép
     script_rewriting:
       title: "Làm thế nào %{site_name} sẽ viết lại các script đã đăng"
     site_feedback_link: "Báo cáo vấn đề hoặc ý tưởng bài viết cho chính %{site_name}"
