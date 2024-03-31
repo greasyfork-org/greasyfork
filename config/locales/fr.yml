@@ -490,6 +490,16 @@ fr:
         que vous pouvez utiliser dépend du navigateur que vous utilisez.</p>
     desktop_browsers:
       title: Bureau
+      browser_list_html: |
+          <ul>
+          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} ou %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey} ou %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} ou %{safari_userscripts_link:Userscripts}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} ou %{edge_violentmonkey_link:Violentmonkey}</li>
+          <li>Opéra: %{opera_tampermonkey_link:Tampermonkey} ou %{opera_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>%{adguard_link:AdGuard}: (aucun logiciel supplémentaire requis)</li>
+          </ul>
     android_browsers:
       title: Mobile (Android)
       browser_list_html: |
@@ -754,6 +764,7 @@ fr:
       functionality_header: Fonctionnalité
       description: Les scripts doivent inclure une description de ce qu'ils font et ne doivent pas faire des choses de manière déraisonnable en dehors de cette description. Les utilisateurs doivent savoir ce qu'il fera avant de l'installer.
       reason: Les scripts doivent avoir une raison d'être un script. Par exemple, un script qui dirige simplement un utilisateur vers un site Web n'a pas besoin d'être un script; ça pourrait être un lien. Les scripts qui utilisent un service Web pour effectuer une action sur la page actuelle (par exemple pour la convertir d'une manière ou d'une autre) sont autorisés.
+      monetization_html: Les scripts qui contiennent des fonctionnalités au bénéfice de <em>auteur</em> plutôt que de l'utilisateur (comme le suivi, les publicités et les mineurs) sont autorisés, mais ceux-ci doivent être divulgués avec %{antifeature_link:<code>@antifeature</code> méta-clés}. Les scripts ne doivent pas ajouter des <code>@include</code> ou <code>@match</code> dans le seul but d'ajouter des antifeatures.
       code_header: Code
       obfuscation: Le code posté sur %{site_name} ne doit pas être incompréhensible ou minimisé. Les utilisateurs doivent avoir la possibilité d'inspecter et de comprendre un script avant de l'installer. Si le script est fourni par un outil tel que webpack, il doit être généré sous une forme non-minifiée, avec les espaces et les noms de variables conservés.
       size_html: |
@@ -775,6 +786,10 @@ fr:
       reposting_deleted: Ne republiez pas les scripts qui ont été supprimés en raison de violations des règles; utilisez plutôt la fonction faire appel. Republier des scripts supprimés peut entraîner un ban.
       advertising_in_description: Les auteurs de scripts ne peuvent pas placer de publicité sur les pages de Greasy Fork, par exemple dans la description d'un script. La promotion de la page d'accueil de l'auteur du script, du référentiel de code, de Discord, de WeChat, etc. est autorisée.
       reporting: Si vous remarquez un script qui ne respecte pas ces paramètres, veuillez le signaler en accédant au lien Commentaires pour ce script et choisissez l'option "Signaler le script".
+      excessive_updates: Les auteurs de scripts ne peuvent pas mettre à jour leurs scripts dans le seul but est de se classer excessivement plus haut dans la liste des scripts.
+      non_functional_includes_html: Les scripts ne peuvent pas inclure <code>@include</code> ou <code>@match</code> pour les sites sur lesquels ils ne fournissent pas de fonctionnalités.
+      content_language: Les noms, descriptions et autres contenus des scripts doivent être marqués avec la langue spécifier.
+      listing_header: Listées
     external_scripts:
       title: "Politique de %{site_name} concernant les scripts externes"
       intro_html: |
