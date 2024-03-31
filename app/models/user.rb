@@ -391,6 +391,11 @@ class User < ApplicationRecord
     discussion_subscriptions.destroy_all
   end
 
+  def blocked_from_reporting_until
+    recent_reports = reports_as_reporter.resolved.where(created_at: 1.week.ago..).order(:created_at)
+    recent_reports.first.created_at + 1.week if recent_reports.count(&:dismissed?) == 5
+  end
+
   protected
 
   def password_required?

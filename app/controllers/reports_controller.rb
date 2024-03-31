@@ -42,10 +42,22 @@ class ReportsController < ApplicationController
   def new
     @report = Report.new(item:, reporter: current_user, explanation_markup: current_user&.preferred_markup)
     previous_report = Report.unresolved.where(item:, reporter: current_user).first
-    redirect_to report_path(previous_report) if previous_report
+    if previous_report
+      redirect_to report_path(previous_report)
+      return
+    end
+    return unless current_user.blocked_from_reporting_until
+
+    render_error(200, It.it('reports.reporter_temporarily_blocked', date: I18n.l(current_user.blocked_from_reporting_until.to_date), rules_link: help_code_rules_path, site_name:))
+    return
   end
 
   def create
+    if current_user.blocked_from_reporting_until
+      render_error(200, It.it('reports.reporter_temporarily_blocked', date: I18n.l(current_user.blocked_from_reporting_until.to_date), rules_link: help_code_rules_path, site_name:))
+      return
+    end
+
     @report = Report.new(report_params)
     @report.reporter = current_user
     @report.item = item

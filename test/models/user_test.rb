@@ -28,4 +28,19 @@ class UserTest < ActiveSupport::TestCase
       end
     end
   end
+
+  test 'blocked_from_reporting_until with no reports' do
+    user = users(:one)
+    assert_nil user.blocked_from_reporting_until
+  end
+
+  test 'blocked_from_reporting_until with reports' do
+    user = users(:one)
+    4.times { Report.create!(reporter: user, result: Report::RESULT_DISMISSED, item: Script.first, reason: Report::REASON_SPAM) }
+    assert_nil user.blocked_from_reporting_until
+    Report.create!(reporter: user, result: Report::RESULT_DISMISSED, item: Script.first, reason: Report::REASON_SPAM)
+    assert_not_nil user.blocked_from_reporting_until
+    Report.last.update!(result: Report::RESULT_UPHELD)
+    assert_nil user.blocked_from_reporting_until
+  end
 end
