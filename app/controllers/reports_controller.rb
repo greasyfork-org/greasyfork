@@ -46,17 +46,12 @@ class ReportsController < ApplicationController
       redirect_to report_path(previous_report)
       return
     end
-    return unless current_user.blocked_from_reporting_until
 
-    render_error(200, It.it('reports.reporter_temporarily_blocked', date: I18n.l(current_user.blocked_from_reporting_until.to_date), rules_link: help_code_rules_path, site_name:))
-    return
+    check_for_blocked_report
   end
 
   def create
-    if current_user.blocked_from_reporting_until
-      render_error(200, It.it('reports.reporter_temporarily_blocked', date: I18n.l(current_user.blocked_from_reporting_until.to_date), rules_link: help_code_rules_path, site_name:))
-      return
-    end
+    return if check_for_blocked_report
 
     @report = Report.new(report_params)
     @report.reporter = current_user
@@ -230,5 +225,24 @@ class ReportsController < ApplicationController
 
   def user_is_script_author?(report)
     current_user && report.item.is_a?(Script) && report.item.users.include?(current_user)
+  end
+
+  def check_for_blocked_report
+    if current_user.blocked_from_reporting_until
+      render_error(200, It.it('reports.reporter_temporarily_blocked', date: I18n.l(current_user.blocked_from_reporting_until.to_date), rules_link: help_code_rules_path, site_name:))
+      return true
+    end
+
+    if !current_user.moderator? && (date = item_reporting_blocked_until)
+      render_error(200, It.it('reports.reported_temporarily_blocked', date: I18n.l(date.to_date), rules_link: help_code_rules_path, site_name:))
+      return true
+    end
+
+    false
+  end
+
+  def item_reporting_blocked_until
+    recent_reports = Report.resolved.where(item:, created_at: 1.week.ago..).order(:created_at)
+    recent_reports.first.created_at + 1.week if recent_reports.count(&:dismissed?) == 5
   end
 end
