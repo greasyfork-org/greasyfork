@@ -93,6 +93,11 @@ class User < ApplicationRecord
     scripts.touch_all if saved_change_to_name?
   end
 
+  before_update do
+    # Recheck it if it's disposable the next time we need to know.
+    self.disposable_email = nil if email_changed? && !disposable_email_changed?
+  end
+
   # Include default devise modules. Others available are:
   # :lockable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable, :timeoutable
