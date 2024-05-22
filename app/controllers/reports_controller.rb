@@ -228,13 +228,26 @@ class ReportsController < ApplicationController
   end
 
   def check_for_blocked_report
+    # If the report has a history of bad reports, block reports by them for a week.
     if current_user.blocked_from_reporting_until
       render_error(200, It.it('reports.reporter_temporarily_blocked', date: I18n.l(current_user.blocked_from_reporting_until.to_date), rules_link: help_code_rules_path, site_name:))
       return true
     end
 
-    if !current_user.moderator? && (date = item_reporting_blocked_until)
+    # Allow trusted reports and mods to bypass further restrictions.
+    return false if current_user.trusted_reports || current_user.moderator?
+
+    # If lots of people have reported the item and it's always dismissed, then block reports on that item for a week.
+    date = item_reporting_blocked_until
+    if date
       render_error(200, It.it('reports.reported_temporarily_blocked', date: I18n.l(date.to_date), rules_link: help_code_rules_path, site_name:))
+      return true
+    end
+
+    # Can't file more than one report per month for the same item (unless those reports were upheld).
+    recent_report_by_same_user = Report.where(reporter: current_user).where(result: [nil, Report::RESULT_DISMISSED], created_at: 1.month.ago..).last
+    if recent_report_by_same_user
+      render_error(200, It.it('reports.already_reported_by_reporter', report_link: report_path(recent_report_by_same_user)))
       return true
     end
 
