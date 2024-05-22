@@ -66,6 +66,7 @@ class Report < ApplicationRecord
   validates :reason, inclusion: { in: DISCUSSION_REASONS, message: :invalid }, presence: true, if: -> { item.is_a?(Discussion) }
   validates :reporter, presence: true, if: -> { auto_reporter.nil? }
   validates :explanation, presence: true, if: -> { [REASON_UNDISCLOSED_ANTIFEATURE, REASON_MALWARE, REASON_ILLEGAL, REASON_OTHER].include?(reason) }, on: :create
+  validates :explanation, presence: true, if: -> { reason == REASON_UNAUTHORIZED_CODE && script_url.nil? }, on: :create
   validates :explanation_markup, inclusion: { in: %w[html markdown text] }, presence: true
   validates :discussion_category, presence: true, if: -> { reason == REASON_WRONG_CATEGORY }
 

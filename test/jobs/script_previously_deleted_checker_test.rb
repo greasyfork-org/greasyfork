@@ -82,7 +82,7 @@ class ScriptPreviouslyDeletedCheckerTest < ActiveSupport::TestCase
     ScriptSimilarity.create!(script:, other_script: script_2, similarity: 0.9, checked_at: Time.zone.now)
     ScriptSimilarity.create!(script:, other_script: script_3, similarity: 0.9, checked_at: Time.zone.now)
 
-    Report.create!(item: script_2, result: Report::RESULT_UPHELD, reason: Report::REASON_UNAUTHORIZED_CODE, reporter: User.first, reference_script:)
+    Report.create!(item: script_2, result: Report::RESULT_UPHELD, reason: Report::REASON_UNAUTHORIZED_CODE, reporter: User.first, reference_script:, script_url: 'https://example.com')
     script_2.update!(locked: true)
     script_3.update!(locked: true)
     assert_difference -> { Report.count } => 1 do
@@ -102,7 +102,7 @@ class ScriptPreviouslyDeletedCheckerTest < ActiveSupport::TestCase
     ScriptSimilarity.create!(script:, other_script: script_2, similarity: 0.9, checked_at: Time.zone.now)
     ScriptSimilarity.create!(script:, other_script: script_3, similarity: 0.9, checked_at: Time.zone.now)
 
-    Report.create!(item: script_2, result: Report::RESULT_UPHELD, reason: Report::REASON_UNAUTHORIZED_CODE, reporter: User.first, reference_script: original_script)
+    Report.create!(item: script_2, result: Report::RESULT_UPHELD, reason: Report::REASON_UNAUTHORIZED_CODE, reporter: User.first, reference_script: original_script, script_url: 'https://example.com')
     script_2.update!(locked: true)
     script_3.update!(locked: true)
     assert_no_difference -> { Report.count } do
