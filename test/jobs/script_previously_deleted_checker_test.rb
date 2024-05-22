@@ -29,7 +29,7 @@ class ScriptPreviouslyDeletedCheckerTest < ActiveSupport::TestCase
     ScriptSimilarity.delete_all
     ScriptSimilarity.create!(script:, other_script: script_2, similarity: 0.9, checked_at: Time.zone.now)
     ScriptSimilarity.create!(script:, other_script: script_3, similarity: 0.9, checked_at: Time.zone.now)
-    initial_report = Report.create!(item: script_2, result: Report::RESULT_UPHELD, reason: Report::REASON_MALWARE, reporter: User.first)
+    initial_report = Report.create!(item: script_2, result: Report::RESULT_UPHELD, reason: Report::REASON_MALWARE, reporter: User.first, explanation: 'virus')
     script_2.update!(locked: true)
     script_3.update!(locked: true)
     assert_difference -> { Report.count } => 1 do
@@ -49,7 +49,7 @@ class ScriptPreviouslyDeletedCheckerTest < ActiveSupport::TestCase
     ScriptSimilarity.delete_all
     ScriptSimilarity.create!(script:, other_script: script_2, similarity: 0.9, checked_at: Time.zone.now)
     ScriptSimilarity.create!(script:, other_script: script_3, similarity: 0.9, checked_at: Time.zone.now)
-    Report.create!(item: script_2, result: Report::RESULT_UPHELD, reason: Report::REASON_MALWARE, auto_reporter: 'hardy')
+    Report.create!(item: script_2, result: Report::RESULT_UPHELD, reason: Report::REASON_MALWARE, auto_reporter: 'hardy', explanation: 'virus')
     script_2.update!(locked: true)
     script_3.update!(locked: true)
     assert_no_difference -> { Report.count } do
