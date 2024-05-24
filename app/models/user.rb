@@ -132,6 +132,13 @@ class User < ApplicationRecord
     errors.add(:base, 'This email has been banned.') if (new_record? || email_changed? || unconfirmed_email_changed?) && (User.banned.where(canonical_email:).any? || User.email_previously_banned_and_deleted?(canonical_email))
   end
 
+  validate do
+    next unless new_record? || name_changed?
+
+    invisible_char_regex = /\p{Cf}/
+    errors.add(:name, :uniqueness) if name.match?(invisible_char_regex) && User.where.not(id:).where(name: name.gsub(invisible_char_regex, '')).any?
+  end
+
   # Devise runs this when password_required?, and we override that so
   # that users don't have to deal with passwords all the time. Add it
   # back when Devise won't run it and the user is actually setting the
