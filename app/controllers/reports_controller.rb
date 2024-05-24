@@ -51,11 +51,12 @@ class ReportsController < ApplicationController
   end
 
   def create
-    return if check_for_blocked_report
-
     @report = Report.new(report_params)
     @report.reporter = current_user
     @report.item = item
+
+    return if check_for_blocked_report(@report)
+
     if @report.item.is_a?(Script) && @report.script_url.present?
       script_from_input = get_script_from_input(@report.script_url, allow_deleted: true)
       if script_from_input.is_a?(Script)
@@ -228,7 +229,7 @@ class ReportsController < ApplicationController
     current_user && report.item.is_a?(Script) && report.item.users.include?(current_user)
   end
 
-  def check_for_blocked_report
+  def check_for_blocked_report(report = nil)
     # If the report has a history of bad reports, block reports by them for a week.
     if current_user.blocked_from_reporting_until
       render_error(200, It.it('reports.reporter_temporarily_blocked', date: I18n.l(current_user.blocked_from_reporting_until.to_date), rules_link: help_code_rules_path, site_name:))
@@ -250,6 +251,15 @@ class ReportsController < ApplicationController
     if recent_report_by_same_user
       render_error(200, It.it('reports.already_reported_by_reporter', report_link: report_path(recent_report_by_same_user)))
       return true
+    end
+
+    # Can't add another if there's a already a pending report of the same type
+    if report&.reason
+      previous_pending_report = Report.unresolved.where(item:).find_by(reason: report.reason)
+      if previous_pending_report
+        render_error(200, It.it('reports.already_reported_same_type', report_link: report_path(previous_pending_report)))
+        return true
+      end
     end
 
     false

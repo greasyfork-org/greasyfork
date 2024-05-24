@@ -208,4 +208,15 @@ class ReportsTest < ApplicationSystemTestCase
     click_on 'Report'
     assert_content 'You have already'
   end
+
+  test 'reporting blocked due to pending report of the same type' do
+    user = users(:one)
+    Report.create!(reporter: users(:junior), item: users(:consumer), reason: Report::REASON_SPAM)
+    login_as(user, scope: :user)
+    visit user_url(users(:consumer), locale: :en)
+    click_on 'Report'
+    choose 'Spam'
+    click_button 'Create report'
+    assert_content 'There is already a similar pending report on this item.'
+  end
 end
