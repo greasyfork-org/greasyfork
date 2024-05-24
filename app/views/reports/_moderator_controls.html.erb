@@ -13,6 +13,9 @@
     <%= text_area_tag :moderator_notes, nil, rows: 3, placeholder: 'Moderator notes (optional)' %>
     <br>
 
+    <%= select_tag :moderator_reason_override, options_for_select(report.possible_reasons.map{|r| [It.it("reports.reason.#{r}", antifeature_link: Rails.application.routes.url_helpers.help_antifeatures_path), r]}, report.reason) %>
+    <br>
+
     <% if report.reason != Report::REASON_WRONG_CATEGORY %>
       <% if report.item.is_a?(Script) && report.unauthorized_code? %>
         <%= check_box_tag :redirect, '1', false, id: "redirect-#{report.id}" %><%= label_tag "redirect-#{report.id}", "Redirect and update users to original" %><br>
@@ -32,8 +35,6 @@
         <%= check_box_tag :ban, '1', false, id: "ban-#{report.id}" %><%= label_tag "ban-#{report.id}", "Ban #{report.reported_users.reject(&:banned?).map(&:name).to_sentence}" %><br>
       <% end %>
     <% end %>
-
-    <%= select_tag :moderator_reason_override, options_for_select(report.possible_reasons.map{|r| [It.it("reports.reason.#{r}", antifeature_link: Rails.application.routes.url_helpers.help_antifeatures_path), r]}, report.reason) %><br>
 
     <% case report.item %>
     <% when User %>
