@@ -47,7 +47,7 @@ class Report < ApplicationRecord
   scope :unresolved, -> { where(result: nil) }
   scope :resolved, -> { where.not(result: nil) }
   scope :upheld, -> { where(result: RESULT_UPHELD) }
-  scope :resolved_and_valid, -> { where(result: [RESULT_UPHELD, RESULT_FIXED]) }
+  scope :resolved_and_valid, -> { where(result: [RESULT_UPHELD, RESULT_FIXED], moderator_reason_override: nil) }
   scope :block_on_pending, -> { unresolved.trusted_reporter.where.not(reason: NON_BLOCKING_REASONS) }
   scope :trusted_reporter, -> { joins(:reporter).where(users: { trusted_reports: true }) }
 
@@ -62,8 +62,12 @@ class Report < ApplicationRecord
   has_many :script_lock_appeals
 
   validates :reason, inclusion: { in: NON_SCRIPT_REASONS }, presence: true, unless: -> { item.is_a?(Script) || item.is_a?(Discussion) }
+  validates :moderator_reason_override, inclusion: { in: NON_SCRIPT_REASONS }, allow_nil: true, unless: -> { item.is_a?(Script) || item.is_a?(Discussion) }
   validates :reason, inclusion: { in: SCRIPT_REASONS, message: :invalid }, presence: true, if: -> { item.is_a?(Script) }
+  validates :moderator_reason_override, inclusion: { in: SCRIPT_REASONS, message: :invalid }, allow_nil: true, if: -> { item.is_a?(Script) }
   validates :reason, inclusion: { in: DISCUSSION_REASONS, message: :invalid }, presence: true, if: -> { item.is_a?(Discussion) }
+  validates :moderator_reason_override, inclusion: { in: DISCUSSION_REASONS, message: :invalid }, allow_nil: true, if: -> { item.is_a?(Discussion) }
+
   validates :reporter, presence: true, if: -> { auto_reporter.nil? }
   validates :explanation, presence: true, if: -> { [REASON_UNDISCLOSED_ANTIFEATURE, REASON_MALWARE, REASON_ILLEGAL, REASON_OTHER].include?(reason) }, on: :create
   validates :explanation, presence: true, if: -> { reason == REASON_UNAUTHORIZED_CODE && script_url.nil? }, on: :create
@@ -94,7 +98,7 @@ class Report < ApplicationRecord
     reporter&.update_trusted_report!
   end
 
-  def uphold!(moderator:, moderator_notes: nil, ban_user: false, delete_comments: false, delete_scripts: false, redirect: false, self_upheld: false)
+  def uphold!(moderator:, moderator_notes: nil, moderator_reason_override: nil, ban_user: false, delete_comments: false, delete_scripts: false, redirect: false, self_upheld: false)
     Report.transaction do
       case item
       when User, Message
@@ -127,7 +131,7 @@ class Report < ApplicationRecord
         raise "Unknown report item #{item}"
       end
 
-      update_columns(result: RESULT_UPHELD, resolver_id: moderator&.id, moderator_notes:, self_upheld:)
+      update_columns(result: RESULT_UPHELD, resolver_id: moderator&.id, moderator_notes:, self_upheld:, moderator_reason_override: (moderator_reason_override if moderator_reason_override != reason))
       reporter&.update_trusted_report!
     end
 
@@ -145,10 +149,14 @@ class Report < ApplicationRecord
     update!(rebuttal:, rebuttal_by_user: by)
   end
 
-  def reason_text
-    return It.it('reports.reason.wrong_category_with_suggestion', antifeature_link: Rails.application.routes.url_helpers.help_antifeatures_path, suggested_category: discussion_category.localized_name) if reason == REASON_WRONG_CATEGORY
+  def reason_text(reason_to_use = reason)
+    return It.it('reports.reason.wrong_category_with_suggestion', antifeature_link: Rails.application.routes.url_helpers.help_antifeatures_path, suggested_category: discussion_category.localized_name) if reason_to_use == REASON_WRONG_CATEGORY
 
-    It.it("reports.reason.#{reason}", antifeature_link: Rails.application.routes.url_helpers.help_antifeatures_path)
+    It.it("reports.reason.#{reason_to_use}", antifeature_link: Rails.application.routes.url_helpers.help_antifeatures_path)
+  end
+
+  def upheld_reason_text
+    reason_text(upheld_reason)
   end
 
   def resolved?
@@ -169,6 +177,10 @@ class Report < ApplicationRecord
 
   def warrants_blanking?
     REASONS_WARRANTING_BLANKING.include?(reason)
+  end
+
+  def upheld_reason
+    moderator_reason_override || reason
   end
 
   def reported_users
@@ -219,5 +231,13 @@ class Report < ApplicationRecord
 
   def recent_other_reports
     Report.where(created_at: 3.months.ago..DateTime.now).where.not(id:).where(item:).includes(:script_lock_appeals)
+  end
+
+  def possible_reasons
+    case item
+    when Script then Report::SCRIPT_REASONS
+    when Discussion then Report::DISCUSSION_REASONS
+    else Report::NON_SCRIPT_REASONS
+    end
   end
 end

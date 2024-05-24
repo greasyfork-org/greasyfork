@@ -5,7 +5,7 @@
        appeal_link: new_script_script_lock_appeal_url(@report.item, locale: @locale, report_id: @report.id),
        code_rules_link: help_code_rules_url,
        site_name: @site_name,
-       reason: t("reports.reason.#{@report.reason}"))
+       reason: t("reports.reason.#{@report.upheld_reason}"))
 %>
 
 <hr>

@@ -149,6 +149,7 @@ class ReportsController < ApplicationController
       @report.uphold!(
         moderator: current_user,
         moderator_notes: params[:moderator_notes],
+        moderator_reason_override: params[:moderator_reason_override],
         ban_user: params[:ban] == '1' || params[:nuke].present?,
         delete_comments: params[:delete_comments] == '1' || params[:nuke].present?,
         delete_scripts: params[:delete_scripts] == '1' || params[:nuke].present?,

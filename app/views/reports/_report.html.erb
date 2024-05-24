@@ -161,7 +161,7 @@
       <% ror.each do |other_report| %>
         <li>
           <%= link_to report_url(other_report) do %>Report #<%= other_report.id %> by <%= other_report.auto_reporter || render_user(other_report.reporter, other_report.reporter_id, skip_link: true) %> for <%= other_report.reason_text %><% end %>
-          - <%= other_report.result || 'pending' %>
+          - <%= other_report.result || 'pending' %> <%= "(for #{other_report.upheld_reason_text})" if moderator_reason_override %>
           <% if other_report.script_lock_appeals.any? %>
             <ul>
               <% other_report.script_lock_appeals.each do |sla| %>
@@ -220,9 +220,17 @@
     <% if report.self_upheld %>
       <%= t('reports.result_self_upheld') %>
     <% elsif current_user&.moderator? && report.resolver %>
-      This report has been upheld by <%= render_user(report.resolver, report.resolver_id) %>.
+      <% if report.moderator_reason_override %>
+        This report has been upheld by <%= render_user(report.resolver, report.resolver_id) %>, but they upheld it as <%= report.upheld_reason_text %>.
+      <% else %>
+        This report has been upheld by <%= render_user(report.resolver, report.resolver_id) %>.
+      <% end %>
     <% else %>
-      <%= t('reports.result_upheld') %>
+      <% if report.moderator_reason_override %>
+        <%= t('reports.result_upheld_reason_override', reason: report.upheld_reason_text) %>
+      <% else %>
+        <%= t('reports.result_upheld') %>
+      <% end %>
     <% end %>
   </p>
   <% if report.moderator_notes.present? %>
