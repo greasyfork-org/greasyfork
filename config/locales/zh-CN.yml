@@ -741,7 +741,7 @@ zh-CN:
           </ul>
       libraries_html: 库是应被 <code>@require</code> 的脚本，除非因为技术原因不能这么做。如果一个库被内嵌入了脚本，那么你必须一并提供库的来源（比如一行评论指向原始地址、名称以及版本）。
       updates: 脚本不得以高于每日一次的频率检测更新。请注意用户脚本管理器都有内置的更新检查机制，请不要在脚本检查更新做无用功。脚本不得将在 %{site_name} 上传的脚本不应被动态插入到页面，因为这会绕过用户脚本管理器的缓存。
-      hosting: 脚本的主要功能代码必须发布在 %{site_name} 上。不允许在 %{site_name} 上发布只是从其他地方加载大部分脚本功能的代码。不允许发布替代源的 URL 来引导用户下载非 %{site_name} 版本的代码.
+      hosting: 脚本的主要功能必须在 %{site_name} 上的代码中实现。在 %{site_name} 上发布的脚本，如果只是从其他地方加载大部分脚本内容，是不允许的。发布备用下载链接，意图让用户使用这些备用资源而不是 %{site_name} 上发布的版本，也是不允许的。
       external_js: "%{external_scripts_link:能引用其他网站上托管的 JavaScript 脚本是有限制的}。"
       copyright_header: 版权
       licensing_html: 您的脚本必须遵守他人的版权，这包括代码本身以及所引用的资源（例如图像）。如果你希望使用他人的内容，请遵守其授权规则或获得使用授权。你可以使用 <code>@license</code> 元信息名称来指定脚本使用的授权协议，并通过 %{tldr_legal_link:tldrlegal.com}（英文）获得更多关于该授权协议的限制。
@@ -1035,6 +1035,7 @@ zh-CN:
       other: "此脚本已经有 %{count} 个之前被确认或修复的报告。"
     reporter_temporarily_blocked: "由于您最近的一系列举报被管理员驳回，您被阻止提交新的举报，直到 %{date}为止。请查阅 %{rules_link:%{site_name} 规则}，以确保未来的报告准确无误。"
     reported_temporarily_blocked: "由于最近对此项目的举报被管理员驳回，进一步对其的举报将被阻止，直到 %{date}为止。"
+    already_reported_by_reporter: "您已在%{report_link:最近举报过}此项目。"
   appeals:
     new:
       title: 新建删除脚本申诉
