@@ -139,6 +139,10 @@ class Report < ApplicationRecord
 
     return unless item
 
+    self.class.uphold_pending_reports_for(item)
+  end
+
+  def self.uphold_pending_reports_for(item)
     Report.unresolved.where(item:).find_each do |other_report|
       other_report.update!(result: RESULT_UPHELD)
       other_report.reporter&.update_trusted_report!
