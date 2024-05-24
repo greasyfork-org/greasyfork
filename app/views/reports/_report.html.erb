@@ -161,7 +161,7 @@
       <% ror.each do |other_report| %>
         <li>
           <%= link_to report_url(other_report) do %>Report #<%= other_report.id %> by <%= other_report.auto_reporter || render_user(other_report.reporter, other_report.reporter_id, skip_link: true) %> for <%= other_report.reason_text %><% end %>
-          - <%= other_report.result || 'pending' %> <%= "(for #{other_report.upheld_reason_text})" if moderator_reason_override %>
+          - <%= other_report.result || 'pending' %> <%= "(for #{other_report.upheld_reason_text})" if other_report.moderator_reason_override %>
           <% if other_report.script_lock_appeals.any? %>
             <ul>
               <% other_report.script_lock_appeals.each do |sla| %>
