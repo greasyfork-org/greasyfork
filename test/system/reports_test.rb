@@ -202,7 +202,7 @@ class ReportsTest < ApplicationSystemTestCase
 
   test 'reporting blocked due to already having reported the item' do
     user = users(:geoff)
-    Report.create!(reporter: users(:junior), result: Report::RESULT_DISMISSED, item: users(:consumer), reason: Report::REASON_SPAM)
+    Report.create!(reporter: user, result: Report::RESULT_DISMISSED, item: users(:consumer), reason: Report::REASON_SPAM)
     login_as(user, scope: :user)
     visit user_url(users(:consumer), locale: :en)
     click_on 'Report'

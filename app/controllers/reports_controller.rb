@@ -247,7 +247,7 @@ class ReportsController < ApplicationController
     end
 
     # Can't file more than one report per month for the same item (unless those reports were upheld).
-    recent_report_by_same_user = Report.where(reporter: current_user).where(result: [nil, Report::RESULT_DISMISSED], created_at: 1.month.ago..).last
+    recent_report_by_same_user = Report.where(reporter: current_user, item:, result: [nil, Report::RESULT_DISMISSED], created_at: 1.month.ago..).last
     if recent_report_by_same_user
       render_error(200, It.it('reports.already_reported_by_reporter', report_link: report_path(recent_report_by_same_user)))
       return true
