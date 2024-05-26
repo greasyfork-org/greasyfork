@@ -100,6 +100,7 @@ sk:
       compare_to: "Porovnať skript na %{site_name} s (URL)"
       compare_button: "Porovnať"
       compare_must_be_local_url: "Porovnávaný skript musí byť URL na %{site_name}."
+      compare_cleaned_code_unavailable: "Čistý kód porovnávacieho skriptu zatiaľ nie je k dispozícii."
     history_title: "%{script_name} - História verzií"
     history_only_code_changes_info: "Zoznam verzií skriptu, ktorých kód bol aktualizovaný."
     history_all_changes_link: "Zobraziť všetky verzie."
@@ -1094,6 +1095,7 @@ sk:
     report_message: "Nahlásiť správu"
     result_dismissed: "Táto sťažnosť bola moderátorom zamietnutá."
     result_upheld: "Táto sťažnosť bola moderátorom schválená."
+    result_upheld_reason_override: "Toto nahlásenie bolo potvrdené moderátorom, ale moderátor ho označil ako %{reason}."
     result_self_upheld: "Autor na základe tejto sťažnosti odstránil svoj vlastný skript."
     result_fixed: "Túto sťažnosť vyriešil moderátor, pretože sa domnieva, že autor problém vyriešil."
     result_pending: "Táto sťažnosť čaká na schválenie moderátorom."
@@ -1123,6 +1125,7 @@ sk:
     reporter_temporarily_blocked: "Vzhľadom na vašu nedávnu históriu hlásení, ktoré boli moderátorom zamietnuté, máte zablokované podávanie nových hlásení až do %{date}. Prosím, prečítajte si %{rules_link:pravidlá %{site_name}}, aby ste sa uistili, že budúce hlásenia sú presné."
     reported_temporarily_blocked: "Vzhľadom na to, že nedávne hlásenia o tejto položke boli moderátorom zamietnuté, ďalšie hlásenia o nej sú zablokované až do %{date}."
     already_reported_by_reporter: "Túto položku ste už %{report_link:nedávno nahlásili}."
+    already_reported_same_type: "K tejto položke už existuje %{report_link:podobné čakajúce hlásenie}."
   appeals:
     new:
       title: Nové odvolanie proti odstráneniu skriptu

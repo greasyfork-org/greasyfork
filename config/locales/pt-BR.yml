@@ -100,6 +100,7 @@ pt-BR:
       compare_to: "Script no %{site_name} para comparar (URL)"
       compare_button: "Comparar"
       compare_must_be_local_url: "O script de comparação deve ser uma URL do %{site_name}."
+      compare_cleaned_code_unavailable: "O código limpo do script de comparação ainda não está disponível."
     history_title: "%{script_name} - Histórico da Versão"
     history_only_code_changes_info: "Estas são as versões deste script em que houve atualização do código."
     history_all_changes_link: "Mostar todas versões."
@@ -762,6 +763,7 @@ pt-BR:
       functionality_header: Funcionalidade
       description: Scripts devem ter uma descrição do que eles fazem e não podem fazer coisas fora do escopo da descrição sem uma razão. Os usuários devem saber o que o script fará antes de instalá-lo.
       reason: Scripts deve ter um motivo para serem um script. Por exemplo, um script que apenas direciona um usuário para um site não precisa ser um script; poderia ser um link. Scripts que utilizam um web service para executar uma ação na página atual (para realizar uma conversão, por exemplo) são permitidos.
+      monetization_html: Os scripts que contêm recursos para o benefício do <em>autor</em> e não do usuário (como rastreamento, anúncios e mineradores) são permitidos, mas devem ser divulgados com %{antifeature_link:<code>@antifeature</code> meta keys}. Os scripts não devem aplicar <code>@include</code>s ou <code>@match</code>es com o único objetivo de adicionar anti-recursos.
       code_header: Código
       obfuscation: Códigos publicados no %{site_name} não devem ser obfuscados ou minificados. Os usuários devem ser capazes de inspecionar e compreender um script antes de instalá-lo. Caso o script seja empacotado por ferramentas como webpack, ele deve ser exportado de forma não minificada, preservando espaços e nomes de variáveis.
       size_html: |
@@ -783,6 +785,10 @@ pt-BR:
       reposting_deleted: Não reposte scripts que foram excluídos devido a violação das regras; em vez disso, utilize a função de apelação. Repostar scripts excluídos pode resultar em banimento.
       advertising_in_description: Os autores de scripts não podem colocar publicidade nas páginas do Greasy Fork, por exemplo, na descrição de um script. É permitida a promoção da homepage do autor do script, repositório de código, Discord, WeChat, etc.
       reporting: Caso você encontre um script que fuja desses parâmetros, por favor reporte-o através do link de feedback daquele script e escolha a opção "Reportar script".
+      excessive_updates: Os autores de scripts não devem atualizá-los em excesso com o único objetivo de obter uma melhor classificação na lista de scripts.
+      non_functional_includes_html: Os scripts não devem incluir <code>@include</code>s ou <code>@match</code>es para sites nos quais não ofereçam funções.
+      content_language: Os nomes, descrições e outros conteúdos dos scripts devem ser marcados com o idioma adequado.
+      listing_header: Listagem
     external_scripts:
       title: "Política em scripts externo do %{site_name}"
       intro_html: |
@@ -1043,6 +1049,7 @@ pt-BR:
     report_message: "Reportar mensagem"
     result_dismissed: "Essa denúncia foi desconsiderada por um moderador."
     result_upheld: "Essa denúncia foi confirmada por um moderador."
+    result_upheld_reason_override: "Esta denúncia foi confirmada por um moderador, mas o moderador a marcou como %{reason}."
     result_self_upheld: "O autor excluiu seu próprio script como resultado dessa denúncia."
     result_fixed: "Este relatório foi resolvido por um moderador, pois eles acreditam que o autor corrigiu o problema."
     result_pending: "Essa denúncia está aguardando avaliação de um moderador."
@@ -1068,6 +1075,10 @@ pt-BR:
       one: "Este script teve %{count} relatório anterior mantido ou corrigido."
       many: "Este script teve %{count} relatórios anteriores mantidos ou corrigidos."
       other: "Este script teve %{count} relatórios anteriores mantidos ou corrigidos."
+    reporter_temporarily_blocked: "Devido ao seu histórico recente de denúncias que foram rejeitadas por um moderador, você está impedido de registrar novas denúncias até %{date} . Consulte as regras em %{rules_link:%{site_name}} para garantir que suas futuras denúncias sejam precisas."
+    reported_temporarily_blocked: "Devido ao fato de denúncias recentes sobre esse item terem sido rejeitadas por um moderador, outras denúncias sobre ele estarão bloqueadas até %{date} ."
+    already_reported_by_reporter: "Você já %{report_link:denunciou recentemente} esse item."
+    already_reported_same_type: "Já existe uma %{report_link:denúncia pendente semelhante} para este item."
   appeals:
     new:
       title: Novo recurso de exclusão de script
@@ -1335,14 +1346,34 @@ pt-BR:
         subject: "Seu script %{script_name} no %{site_name} foi removido"
       report_dismissed_offender:
         subject: "Uma denúncia do seu script %{script_name} no %{site_name} foi desfeita"
+        body_html: |
+            <p>
+            Uma denúncia referente ao seu script %{script_link:%{script_name}} em %{site_name} foi rejeitada por um moderador. Seu script permanecerá ativo. Você pode %{report_link:revisar essa denúncia}.
+            </p>
       report_fixed_offender:
         subject: "Um relatório sobre o seu script %{script_name} em %{site_name} foi marcado como resolvido"
+        body_html: |
+            <p>
+            Uma denúncia sobre seu script %{script_link:%{script_name}} em %{site_name} foi marcada como resolvida por um moderador, pois ele acredita que o problema foi corrigido. Seu script permanecerá ativo. Você pode %{report_link:revisar essa denúncia}.
+            </p>
       report_rebutted_reporter:
         subject: "Sua denúncia no %{script_name} no %{site_name} recebeu uma resposta"
+        body_html: |
+            <p>
+            Sua denúncia sobre %{script_link:%{script_name}} em %{site_name} recebeu uma resposta. Você pode %{report_link:revisar essa resposta}. Um moderador analisará sua denúncia e esta resposta e decidirá sobre o resultado.
+            </p>
       report_upheld_reporter:
         subject: "Sua denúncia no %{script_name} no %{site_name} foi confirmada"
+        body_html: |
+            <p>
+            Sua denúncia sobre %{script_link:%{script_name}} em %{site_name} foi confirmada por um moderador e o script foi excluído. Você pode %{report_link:revisar a denúncia}.
+            </p>
       report_script_deleted_reporter:
         subject: "Sua denúncia sobre %{script_name} em %{site_name} foi fechada"
+        body_html: |
+            <p>
+            Sua denúncia sobre %{script_link:%{script_name}} em %{site_name} foi encerrada porque o script foi excluído pelo autor. Você pode %{report_link:revisar a denúncia}.
+            </p>
       report_dismissed_reporter:
         subject: "Sua denúncia no %{script_name} no %{site_name} foi indeferida"
         body_html: |

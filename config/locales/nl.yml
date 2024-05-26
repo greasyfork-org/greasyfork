@@ -101,6 +101,7 @@ nl:
       compare_to: "Script op %{site_name} om mee te vergelijken (url)"
       compare_button: "Vergelijken"
       compare_must_be_local_url: "Het te vergelijken script moet een url op %{site_name} zijn."
+      compare_cleaned_code_unavailable: "De opgemaakte code van de vergelijking is nog niet beschikbaar."
     history_title: "%{script_name} - Versiegeschiedenis"
     history_only_code_changes_info: "Dit zijn versies van het script waarin de code is bijgewerkt."
     history_all_changes_link: "Alle versies tonen."
@@ -1072,6 +1073,7 @@ nl:
     report_message: "Bericht melden"
     result_dismissed: "Deze melding is afgewezen door een moderator."
     result_upheld: "Deze melding is gehandhaafd door een moderator."
+    result_upheld_reason_override: "De melding is door een moderator behandeld met als reden “%{reason}”."
     result_self_upheld: "De maker heeft - op basis van de melding - het script verwijderd."
     result_fixed: "Deze melding is afgewezen door een moderator omdat hij/zij van mening is dat de maker van het script het probleem heeft opgelost."
     result_pending: "Deze melding wacht op een beslissing door een moderator."
@@ -1099,6 +1101,7 @@ nl:
     reporter_temporarily_blocked: "Er zijn onlangs meerdere van je meldingen verworpen door een moderator. Om die reden mag je tot en met %{date} geen nieuwe meldingen doen. Neem %{rules_link:%{site_name}s regels} door, zodat je in het vervolg weet waar een melding aan moet voldoen."
     reported_temporarily_blocked: "Er zijn onlangs meerdere van je meldingen verworpen door een moderator. Om die reden mag je tot en met %{date} geen nieuwe meldingen doen."
     already_reported_by_reporter: "Je hebt dit item %{report_link:onlangs al gemeld}."
+    already_reported_same_type: "Er is al %{report_link:melding gemaakt} over dit item."
   appeals:
     new:
       title: Bezwaar ingediend tegen scriptverwijdering
