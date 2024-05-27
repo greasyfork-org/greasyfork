@@ -796,6 +796,16 @@ pt-BR:
           <p>Note que essas regras são aplicadas somente para códigos externos que sejam executáveis. Códigos não-executáveis como JSON ou CSS são permitidos.</p>
       rationale:
         title: Justificativa
+        content_html: |
+            <p>Os scripts de usuário têm a capacidade técnica de carregar e executar outros scripts. Isso pode ser feito de algumas maneiras diferentes, inclusive:</p>
+            <ul>
+            <li>As chaves de metadados %{require_doc_link:<code>@require</code>} e %{resource_doc_link:<code>@resource</code>}.</li>
+            <li><code>XmlHttpRequest</code> para baixar o script e, em seguida, <code>eval</code> para executá-lo.</li>
+            <li>Adicionar a etiqueta <code>&lt;script&gt;</code> dinamicamente.</li>
+            <li>Opções %{webpack_externals_link:<code>externas</code>} de pacotes da Web.</li>
+            <li>Realizar uma atualização do script, seja automaticamente ou orientando o usuário a efetuar uma ação.</li>
+            </ul>
+            <p>Embora esse seja um recurso útil e a maior parte dos autores de scripts o utilize para fins legítimos, ele também pode ser empregado de forma maliciosa. Um dos princípios fundamentais do %{site_name} é que o usuário deve ser capaz de inspecionar o código em um script. Scripts externos podem contornar esse princípio de várias maneiras: eles podem mudar sem aviso ou registro, podem fornecer códigos diferentes para pessoas diferentes e podem ser utilizados para ocultar códigos mal-intencionados no meio de bibliotecas conhecidas. Mesmo que alguém verifique um script externo e determine que ele é legítimo, isso não garante que esse script sempre foi ou sempre seguirá sendo legítimo.</p>
       cdns:
         title: Redes de distribuição de conteúdo (CDNs)
         content_html: |
@@ -819,12 +829,42 @@ pt-BR:
             <p>Se https://exemplo.com/script.js é injetado em https://sitediferente.com, isso é proibido.</p>
     cdns:
       title: Redes de distribuição de conteúdo (CDNs) permitidos
+      content_html: |
+          <p>Esta é uma lista de CDNs reconhecidas pelo %{site_name}. Elas podem ser usadas para carregar %{external_code_link:código externo} em scripts publicados em %{site_name} .</p>
+          <p>Esta lista consiste em locais de scripts que:</p>
+          <ul>
+          <li>São públicos</li>
+          <li>Não terão seus conteúdos modificados frequentemente</li>
+          <li>Serão provavelmente úteis a mais de um autor de script</li>
+          </ul>
+          <p>Se o script que deseja incluir for uma biblioteca JavaScript (por exemplo, jQuery ou YUI), tente encontrá-lo em um dos sites listados abaixo. %{cdnjs_link:cdnjs} e %{jsdelivr_link:jsDelivr} em particular, têm uma grande variedade de bibliotecas disponíveis. Se você tiver uma CDN que gostaria que fosse adicionada, %{github_link:solicite-a no GitHub}. Observe que há %{external_code_link:outras opções} para códigos externos que não sejam CDNs.</p>
+
+          %{allowed_require_list}
       test_url:
         label: Testar uma URL
         result_ok: URL é permitida
         result_not_ok: URL não é permitida
     script_rewriting:
       title: "Como o %{site_name} irá sobrescrever scripts postados"
+      content_html: >
+          <p>Os scripts publicados em %{site_name} serão reescritos das seguintes
+          formas:</p> <ul>
+
+          <li>As diretivas <code>@updateURL</code> e <code>@downloadURL</code> serão
+          adicionadas ou atualizadas para direcionarem a %{site_name} . <code>@installURL</code>
+          será removida, se presente.</li>
+
+          <li>As diretivas <code>@version</code> e <code>@namespace</code> serão inseridas
+          se o script não as tiver. Estas diretivas são necessárias para uma atualização
+          adequada.</li>
+
+          <li><code>@description</code> será inserida se uma nova versão de um script
+          não a tiver e uma versão anterior do script a tiver.</li>
+
+          <li>As quebras de linha CRLF e CR serão convertidas para quebras de linha
+          do estilo standard/Unix.</li>
+
+          </ul>
     site_feedback_link: "Reporte um problema ou poste uma ideia para %{site_name}"
     credits:
       title: "Créditos"
@@ -1344,6 +1384,13 @@ pt-BR:
             <p>Seu script %{script_link:%{script_name}} foi reportado por violar as regras do %{site_name}. O motivo específico foi: %{reason}. Você pode %{report_link: analisar este reporte e refutá-lo}. Caso não seja enviada uma refutação, seu script pode ser removido pelos moderadores.</p>
       report_upheld_offender:
         subject: "Seu script %{script_name} no %{site_name} foi removido"
+        body_html: |
+            <p>
+            O seu script %{script_link:%{script_name}} em %{site_name} foi deletado por um moderador e já não está acessível publicamente. Você pode %{report_link: analisar a denúncia} e %{code_rules_link:revisar %{site_name} as regras}.
+            </p>
+            <p>
+            Se você acredita que isso esteja errado ou se atualizou o script para corrigir o problema, você pode %{appeal_link:registrar um recurso} e um moderador o verificará. Não republique este script; isso pode resultar em um banimento do %{site_name}.
+            </p>
       report_dismissed_offender:
         subject: "Uma denúncia do seu script %{script_name} no %{site_name} foi desfeita"
         body_html: |
