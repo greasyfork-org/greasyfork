@@ -133,7 +133,7 @@ class User < ApplicationRecord
   end
 
   validate do
-    next unless new_record? || name_changed?
+    next unless (new_record? || name_changed?) && name
 
     invisible_char_regex = /\p{Cf}/
     errors.add(:name, :uniqueness) if name.match?(invisible_char_regex) && User.where.not(id:).where(name: name.gsub(invisible_char_regex, '')).any?
