@@ -23,6 +23,7 @@ class Discussion < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_one :first_comment, -> { not_deleted.order(:id) }, class_name: 'Comment', foreign_key: :discussion_id, inverse_of: :discussion
   has_many :discussion_subscriptions, dependent: :destroy
+  has_many :reports, as: :item, dependent: :destroy
 
   scope :with_actual_rating, -> { where(rating: [RATING_BAD, RATING_OK, RATING_GOOD]) }
   scope :with_comment_by, ->(user) { where(id: Comment.where(poster: user).select(:discussion_id)) }

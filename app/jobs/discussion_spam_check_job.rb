@@ -3,8 +3,8 @@ class DiscussionSpamCheckJob < ApplicationJob
 
   def perform(discussion, ip, user_agent, referrer)
     return if discussion.soft_deleted?
-
     return if pattern_check(discussion)
+    return if repeat_check(discussion)
 
     check_with_akismet(discussion, ip, user_agent, referrer)
   end
@@ -14,6 +14,15 @@ class DiscussionSpamCheckJob < ApplicationJob
 
     discussion.update(review_reason: Discussion::REVIEW_REASON_RAINMAN)
     Report.create!(item: discussion, auto_reporter: 'rainman', reason: Report::REASON_SPAM)
+  end
+
+  def repeat_check(discussion)
+    previous_comment = CommentSpamCheckJob.find_previous_comment(discussion.first_comment)
+    return unless previous_comment
+
+    previous_discussion = previous_comment.discussion
+    previous_report = previous_discussion.reports.upheld.take
+    Report.create!(item: previous_discussion, auto_reporter: 'rainman', reason: previous_report&.reason || Report::REASON_SPAM, explanation: "Repost of#{' deleted' if previous_discussion.soft_deleted?} discussion: #{previous_discussion.url}. #{"Previous report: #{previous_report.url}" if previous_report}")
   end
 
   def check_with_akismet(discussion, ip, user_agent, referrer)
