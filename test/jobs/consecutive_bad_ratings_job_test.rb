@@ -26,7 +26,7 @@ class ConsecutiveBadRatingsJobTest < ActiveSupport::TestCase
 
   test 'script is deleted past the grace period' do
     script = Script.first
-    script.update(consecutive_bad_ratings_at: 2.weeks.ago)
+    script.update(consecutive_bad_ratings_at: 2.weeks.ago - 1.second)
     Script.any_instance.expects(:consecutive_bad_ratings?).returns(true)
     ConsecutiveBadRatingsJob.perform_now
     assert script.reload.deleted?

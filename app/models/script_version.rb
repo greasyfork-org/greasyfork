@@ -249,7 +249,7 @@ class ScriptVersion < ApplicationRecord
                 :minified_confirmation, :truncate_description, :sensitive_site_confirmation,
                 :allow_code_previously_posted, :previously_posted_scripts, :license_missing_override
 
-  def initialize(*args)
+  def initialize(*)
     # Allow code to be updated without version being upped
     @version_check_override = false
     # Set a version by ourselves if not provided
@@ -268,7 +268,7 @@ class ScriptVersion < ApplicationRecord
     @allow_code_previously_posted = false
     @previously_posted_scripts = []
     @license_missing_override = false
-    super(*args)
+    super
   end
 
   # reuse script code objects to save disk space

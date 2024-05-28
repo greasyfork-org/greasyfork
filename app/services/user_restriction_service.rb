@@ -25,7 +25,7 @@ class UserRestrictionService
 
     return NEEDS_CONFIRMATION unless @user.confirmed_or_identidied?
 
-    return RATE_LIMITED if new_user? && NEW_USER_RATE_LIMITS.any? { |period, script_count| @user.scripts.where('created_at >= ?', period.ago).count >= script_count }
+    return RATE_LIMITED if new_user? && NEW_USER_RATE_LIMITS.any? { |period, script_count| @user.scripts.where(created_at: period.ago..).count >= script_count }
 
     nil
   end
@@ -35,7 +35,7 @@ class UserRestrictionService
   end
 
   def new_user?
-    @user.created_at >= 1.month.ago && @user.scripts.not_deleted.where('created_at <= ?', 1.week.ago).none?
+    @user.created_at >= 1.month.ago && @user.scripts.not_deleted.where(created_at: ..1.week.ago).none?
   end
 
   def allow_posting_profile?

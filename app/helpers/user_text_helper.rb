@@ -5,7 +5,7 @@ require 'memoist'
 module UserTextHelper
   extend Memoist
 
-  def with_user_text_preview(markup_name:, markup:, &block)
+  def with_user_text_preview(markup_name:, markup:, &)
     markup_choice_html = label_tag(nil, class: 'radio-label') do
       "#{radio_button_tag(markup_name, 'html', markup == 'html' || markup.nil?, required: true)}HTML".html_safe
     end +
@@ -13,10 +13,10 @@ module UserTextHelper
                            radio_button_tag(markup_name, 'markdown', markup == 'markdown', required: true) +
                              link_to('Markdown', 'http://daringfireball.net/projects/markdown/basics', { target: 'markup_choice' })
                          end
-    previewable_text_field_form(markup_name:, markup_choice_html:, &block)
+    previewable_text_field_form(markup_name:, markup_choice_html:, &)
   end
 
-  def with_user_text_preview_for_form(form:, markup_name:, &block)
+  def with_user_text_preview_for_form(form:, markup_name:, &)
     markup_choice_html = label_tag(nil, class: 'radio-label') do
       "#{form.radio_button(markup_name, 'html', required: true)}HTML".html_safe
     end +
@@ -24,7 +24,7 @@ module UserTextHelper
                            form.radio_button(markup_name, 'markdown', required: true) +
                              link_to('Markdown', 'http://daringfireball.net/projects/markdown/basics', { target: 'markup_choice' })
                          end
-    previewable_text_field_form(markup_name: "#{form.object_name}[#{markup_name}]", markup_choice_html:, &block)
+    previewable_text_field_form(markup_name: "#{form.object_name}[#{markup_name}]", markup_choice_html:, &)
   end
 
   def format_user_text(text, markup_type, mentions: [])

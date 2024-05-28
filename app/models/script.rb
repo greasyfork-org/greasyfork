@@ -624,7 +624,7 @@ class Script < ApplicationRecord
                      .not_deleted
                      .with_actual_rating
                      .where('created_at < ? OR rating != ?', CONSECUTIVE_BAD_RATINGS_NOTIFICATION_DELAY.ago, Discussion::RATING_BAD)
-                     .where(['created_at >= ?', code_updated_at])
+                     .where(created_at: code_updated_at..)
                      .reorder(:created_at)
                      .last(CONSECUTIVE_BAD_RATINGS_COUNT)
                      .reject(&:author_posted?)

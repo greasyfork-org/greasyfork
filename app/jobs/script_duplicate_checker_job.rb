@@ -43,7 +43,7 @@ class ScriptDuplicateCheckerJob
       last_run = ScriptSimilarity.where(script_id:).maximum(:checked_at)
       if last_run && script.code_updated_at < last_run
         # Eliminate the ones we are up to date on
-        up_to_date_script_ids = ScriptSimilarity.where(script_id:).joins(:other_script).where(['code_updated_at < ?', last_run]).pluck(:other_script_id)
+        up_to_date_script_ids = ScriptSimilarity.where(script_id:).joins(:other_script).where(code_updated_at: ...last_run).pluck(:other_script_id)
         other_scripts = other_scripts.where.not(id: up_to_date_script_ids)
       end
 

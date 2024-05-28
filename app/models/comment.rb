@@ -68,7 +68,7 @@ class Comment < ApplicationRecord
     subscribed_users = discussion
                        .discussion_subscriptions
                        .where.not(user: users_received_notification)
-                       .where('created_at < ?', created_at) # Notifications are delayed. We don't want to notify about anything that happened before they subscribed.
+                       .where(created_at: ...created_at) # Notifications are delayed. We don't want to notify about anything that happened before they subscribed.
                        .includes(:user)
                        .map(&:user)
     subscribed_users = subscribed_users.select(&:moderator?) if discussion_category.moderators_only?

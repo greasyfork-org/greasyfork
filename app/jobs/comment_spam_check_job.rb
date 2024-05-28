@@ -36,7 +36,7 @@ class CommentSpamCheckJob < ApplicationJob
   def self.find_previous_comment(comment)
     return nil unless comment.poster.created_at > 7.days.ago
 
-    comment.poster.comments.where('id < ?', comment.id).find_by(text: comment.text) || Comment.where('id < ?', comment.id).where(text: comment.text).find_by(deleted_at: 1.month.ago..)
+    comment.poster.comments.where(id: ...comment.id).find_by(text: comment.text) || Comment.where(id: ...comment.id).where(text: comment.text).find_by(deleted_at: 1.month.ago..)
   end
 
   def self.find_previous_comment_with_link(comment)
@@ -46,7 +46,7 @@ class CommentSpamCheckJob < ApplicationJob
     return unless links.any?
 
     text_condition = links.map { |link| "text LIKE '%#{Comment.sanitize_sql_like(link)}%'" }.join(' OR ')
-    comment.poster.comments.where('id < ?', comment.id).find_by(text_condition) || Comment.where('id < ?', comment.id).where(text_condition).find_by(deleted_at: 1.month.ago..)
+    comment.poster.comments.where(id: ...comment.id).find_by(text_condition) || Comment.where(id: ...comment.id).where(text_condition).find_by(deleted_at: 1.month.ago..)
   end
 
   def check_with_akismet(comment, ip, user_agent, referrer)
