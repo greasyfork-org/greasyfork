@@ -18,11 +18,20 @@ class DiscussionSpamCheckJob < ApplicationJob
 
   def repeat_check(discussion)
     previous_comment = CommentSpamCheckJob.find_previous_comment(discussion.first_comment)
-    return unless previous_comment
+    if previous_comment
+      previous_discussion = previous_comment.discussion
+      previous_report = previous_discussion.reports.upheld.take || previous_comment.reports.upheld.take
+      return Report.create!(item: previous_discussion, auto_reporter: 'rainman', reason: previous_report&.reason || Report::REASON_SPAM, explanation: "Repost of#{' deleted' if previous_discussion.soft_deleted?} comment: #{previous_comment.url}. #{"Previous report: #{previous_report.url}" if previous_report}")
+    end
 
-    previous_discussion = previous_comment.discussion
-    previous_report = previous_discussion.reports.upheld.take
-    Report.create!(item: previous_discussion, auto_reporter: 'rainman', reason: previous_report&.reason || Report::REASON_SPAM, explanation: "Repost of#{' deleted' if previous_discussion.soft_deleted?} discussion: #{previous_discussion.url}. #{"Previous report: #{previous_report.url}" if previous_report}")
+    previous_comment = CommentSpamCheckJob.find_previous_comment_with_link(discussion.first_comment)
+    if previous_comment
+      previous_discussion = previous_comment.discussion
+      previous_report = previous_discussion.reports.upheld.take || previous_comment.reports.upheld.take
+      return Report.create!(item: previous_discussion, auto_reporter: 'rainman', reason: previous_report&.reason || Report::REASON_SPAM, explanation: "Repost of#{' deleted' if previous_discussion.soft_deleted?} comment with same link: #{previous_comment.url}. #{"Previous report: #{previous_report.url}" if previous_report}")
+    end
+
+    nil
   end
 
   def check_with_akismet(discussion, ip, user_agent, referrer)

@@ -19,16 +19,34 @@ class CommentSpamCheckJob < ApplicationJob
 
   def repeat_check(comment)
     previous_comment = self.class.find_previous_comment(comment)
-    return unless previous_comment
+    if previous_comment
+      previous_report = previous_comment.reports.upheld.take
+      return Report.create!(item: comment, auto_reporter: 'rainman', reason: previous_report&.reason || Report::REASON_SPAM, explanation: "Repost of#{' deleted' if previous_comment.soft_deleted?} comment: #{previous_comment.url}. #{"Previous report: #{previous_report.url}" if previous_report}")
+    end
 
-    previous_report = previous_comment.reports.upheld.take
-    Report.create!(item: comment, auto_reporter: 'rainman', reason: previous_report&.reason || Report::REASON_SPAM, explanation: "Repost of#{' deleted' if previous_comment.soft_deleted?} comment: #{previous_comment.url}. #{"Previous report: #{previous_report.url}" if previous_report}")
+    previous_comment = self.class.find_previous_comment_with_link(comment)
+    if previous_comment
+      previous_report = previous_comment.reports.upheld.take
+      return Report.create!(item: comment, auto_reporter: 'rainman', reason: previous_report&.reason || Report::REASON_SPAM, explanation: "Repost of#{' deleted' if previous_comment.soft_deleted?} comment with same link: #{previous_comment.url}. #{"Previous report: #{previous_report.url}" if previous_report}")
+    end
+
+    nil
   end
 
   def self.find_previous_comment(comment)
     return nil unless comment.poster.created_at > 7.days.ago
 
     comment.poster.comments.where('id < ?', comment.id).find_by(text: comment.text) || Comment.where('id < ?', comment.id).where(text: comment.text).find_by(deleted_at: 1.month.ago..)
+  end
+
+  def self.find_previous_comment_with_link(comment)
+    return nil unless comment.poster.created_at > 7.days.ago
+
+    links = Nokogiri::HTML(ApplicationController.helpers.format_user_text(comment.text, comment.text_markup)).css('a[href]').pluck('href').uniq.reject { |href| href.starts_with?('https://greasyfork.org/') || href.starts_with?('https://sleazyfork.org/') }
+    return unless links.any?
+
+    text_condition = links.map { |link| "text LIKE '%#{Comment.sanitize_sql_like(link)}%'" }.join(' OR ')
+    comment.poster.comments.where('id < ?', comment.id).find_by(text_condition) || Comment.where('id < ?', comment.id).where(text_condition).find_by(deleted_at: 1.month.ago..)
   end
 
   def check_with_akismet(comment, ip, user_agent, referrer)
