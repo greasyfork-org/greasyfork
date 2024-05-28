@@ -20,7 +20,16 @@ class CommentSpamCheckJob < ApplicationJob
   def repeat_check(comment)
     return false unless comment.poster.created_at > 7.days.ago
 
-    Report.create!(item: comment, auto_reporter: 'rainman', reason: Report::REASON_SPAM) if comment.poster.comments.where('id < ?', comment.id).where(text: comment.text).any?
+    if comment.poster.comments.where('id < ?', comment.id).where(text: comment.text).any?
+      Report.create!(item: comment, auto_reporter: 'rainman', reason: Report::REASON_SPAM)
+      return
+    end
+
+    previous_comment = Comment.where('id < ?', comment.id).where(text: comment.text).find_by(deleted_at: 1.month.ago..)
+    return unless previous_comment
+
+    previous_report = previous_comment.reports.upheld.take
+    Report.create!(item: comment, auto_reporter: 'rainman', reason: previous_report&.reason || Report::REASON_SPAM, explanation: "Repost of deleted comment: #{previous_comment.url}. #{"Previous report: #{previous_report.url}" if previous_report}")
   end
 
   def check_with_akismet(comment, ip, user_agent, referrer)
