@@ -244,4 +244,8 @@ class Report < ApplicationRecord
     else Report::NON_SCRIPT_REASONS
     end
   end
+
+  def url(locale: nil)
+    Rails.application.routes.url_helpers.report_url(self, locale:)
+  end
 end
