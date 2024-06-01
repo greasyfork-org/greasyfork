@@ -6,7 +6,7 @@
     <%= submit_tag 'Mark as fixed' %>
   <% end %>
 <% end %>
-<% if report.awaiting_response? %>
+<% if report.awaiting_response? && !current_user.administrator? %>
   <p class="report-resolution-options">(Waiting for response, cannot delete yet.)</p>
 <% else %>
   <%= form_tag(uphold_report_path(report, index: i), method: 'POST', class: 'report-resolution-options') do %>

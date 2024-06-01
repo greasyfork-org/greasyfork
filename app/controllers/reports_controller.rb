@@ -132,7 +132,7 @@ class ReportsController < ApplicationController
       return
     end
 
-    if @report.awaiting_response? && !user_is_script_author
+    if @report.awaiting_response? && !user_is_script_author && !current_user.administrator?
       @text = 'Cannot uphold report, awaiting author response.'
       render 'home/error', status: :not_acceptable, layout: 'application'
       return
