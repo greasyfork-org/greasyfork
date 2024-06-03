@@ -57,4 +57,9 @@ class UserTest < ActiveSupport::TestCase
     new_user.name.insert(2, "\u2064")
     assert_not new_user.valid?
   end
+
+  test 'reserved unicode characters are not OK' do
+    new_user = User.new(name: "i like weird\ufff7chars", email: 'test@myexample.com', password: 'password')
+    assert_not new_user.valid?, new_user.errors.messages
+  end
 end
