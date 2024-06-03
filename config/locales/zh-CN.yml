@@ -95,6 +95,7 @@ zh-CN:
       compare_to: "要比较的站点 %{site_name} 上的脚本（网址）"
       compare_button: "比较"
       compare_must_be_local_url: "比较脚本必须是一个位于 %{site_name} 的网址。"
+      compare_cleaned_code_unavailable: "比较脚本的干净代码尚不可用。"
     history_title: "%{script_name} - 版本历史"
     history_only_code_changes_info: "这些是代码更新过的版本。"
     history_all_changes_link: "显示所有版本"
@@ -1010,6 +1011,7 @@ zh-CN:
     report_message: "举报消息"
     result_dismissed: "该举报已被管理员忽略。"
     result_upheld: "管理员已通过该举报。"
+    result_upheld_reason_override: "此举报已被管理员确认，但管理员标记的原因是 %{reason}。"
     result_self_upheld: "作者因此举报删除了自己的脚本。"
     result_fixed: "管理员已经关闭了该则举报，因为管理员认为作者已经修正了报告的问题。"
     result_pending: "该举报尚待管理员查看。"
@@ -1036,6 +1038,7 @@ zh-CN:
     reporter_temporarily_blocked: "由于您最近的一系列举报被管理员驳回，您被阻止提交新的举报，直到 %{date}为止。请查阅 %{rules_link:%{site_name} 规则}，以确保未来的报告准确无误。"
     reported_temporarily_blocked: "由于最近对此项目的举报被管理员驳回，进一步对其的举报将被阻止，直到 %{date}为止。"
     already_reported_by_reporter: "您已在%{report_link:最近举报过}此项目。"
+    already_reported_same_type: "此项目上已经有一个 %{report_link:类似的待处理举报}。"
   appeals:
     new:
       title: 新建删除脚本申诉
