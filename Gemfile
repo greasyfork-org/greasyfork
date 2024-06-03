@@ -1,8 +1,9 @@
 source 'https://rubygems.org'
 
-ruby '3.3.1'
+ruby '3.3.2'
 
 gem 'bootsnap'
+gem 'csv'
 gem 'daemons'
 gem 'devise'
 gem 'devise-i18n'
