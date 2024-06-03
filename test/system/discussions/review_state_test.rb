@@ -45,4 +45,14 @@ class ReviewStateTest < ApplicationSystemTestCase
     visit category_discussion_path(discussion, category: discussion.discussion_category.category_key, locale: :en)
     assert_content discussion.title
   end
+
+  test 'with review_reason shows when choosing private filter' do
+    discussion = discussions(:non_script_discussion)
+    discussion.update!(review_reason: 'akismet')
+
+    login_as(users(:mod), scope: :user)
+
+    visit discussions_path(visibility: 'private')
+    assert_content discussion.title
+  end
 end

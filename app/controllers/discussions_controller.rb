@@ -347,7 +347,7 @@ class DiscussionsController < ApplicationController
       when 'all'
         # No change
       when 'private'
-        discussions = discussions.where('review_reason IS NOT NULL OR discussions.deleted_at IS NOT NULL')
+        discussions = discussions.where('discussions.review_reason IS NOT NULL OR discussions.deleted_at IS NOT NULL')
       else
         visibility = nil
         discussions = discussions.visible
