@@ -78,7 +78,7 @@
             User was banned <%= markup_date(@user.banned_at) %>.
           <% end %>
           <%= link_to 'Unban', user_unban_path(@user) %>
-        <% else %>
+        <% elsif @user.bannable? %>
           <%= link_to 'Ban', user_ban_path(@user) %>
         <% end %>
       </p>

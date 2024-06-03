@@ -262,6 +262,8 @@ class User < ApplicationRecord
   def ban!(moderator:, reason: nil, report: nil, delete_comments: false, delete_scripts: false, private_reason: nil, ban_related: true)
     return if banned?
 
+    raise "Can't ban this user." unless bannable?
+
     User.transaction do
       ModeratorAction.create!(
         moderator:,
@@ -407,6 +409,10 @@ class User < ApplicationRecord
   def blocked_from_reporting_until
     recent_reports = reports_as_reporter.resolved.where(created_at: 1.week.ago..).order(:created_at)
     recent_reports.first.created_at + 1.week if recent_reports.count(&:dismissed?) == 5
+  end
+
+  def bannable?
+    !administrator? && !moderator?
   end
 
   protected

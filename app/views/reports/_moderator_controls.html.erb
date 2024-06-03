@@ -31,14 +31,16 @@
         <%= check_box_tag :delete_scripts, '1', false, id: "delete-scripts-#{report.id}" %><%= label_tag "delete-scripts-#{report.id}", "Delete #{other_scripts.select{|_user, count| count > 0}.map{|user, scripts_count| "#{user.name}'s #{scripts_count} #{(report.item.is_a?(Script) ? 'other script' : 'script').pluralize(scripts_count)}" }.to_sentence}" %><br>
       <% end %>
 
-      <% if [Comment, Discussion, Script].any? {|klass| report.item.is_a?(klass)} && report.reported_users.reject(&:banned?).any? %>
+      <% if [Comment, Discussion, Script].any? {|klass| report.item.is_a?(klass)} && report.reported_users.reject(&:banned?).any? && report.reported_users.all?(&:bannable?) %>
         <%= check_box_tag :ban, '1', false, id: "ban-#{report.id}" %><%= label_tag "ban-#{report.id}", "Ban #{report.reported_users.reject(&:banned?).map(&:name).to_sentence}" %><br>
       <% end %>
     <% end %>
 
     <% case report.item %>
     <% when User %>
-      <%= submit_tag "Ban #{report.reported_users.first.name}" %>
+      <% if @user.bannable? %>
+        <%= submit_tag "Ban #{report.reported_users.first.name}" %>
+      <% end %>
     <% when Discussion %>
       <%= submit_tag(report.reason == Report::REASON_WRONG_CATEGORY ? "Move discussion to #{report.discussion_category.localized_name}" : 'Delete discussion') %>
     <% when Comment %>
