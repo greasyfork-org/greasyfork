@@ -38,8 +38,8 @@
 
     <% case report.item %>
     <% when User %>
-      <% if @user.bannable? %>
-        <%= submit_tag "Ban #{report.reported_users.first.name}" %>
+      <% if report.item.bannable? %>
+        <%= submit_tag "Ban #{report.item.name}" %>
       <% end %>
     <% when Discussion %>
       <%= submit_tag(report.reason == Report::REASON_WRONG_CATEGORY ? "Move discussion to #{report.discussion_category.localized_name}" : 'Delete discussion') %>
