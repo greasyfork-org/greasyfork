@@ -366,6 +366,7 @@ class ScriptsController < ApplicationController
     end
 
     @script.assign_attributes(params.require(:script).permit(:script_sync_type_id, :sync_identifier))
+    @script.sync_identifier = ScriptImporter::UrlImporter.fix_sync_id(@script.sync_identifier) if @script.sync_identifier
 
     # additional info syncs. and new ones and update existing ones to add/update sync_identifiers
     if params['additional_info_sync']
