@@ -5,7 +5,7 @@ class ScriptSyncQueueingJob
 
   def perform
     Script
-      .where(script_sync_type_id: 2)
+      .where(sync_type: 'automatic')
       .where('last_attempted_sync_date < DATE_SUB(UTC_TIMESTAMP(), INTERVAL 12 HOUR)')
       .order(:last_attempted_sync_date)
       .limit(1000)

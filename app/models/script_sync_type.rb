@@ -1,2 +1,0 @@
-class ScriptSyncType < ApplicationRecord
-end

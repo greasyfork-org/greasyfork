@@ -351,7 +351,7 @@ class ScriptsController < ApplicationController
 
   def sync_update
     unless params['stop-syncing'].nil?
-      @script.script_sync_type_id = nil
+      @script.sync_type = nil
       @script.last_attempted_sync_date = nil
       @script.last_successful_sync_date = nil
       @script.sync_identifier = nil
@@ -365,7 +365,7 @@ class ScriptsController < ApplicationController
       return
     end
 
-    @script.assign_attributes(params.require(:script).permit(:script_sync_type_id, :sync_identifier))
+    @script.assign_attributes(params.require(:script).permit(:sync_type, :sync_identifier))
     @script.sync_identifier = ScriptImporter::UrlImporter.fix_sync_id(@script.sync_identifier) if @script.sync_identifier
 
     # additional info syncs. and new ones and update existing ones to add/update sync_identifiers

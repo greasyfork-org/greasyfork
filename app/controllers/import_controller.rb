@@ -8,7 +8,7 @@ class ImportController < ApplicationController
   before_action :check_read_only_mode, except: [:index]
 
   def index
-    @syncing_scripts = Script.joins(:authors).where(authors: { user_id: current_user.id }).where.not(script_sync_type_id: nil).includes(:script_sync_type)
+    @syncing_scripts = Script.joins(:authors).where(authors: { user_id: current_user.id }).where.not(sync_type: nil)
   end
 
   def add
@@ -21,7 +21,7 @@ class ImportController < ApplicationController
                end
     sync_ids.each do |sync_id|
       provided_description = params["needsdescription-#{sync_id}"]
-      result, script, message = importer.generate_script(sync_id, provided_description, current_user, (params['sync-type'].nil? ? 1 : params['sync-type']))
+      result, script, message = importer.generate_script(sync_id, provided_description, current_user, params['sync-type'] || 'manual')
       case result
       when :needsdescription
         @results[:needsdescription] << script

@@ -4,12 +4,12 @@
   </p>
 <% end %>
 
-<% if script_version.script.script_sync_type_id %>
+<% if script_version.script.sync_type %>
   <p>
     <%= t('scripts.syncing_notice_html',
       syncing_notice_sync_type: link_to(
         t(
-          script_version.script.script_sync_type_id == 1 ? 'scripts.syncing_notice_sync_type_manual' : 'scripts.syncing_notice_sync_type_automatic',
+          script_version.script.sync_type_manual? ? 'scripts.syncing_notice_sync_type_manual' : 'scripts.syncing_notice_sync_type_automatic',
           sync_identifier: script_version.script.sync_identifier
         ),
         admin_script_path(script_version.script_id)

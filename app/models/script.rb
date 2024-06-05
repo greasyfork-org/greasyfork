@@ -11,6 +11,7 @@ class Script < ApplicationRecord
 
   enum delete_type: { 'keep' => 1, 'blanked' => 2, 'redirect' => 3 }, _prefix: true
   enum script_type: { 'public' => 1, 'unlisted' => 2, 'library' => 3 }, _prefix: true
+  enum sync_type: { 'manual' => 1, 'automatic' => 2, 'webhook' => 3 }, _prefix: true
 
   belongs_to :promoted_script, class_name: 'Script', optional: true
 
@@ -41,7 +42,6 @@ class Script < ApplicationRecord
 
   has_one :cleaned_code, dependent: :delete
 
-  belongs_to :script_sync_type, optional: true
   belongs_to :license, optional: true
   belongs_to :locale
   belongs_to :replaced_by_script, class_name: 'Script', optional: true

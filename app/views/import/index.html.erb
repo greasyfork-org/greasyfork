@@ -23,9 +23,9 @@
   <ul>
     <% @syncing_scripts.each do |script| %>
       <% if script.sync_error.nil? %>
-        <li class="successful-sync"><%= t('importing.previously_imported.successful_entry_html', script_link: link_to(script.name, script), sync_type: ("scripts.sync_type_#{script.script_sync_type_id}.name"), last_sync_date: script.last_successful_sync_date.nil? ? t('importing.previously_imported.unknown_date') : markup_date(script.last_successful_sync_date)) %></li>
+        <li class="successful-sync"><%= t('importing.previously_imported.successful_entry_html', script_link: link_to(script.name, script), sync_type: t("scripts.sync_type_#{Script.sync_types[script.sync_type]}.name"), last_sync_date: script.last_successful_sync_date.nil? ? t('importing.previously_imported.unknown_date') : markup_date(script.last_successful_sync_date)) %></li>
       <% else %>
-        <li class="failed-sync"><%= t('importing.previously_imported.failed_entry_html', script_link: link_to(script.name, script), sync_type: ("scripts.sync_type_#{script.script_sync_type_id}.name"), last_sync_attempt_date: script.last_attempted_sync_date.nil? ? t('importing.previously_imported.unknown_date') : markup_date(script.last_attempted_sync_date), sync_error: script.sync_error) %></li>
+        <li class="failed-sync"><%= t('importing.previously_imported.failed_entry_html', script_link: link_to(script.name, script), sync_type: t("scripts.sync_type_#{Script.sync_types[script.sync_type]}.name"), last_sync_attempt_date: script.last_attempted_sync_date.nil? ? t('importing.previously_imported.unknown_date') : markup_date(script.last_attempted_sync_date), sync_error: script.sync_error) %></li>
       <% end %>
     <% end %>
   </ul>

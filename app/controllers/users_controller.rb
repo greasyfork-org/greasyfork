@@ -126,7 +126,7 @@ class UsersController < ApplicationController
       @user.generate_webhook_secret
       @user.save!
     end
-    @webhook_scripts = Script.not_deleted.joins(:authors).where(authors: { user_id: @user.id }).where('sync_identifier LIKE "https://github.com/%" OR sync_identifier LIKE "https://raw.githubusercontent.com/%" OR sync_identifier LIKE "https://bitbucket.org/%" OR sync_identifier LIKE "https://gitlab.com/%"').includes(:script_sync_type)
+    @webhook_scripts = Script.not_deleted.joins(:authors).where(authors: { user_id: @user.id }).where('sync_identifier LIKE "https://github.com/%" OR sync_identifier LIKE "https://raw.githubusercontent.com/%" OR sync_identifier LIKE "https://bitbucket.org/%" OR sync_identifier LIKE "https://gitlab.com/%"')
   end
 
   def webhook
