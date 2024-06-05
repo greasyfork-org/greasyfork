@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_05_140532) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_05_152157) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -574,11 +574,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_05_140532) do
     t.string "encoding", limit: 10
     t.index ["script_id"], name: "index_script_subresource_usages_on_script_id"
     t.index ["subresource_id"], name: "index_script_subresource_usages_on_subresource_id"
-  end
-
-  create_table "script_sync_types", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "description", null: false
   end
 
   create_table "script_versions", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
