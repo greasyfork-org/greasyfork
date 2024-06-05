@@ -3,16 +3,15 @@
 
   <%= form_for(@script, url: sync_update_script_path) do |s| %>
 
-    <% case @script.sync_type
-      when 'manual' %>
-        <p>
-          <%= t('scripts.code_syncing_from_url_html', field: s.url_field(:sync_identifier, size: 50, placeholder: t('scripts.sync_url_placeholder'))) %>
-        </p>
-      <% when nil %>
-        <p>
-          <%= t('scripts.provide_code_syncing_from_url_html', field: s.url_field(:sync_identifier, size: 50, placeholder: t('scripts.sync_url_placeholder')), site_name: site_name) %>
-        </p>
-    <% end %>
+    <div class="form-control">
+      <% sync_url_field_label = case @script.sync_type
+                                when 'manual', 'automatic'; 'scripts.code_syncing_from_url_html'
+                                when 'webhook'; 'scripts.code_syncing_from_webhook_html'
+                                when nil; 'scripts.provide_code_syncing_from_url_html'
+                                else; raise "Unexpected sync type #{@script.sync_type}"
+                                end %>
+      <%= t(sync_url_field_label, field: s.url_field(:sync_identifier, placeholder: t('scripts.sync_url_placeholder')), site_name: site_name) %>
+    </div>
 
     <div class="radio-group">
       <%= t('scripts.sync_type_intro') %><br>
