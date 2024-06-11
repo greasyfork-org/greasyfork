@@ -11,7 +11,7 @@ class Github
     # - messages
     # - urls
     def info_from_push_event(params)
-      return {}, [] if params[:commits].nil?
+      return {} if params[:commits].nil?
 
       repo_url = params[:repository][:url]
       ref = params[:ref].delete_prefix('refs/heads/')
