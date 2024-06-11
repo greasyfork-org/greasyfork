@@ -130,6 +130,24 @@ class CssParserTest < ActiveSupport::TestCase
     assert_equal ["@-moz-document domain(\"example.com\") {\n  a {\n    color: red;\n  }\n}\n", ''], CssParser.get_code_blocks(css)
   end
 
+  test '::get_code_blocks with no meta end' do
+    css = <<~CSS
+      /* ==UserStyle==
+      @name        Example UserCSS style
+      @namespace   github.com/openstyles/stylus
+      @version     1.0.0
+      @license     unlicense
+      */
+
+      @-moz-document domain("example.com") {
+        a {
+          color: red;
+        }
+      }
+    CSS
+    assert_equal ["/* ==UserStyle==\n@name        Example UserCSS style\n@namespace   github.com/openstyles/stylus\n@version     1.0.0\n@license     unlicense\n*/\n\n@-moz-document domain(\"example.com\") {\n  a {\n    color: red;\n  }\n}\n", ''], CssParser.get_code_blocks(css)
+  end
+
   test '::inject_meta replace' do
     css = <<~CSS
       /* ==UserStyle==
