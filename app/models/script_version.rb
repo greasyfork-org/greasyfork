@@ -437,7 +437,11 @@ class ScriptVersion < ApplicationRecord
     non_allowlisted_requires = []
     allowed_requires = AllowedRequire.all
     meta['require'].each do |script_url|
-      next if script_url.starts_with?('data:')
+      if script_url.starts_with?('data:')
+        non_allowlisted_requires << script_url if script_url.include?(';base64,')
+        next
+      end
+
       next if /\A[^#]+#(md5|sha1|sha256|sha384|sha512)=/.match?(script_url)
 
       uri = URI(script_url).normalize.to_s

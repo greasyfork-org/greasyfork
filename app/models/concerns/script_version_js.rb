@@ -23,9 +23,13 @@ module ScriptVersionJs
 
       record.disallowed_requires_used.each do |url, type|
         if type == :disallowed
-          record.errors.add(:code, I18n.t('errors.messages.script_disallowed_require', code: "@require #{url}"))
+          if url.starts_with?('data:') && url.include?('base64')
+            record.errors.add(:code, I18n.t('errors.messages.script_disallowed_base_64_require'))
+          else
+            record.errors.add(:code, I18n.t('errors.messages.script_disallowed_require', code: "@require #{url.truncate(1000)}"))
+          end
         else
-          record.errors.add(:code, I18n.t('errors.messages.script_malformed_require', code: "@require #{url}"))
+          record.errors.add(:code, I18n.t('errors.messages.script_malformed_require', code: "@require #{url.truncate(1000)}"))
         end
       end
     end

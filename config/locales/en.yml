@@ -1639,6 +1639,7 @@ en:
       # validation when user uploads code that contains a disallowed @require
       script_disallowed_require: "uses an unapproved external script: %{code}"
       script_disallowed_resource: "uses an invalid @resource: %{code}. Resources must be http, https, or data URLs"
+      script_disallowed_base_64_require: "uses a base-64 encoded @require"
       script_malformed_require: "uses a malformed external script reference: %{code}"
       script_rate_limit: "You have exceeded the posting limit. Try again later."
       missing_include_or_match: "must include at least one @match or @include key"
