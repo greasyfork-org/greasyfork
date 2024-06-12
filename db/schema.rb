@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_05_152157) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_12_160951) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -155,6 +155,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_05_152157) do
     t.string "private_reason", null: false
     t.boolean "serious", default: false, null: false
     t.integer "originating_script_id"
+    t.boolean "case_insensitive", default: false, null: false
     t.index ["originating_script_id"], name: "fk_rails_6f37f4eb64"
   end
 
