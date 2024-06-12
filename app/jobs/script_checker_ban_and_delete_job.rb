@@ -8,6 +8,8 @@ class ScriptCheckerBanAndDeleteJob < ApplicationJob
       return
     end
 
+    return if script.locked?
+
     script_check_results = JSON.parse(script_check_results)
 
     moderator = User.administrators.first

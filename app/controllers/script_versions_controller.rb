@@ -254,7 +254,7 @@ class ScriptVersionsController < ApplicationController
       if Rails.env.test?
         ScriptCheckerBanAndDeleteJob.perform_now(@script.id, script_check_results.to_json)
       else
-        ScriptCheckerBanAndDeleteJob.set(wait: 5.minutes).perform_later(@script.id, script_check_results.to_json)
+        ScriptCheckerBanAndDeleteJob.set(wait: rand(1..60).minutes).perform_later(@script.id, script_check_results.to_json)
       end
     elsif params[:script_id].nil?
       # Disabled due to poor results
