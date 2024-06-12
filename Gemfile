@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '3.3.2'
+ruby '3.3.3'
 
 gem 'bootsnap'
 gem 'csv'
