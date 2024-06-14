@@ -294,3 +294,18 @@ style_antifeatures:
       a { color: blue }
     }
   code_hash: 12cefec882d2b32f0072212a8c50c5cc0dc9141d
+
+# use this one when it doesn't matter
+example_com_application:
+  id: 24
+  code: |
+    // ==UserScript==
+    // @name		A Test!
+    // @description		Unit test.
+    // @version 1.1
+    // @namespace http://greasyfork.local/users/1
+    // @include example.com
+    // @license MIT
+    // ==/UserScript==
+    var foo = 1;
+  code_hash: 27e969ebfb2c56e9daf4ab45bf3782c592125c78
