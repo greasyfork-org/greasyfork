@@ -21,8 +21,6 @@ gem 'rails-i18n'
 gem 'redcarpet'
 gem 'regexp_parser'
 gem 'sanitize'
-gem 'sentry-rails'
-gem 'sentry-ruby'
 # Need redis 6.2+ for sidekiq 7
 gem 'sidekiq', '< 7'
 gem 'sidekiq-scheduler'
@@ -42,6 +40,11 @@ gem 'redis'
 
 gem 'elasticsearch'
 gem 'searchkick'
+
+gem 'stackprof'
+
+gem 'sentry-rails'
+gem 'sentry-ruby'
 
 gem 'akismet'
 gem 'detect_language'
