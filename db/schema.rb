@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_14_200415) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_14_205858) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -661,6 +661,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_14_200415) do
     t.boolean "domain", null: false
     t.boolean "blocked", default: false, null: false
     t.string "blocked_message"
+    t.index ["text", "domain"], name: "index_site_applications_on_text_and_domain", unique: true, using: :hash
   end
 
   create_table "spammy_email_domains", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
