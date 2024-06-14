@@ -47,7 +47,7 @@ class CommentSpamCheckJob < ApplicationJob
 
     text_condition = links.map { |_link| 'text LIKE ?' }.join(' OR ')
     condition_params = links.map { |link| "%#{Comment.sanitize_sql_like(link)}%" }
-    comment.poster.comments.where(id: ...comment.id).find_by(text_condition, condition_params) || Comment.where(id: ...comment.id).where(text_condition, condition_params).find_by(deleted_at: 1.month.ago..)
+    comment.poster.comments.where(id: ...comment.id).find_by(text_condition, *condition_params) || Comment.where(id: ...comment.id).where(text_condition, *condition_params).find_by(deleted_at: 1.month.ago..)
   end
 
   def check_with_akismet(comment, ip, user_agent, referrer)
