@@ -45,8 +45,9 @@ class CommentSpamCheckJob < ApplicationJob
     links = Nokogiri::HTML(ApplicationController.helpers.format_user_text(comment.text, comment.text_markup)).css('a[href]').pluck('href').uniq.reject { |href| href.starts_with?('https://greasyfork.org/') || href.starts_with?('https://sleazyfork.org/') }
     return unless links.any?
 
-    text_condition = links.map { |link| "text LIKE '%#{Comment.sanitize_sql_like(link)}%'" }.join(' OR ')
-    comment.poster.comments.where(id: ...comment.id).find_by(text_condition) || Comment.where(id: ...comment.id).where(text_condition).find_by(deleted_at: 1.month.ago..)
+    text_condition = links.map { |_link| 'text LIKE ?' }.join(' OR ')
+    condition_params = links.map { |link| "%#{Comment.sanitize_sql_like(link)}%" }
+    comment.poster.comments.where(id: ...comment.id).find_by(text_condition, condition_params) || Comment.where(id: ...comment.id).where(text_condition, condition_params).find_by(deleted_at: 1.month.ago..)
   end
 
   def check_with_akismet(comment, ip, user_agent, referrer)
