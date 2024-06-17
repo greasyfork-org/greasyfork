@@ -28,7 +28,7 @@ gem 'sidekiq-unique-jobs'
 gem 'sidekiq-worker-killer'
 gem 'strip_attributes'
 # https://github.com/pat/thinking-sphinx/pull/1252
-gem 'thinking-sphinx', git: 'https://github.com/jdelStrother/thinking-sphinx.git', branch: 'logsubscriber-deprecations'
+gem 'thinking-sphinx', git: 'https://github.com/pat/thinking-sphinx.git'
 gem 'ts-sidekiq-delta'
 gem 'user_agent_parser'
 gem 'vite_rails'
