@@ -101,6 +101,7 @@ fr:
       compare_to: "Le script %{site_name} est comparable à (URL)"
       compare_button: "Comparer"
       compare_must_be_local_url: "Le script de comparaison doit être une URL de %{site_name}."
+      compare_cleaned_code_unavailable: "Le code propre du script de comparaison n'est pas encore disponible."
     history_title: "%{script_name} - Historique des versions"
     history_only_code_changes_info: "Voici les versions de ce script où le code a été modifié."
     history_all_changes_link: "Voir toutes les versions."
@@ -234,6 +235,7 @@ fr:
     localized_additional_info_with_no_name: "Une information additionnelle a été spécifiée pour la région '%{locale_code}', mais pas de @name:%{locale_code} n'est présent dans le script."
     code_syncing_from_url_html: "Le code de ce script est configuré pour se synchroniser depuis : %{field}"
     provide_code_syncing_from_url_html: "%{site_name} peut importer des scripts déjà hébergés autre part, par exemple depuis un gestionnaire de version (comme Github), votre propre serveur, ou un autre site d'hébergement de scripts utilisateur. Pour activer la synchronisation de votre script, spécifiez une URL : %{field}"
+    code_syncing_from_webhook_html: "Le code de ce script est configuré pour se synchroniser avec un webhook. Nous ferons correspondre les requêtes du webhook à ce script en fonction de cette URL :%{field}"
     sync_type_intro: "Le script va être synchronisé :"
     sync_type_1:
       name: Manuel
@@ -1093,6 +1095,7 @@ fr:
     report_message: "Signaler un message"
     result_dismissed: "Ce rapport a été rejeté par un modérateur."
     result_upheld: "signalerCe rapport a été approuver par un modérateur."
+    result_upheld_reason_override: "Ce rapport a été confirmé par un modérateur, mais le modérateur l'a marqué comme %{reason}."
     result_self_upheld: "L'auteur a supprimé son propre script à la suite de ce rapport."
     result_fixed: "Ce rapport a été résolu par un modérateur car ils pensent que l'auteur a résolu le problème."
     result_pending: "Ce rapport est en attente d'examen par un modérateur."
@@ -1120,6 +1123,8 @@ fr:
       other: "Ce script a déjà fait l'objet de %{count} rapports confirmés ou corrigés."
     reporter_temporarily_blocked: "FRANÇAIS\nEn raison de votre historique récent de rapports rejetés par un modérateur, vous ne pouvez pas soumettre de nouveaux rapports jusqu'au %{date}. Veuillez consulter les règles de %{rules_link:%{site_name}} pour vous assurer que les futurs rapports sont exacts."
     reported_temporarily_blocked: "En raison de rapports récents sur cet article ayant été rejetés par un modérateur, les autres rapports le concernant sont bloqués jusqu'au %{date}."
+    already_reported_by_reporter: "Vous avez déjà %{report_link:récemment signalé} cet élément."
+    already_reported_same_type: "Il existe déjà un %{report_link:rapport similaire en attente} sur cet élément."
   appeals:
     new:
       title: Appel de suppression de nouveau script
@@ -1345,6 +1350,7 @@ fr:
       script_update_not_utf8: "téléchargé sur le serveur doit être du texte encodé en UTF-8"
       script_disallowed_require: "utilise un script externe non approuvé: %{code}"
       script_disallowed_resource: "Utilisée une ressource invalide t'elle que @resource: %{code}. Les ressources doivent être t'elles que: http, https ou de type data URLs."
+      script_disallowed_base_64_require: "utilise un code en base-64 dans @require"
       script_malformed_require: "utilisation d'une référence de script externe mal formuler: %{code}"
       script_rate_limit: "Vous avez atteint la limite d'envois. Essayez plus tard."
       missing_include_or_match: "doit inclure au moins une clé @match ou @include"

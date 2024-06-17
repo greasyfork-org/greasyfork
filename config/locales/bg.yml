@@ -233,6 +233,7 @@ bg:
     localized_additional_info_with_no_name: "Указана е допълнителна информация за локализация '%{locale_code}' locale, но не и @name:%{locale_code} "
     code_syncing_from_url_html: "Кодът на скрипта е настроен да се синхронизира от: %{field}"
     provide_code_syncing_from_url_html: "%{site_name} може да импортира скриптове, които се хостват където и да е, като например - система за контрол на версиите (като GitHub), ваш, собствен сървър, или друг сайт за хостване на скриптове. За да разрешите синхронизацията на вашия скрипт, укажете URL: %{field}"
+    code_syncing_from_webhook_html: "Кода на скрипта е настроен да се синхронизира чрез webhook. Ще използваме webhook заявки на база на този адрес: %{field}"
     sync_type_intro: "Скриптът ще бъде синхронизиран:"
     sync_type_1:
       name: Ръчно
@@ -1322,6 +1323,7 @@ bg:
       script_update_not_utf8: "трябва да използвате UTF-8 кодировка"
       script_disallowed_require: "използва неодобрен външен скрипт: %{code}"
       script_disallowed_resource: "използва невалиден @resource: %{code}. Ресурсите трябва да бъдат http, https, или data URLs"
+      script_disallowed_base_64_require: "използва base-64 кодиран @require"
       script_malformed_require: "използва счупена препратка към външен скрипт: %{code}"
       script_rate_limit: "Надхвърлили сте лимита за публикуване. Опитайте отново по-късно."
       missing_include_or_match: "трябва да съдържа поне един @match или @include"
