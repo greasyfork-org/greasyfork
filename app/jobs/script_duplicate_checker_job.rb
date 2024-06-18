@@ -17,7 +17,7 @@ class ScriptDuplicateCheckerJob
   # lock_run! and unlock_run! will ensure the expiration date is refreshed if things are still moving.
   RUN_CACHE_EXPIRY = 30.minutes
 
-  sidekiq_options queue: 'low', lock: :until_executed, on_conflict: :log, retry: 10_000
+  sidekiq_options queue: 'low', lock: :until_executed, on_conflict: :log, retry: 10_000, lock_ttl: 1.hour.to_i
 
   # Retry more quickly on max concurrency so that we can stay at the start of the queue and not have
   # ScriptDuplicateCheckerQueueingJob slide in others before us. Returning nil means default behaviour (exponential

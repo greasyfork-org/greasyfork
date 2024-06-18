@@ -1,7 +1,7 @@
 class ScriptSyncQueueingJob
   include Sidekiq::Job
 
-  sidekiq_options queue: 'background', lock: :until_executed, on_conflict: :log
+  sidekiq_options queue: 'background', lock: :until_executed, on_conflict: :log, lock_ttl: 1.hour.to_i
 
   def perform
     Script
