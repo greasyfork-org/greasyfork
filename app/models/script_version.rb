@@ -24,8 +24,6 @@ class ScriptVersion < ApplicationRecord
 
   strip_attributes only: [:changelog]
 
-  ThinkingSphinx::Callbacks.append(self, :script, behaviours: [:sql, :deltas], path: [:script])
-
   MAX_CODE_LENGTH = 2.megabytes
 
   validates :code, presence: true, length: { minimum: 20, maximum: MAX_CODE_LENGTH }, on: :create
