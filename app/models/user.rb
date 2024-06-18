@@ -42,7 +42,7 @@ class User < ApplicationRecord
   has_and_belongs_to_many :conversations
   has_many :conversation_subscriptions, dependent: :destroy
 
-  #ThinkingSphinx::Callbacks.append(self, :script, behaviours: [:sql, :deltas], path: [:scripts])
+  ThinkingSphinx::Callbacks.append(self, :script, behaviours: [:sql, :deltas], path: [:scripts])
 
   generates_token_for(:one_click_unsubscribe)
 
