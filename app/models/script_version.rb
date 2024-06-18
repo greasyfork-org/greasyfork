@@ -112,6 +112,8 @@ class ScriptVersion < ApplicationRecord
   end
 
   after_commit on: [:create, :update] do
+    next if previous_changes.none?
+
     CleanedCodeJob.perform_later_unless_will_run(script) if script.js?
   end
 
