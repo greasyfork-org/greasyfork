@@ -1,4 +1,14 @@
 GIT
+  remote: https://github.com/JasonBarnabe/ts-sidekiq-delta.git
+  revision: e14da8525c8e5c65d9f3812e80abf787589f2e64
+  branch: ttl
+  specs:
+    ts-sidekiq-delta (0.4.0)
+      sidekiq (>= 2.5.4)
+      sidekiq-unique-jobs (>= 7.0.0)
+      thinking-sphinx (>= 3.1.0)
+
+GIT
   remote: https://github.com/pat/thinking-sphinx.git
   revision: 8ced2ef08cf25cef2263e525cf7de93893ae2c9c
   specs:
@@ -543,10 +553,6 @@ GEM
     thor (1.3.1)
     tilt (2.3.0)
     timeout (0.4.1)
-    ts-sidekiq-delta (0.4.0)
-      sidekiq (>= 2.5.4)
-      sidekiq-unique-jobs (>= 7.0.0)
-      thinking-sphinx (>= 3.1.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unf (0.1.4)
@@ -649,7 +655,7 @@ DEPENDENCIES
   stackprof
   strip_attributes
   thinking-sphinx!
-  ts-sidekiq-delta
+  ts-sidekiq-delta!
   user_agent_parser
   vite_rails
   will-paginate-i18n
