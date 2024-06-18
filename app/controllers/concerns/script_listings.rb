@@ -280,7 +280,7 @@ module ScriptListings
         if params[:site] == '*'
           with[:site_count] = 0
         else
-          site = SiteApplication.find_by(text: params[:site], domain: true)
+          site = SiteApplication.find_by(domain_text: params[:site])
           if site.nil?
             @scripts = Script.none.paginate(page: 1)
           elsif site.blocked

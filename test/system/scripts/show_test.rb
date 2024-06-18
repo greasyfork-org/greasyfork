@@ -41,4 +41,19 @@ class ShowTest < ApplicationSystemTestCase
     visit script_path(script, locale: :en)
     assert_link('Example License', href: 'https://example.com')
   end
+
+  test 'applies to is rendered' do
+    script = Script.find(25)
+    visit script_path(script, locale: :en)
+    assert_content('example.com')
+  end
+
+  test 'applies to is rendered as a link' do
+    script = Script.find(25)
+    other_script = Script.find(2)
+    other_script.script_applies_tos.create!(site_application: script.site_applications.first)
+    TopSitesService.refresh!
+    visit script_path(script, locale: :en)
+    assert_link('example.com')
+  end
 end

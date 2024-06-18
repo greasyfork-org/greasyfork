@@ -215,7 +215,7 @@ class Script < ApplicationRecord
   end
 
   def matching_sensitive_sites(unsaved: false)
-    sa = unsaved ? script_applies_tos.map(&:site_application).select(&:domain).map(&:text) : site_applications.where(domain: true).pluck(:text)
+    sa = unsaved ? script_applies_tos.map(&:site_application).select(&:domain?).map(&:domain_text) : site_applications.domain.pluck(:domain_text)
     SensitiveSite.where(domain: sa)
   end
 
@@ -304,13 +304,13 @@ class Script < ApplicationRecord
     localized_attributes_for('description').select { |la| la.attribute_value.length > MAX_LENGTHS[:description] }.each { |la| la.attribute_value = la.attribute_value[0, MAX_LENGTHS[:description]] } if script_version.truncate_description
 
     applies_to_names = script_version.calculate_applies_to_names
-    applies_to_delete = script_applies_tos.reject { |sat| applies_to_names.any? { |atn| sat.text == atn[:text] && sat.tld_extra == atn[:tld_extra] && sat.domain == atn[:domain] } }
+    applies_to_delete = script_applies_tos.reject { |sat| applies_to_names.any? { |atn| sat.text == atn[:text] && sat.tld_extra == atn[:tld_extra] && sat.domain? == atn[:domain] } }
     applies_to_delete.each(&:mark_for_destruction)
-    applies_to_add = applies_to_names.reject { |atn| script_applies_tos.any? { |sat| sat.text == atn[:text] && sat.tld_extra == atn[:tld_extra] && sat.domain == atn[:domain] } }
+    applies_to_add = applies_to_names.reject { |atn| script_applies_tos.any? { |sat| sat.text == atn[:text] && sat.tld_extra == atn[:tld_extra] && sat.domain? == atn[:domain] } }
 
     existing_site_applications = SiteApplication.where(text: applies_to_add.pluck(:text))
     applies_to_add.each do |atn|
-      site_application = existing_site_applications.find { |esa| esa.text == atn[:text] && esa.domain == atn[:domain] } || SiteApplication.new(text: atn[:text], domain: atn[:domain])
+      site_application = existing_site_applications.find { |esa| esa.text == atn[:text] && esa.domain? == atn[:domain] } || SiteApplication.new(text: atn[:text], domain_text: atn[:domain] ? atn[:text] : nil)
       script_applies_tos.build(site_application:, tld_extra: atn[:tld_extra])
     end
 

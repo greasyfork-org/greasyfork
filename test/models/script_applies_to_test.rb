@@ -53,7 +53,8 @@ class ScriptAppliesToTest < ActiveSupport::TestCase
 
     assert_equal 1, script.script_applies_tos.count
     assert_equal 'example.com', script.site_applications.first.text
-    assert script.site_applications.first.domain
+    assert_equal 'example.com', script.site_applications.first.domain_text
+    assert script.site_applications.first.domain?
 
     js = <<~JS
       // ==UserScript==
@@ -76,6 +77,7 @@ class ScriptAppliesToTest < ActiveSupport::TestCase
 
     assert_equal 1, script.script_applies_tos.count
     assert_equal 'example.com', script.site_applications.first.text
-    assert_not script.site_applications.first.domain
+    assert_nil script.site_applications.first.domain_text
+    assert_not script.site_applications.first.domain?
   end
 end
