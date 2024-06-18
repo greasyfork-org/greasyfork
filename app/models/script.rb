@@ -250,8 +250,8 @@ class Script < ApplicationRecord
     @_code_changed = false
   end
 
-  after_commit do |script|
-    script.users.each(&:update_stats!)
+  after_commit do
+    users.each(&:update_stats!) if previous_changes.slice(*User::SCRIPT_STAT_COLUMNS).any?
   end
 
   after_commit on: :update do

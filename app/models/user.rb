@@ -377,6 +377,7 @@ class User < ApplicationRecord
     [:last_updated, 'max(scripts.code_updated_at)'],
     [:ratings, 'coalesce(sum(scripts.good_ratings + scripts.ok_ratings + scripts.bad_ratings), 0)'],
   ].freeze
+  SCRIPT_STAT_COLUMNS = %w[total_installs daily_installs fan_score created_at code_updated_at good_ratings ok_ratings bad_ratings].freeze
 
   def calculate_stats
     script_stat_results = scripts.listable(:all).pick(*SCRIPT_STAT_QUERIES.map(&:last).map { |v| Arel.sql(v) })
