@@ -14,10 +14,6 @@ if Rails.env.production?
 
   Sidekiq.configure_server do |config|
     config.on(:startup) do
-      [ScriptDeleteJob, ConsecutiveBadRatingsJob, UserFloodJob, DiscussionReadCleanupJob, ScriptPageViewUpdateJob]
-        .reject(&:enqueued?)
-        .each(&:perform_later)
-
       config.server_middleware do |chain|
         chain.add Sidekiq::WorkerKiller,
                   max_rss: 16_000 * 0.5 / 3, # 50% of memory spread across n processes

@@ -1,7 +1,9 @@
 require 'google_analytics'
 
-class ScriptPageViewUpdateJob < ApplicationJob
-  queue_as :background
+class ScriptPageViewUpdateJob
+  include Sidekiq::Job
+
+  sidekiq_options queue: 'background', lock: :until_executed, on_conflict: :log, lock_ttl: 1.hour.to_i
 
   def perform
     views_by_script_id = Hash.new(0)
@@ -16,7 +18,5 @@ class ScriptPageViewUpdateJob < ApplicationJob
     views_by_script_id.each do |script_id, page_views|
       Script.where(id: script_id).update_all(page_views:)
     end
-
-    self.class.set(wait: 24.hours).perform_later
   end
 end

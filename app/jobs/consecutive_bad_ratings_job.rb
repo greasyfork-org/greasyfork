@@ -1,5 +1,7 @@
-class ConsecutiveBadRatingsJob < ApplicationJob
-  queue_as :low
+class ConsecutiveBadRatingsJob
+  include Sidekiq::Job
+
+  sidekiq_options queue: 'low', lock: :until_executed, on_conflict: :log, lock_ttl: 15.minutes.to_i
 
   def perform
     # Clear out any where that's not the case any more.
@@ -24,8 +26,6 @@ class ConsecutiveBadRatingsJob < ApplicationJob
         end
       end
     end
-
-    self.class.set(wait: 1.hour).perform_later unless Rails.env.test?
   end
 
   def scripts_with_discussions
