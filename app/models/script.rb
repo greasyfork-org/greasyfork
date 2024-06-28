@@ -660,7 +660,7 @@ class Script < ApplicationRecord
   def similar_scripts(script_subset:, locale:)
     return @_similar_scripts unless @_similar_scripts.nil?
 
-    sas = site_applications.where(domain: true).pluck(:id)
+    sas = site_applications.domain.pluck(:id)
     return Script.none if sas.none?
 
     with = {

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_28_185320) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_28_185847) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -661,7 +661,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_28_185320) do
 
   create_table "site_applications", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.text "text", null: false
-    t.boolean "domain"
     t.boolean "blocked", default: false, null: false
     t.string "blocked_message"
     t.string "domain_text", limit: 100
