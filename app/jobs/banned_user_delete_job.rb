@@ -1,10 +1,11 @@
-class BannedUserDeleteJob < ApplicationJob
-  queue_as :low
+class BannedUserDeleteJob
+  include Sidekiq::Job
+
+  sidekiq_options queue: 'background', lock: :until_executed, on_conflict: :log, lock_ttl: 1.day.to_i
 
   BANNED_AGE = 6.months
 
   def perform
     User.where(banned_at: ...BANNED_AGE.ago).destroy_all
-    self.class.set(wait: 1.hour).perform_later
   end
 end

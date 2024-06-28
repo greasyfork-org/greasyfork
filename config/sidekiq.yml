@@ -22,3 +22,6 @@
     script_duplicate_checker_queueing_job:
       interval: '1m'
       class: ScriptDuplicateCheckerQueueingJob
+    banned_user_delete_job:
+      interval: '1h'
+      class: BannedUserDeleteJob
