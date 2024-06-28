@@ -56,5 +56,10 @@ module Users
         end
       end
     end
+
+    test 'login with a really long URL' do
+      visit code_search_scripts_path(q: '1' * 4000)
+      assert_content 'You need to sign in or sign up before continuing.'
+    end
   end
 end
