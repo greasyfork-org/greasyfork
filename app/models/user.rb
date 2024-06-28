@@ -4,6 +4,7 @@ require 'digest'
 
 class User < ApplicationRecord
   include MentionsUsers
+  include UserIndexing
 
   AUTHOR_NOTIFICATION_NONE = 1
   AUTHOR_NOTIFICATION_DISCUSSION = 2
@@ -13,6 +14,7 @@ class User < ApplicationRecord
 
   scope :moderators, -> { joins(:roles).where(roles: { name: 'moderator' }) }
   scope :administrators, -> { joins(:roles).where(roles: { name: 'administrator' }) }
+  scope :script_authors, -> { where(stats_script_count: 1..) }
 
   scope :banned, -> { where.not(banned_at: nil) }
   scope :not_banned, -> { where(banned_at: nil) }
