@@ -74,7 +74,7 @@ class ScriptsController < ApplicationController
     end
 
     # Avoid cookie overflow when storing return_to in session - don't use the script name in the URL.
-    @return_to = script_path(locale:, id: @script.id)
+    @return_to = script_path(locale:, id: @script.id) if @script
 
     return if handle_publicly_deleted(@script)
     return if handle_wrong_url(@script, :id)
