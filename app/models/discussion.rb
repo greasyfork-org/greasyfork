@@ -27,10 +27,18 @@ class Discussion < ApplicationRecord
 
   scope :with_actual_rating, -> { where(rating: [RATING_BAD, RATING_OK, RATING_GOOD]) }
   scope :with_comment_by, ->(user) { where(id: Comment.where(poster: user).select(:discussion_id)) }
-  scope :visible, -> { not_deleted.where(review_reason: nil) }
+  scope :not_script_deleted, -> { left_joins(:script).where(scripts: { delete_type: nil }) }
+  scope :visible, -> { not_deleted.not_script_deleted.where(review_reason: nil, report_id: nil) }
   scope :permissive_visible, lambda { |user|
-                               if user
-                                 user&.moderator? ? all : not_deleted.where('discussions.review_reason IS NULL OR discussions.poster_id = ?', user.id)
+                               if user&.moderator?
+                                 all
+                               elsif user
+                                 # This is like .visible but with exceptions if the user is related to the discussion.
+                                 # We should check report_id as well but that's not easy to join to the user due to
+                                 # polymoprhism.
+                                 not_deleted
+                                   .where('discussions.review_reason IS NULL OR discussions.poster_id = ?', user.id)
+                                   .left_joins(script: :authors).where('scripts.delete_type IS NULL OR authors.user_id = ?', user.id)
                                else
                                  visible
                                end

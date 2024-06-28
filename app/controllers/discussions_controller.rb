@@ -81,8 +81,6 @@ class DiscussionsController < ApplicationController
           raise "Unknown subset #{script_subset}"
         end
 
-        @discussions = @discussions.where(scripts: { delete_type: nil }).where(report_id: nil) unless current_user&.moderator?
-
         @filter_result = apply_filters(@discussions)
         if @filter_result.is_a?(String)
           render_404(@filter_result)
