@@ -412,7 +412,7 @@ class ScriptsController < ApplicationController
       begin
         text = ScriptImporter::BaseScriptImporter.download(preview_params[:sync_identifier])
         @preview[params[:preview].to_i] = view_context.format_user_text(text, preview_params[:value_markup])
-      rescue ArgumentError => e
+      rescue ArgumentError, OpenURI::HTTPError => e
         @preview[params[:preview].to_i] = e.to_s
       end
     end
