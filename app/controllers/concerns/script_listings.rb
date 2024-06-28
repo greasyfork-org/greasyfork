@@ -102,7 +102,7 @@ module ScriptListings
       end
       format.json do
         result = self.class.cache_with_log('applies_to_counts', expires_in: 1.hour) do
-          ScriptAppliesTo.joins(:script, :site_application).where(scripts: { script_type: :public, delete_type: nil }, tld_extra: false, site_applications: { domain: true }).group('site_applications.text').count
+          ScriptAppliesTo.joins(:script, :site_application).where(scripts: { script_type: :public, delete_type: nil }, tld_extra: false).where.not(site_applications: { domain_text: nil }).group('site_applications.domain_text').count
         end
         cache_request(result.to_json)
         render json: result
@@ -204,7 +204,7 @@ module ScriptListings
         scripts = if params[:site] == '*'
                     scripts.for_all_sites
                   else
-                    scripts.joins(:site_applications).where(site_applications: { text: params[:site] })
+                    scripts.joins(:site_applications).where(site_applications: { domain_text: params[:site] })
                   end
       end
       unless params[:set].nil?
