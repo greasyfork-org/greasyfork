@@ -4,7 +4,7 @@ module UserIndexing
   included do
     searchkick callbacks: :async,
                searchable: [:name],
-               filterable: [:created_at, :script_count, :banned, :script_daily_installs, :script_total_installs, :script_last_created, :script_last_updated, :script_ratings, :email_domain, :ip],
+               filterable: [],
                # Match anywhere in the word, not just the full word.
                word_middle: [:name],
                # Apply additional mappings for the name field - type: keyword to make it sortable, and define case
@@ -21,7 +21,38 @@ module UserIndexing
                  },
                },
                merge_mappings: true,
-               mappings: { properties: { name: { type: 'keyword', normalizer: 'case_insensitive_sort' } } }
+               mappings: {
+                 properties: {
+                   name: {
+                     type: 'keyword',
+                     normalizer: 'case_insensitive_sort',
+                   },
+                   script_count: {
+                     type: 'integer',
+                   },
+                   script_daily_installs: {
+                     type: 'integer',
+                   },
+                   script_total_installs: {
+                     type: 'integer',
+                   },
+                   script_ratings: {
+                     type: 'integer',
+                   },
+                   created_at: {
+                     type: 'date',
+                   },
+                   script_last_created: {
+                     type: 'date',
+                   },
+                   script_last_updated: {
+                     type: 'date',
+                   },
+                   banned: {
+                     type: 'boolean',
+                   },
+                 },
+               }
   end
 
   def search_data
