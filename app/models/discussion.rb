@@ -28,7 +28,7 @@ class Discussion < ApplicationRecord
   scope :with_actual_rating, -> { where(rating: [RATING_BAD, RATING_OK, RATING_GOOD]) }
   scope :with_comment_by, ->(user) { where(id: Comment.where(poster: user).select(:discussion_id)) }
   scope :not_script_deleted, -> { left_joins(:script).where(scripts: { delete_type: nil }) }
-  scope :visible, -> { not_deleted.not_script_deleted.where(review_reason: nil, report_id: nil) }
+  scope :visible, -> { where(publicly_visible: true) }
   scope :permissive_visible, lambda { |user|
                                if user&.moderator?
                                  all
@@ -76,8 +76,10 @@ class Discussion < ApplicationRecord
   end
 
   after_commit on: :update do
-    comments.reindex if saved_change_to_attribute?('review_reason') && !Rails.env.test?
+    comments.reindex if saved_change_to_attribute?('publicly_visible') && !Rails.env.test?
   end
+
+  before_save :calculate_publicly_visible
 
   strip_attributes
 
@@ -182,7 +184,7 @@ class Discussion < ApplicationRecord
     script.users.include?(poster)
   end
 
-  def visible?
-    !soft_deleted? && review_reason.nil? && (script.nil? || !script.deleted?)
+  def calculate_publicly_visible
+    self.publicly_visible = !soft_deleted? && review_reason.nil? && report_id.nil? && (script.nil? || !script.deleted?)
   end
 end

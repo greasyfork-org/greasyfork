@@ -30,6 +30,6 @@ module CommentIndexing
   end
 
   def should_index?
-    !soft_deleted? && discussion.visible?
+    !soft_deleted? && discussion.publicly_visible?
   end
 end

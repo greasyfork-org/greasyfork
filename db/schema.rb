@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_18_194529) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_28_174604) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -302,9 +302,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_18_194529) do
     t.integer "stat_first_comment_id"
     t.integer "locale_id"
     t.integer "report_id"
+    t.boolean "publicly_visible", default: true, null: false
     t.index ["locale_id"], name: "index_discussions_on_locale_id"
     t.index ["migrated_from"], name: "index_discussions_on_migrated_from"
     t.index ["poster_id"], name: "index_discussions_on_poster_id"
+    t.index ["publicly_visible"], name: "index_discussions_on_publicly_visible"
     t.index ["script_id"], name: "fk_rails_a52537835c"
     t.index ["stat_last_reply_date"], name: "index_discussions_on_stat_last_reply_date"
   end

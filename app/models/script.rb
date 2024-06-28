@@ -258,6 +258,15 @@ class Script < ApplicationRecord
     comments.reindex if saved_change_to_attribute?('delete_type') && !Rails.env.test?
   end
 
+  after_save do
+    next unless saved_change_to_attribute?('delete_type')
+
+    discussions.find_each do |d|
+      d.calculate_publicly_visible
+      d.save
+    end
+  end
+
   before_save do |script|
     if script.deleted?
       script.deleted_at ||= Time.current
