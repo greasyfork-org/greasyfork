@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_28_185847) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_28_230841) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -322,7 +322,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_28_185847) do
     t.index ["user_id"], name: "fk_rails_5373344100"
   end
 
-  create_table "install_counts", id: :integer, charset: "utf8mb3", collation: "utf8mb3_unicode_ci", force: :cascade do |t|
+  create_table "install_counts", charset: "utf8mb3", collation: "utf8mb3_unicode_ci", force: :cascade do |t|
     t.integer "script_id", null: false
     t.date "install_date", null: false
     t.integer "installs", null: false
@@ -704,7 +704,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_28_185847) do
     t.index ["script_id", "ip"], name: "update_script_id_and_ip", unique: true
   end
 
-  create_table "update_check_counts", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+  create_table "update_check_counts", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.integer "script_id", null: false
     t.date "update_check_date", null: false
     t.integer "update_checks", null: false
