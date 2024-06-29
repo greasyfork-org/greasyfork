@@ -197,7 +197,6 @@ Rails.application.routes.draw do
 
     get 'import', to: 'import#index', as: 'import_start'
     post 'import/add', to: 'import#add', as: 'import_add'
-    get 'import/url', to: 'import#url', as: 'import_url'
 
     get 'help', to: 'help#index', as: 'help'
     get 'help/allowed-markup', to: 'help#allowed_markup', as: 'help_allowed_markup'
