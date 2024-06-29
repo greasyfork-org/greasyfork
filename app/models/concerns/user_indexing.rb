@@ -5,7 +5,7 @@ module UserIndexing
     searchkick callbacks: :async,
                searchable: [:name],
                # All non-string fields are always filterable; we want to limit which string fields are filterable.
-               filterable: [:ip],
+               filterable: [:ip, :email_domain],
                # Match anywhere in the word, not just the full word.
                word_middle: [:name],
                # Apply additional mappings for the name field - type: keyword to make it sortable, and define case

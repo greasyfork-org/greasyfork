@@ -25,7 +25,7 @@ class UsersController < ApplicationController
 
     with = {}
 
-    with[:email_domain] = email_domain if current_user&.moderator? && params[:email_domain].present?
+    with[:email_domain] = params[:email_domain] if current_user&.moderator? && params[:email_domain].present?
 
     case params[:banned]
     when '1'
