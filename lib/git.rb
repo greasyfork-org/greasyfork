@@ -31,7 +31,7 @@ class Git
     system('mkdir', '-p', TMP_LOCATION)
     begin
       _content, stderr, status = Open3.capture3(GIT_PATH, 'clone', '--no-checkout', repo_url, directory)
-      raise "git clone failed - #{stderr}" unless status.success?
+      raise Git::Exception, "git clone of #{repo_url} failed - #{stderr}" unless status.success?
 
       yield(directory)
     ensure
