@@ -161,7 +161,7 @@ Rails.application.routes.draw do
     get 'script_versions/confirm_new_author', to: 'script_versions#confirm_new_author', as: 'script_version_confirm_new_author'
     resources :users, only: :show do
       post 'webhook'
-      resources :script_sets, only: [:create, :new, :edit, :update, :destroy], path: 'sets'
+      resources :script_sets, only: [:create, :new, :edit, :update, :destroy, :index], path: 'sets'
       get 'ban', to: 'users#ban', as: 'ban'
       post 'ban', to: 'users#do_ban', as: 'do_ban'
       get 'unban', to: 'users#unban', as: 'unban'
