@@ -94,6 +94,7 @@ ja:
       compare_to: "%{site_name} 上のスクリプトと比較 (URL)"
       compare_button: "比較"
       compare_must_be_local_url: "比較には%{site_name} 上の URL が必要です。"
+      compare_cleaned_code_unavailable: "比較したスクリプトの整ったコードはまだ利用できません。"
     history_title: "%{script_name} のバージョン履歴"
     history_only_code_changes_info: "コードが変更されたバージョンのみを表示しています。"
     history_all_changes_link: "すべてのバージョンを表示"
@@ -227,6 +228,7 @@ ja:
     localized_additional_info_with_no_name: "言語「%{locale_code}」の追加情報を設定する場合、メタデータに翻訳した名称 @name:%{locale_code} が必要です。"
     code_syncing_from_url_html: "このスクリプトは次のURLと同期するように設定されています: %{field}"
     provide_code_syncing_from_url_html: "%{site_name} は、GitHub のようなバージョン管理システム、自分のサーバー、他のユーザースクリプト公開サイトなどで公開しているスクリプトをインポートすることができます。URL を設定して、スクリプトの同期を有効化します: %{field}"
+    code_syncing_from_webhook_html: "このスクリプトのコードは、ウェブフックと同期するよう設定されています。このURLに基づいて、このスクリプトへのウェブフックの要求を一致させます: %{field}"
     sync_type_intro: "スクリプトの同期方法:"
     sync_type_1:
       name: 手動
@@ -507,11 +509,11 @@ ja:
     installing_step2_header: "2. スクリプトをインストール"
     installing_step2_caption: "ユーザースクリプトのインストールボタン"
     installing_step2_description_html: >
-        <p>%{browse_link:当サイトから探し}好きなユーザースクリプトを見つけます。人気のスクリプトの例です。</p>
+        <p>%{browse_link:当サイトから探して}気になるユーザースクリプトを見つけます。人気のスクリプトの例です。</p>
 
         %{highlighted_scripts_list}
 
-        <p>スクリプトのページにある緑のインストールボタンをクリックすると、インストールするかの確認が、スクリプト管理ツールにより表示されます。</p>
+        <p>スクリプトのページにある緑色のインストールボタンを押すと、インストールするための確認が、スクリプト管理ツールにより表示されます。</p>
     installing_step3_header: "3. ユーザースクリプトを使う"
     installing_step3_description_html: >
         <p>これでスクリプトが対象のページで動作するようになります。スクリプトを試したあと、インストール用のページに戻り作者に意見や報告を投稿することもできます。</p>
@@ -580,6 +582,7 @@ ja:
     listing_new_scripts: "スクリプトの作成日"
     listing_updated_scripts: "スクリプトの更新日"
     listing_registration_date: "登録日"
+    listing_relevance: "適合性"
     listing_title: "ユーザー一覧"
     listing_banned_filter:
       banned: "禁止中"
@@ -928,6 +931,7 @@ ja:
       description: "スクリプトのコードを検索します。大文字と小文字は区別しません。 (ワイルドカードは使用不可)"
     user_search:
       title: "ユーザーの検索"
+      description: "名前からユーザーを検索。"
   moderator_logs:
     date_column: "日付"
     moderator_column: "管理担当者"
@@ -1015,6 +1019,7 @@ ja:
     report_message: "メッセージを通報"
     result_dismissed: "この通報は管理担当者に却下されました。"
     result_upheld: "この通報は管理担当者に承認されました。"
+    result_upheld_reason_override: "この通報は管理担当者により承認されましたが、 %{reason}に分類されました。"
     result_self_upheld: "この通報のため、作者が自分でスクリプトを削除しました。"
     result_fixed: "この通報は管理担当者により作者が問題を修正したとして解決されました。"
     result_pending: "この通報は管理担当者による審査待ちです。"
@@ -1040,6 +1045,8 @@ ja:
       other: " このスクリプトには、承認または修正済みの%{count}回の通報があります。"
     reporter_temporarily_blocked: "管理担当者によって却下された最近のあなたの通報履歴が原因で、%{date} まで新たな通報はブロックされます。今後、正しく報告するために%{rules_link:%{site_name}の規則}をご確認ください。"
     reported_temporarily_blocked: "この項目に関する最近の通報が管理担当者によって却下されたことが原因で、%{date} まで新たな通報はブロックされます。"
+    already_reported_by_reporter: "これは、%{report_link:すでに通報済み}です。"
+    already_reported_same_type: "これに関して%{report_link:類似の審査待ちの通報}が既に存在します。"
   appeals:
     new:
       title: スクリプト削除への新しい抗議
@@ -1158,7 +1165,7 @@ ja:
     pending_moderator_review: この議論は、管理担当者により審査されるまで他のユーザーに表示されません。
     search_placeholder: 議論を検索
   conversations:
-    user_input_note: ユーザー名またはプロフィールのあるURLを入力
+    user_input_note: ユーザー名、またはプロフィールのURLを入力
     new_title: 新しい会話の作成
     new_link: 新しい会話の作成
     new_button: 会話の作成
@@ -1257,6 +1264,7 @@ ja:
       script_update_not_utf8: "アップロードされるテキストはUTF-8形式にしてだくさい"
       script_disallowed_require: "で許可されていない外部スクリプトが使用されています: %{code}"
       script_disallowed_resource: "@resource が正しくないです: %{code}。リソースは http や https、データ URL にしてください"
+      script_disallowed_base_64_require: "Base-64 エンコードされた @require が使用されています。"
       script_malformed_require: "不正な形式で外部のスクリプトを参照: %{code}"
       script_rate_limit: "投稿制限です。時間をおいて再投稿してください。"
       missing_include_or_match: "@match か @include キーを 1 回以上含めてください"
