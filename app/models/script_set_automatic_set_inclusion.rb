@@ -25,7 +25,7 @@ class ScriptSetAutomaticSetInclusion < ApplicationRecord
       Script.listable(script_subset)
     when 2
       if value.present?
-        Script.listable(script_subset).joins(:site_applications).where(site_applications: { text: value })
+        Script.listable(script_subset).joins(:site_applications).where(site_applications: { domain_text: value })
       else
         Script.listable(script_subset).for_all_sites
       end
