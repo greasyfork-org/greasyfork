@@ -23,13 +23,13 @@
       interval: '1m'
       class: ScriptDuplicateCheckerQueueingJob
     banned_user_delete_job:
-      interval: '1d'
+      cron: '0 0 * * * *'
       class: BannedUserDeleteJob
     discussion_read_cleanup_job:
       interval: '1h'
       class: DiscussionReadCleanupJob
     script_page_view_update_job:
-      interval: '1d'
+      cron: '0 3 * * * *'
       class: ScriptPageViewUpdateJob
     consecutive_bad_ratings_job:
       interval: '1h'
