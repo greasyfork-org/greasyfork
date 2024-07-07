@@ -24,7 +24,7 @@ module ScriptListings
 
     respond_to do |format|
       format.html do
-        should_cache_page = current_user.nil? && request.format.html? && (params.keys - %w[locale controller action site page sort]).none?
+        should_cache_page = current_user.nil? && request.format.html? && (params.keys - %w[locale controller action site page sort]).none? && params[:new] != '1'
         cache_page(should_cache_page ? "script_index/#{greasy?}/#{params.values.join('/')}" : nil) do
           status = 200
 
@@ -129,7 +129,7 @@ module ScriptListings
       # :ranker => "expr('top(user_weight)')" means that it will be sorted on the top ranking match rather than
       # an aggregate of all matches. In other words, something matching on "name" will be tied with everything
       # else matching on "name".
-      @scripts = Script.search(
+      @scripts = Script.ts_search(
         params[:q],
         with:,
         page: params[:page],
@@ -243,6 +243,31 @@ module ScriptListings
         return "#{column_prefix}#{DEFAULT_SORT} DESC, #{column_prefix}id"
       end
     end
+
+    def get_es_sort(params, set: nil, default_sort: nil)
+      # sphinx has these defined as attributes, outside of sphinx they're possibly ambiguous column names
+      sort = params[:sort] || set&.default_sort || default_sort
+      case sort
+      when 'total_installs'
+        { total_installs: :desc }
+      when 'created'
+        { created_at: :desc }
+      when 'updated'
+        { code_updated_at: :desc }
+      when 'daily_installs'
+        { daily_installs: :desc }
+      when 'ratings'
+        { fan_score: :desc }
+      when 'name'
+        { name: :asc }
+      else
+        if params[:q].presence
+          { _score: :desc }
+        else
+          { daily_installs: :desc }
+        end
+      end
+    end
   end
 
   protected
@@ -272,6 +297,10 @@ module ScriptListings
     # Search can't do script sets, otherwise we'd use it for everything.
     return load_scripts_for_index_without_sphinx unless params[:set].nil?
 
+    (params[:new] == '1') ? load_scripts_for_index_with_es : load_scripts_for_index_with_sphinx
+  end
+
+  def load_scripts_for_index_with_sphinx
     begin
       with = sphinx_options_for_request
       with[:locale] = @search_locale if @search_locale
@@ -306,7 +335,7 @@ module ScriptListings
         # :ranker => "expr('top(user_weight)')" means that it will be sorted on the top ranking match rather than
         # an aggregate of all matches. In other words, something matching on "name" will be tied with everything
         # else matching on "name".
-        @scripts = Script.search(
+        @scripts = Script.ts_search(
           params[:q],
           with:,
           page: params[:page],
@@ -329,6 +358,49 @@ module ScriptListings
       # Paginated too far.
       @scripts = Script.none.paginate(page: 1)
     end
+
+    false
+  end
+
+  def load_scripts_for_index_with_es
+    with = es_options_for_request
+
+    with[:locale] = @search_locale if @search_locale
+
+    if params[:site]
+      if params[:site] == '*'
+        with[:_not] = { site_application_id: { exists: true } }
+      else
+        site = SiteApplication.find_by(domain_text: params[:site])
+        if site.nil?
+          @scripts = Script.none.paginate(page: 1)
+        elsif site.blocked
+          render_404(site.blocked_message)
+          return true
+        else
+          with[:site_application_id] = site.id
+        end
+      end
+    end
+
+    case params[:language]
+    when 'css'
+      with[:available_as_css] = true
+    when 'all'
+      # No filter
+    else
+      with[:available_as_js] = true
+    end
+
+    @scripts = Script.search(
+      params[:q].presence || '*',
+      fields: ['name^10', 'description^5', 'author^5', 'additional_info^1'],
+      where: with,
+      order: self.class.get_es_sort(params),
+      page: page_number,
+      per_page: per_page(default: 100),
+      includes: [:localized_attributes, :users]
+    )
 
     false
   end

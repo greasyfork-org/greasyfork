@@ -276,6 +276,19 @@ class ApplicationController < ActionController::Base
     with
   end
 
+  def es_options_for_request
+    with = case script_subset
+           when :greasyfork
+             { sensitive: false }
+           when :sleazyfork
+             { sensitive: true }
+           else
+             {}
+           end
+    with[:script_type] = Script.script_types[:public]
+    with
+  end
+
   def moderators_only
     render_access_denied unless current_user&.moderator?
   end
