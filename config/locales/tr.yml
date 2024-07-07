@@ -93,12 +93,13 @@ tr:
       locale_heading: "Varsayılan Yerel Ayar"
       locale_example_html: "Bu metnin yerel ayar konumu: %{text}"
       locale_multiple_note: "Dikkat, %{meta_keys_link:bir betiğe birden fazla yerel ayar tanımlı olabilir}."
-      update_locale: "Yerel Ayarı Kaydet"
+      update_locale: "Yerel Ayarı Güncelleme"
       no_moderator_logs: "Bu betiğe moderatörler tarafından hiçbir eylemde bulunulmamış"
       compare_title: "Başka bir betikle karşılaştır"
       compare_to: "Karşılaştırmak için %{site_name} sitesindeki betik (URL):"
       compare_button: "Karşılaştır"
       compare_must_be_local_url: "Karşılaştırma betiği sadece %{site_name}üzerinde bir URL olmalıdır."
+      compare_cleaned_code_unavailable: "Karşılaştırma betiğinin temiz kodu henüz mevcut değildir."
     history_title: "%{script_name} - Versiyon geçmişi"
     history_only_code_changes_info: "Bunlar bu scriptin güncellenmiş kod versiyonlarıdır."
     history_all_changes_link: "Bütün versiyonları göster."
@@ -180,6 +181,7 @@ tr:
     listing_language_all: "Tümü"
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
+    search_failed: Sonuçlarınız yüklenirken bir sorun oluştu. Bazı arama işlevleri çalışmıyor olabilir. Sorun hakkında bilgilendirildik.
     import: "Scriptleri içe aktar"
     new: "Yazdığınız bir komut dosyasını yayınlayın"
     new_css: "Yazdığınız bir stili yayınlayın"
@@ -216,6 +218,7 @@ tr:
     warning_version_not_incremented_html: "Kodu güncelledin fakat <code>@version</code> numarasını arttırmadın. Önceden senin scriptini yüklemiş olanlar güncelleme alamayabilir."
     warning_version_missing_html: " <code>@version</code>'i belirtmediniz. <code>@version</code> kullanıcıların güncellemeleri alması için gereklidir. Bu şekilde belirtebilirsiniz: <code>// @version 1.0</code>."
     warning_version_missing_generate_automatically_html: "<code>@version</code> 'i otomatik oluştur"
+    warning_namespace_missing_html: "<code>@namespace</code> belirtmediniz. <code>@namespace</code>, kullanıcıların aynı ada sahip başka bir komut dosyası yüklemesi durumunda çakışmaları önlemeye yardımcı olur. <code>@namespace</code> sadece benzersiz bir dize olmalıdır; genellikle sizin kontrol ettiğiniz bir URL kullanılır."
     warning_namespace_missing_generate_automatically_html: "Otomatik bir <code>@namespace</code> oluştur"
     warning_namespace_changed_html: "Senin <code>@namespace</code> değişmiş.Tutarlı bir  <code>@namespace</code>  kullanıcıların scriptini güncellemek amaçlı yeniden yükleyebilmesi için gereklidir."
     warning_potentially_minified_html: "Senin script kodun küçültülmüş (kompreslenmiş) gibi görünüyor. Eğer küçültülmüş kütüphane kullanıyorsan, bunun yerine <code>@require</code> buradan %{allowed_requires_link}.  Scriptten küçültülmüş kodun çıkarılması gerekir."
@@ -474,16 +477,6 @@ tr:
         bağlıdır.</p>
     desktop_browsers:
       title: Masaüstü
-      browser_list_html: |
-          <ul>
-          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} ya da %{chrome_violentmonkey_link:Violentmonkey}</li>
-          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, ya da %{firefox_violentmonkey_link:Violentmonkey}</li>
-          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} ya da %{safari_userscripts_link:Userscripts}</li>
-          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} ya da %{edge_violentmonkey_link:Violentmonkey}</li>
-          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} ya da %{opera_violentmonkey_link:Violentmonkey}</li>
-          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
-          <li>AdGuard: (ek bir yazılım gerekmemektedir)</li>
-          </ul>
     android_browsers:
       title: Mobil (Android)
       browser_list_html: |
@@ -782,7 +775,6 @@ tr:
       description: "Script kod ara. Joker karakter olmaksızın düz metin araması, BÜYÜK/küçük harfe duyarsızdır."
     user_search:
       title: "Kullanıcı araması"
-      description: "Kullanıcıları isimleriyle arayın. Düz yazı gibi arayın."
   moderator_logs:
     date_column: "Tarih"
     moderator_column: "Moderatör"

@@ -7,22 +7,6 @@ module Sidekiq
         queue_adapter.is_a?(ActiveJob::QueueAdapters.lookup(:sidekiq))
       end
 
-      def enqueued?
-        return false unless runs_sidekiq?
-
-        currently_running.any? || currently_enqueued.any? || currently_scheduled.any? || currently_will_retry.any?
-      end
-
-      # Returns an Array of Hashes.
-      def currently_running
-        return [] unless runs_sidekiq?
-
-        Sidekiq::Workers
-          .new
-          .map { |_process_id, _thread_id, work| work['payload'] }
-          .select { |p| p['wrapped'] == name }
-      end
-
       # Returns an Array of Sidekiq::Job.
       def currently_enqueued(any_queue: false)
         return [] unless runs_sidekiq?
@@ -79,12 +63,6 @@ module Sidekiq
         currently_enqueued_with_args?(*) ||
           currently_scheduled_with_args?(*) ||
           currently_will_retry_with_args?(*)
-      end
-
-      def currently_running_with_args?(*args)
-        return false unless runs_sidekiq?
-
-        currently_running.any? { |job_hash| job_hash_matches_args?(job_hash, *args) }
       end
 
       def currently_enqueued_with_args?(*args)

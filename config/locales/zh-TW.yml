@@ -44,7 +44,7 @@ zh-TW:
     deleted_notice_with_related: "您請求的腳本已被刪除，但是這裡有一些相關的腳本。"
     deleted_notice_with_related_and_reason: "您請求的腳本因{report_link:此舉報}已被刪除，但是這裡有一些相關的腳本。"
     deleted_undelete_notice_html: "此腳本已被管理員鎖定，無法復原。原因：「<i>%{delete_reason}</i>」。"
-    deleted_locked_author_notice_html: "此腳本因 %{report_link:此舉報}已在數據庫中被管理員刪除，並且不再對其他人可見。原因為「<i>%{delete_reason}</i>」。請查看 %{code_rules_link:%{site_name}的規定}。如果您認為刪除有誤，您可以對本次刪除 %{appeal_link:提出申訴} 。請不要重新發佈這個腳本，否則您將可能會被%{site_name}封禁。"
+    deleted_locked_author_notice_html: "此腳本因 %{report_link:此舉報}已被管理員從資料庫中刪除，且無法被其他人存取。原因為「<i>%{delete_reason}</i>」。請查看 %{code_rules_link:%{site_name}的規定}。如果您認為這不應該被刪除，您可以對此 %{appeal_link:提出申訴} 。請不要重新發佈這個腳本，否則您將可能會被%{site_name}封鎖。"
     self_deleted_locked_author_notice_html: "此腳本因%{report_link:此舉報}已在存儲庫中被刪除 ，並且不再對其他人可見，如果你已經根據%{code_rules_link:%{site_name}的規定}進行更改腳本， 您可以對本次刪除 %{appeal_link:提出申訴} 。請不要重新發佈這個腳本，否則您將可能會被%{site_name}封禁。"
     deleted_author_notice: "此腳本已被刪除，其他人無法訪問。您可以從「刪除」分頁將其復原。"
     version_notice_html: "目前為 %{date} 提交的版本，檢視 %{latest_version_link}。"
@@ -683,12 +683,14 @@ zh-TW:
       functionality_header: 功能
       description: 腳本皆必須包含一段描述其功能的敘述，且腳本不得做出明顯超出該敘述的行為。使用者都應該在安裝腳本前了解它會做些什麼。
       reason: 腳本必須要有被編寫為腳本的理由。例如：只會將使用者導向到一個網站的腳本沒有必要被編寫為腳本，它可以是個連結。而在當前頁面使用其他網站服務的腳本（例如透過某些方式將其轉換）是被允許的。
-      monetization_html: 對<em>作者</em>而非使用者有利的腳本（例如追蹤、廣告及挖礦等）是被允許的，但必須標註為%{antifeature_link:2@antifeature2 meta keys}。
       code_header: 代碼
       copyright_header: 版權
       miscellaneous_header: 雜項
+      reposting_deleted: 請勿重新發布因違反規則而被刪除的腳本； 請改用申訴功能。 重新發布已刪除的腳本可能會導致禁止。
     external_scripts:
       title: "%{site_name} 對於外部程式碼的政策"
+      cdns:
+        title: 內容傳遞網路（CDNs）
     script_rewriting:
       title: "%{site_name} 會如何改寫發表的腳本"
     site_feedback_link: "回報關於 %{site_name} 的問題或想法。"
@@ -762,7 +764,6 @@ zh-TW:
       description: "搜尋腳本代碼。區分大小寫的純文字搜尋，不支持萬用字元。"
     user_search:
       title: "使用者搜尋"
-      description: "搜尋使用者名稱。純文字 LIKE 搜尋。"
   moderator_logs:
     date_column: "日期"
     moderator_column: "管理員"
@@ -776,6 +777,7 @@ zh-TW:
     consecutive_bad_ratings:
       other: "%{script_names}已連續收到不良評價。請查看您的腳本並回複評分中提出的問題。"
   reports:
+    name: "檢舉#%{id}"
     report_filed: "您的檢舉將由管理員審核。"
     new_report_title:
       user: "檢舉%{user}"
@@ -791,6 +793,7 @@ zh-TW:
       malware: "惡意軟體"
       minified: "極簡化代碼"
       external_code: "未允許的外部代碼"
+      wrong_category: "分類錯誤"
       other: "其他"
     report_intro_unauthorized_html: "%{reported_script}於%{report_date}被%{reporter}檢舉為%{other_script}的未授權副本。"
     non_functional_feedback: "請在腳本頁面的%{feedback_link:意見回饋}回報無效的腳本。"
@@ -928,6 +931,7 @@ zh-TW:
     recent:
       title: 最近的會話
       more: 查看全部會話
+    edit_message_header: 編輯訊息
   screenshots:
     requirements: "最多上傳 %{number} 張 PNG、GIF 、 JPEG 、或 WEBP 圖片，且每張圖片不得超過 %{size}。"
   common:
@@ -948,6 +952,9 @@ zh-TW:
     quote:
       prefix_html: "%{user}說："
   activerecord:
+    models:
+      script:
+        other: "%{count}個腳本"
     attributes:
       user:
         name: "使用者名稱"
@@ -1012,6 +1019,14 @@ zh-TW:
     title: 匯入腳本
     url_entry_label: 提供要導入的URL，以新行分隔。這些URL應該指向原始的JavaScript或CSS文件。
     submit: 導入
+    previously_imported:
+      unknown_date: "（未知）"
+    results:
+      title: "匯入結果"
+      success: "以下的腳本已經成功地匯入："
+      needs_description: "以下的腳本需要說明能才能匯："
+      existing: "以下的腳本已經匯入："
+      failure: "以下的腳本無法匯入："
   mailers:
     script_report:
       report_created_offender:

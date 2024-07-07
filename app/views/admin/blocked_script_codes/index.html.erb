@@ -22,6 +22,9 @@
       <tr class="pattern-row">
         <td colspan="6">
           <code><%= blocked_script_code.pattern %></code>
+          <% if blocked_script_code.case_insensitive %>
+            <b><i>(Case insensitive)</i></b>
+          <% end %>
         </td>
       </tr>
       <tr class="info-row">

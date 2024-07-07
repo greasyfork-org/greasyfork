@@ -232,6 +232,8 @@ ro:
     code_syncing_from_url_html: "Codul scriptului este setat să sincronizeze din: %{field}"
     provide_code_syncing_from_url_html: "%{site_name} poate importa scripturi care sunt deja gazduite în altă parte, de exemplu un sistem de controlare al versiunilor (cum ar fi GitHub), server-ul tau sau alt site care gazduiește scripturi de utilizator. Pentru a activa sincronizarea, furnizeaza-ne un URL: %{field}"
     sync_type_intro: "Script-ul va fi sincronizat:"
+    sync_type_1:
+      name: Manual
     sync_failed_info_html: "Ultima sincronizare incercată a fost pe data de %{date}, care a rezultat in eroarea %{error}."
     sync_success_info_html: "Ultima sincronizare cu succes a avut loc la %{date}."
     sync_never_succeeded: "Sincronizarea nu a fost niciodată completată cu succes."
@@ -637,7 +639,6 @@ ro:
       functionality_header: Funcționalitate
       description: Scripturile trebuie să includă o descriere cu privire la ce anume face scriptul și să nu facă lucruri ce nu sunt rezonabile și nu sunt trecute în descriere. Utilizatorii trebuie să știe ce face un script înainte de a-l instala.
       reason: Scripturile trebuie să aibă un motiv pentru care exista. De exemplu, un script care doar redirecționează utilizatorii catre un site nu trebuie să fie un script; poate fi un link. Scripturile care folosesc un serviciu web pentru a face un lucru pe pagina curentă (de ex să îl convertească într-un fel) sunt permise.
-      monetization_html: Scripturile care conțin caracteristici în beneficiul <em>autorului</em> și nu a utilizatorului (cum ar fi urmărire, reclame sau mineri) sunt permise, dar acestea trebuie să fie precizate cu %{antifeature_link:chei meta <code>@anticaracteristici</code>}.
       code_header: Cod
       libraries_html: Librăriile pe care un script le folosește nu ar trebui să fie <code>@cere</code>-d, doar dacă este un motiv tehnic valid pentru a nu o face. În cazul în care este inclusă o librărie pe linie, trebuie să includă informații cum ar fi sursa librăriei (de ex un comentariu care indică URL-ul și/sau un nume sau o versiune).
       updates: Scripturile nu trebuie să caute actualizări la o rată mai mare decât o dată pe zi. Ține minte că majoritatea utilizatorilor folosesc un manager de scripturi și li se vor face actualizări automat, deci să se facă un script nu este necesar. Scripturile nu ar trebui să injecteze dinamic alt script găzduit de pe %{site_name} în pagină, pentru că asta sare peste stocarea in managerul de scripturi.
@@ -722,7 +723,6 @@ ro:
       description: "Caută cod de scripturi. Nu contează dacă sunt litere mari sau mici, text normal fara caractere wildcard."
     user_search:
       title: "Caută utilizatori"
-      description: "Caută utilizatori după nume."
   moderator_logs:
     date_column: "Dată"
     moderator_column: "Moderator"

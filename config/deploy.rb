@@ -1,7 +1,7 @@
 set :application, 'greasyfork'
-set :repo_url, 'https://github.com/JasonBarnabe/greasyfork.git'
+set :repo_url, 'https://github.com/greasyfork-org/greasyfork.git'
 set :deploy_to, '/www/greasyfork'
-set :branch, ENV['BRANCH'] if ENV['BRANCH']
+set :branch, ENV['BRANCH'] || 'main'
 set :rbenv_type, :user
 set :rbenv_ruby, File.read('.ruby-version').strip
 set :sidekiq_roles, %w[worker]

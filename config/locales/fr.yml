@@ -101,6 +101,7 @@ fr:
       compare_to: "Le script %{site_name} est comparable à (URL)"
       compare_button: "Comparer"
       compare_must_be_local_url: "Le script de comparaison doit être une URL de %{site_name}."
+      compare_cleaned_code_unavailable: "Le code propre du script de comparaison n'est pas encore disponible."
     history_title: "%{script_name} - Historique des versions"
     history_only_code_changes_info: "Voici les versions de ce script où le code a été modifié."
     history_all_changes_link: "Voir toutes les versions."
@@ -234,6 +235,7 @@ fr:
     localized_additional_info_with_no_name: "Une information additionnelle a été spécifiée pour la région '%{locale_code}', mais pas de @name:%{locale_code} n'est présent dans le script."
     code_syncing_from_url_html: "Le code de ce script est configuré pour se synchroniser depuis : %{field}"
     provide_code_syncing_from_url_html: "%{site_name} peut importer des scripts déjà hébergés autre part, par exemple depuis un gestionnaire de version (comme Github), votre propre serveur, ou un autre site d'hébergement de scripts utilisateur. Pour activer la synchronisation de votre script, spécifiez une URL : %{field}"
+    code_syncing_from_webhook_html: "Le code de ce script est configuré pour se synchroniser avec un webhook. Nous ferons correspondre les requêtes du webhook à ce script en fonction de cette URL :%{field}"
     sync_type_intro: "Le script va être synchronisé :"
     sync_type_1:
       name: Manuel
@@ -493,12 +495,12 @@ fr:
       browser_list_html: |
           <ul>
           <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} ou %{chrome_violentmonkey_link:Violentmonkey}</li>
-          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, ou %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey} ou %{firefox_violentmonkey_link:Violentmonkey}</li>
           <li>Safari: %{safari_tampermonkey_link:Tampermonkey} ou %{safari_userscripts_link:Userscripts}</li>
           <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} ou %{edge_violentmonkey_link:Violentmonkey}</li>
-          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} ou %{opera_violentmonkey_link:Violentmonkey}</li>
+          <li>Opéra: %{opera_tampermonkey_link:Tampermonkey} ou %{opera_violentmonkey_link:Violentmonkey}</li>
           <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
-          <li>AdGuard: (aucun logiciel supplémentaire requis)</li>
+          <li>%{adguard_link:AdGuard}: (aucun logiciel supplémentaire requis)</li>
           </ul>
     android_browsers:
       title: Mobile (Android)
@@ -764,7 +766,7 @@ fr:
       functionality_header: Fonctionnalité
       description: Les scripts doivent inclure une description de ce qu'ils font et ne doivent pas faire des choses de manière déraisonnable en dehors de cette description. Les utilisateurs doivent savoir ce qu'il fera avant de l'installer.
       reason: Les scripts doivent avoir une raison d'être un script. Par exemple, un script qui dirige simplement un utilisateur vers un site Web n'a pas besoin d'être un script; ça pourrait être un lien. Les scripts qui utilisent un service Web pour effectuer une action sur la page actuelle (par exemple pour la convertir d'une manière ou d'une autre) sont autorisés.
-      monetization_html: Les scripts qui contiennent des fonctionnalités pour le bénéfice de <em>author</em> plutôt que pour l'utilisateur (tels que le suivi, les publicités et les mineurs) sont autorisés, mais ils doivent être décrite avec les méta clés  %{antifeature_link:<code>@antifeature</code>}.
+      monetization_html: Les scripts qui contiennent des fonctionnalités au bénéfice de <em>auteur</em> plutôt que de l'utilisateur (comme le suivi, les publicités et les mineurs) sont autorisés, mais ceux-ci doivent être divulgués avec %{antifeature_link:<code>@antifeature</code> méta-clés}. Les scripts ne doivent pas ajouter des <code>@include</code> ou <code>@match</code> dans le seul but d'ajouter des antifeatures.
       code_header: Code
       obfuscation: Le code posté sur %{site_name} ne doit pas être incompréhensible ou minimisé. Les utilisateurs doivent avoir la possibilité d'inspecter et de comprendre un script avant de l'installer. Si le script est fourni par un outil tel que webpack, il doit être généré sous une forme non-minifiée, avec les espaces et les noms de variables conservés.
       size_html: |
@@ -781,12 +783,15 @@ fr:
       licensing_html: Votre script doit respecter les droits d'auteur des autres. Cela inclut le code lui-même et toutes les ressources (par exemple les images) qu'il utilise. Si vous avez l'intention d'utiliser le contenu de quelqu'un d'autre, respectez ses conditions de licence ou obtenez son autorisation avant de le faire. Les licences sur les scripts sont spécifiées par la clé de métadonnée <code>@license</code>, et pour savoir ce que vous pouvez ou non faire utiliser %{tldr_legal_link:tldrlegal.com}.
       reposts: Même dans les cas ne violant pas la règle de copyright, les repositionnements de scripts qui sont déjà sur %{site_name} ne sont pas autorisés à moins qu'ils ne s'améliorent par rapport à l'original.
       miscellaneous_header: Divers
-      included_sites_html: Les scripts ne doivent pas inclure <code>@include</code>s ou <code>@match</code>es pour les sites sur lesquels ils ne fournissent pas de fonctionnalités. Les scripts ne doivent pas ajouter <code>@include</code>s ou <code>@match</code>es dans le seul but d'ajouter des antifeatures/antifonctionnalités.
       keywords: Les scripts ne doivent pas contenir de mots clés ou/et mentionner de sites qui sont sans rapport dans le but d'améliorer leur placement de la recherche.
       adult_content_rule: Les scripts incluant du contenu pour adulte ou sont destinés à des sites avec du contenu pour adulte doivent être marqués comme tels pour permettre aux autres utilisateurs de les voir ou non.
       reposting_deleted: Ne republiez pas les scripts qui ont été supprimés en raison de violations des règles; utilisez plutôt la fonction faire appel. Republier des scripts supprimés peut entraîner un ban.
       advertising_in_description: Les auteurs de scripts ne peuvent pas placer de publicité sur les pages de Greasy Fork, par exemple dans la description d'un script. La promotion de la page d'accueil de l'auteur du script, du référentiel de code, de Discord, de WeChat, etc. est autorisée.
       reporting: Si vous remarquez un script qui ne respecte pas ces paramètres, veuillez le signaler en accédant au lien Commentaires pour ce script et choisissez l'option "Signaler le script".
+      excessive_updates: Les auteurs de scripts ne peuvent pas mettre à jour leurs scripts dans le seul but est de se classer excessivement plus haut dans la liste des scripts.
+      non_functional_includes_html: Les scripts ne peuvent pas inclure <code>@include</code> ou <code>@match</code> pour les sites sur lesquels ils ne fournissent pas de fonctionnalités.
+      content_language: Les noms, descriptions et autres contenus des scripts doivent être marqués avec la langue spécifier.
+      listing_header: Listées
     external_scripts:
       title: "Politique de %{site_name} concernant les scripts externes"
       intro_html: |
@@ -995,7 +1000,6 @@ fr:
       description: "Rechercher le code de script. Il s'agit d'une case-insensible, la recherche en texte brut sans caractères génériques."
     user_search:
       title: "Recherche d'utilisateur"
-      description: "Rechercher par nom d'utilisateurs. Recherche simple LIKE."
   moderator_logs:
     date_column: "Date"
     moderator_column: "Moderateur"
@@ -1090,6 +1094,7 @@ fr:
     report_message: "Signaler un message"
     result_dismissed: "Ce rapport a été rejeté par un modérateur."
     result_upheld: "signalerCe rapport a été approuver par un modérateur."
+    result_upheld_reason_override: "Ce rapport a été confirmé par un modérateur, mais le modérateur l'a marqué comme %{reason}."
     result_self_upheld: "L'auteur a supprimé son propre script à la suite de ce rapport."
     result_fixed: "Ce rapport a été résolu par un modérateur car ils pensent que l'auteur a résolu le problème."
     result_pending: "Ce rapport est en attente d'examen par un modérateur."
@@ -1115,6 +1120,10 @@ fr:
       one: "Ce script a fait l'objet d' %{count} rapport précédemment confirmé ou corrigé."
       many: "Ce script a déjà fait l'objet de %{count} rapports confirmés ou corrigés."
       other: "Ce script a déjà fait l'objet de %{count} rapports confirmés ou corrigés."
+    reporter_temporarily_blocked: "FRANÇAIS\nEn raison de votre historique récent de rapports rejetés par un modérateur, vous ne pouvez pas soumettre de nouveaux rapports jusqu'au %{date}. Veuillez consulter les règles de %{rules_link:%{site_name}} pour vous assurer que les futurs rapports sont exacts."
+    reported_temporarily_blocked: "En raison de rapports récents sur cet article ayant été rejetés par un modérateur, les autres rapports le concernant sont bloqués jusqu'au %{date}."
+    already_reported_by_reporter: "Vous avez déjà %{report_link:récemment signalé} cet élément."
+    already_reported_same_type: "Il existe déjà un %{report_link:rapport similaire en attente} sur cet élément."
   appeals:
     new:
       title: Appel de suppression de nouveau script
@@ -1231,6 +1240,7 @@ fr:
     no_discussions: Aucune discussion trouvée.
     mark_all_read: Tout marquer lu
     pending_moderator_review: Cette discussion n'est pas accessible à d'autres utilisateurs tant qu'un modérateur ne l'a pas autorisé.
+    search_placeholder: Rechercher des discussions
   conversations:
     user_input_note: Saisissez le nom de l'utilisateur ou l'URL de son profil.
     new_title: Créer une nouvelle conversation
@@ -1254,6 +1264,7 @@ fr:
       more: Voir toutes les conversations
     edit_message_header: Modifier le message
     update_message_submit: Mettre à jour le message
+    moderator_notice: Si vous souhaitez signaler une violation des règles de %{site_name}, utilisez le lien Signaler sur ce script, cet utilisateur ou ce commentaire. Les modérateurs ne peuvent pas supprimer le contenu basé sur les rapports via des messages directs.
   screenshots:
     requirements: "Maximum %{number} images PNG, GIF, JPEG ou WebP, inférieures à %{size} chacune."
   common:
@@ -1338,6 +1349,7 @@ fr:
       script_update_not_utf8: "téléchargé sur le serveur doit être du texte encodé en UTF-8"
       script_disallowed_require: "utilise un script externe non approuvé: %{code}"
       script_disallowed_resource: "Utilisée une ressource invalide t'elle que @resource: %{code}. Les ressources doivent être t'elles que: http, https ou de type data URLs."
+      script_disallowed_base_64_require: "utilise un code en base-64 dans @require"
       script_malformed_require: "utilisation d'une référence de script externe mal formuler: %{code}"
       script_rate_limit: "Vous avez atteint la limite d'envois. Essayez plus tard."
       missing_include_or_match: "doit inclure au moins une clé @match ou @include"

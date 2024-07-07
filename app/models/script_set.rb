@@ -13,7 +13,7 @@ class ScriptSet < ApplicationRecord
   strip_attributes
 
   # Parents is used to prevent infinite recursion.
-  def scripts(script_subset, parents = [])
+  def scripts(script_subset, parents = [], as_ids: false)
     r = Set.new
 
     # favorites can only directly include scripts
@@ -28,14 +28,20 @@ class ScriptSet < ApplicationRecord
     parents = parents.dup
     parents << self
 
-    child_set_inclusions.map { |set| set.scripts(script_subset, parents) }.each { |s| r.merge(s) }
-    child_automatic_set_inclusions.map { |set| set.scripts(script_subset) }.each { |s| r.merge(s) }
-    r.merge(child_script_inclusions)
-    child_set_exclusions.map { |set| set.scripts(script_subset, parents) }.each { |s| r.subtract(s) }
-    child_automatic_set_exclusions.map { |set| set.scripts(script_subset) }.each { |s| r.subtract(s) }
-    r.subtract(child_script_exclusions)
+    script_transformer = lambda { |scope|
+      next scope unless as_ids
 
-    return r
+      scope.is_a?(Array) ? scope.map(&:id) : scope.pluck(:id)
+    }
+
+    child_set_inclusions.map { |set| set.scripts(script_subset, parents, as_ids:) }.map { |scripts| script_transformer.call(scripts) }.each { |s| r.merge(s) }
+    child_automatic_set_inclusions.map { |set| set.scripts(script_subset) }.map { |scripts| script_transformer.call(scripts) }.each { |s| r.merge(s) }
+    r.merge(script_transformer.call(child_script_inclusions))
+    child_set_exclusions.map { |set| set.scripts(script_subset, parents, as_ids:) }.map { |scripts| script_transformer.call(scripts) }.each { |s| r.subtract(s) }
+    child_automatic_set_exclusions.map { |set| set.scripts(script_subset) }.map { |scripts| script_transformer.call(scripts) }.each { |s| r.subtract(s) }
+    r.subtract(script_transformer.call(child_script_exclusions))
+
+    r
   end
 
   def child_set_inclusions

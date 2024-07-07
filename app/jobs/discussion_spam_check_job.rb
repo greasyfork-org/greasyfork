@@ -3,20 +3,35 @@ class DiscussionSpamCheckJob < ApplicationJob
 
   def perform(discussion, ip, user_agent, referrer)
     return if discussion.soft_deleted?
-
     return if pattern_check(discussion)
+    return if repeat_check(discussion)
 
     check_with_akismet(discussion, ip, user_agent, referrer)
   end
 
   def pattern_check(discussion)
-    # WeChat spam
-    # return false unless discussion.first_comment.text.match?(/\p{Han}/) && discussion.first_comment.text.match?(/[0-9]{5,}\z/)
-
-    return false unless discussion.first_comment.text.include?('yxd02040608') || discussion.first_comment.text.include?('zrnq')
+    return unless CommentSpamCheckJob.text_is_spammy?(discussion.first_comment.text)
 
     discussion.update(review_reason: Discussion::REVIEW_REASON_RAINMAN)
     Report.create!(item: discussion, auto_reporter: 'rainman', reason: Report::REASON_SPAM)
+  end
+
+  def repeat_check(discussion)
+    previous_comment = CommentSpamCheckJob.find_previous_comment(discussion.first_comment)
+    if previous_comment
+      previous_discussion = previous_comment.discussion
+      previous_report = previous_discussion.reports.upheld.take || previous_comment.reports.upheld.take
+      return Report.create!(item: discussion, auto_reporter: 'rainman', reason: previous_report&.reason || Report::REASON_SPAM, explanation: "Repost of#{' deleted' if previous_discussion.soft_deleted?} comment: #{previous_comment.url}. #{"Previous report: #{previous_report.url}" if previous_report}")
+    end
+
+    previous_comment = CommentSpamCheckJob.find_previous_comment_with_link(discussion.first_comment)
+    if previous_comment
+      previous_discussion = previous_comment.discussion
+      previous_report = previous_discussion.reports.upheld.take || previous_comment.reports.upheld.take
+      return Report.create!(item: discussion, auto_reporter: 'rainman', reason: previous_report&.reason || Report::REASON_SPAM, explanation: "Repost of#{' deleted' if previous_discussion.soft_deleted?} comment with same link: #{previous_comment.url}. #{"Previous report: #{previous_report.url}" if previous_report}")
+    end
+
+    nil
   end
 
   def check_with_akismet(discussion, ip, user_agent, referrer)

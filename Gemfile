@@ -1,11 +1,12 @@
 source 'https://rubygems.org'
 
-ruby '3.3.0'
+ruby '3.3.3'
 
 gem 'bootsnap'
+gem 'csv'
 gem 'daemons'
-gem 'devise', git: 'https://github.com/heartcombo/devise.git', ref: 'e2242a95f3bb2e68ec0e9a064238ff7af6429545'
-gem 'devise-i18n', git: 'https://github.com/tigrish/devise-i18n.git'
+gem 'devise'
+gem 'devise-i18n'
 gem 'diffy'
 gem 'google-analytics-data'
 gem 'i18n'
@@ -20,15 +21,15 @@ gem 'rails-i18n'
 gem 'redcarpet'
 gem 'regexp_parser'
 gem 'sanitize'
-gem 'sentry-rails'
-gem 'sentry-ruby'
 # Need redis 6.2+ for sidekiq 7
 gem 'sidekiq', '< 7'
+gem 'sidekiq-scheduler'
+gem 'sidekiq-unique-jobs'
 gem 'sidekiq-worker-killer'
 gem 'strip_attributes'
 # https://github.com/pat/thinking-sphinx/pull/1252
-gem 'thinking-sphinx', git: 'https://github.com/jdelStrother/thinking-sphinx.git', branch: 'logsubscriber-deprecations'
-gem 'ts-sidekiq-delta'
+gem 'thinking-sphinx', git: 'https://github.com/pat/thinking-sphinx.git'
+gem 'ts-sidekiq-delta', git: 'https://github.com/JasonBarnabe/ts-sidekiq-delta.git', branch: 'ttl'
 gem 'user_agent_parser'
 gem 'vite_rails'
 gem 'will_paginate'
@@ -39,6 +40,11 @@ gem 'redis'
 
 gem 'elasticsearch'
 gem 'searchkick'
+
+gem 'stackprof'
+
+gem 'sentry-rails'
+gem 'sentry-ruby'
 
 gem 'akismet'
 gem 'detect_language'

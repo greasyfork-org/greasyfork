@@ -27,7 +27,6 @@ he:
     applies_to_link_title:
       one: "ראה  %{count} סקריפטים אחרים בשביל %{site}"
       two: "ראה  %{count} סקריפטים אחרים בשביל %{site}"
-      many: "ראה  %{count} סקריפטים אחרים בשביל %{site}"
       other: "ראה  %{count} סקריפטים אחרים בשביל %{site}"
     applies_to_all: "כל האתרים"
     install: "התקן את הסקריפט"
@@ -299,7 +298,6 @@ he:
     calculated_list_more:
       one: "ו-%{count} נוסף..."
       two: "ו-%{count} נוספים..."
-      many: "ועוד %{count} נוספים..."
       other: "ועוד %{count} נוספים..."
     already_included: "'%{name}' כבר כלול."
     could_not_parse_script: "לא היה ניתן לפענח את הסקריפט '%{value}'"
@@ -397,7 +395,6 @@ he:
     list_display_html:
       one: "%{user_link} - סקריפט %{count}"
       two: "%{user_link} - %{count} סקריפטים"
-      many: "%{user_link} - %{count} סקריפטים"
       other: "%{user_link} - %{count} סקריפטים"
     listing_number_of_scripts: "מספר הסקריפטים"
     listing_new_scripts: "סקריפטים חדשים"
@@ -412,12 +409,10 @@ he:
     greasy_fork_scripts_link:
       one: "ל-%{user_name} יש גם סקריפט %{count} ב-GreasyFork"
       two: "ל-%{user_name} יש גם %{count} סקריפטים ב-GreasyFork"
-      many: "ל-%{user_name} יש גם %{count} סקריפטים ב-GreasyFork"
       other: "ל-%{user_name} יש גם %{count} סקריפטים ב-GreasyFork"
     update_sync_warning:
       one: "מוגדר כרגע ששם המשתמש וכתובת המייל שלך יסתנכרנו כאשר אתה מתחבר באמצעות %{providers}. %{edit_sign_in_link:ערוך את שיטות ההתחברות שלך כדי להסיר סנכרון} אם ברצונך לקבוע שם משתמש או מייל אחר לצמיתות."
       two: "מוגדר כרגע ששם המשתמש וכתובת המייל שלך יסתנכרנו כאשר אתה מתחבר באמצעות %{providers}. %{edit_sign_in_link:ערוך את שיטות ההתחברות שלך כדי להסיר סנכרון} אם ברצונך לקבוע שם משתמש או מייל אחר לצמיתות."
-      many: "מוגדר כרגע ששם המשתמש וכתובת המייל שלך יסתנכרנו כאשר אתה מתחבר באמצעות %{providers}. %{edit_sign_in_link:ערוך את שיטות ההתחברות שלך כדי להסיר סנכרון} אם ברצונך לקבוע שם משתמש או מייל אחר לצמיתות."
       other: "מוגדר כרגע ששם המשתמש וכתובת המייל שלך יסתנכרנו כאשר אתה מתחבר באמצעות %{providers}. %{edit_sign_in_link:ערוך את שיטות ההתחברות שלך כדי להסיר סנכרון} אם ברצונך לקבוע שם משתמש או מייל אחר לצמיתות."
     delete_link: "מחק את המשתמש שלך"
     delete:
@@ -426,17 +421,14 @@ he:
       identities_effect:
         one: "התחברות דרך %{identities} תגרור יצירת משתמש חדש."
         two: "התחברות דרך %{identities} תגרור יצירת משתמש חדש."
-        many: "התחברות דרך %{identities} תגרור יצירת משתמש חדש."
         other: "התחברות דרך %{identities} תגרור יצירת משתמש חדש."
       scripts_effect:
         one: "הסקריפט ה-%{count} שלך ימחק."
         two: "%{count} הסקריפטים שלך ימחקו."
-        many: "%{count} הסקריפטים שלך ימחקו. "
         other: "%{count} הסקריפטים שלך ימחקו."
       script_sets_effect:
         one: "סט הסקריפטים ה-%{count} שלך ימחק."
         two: "%{count} הסקריפטים שלך ימחקו."
-        many: "%{count} סטי הסקריפטים שלך ימחקו."
         other: "%{count} סטי הסקריפטים שלך ימחקו."
       forum_effect: "התרומות שלך בפורום ישארו, אבל שם המשתמש המקושר ישונה ל-\"%{user_name}\"."
       email_confirmation: "לפני מחיקת המשתמש שלך, %{site_name} ישלח מייל ל-%{email} כדי לאשר את הבקשה."
@@ -517,7 +509,6 @@ he:
       description: "חפש בקוד הסקריפט. החיפוש לא רגיש לאותיות גדולות, זהו חיפוש טקסט פשוט ללא תווים כלליים."
     user_search:
       title: "חיפוש משתמש"
-      description: "חפש משתמשים לפי שם. זהו חיפוש טקסט פשוט."
   moderator_logs:
     date_column: "תאריך"
     moderator_column: "מנהל"

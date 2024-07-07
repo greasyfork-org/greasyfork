@@ -6,7 +6,7 @@
 
   <div class="form-control">
     <%= f.label :block_type %>
-    <%= f.select :block_type, [SpammyEmailDomain::BLOCK_TYPE_CONFIRMATION, SpammyEmailDomain::BLOCK_TYPE_SCRIPT, SpammyEmailDomain::BLOCK_TYPE_REGISTER] %>
+    <%= f.select :block_type, SpammyEmailDomain::BLOCK_TYPE_DESCRIPTIONS.invert.to_a %>
   </div>
 
   <%= f.submit %>

@@ -119,7 +119,7 @@ class CssToJsConverter
     end
 
     def only_comments?(css)
-      %r{\A(\s*/\*.*?\*/\s*)*\z}m.match?(css)
+      css.gsub(%r{/\*.*?\*/}m, '').strip.empty?
     end
 
     def only_global_directives?(css)

@@ -31,7 +31,7 @@ class SessionsController < Devise::SessionsController
                       end
       return root_path
     end
-    return super(resource)
+    return super
   end
 
   def omniauth_callback
@@ -188,6 +188,6 @@ class SessionsController < Devise::SessionsController
     # don't redirect to a failure path
     return nil if v.nil? || v.include?('failure')
 
-    return super(param_name)
+    return super
   end
 end

@@ -1,9 +1,11 @@
-class ScriptSyncQueueingJob < ApplicationJob
-  queue_as :low
+class ScriptSyncQueueingJob
+  include Sidekiq::Job
+
+  sidekiq_options queue: 'background', lock: :until_executed, on_conflict: :log, lock_ttl: 1.hour.to_i
 
   def perform
     Script
-      .where(script_sync_type_id: 2)
+      .where(sync_type: 'automatic')
       .where('last_attempted_sync_date < DATE_SUB(UTC_TIMESTAMP(), INTERVAL 12 HOUR)')
       .order(:last_attempted_sync_date)
       .limit(1000)

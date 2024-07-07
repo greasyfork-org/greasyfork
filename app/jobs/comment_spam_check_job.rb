@@ -12,16 +12,42 @@ class CommentSpamCheckJob < ApplicationJob
   end
 
   def pattern_check(comment)
-    return false unless comment.text.include?('gmkm.zrnq.one')
+    return unless self.class.text_is_spammy?(comment.text)
 
-    discussion.update(review_reason: Discussion::REVIEW_REASON_RAINMAN)
-    Report.create!(item: discussion, auto_reporter: 'rainman', reason: Report::REASON_SPAM)
+    Report.create!(item: comment, auto_reporter: 'rainman', reason: Report::REASON_SPAM)
   end
 
   def repeat_check(comment)
-    return false unless comment.poster.created_at > 7.days.ago
+    previous_comment = self.class.find_previous_comment(comment)
+    if previous_comment
+      previous_report = previous_comment.reports.upheld.take
+      return Report.create!(item: comment, auto_reporter: 'rainman', reason: previous_report&.reason || Report::REASON_SPAM, explanation: "Repost of#{' deleted' if previous_comment.soft_deleted?} comment: #{previous_comment.url}. #{"Previous report: #{previous_report.url}" if previous_report}")
+    end
 
-    Report.create!(item: comment, auto_reporter: 'rainman', reason: Report::REASON_SPAM) if comment.poster.comments.where('id < ?', comment.id).where(text: comment.text).any?
+    previous_comment = self.class.find_previous_comment_with_link(comment)
+    if previous_comment
+      previous_report = previous_comment.reports.upheld.take
+      return Report.create!(item: comment, auto_reporter: 'rainman', reason: previous_report&.reason || Report::REASON_SPAM, explanation: "Repost of#{' deleted' if previous_comment.soft_deleted?} comment with same link: #{previous_comment.url}. #{"Previous report: #{previous_report.url}" if previous_report}")
+    end
+
+    nil
+  end
+
+  def self.find_previous_comment(comment)
+    return nil unless comment.poster.created_at > 7.days.ago
+
+    comment.poster.comments.where(id: ...comment.id).find_by(text: comment.text) || Comment.where(id: ...comment.id).where(text: comment.text).find_by(deleted_at: 1.month.ago..)
+  end
+
+  def self.find_previous_comment_with_link(comment)
+    return nil unless comment.poster.created_at > 7.days.ago
+
+    links = Nokogiri::HTML(ApplicationController.helpers.format_user_text(comment.text, comment.text_markup)).css('a[href]').pluck('href').uniq.reject { |href| href.starts_with?('https://greasyfork.org/') || href.starts_with?('https://sleazyfork.org/') }
+    return unless links.any?
+
+    text_condition = links.map { |_link| 'text LIKE ?' }.join(' OR ')
+    condition_params = links.map { |link| "%#{Comment.sanitize_sql_like(link)}%" }
+    comment.poster.comments.where(id: ...comment.id).find_by(text_condition, *condition_params) || Comment.where(id: ...comment.id).where(text_condition, *condition_params).find_by(deleted_at: 1.month.ago..)
   end
 
   def check_with_akismet(comment, ip, user_agent, referrer)
@@ -52,5 +78,16 @@ class CommentSpamCheckJob < ApplicationJob
 
     Report.create!(item: comment, auto_reporter: 'akismet', reason: Report::REASON_SPAM)
     comment.update(review_reason: Discussion::REVIEW_REASON_AKISMET)
+  end
+
+  def self.text_is_spammy?(text)
+    [
+      'yxd02040608',
+      'zrnq',
+      'gmkm.zrnq.one',
+      '🐧',
+      'CBD ',
+      'Keto ',
+    ].any? { |s| text.include?(s) }
   end
 end

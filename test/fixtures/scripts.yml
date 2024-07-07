@@ -38,7 +38,7 @@ url_sync_script:
   id: 7
   default_name: A Test!
   code_updated_at: 2000-01-01
-  script_sync_type_id: 1
+  sync_type: manual
   last_attempted_sync_date: 2000-01-01
   last_successful_sync_date: 2000-01-01
   sync_identifier: |
@@ -57,7 +57,7 @@ url_sync_script_unchanged:
   id: 8
   default_name: A Test!
   code_updated_at: 2000-01-01
-  script_sync_type_id: 1
+  sync_type: manual
   last_attempted_sync_date: 2000-01-01
   last_successful_sync_date: 2000-01-01
   sync_identifier: |
@@ -76,7 +76,7 @@ url_sync_script_new_has_no_description:
   id: 9
   default_name: A Test!
   code_updated_at: 2000-01-01
-  script_sync_type_id: 1
+  sync_type: manual
   last_attempted_sync_date: 2000-01-01
   last_successful_sync_date: 2000-01-01
   sync_identifier: |-
@@ -94,7 +94,7 @@ url_sync_script_invalid:
   id: 10
   default_name: A Test!
   code_updated_at: 2000-01-01
-  script_sync_type_id: 1
+  sync_type: manual
   last_attempted_sync_date: 2000-01-01
   last_successful_sync_date: 2000-01-01
   sync_identifier: |
@@ -125,7 +125,7 @@ synced_and_localized:
   id: 14
   default_name: A Test!
   code_updated_at: 2000-01-01
-  script_sync_type_id: 1
+  sync_type: manual
   sync_identifier: |
     // ==UserScript==
     // @name		A Test!
@@ -144,7 +144,7 @@ http_sync:
   id: 15
   default_name: A Test!
   code_updated_at: 2000-01-01
-  script_sync_type_id: 1
+  sync_type: manual
   sync_identifier: http://www.example.com/sync
   version: 1
 
@@ -158,7 +158,7 @@ url_sync_script_with_screenshots:
   id: 17
   default_name: A Test!
   code_updated_at: 2000-01-01
-  script_sync_type_id: 1
+  sync_type: manual
   last_attempted_sync_date: 2000-01-01
   last_successful_sync_date: 2000-01-01
   sync_identifier: |
@@ -221,3 +221,9 @@ style_antifeatures:
   version: 1
   language: css
   css_convertible_to_js: true
+
+example_com_application:
+  id: 25
+  default_name: A Test!
+  code_updated_at: 2014-01-01
+  version: 1

@@ -1,4 +1,6 @@
 require 'sidekiq/web'
+require 'sidekiq-scheduler/web'
+require 'sidekiq_unique_jobs/web'
 
 Rails.application.routes.draw do
   authenticate :user, ->(user) { user.administrator? } do
@@ -159,7 +161,7 @@ Rails.application.routes.draw do
     get 'script_versions/confirm_new_author', to: 'script_versions#confirm_new_author', as: 'script_version_confirm_new_author'
     resources :users, only: :show do
       post 'webhook'
-      resources :script_sets, only: [:create, :new, :edit, :update, :destroy], path: 'sets'
+      resources :script_sets, only: [:create, :new, :edit, :update, :destroy, :index], path: 'sets'
       get 'ban', to: 'users#ban', as: 'ban'
       post 'ban', to: 'users#do_ban', as: 'do_ban'
       get 'unban', to: 'users#unban', as: 'unban'
@@ -195,7 +197,6 @@ Rails.application.routes.draw do
 
     get 'import', to: 'import#index', as: 'import_start'
     post 'import/add', to: 'import#add', as: 'import_add'
-    get 'import/url', to: 'import#url', as: 'import_url'
 
     get 'help', to: 'help#index', as: 'help'
     get 'help/allowed-markup', to: 'help#allowed_markup', as: 'help_allowed_markup'
@@ -265,6 +266,8 @@ Rails.application.routes.draw do
   get '/forum/discussion/:id' => 'discussions#old_redirect'
   get '/forum/discussion/comment/:id' => 'comments#old_redirect'
   get '/forum/discussion/:id/:slug' => 'discussions#old_redirect'
+
+  post '/unsubscribe/:token' => 'unsubscribe#process_one_click', as: :one_click_unsubscribe
 
   get '404', to: 'home#routing_error'
 end

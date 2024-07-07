@@ -132,6 +132,7 @@ vi:
     derivatives_script_html: "%{script}bởi %{user}, bản quyền: %{license}%{diff_link:[Diff]}"
     derivatives_exact_copies_heading: "Những phiên bản sao chép hoàn toàn"
     derivatives_exact_copies_list_intro: "Scripts dưới đây có mã lệnh y hệt của bạn:"
+    derivatives_exact_copies_item_html: "%{script_link} bởi %{author_links} - phiên bản: %{version_list}"
     derivatives_exact_copes_none: "Không có script nào ở%{site_name} có mã lệnh y hệt script này."
     derivatives_similar_heading: "Những script tựa tựa"
     derivatives_similar_info: "Chúng tôi luôn kiểm tra định kỳ phiên bản mới nhất của tất cả các tập lệnh khác để tìm những tập lệnh tương tự nhất với tập lệnh do bạn tạo nên. Chúng tôi cũng kiểm tra bất cứ khi nào bạn đăng bản cập nhật cho tập lệnh của mình và theo yêu cầu của bạn."
@@ -143,6 +144,7 @@ vi:
     derivatives_similar_none: "Không có script nào giống cái bạn cần"
     derivatives_similar_last_check_html: "Chúng tôi đã tìm kiếm những script tương tự cho bạn %{date}"
     derivatives_similar_last_check_soon: "Chúng tôi sẽ tìm kiếm những script tương tự cho bạn ngay thôi."
+    derivatives_similar_last_check_again_soon_html: "Lần cuối chúng tôi kiểm tra các tập lệnh tương tự của bạn là vào ngày %{date}. Chúng tôi sẽ kiểm tra lại ngay sau."
     derivatives_similar_check_now: "Kiểm tra lại ngay bây giờ"
     derivatives_similiar_queued: Tìm kiếm những script tương tự sẽ được hoàn tất trong những phút tới
     listing_title_all_sites: "User scripts cho tất cả các trang"
@@ -176,6 +178,7 @@ vi:
     listing_language_all: "Tất cả"
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
+    search_failed: Đã có lỗi xảy ra khi tải kết quả của bạn. Một số chức năng tìm kiếm có thể không hoạt động. Chúng tôi đã được thông báo về sự cố này.
     import: "Nhập script"
     new: "Xuất bản một script bạn đã viết"
     new_css: "Xuất bản một phong cách bạn đã viết"
@@ -210,12 +213,16 @@ vi:
     type_3_html: "Thư viện - là script xây dựng cho <code>@require</code>-d từ script khác và không được cài đặt trực tiếp"
     override_warning_checkbox_label: "Mặc kệ, tôi cứ lưu"
     warning_version_not_incremented_html: "Bạn cập nhật code nhưng không tăng số  <code>@version</code>. Do đó những người đã cài đặt script của bạn từ trước có thể không nhận được cập nhật"
+    warning_version_missing_html: "Bạn chưa cung cấp 1@version1. Để người dùng nhận được cập nhật thì cần 2@version2. Bạn có thể thêm version như thế này: 3// @version 1.03."
     warning_version_missing_generate_automatically_html: "tạo <code>@version</code>một cách tự động"
+    warning_namespace_missing_html: "1@namespace1 không được định nghĩa. 2@namespace2 giúp ngăn xung đột nếu người dùng cài đặt một script khác có cùng tên. 3@namespace3 chỉ cần là một chuỗi duy nhất; thường sử dụng một URL do bạn kiểm soát."
     warning_namespace_missing_generate_automatically_html: "Tạo <code>@namespace</code>một cách tự động"
     warning_namespace_changed_html: "<code>@namespace</code> của bạn đã được thay đổi. Một <code>@namespace</code> trùng khớp cho phép người dùng cài đặt lại script của bạn để cập nhật"
     warning_potentially_minified_html: "Script của bạn có vẻ đã được tối ưu (đã nén) code. Nếu bạn đang sử dụng một thư viện đã tối ưu, Hãy đưa <code>@require</code> nó từ %{allowed_requires_link}. Những script đã tối ưu hóa code sẽ được miễn xóa."
     warning_automatic_sensitive_html: "Script của bạn dành cho %{sensitive_domains} và sẽ được đánh dấu có nội dung người lớn"
     warning_potentially_minified_allowed_requires_link: "một trong những chỗ này"
+    warning_code_previously_posted_html: "Mã này đã được đăng trước đó tại %{script_links}. Đăng lại bài viết có thể bị quản lý xóa."
+    warning_license_missing_html: "Bạn chưa chọn giấy phép sử dụng. Bằng cách đăng bài trên %{site_name}, bạn cho phép người khác sử dụng mã của bạn, nhưng giấy phép cũng cho phép bạn nói với người khác cách họ có thể sửa đổi và phân phối lại mã của bạn. Ví dụ, 2// @license MIT2 có nghĩa là bạn cho phép bất kỳ ai sửa đổi và phân phối lại mã bạn đã viết. %{license_chooser_link:Bạn có thể tìm thêm thông tin về giấy phép tại đây.} Nếu bạn không cung cấp giấy phép, %{site_name} sẽ mặc định là bạn không cho phép người khác sửa đổi hoặc phân phối lại các bản sao. Lưu ý rằng nếu bạn không phải là tác giả duy nhất của mã bạn đang đăng, thông thường bạn không được phép đăng nó trừ khi bạn có sự cho phép từ tất cả các tác giả khác."
     warning_license_missing_override_html: "Lưu mà không cần giấy phép"
     additional_info_locale_prompt: "(Chọn một khu vực)"
     additional_info_add_localized: "Thêm một thông tin bổ sung cục bộ"
@@ -226,12 +233,20 @@ vi:
     sync_type_intro: "Script sẽ được đồng bộ:"
     sync_type_1:
       name: Thủ công
+      description: Nó chỉ được kiểm tra cập nhật khi bạn kích hoạt nó.
     sync_type_2:
       name: Tự động
+      description: Nó sẽ được kiểm tra cập nhật định kỳ.
+    sync_type_3:
+      name: Gọi lại web
+      description: Nó sẽ được cập nhật khi bạn đẩy các thay đổi vào file này trên kho lưu trữ của bạn.
+    sync_webhook_info_without_sync: Sau khi thiết lập đồng bộ ở trên, nếu bạn đang đồng bộ với kho lưu trữ GitHub, GitLab hoặc BitBucket, bạn cũng có thể %{webhook_info_link:Thiết lập webhook} để tự động cập nhật %{site_name} khi bạn đẩy lên kho lưu trữ của mình.
+    sync_webhook_info_with_sync: Nếu bạn đang đồng bộ với kho lưu trữ GitHub, GitLab hoặc BitBucket, bạn có thể %{webhook_info_link:cài đặt webhook} để tự động cập nhật %{site_name} khi bạn đẩy lên kho lưu trữ của mình.
     sync_name_and_description: "%{name} - %{description}"
     sync_failed_info_html: "Lần đồng bộ cuối là %{date}, kết quả %{error}"
     sync_success_info_html: "Lần đồng bộ thành công cuối là %{date}."
     sync_never_succeeded: "Đồng bộ chưa bao giờ hoàn thành tốt đẹp."
+    sync_additional_info: Bạn có thể đồng bộ thông tin bổ sung của kịch bản theo cách tùy chọn.
     update_and_sync: "Cập nhật và đồng bộ ngay bây giờ"
     update_no_sync: "Cập nhật"
     turn_off_syncing: "Tắt đồng bộ hóa cho script này"
@@ -285,8 +300,14 @@ vi:
     must_confirm_email_button: "Gửi liên kết xác nhận đến %{email}"
     invitations:
       submit: "Gửi lời mời"
+      sent: "Lời mời đã được gửi"
+      invitation_not_found: "Không tìm thấy lời mời"
+      invitation_expired: "Lời mời đã hết hạn"
+      invitation_accepted: "Bây giờ bạn là tác giả của script này "
     remove_author:
       remove_button: "Xoá"
+    new_script_notice:
+      install_link_html: "Tôi muốn<b>cài đặt và sử dụng</b>một script"
     new_title:
       js: "Đăng script mới"
       css: "Đăng user style mới"
@@ -516,6 +537,8 @@ vi:
         request_expired: "Không thể xoá người dùng - yêu cầu đã hết hạn"
         cancelled: "Đã huỷ xoá"
         completed: "Tài khoản của bạn đã bị xoá"
+    banned_notice:
+      no_report_no_reason: "Tài khoản của bạn đã bị cấm. Bạn có thể%[delete_link:delete your account], nếu bạn muốn"
     banned_delete:
       complete: "Đã XOÁ tài khoản của bạn"
     badges:
@@ -555,10 +578,21 @@ vi:
       post_new_script_link_text: 'Đăng script mới'
     code_rules:
       title: "Quy định của %{site_name} cho script đã đăng"
+      functionality_header: Chức năng
       code_header: Code
       copyright_header: Bản quyền
+      listing_header: Danh sách
     external_scripts:
       title: "Điều khoản của %{site_name}' về script mở rộng"
+      cdns:
+        title: Mạng phân phối nội dung (CDN)
+      allowed_external_codes:
+        heading: Cho phép mã bên ngoài
+    cdns:
+      title: Cho phép CDN
+      test_url:
+        result_ok: URL được cho phép
+        result_not_ok: URL không được cho phép
     script_rewriting:
       title: "Làm thế nào %{site_name} sẽ viết lại các script đã đăng"
     site_feedback_link: "Báo cáo vấn đề hoặc ý tưởng bài viết cho chính %{site_name}"
@@ -586,7 +620,6 @@ vi:
       description: "Search script code. This is a case-insensitive, plain-text search with no wildcards.\nTìm kiếm mã script. Đây là một tìm kiếm không phân biệt chữ hoa chữ thường, tìm kiếm văn bản thuần túy mà không có những ký tự đại diện."
     user_search:
       title: "Tìm kiếm Người dùng"
-      description: "Tìm kiếm người dùng theo tên. Tìm kiếm giống như văn bản thuần túy."
   moderator_logs:
     date_column: "Ngày"
     moderator_column: "Quản lý"

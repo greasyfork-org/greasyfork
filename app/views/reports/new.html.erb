@@ -30,11 +30,6 @@
 
   <div class="form-control radio-group">
     <%= f.label :reason %><br>
-    <% possible_reasons = case @report.item
-      when Script; Report::SCRIPT_REASONS
-      when Discussion; Report::DISCUSSION_REASONS
-      else Report::NON_SCRIPT_REASONS
-    end %>
     <% if @report.item.is_a?(Script) %>
       <div>
         <%= f.radio_button(:reason, 'non_functional', required: true) %> <%= f.label :reason, t('reports.reason.non_functional'), class: 'radio-label', value: 'non_functional' %><br>
@@ -45,7 +40,7 @@
         <div class="after-radio-chosen alert"><%= it('reports.paid_benefits_feedback', feedback_link: feedback_script_path(@report.item), site_name: site_name) %></div>
       </div>
     <% end %>
-    <% possible_reasons.each do |reason| %>
+    <% @report.possible_reasons.each do |reason| %>
       <div>
         <%= f.radio_button(:reason, reason, required: true) %> <%= f.label :reason, it("reports.reason.#{reason}", antifeature_link: help_antifeatures_path), class: 'radio-label', value: reason %>
         <% case reason %>

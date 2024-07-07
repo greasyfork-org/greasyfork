@@ -28,4 +28,8 @@ class TopSitesServiceTest < ActiveSupport::TestCase
   test 'all_sites_count' do
     TopSitesService.all_sites_count
   end
+
+  test 'refresh!' do
+    TopSitesService.refresh!
+  end
 end

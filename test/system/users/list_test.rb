@@ -3,12 +3,9 @@ require 'application_system_test_case'
 module Users
   class ListTest < ::ApplicationSystemTestCase
     test 'can list users' do
-      visit users_path
-      assert_content 'Gordon J. Canada'
-    end
+      User.expects(:search).returns(User.all.paginate(page: 1))
 
-    test 'can list users by ratings' do
-      visit users_path(sort: 'ratings')
+      visit users_path
       assert_content 'Gordon J. Canada'
     end
   end

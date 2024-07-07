@@ -23,41 +23,63 @@ class UsersController < ApplicationController
       return
     end
 
-    # Pagination with search is also slow.
-    if params[:q].present?
-      if page_number > 1
-        redirect_to current_path_with_params(page: nil, per_page: nil)
-        return
-      end
-      @paginate = false
-    end
+    with = {}
 
-    @users = User
-
-    @users = @users.where(['name like ?', "%#{User.sanitize_sql_like(params[:q])}%"]) if params[:q].present?
-
-    @users = @users.where(email_domain: params[:email_domain]) if current_user&.moderator? && params[:email_domain]
+    with[:email_domain] = params[:email_domain] if current_user&.moderator? && params[:email_domain].present?
 
     case params[:banned]
     when '1'
-      @users = @users.banned
+      with[:banned] = true
     when '0'
-      @users = @users.not_banned
+      with[:banned] = false
     end
 
     case params[:author]
     when '1'
-      @users = @users.where(id: Script.not_deleted.joins(:authors).select(:user_id))
+      with[:script_count] = { gte: 1 }
     when '0'
-      @users = @users.where.not(id: Script.not_deleted.joins(:authors).select(:user_id))
+      with[:script_count] = 0
     end
 
     if current_user&.moderator? && params[:same_ip]
       other_user = User.find(params[:same_ip])
-      @users = @users.where(current_sign_in_ip: other_user.current_sign_in_ip) if other_user&.current_sign_in_ip
+      with[:ip] = other_user.current_sign_in_ip
     end
 
-    @users = self.class.apply_sort(@users, sort: params[:sort]).paginate(page: page_number, per_page: pp, total_entries: [@users.count, MAX_LIST_ENTRIES].min).load
+    order = case params[:sort]
+            when 'name'
+              { name: :asc }
+            when 'scripts'
+              { script_count: :desc }
+            when 'total_installs'
+              { script_total_installs: :desc }
+            when 'created_script'
+              { script_last_created: :desc }
+            when 'updated_script'
+              { script_last_updated: :desc }
+            when 'daily_installs'
+              { script_daily_installs: :desc }
+            when 'ratings'
+              { script_ratings: :desc }
+            when 'created'
+              { created_at: :desc }
+            else
+              if params[:q].presence
+                { _score: :desc }
+              else
+                { created_at: :desc }
+              end
+            end
+
+    @users = User.search(
+      params[:q].presence || '*',
+      fields: [{ name: :word_middle }],
+      where: with,
+      order:,
+      page: page_number,
+      per_page: per_page(default: 100)
+    )
+
     @user_script_counts = Script.listable(script_subset).joins(:authors).where(authors: { user_id: @users.map(&:id) }).group(:user_id).count
 
     respond_to do |format|
@@ -126,7 +148,7 @@ class UsersController < ApplicationController
       @user.generate_webhook_secret
       @user.save!
     end
-    @webhook_scripts = Script.not_deleted.joins(:authors).where(authors: { user_id: @user.id }).where('sync_identifier LIKE "https://github.com/%" OR sync_identifier LIKE "https://raw.githubusercontent.com/%" OR sync_identifier LIKE "https://bitbucket.org/%" OR sync_identifier LIKE "https://gitlab.com/%"').includes(:script_sync_type)
+    @webhook_scripts = Script.not_deleted.joins(:authors).where(authors: { user_id: @user.id }).where('sync_identifier LIKE "https://github.com/%" OR sync_identifier LIKE "https://raw.githubusercontent.com/%" OR sync_identifier LIKE "https://bitbucket.org/%" OR sync_identifier LIKE "https://gitlab.com/%"')
   end
 
   def webhook
@@ -319,17 +341,7 @@ class UsersController < ApplicationController
   end
 
   def unsubscribe_all
-    current_user.update!(
-      author_email_notification_type_id: User::AUTHOR_NOTIFICATION_NONE,
-      subscribe_on_discussion: false,
-      subscribe_on_comment: false,
-      subscribe_on_conversation_starter: false,
-      subscribe_on_conversation_receiver: false,
-      notify_on_mention: false,
-      notify_as_reporter: false,
-      notify_as_reported: false
-    )
-    current_user.discussion_subscriptions.destroy_all
+    current_user.unsubscribe_all!
     flash[:notice] = t('users.notifications.unsubscribe_all_success')
     redirect_to user_path(current_user)
   end

@@ -10,3 +10,30 @@
   - user_low
   - low
   - background
+
+:scheduler:
+  :schedule:
+    script_sync_queueing_job:
+      interval: '1m'
+      class: ScriptSyncQueueingJob
+    subresource_check_queueing_job:
+      interval: '1m'
+      class: SubresourceCheckQueueingJob
+    script_duplicate_checker_queueing_job:
+      interval: '1m'
+      class: ScriptDuplicateCheckerQueueingJob
+    banned_user_delete_job:
+      cron: '0 0 0 * * *'
+      class: BannedUserDeleteJob
+    discussion_read_cleanup_job:
+      interval: '1h'
+      class: DiscussionReadCleanupJob
+    script_page_view_update_job:
+      cron: '0 0 3 * * *'
+      class: ScriptPageViewUpdateJob
+    consecutive_bad_ratings_job:
+      interval: '1h'
+      class: ConsecutiveBadRatingsJob
+    script_delete_job:
+      interval: '1h'
+      class: ScriptDeleteJob

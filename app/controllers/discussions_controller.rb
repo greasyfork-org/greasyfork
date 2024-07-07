@@ -81,8 +81,6 @@ class DiscussionsController < ApplicationController
           raise "Unknown subset #{script_subset}"
         end
 
-        @discussions = @discussions.where(scripts: { delete_type: nil }).where(report_id: nil) unless current_user&.moderator?
-
         @filter_result = apply_filters(@discussions)
         if @filter_result.is_a?(String)
           render_404(@filter_result)
@@ -347,7 +345,7 @@ class DiscussionsController < ApplicationController
       when 'all'
         # No change
       when 'private'
-        discussions = discussions.where('review_reason IS NOT NULL OR discussions.deleted_at IS NOT NULL')
+        discussions = discussions.where('discussions.review_reason IS NOT NULL OR discussions.deleted_at IS NOT NULL')
       else
         visibility = nil
         discussions = discussions.visible

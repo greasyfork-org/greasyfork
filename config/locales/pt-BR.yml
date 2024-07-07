@@ -100,6 +100,7 @@ pt-BR:
       compare_to: "Script no %{site_name} para comparar (URL)"
       compare_button: "Comparar"
       compare_must_be_local_url: "O script de comparação deve ser uma URL do %{site_name}."
+      compare_cleaned_code_unavailable: "O código limpo do script de comparação ainda não está disponível."
     history_title: "%{script_name} - Histórico da Versão"
     history_only_code_changes_info: "Estas são as versões deste script em que houve atualização do código."
     history_all_changes_link: "Mostar todas versões."
@@ -491,13 +492,13 @@ pt-BR:
       title: PC
       browser_list_html: |
           <ul>
-          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} ou %{chrome_violentmonkey_link:Violentmonkey}</li>
-          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, ou %{firefox_violentmonkey_link:Violentmonkey}</li>
-          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} ou %{safari_userscripts_link:Userscripts}</li>
-          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} ou %{edge_violentmonkey_link:Violentmonkey}</li>
-          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} ou %{opera_violentmonkey_link:Violentmonkey}</li>
+          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} or %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, or %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} or %{safari_userscripts_link:Userscripts}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} or %{edge_violentmonkey_link:Violentmonkey}</li>
+          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} or %{opera_violentmonkey_link:Violentmonkey}</li>
           <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
-          <li>AdGuard: (Não é necessário programa adicional)</li>
+          <li>%{adguard_link:AdGuard}: (Não é necessário programa adicional)</li>
           </ul>
     android_browsers:
       title: Móvel (Android)
@@ -762,7 +763,7 @@ pt-BR:
       functionality_header: Funcionalidade
       description: Scripts devem ter uma descrição do que eles fazem e não podem fazer coisas fora do escopo da descrição sem uma razão. Os usuários devem saber o que o script fará antes de instalá-lo.
       reason: Scripts deve ter um motivo para serem um script. Por exemplo, um script que apenas direciona um usuário para um site não precisa ser um script; poderia ser um link. Scripts que utilizam um web service para executar uma ação na página atual (para realizar uma conversão, por exemplo) são permitidos.
-      monetization_html: Scripts que contenham funcionalidades que beneficiem o <em>autor</em> em vez do usuário (como rastreadores,  anúncios e mineradores) são permitidos, mas devem informar isso através de %{antifeature_link:meta keys <code>@antifeature</code>}.
+      monetization_html: Os scripts que contêm recursos para o benefício do <em>autor</em> e não do usuário (como rastreamento, anúncios e mineradores) são permitidos, mas devem ser divulgados com %{antifeature_link:<code>@antifeature</code> meta keys}. Os scripts não devem aplicar <code>@include</code>s ou <code>@match</code>es com o único objetivo de adicionar anti-recursos.
       code_header: Código
       obfuscation: Códigos publicados no %{site_name} não devem ser obfuscados ou minificados. Os usuários devem ser capazes de inspecionar e compreender um script antes de instalá-lo. Caso o script seja empacotado por ferramentas como webpack, ele deve ser exportado de forma não minificada, preservando espaços e nomes de variáveis.
       size_html: |
@@ -779,12 +780,15 @@ pt-BR:
       licensing_html: Seu script deve respeitar os direitos autorais de terceiros. Isto inclui o código em si e qualquer recurso (imagens, por exemplo) que ele usar. Se você pretende usar o conteúdo de alguém, siga as suas regras de licença ou obtenha permissão antes de utilizá-lo. As licenças nos scripts são especificadas pela chave meta <code>@license</code>, e você pode aprender mais sobre o que é ou não permitido usando %{tldr_legal_link:tldrlegal.com}.
       reposts: Mesmo nos casos em que não há violação dass regras de direitos autorais, repostagem de scripts que já estão no %{site_name} não é permitida a menos que hajam melhorias em relação ao original.
       miscellaneous_header: Diversos
-      included_sites_html: Scripts não devem incluir <code>@include</code>s ou <code>@match</code>es para sites nos quais eles não fornecem funcionalidade. Scripts não devem adicionar <code>@include</code>s ou <code>@match</code>es com o único propósito de adicionar antifeatures.
       keywords: Os scripts não devem incluir palavras-chave não relacionadas ou mencionar sites não relacionados na tentativa de melhorar o posicionamento de busca.
       adult_content_rule: Scripts que incluam conteúdo adulto ou que sejam destinados a sites de conteúdo adulto devem ser marcados como tal para que os usuários possam decidir vê-lo ou não.
       reposting_deleted: Não reposte scripts que foram excluídos devido a violação das regras; em vez disso, utilize a função de apelação. Repostar scripts excluídos pode resultar em banimento.
       advertising_in_description: Os autores de scripts não podem colocar publicidade nas páginas do Greasy Fork, por exemplo, na descrição de um script. É permitida a promoção da homepage do autor do script, repositório de código, Discord, WeChat, etc.
       reporting: Caso você encontre um script que fuja desses parâmetros, por favor reporte-o através do link de feedback daquele script e escolha a opção "Reportar script".
+      excessive_updates: Os autores de scripts não devem atualizá-los em excesso com o único objetivo de obter uma melhor classificação na lista de scripts.
+      non_functional_includes_html: Os scripts não devem incluir <code>@include</code>s ou <code>@match</code>es para sites nos quais não ofereçam funções.
+      content_language: Os nomes, descrições e outros conteúdos dos scripts devem ser marcados com o idioma adequado.
+      listing_header: Listagem
     external_scripts:
       title: "Política em scripts externo do %{site_name}"
       intro_html: |
@@ -792,6 +796,16 @@ pt-BR:
           <p>Note que essas regras são aplicadas somente para códigos externos que sejam executáveis. Códigos não-executáveis como JSON ou CSS são permitidos.</p>
       rationale:
         title: Justificativa
+        content_html: |
+            <p>Os scripts de usuário têm a capacidade técnica de carregar e executar outros scripts. Isso pode ser feito de algumas maneiras diferentes, inclusive:</p>
+            <ul>
+            <li>As chaves de metadados %{require_doc_link:<code>@require</code>} e %{resource_doc_link:<code>@resource</code>}.</li>
+            <li><code>XmlHttpRequest</code> para baixar o script e, em seguida, <code>eval</code> para executá-lo.</li>
+            <li>Adicionar a etiqueta <code>&lt;script&gt;</code> dinamicamente.</li>
+            <li>Opções %{webpack_externals_link:<code>externas</code>} de pacotes da Web.</li>
+            <li>Realizar uma atualização do script, seja automaticamente ou orientando o usuário a efetuar uma ação.</li>
+            </ul>
+            <p>Embora esse seja um recurso útil e a maior parte dos autores de scripts o utilize para fins legítimos, ele também pode ser empregado de forma maliciosa. Um dos princípios fundamentais do %{site_name} é que o usuário deve ser capaz de inspecionar o código em um script. Scripts externos podem contornar esse princípio de várias maneiras: eles podem mudar sem aviso ou registro, podem fornecer códigos diferentes para pessoas diferentes e podem ser utilizados para ocultar códigos mal-intencionados no meio de bibliotecas conhecidas. Mesmo que alguém verifique um script externo e determine que ele é legítimo, isso não garante que esse script sempre foi ou sempre seguirá sendo legítimo.</p>
       cdns:
         title: Redes de distribuição de conteúdo (CDNs)
         content_html: |
@@ -815,12 +829,42 @@ pt-BR:
             <p>Se https://exemplo.com/script.js é injetado em https://sitediferente.com, isso é proibido.</p>
     cdns:
       title: Redes de distribuição de conteúdo (CDNs) permitidos
+      content_html: |
+          <p>Esta é uma lista de CDNs reconhecidas pelo %{site_name}. Elas podem ser usadas para carregar %{external_code_link:código externo} em scripts publicados em %{site_name} .</p>
+          <p>Esta lista consiste em locais de scripts que:</p>
+          <ul>
+          <li>São públicos</li>
+          <li>Não terão seus conteúdos modificados frequentemente</li>
+          <li>Serão provavelmente úteis a mais de um autor de script</li>
+          </ul>
+          <p>Se o script que deseja incluir for uma biblioteca JavaScript (por exemplo, jQuery ou YUI), tente encontrá-lo em um dos sites listados abaixo. %{cdnjs_link:cdnjs} e %{jsdelivr_link:jsDelivr} em particular, têm uma grande variedade de bibliotecas disponíveis. Se você tiver uma CDN que gostaria que fosse adicionada, %{github_link:solicite-a no GitHub}. Observe que há %{external_code_link:outras opções} para códigos externos que não sejam CDNs.</p>
+
+          %{allowed_require_list}
       test_url:
         label: Testar uma URL
         result_ok: URL é permitida
         result_not_ok: URL não é permitida
     script_rewriting:
       title: "Como o %{site_name} irá sobrescrever scripts postados"
+      content_html: >
+          <p>Os scripts publicados em %{site_name} serão reescritos das seguintes
+          formas:</p> <ul>
+
+          <li>As diretivas <code>@updateURL</code> e <code>@downloadURL</code> serão
+          adicionadas ou atualizadas para direcionarem a %{site_name} . <code>@installURL</code>
+          será removida, se presente.</li>
+
+          <li>As diretivas <code>@version</code> e <code>@namespace</code> serão inseridas
+          se o script não as tiver. Estas diretivas são necessárias para uma atualização
+          adequada.</li>
+
+          <li><code>@description</code> será inserida se uma nova versão de um script
+          não a tiver e uma versão anterior do script a tiver.</li>
+
+          <li>As quebras de linha CRLF e CR serão convertidas para quebras de linha
+          do estilo standard/Unix.</li>
+
+          </ul>
     site_feedback_link: "Reporte um problema ou poste uma ideia para %{site_name}"
     credits:
       title: "Créditos"
@@ -950,7 +994,6 @@ pt-BR:
       description: "Pesquisar código de script. Não diferencia maiúsculas e minúsculas e busca texto sem aceitar coringas."
     user_search:
       title: "Pesquisa de Usuário"
-      description: "Pesquisar usuários pelo nome. Busca texto usando LIKE."
   moderator_logs:
     date_column: "Data"
     moderator_column: "Moderador"
@@ -1045,6 +1088,7 @@ pt-BR:
     report_message: "Reportar mensagem"
     result_dismissed: "Essa denúncia foi desconsiderada por um moderador."
     result_upheld: "Essa denúncia foi confirmada por um moderador."
+    result_upheld_reason_override: "Esta denúncia foi confirmada por um moderador, mas o moderador a marcou como %{reason}."
     result_self_upheld: "O autor excluiu seu próprio script como resultado dessa denúncia."
     result_fixed: "Este relatório foi resolvido por um moderador, pois eles acreditam que o autor corrigiu o problema."
     result_pending: "Essa denúncia está aguardando avaliação de um moderador."
@@ -1070,6 +1114,10 @@ pt-BR:
       one: "Este script teve %{count} relatório anterior mantido ou corrigido."
       many: "Este script teve %{count} relatórios anteriores mantidos ou corrigidos."
       other: "Este script teve %{count} relatórios anteriores mantidos ou corrigidos."
+    reporter_temporarily_blocked: "Devido ao seu histórico recente de denúncias que foram rejeitadas por um moderador, você está impedido de registrar novas denúncias até %{date} . Consulte as regras em %{rules_link:%{site_name}} para garantir que suas futuras denúncias sejam precisas."
+    reported_temporarily_blocked: "Devido ao fato de denúncias recentes sobre esse item terem sido rejeitadas por um moderador, outras denúncias sobre ele estarão bloqueadas até %{date} ."
+    already_reported_by_reporter: "Você já %{report_link:denunciou recentemente} esse item."
+    already_reported_same_type: "Já existe uma %{report_link:denúncia pendente semelhante} para este item."
   appeals:
     new:
       title: Novo recurso de exclusão de script
@@ -1335,16 +1383,43 @@ pt-BR:
             <p>Seu script %{script_link:%{script_name}} foi reportado por violar as regras do %{site_name}. O motivo específico foi: %{reason}. Você pode %{report_link: analisar este reporte e refutá-lo}. Caso não seja enviada uma refutação, seu script pode ser removido pelos moderadores.</p>
       report_upheld_offender:
         subject: "Seu script %{script_name} no %{site_name} foi removido"
+        body_html: |
+            <p>
+            O seu script %{script_link:%{script_name}} em %{site_name} foi deletado por um moderador e já não está acessível publicamente. Você pode %{report_link: analisar a denúncia} e %{code_rules_link:revisar %{site_name} as regras}.
+            </p>
+            <p>
+            Se você acredita que isso esteja errado ou se atualizou o script para corrigir o problema, você pode %{appeal_link:registrar um recurso} e um moderador o verificará. Não republique este script; isso pode resultar em um banimento do %{site_name}.
+            </p>
       report_dismissed_offender:
         subject: "Uma denúncia do seu script %{script_name} no %{site_name} foi desfeita"
+        body_html: |
+            <p>
+            Uma denúncia referente ao seu script %{script_link:%{script_name}} em %{site_name} foi rejeitada por um moderador. Seu script permanecerá ativo. Você pode %{report_link:revisar essa denúncia}.
+            </p>
       report_fixed_offender:
         subject: "Um relatório sobre o seu script %{script_name} em %{site_name} foi marcado como resolvido"
+        body_html: |
+            <p>
+            Uma denúncia sobre seu script %{script_link:%{script_name}} em %{site_name} foi marcada como resolvida por um moderador, pois ele acredita que o problema foi corrigido. Seu script permanecerá ativo. Você pode %{report_link:revisar essa denúncia}.
+            </p>
       report_rebutted_reporter:
         subject: "Sua denúncia no %{script_name} no %{site_name} recebeu uma resposta"
+        body_html: |
+            <p>
+            Sua denúncia sobre %{script_link:%{script_name}} em %{site_name} recebeu uma resposta. Você pode %{report_link:revisar essa resposta}. Um moderador analisará sua denúncia e esta resposta e decidirá sobre o resultado.
+            </p>
       report_upheld_reporter:
         subject: "Sua denúncia no %{script_name} no %{site_name} foi confirmada"
+        body_html: |
+            <p>
+            Sua denúncia sobre %{script_link:%{script_name}} em %{site_name} foi confirmada por um moderador e o script foi excluído. Você pode %{report_link:revisar a denúncia}.
+            </p>
       report_script_deleted_reporter:
         subject: "Sua denúncia sobre %{script_name} em %{site_name} foi fechada"
+        body_html: |
+            <p>
+            Sua denúncia sobre %{script_link:%{script_name}} em %{site_name} foi encerrada porque o script foi excluído pelo autor. Você pode %{report_link:revisar a denúncia}.
+            </p>
       report_dismissed_reporter:
         subject: "Sua denúncia no %{script_name} no %{site_name} foi indeferida"
         body_html: |

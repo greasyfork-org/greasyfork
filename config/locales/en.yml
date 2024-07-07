@@ -151,6 +151,7 @@ en:
       compare_to: "Script on %{site_name} to compare to (URL)"
       compare_button: "Compare"
       compare_must_be_local_url: "Comparison script must be a URL on %{site_name}."
+      compare_cleaned_code_unavailable: "Comparison script's clean code is not yet available."
     # HTML title for the history page for a script
     history_title: "%{script_name} - Version history"
     # text explaining that we're only showing versions where the code changed
@@ -381,6 +382,7 @@ en:
     code_syncing_from_url_html: "This script's code is set up to sync from: %{field}"
     # text to add a code syncing URL. field is the text field to enter the url.
     provide_code_syncing_from_url_html: "%{site_name} can import scripts that already hosted elsewhere, for example in a version control system (like GitHub), your own server, or another user script hosting site. To enable syncing for your script, provide a URL: %{field}"
+    code_syncing_from_webhook_html: "This script's code is set up to sync with a webhook. We will match webhook requests to this script based on this URL: %{field}"
     # text before the sync type options
     sync_type_intro: "The script will be synced:"
     # label for radio button for manual syncing
@@ -707,7 +709,7 @@ en:
           <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} or %{edge_violentmonkey_link:Violentmonkey}</li>
           <li>Opera: %{opera_tampermonkey_link:Tampermonkey} or %{opera_violentmonkey_link:Violentmonkey}</li>
           <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
-          <li>AdGuard: (no additional software required)</li>
+          <li>%{adguard_link:AdGuard}: (no additional software required)</li>
         </ul>
     android_browsers:
       title: Mobile (Android)
@@ -871,6 +873,7 @@ en:
     listing_updated_scripts: "Updated scripts"
     # sort link for sorting users by when they signed up
     listing_registration_date: "Registration date"
+    listing_relevance: "Relevance"
     # title for page showing list of users
     listing_title: "Users"
     listing_banned_filter:
@@ -1058,7 +1061,7 @@ en:
       functionality_header: Functionality
       description: Scripts must include a description of what they do and may not do things unreasonably outside of this description. Users must know what a script will do before installing it.
       reason: Scripts must have a reason to be a script. For example, a script that just directs a user to a website doesn't need to be a script; it could be a link. Scripts that use a web service to perform an action on the current page (e.g. to convert it in some way) are allowed.
-      monetization_html: Scripts that contain features for the benefit of the <em>author</em> rather than the user (such as tracking, ads, and miners) are allowed, but these must be disclosed with %{antifeature_link:<code>@antifeature</code> meta keys}.
+      monetization_html: Scripts that contain features for the benefit of the <em>author</em> rather than the user (such as tracking, ads, and miners) are allowed, but these must be disclosed with %{antifeature_link:<code>@antifeature</code> meta keys}. Scripts must not add <code>@include</code>s or <code>@match</code>es for the sole purpose adding antifeatures.
       code_header: Code
       obfuscation: Code posted to %{site_name} must not be obfuscated or minified. Users must be given the opportunity to inspect and understand a script before installing it. If the script is bundled by a tool such as webpack, it must be output in non-minified form, with whitespace and variable names retained.
       size_html: |
@@ -1075,12 +1078,15 @@ en:
       licensing_html: Your script must respect others' copyrights. This includes the code itself and any resources (for example images) it uses. If you intend on using someone else's content, abide by their licensing terms or get their permission before doing so. Licenses on scripts are specified by the <code>@license</code> meta key, and you can learn about what you can and cannot do by using %{tldr_legal_link:tldrlegal.com}.
       reposts: Even in cases not violating the copyright rule, reposts of scripts that are already on %{site_name} are not allowed unless they are improving upon the original.
       miscellaneous_header: Miscellaneous
-      included_sites_html: Scripts must not include <code>@include</code>s or <code>@match</code>es for sites they do not provide functionality on. Scripts must not add <code>@include</code>s or <code>@match</code>es for the sole purpose adding antifeatures.
       keywords: Scripts must not include unrelated keywords or mention unrelated sites to attempt to improve search placement.
       adult_content_rule: Scripts that include adult content or are for sites with adult content must be marked as such to allow other users the option of whether to see them.
       reposting_deleted: Do not repost scripts that were deleted due to rule violations; use the appeal function instead. Reposting deleted scripts may result in a ban.
       advertising_in_description: Script authors may not place advertising on pages on Greasy Fork, for example in a script's description. Promotion of the script author's homepage, code repository, Discord, WeChat, etc. is allowed.
       reporting: If you notice a script that falls outside of these parameters, please report it by going to the Feedback link for that script and choosing the "Report script" option.
+      excessive_updates: Script authors may not update scripts excessively with the sole purpose of ranking higher on the script list.
+      non_functional_includes_html: Scripts may not include <code>@include</code>s or <code>@match</code>es for sites they do not provide functionality on.
+      content_language: Scripts' names, descriptions, and other content must be marked with the proper language.
+      listing_header: Listing
     external_scripts:
       # title of the external script rules page
       title: "%{site_name}'s policy on external scripts"
@@ -1265,7 +1271,7 @@ en:
       description: "Search script code. This is a case-insensitive, plain-text search with no wildcards."
     user_search:
       title: "User Search"
-      description: "Search for users by name. Plain-text LIKE search."
+      description: "Search for users by name."
   moderator_logs:
     date_column: "Date"
     moderator_column: "Moderator"
@@ -1346,6 +1352,7 @@ en:
     report_message: "Report message"
     result_dismissed: "This report has been dismissed by a moderator."
     result_upheld: "This report has been upheld by a moderator."
+    result_upheld_reason_override: "This report has been upheld by a moderator, but the moderator marked it as %{reason}."
     result_self_upheld: "The author deleted their own script as a result of this report."
     result_fixed: "This report has been resolved by a moderator as they believe the author has fixed the issue."
     result_pending: "This report is pending review by a moderator."
@@ -1370,6 +1377,10 @@ en:
     script_previous_reports:
       one: "This script has had %{count} previous upheld or fixed report."
       other: "This script has had %{count} previous upheld or fixed reports."
+    reporter_temporarily_blocked: "Due to your recent history of reports that were dismissed by a moderator, you are blocked from filing new reports until %{date}. Please review %{rules_link:%{site_name}'s rules} to ensure future reports are accurate."
+    reported_temporarily_blocked: "Due to recent reports on this item being dismissed by a moderator, further reports on it are blocked until %{date}."
+    already_reported_by_reporter: "You have already %{report_link:recently reported} this item."
+    already_reported_same_type: "There is already a %{report_link:similar pending report} on this item."
   appeals:
     new:
       title: New script delete appeal
@@ -1629,6 +1640,7 @@ en:
       # validation when user uploads code that contains a disallowed @require
       script_disallowed_require: "uses an unapproved external script: %{code}"
       script_disallowed_resource: "uses an invalid @resource: %{code}. Resources must be http, https, or data URLs"
+      script_disallowed_base_64_require: "uses a base-64 encoded @require"
       script_malformed_require: "uses a malformed external script reference: %{code}"
       script_rate_limit: "You have exceeded the posting limit. Try again later."
       missing_include_or_match: "must include at least one @match or @include key"

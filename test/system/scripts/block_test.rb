@@ -3,6 +3,7 @@ require 'application_system_test_case'
 class BlockTest < ApplicationSystemTestCase
   test 'banned via disallowed url' do
     user = User.find(4)
+    user.update!(created_at: 1.day.ago)
     login_as(user, scope: :user)
     visit new_script_version_url
     click_on "I've written a script and want to share it with others."

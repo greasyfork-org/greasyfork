@@ -1,16 +1,16 @@
 <% i = 0 unless defined?(i) %>
-<% show_reporter = current_user && (current_user.moderator? || current_user == report.reporter) %>
+<% show_reporter = current_user && (current_user.moderator? || current_user == report.reporter || report.reporter&.moderator?) %>
 
 <h4 id="open-report-<%= i %>">
   <% if report.unauthorized_code? && (report.reference_script || report.script_url.present?) %>
     <% if show_reporter %>
-      <%= t('reports.report_intro_unauthorized_html', reported_script: report_item_link(report), other_script: report.reference_script ? render_script(report.reference_script) : link_to(report.script_url, report.script_url, rel: :nofollow), reporter: report.auto_reporter || link_to(report.reporter.name, user_path(report.reporter)), report_date: markup_date(report.created_at)) %>
+      <%= t('reports.report_intro_unauthorized_html', reported_script: report_item_link(report), other_script: report.reference_script ? render_script(report.reference_script) : link_to(report.script_url, report.script_url, rel: :nofollow), reporter: report.auto_reporter || render_user(report.reporter, report.reporter_id), report_date: markup_date(report.created_at)) %>
     <% else %>
       <%= t('reports.report_intro_unauthorized_no_reporter_html', reported_script: report_item_link(report), other_script: report.reference_script ? render_script(report.reference_script) : link_to(report.script_url, report.script_url, rel: :nofollow), report_date: markup_date(report.created_at)) %>
     <% end %>
   <% else %>
     <% if show_reporter %>
-      <%= it('reports.report_intro', reported_item: report_item_link(report), reason: report.reason_text, reporter: report.auto_reporter || link_to(report.reporter.name, user_path(report.reporter)), report_date: markup_date(report.created_at)) %>
+      <%= it('reports.report_intro', reported_item: report_item_link(report), reason: report.reason_text, reporter: report.auto_reporter || render_user(report.reporter, report.reporter_id), report_date: markup_date(report.created_at)) %>
     <% else %>
       <%= it('reports.report_intro_no_reporter', reported_item: report_item_link(report), reason: report.reason_text, report_date: markup_date(report.created_at)) %>
     <% end %>
@@ -161,7 +161,7 @@
       <% ror.each do |other_report| %>
         <li>
           <%= link_to report_url(other_report) do %>Report #<%= other_report.id %> by <%= other_report.auto_reporter || render_user(other_report.reporter, other_report.reporter_id, skip_link: true) %> for <%= other_report.reason_text %><% end %>
-          - <%= other_report.result || 'pending' %>
+          - <%= other_report.result || 'pending' %> <%= "(for #{other_report.upheld_reason_text})" if other_report.moderator_reason_override %>
           <% if other_report.script_lock_appeals.any? %>
             <ul>
               <% other_report.script_lock_appeals.each do |sla| %>
@@ -220,9 +220,17 @@
     <% if report.self_upheld %>
       <%= t('reports.result_self_upheld') %>
     <% elsif current_user&.moderator? && report.resolver %>
-      This report has been upheld by <%= render_user(report.resolver, report.resolver_id) %>.
+      <% if report.moderator_reason_override %>
+        This report has been upheld by <%= render_user(report.resolver, report.resolver_id) %>, but they upheld it as <%= report.upheld_reason_text %>.
+      <% else %>
+        This report has been upheld by <%= render_user(report.resolver, report.resolver_id) %>.
+      <% end %>
     <% else %>
-      <%= t('reports.result_upheld') %>
+      <% if report.moderator_reason_override %>
+        <%= t('reports.result_upheld_reason_override', reason: report.upheld_reason_text) %>
+      <% else %>
+        <%= t('reports.result_upheld') %>
+      <% end %>
     <% end %>
   </p>
   <% if report.moderator_notes.present? %>

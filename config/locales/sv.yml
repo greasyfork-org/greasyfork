@@ -62,6 +62,7 @@ sv:
       keep: "De kommer att behålla det som det är."
       blanked: "De kommer att uppdateras till ett blankt skript. Detta är lämpligt när skriptet har en negativ effekt på hemsidorna det körs på."
     delete_permanently_heading: "permanent borttagning"
+    delete_permanently_confirm: "Är du säker på att du vill ta bort ditt skript permanent?"
     delete_permanently_submit: "Begär permanent borttagning"
     delete_permanently_immediate_submit: "Ta bort permanent"
     delete_permanently_notice_immediate: "Skriptet är permanent borttaget."
@@ -77,9 +78,11 @@ sv:
     history_all_changes_info: "Där är alla versioner av detta skript"
     history_only_code_changes_link: "Visa endast de skript där koden är ändrad"
     diff_button: "Diff valda versioner"
+    list_all_script_versions: "Visa alla versioner."
     code_title: "%{script_name} - Source code"
     feedback_title: "%{script_name} - Feedback"
     feedback_no_discussions_html: "Inga diskussioner postade ännu. %{start_first_discussion_link}"
+    feedback_no_discussions_on_page_form: "Inga diskussioner har postats ännu."
     feedback_start_first_discussion_link: "Bli först med att diskutera detta skript"
     stats_title: "%{script_name} - Statistik"
     stats_daily_installs_heading: "Dagliga installationer"
@@ -96,9 +99,14 @@ sv:
       year: Senaste 365 dagarna
       all: hela tiden
     derivatives_title: "%{script_name} - Derivat"
+    derivatives_exact_copies_heading: "Exakta kopior"
+    derivatives_exact_copies_list_intro: "Följande skript har exakt likadan kod som din:"
+    derivatives_similar_heading: "Liknande skript"
     similarity_score:
       high: Väldigt lika
+      low: Något liknande
       none: Inte lika alls
+    derivatives_similar_none: "Det finns inga liknande skript som dina."
     derivatives_similar_item: "%{score}: %{diff_link:[Diff]} %{script}"
     listing_title_all_sites: "Användarskript för alla sidor"
     listing_description_all_sites: "Användarskript som lägger till funktioner och tar bort buggar på alla sidor"
@@ -120,6 +128,7 @@ sv:
     listing_filter_by_site_label: "Visar skripts för:"
     listing_filter_by_site_disable: "Alla"
     listing_filter_by_site_all_sites: "(Alla Sidor)"
+    listing_filter_by_language_label: "Språk:"
     listing_filter_by_site_more_sites: "Mer..."
     listing_no_scripts: "Inget skript hittade."
     listing_created_feed: "Nya skripts"
@@ -158,6 +167,7 @@ sv:
     warning_version_not_incremented_html: "Du uppdaterade koden men inte öka <code>@version</code> numret. De som tidigare installerat skriptet kan inte få den uppdaterade koden."
     warning_namespace_changed_html: "Din <code>@namespace</code> har förändrats. En konsekvent <code>@namespace</code> tillåter användare att ominstallera skriptet för att uppdatera den."
     warning_potentially_minified_allowed_requires_link: "en av dessa platser"
+    warning_license_missing_override_html: "Spara utan en licens"
     additional_info_locale_prompt: "(Välj ett språk)"
     additional_info_add_localized: "Lägg till en språkanpassad beskrivning"
     additional_info_locale_repeated: "Lägg endast till en beskrivning för språket '%{locale_code}'."
@@ -167,6 +177,8 @@ sv:
     sync_type_intro: "Skriptet kommer synkas:"
     sync_type_1:
       name: Manuell
+    sync_type_2:
+      name: Automatiskt
     sync_failed_info_html: "Försökte synka senast %{date}, vilket resulterade i %{error}."
     sync_success_info_html: "Senaste lyckade synkningen skedde %{date}."
     sync_never_succeeded: "Synkning lyckades aldrig."
@@ -183,12 +195,14 @@ sv:
     diff_new_version: "Ny:"
     diff_lines_of_context: "Rader av kontext:"
     diff_ignore_whitespace: "Ignorera blankstegsändringar"
+    diff_terser: "Städa kod innan jämförelse"
     diff_refresh: "Ladda om"
     diff_no_change: "Inga skillnader hittade."
     good_rating_explanation: "Antal personer som klassade det som bra eller la till det i favoriter."
     ok_rating_explanation: "Antalet personer som klassade det som OK."
     bad_rating_explanation: "Antalet personer som klassade det som dåligt."
     write_your_own_html: "%{post_a_script_link} (eller %{learn_to_write_scripts_link})"
+    post_a_script_link_text: "Publicera ett skript som du har skrivit"
     learn_to_write_scripts_link_text: "lär dig hur man skriver ett"
     adult_content: "Vuxeninnehåll"
     adult_content_self_report: "Detta skript innehåller vuxet innehåll eller är till för en sida med vuxet innehåll."
@@ -207,6 +221,8 @@ sv:
     by_site_list_title: "Användarskript på %{site_name} grupperade efter sida"
     by_site_list_filter: "Filtrera efter sidnamn:"
     search_placeholder: "Sök skript"
+    invitations:
+      invited_user_url_label: "Användare att bjuda in"
     install_help_dialog:
       close_dialog: OK
     antifeatures:
@@ -285,8 +301,11 @@ sv:
     sleazy_welcome: "Välkommen till %{site_name}, en sida för vuxenanvändarskript."
     explain_user_scripts_heading: "Vad är användarskript?"
     explain_user_scripts_html: "Användar skript sätta dig i kontroll över din webbupplevelse . när skriptet är installerat, de automatiskt gör de webbplatser du besöker bättre genom att lägga till funktioner, vilket gör dem lättare att använda, eller ta ut irriterande bitar. Användaren skript på %{site_name} skrivna av andra användare och skrivit att dela med världen. De är gratis att installera och lätt att använda."
+    installing_step1_caption: "Tampermonkey på Chrome"
     desktop_browsers:
       title: Skrivbord
+    ios_browsers:
+      title: Mobil (iOS)
   users:
     sign_in_title: "Logga in på %{site_name}"
     sign_in_description: "Att logga in på %{site_name} låter dig publicera skript och recensera andras skript. Du behöver inte logga in för att bläddra eller installera skript."
@@ -349,6 +368,8 @@ sv:
     listing_new_scripts: "Nya scripts"
     listing_updated_scripts: "Uppdaterade scripts"
     listing_registration_date: "Registreringsdatum"
+    listing_title: "Användare"
+    search_placeholder: "Sök användare"
     locale_prompt: "(Välj ett språk)"
     show_ads_description: "Stöd %{site_name} genom att låta den visa annonser"
     show_sensitive_description: "Visa skript med vuxeninnehåll"
@@ -356,6 +377,9 @@ sv:
     greasy_fork_scripts_link:
       one: "%{user_name} har även %{count} skript på Greasy Fork."
       other: "%{user_name} har även %{count} stycken skript på Greasy Fork."
+    delete_link: "Radera konto"
+    delete:
+      password_effect: "Du kommer inte längre kunna logga in med ditt lösenord."
   help:
     meta_keys:
       title: "Skriptets metanycklar, lästa av %{site_name}"
@@ -392,6 +416,10 @@ sv:
     pending_review: Den här överklagan väntar på granskning av en moderator.
     dismissed_by_moderator: En moderator har avvisat denna överklagan.
     upheld_by_moderator: Som ett resultat av denna överklagan
+  discussions:
+    subscribe: Prenumerera
+    unsubscribe: Avsluta prenumerationen
+    notify: Meddela mig vid varje svar
   conversations:
     new_button: skapa konverstation
     send_message: skicka medelande

@@ -94,6 +94,7 @@ ja:
       compare_to: "%{site_name} 上のスクリプトと比較 (URL)"
       compare_button: "比較"
       compare_must_be_local_url: "比較には%{site_name} 上の URL が必要です。"
+      compare_cleaned_code_unavailable: "比較したスクリプトの整ったコードはまだ利用できません。"
     history_title: "%{script_name} のバージョン履歴"
     history_only_code_changes_info: "コードが変更されたバージョンのみを表示しています。"
     history_all_changes_link: "すべてのバージョンを表示"
@@ -227,6 +228,7 @@ ja:
     localized_additional_info_with_no_name: "言語「%{locale_code}」の追加情報を設定する場合、メタデータに翻訳した名称 @name:%{locale_code} が必要です。"
     code_syncing_from_url_html: "このスクリプトは次のURLと同期するように設定されています: %{field}"
     provide_code_syncing_from_url_html: "%{site_name} は、GitHub のようなバージョン管理システム、自分のサーバー、他のユーザースクリプト公開サイトなどで公開しているスクリプトをインポートすることができます。URL を設定して、スクリプトの同期を有効化します: %{field}"
+    code_syncing_from_webhook_html: "このスクリプトのコードは、ウェブフックと同期するよう設定されています。このURLに基づいて、このスクリプトへのウェブフックの要求を一致させます: %{field}"
     sync_type_intro: "スクリプトの同期方法:"
     sync_type_1:
       name: 手動
@@ -477,23 +479,23 @@ ja:
       title: デスクトップ
       browser_list_html: |
           <ul>
-          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}、%{chrome_violentmonkey_link:Violentmonkey}</li>
-          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}、%{firefox_tampermonkey_link:Tampermonkey}、%{firefox_violentmonkey_link:Violentmonkey}</li>
-          <li>Safari: %{safari_tampermonkey_link:Tampermonkey}、%{safari_userscripts_link:Userscripts}</li>
-          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}、%{edge_violentmonkey_link:Violentmonkey}</li>
-          <li>Opera: %{opera_tampermonkey_link:Tampermonkey}、%{opera_violentmonkey_link:Violentmonkey}</li>
+          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} / %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey} / %{firefox_tampermonkey_link:Tampermonkey} / %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} / %{safari_userscripts_link:Userscripts}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} / %{edge_violentmonkey_link:Violentmonkey}</li>
+          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} / %{opera_violentmonkey_link:Violentmonkey}</li>
           <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
-          <li>AdGuard: (ソフトの追加不要)</li>
+          <li>%{adguard_link:AdGuard}: (アプリの追加は不要)</li>
           </ul>
     android_browsers:
       title: モバイル (Android)
       browser_list_html: |
           <ul>
-          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}、%{firefox_tampermonkey_link:Tampermonkey}、%{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}、%{firefox_tampermonkey_link:Tampermonkey} / %{firefox_violentmonkey_link:Violentmonkey}</li>
           <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
           <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
           <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
-          <li>Kiwi: %{chrome_tampermonkey_link:Tampermonkey}、%{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>Kiwi: %{chrome_tampermonkey_link:Tampermonkey} / %{chrome_violentmonkey_link:Violentmonkey}</li>
           <li>%{xbrowser_link:XBrowser}</li>
           %{locale_specific_browsers}
           </ul>
@@ -501,17 +503,17 @@ ja:
       title: モバイル (iOS)
       browser_list_html: |
           <ul>
-          <li>Safari: %{safari_tampermonkey_link:Tampermonkey}、%{safari_userscripts_link:Userscripts}</li>
-          <li>%{gear_link:Gear}: (ソフトの追加不要)
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} / %{safari_userscripts_link:Userscripts}</li>
+          <li>%{gear_link:Gear}: (アプリの追加不要)
           </ul>
     installing_step2_header: "2. スクリプトをインストール"
     installing_step2_caption: "ユーザースクリプトのインストールボタン"
     installing_step2_description_html: >
-        <p>%{browse_link:当サイトから探し}好きなユーザースクリプトを見つけます。人気のスクリプトの例です。</p>
+        <p>%{browse_link:当サイトから探して}気になるユーザースクリプトを見つけます。人気のスクリプトの例です。</p>
 
         %{highlighted_scripts_list}
 
-        <p>スクリプトのページにある緑のインストールボタンをクリックすると、インストールするかの確認が、スクリプト管理ツールにより表示されます。</p>
+        <p>スクリプトのページにある緑色のインストールボタンを押すと、インストールするための確認が、スクリプト管理ツールにより表示されます。</p>
     installing_step3_header: "3. ユーザースクリプトを使う"
     installing_step3_description_html: >
         <p>これでスクリプトが対象のページで動作するようになります。スクリプトを試したあと、インストール用のページに戻り作者に意見や報告を投稿することもできます。</p>
@@ -580,6 +582,7 @@ ja:
     listing_new_scripts: "スクリプトの作成日"
     listing_updated_scripts: "スクリプトの更新日"
     listing_registration_date: "登録日"
+    listing_relevance: "適合性"
     listing_title: "ユーザー一覧"
     listing_banned_filter:
       banned: "禁止中"
@@ -727,31 +730,34 @@ ja:
       title: "投稿されるスクリプトに関する %{site_name} の規則"
       preamble: '%{site_name}に投稿されるスクリプトに必要な要件です。その目的は、ユーザースクリプトのための %{site_name} を安全かつ有用にすることです。これらの要件に合致しないスクリプトは、%{site_name} の管理担当者により削除される可能性があります。'
       functionality_header: 機能性
-      description: スクリプトには、何を行うかの説明を含む必要があり、この説明から外れた正当な理由のないことを行ってはいけません。スクリプトのインストール前に、何をするものかをユーザーに知らせる必要があります。
+      description: スクリプトには、それが何を行うか説明する必要があり、この説明から外れる理由のないことを行わないようにしてください。何をするものか、スクリプトのインストール前にユーザーに知らせる必要があります。
       reason: スクリプトには、それがスクリプトである理由が必要です。例えば、ユーザーをあるウェブサイトに転送するだけのスクリプトはスクリプトである必要はありません。リンクにもできるでしょう。ウェブサービスを用いて、表示されているページへの操作を実行するスクリプトは許容されます（例、そうした方法で変換する）。
-      monetization_html: ユーザーではなく<em>作者</em>にとっての利益となる機能（追跡や広告、採掘など）は認められていますが、それらは %{antifeature_link:<code>@antifeature</code> メタキー}で開示されなければなりません。
+      monetization_html: ユーザーではなく <em>作者</em> にとって利益となる機能（追跡や広告、採掘など）は認められていますが、その使用は  %{antifeature_link:<code>@antifeature</code> メタキー}で開示されなければなりません。スクリプトにこうした機能を追加するためだけに <code>@include</code>や<code>@match</code> を追加しないでください。
       code_header: コード
       obfuscation: '%{site_name} に投稿されるコードは、難読化または最小化 minify してはいけません。ユーザーがスクリプトをインストールする前に、スクリプトを検査し、理解する機会が必要です。スクリプトが、webpack などのツールでバンドルされている場合は、空白や変数名をそのままに、最小化しない状態で出力される必要があります。'
       size_html: |
-          スクリプトのサイズは、%{max_code_size}に制限されています。この制限に収まるようスクリプトを最小化することができないかもしれません。この制限に近い場合、以下の方法を検討できます:
+          スクリプトのサイズは、%{max_code_size}に制限されています。この制限に収まるようスクリプトを最小化することができないかもしれません。この制限に近い場合、次の方法を検討できます:
           <ul>
           <li>データURIやJSONなどコードではないデータをこのスクリプトの外部に移動。</li>
           <li><code>@require</code> または、%{webpack_externals_link:webpack の <code>externals</code>オプション}でライブラリを読み込む。</li>
           </ul>
       libraries_html: スクリプトが使用するライブラリは、技術的に正当な理由がない限り <code>@require</code> を使用すべきです。インラインにライブラリを含めるなら、ライブラリの入手元に関する情報を含めなければいけません（例、URL、名前、バージョンなどを示すコメント）。
-      updates: スクリプトは、1日1回を超える頻度で更新確認しないでください。多くのユーザースクリプト管理ツールで自動更新を行っているで、スクリプト内に実装する必要はありません。スクリプトはまた、%{site_name}で提供される他のスクリプトをページに動的に挿入してはいけません。
+      updates: スクリプトは、1日1回を超える頻度で更新確認しないでください。ユーザースクリプト管理ツールの多くには自動更新機能があるので、スクリプト内に実装する必要はありません。スクリプトはまた、%{site_name}で提供される他のスクリプトをページに動的に挿入してはいけません。
       hosting: スクリプトの主な機能は %{site_name}上のコード内に書かれるようにしてください。スクリプトの大部分を単にどこかから読み込むために%{site_name} に投稿されたスクリプトは、許可されません。%{site_name}上に投稿されたバージョンではない別の提供元をユーザーに使わせる目的の、他のダウンロード用のURLの投稿は、許可されません。
       external_js: "%{external_scripts_link:外部の JavaScript の使用は制限されています。}"
       copyright_header: 著作権
-      licensing_html: 作成するスクリプトは他者の著作権に配慮してください。これはコードそのものと、リソース（画像など）に当てはまります。誰かのコンテンツを使用するには、そのライセンス条項に従うか、事前に許可を得ましょう。スクリプトのライセンスは、<code>@license</code> メタキーで指定でき、何ができて、またしてはいけないのかについては、%{tldr_legal_link:tldrlegal.com}で学ぶことができます。
-      reposts: 著作権の保護に違反していなくても、すでに %{site_name} に存在するスクリプトの再投稿は、オリジナルを改良する場合を除いて、許可しません。
+      licensing_html: 作成するスクリプトは他者の著作権に配慮してください。これはコードそのものと、リソース（画像など）に当てはまります。誰かのコンテンツを使用するには、そのライセンス条項に従うか、事前に許可を得ましょう。スクリプトのライセンスは、<code>@license</code> メタキーで指定でき、それらにより何ができ、また、してはいけないと決められているかについては、%{tldr_legal_link:tldrlegal.com}で学ぶことができます。
+      reposts: 著作権の保護に違反していなくても、すでに %{site_name} に存在するスクリプトの再投稿は、それを改良する場合を除いて許可しません。
       miscellaneous_header: その他
-      included_sites_html: スクリプトには、機能を提供しないサイトを <code>@include</code> や <code>@match</code> 内に含めてはいけません。スクリプトに、アンチ機能の追加だけを目的としたサイトを <code>@include</code> や <code>@match</code> で追加してはいけません。
       keywords: スクリプトについて無関係のキーワードをつけたり、検索順位を上げるために無関係のサイトに言及したりしてはいけません。
       adult_content_rule: アダルトコンテンツを含むとか、アダルトサイト用のスクリプトは、他のユーザー自身がそれを見るかどうか決定できるように、そうであることを示さなければなりません。
       reposting_deleted: 規則への違反により削除されたスクリプトは再投稿しないでください。代わりに「抗議」の機能を使用しましょう。スクリプトの再投稿は、アクセス禁止になる可能性があります。
       advertising_in_description: スクリプトの作者は、スクリプトの説明文の中など、Greasy Fork 上のページで宣伝することはできません。スクリプトの作者のホームページ、コードリポジトリ、Discord、WeChat などの宣伝は許可されています。
       reporting: こうした条件から外れたスクリプトを見つけたら、そのスクリプトのページから「通報」してください。
+      excessive_updates: スクリプトの作者は、スクリプトの一覧の上位に表示することのみを目的として、スクリプトを過度に更新してはなりません。
+      non_functional_includes_html: スクリプトが機能を提供しないサイトを<code>@include</code>や<code>@match</code>に記載しないでください。
+      content_language: スクリプトの名前、説明、その他の内容は、適切な言語で表記してください。
+      listing_header: 掲載
     external_scripts:
       title: "外部スクリプトにおける %{site_name} のポリシー"
       intro_html: |
@@ -925,7 +931,7 @@ ja:
       description: "スクリプトのコードを検索します。大文字と小文字は区別しません。 (ワイルドカードは使用不可)"
     user_search:
       title: "ユーザーの検索"
-      description: "ユーザー名からユーザーを検索します (部分一致)。"
+      description: "名前からユーザーを検索。"
   moderator_logs:
     date_column: "日付"
     moderator_column: "管理担当者"
@@ -1011,8 +1017,9 @@ ja:
     report_user: "ユーザーを通報"
     report_comment: "コメントを通報"
     report_message: "メッセージを通報"
-    result_dismissed: "この通報は管理担当者に拒否されました。"
+    result_dismissed: "この通報は管理担当者に却下されました。"
     result_upheld: "この通報は管理担当者に承認されました。"
+    result_upheld_reason_override: "この通報は管理担当者により承認されましたが、 %{reason}に分類されました。"
     result_self_upheld: "この通報のため、作者が自分でスクリプトを削除しました。"
     result_fixed: "この通報は管理担当者により作者が問題を修正したとして解決されました。"
     result_pending: "この通報は管理担当者による審査待ちです。"
@@ -1036,6 +1043,10 @@ ja:
     script_updated_since_report: "このスクリプトは通報後に更新されています。"
     script_previous_reports:
       other: " このスクリプトには、承認または修正済みの%{count}回の通報があります。"
+    reporter_temporarily_blocked: "管理担当者によって却下された最近のあなたの通報履歴が原因で、%{date} まで新たな通報はブロックされます。今後、正しく報告するために%{rules_link:%{site_name}の規則}をご確認ください。"
+    reported_temporarily_blocked: "この項目に関する最近の通報が管理担当者によって却下されたことが原因で、%{date} まで新たな通報はブロックされます。"
+    already_reported_by_reporter: "これは、%{report_link:すでに通報済み}です。"
+    already_reported_same_type: "これに関して%{report_link:類似の審査待ちの通報}が既に存在します。"
   appeals:
     new:
       title: スクリプト削除への新しい抗議
@@ -1154,7 +1165,7 @@ ja:
     pending_moderator_review: この議論は、管理担当者により審査されるまで他のユーザーに表示されません。
     search_placeholder: 議論を検索
   conversations:
-    user_input_note: ユーザー名またはプロフィールのあるURLを入力
+    user_input_note: ユーザー名、またはプロフィールのURLを入力
     new_title: 新しい会話の作成
     new_link: 新しい会話の作成
     new_button: 会話の作成
@@ -1193,13 +1204,13 @@ ja:
     listing_options_title: "検索オプション"
     quote:
       prefix_html: "%{user} の発言:"
-      anonymous_reporter_html: "通報者の発言:"
+      anonymous_reporter_html: "通報者の意見:"
   activerecord:
     models:
       script:
         other: "%{count} 個のスクリプト"
       comment:
-        other: "%{count} 発言のコメント"
+        other: "%{count} 回のコメント"
     attributes:
       user:
         name: "名前"
@@ -1253,6 +1264,7 @@ ja:
       script_update_not_utf8: "アップロードされるテキストはUTF-8形式にしてだくさい"
       script_disallowed_require: "で許可されていない外部スクリプトが使用されています: %{code}"
       script_disallowed_resource: "@resource が正しくないです: %{code}。リソースは http や https、データ URL にしてください"
+      script_disallowed_base_64_require: "Base-64 エンコードされた @require が使用されています。"
       script_malformed_require: "不正な形式で外部のスクリプトを参照: %{code}"
       script_rate_limit: "投稿制限です。時間をおいて再投稿してください。"
       missing_include_or_match: "@match か @include キーを 1 回以上含めてください"

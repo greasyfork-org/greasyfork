@@ -42,13 +42,21 @@ class ReportsController < ApplicationController
   def new
     @report = Report.new(item:, reporter: current_user, explanation_markup: current_user&.preferred_markup)
     previous_report = Report.unresolved.where(item:, reporter: current_user).first
-    redirect_to report_path(previous_report) if previous_report
+    if previous_report
+      redirect_to report_path(previous_report)
+      return
+    end
+
+    check_for_blocked_report
   end
 
   def create
     @report = Report.new(report_params)
     @report.reporter = current_user
     @report.item = item
+
+    return if check_for_blocked_report(@report)
+
     if @report.item.is_a?(Script) && @report.script_url.present?
       script_from_input = get_script_from_input(@report.script_url, allow_deleted: true)
       if script_from_input.is_a?(Script)
@@ -124,7 +132,7 @@ class ReportsController < ApplicationController
       return
     end
 
-    if @report.awaiting_response? && !user_is_script_author
+    if @report.awaiting_response? && !user_is_script_author && !current_user.administrator?
       @text = 'Cannot uphold report, awaiting author response.'
       render 'home/error', status: :not_acceptable, layout: 'application'
       return
@@ -142,6 +150,7 @@ class ReportsController < ApplicationController
       @report.uphold!(
         moderator: current_user,
         moderator_notes: params[:moderator_notes],
+        moderator_reason_override: params[:moderator_reason_override],
         ban_user: params[:ban] == '1' || params[:nuke].present?,
         delete_comments: params[:delete_comments] == '1' || params[:nuke].present?,
         delete_scripts: params[:delete_scripts] == '1' || params[:nuke].present?,
@@ -218,5 +227,46 @@ class ReportsController < ApplicationController
 
   def user_is_script_author?(report)
     current_user && report.item.is_a?(Script) && report.item.users.include?(current_user)
+  end
+
+  def check_for_blocked_report(report = nil)
+    # If the report has a history of bad reports, block reports by them for a week.
+    if current_user.blocked_from_reporting_until
+      render_error(200, It.it('reports.reporter_temporarily_blocked', date: I18n.l(current_user.blocked_from_reporting_until.to_date), rules_link: help_code_rules_path, site_name:))
+      return true
+    end
+
+    # Allow trusted reports and mods to bypass further restrictions.
+    return false if current_user.trusted_reports || current_user.moderator?
+
+    # If lots of people have reported the item and it's always dismissed, then block reports on that item for a week.
+    date = item_reporting_blocked_until
+    if date
+      render_error(200, It.it('reports.reported_temporarily_blocked', date: I18n.l(date.to_date), rules_link: help_code_rules_path, site_name:))
+      return true
+    end
+
+    # Can't file more than one report per month for the same item (unless those reports were upheld).
+    recent_report_by_same_user = Report.where(reporter: current_user, item:, result: [nil, Report::RESULT_DISMISSED], created_at: 1.month.ago..).last
+    if recent_report_by_same_user
+      render_error(200, It.it('reports.already_reported_by_reporter', report_link: report_path(recent_report_by_same_user)))
+      return true
+    end
+
+    # Can't add another if there's a already a pending report of the same type
+    if report&.reason
+      previous_pending_report = Report.unresolved.where(item:).find_by(reason: report.reason)
+      if previous_pending_report
+        render_error(200, It.it('reports.already_reported_same_type', report_link: report_path(previous_pending_report)))
+        return true
+      end
+    end
+
+    false
+  end
+
+  def item_reporting_blocked_until
+    recent_reports = Report.resolved.where(item:, created_at: 1.week.ago..).order(:created_at)
+    recent_reports.first.created_at + 1.week if recent_reports.count(&:dismissed?) == 5
   end
 end

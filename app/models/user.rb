@@ -4,6 +4,7 @@ require 'digest'
 
 class User < ApplicationRecord
   include MentionsUsers
+  include UserIndexing
 
   AUTHOR_NOTIFICATION_NONE = 1
   AUTHOR_NOTIFICATION_DISCUSSION = 2
@@ -13,6 +14,7 @@ class User < ApplicationRecord
 
   scope :moderators, -> { joins(:roles).where(roles: { name: 'moderator' }) }
   scope :administrators, -> { joins(:roles).where(roles: { name: 'administrator' }) }
+  scope :script_authors, -> { where(stats_script_count: 1..) }
 
   scope :banned, -> { where.not(banned_at: nil) }
   scope :not_banned, -> { where(banned_at: nil) }
@@ -43,6 +45,8 @@ class User < ApplicationRecord
   has_many :conversation_subscriptions, dependent: :destroy
 
   ThinkingSphinx::Callbacks.append(self, :script, behaviours: [:sql, :deltas], path: [:scripts])
+
+  generates_token_for(:one_click_unsubscribe)
 
   before_destroy(prepend: true) do
     scripts.select { |script| script.authors.where.not(user_id: id).none? }.each do |script|
@@ -91,6 +95,11 @@ class User < ApplicationRecord
     scripts.touch_all if saved_change_to_name?
   end
 
+  before_update do
+    # Recheck it if it's disposable the next time we need to know.
+    self.disposable_email = nil if email_changed? && !disposable_email_changed?
+  end
+
   # Include default devise modules. Others available are:
   # :lockable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable, :timeoutable
@@ -106,7 +115,8 @@ class User < ApplicationRecord
   end
 
   validates :name, :profile_markup, :preferred_markup, presence: true
-  validates :name, uniqueness: { case_sensitive: false }, length: { minimum: 1, maximum: 50 }
+  # Cn is reserved unicode characters
+  validates :name, uniqueness: { case_sensitive: false }, length: { minimum: 1, maximum: 50 }, format: { without: /\p{Cn}/ }
   validates :profile, length: { maximum: 10_000 }
   validates :profile_markup, inclusion: { in: %w[html markdown] }
   validates :preferred_markup, inclusion: { in: %w[html markdown] }
@@ -123,6 +133,13 @@ class User < ApplicationRecord
 
   validate do
     errors.add(:base, 'This email has been banned.') if (new_record? || email_changed? || unconfirmed_email_changed?) && (User.banned.where(canonical_email:).any? || User.email_previously_banned_and_deleted?(canonical_email))
+  end
+
+  validate do
+    next unless (new_record? || name_changed?) && name
+
+    invisible_char_regex = /\p{Cf}/
+    errors.add(:name, :uniqueness) if name.match?(invisible_char_regex) && User.where.not(id:).where(name: name.gsub(invisible_char_regex, '')).any?
   end
 
   # Devise runs this when password_required?, and we override that so
@@ -247,6 +264,8 @@ class User < ApplicationRecord
   def ban!(moderator:, reason: nil, report: nil, delete_comments: false, delete_scripts: false, private_reason: nil, ban_related: true)
     return if banned?
 
+    raise "Can't ban this user." unless bannable?
+
     User.transaction do
       ModeratorAction.create!(
         moderator:,
@@ -322,9 +341,9 @@ class User < ApplicationRecord
   end
 
   def needs_to_recaptcha?
-    scripts.not_deleted.where('created_at <= ?', 1.month.ago).none? &&
-      discussions.not_deleted.where('created_at <= ?', 1.month.ago).none? &&
-      comments.not_deleted.where('created_at <= ?', 1.month.ago).none?
+    scripts.not_deleted.where(created_at: ..1.month.ago).none? &&
+      discussions.not_deleted.where(created_at: ..1.month.ago).none? &&
+      comments.not_deleted.where(created_at: ..1.month.ago).none?
   end
 
   def existing_conversation_with(users)
@@ -360,6 +379,7 @@ class User < ApplicationRecord
     [:last_updated, 'max(scripts.code_updated_at)'],
     [:ratings, 'coalesce(sum(scripts.good_ratings + scripts.ok_ratings + scripts.bad_ratings), 0)'],
   ].freeze
+  SCRIPT_STAT_COLUMNS = %w[total_installs daily_installs fan_score created_at code_updated_at good_ratings ok_ratings bad_ratings].freeze
 
   def calculate_stats
     script_stat_results = scripts.listable(:all).pick(*SCRIPT_STAT_QUERIES.map(&:last).map { |v| Arel.sql(v) })
@@ -373,6 +393,29 @@ class User < ApplicationRecord
       stats_script_last_created: script_stat_results[:last_created],
       stats_script_last_updated: script_stat_results[:last_updated],
     }
+  end
+
+  def unsubscribe_all!
+    update!(
+      author_email_notification_type_id: User::AUTHOR_NOTIFICATION_NONE,
+      subscribe_on_discussion: false,
+      subscribe_on_comment: false,
+      subscribe_on_conversation_starter: false,
+      subscribe_on_conversation_receiver: false,
+      notify_on_mention: false,
+      notify_as_reporter: false,
+      notify_as_reported: false
+    )
+    discussion_subscriptions.destroy_all
+  end
+
+  def blocked_from_reporting_until
+    recent_reports = reports_as_reporter.resolved.where(created_at: 1.week.ago..).order(:created_at)
+    recent_reports.first.created_at + 1.week if recent_reports.count(&:dismissed?) == 5
+  end
+
+  def bannable?
+    !administrator? && !moderator?
   end
 
   protected

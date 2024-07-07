@@ -23,13 +23,22 @@ class Discussion < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_one :first_comment, -> { not_deleted.order(:id) }, class_name: 'Comment', foreign_key: :discussion_id, inverse_of: :discussion
   has_many :discussion_subscriptions, dependent: :destroy
+  has_many :reports, as: :item, dependent: :destroy
 
   scope :with_actual_rating, -> { where(rating: [RATING_BAD, RATING_OK, RATING_GOOD]) }
   scope :with_comment_by, ->(user) { where(id: Comment.where(poster: user).select(:discussion_id)) }
-  scope :visible, -> { not_deleted.where(review_reason: nil) }
+  scope :not_script_deleted, -> { left_joins(:script).where(scripts: { delete_type: nil }) }
+  scope :visible, -> { where(publicly_visible: true) }
   scope :permissive_visible, lambda { |user|
-                               if user
-                                 user&.moderator? ? all : not_deleted.where('discussions.review_reason IS NULL OR discussions.poster_id = ?', user.id)
+                               if user&.moderator?
+                                 all
+                               elsif user
+                                 # This is like .visible but with exceptions if the user is related to the discussion.
+                                 # We should check report_id as well but that's not easy to join to the user due to
+                                 # polymoprhism.
+                                 not_deleted
+                                   .where('discussions.review_reason IS NULL OR discussions.poster_id = ?', user.id)
+                                   .left_joins(script: :authors).where('scripts.delete_type IS NULL OR authors.user_id = ?', user.id)
                                else
                                  visible
                                end
@@ -67,8 +76,10 @@ class Discussion < ApplicationRecord
   end
 
   after_commit on: :update do
-    comments.reindex if saved_change_to_attribute?('review_reason') && !Rails.env.test?
+    comments.reindex if saved_change_to_attribute?('publicly_visible') && !Rails.env.test?
   end
+
+  before_save :calculate_publicly_visible
 
   strip_attributes
 
@@ -173,7 +184,7 @@ class Discussion < ApplicationRecord
     script.users.include?(poster)
   end
 
-  def visible?
-    !soft_deleted? && review_reason.nil? && (script.nil? || !script.deleted?)
+  def calculate_publicly_visible
+    self.publicly_visible = !soft_deleted? && review_reason.nil? && report_id.nil? && (script.nil? || !script.deleted?)
   end
 end

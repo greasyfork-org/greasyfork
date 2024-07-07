@@ -14,7 +14,7 @@ module Admin
     def create
       @allowed_require = AllowedRequire.new(allowed_require_params)
       if @allowed_require.save
-        redirect_to help_external_scripts_path
+        redirect_to help_cdns_path
       else
         render :new
       end
@@ -24,7 +24,7 @@ module Admin
       @allowed_require = AllowedRequire.find(params[:id])
       @allowed_require.assign_attributes(allowed_require_params)
       if @allowed_require.save
-        redirect_to help_external_scripts_path
+        redirect_to help_cdns_path
       else
         render :new
       end
@@ -33,7 +33,7 @@ module Admin
     def destroy
       @allowed_require = AllowedRequire.find(params[:id])
       @allowed_require.destroy!
-      redirect_to help_external_scripts_path
+      redirect_to help_cdns_path
     end
 
     private

@@ -73,6 +73,9 @@ class ScriptsController < ApplicationController
       @script, @script_version = versionned_script(params[:id], params[:version])
     end
 
+    # Avoid cookie overflow when storing return_to in session - don't use the script name in the URL.
+    @return_to = script_path(locale:, id: @script.id) if @script
+
     return if handle_publicly_deleted(@script)
     return if handle_wrong_url(@script, :id)
 
@@ -97,6 +100,7 @@ class ScriptsController < ApplicationController
           @canonical_params = [:id, :version]
           set_bots_directive
           @ad_method = choose_ad_method_for_script(@script)
+          @placed_ads = true
           show_integrity_hash_warning
           render_to_string
         end
@@ -134,6 +138,9 @@ class ScriptsController < ApplicationController
         set_bots_directive
         @canonical_params = [:id, :version]
         show_integrity_hash_warning
+
+        @ad_method = choose_ad_method_for_script(@script)
+        @placed_ads = @ad_method&.ea?
       end
       format.js do
         redirect_to @script.code_path
@@ -172,6 +179,9 @@ class ScriptsController < ApplicationController
 
       set_bots_directive
       @canonical_params = [:id, :version]
+
+      @ad_method = choose_ad_method_for_script(@script)
+      @placed_ads = @ad_method&.ea?
 
       render_to_string
     end
@@ -344,7 +354,7 @@ class ScriptsController < ApplicationController
 
   def sync_update
     unless params['stop-syncing'].nil?
-      @script.script_sync_type_id = nil
+      @script.sync_type = nil
       @script.last_attempted_sync_date = nil
       @script.last_successful_sync_date = nil
       @script.sync_identifier = nil
@@ -358,7 +368,8 @@ class ScriptsController < ApplicationController
       return
     end
 
-    @script.assign_attributes(params.require(:script).permit(:script_sync_type_id, :sync_identifier))
+    @script.assign_attributes(params.require(:script).permit(:sync_type, :sync_identifier))
+    @script.sync_identifier = ScriptImporter::UrlImporter.fix_sync_id(@script.sync_identifier) if @script.sync_identifier
 
     # additional info syncs. and new ones and update existing ones to add/update sync_identifiers
     if params['additional_info_sync']
@@ -401,7 +412,7 @@ class ScriptsController < ApplicationController
       begin
         text = ScriptImporter::BaseScriptImporter.download(preview_params[:sync_identifier])
         @preview[params[:preview].to_i] = view_context.format_user_text(text, preview_params[:value_markup])
-      rescue ArgumentError => e
+      rescue ArgumentError, OpenURI::HTTPError => e
         @preview[params[:preview].to_i] = e.to_s
       end
     end
@@ -676,6 +687,10 @@ class ScriptsController < ApplicationController
 
     if @other_script.is_a?(Script)
       if params[:terser] == '1'
+        unless @other_script.cleaned_code
+          @diff_error = flash[:notice] = t('.compare_cleaned_code_unavailable')
+          return
+        end
         other_code = @other_script.cleaned_code.code
         this_code = @script.cleaned_code.code
       else
@@ -815,8 +830,9 @@ class ScriptsController < ApplicationController
   end
 
   def request_duplicate_check
-    ScriptDuplicateCheckerJob.set(queue: 'user_low').perform_later(@script.id)
+    ScriptDuplicateCheckerJob.set(queue: 'user_low').perform_async(@script.id)
     flash[:notice] = t('scripts.derivatives_similiar_queued')
+    flash[:duplicates_enqueued] = true
     redirect_to derivatives_script_path(@script)
   end
 

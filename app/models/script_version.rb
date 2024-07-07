@@ -24,8 +24,6 @@ class ScriptVersion < ApplicationRecord
 
   strip_attributes only: [:changelog]
 
-  ThinkingSphinx::Callbacks.append(self, :script, behaviours: [:sql, :deltas], path: [:script])
-
   MAX_CODE_LENGTH = 2.megabytes
 
   validates :code, presence: true, length: { minimum: 20, maximum: MAX_CODE_LENGTH }, on: :create
@@ -112,6 +110,8 @@ class ScriptVersion < ApplicationRecord
   end
 
   after_commit on: [:create, :update] do
+    next if previous_changes.none?
+
     CleanedCodeJob.perform_later_unless_will_run(script) if script.js?
   end
 
@@ -249,7 +249,7 @@ class ScriptVersion < ApplicationRecord
                 :minified_confirmation, :truncate_description, :sensitive_site_confirmation,
                 :allow_code_previously_posted, :previously_posted_scripts, :license_missing_override
 
-  def initialize(*args)
+  def initialize(*)
     # Allow code to be updated without version being upped
     @version_check_override = false
     # Set a version by ourselves if not provided
@@ -268,7 +268,7 @@ class ScriptVersion < ApplicationRecord
     @allow_code_previously_posted = false
     @previously_posted_scripts = []
     @license_missing_override = false
-    super(*args)
+    super
   end
 
   # reuse script code objects to save disk space
@@ -437,7 +437,11 @@ class ScriptVersion < ApplicationRecord
     non_allowlisted_requires = []
     allowed_requires = AllowedRequire.all
     meta['require'].each do |script_url|
-      next if script_url.starts_with?('data:')
+      if script_url.starts_with?('data:')
+        non_allowlisted_requires << script_url if script_url.include?(';base64,')
+        next
+      end
+
       next if /\A[^#]+#(md5|sha1|sha256|sha384|sha512)=/.match?(script_url)
 
       uri = URI(script_url).normalize.to_s

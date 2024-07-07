@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_22_162848) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_28_230841) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -155,6 +155,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_22_162848) do
     t.string "private_reason", null: false
     t.boolean "serious", default: false, null: false
     t.integer "originating_script_id"
+    t.boolean "case_insensitive", default: false, null: false
     t.index ["originating_script_id"], name: "fk_rails_6f37f4eb64"
   end
 
@@ -301,9 +302,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_22_162848) do
     t.integer "stat_first_comment_id"
     t.integer "locale_id"
     t.integer "report_id"
+    t.boolean "publicly_visible", default: true, null: false
     t.index ["locale_id"], name: "index_discussions_on_locale_id"
     t.index ["migrated_from"], name: "index_discussions_on_migrated_from"
     t.index ["poster_id"], name: "index_discussions_on_poster_id"
+    t.index ["publicly_visible"], name: "index_discussions_on_publicly_visible"
+    t.index ["report_id"], name: "index_discussions_on_report_id"
     t.index ["script_id"], name: "fk_rails_a52537835c"
     t.index ["stat_last_reply_date"], name: "index_discussions_on_stat_last_reply_date"
   end
@@ -318,7 +322,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_22_162848) do
     t.index ["user_id"], name: "fk_rails_5373344100"
   end
 
-  create_table "install_counts", id: :integer, charset: "utf8mb3", collation: "utf8mb3_unicode_ci", force: :cascade do |t|
+  create_table "install_counts", charset: "utf8mb3", collation: "utf8mb3_unicode_ci", force: :cascade do |t|
     t.integer "script_id", null: false
     t.date "install_date", null: false
     t.integer "installs", null: false
@@ -430,6 +434,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_22_162848) do
     t.bigint "discussion_category_id"
     t.integer "resolver_id"
     t.boolean "self_upheld", default: false
+    t.string "moderator_reason_override", limit: 25
     t.index ["item_type", "item_id"], name: "index_reports_on_item_type_and_item_id"
     t.index ["reporter_id"], name: "index_reports_on_reporter_id"
     t.index ["result"], name: "index_reports_on_result"
@@ -464,14 +469,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_22_162848) do
   create_table "script_applies_tos", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.integer "script_id", null: false
     t.integer "site_application_id", null: false
-    t.boolean "tld_extra", default: false, null: false
-    t.index ["script_id"], name: "index_script_applies_tos_on_script_id"
-  end
-
-  create_table "script_applies_tos_bak", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
-    t.integer "script_id", null: false
-    t.text "text", size: :medium, null: false
-    t.boolean "domain", null: false
     t.boolean "tld_extra", default: false, null: false
     t.index ["script_id"], name: "index_script_applies_tos_on_script_id"
   end
@@ -583,11 +580,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_22_162848) do
     t.index ["subresource_id"], name: "index_script_subresource_usages_on_subresource_id"
   end
 
-  create_table "script_sync_types", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "description", null: false
-  end
-
   create_table "script_versions", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.integer "script_id", null: false
     t.text "changelog", size: :medium
@@ -609,7 +601,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_22_162848) do
     t.integer "daily_installs", default: 0, null: false
     t.integer "total_installs", default: 0, null: false
     t.datetime "code_updated_at", precision: nil, null: false
-    t.integer "script_sync_type_id"
+    t.integer "sync_type"
     t.string "sync_identifier", limit: 500
     t.string "sync_error", limit: 1000
     t.datetime "last_attempted_sync_date", precision: nil
@@ -654,6 +646,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_22_162848) do
     t.boolean "missing_license_warned", default: false, null: false
     t.integer "script_type", default: 1, null: false
     t.integer "delete_report_id"
+    t.text "deletion_message"
     t.index ["delete_type"], name: "index_scripts_on_delete_type"
     t.index ["delta"], name: "index_scripts_on_delta"
     t.index ["promoted"], name: "index_scripts_on_promoted"
@@ -668,9 +661,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_22_162848) do
 
   create_table "site_applications", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.text "text", null: false
-    t.boolean "domain", null: false
     t.boolean "blocked", default: false, null: false
     t.string "blocked_message"
+    t.string "domain_text", limit: 100
+    t.index ["domain_text"], name: "index_site_applications_on_domain_text", unique: true
   end
 
   create_table "spammy_email_domains", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
@@ -710,7 +704,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_22_162848) do
     t.index ["script_id", "ip"], name: "update_script_id_and_ip", unique: true
   end
 
-  create_table "update_check_counts", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+  create_table "update_check_counts", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.integer "script_id", null: false
     t.date "update_check_date", null: false
     t.integer "update_checks", null: false

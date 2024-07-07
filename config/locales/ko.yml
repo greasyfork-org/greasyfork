@@ -44,6 +44,8 @@ ko:
     deleted_notice_with_related: "이 스크립트는 삭제되었지만 비슷한 스크립트가 있습니다."
     deleted_notice_with_related_and_reason: "요청하신 스크립트는 %{report_link:this report}로 인해 삭제되었습니다. 관련 스크립트는 다음과 같습니다.\n "
     deleted_undelete_notice_html: "관리자가 잠근 스크립트입니다. 복구할 수 없습니다. 삭제 사유: <i>%{delete_reason}</i>"
+    deleted_locked_author_notice_html: "이 스크립트는 %{report_link:this report} 신고의 제재로 관리자에 의해 삭제되었으며 다른 사람이 엑세스할 수 없습니다. 제재의 사유는 \"%{delete_reason}\" 입니다. {code_rules_link:%{site_name}의 규칙을 검토해주시기 바랍니다.} 만약 삭제가 잘못되었다고 생각되실 경우, %{appeal_link:이의를 제기.}하실 수 있습니다. 이 스크립트를 다시 개시하지 마십시오. %{site_name}에서 차단될 수 있습니다."
+    self_deleted_locked_author_notice_html: "이 스크립트는 %{report_link:this report} 신고의 응답으로 당신에 의해 삭제되었으며 다른 사람이 엑세스할 수 없습니다.{code_rules_link:%{site_name}의 규칙.}에 부합하도록 스크립트를 업데이트 하셨다면, 이 삭제에 대해%{appeal_link:재고를 요청.}하실 수 있습니다. 이 스크립트를 다시 개시하지 마십시오. %{site_name}에서 차단될 수 있습니다."
     deleted_author_notice: "삭제한 스크립트입니다. 다른 사람이 볼 수 없습니다. 삭제 탭에서 복구할 수 있습니다."
     version_notice_html: "%{date} 일자. %{latest_version_link}을 확인하세요."
     version_notice_latest_version_link: "최신 버전"
@@ -174,6 +176,7 @@ ko:
     listing_language_all: "전부"
     listing_language_js: "Javascript"
     listing_language_css: "CSS"
+    search_failed: 결과를 가져오는데 오류가 발생했습니다. 어떤 검색 기능은 작동하지 않을 수 있습니다.  우리는 이 문제에 대해서 알렸습니다.
     import: "스크립트 가져오기"
     new: "새 스크립트"
     new_css: "새 스타일"
@@ -455,16 +458,6 @@ ko:
         <p>유저 스크립트를 사용하려면 먼저 스크립트 관리 프로그램을 설치해야 합니다. 사용 환경에 따라 사용 가능한 프로그램이 다릅니다.</p>
     desktop_browsers:
       title: 데스크탑
-      browser_list_html: |
-          <ul>
-          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} 또는 %{chrome_violentmonkey_link:Violentmonkey}</li>
-          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, 또는 %{firefox_violentmonkey_link:Violentmonkey}</li>
-          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} 또는 %{safari_userscripts_link:Userscripts}</li>
-          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} 또는 %{edge_violentmonkey_link:Violentmonkey}</li>
-          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} 또는 %{opera_violentmonkey_link:Violentmonkey}</li>
-          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
-          <li>AdGuard: (별도 프로그램이 필요하지 않습니다)</li>
-          </ul>
     android_browsers:
       title: 모바일(안드로이드)
       browser_list_html: |
@@ -692,7 +685,6 @@ ko:
       functionality_header: 기능
       description: 스크립트는 뭘 하는지에 대한 설명을 반드시 포함해야 하고 이 설명을 이유없이 벗어나는 행위를 하면 안 됩니다. 사용자는 스크립트를 설치하기 전에 이 스크립트가 뭘 할지 알아야 합니다.
       reason: 스크립트는 스크립트일 이유가 있어야 합니다. 가령 사용자를 웹사이트로 유도하기만 하는 스크립트는 스크립트일 이유가 없습니다. 링크로 충분하니까요. 현재 페이지에 동작을 수행하기 위해 웹 서비스를 사용하는 (가령 무언가 변환하는) 스크립트는 허용됩니다.
-      monetization_html: 사용자가 아니라 개발자의 이익을 위한 기능(추적, 광고, 채굴 등)을 담은 스크립트는 허용되지만 반드시 그 기능을 %{antifeature_link:<code>@antifeature</code> 메타 정보}로 명시해야 합니다.
       code_header: 코드
       libraries_html: 스크립트가 사용하는 라이브러리는 그러지 않을 기술적인 이유가 없다면 반드시 <code>@require</code>되어야 합니다. 라이브러리를 인라인으로 포함하는 경우 반드시 라이브러리 소스에 관한 정보를 (URL이나 이름, 버전에 관한 코멘트 등으로) 담아야 합니다.
       updates: 스크립트는 업데이트 체크를 하루에 한 번 넘게 하면 안 됩니다. 스크립트 관리자 대부분 업데이트 체크를 자동으로 해 주므로 스크립트가 체크할 필요가 없습니다. 유저 스크립트 관리자의 캐싱을 우회하기 때문에 다른 %{site_name} 스크립트믈 동적으로 주입해서도 안 됩니다.
@@ -850,7 +842,6 @@ ko:
       description: "스크립트 코드를 검색합니다. 대소문자를 안 가리고 와일드 카드를 지원하지 않는 평문 검색입니다."
     user_search:
       title: "사용자 검색"
-      description: "닉네임으로 사용자를 검색합니다. 평문 LIKE 검색입니다."
   moderator_logs:
     date_column: "날짜"
     moderator_column: "관리자"

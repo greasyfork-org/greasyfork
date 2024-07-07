@@ -1,9 +1,19 @@
 class ScriptSetsController < ApplicationController
   before_action :authenticate_user!
   before_action :authorize_by_user_id
-  before_action :ensure_set_ownership, except: [:new, :create, :add_to_set]
+  before_action :ensure_set_ownership, except: [:new, :create, :add_to_set, :index]
   before_action :check_read_only_mode
   before_action :check_ip, only: :create
+
+  def index
+    render json: current_user.script_sets.map { |ss|
+      {
+        id: ss.id,
+        name: ss.name,
+        scripts: ss.scripts(script_subset, as_ids: true),
+      }
+    }
+  end
 
   def new
     @user = User.find(params[:user_id])

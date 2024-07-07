@@ -14,7 +14,7 @@ class DiscussionRead < ApplicationRecord
       ids += if discussions.is_a?(Array)
                discussions.select { |d| d.stat_last_reply_date <= user.discussions_read_since }.map(&:id)
              else
-               discussions.where('discussions.stat_last_reply_date <= ?', user.discussions_read_since).pluck(:id)
+               discussions.where(discussions: { stat_last_reply_date: ..user.discussions_read_since }).pluck(:id)
              end
     end
 

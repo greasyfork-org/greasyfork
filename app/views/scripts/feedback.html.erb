@@ -1,6 +1,12 @@
 <%- title t('scripts.feedback_title', script_name: @script.name(request_locale)) %>
 <%- description "Feedback on #{@script.name(request_locale)}" %>
 
+<% if @ad_method&.ea? %>
+  <div class="ad <%= @ad_method.css_class %>" id="script-feedback-ad">
+    <div id="script-feedback-ea" class="flat ethical-ads" data-ea-publisher="greasyfork" data-ea-type="text"></div>
+  </div>
+<% end %>
+
 <% if !@script.contribution_url.nil?
   is_bitcoin = @script.contribution_url.starts_with?('bitcoin:') %>
   <p id="contribution">
@@ -68,7 +74,8 @@
     <% end %>
   <% else %>
     <p>
-      <%= link_to t('discussions.sign_in_to_post_discussion'), new_user_session_path(return_to: request.fullpath) %>
+      <%# Use just the script ID in the return_to param to ensure it's not overlong long and causes cookie overflow. %>
+      <%= link_to t('discussions.sign_in_to_post_discussion'), new_user_session_path(return_to: feedback_script_path(locale:, id: @script.id)) %>
     </p>
   <% end %>
 </div>

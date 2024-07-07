@@ -38,6 +38,8 @@ class Report < ApplicationRecord
 
   REASONS_WARRANTING_BLANKING = [REASON_SPAM, REASON_ABUSE, REASON_ILLEGAL, REASON_MALWARE].freeze
 
+  NON_BLOCKING_REASONS = [REASON_NO_DESCRIPTION, REASON_OTHER].freeze
+
   RESULT_DISMISSED = 'dismissed'.freeze
   RESULT_UPHELD = 'upheld'.freeze
   RESULT_FIXED = 'fixed'.freeze
@@ -45,8 +47,8 @@ class Report < ApplicationRecord
   scope :unresolved, -> { where(result: nil) }
   scope :resolved, -> { where.not(result: nil) }
   scope :upheld, -> { where(result: RESULT_UPHELD) }
-  scope :resolved_and_valid, -> { where(result: [RESULT_UPHELD, RESULT_FIXED]) }
-  scope :block_on_pending, -> { unresolved.trusted_reporter }
+  scope :resolved_and_valid, -> { where(result: [RESULT_UPHELD, RESULT_FIXED], moderator_reason_override: nil) }
+  scope :block_on_pending, -> { unresolved.trusted_reporter.where.not(reason: NON_BLOCKING_REASONS) }
   scope :trusted_reporter, -> { joins(:reporter).where(users: { trusted_reports: true }) }
 
   belongs_to :item, polymorphic: true
@@ -60,10 +62,15 @@ class Report < ApplicationRecord
   has_many :script_lock_appeals
 
   validates :reason, inclusion: { in: NON_SCRIPT_REASONS }, presence: true, unless: -> { item.is_a?(Script) || item.is_a?(Discussion) }
+  validates :moderator_reason_override, inclusion: { in: NON_SCRIPT_REASONS }, allow_nil: true, unless: -> { item.is_a?(Script) || item.is_a?(Discussion) }
   validates :reason, inclusion: { in: SCRIPT_REASONS, message: :invalid }, presence: true, if: -> { item.is_a?(Script) }
+  validates :moderator_reason_override, inclusion: { in: SCRIPT_REASONS, message: :invalid }, allow_nil: true, if: -> { item.is_a?(Script) }
   validates :reason, inclusion: { in: DISCUSSION_REASONS, message: :invalid }, presence: true, if: -> { item.is_a?(Discussion) }
+  validates :moderator_reason_override, inclusion: { in: DISCUSSION_REASONS, message: :invalid }, allow_nil: true, if: -> { item.is_a?(Discussion) }
+
   validates :reporter, presence: true, if: -> { auto_reporter.nil? }
-  validates :explanation, presence: true, if: -> { [REASON_UNDISCLOSED_ANTIFEATURE, REASON_OTHER].include?(reason) }, on: :create
+  validates :explanation, presence: true, if: -> { [REASON_UNDISCLOSED_ANTIFEATURE, REASON_MALWARE, REASON_ILLEGAL, REASON_OTHER].include?(reason) }, on: :create
+  validates :explanation, presence: true, if: -> { reason == REASON_UNAUTHORIZED_CODE && script_url.nil? }, on: :create
   validates :explanation_markup, inclusion: { in: %w[html markdown text] }, presence: true
   validates :discussion_category, presence: true, if: -> { reason == REASON_WRONG_CATEGORY }
 
@@ -91,7 +98,7 @@ class Report < ApplicationRecord
     reporter&.update_trusted_report!
   end
 
-  def uphold!(moderator:, moderator_notes: nil, ban_user: false, delete_comments: false, delete_scripts: false, redirect: false, self_upheld: false)
+  def uphold!(moderator:, moderator_notes: nil, moderator_reason_override: nil, ban_user: false, delete_comments: false, delete_scripts: false, redirect: false, self_upheld: false)
     Report.transaction do
       case item
       when User, Message
@@ -124,7 +131,7 @@ class Report < ApplicationRecord
         raise "Unknown report item #{item}"
       end
 
-      update_columns(result: RESULT_UPHELD, resolver_id: moderator&.id, moderator_notes:, self_upheld:)
+      update_columns(result: RESULT_UPHELD, resolver_id: moderator&.id, moderator_notes:, self_upheld:, moderator_reason_override: (moderator_reason_override if moderator_reason_override != reason))
       reporter&.update_trusted_report!
     end
 
@@ -132,6 +139,10 @@ class Report < ApplicationRecord
 
     return unless item
 
+    self.class.uphold_pending_reports_for(item)
+  end
+
+  def self.uphold_pending_reports_for(item)
     Report.unresolved.where(item:).find_each do |other_report|
       other_report.update!(result: RESULT_UPHELD)
       other_report.reporter&.update_trusted_report!
@@ -142,10 +153,14 @@ class Report < ApplicationRecord
     update!(rebuttal:, rebuttal_by_user: by)
   end
 
-  def reason_text
-    return It.it('reports.reason.wrong_category_with_suggestion', antifeature_link: Rails.application.routes.url_helpers.help_antifeatures_path, suggested_category: discussion_category.localized_name) if reason == REASON_WRONG_CATEGORY
+  def reason_text(reason_to_use = reason)
+    return It.it('reports.reason.wrong_category_with_suggestion', antifeature_link: Rails.application.routes.url_helpers.help_antifeatures_path, suggested_category: discussion_category.localized_name) if reason_to_use == REASON_WRONG_CATEGORY
 
-    It.it("reports.reason.#{reason}", antifeature_link: Rails.application.routes.url_helpers.help_antifeatures_path)
+    It.it("reports.reason.#{reason_to_use}", antifeature_link: Rails.application.routes.url_helpers.help_antifeatures_path)
+  end
+
+  def upheld_reason_text
+    reason_text(upheld_reason)
   end
 
   def resolved?
@@ -166,6 +181,10 @@ class Report < ApplicationRecord
 
   def warrants_blanking?
     REASONS_WARRANTING_BLANKING.include?(reason)
+  end
+
+  def upheld_reason
+    moderator_reason_override || reason
   end
 
   def reported_users
@@ -216,5 +235,17 @@ class Report < ApplicationRecord
 
   def recent_other_reports
     Report.where(created_at: 3.months.ago..DateTime.now).where.not(id:).where(item:).includes(:script_lock_appeals)
+  end
+
+  def possible_reasons
+    case item
+    when Script then Report::SCRIPT_REASONS
+    when Discussion then Report::DISCUSSION_REASONS
+    else Report::NON_SCRIPT_REASONS
+    end
+  end
+
+  def url(locale: nil)
+    Rails.application.routes.url_helpers.report_url(self, locale:)
   end
 end

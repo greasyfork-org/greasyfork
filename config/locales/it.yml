@@ -479,19 +479,6 @@ it:
         browser utilizzi.</p>
     desktop_browsers:
       title: Desktop
-      browser_list_html: |
-          <p>Per usare gli script utente hai prima bisogno di installare un gestore di
-          script utente. Quale gestore script utente puoi usare dipende da quale
-          browser utilizzi.</p>
-          <ul>
-          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> o %{chrome_violentmonkey_link:Violentmonkey}</li>
-          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, o %{firefox_violentmonkey_link:Violentmonkey}</li>
-          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} o %{safari_userscripts_link:Userscripts}</li>
-          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
-          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} o %{opera_violentmonkey_link:Violentmonkey}</li>
-          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
-          <li>AdGuard: (nessun software aggiuntivo richiesto)</li>
-          </ul>
     android_browsers:
       title: Mobile (Android)
       browser_list_html: |
@@ -746,7 +733,6 @@ it:
       functionality_header: Funzionalità
       description: Gli scripts devono includere una descrizione di cosa fanno e non devono fare cose irragionevolmente al di fuori di questa descrizione. Gli utenti devono sapere cosa uno script farà, prima di installarlo.
       reason: Gli scripts devono avere una ragione per essere script. Per esempio, uno script che semplicemente rimanda un utente a un sito non ha bisogno di essere uno script; potrebbe essere un link. Gli scripts che usano un servizio web per compiere un azione sulla pagina corrente (es. per convertirla in qualche maniera) sono consentiti.
-      monetization_html: Gli scripts che contengono funzioni a beneficio dell'<em>autore</em> piuttosto che dell'utente (come tracciamento, pubblicità e miners) sono consentite, ma queste devono essere dichiarate con le %{antifeature_link:<code>@antifeature</code> meta keys}.
       code_header: Codice
       obfuscation: Il codice pubblicato su %{site_name} non deve essere offuscato o minimizzato. Agli utenti deve essere data l'opportunità di capire uno script prima di installarlo. Se lo script è compresso da uno strumento  come webpack, deve essere esportato in forma non minimizzata, con gli spazi e i nomi delle variabili conservati.
       size_html: |
@@ -921,7 +907,6 @@ it:
       description: "Cerca nel codice dello script. Questa è una ricerca che non distingue tra maiuscole e minuscole, nel solo testo, senza caratteri jolly."
     user_search:
       title: "Cerca utente"
-      description: "Cerca gli utenti dal nome. Ricerca LIKE con testo in chiaro."
   moderator_logs:
     date_column: "Data"
     moderator_column: "Moderatore"

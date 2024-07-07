@@ -440,6 +440,7 @@ de:
       all_sites: "Alle Seiten"
       user: "Skripte des Nutzers %{user}"
       locale: "Skripte auf %{locale_name}"
+    new: Neue Skriptsammlung
   home:
     title: "%{site_name} - sichere und hilfreiche Benutzerskripte"
     welcome: "Herzlich Willkommen auf %{site_name}, einer Seite für Benutzerskripte"
@@ -676,8 +677,13 @@ de:
       functionality_header: Funktionalität
       description: Skripte müssen eine Beschreibung dessen enthalten, was sie tun, und dürfen keine unangemessenen Dinge außerhalb dieser Beschreibung tun. Benutzer müssen wissen, was ein Skript tut, bevor sie es installieren.
       reason: Skripte müssen einen Grund haben, ein Skript zu sein. Zum Beispiel muss ein Skript, das einen Benutzer nur auf eine Website verweist, kein Skript sein; es könnte ein Link sein. Skripte, die einen Webdienst verwenden, um eine Aktion auf der aktuellen Seite durchzuführen (z. B. um sie in irgendeiner Weise zu konvertieren), sind erlaubt.
-      monetization_html: Skripte, die Funktionen enthalten, die eher dem <em>Autor</em> als dem Benutzer zugute kommen (z. B. Tracking, Werbung und Miner), sind erlaubt, müssen aber mit %{antifeature_link:<code>@antifeature</code>-Meta-Schlüsseln} offengelegt werden.
       code_header: Quelltext
+      size_html: |
+          Skripte sind auf eine Größe von %{max_code_size} limitiert. Skripte dürfen nicht minifiziert werden, um in dieses Limit zu passen. Falls Ihr Skript diesem Limit nahekommt, können sie folgendes tun:
+          <ul>
+          <li> Daten, die nicht Code sind, wie URIs oder JSON, aus dem Skript bewegen.</li>
+          Bibliotheken mit <code>@require</code> oder mit %{webpack_externals_link:webpack's <code>externals</code>option} laden.</li>
+          </ul>
       libraries_html: Bibliotheken, die ein Skript verwendet, sollten <code>@require</code>-d sein, es sei denn, es gibt einen triftigen technischen Grund, dies nicht zu tun. Wenn eine Bibliothek inline eingebunden wird, muss das Skript Informationen über die Quelle der Bibliothek enthalten (z. B. einen Kommentar mit Angabe der URL und/oder des Namens und der Version).
       updates: Skripte dürfen nicht häufiger als einmal pro Tag nach Updates suchen. Beachten Sie, dass die meisten Benutzerskript-Manager automatische Aktualisierungen durchführen, so dass es nicht notwendig ist, dies im Skript zu tun. Skripte sollten auch nicht dynamisch ein anderes von %{site_name} gehostetes Skript in eine Seite einfügen, da dies die Zwischenspeicherung in Benutzerskript-Managern umgeht.
       external_js: "%{external_scripts_link:Die Benutzung von externem JavaScript ist eingeschränkt.}"
@@ -769,7 +775,6 @@ de:
       description: "Suche nach Skript-Quelltext. Dies ist eine von Groß-/Kleinschreibung unabhängige Klartextsuche ohne Stellvertretersymbole."
     user_search:
       title: "Benutzersuche"
-      description: "Suchen nach Benutzern über den Namen. Volltext LIKE Suche."
   moderator_logs:
     date_column: "Datum"
     moderator_column: "Moderator"
@@ -850,10 +855,12 @@ de:
     report_message: "Nachricht melden "
     result_dismissed: "Dein Bericht wurde von einem Moderator abgelehnt."
     result_upheld: "Dein Bericht wurde von einem Moderator stattgegeben."
+    result_self_upheld: "Der Autor hat sein Skript aufgrund dieser Meldung gelöscht."
     result_fixed: "Dieser Bericht wurde von einem Moderator aufgelöst, da er glaubt, dass der Autor das Problem behoben hat."
     result_pending: "Dein Bericht wird erst von einem Moderator geprüft."
     rebuttal_placeholder: 'Erklären Sie einem Moderator, warum dieses Skript nicht gelöscht werden sollte.'
     submit_rebuttal: "Gegendarstellung senden"
+    rebuttal_submitted: Ein Moderator wird diese Meldung und Ihre Erklärung prüfen und eine Entscheidung treffen.
     delete_script: "Skript löschen"
     view_discussion: "Zeige Diskussion"
     load_diff: "Lade Unterschiede"
@@ -888,6 +895,7 @@ de:
     quote_comment: "Zitat"
     question_heading_html: "Frage/Kommentar"
     review_heading_html: "Rezension: %{rating}"
+    update_rating_note: "(Sie können ihre Bewertung später ändern, indem Sie einen neuen Kommentar schreiben.)"
     update_rating: "Ihre Bewertung von %{script_name} aktualisieren"
     ratings:
       question: "Ohne Bewertung - nur eine Frage, Kommentar oder Funktionsanfrage"
@@ -1063,6 +1071,7 @@ de:
       script_disallowed_require: "benutzt ein nicht zugelassenes externes Skript: %{code}"
       script_rate_limit: "Sie haben das Beitragslimit überschritten. Versuchen Sie es später noch einmal."
       missing_include_or_match: "muss mindestens einen @match oder @include Eintrag enthalten"
+      no_executable: "enthält keinen ausführbaren Quelltext."
       meta_too_long: "%{key} ist zu lang (maximal %{count} Zeichen)"
   opensearch:
     short_name: "%{site_name} Suche"

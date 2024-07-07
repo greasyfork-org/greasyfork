@@ -100,6 +100,7 @@ sk:
       compare_to: "Porovnať skript na %{site_name} s (URL)"
       compare_button: "Porovnať"
       compare_must_be_local_url: "Porovnávaný skript musí byť URL na %{site_name}."
+      compare_cleaned_code_unavailable: "Čistý kód porovnávacieho skriptu zatiaľ nie je k dispozícii."
     history_title: "%{script_name} - História verzií"
     history_only_code_changes_info: "Zoznam verzií skriptu, ktorých kód bol aktualizovaný."
     history_all_changes_link: "Zobraziť všetky verzie."
@@ -233,6 +234,7 @@ sk:
     localized_additional_info_with_no_name: "Dodatočné informácie boli uvedené pre jazyk '%{locale_code}', ale nebol doplnený parameter @name:%{locale_code}."
     code_syncing_from_url_html: "Tento kód skriptu je nastavený na synchronizáciu z: %{field}"
     provide_code_syncing_from_url_html: "%{site_name} dokáže importovať skripty, ktoré sú hotovostné už niekde inde, napríklad na verziovacom systéme (ako GitHub), vlastnom serveri, alebo ďalšej stránke s používateľskými skriptami. Pre zapnutie synchronizácie vášho skriptu, zadajte URL: %{field}"
+    code_syncing_from_webhook_html: "Kód tohto skriptu je nastavený na synchronizáciu s webhookom. Na základe tejto adresy URL budeme tomuto skriptu priraďovať požiadavky webhooku: %{field}"
     sync_type_intro: "Skript bude synchronizovaný:"
     sync_type_1:
       name: Manuálne
@@ -361,7 +363,7 @@ sk:
     antifeatures:
       label: Antifunkcie
       warning_title: Tento skript obsahuje antifeatures
-      intro: Pred inštaláciou vás %{site_name}upozorňuje, že tento skript obsahuje antifeatures, ktoré sú skôr v prospech autora skriptu ako vo váš prospech.
+      intro: Pred inštaláciou vás %{site_name} upozorňuje, že tento skript obsahuje antifeatures, ktoré sú skôr v prospech autora skriptu ako vo váš prospech.
       author_explanation_intro: "Vysvetlenie autora skriptu:"
       types:
         ads:
@@ -500,7 +502,7 @@ sk:
           <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} alebo %{edge_violentmonkey_link:Violentmonkey}</li>
           <li>Opera: %{opera_tampermonkey_link:Tampermonkey} alebo %{opera_violentmonkey_link:Violentmonkey}</li>
           <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
-          <li>AdGuard: (nie je potrebný žiadny ďalší softvér)</li>
+          <li>%{adguard_link:AdGuard}: (nie je potrebný žiadny ďalší softvér)</li>
           </ul>
     android_browsers:
       title: Mobil (Android)
@@ -606,6 +608,7 @@ sk:
     listing_new_scripts: "Nové skripty"
     listing_updated_scripts: "Aktualizované skripty"
     listing_registration_date: "Dátum registrácie"
+    listing_relevance: "Relevantnosť"
     listing_title: "Používatelia"
     listing_banned_filter:
       banned: "Zblokovaný"
@@ -773,7 +776,7 @@ sk:
       functionality_header: Funkčnosť
       description: Skripty musia obsahovať opis toho, čo robia, a nesmú robiť veci bezdôvodne mimo neho. Používatelia musia pred inštaláciou skriptu vedieť, čo urobí.
       reason: Skripty musia mať dôvod na to, aby boli skriptom. Napríklad skript, ktorý iba nasmeruje používateľa na web, nemusí byť skript; môže to byť odkaz. Skripty, ktoré používajú webovú službu na vykonanie akcie na aktuálnej stránke (napr. prevod na iný formát), sú povolené.
-      monetization_html: Skripty obsahujúce funkcie viac prospešné pre <em>autora</em> ako pre používateľa (ako sledovanie, reklamy, ťaženie, atď.) sú povolené, ale autor to musí uviesť do %{antifeature_link:metakľúčov <code>@antifeature</code>}.
+      monetization_html: Skripty obsahujúce funkcie viac prospešné pre <em>autora</em> ako pre používateľa (ako sledovanie, reklamy, ťaženie, atď.) sú povolené, ale autor to musí uviesť do %{antifeature_link:metakľúčov <code>@antifeature</code>}. Skripty nemôžu pridávať <code>@includes</code> alebo <code>@match</code> za jediným účelom pridania antifunkcií.
       code_header: Kód
       obfuscation: Kód zverejnený na webe %{site_name} nesmie byť zmätočný ani minifikovaný. Používateľom musí byť poskytnutá príležitosť skontrolovať a porozumieť skriptu pred jeho inštaláciou. Ak je skript zabalený s nástrojom, ako je webpack, musí byť vydaný v neminifikovanej podobe, so zachovaním medzier a názvov premenných.
       size_html: |
@@ -790,12 +793,15 @@ sk:
       licensing_html: Váš skript musí rešpektovať autorské práva ostatných. Zahŕňa to samotný kód a všetky zdroje (napríklad obrázky), ktoré používa. Ak máte v úmysle použiť obsah niekoho iného, ​​riaďte sa jeho licenčnými podmienkami alebo pred tým získajte jeho povolenie. Licencie na skripty sa udávajú do metakľúča <code>@license</code> a to, čo môžete a čo nemôžete robiť sa môžete dozvedieť na %{tldr_legal_link:tldrlegal.com}.
       reposts: Dokonca v prípadoch neporušovania autorského práva, preposielanie skriptov, ktoré už sú na %{site_name} nie je povolené, aj keď vylepšujú pôvodný skript
       miscellaneous_header: Rôzne
-      included_sites_html: Skripty nesmú obsahovať <code>@include</code> alebo <code>@match</code> pre stránky, na ktorých neposkytujú funkcie. Skripty nesmú pridávať <code>@include</code> alebo <code>@match</code> len s účelom pridania antifunkcií.
       keywords: Skripty nesmú obsahovať nesúvisiace kľúčové slová ani uvádzať nesúvisiace stránky s cieľom zlepšiť umiestnenie vo vyhľadávaní.
       adult_content_rule: Skripty, ktoré obsahujú obsah pre dospelých, alebo sú určené pre stránky s obsahom pre dospelých, musia byť takto označené, aby mali ostatní používatelia možnosť ich zobraziť.
       reposting_deleted: Skripty, ktoré boli odstránené z dôvodu porušenia pravidiel, opätovne nezverejňujte; namiesto toho použite funkciu odvolania. Opätovné zverejnenie odstránených skriptov môže viesť k banu.
       advertising_in_description: Autori skriptov nesmú umiestňovať reklamu na stránky Greasy Forku, napríklad v popise skriptu. Propagácia domovskej stránky autora skriptu, repozitára kódu, Discordu, WeChatu atď. je povolená.
       reporting: Ak spozorujete skript, ktorý nespĺňa tieto parametre, nahláste ho kliknutím na odkaz Spätná väzba pre tento skript a vyberte  možnosť "Nahlásiť skript".
+      excessive_updates: Autori skriptov nemôžu nadmerne aktualizovať skripty s jediným cieľom, aby sa umiestnili vyššie v zozname skriptov.
+      non_functional_includes_html: Skripty nemôžu obsahovať <code>@include</code>, <code>@match</code> pre stránky, na ktorých neposkytujú funkcie.
+      content_language: Názvy skriptov, popisy a ďalší obsah musia byť označené správnym jazykom.
+      listing_header: Zoznam
     external_scripts:
       title: "Zásady %{site_name} používania externých skriptov"
       intro_html: |
@@ -996,7 +1002,7 @@ sk:
       description: "Hľadať kód skriptu. Hľadanie obyčajného textu, nerozlišuje veľkosť písma, nepoužíva zástupné znaky."
     user_search:
       title: "Hľadanie používateľov"
-      description: "Hľadať používateľov podľa mena. Obyčajný text AKO hľadanie."
+      description: "Vyhľadávanie používateľov podľa mena."
   moderator_logs:
     date_column: "Dátum"
     moderator_column: "Moderátor"
@@ -1091,6 +1097,7 @@ sk:
     report_message: "Nahlásiť správu"
     result_dismissed: "Táto sťažnosť bola moderátorom zamietnutá."
     result_upheld: "Táto sťažnosť bola moderátorom schválená."
+    result_upheld_reason_override: "Toto nahlásenie bolo potvrdené moderátorom, ale moderátor ho označil ako %{reason}."
     result_self_upheld: "Autor na základe tejto sťažnosti odstránil svoj vlastný skript."
     result_fixed: "Túto sťažnosť vyriešil moderátor, pretože sa domnieva, že autor problém vyriešil."
     result_pending: "Táto sťažnosť čaká na schválenie moderátorom."
@@ -1117,6 +1124,10 @@ sk:
       few: "Tento skript už mal %{count} potvrdené alebo opravené hlásenia."
       many: "Tento skript už mal %{count} potvrdených alebo opravených hlásení."
       other: "Tento skript už mal %{count} potvrdených alebo opravených hlásení."
+    reporter_temporarily_blocked: "Vzhľadom na vašu nedávnu históriu hlásení, ktoré boli moderátorom zamietnuté, máte zablokované podávanie nových hlásení až do %{date}. Prosím, prečítajte si %{rules_link:pravidlá %{site_name}}, aby ste sa uistili, že budúce hlásenia sú presné."
+    reported_temporarily_blocked: "Vzhľadom na to, že nedávne hlásenia o tejto položke boli moderátorom zamietnuté, ďalšie hlásenia o nej sú zablokované až do %{date}."
+    already_reported_by_reporter: "Túto položku ste už %{report_link:nedávno nahlásili}."
+    already_reported_same_type: "K tejto položke už existuje %{report_link:podobné čakajúce hlásenie}."
   appeals:
     new:
       title: Nové odvolanie proti odstráneniu skriptu
@@ -1346,6 +1357,7 @@ sk:
       script_update_not_utf8: "kód nie je v UTF-8 text"
       script_disallowed_require: "používa neschválených externý skript:% {code}"
       script_disallowed_resource: "používa neplatný @resource: %{code}. Zdroje musia byť http, https, alebo dátové adresy URL"
+      script_disallowed_base_64_require: "používa kódovanie base-64 @require"
       script_malformed_require: "používa chybný odkaz na externý skript: %{code}"
       script_rate_limit: "Prekročili ste limit na odosielanie. Skúste to neskôr."
       missing_include_or_match: "musí obsahovať aspoň jeden kľúč @match alebo @include"

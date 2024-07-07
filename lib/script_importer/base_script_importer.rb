@@ -18,7 +18,7 @@ module ScriptImporter
     #   - :success
     # - The script
     # - An error message
-    def self.generate_script(sync_id, provided_description, user, sync_type_id = 1, localized_attribute_syncs = {}, locale = nil, do_not_recheck_if_equal_to: nil)
+    def self.generate_script(sync_id, provided_description, user, sync_type = 'manual', localized_attribute_syncs = {}, locale = nil, do_not_recheck_if_equal_to: nil)
       sync_id = fix_sync_id(sync_id)
       begin
         code = download(sync_id)
@@ -39,7 +39,7 @@ module ScriptImporter
       script = Script.new
       script.authors.build(user:)
       script.script_type = :public
-      script.script_sync_type_id = sync_type_id
+      script.sync_type = sync_type
       script.language = sync_id.ends_with?('.css') ? 'css' : 'js'
       script.locale = locale
       script.sync_identifier = sync_id

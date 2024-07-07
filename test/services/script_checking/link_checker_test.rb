@@ -38,6 +38,7 @@ module ScriptChecking
     end
 
     test 'redirect via meta refresh' do
+      skip 'Test link no longer works'
       blocked_script_urls(:first).update(url: 'http://yemao.vip/wenku')
       assert_equal ScriptChecking::Result::RESULT_CODE_BAN, check_script_with_url_in_code('https://www.baidu.com/link?url=8nlvrkK6WmqkZ0GEDVQy3Cy8GdPwHhuAzfQZu8lXsJy&wd=&eqid=a682cd1900025b0f000000055f8c009d').code
     end

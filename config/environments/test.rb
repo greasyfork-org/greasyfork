@@ -1,3 +1,5 @@
+require 'searchkick_disable_middleware'
+
 # The test environment is used exclusively to run your application's
 # test suite. You never need to work with it otherwise. Remember that
 # your test database is "scratch space" for the test suite and is wiped
@@ -56,4 +58,6 @@ Rails.application.configure do
   config.active_job.queue_adapter = :inline
 
   config.action_controller.allow_forgery_protection = true
+
+  config.middleware.insert_before(0, SearchkickDisableMiddleware)
 end

@@ -3,7 +3,7 @@ module ShowsAds
     no_ads = general_ads_setting
     return no_ads if no_ads
 
-    return AdMethod.ev if sleazy?
+    return [AdMethod.ev, AdMethod.cd].sample if sleazy?
 
     AdMethod.ga
   end
@@ -14,7 +14,7 @@ module ShowsAds
 
     return AdMethod.no_ad(:script_deleted) if script.nil? || script.deleted?
 
-    return AdMethod.ev if sleazy?
+    return [AdMethod.ev, AdMethod.cd].sample if sleazy?
 
     return AdMethod.no_ad(:sensitive) if script&.sensitive
 
@@ -27,13 +27,14 @@ module ShowsAds
     no_ads = general_ads_setting
     return no_ads if no_ads
 
-    return AdMethod.ev if sleazy?
+    return [AdMethod.ev, AdMethod.cd].sample if sleazy?
 
     # #size, not #count, here because #count does things wrong with will_paginate, which is used when this is filtered
     # by a ScriptSet.
     # https://github.com/mislav/will_paginate/issues/449
     return AdMethod.no_ad(:not_enough_scripts) if scripts.size < 3
     return AdMethod.no_ad(:sensitive_list) if scripts.any?(&:sensitive?)
+    return AdMethod.ga if scripts.all?(&:adsense_approved)
 
     AdMethod.ea
   end

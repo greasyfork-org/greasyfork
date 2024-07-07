@@ -21,14 +21,14 @@
   </p>
 
   <div id="desktop-browser-list" class="browser-list">
-    <%= it('home.desktop_browsers.browser_list_html', chrome_tampermonkey_link: 'https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo', chrome_violentmonkey_link: 'https://chrome.google.com/webstore/detail/violent-monkey/jinjaccalgkegednnccohejagnlnfdag', firefox_greasemonkey_link: 'https://addons.mozilla.org/firefox/addon/greasemonkey/', firefox_tampermonkey_link: 'https://addons.mozilla.org/firefox/addon/tampermonkey/', firefox_violentmonkey_link: 'https://addons.mozilla.org/firefox/addon/violentmonkey/', safari_tampermonkey_link: 'http://tampermonkey.net/?browser=safari', edge_tampermonkey_link: 'https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd', edge_violentmonkey_link: 'https://microsoftedge.microsoft.com/addons/detail/violentmonkey/eeagobfjdenkkddmbclomhiblgggliao', opera_tampermonkey_link: 'https://addons.opera.com/extensions/details/tampermonkey-beta/', opera_violentmonkey_link: 'https://violentmonkey.github.io/get-it/', maxthon_violentmonkey_link: 'http://extension.maxthon.com/detail/index.php?view_id=1680', dolphin_tampermonkey_link: 'https://play.google.com/store/apps/details?id=net.tampermonkey.dolphin', uc_tampermonkey_link: 'https://www.tampermonkey.net/?browser=ucweb&ext=dhdg', safari_userscripts_link: 'https://apps.apple.com/app/userscripts/id1463298887') %>
+    <%= it('home.desktop_browsers.browser_list_html', chrome_tampermonkey_link: 'https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo', chrome_violentmonkey_link: 'https://chrome.google.com/webstore/detail/violent-monkey/jinjaccalgkegednnccohejagnlnfdag', firefox_greasemonkey_link: 'https://addons.mozilla.org/firefox/addon/greasemonkey/', firefox_tampermonkey_link: 'https://addons.mozilla.org/firefox/addon/tampermonkey/', firefox_violentmonkey_link: 'https://addons.mozilla.org/firefox/addon/violentmonkey/', safari_tampermonkey_link: 'http://tampermonkey.net/?browser=safari', edge_tampermonkey_link: 'https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd', edge_violentmonkey_link: 'https://microsoftedge.microsoft.com/addons/detail/violentmonkey/eeagobfjdenkkddmbclomhiblgggliao', opera_tampermonkey_link: 'https://addons.opera.com/extensions/details/tampermonkey-beta/', opera_violentmonkey_link: 'https://violentmonkey.github.io/get-it/', maxthon_violentmonkey_link: 'http://extension.maxthon.com/detail/index.php?view_id=1680', dolphin_tampermonkey_link: 'https://play.google.com/store/apps/details?id=net.tampermonkey.dolphin', uc_tampermonkey_link: 'https://www.tampermonkey.net/?browser=ucweb&ext=dhdg', safari_userscripts_link: 'https://apps.apple.com/app/userscripts/id1463298887', adguard_link: 'https://adguard.com/') %>
   </div>
 
   <div id="android-browser-list" class="browser-list">
     <% locale_specific_android_browsers = nil
     if request_locale.code == 'zh-CN'
       locale_specific_android_browsers = <<~HTML.html_safe
-        <li><a href="https://www.bookmarkearth.com/download/app">书签地球</a></li>
+        <li><a href="https://www.bookmarkearth.cn/download/app">书签地球</a></li>
         <li><a href="http://mbrowser.nr19.cn/">M浏览器</a></li>
         <li><a href="https://www.lemurbrowser.com/">狐猴浏览器</a>：<a href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo">Tampermonkey</a></li>
       HTML
@@ -69,8 +69,6 @@
 <% if @ad_method&.ga? %>
   <div class="ad <%= @ad_method.css_class %>" id="home-ad">
     <div class="ad-content">
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2247465624637408"
-              crossorigin="anonymous"></script>
       <ins class="adsbygoogle"
            style="display:block; text-align:center;"
            data-ad-layout="in-article"

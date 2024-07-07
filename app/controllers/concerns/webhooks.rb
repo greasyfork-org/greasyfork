@@ -169,7 +169,7 @@ module Webhooks
       contents = info[:content]
       info[:scripts].each do |script|
         # update sync type to webhook, now that we know this script is affected by it
-        script.script_sync_type_id = 3
+        script.sync_type = 'webhook'
         sv = script.script_versions.build(code: contents, changelog: info[:messages].join((changelog_markup == 'markdown') ? "\n\n" : ', '), changelog_markup:)
 
         # Copy previous additional infos and screenshots

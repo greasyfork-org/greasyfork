@@ -126,6 +126,33 @@ class ReportsTest < ApplicationSystemTestCase
         end
       end
     end
+
+    assert_nil report.reload.moderator_reason_override
+  end
+
+  test 'moderator upholding a report for a script but for a different reason' do
+    report = reports(:derivative_with_same_name_report)
+    report.update!(reason: Report::REASON_MALWARE)
+    moderator = users(:mod)
+    login_as(moderator, scope: :user)
+    visit reports_url(locale: :en)
+    assert_content 'This is total spam!'
+    assert_changes -> { report.reload.result }, from: nil, to: 'upheld' do
+      assert_changes -> { report.item.reload.deleted? }, from: false, to: true do
+        assert_enqueued_emails(2) do
+          select 'Other'
+          click_on 'Delete script'
+          assert_content 'There are currently no actionable reports.'
+        end
+      end
+    end
+
+    report.reload
+    assert_equal Report::REASON_MALWARE, report.reason
+    assert_equal Report::REASON_OTHER, report.moderator_reason_override
+
+    visit report_url(report, locale: :en)
+    assert_content 'but they upheld it as Other'
   end
 
   test 'reported script author self-deleting' do
@@ -162,5 +189,34 @@ class ReportsTest < ApplicationSystemTestCase
         assert_content "#{user.name} said:\nNo it is not!"
       end
     end
+  end
+
+  test 'reporting blocked due to general bad reports' do
+    user = users(:geoff)
+    5.times { Report.create!(reporter: users(:junior), result: Report::RESULT_DISMISSED, item: users(:consumer), reason: Report::REASON_SPAM) }
+    login_as(user, scope: :user)
+    visit user_url(users(:consumer), locale: :en)
+    click_on 'Report'
+    assert_content 'Due to recent reports'
+  end
+
+  test 'reporting blocked due to already having reported the item' do
+    user = users(:geoff)
+    Report.create!(reporter: user, result: Report::RESULT_DISMISSED, item: users(:consumer), reason: Report::REASON_SPAM)
+    login_as(user, scope: :user)
+    visit user_url(users(:consumer), locale: :en)
+    click_on 'Report'
+    assert_content 'You have already'
+  end
+
+  test 'reporting blocked due to pending report of the same type' do
+    user = users(:one)
+    Report.create!(reporter: users(:junior), item: users(:consumer), reason: Report::REASON_SPAM)
+    login_as(user, scope: :user)
+    visit user_url(users(:consumer), locale: :en)
+    click_on 'Report'
+    choose 'Spam'
+    click_button 'Create report'
+    assert_content 'There is already a similar pending report on this item.'
   end
 end

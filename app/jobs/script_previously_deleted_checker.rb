@@ -34,7 +34,7 @@ class ScriptPreviouslyDeletedChecker < ApplicationJob
     scripts_and_reports = similar_locked_scripts.map { |similar_script| [similar_script, other_reports.select { |report| similar_script == report.item }] }
 
     # Use the most common non-'other' reason.
-    reason = other_reports.map(&:reason).reject { |r| r == Report::REASON_OTHER }.tally.max_by(&:last)&.first || Report::REASON_OTHER
+    reason = other_reports.map(&:upheld_reason).reject { |r| r == Report::REASON_OTHER }.tally.max_by(&:last)&.first || Report::REASON_OTHER
 
     reference_script = scripts_and_reports.map(&:last).flatten.find { |report| report.reason == reason && report.reference_script }&.reference_script if reason == Report::REASON_UNAUTHORIZED_CODE
 

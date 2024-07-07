@@ -14,6 +14,11 @@
   <% if defined?(@bots) %>
     <meta name="robots" content="<%= @bots %>">
   <% end %>
+  <% if greasy? %>
+    <meta name="clckd" content="bf6242cc3039bff31a7815dff8ee247b" />
+  <% else %>
+    <meta name="clckd" content="1eb37c8f8f91e75152a85f734fdb0867" />
+  <% end %>
   <link rel="canonical" href="<%= canonical_url(@canonical_params) %>">
   <link rel="icon" href="<%= vite_asset_path('images/blacklogo16.png') %>">
   <%= non_blocking_stylesheet_tag('https://fonts.googleapis.com/css?family=Open+Sans&display=swap') unless Rails.env.test? %>
@@ -38,32 +43,26 @@
     <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
   <% elsif @ad_method&.ev? %>
     <script async src="https://mcizas.com/pw/waWQiOjExNTIzODAsInNpZCI6MTE5ODY0NCwid2lkIjo1MzIxOTAsInNyYyI6Mn0=eyJ.js"></script>
+  <% elsif @ad_method&.cd? && !@placed_ads %>
+    <script data-cfasync="false" type="text/javascript" src="//12ezo5v60.com/bultykh/ipp24/7/bazinga/2014227" async></script>
+  <% elsif @ad_method&.ga? %>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2247465624637408"
+            crossorigin="anonymous"></script>
   <% end %>
 
   <% if Rails.env.production? %>
-    <% if sleazy? %>
-      <!-- Global site tag (gtag.js) - Google Analytics -->
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZB1G3ZKC89"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-ZB1G3ZKC89', {
-          'ad_method': '<%= @ad_method&.tracking_key %>'
-        });
-      </script>
-    <% else %>
-      <!-- Global site tag (gtag.js) - Google Analytics -->
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-7NMRNRYW7C"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-7NMRNRYW7C', {
-          'ad_method': '<%= @ad_method&.tracking_key %>'
-        });
-      </script>
-    <% end %>
+    <% gtm_id = sleazy? ? 'G-ZB1G3ZKC89' : 'G-7NMRNRYW7C' %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<%= gtm_id %>"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '<%= gtm_id %>', {
+        'ad_method': '<%= @ad_method&.tracking_key %>',
+        'action': '<%= j controller_name %>/<%= j action_name %>'
+      });
+    </script>
   <% end %>
 
   <% if content_for(:head_bottom) %><%= yield(:head_bottom) %><% end %>
@@ -87,7 +86,7 @@
             <span class="user-profile-link"><%= link_to(current_user.name, current_user) %></span>
             <span class="sign-out-link">[ <%= link_to t('users.sign_out'), destroy_user_session_path, method: :delete %> ]</span>
           <% else %>
-            <span class="sign-in-link"><%= link_to(t('layouts.application.sign_in'), new_user_session_path(request.get? ? {return_to: request.fullpath} : {}), {rel: 'nofollow'}) %></span>
+            <span class="sign-in-link"><%= link_to(t('layouts.application.sign_in'), new_user_session_path(request.get? ? {return_to: @return_to || request.fullpath} : {}), {rel: 'nofollow'}) %></span>
           <% end %>
 
           <% form_action = if request.get?

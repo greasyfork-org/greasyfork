@@ -1,12 +1,14 @@
-class ConsecutiveBadRatingsJob < ApplicationJob
-  queue_as :low
+class ConsecutiveBadRatingsJob
+  include Sidekiq::Job
+
+  sidekiq_options queue: 'low', lock: :until_executed, on_conflict: :log, lock_ttl: 15.minutes.to_i
 
   def perform
     # Clear out any where that's not the case any more.
     Script.where.not(consecutive_bad_ratings_at: nil).reject(&:consecutive_bad_ratings?).each(&:reset_consecutive_bad_ratings!)
 
     # Delete those that are old.
-    Script.not_deleted.where(['consecutive_bad_ratings_at < ?', Script::CONSECUTIVE_BAD_RATINGS_GRACE_PERIOD.ago]).find_each do |script|
+    Script.not_deleted.where(consecutive_bad_ratings_at: ...Script::CONSECUTIVE_BAD_RATINGS_GRACE_PERIOD.ago).find_each do |script|
       script.update(
         delete_type: 'keep',
         delete_reason: "Script received #{Script::CONSECUTIVE_BAD_RATINGS_COUNT} bad ratings without an author response.",
@@ -24,8 +26,6 @@ class ConsecutiveBadRatingsJob < ApplicationJob
         end
       end
     end
-
-    self.class.set(wait: 1.hour).perform_later unless Rails.env.test?
   end
 
   def scripts_with_discussions

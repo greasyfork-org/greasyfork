@@ -12,6 +12,7 @@ class Script < ApplicationRecord
 
   enum delete_type: { 'keep' => 1, 'blanked' => 2, 'redirect' => 3 }, _prefix: true
   enum script_type: { 'public' => 1, 'unlisted' => 2, 'library' => 3 }, _prefix: true
+  enum sync_type: { 'manual' => 1, 'automatic' => 2, 'webhook' => 3 }, _prefix: true
 
   belongs_to :promoted_script, class_name: 'Script', optional: true
 
@@ -42,7 +43,6 @@ class Script < ApplicationRecord
 
   has_one :cleaned_code, dependent: :delete
 
-  belongs_to :script_sync_type, optional: true
   belongs_to :license, optional: true
   belongs_to :locale
   belongs_to :replaced_by_script, class_name: 'Script', optional: true
@@ -216,7 +216,7 @@ class Script < ApplicationRecord
   end
 
   def matching_sensitive_sites(unsaved: false)
-    sa = unsaved ? script_applies_tos.map(&:site_application).select(&:domain).map(&:text) : site_applications.where(domain: true).pluck(:text)
+    sa = unsaved ? script_applies_tos.map(&:site_application).select(&:domain?).map(&:domain_text) : site_applications.domain.pluck(:domain_text)
     SensitiveSite.where(domain: sa)
   end
 
@@ -231,7 +231,7 @@ class Script < ApplicationRecord
   end
 
   after_create_commit do |script|
-    ScriptDuplicateCheckerJob.perform_later_unless_will_run(script.id)
+    ScriptDuplicateCheckerJob.perform_async(script.id)
   end
 
   # Check saved_change_to to determine whether to run, but have to run after_commit for the changes to be visible to the
@@ -243,7 +243,7 @@ class Script < ApplicationRecord
   after_update_commit do |script|
     if @_code_changed
       unless Rails.env.development?
-        ScriptDuplicateCheckerJob.perform_later_unless_will_run(script.id)
+        ScriptDuplicateCheckerJob.perform_async(script.id)
         # ScriptUpdateCacheClearJob.perform_later(script.id)
       end
       clear_latest_cached_code
@@ -251,12 +251,21 @@ class Script < ApplicationRecord
     @_code_changed = false
   end
 
-  after_commit do |script|
-    script.users.each(&:update_stats!)
+  after_commit do
+    users.each(&:update_stats!) if previous_changes.slice(*User::SCRIPT_STAT_COLUMNS).any?
   end
 
   after_commit on: :update do
     comments.reindex if saved_change_to_attribute?('delete_type') && !Rails.env.test?
+  end
+
+  after_save do
+    next unless saved_change_to_attribute?('delete_type')
+
+    discussions.find_each do |d|
+      d.calculate_publicly_visible
+      d.save
+    end
   end
 
   before_save do |script|
@@ -305,13 +314,13 @@ class Script < ApplicationRecord
     localized_attributes_for('description').select { |la| la.attribute_value.length > MAX_LENGTHS[:description] }.each { |la| la.attribute_value = la.attribute_value[0, MAX_LENGTHS[:description]] } if script_version.truncate_description
 
     applies_to_names = script_version.calculate_applies_to_names
-    applies_to_delete = script_applies_tos.reject { |sat| applies_to_names.any? { |atn| sat.text == atn[:text] && sat.tld_extra == atn[:tld_extra] } }
+    applies_to_delete = script_applies_tos.reject { |sat| applies_to_names.any? { |atn| sat.text == atn[:text] && sat.tld_extra == atn[:tld_extra] && sat.domain? == atn[:domain] } }
     applies_to_delete.each(&:mark_for_destruction)
-    applies_to_add = applies_to_names.reject { |atn| script_applies_tos.any? { |sat| sat.text == atn[:text] && sat.tld_extra == atn[:tld_extra] } }
+    applies_to_add = applies_to_names.reject { |atn| script_applies_tos.any? { |sat| sat.text == atn[:text] && sat.tld_extra == atn[:tld_extra] && sat.domain? == atn[:domain] } }
 
     existing_site_applications = SiteApplication.where(text: applies_to_add.pluck(:text))
     applies_to_add.each do |atn|
-      site_application = existing_site_applications.find { |esa| esa.text == atn[:text] } || SiteApplication.new(text: atn[:text], domain: atn[:domain])
+      site_application = existing_site_applications.find { |esa| esa.text == atn[:text] && esa.domain? == atn[:domain] } || SiteApplication.new(text: atn[:text], domain_text: atn[:domain] ? atn[:text] : nil)
       script_applies_tos.build(site_application:, tld_extra: atn[:tld_extra])
     end
 
@@ -625,7 +634,7 @@ class Script < ApplicationRecord
                      .not_deleted
                      .with_actual_rating
                      .where('created_at < ? OR rating != ?', CONSECUTIVE_BAD_RATINGS_NOTIFICATION_DELAY.ago, Discussion::RATING_BAD)
-                     .where(['created_at >= ?', code_updated_at])
+                     .where(created_at: code_updated_at..)
                      .reorder(:created_at)
                      .last(CONSECUTIVE_BAD_RATINGS_COUNT)
                      .reject(&:author_posted?)
@@ -652,7 +661,7 @@ class Script < ApplicationRecord
   def similar_scripts(script_subset:, locale:)
     return @_similar_scripts unless @_similar_scripts.nil?
 
-    sas = site_applications.where(domain: true).pluck(:id)
+    sas = site_applications.domain.pluck(:id)
     return Script.none if sas.none?
 
     with = {

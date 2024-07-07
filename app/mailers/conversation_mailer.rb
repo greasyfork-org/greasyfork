@@ -4,6 +4,9 @@ class ConversationMailer < ApplicationMailer
   helper UserTextHelper
 
   def new_conversation(conversation, receiving_user, initiator_user)
+    # If the either user is deleted, then who cares.
+    return unless receiving_user && initiator_user
+
     @message = conversation.messages.first
     @receiving_user = receiving_user
     @site_name = 'Greasy Fork'
@@ -19,6 +22,9 @@ class ConversationMailer < ApplicationMailer
   end
 
   def new_message(message, receiving_user)
+    # If the either user is deleted, then who cares.
+    return unless receiving_user && message.poster
+
     @message = message
     @receiving_user = receiving_user
     @site_name = 'Greasy Fork'

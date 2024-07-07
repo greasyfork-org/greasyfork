@@ -486,16 +486,6 @@ es:
         de scripts. La opción a elegir depende del navegador que utilices.</p>
     desktop_browsers:
       title: Navegadores de escritorio
-      browser_list_html: |
-          <ul>
-          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} o %{chrome_violentmonkey_link:Violentmonkey}</li>
-          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, o %{firefox_violentmonkey_link:Violentmonkey}</li>
-          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} o %{safari_userscripts_link:Userscripts}</li>
-          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} o %{edge_violentmonkey_link:Violentmonkey}</li>
-          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} o %{opera_violentmonkey_link:Violentmonkey}</li>
-          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
-          <li>AdGuard: (no se necesita nada más)</li>
-          </ul>
     android_browsers:
       title: Para Android
       browser_list_html: |
@@ -750,7 +740,6 @@ es:
       functionality_header: Funcionalidades
       description: Los scripts deben incluir una descripción honesta con su cometido y no deben hacer nada fuera de lo razonable. Los usuarios deben saber lo que hace un script antes de instalarlo.
       reason: Los scripts tienen que tener una razón para ser un script. Por ejemplo, un script que solo dirige a un usuario a una pagina web no necesita ser un script; puede ser un link. Los scripts que utilicen un servicio web para realizar una acción en la página actual (p.e. para convertirla de alguna forma) son permitidos.
-      monetization_html: 'Los scripts que contengan características que beneficien al <em>autor</em> mas que al usuario (como rastreo, anuncios o mineros) son permitidos, pero deben ser marcados con %{antifeature_link: la palabra clave<code>@anticaracteristica</code>}.'
       code_header: Código
       obfuscation: El código publicado en %{site_name} no debe de estar ofuscado o compactado. A los usuarios se les debe dar la oportunidad de inspeccionar y comprender un script antes de instalarlo. Si el script ha sido procesado con alguna herramienta como webpack, se debe de pegar sin minimizar, con sus correspondientes espacios y nombres de variables.
       size_html: |
@@ -926,7 +915,6 @@ es:
       description: "Busca código de script. No distingue entre mayúsculas y minúsculas, exclusivamente en texto plano sin valores de reemplazo."
     user_search:
       title: "Buscar usuarios"
-      description: "Busca usuarios por nombre. Búsqueda parecida al operador «LIKE» de SQL en texto simple."
   moderator_logs:
     date_column: "Fecha"
     moderator_column: "Moderador"

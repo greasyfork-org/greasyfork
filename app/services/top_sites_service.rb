@@ -1,4 +1,6 @@
 class TopSitesService
+  SCRIPT_SUBSETS = [:greasyfork, :sleazyfork, :all].freeze
+
   class << self
     # Returns a hash, key: site name, value: hash with keys installs, scripts
     def get_by_sites(script_subset:, locale_id: nil, user_id: nil, **cache_options)
@@ -19,12 +21,12 @@ class TopSitesService
         user_clause = ("AND s.id IN (#{([0] + User.find(user_id).script_ids).join(',')})" if user_id)
         sql = <<~SQL.squish
           SELECT
-            text, SUM(daily_installs) install_count, COUNT(s.id) script_count
+            domain_text, SUM(daily_installs) install_count, COUNT(s.id) script_count
           FROM script_applies_tos
           JOIN scripts s ON script_id = s.id
           JOIN site_applications on site_applications.id = site_application_id
           WHERE
-            domain
+            domain_text IS NOT NULL
             AND blocked = 0
             AND script_type = 1
             AND delete_type IS NULL
@@ -32,8 +34,8 @@ class TopSitesService
             #{subset_clause}
             #{locale_clause}
             #{user_clause}
-          GROUP BY text
-          ORDER BY text
+          GROUP BY domain_text
+          ORDER BY domain_text
         SQL
         Rails.logger.warn('Loading by_sites') if Greasyfork::Application.config.log_cache_misses
         by_sites = Script.connection.select_rows(sql)
@@ -63,6 +65,14 @@ class TopSitesService
           AND NOT EXISTS (SELECT * FROM script_applies_tos WHERE script_id = scripts.id)
         SQL
         Script.connection.select_all(sql).first
+      end
+    end
+
+    def refresh!
+      (Locale.where(ui_available: true).pluck(:id) + [nil]).each do |locale_id|
+        SCRIPT_SUBSETS.each do |script_subset|
+          TopSitesService.get_by_sites(script_subset:, locale_id:, force: true)
+        end
       end
     end
   end

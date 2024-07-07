@@ -101,6 +101,7 @@ nl:
       compare_to: "Script op %{site_name} om mee te vergelijken (url)"
       compare_button: "Vergelijken"
       compare_must_be_local_url: "Het te vergelijken script moet een url op %{site_name} zijn."
+      compare_cleaned_code_unavailable: "De opgemaakte code van de vergelijking is nog niet beschikbaar."
     history_title: "%{script_name} - Versiegeschiedenis"
     history_only_code_changes_info: "Dit zijn versies van het script waarin de code is bijgewerkt."
     history_all_changes_link: "Alle versies tonen."
@@ -234,6 +235,7 @@ nl:
     localized_additional_info_with_no_name: "Er is extra informatie opgegeven voor de taal ‘%{locale_code}’, maar @name:%{locale_code} is niet aangetroffen."
     code_syncing_from_url_html: "De code van dit script is ingesteld om te synchroniseren van %{field}"
     provide_code_syncing_from_url_html: "%{site_name} kan scripts importeren die ergens anders worden gehost, bijv. op een versiebeheersysteem (zoals GitHub), je eigen server of een andere gebruikersscript-hostingsite. Om synchronisatie van je script in te schakelen, dien je een url op te geven: %{field}"
+    code_syncing_from_webhook_html: "De scriptcode vermeldt synchronisatie met een webhook. Er zullen webhookverzoeken naar dit script plaatsvinden op basis van deze url: %{field}"
     sync_type_intro: "Het script zal worden gesynchroniseerd:"
     sync_type_1:
       name: Handmatig
@@ -495,7 +497,7 @@ nl:
           <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} of %{edge_violentmonkey_link:Violentmonkey}</li>
           <li>Opera: %{opera_tampermonkey_link:Tampermonkey} of %{opera_violentmonkey_link:Violentmonkey}</li>
           <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
-          <li>AdGuard: (geen aanvullende software vereist)</li>
+          <li>%{adguard_link:AdGuard}: (geen aanvullende software vereist)</li>
           </ul>
     android_browsers:
       title: Smartphone/Tablet (Android)
@@ -598,6 +600,7 @@ nl:
     listing_new_scripts: "Nieuwe scripts"
     listing_updated_scripts: "Bijgewerkte scripts"
     listing_registration_date: "Registratiedatum"
+    listing_relevance: "Relevantie"
     listing_title: "Gebruikers"
     listing_banned_filter:
       banned: "Verbannen"
@@ -753,7 +756,7 @@ nl:
       functionality_header: Functionaliteit
       description: Scripts dienen voorzien te zijn van een beschrijving waarin duidelijk vermeld staat wat ze wel en niet doen. Gebruikers hebben het recht te weten wat een script doet alvorens ze het installeren.
       reason: 'Scripts dienen een nuttig doel te hebben. Voorbeeld: een script dat een gebruiker alleen verwijst naar een website hoeft geen script te zijn; een losse link is afdoende. Scripts die gebruikmaken van een online-dienst om een bepaalde actie uit te voeren zijn toegestaan.'
-      monetization_html: Scripts die functies voor eigen gewin <em>(eigen = scriptmaker)</em> bevatten (zoals volgfuncties, reclame en miners) zijn toegestaan, maar dienen voorzien te zijn van de %{antifeature_link:<code>@antifeature</code>-metasleutels}.
+      monetization_html: Scripts die functies voor eigen gewin <em>(eigen = scriptmaker)</em> bevatten (zoals volgfuncties, reclame en miners) zijn toegestaan, maar dienen voorzien te zijn van de %{antifeature_link:<code>@antifeature</code>-metasleutels}. Scripts mogen niet gebruikmaken van <code>@include</code>s of <code>@match</code>es voor het enkel en alleen toevoegen van antifuncties.
       code_header: Code
       obfuscation: Code op %{site_name} mag niet vaag of geminimaliseerd zijn. Gebruikers hebben het recht om de code te inspecteren en begrijpen wat een script doet alvorens het te installeren. Als een script gebundeld is als bijv. een webpack, dan dient de uitvoer niet geminimaliseerd te zijn, dus mét inbegrip van witruimten en namen van variabelen.
       size_html: |
@@ -770,12 +773,15 @@ nl:
       licensing_html: Je script dient auteursrechten en copyrights van anderen te respecteren. Dit geldt voor zowel de code als bronnen (bijvoorbeeld afbeeldingen). Als je van plan bent items van anderen te gebruiken, zorg dan dat je voldoet aan de licentie-overeenkomst of om toestemming vraagt. Licenties op scripts kunnen worden gespecificeerd met <code>@license</code>. Meer informatie over wat wel en niet mag is te vinden op %{tldr_legal_link:tldrlegal.com}.
       reposts: Zelfs als scripts geen auteursrechten schenden, mogen ze niet opnieuw worden geplaatst als ze al op %{site_name} staan, tenzij ze het origineel merkbaar verbeteren.
       miscellaneous_header: Overig
-      included_sites_html: Scripts mogen geen <code>@include</code>s of <code>@match</code>es bevatten van sites waarop geen functionaliteit wordt geboden. Scripts mogen geen <code>@include</code>s of <code>@match</code>es bevatten voor het gebruik van antifuncties.
       keywords: Scripts mogen geen ongerelateerde trefwoorden bevatten die ongerelateerde websites benoemen om het zoeken te bevorderen.
       adult_content_rule: Scripts met content voor volwassenen of scripts voor sites voor volwassenen moeten gemarkeerd worden, om andere gebruikers te laten kiezen of ze deze scripts willen zien.
       reposting_deleted: Repost geen scripts die waren verwijderd door het schenden van regels; gebruik in plaats van dat de appeal functie. Het reposten van scripts kan leiden tot een ban.
       advertising_in_description: Scriptmakers mogen niet adverteren op Greasy Fork, bijvoorbeeld in de scriptomschrijving. Promotion van scripts op de website van de maker, repo, Discord, WeChat, etc. is wél toegestaan.
       reporting: Als je een script tegenkomt dat niet voldoet, maak er dan melding van via de feedbacklink.
+      excessive_updates: Scriptmakers mogen scripts niet bijwerken enkel en alleen om hoger op de klassementslijst te belanden.
+      non_functional_includes_html: Scripts mogen geen <code>@include</code>s, <code>@match</code>es of trefwoorden bevatten van sites waarop ze niet actief zijn.
+      content_language: Scriptnamen, -beschrijvingen en andere inhoud dient te worden aangeduid met de juiste taal.
+      listing_header: Lijst
     external_scripts:
       title: "%{site_name}s beleid omtrent externe scripts."
       intro_html: |
@@ -973,7 +979,7 @@ nl:
       description: "Zoeken naar scriptcode: dit is een hoofdlettergevoelige, plattetekstzoekmachine zonder jokertekens."
     user_search:
       title: "Zoeken naar gebruikers"
-      description: "Zoeken naar gebruikers op naam: plattetekst-achtig zoeken."
+      description: "Zoeken naar gebruikersnamen"
   moderator_logs:
     date_column: "Datum"
     moderator_column: "Moderator"
@@ -1069,6 +1075,7 @@ nl:
     report_message: "Bericht melden"
     result_dismissed: "Deze melding is afgewezen door een moderator."
     result_upheld: "Deze melding is gehandhaafd door een moderator."
+    result_upheld_reason_override: "De melding is door een moderator behandeld met als reden “%{reason}”."
     result_self_upheld: "De maker heeft - op basis van de melding - het script verwijderd."
     result_fixed: "Deze melding is afgewezen door een moderator omdat hij/zij van mening is dat de maker van het script het probleem heeft opgelost."
     result_pending: "Deze melding wacht op een beslissing door een moderator."
@@ -1093,6 +1100,10 @@ nl:
     script_previous_reports:
       one: "Dit script bevat %{count} eerdere (on)opgeloste melding."
       other: "Dit script bevat %{count} eerdere (on)opgeloste meldingen."
+    reporter_temporarily_blocked: "Er zijn onlangs meerdere van je meldingen verworpen door een moderator. Om die reden mag je tot en met %{date} geen nieuwe meldingen doen. Neem %{rules_link:%{site_name}s regels} door, zodat je in het vervolg weet waar een melding aan moet voldoen."
+    reported_temporarily_blocked: "Er zijn onlangs meerdere van je meldingen verworpen door een moderator. Om die reden mag je tot en met %{date} geen nieuwe meldingen doen."
+    already_reported_by_reporter: "Je hebt dit item %{report_link:onlangs al gemeld}."
+    already_reported_same_type: "Er is al %{report_link:melding gemaakt} over dit item."
   appeals:
     new:
       title: Bezwaar ingediend tegen scriptverwijdering
@@ -1209,6 +1220,7 @@ nl:
     no_discussions: Er zijn geen discussies gevonden.
     mark_all_read: Alles als gelezen markeren
     pending_moderator_review: Deze discussie is niet inzichtelijk tot deze door een moderator is goedgekeurd.
+    search_placeholder: Discussies doorzoeken
   conversations:
     user_input_note: Voer de gebruikersnaam of profiel-url in.
     new_title: Gesprek starten
@@ -1230,6 +1242,7 @@ nl:
       more: Alle gesprekken bekijken
     edit_message_header: Bericht bewerken
     update_message_submit: Bericht bijwerken
+    moderator_notice: Als je inbreuk op %{site_name}s regels wilt melden, gebruik dan de meldlink bij het script, de gebruiker of reactie. Moderators kunnen geen inhoud op basis van privéberichten verwijderen.
   screenshots:
     requirements: "Maximumaantal png-, gif-, jpeg- of webp-afbeeldingen: %{number}, elk kleiner dan %{size}."
   common:
@@ -1312,6 +1325,7 @@ nl:
       script_update_not_utf8: "de upload dient utf-8-tekst te bevatten"
       script_disallowed_require: "maakt gebruik van een nog niet goedgekeurd extern script: %{code}"
       script_disallowed_resource: "maakt gebruik van een ongeldige @resource: %{code}. Resources dienen http, https of gegevensurl's te zijn."
+      script_disallowed_base_64_require: "maakt gebruik van een met base-64 versleutelde @require"
       script_malformed_require: "maakt gebruik van een onjuist extern script: %{code}"
       script_rate_limit: "Je hebt het publicatielimiet overschreden. Probeer het later opnieuw."
       missing_include_or_match: "dient ten minste eenmaal @match of @include key te bevatten"

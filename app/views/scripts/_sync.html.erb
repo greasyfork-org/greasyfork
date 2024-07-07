@@ -3,33 +3,32 @@
 
   <%= form_for(@script, url: sync_update_script_path) do |s| %>
 
-    <% case @script.script_sync_type_id
-      when 1 %>
-        <p>
-          <%= t('scripts.code_syncing_from_url_html', field: s.url_field(:sync_identifier, size: 50, placeholder: t('scripts.sync_url_placeholder'))) %>
-        </p>
-      <% when nil %>
-        <p>
-          <%= t('scripts.provide_code_syncing_from_url_html', field: s.url_field(:sync_identifier, size: 50, placeholder: t('scripts.sync_url_placeholder')), site_name: site_name) %>
-        </p>
-    <% end %>
+    <div class="form-control">
+      <% sync_url_field_label = case @script.sync_type
+                                when 'manual', 'automatic'; 'scripts.code_syncing_from_url_html'
+                                when 'webhook'; 'scripts.code_syncing_from_webhook_html'
+                                when nil; 'scripts.provide_code_syncing_from_url_html'
+                                else; raise "Unexpected sync type #{@script.sync_type}"
+                                end %>
+      <%= t(sync_url_field_label, field: s.url_field(:sync_identifier, placeholder: t('scripts.sync_url_placeholder')), site_name: site_name) %>
+    </div>
 
     <div class="radio-group">
       <%= t('scripts.sync_type_intro') %><br>
-      <%= s.radio_button(:script_sync_type_id, 2) %> <label for="script_script_sync_type_id_2"><%= t('scripts.sync_name_and_description', name: t('scripts.sync_type_2.name'), description: t('scripts.sync_type_2.description')) %></label><br>
-      <%= s.radio_button(:script_sync_type_id, 1) %> <label for="script_script_sync_type_id_1"><%= t('scripts.sync_name_and_description', name: t('scripts.sync_type_1.name'), description: t('scripts.sync_type_1.description')) %></label><br>
+      <%= s.radio_button(:sync_type, 'automatic') %> <label for="script_sync_type_automatic"><%= t('scripts.sync_name_and_description', name: t('scripts.sync_type_2.name'), description: t('scripts.sync_type_2.description')) %></label><br>
+      <%= s.radio_button(:sync_type, 'manual') %> <label for="script_sync_type_manual"><%= t('scripts.sync_name_and_description', name: t('scripts.sync_type_1.name'), description: t('scripts.sync_type_1.description')) %></label><br>
       <% # only allow changing *off* of Webhook - setting it to Webhook is done when a push comes in
-      if @script.script_sync_type_id == 3 %>
-        <%= s.radio_button(:script_sync_type_id, 3) %> <label for="script_script_sync_type_id_3"><%= t('scripts.sync_name_and_description', name: t('scripts.sync_type_3.name'), description: t('scripts.sync_type_3.description')) %></label><br>
+      if @script.sync_type == 'webhook' %>
+        <%= s.radio_button(:sync_type, 'webhook') %> <label for="script_sync_type_webhook"><%= t('scripts.sync_name_and_description', name: t('scripts.sync_type_3.name'), description: t('scripts.sync_type_3.description')) %></label><br>
       <% end %>
     </div>
 
-    <% case @script.script_sync_type_id %>
+    <% case @script.sync_type %>
     <% when nil %>
       <p>
         <%= it('scripts.sync_webhook_info_without_sync', site_name: site_name, webhook_info_link: user_webhook_info_path) %>
       </p>
-    <% when 1, 2 %>
+    <% when 'manual', 'automatic' %>
       <p>
         <%= it('scripts.sync_webhook_info_with_sync', site_name: site_name, webhook_info_link: user_webhook_info_path) %>
       </p>
@@ -48,7 +47,7 @@
       </div>
     </div>
 
-    <% if @script.script_sync_type_id %>
+    <% if @script.sync_type %>
       <p>
         <% if !@script_sync_error.nil? %>
           <%= t('scripts.sync_failed_info_html', date: markup_date(@script.last_attempted_sync_date), error: @script.sync_error) %>
@@ -62,7 +61,7 @@
     <% end %>
 
     <p>
-      <% if @script.script_sync_type_id.nil? %>
+      <% if @script.sync_type.nil? %>
         <input type="submit" name="update-and-sync" value="<%= t('scripts.update_and_sync') %>">
       <% else %>
         <input type="submit" name="update-only" value="<%= t('scripts.update_no_sync') %>">
