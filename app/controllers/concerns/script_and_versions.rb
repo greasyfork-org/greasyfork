@@ -103,7 +103,7 @@ module ScriptAndVersions
           with[:site_application_id] = script.site_applications.pluck(:id)
           with[:locale] = locale.id if locale.scripts?(script_subset)
 
-          @scripts = Script.search(
+          @scripts = Script.sphinx_search(
             params[:q],
             with:,
             per_page: 5,

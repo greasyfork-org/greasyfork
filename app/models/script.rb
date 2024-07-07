@@ -678,7 +678,7 @@ class Script < ApplicationRecord
     end
 
     @_similiar_scripts = Script
-                         .ts_search(
+                         .sphinx_search(
                            with:,
                            sql: { include: [{ localized_attributes: :locale }, :users] },
                            order: 'daily_installs DESC',

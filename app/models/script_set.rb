@@ -34,10 +34,10 @@ class ScriptSet < ApplicationRecord
       scope.is_a?(Array) ? scope.map(&:id) : scope.pluck(:id)
     }
 
-    child_set_inclusions.map { |set| set.scripts(script_subset, parents, as_ids:) }.map { |scripts| script_transformer.call(scripts) }.each { |s| r.merge(s) }
+    child_set_inclusions.map { |set| set.scripts(script_subset, parents, as_ids:) }.each { |s| r.merge(s) }
     child_automatic_set_inclusions.map { |set| set.scripts(script_subset) }.map { |scripts| script_transformer.call(scripts) }.each { |s| r.merge(s) }
     r.merge(script_transformer.call(child_script_inclusions))
-    child_set_exclusions.map { |set| set.scripts(script_subset, parents, as_ids:) }.map { |scripts| script_transformer.call(scripts) }.each { |s| r.subtract(s) }
+    child_set_exclusions.map { |set| set.scripts(script_subset, parents, as_ids:) }.each { |s| r.subtract(s) }
     child_automatic_set_exclusions.map { |set| set.scripts(script_subset) }.map { |scripts| script_transformer.call(scripts) }.each { |s| r.subtract(s) }
     r.subtract(script_transformer.call(child_script_exclusions))
 
