@@ -129,7 +129,7 @@ module ScriptListings
       # :ranker => "expr('top(user_weight)')" means that it will be sorted on the top ranking match rather than
       # an aggregate of all matches. In other words, something matching on "name" will be tied with everything
       # else matching on "name".
-      @scripts = Script.search(
+      @scripts = Script.sphinx_search(
         params[:q],
         with:,
         page: params[:page],
@@ -306,7 +306,7 @@ module ScriptListings
         # :ranker => "expr('top(user_weight)')" means that it will be sorted on the top ranking match rather than
         # an aggregate of all matches. In other words, something matching on "name" will be tied with everything
         # else matching on "name".
-        @scripts = Script.search(
+        @scripts = Script.sphinx_search(
           params[:q],
           with:,
           page: params[:page],
