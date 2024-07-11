@@ -1,6 +1,10 @@
 require 'application_system_test_case'
 
 class ListTest < ApplicationSystemTestCase
+  setup do
+    stub_es(Script)
+  end
+
   def around(&)
     with_sphinx(&)
   end

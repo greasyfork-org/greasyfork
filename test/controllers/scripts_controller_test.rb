@@ -2,6 +2,7 @@ require 'test_helper'
 
 class ScriptsControllerTest < ActionDispatch::IntegrationTest
   test 'render scripts as json' do
+    stub_es(Script)
     with_sphinx do
       get scripts_url(locale: :en, format: :json)
       assert_response :ok

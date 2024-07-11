@@ -54,6 +54,10 @@ module ActiveSupport
     def assert_reindexes(&)
       assert_changes(-> { ThinkingSphinx::Deltas::TestDelta.index_count }, &)
     end
+
+    def stub_es(klass)
+      klass.stubs(:search).returns(klass.all.paginate(page: 1))
+    end
   end
 end
 

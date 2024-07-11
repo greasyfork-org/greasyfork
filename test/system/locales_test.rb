@@ -11,6 +11,7 @@ class LocalesTest < ApplicationSystemTestCase
   end
 
   test 'script list works in all locales' do
+    stub_es(Script)
     with_sphinx do
       Rails.application.config.available_locales.keys.each do |locale|
         ensure_locale_exists(locale)

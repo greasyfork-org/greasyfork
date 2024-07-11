@@ -24,7 +24,7 @@ module ScriptListings
 
     respond_to do |format|
       format.html do
-        should_cache_page = current_user.nil? && request.format.html? && (params.keys - %w[locale controller action site page sort]).none? && params[:new] != '1'
+        should_cache_page = current_user.nil? && request.format.html? && (params.keys - %w[locale controller action site page sort]).none? && params[:new].nil?
         cache_page(should_cache_page ? "script_index/#{greasy?}/#{params.values.join('/')}" : nil) do
           status = 200
 
@@ -297,7 +297,7 @@ module ScriptListings
     # Search can't do script sets, otherwise we'd use it for everything.
     return load_scripts_for_index_without_sphinx unless params[:set].nil?
 
-    (params[:new] == '1') ? load_scripts_for_index_with_es : load_scripts_for_index_with_sphinx
+    (params[:new] == '0') ? load_scripts_for_index_with_sphinx : load_scripts_for_index_with_es
   end
 
   def load_scripts_for_index_with_sphinx
