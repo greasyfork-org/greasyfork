@@ -88,6 +88,7 @@ class CommentSpamCheckJob < ApplicationJob
       '🐧',
       'CBD ',
       'Keto ',
+      'hj.hbyvipxnzj.buzz',
     ].any? { |s| text.include?(s) }
   end
 end
