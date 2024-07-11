@@ -418,6 +418,14 @@ class User < ApplicationRecord
     !administrator? && !moderator?
   end
 
+  def api_as_json(with_private_scripts: false)
+    return as_json(include: :scripts) if with_private_scripts
+
+    json = as_json
+    json[:scripts] = all_listable_scripts.as_json
+    json
+  end
+
   protected
 
   def password_required?

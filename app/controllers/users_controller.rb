@@ -137,8 +137,8 @@ class UsersController < ApplicationController
 
         render layout: 'base'
       end
-      format.json { render json: @user.as_json(include: @same_user ? :scripts : :all_listable_scripts) }
-      format.jsonp { render json: @user.as_json(include: @same_user ? :scripts : :all_listable_scripts), callback: clean_json_callback_param }
+      format.json { render json: @user.api_as_json(with_private_scripts: @same_user) }
+      format.jsonp { render json: @user.api_as_json(with_private_scripts: @same_user), callback: clean_json_callback_param }
     end
   end
 
