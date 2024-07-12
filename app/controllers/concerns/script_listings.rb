@@ -165,7 +165,7 @@ module ScriptListings
     @scripts = Script.order(self.class.get_sort(params)).includes(:users, :localized_attributes).where(id: script_ids)
     include_deleted = current_user&.moderator? && params[:include_deleted] == '1'
     @scripts = @scripts.listable(script_subset) unless include_deleted
-    @scripts = @scripts.paginate(page: params[:page], per_page:)
+    @scripts = @scripts.paginate(page: page_number, per_page:)
 
     respond_to do |format|
       format.html do
