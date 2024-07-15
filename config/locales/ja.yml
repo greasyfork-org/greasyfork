@@ -44,7 +44,7 @@ ja:
     deleted_notice_with_related: "このスクリプトは削除されました。関連するスクリプトがあります。"
     deleted_notice_with_related_and_reason: "スクリプトは%{report_link:こちらの通報}により削除されました。関連するスクリプトがあります。"
     deleted_undelete_notice_html: "このスクリプトは管理担当者によりロックされており、削除の取り消しはできません。理由:  \"<i>%{delete_reason}</i>\""
-    deleted_locked_author_notice_html: "このスクリプトは、%{report_link:こちらの通報}のため管理担当者によって削除されており、第三者はアクセスできません。理由: <i>%{delete_reason}</i>。{code_rules_link:%{site_name}の規則}を確認してください。誤って削除された場合、%{appeal_link:抗議}も行えます。スクリプトの再投稿は行わないでください。%{site_name}へのアクセス禁止になる可能性があります。"
+    deleted_locked_author_notice_html: "このスクリプトは、%{report_link:こちらの通報}のため管理担当者によって削除されており、第三者はアクセスできません。理由: <i>%{delete_reason}</i>。%{code_rules_link:%{site_name}の規則}を確認してください。誤って削除された場合、%{appeal_link:抗議}も行えます。スクリプトの再投稿は行わないでください。%{site_name}へのアクセス禁止になる可能性があります。"
     self_deleted_locked_author_notice_html: "このスクリプトは、%{report_link:こちらの通報}のため、あなたによって削除され、ほかの人はアクセスできなくなっています。If you have updated your script to be in line with  %{code_rules_link:%{site_name} の規則}に従ってスクリプトを更新すれば、削除への%{appeal_link:抗議を提出}できます。スクリプトの再投稿は行わないでください。%{site_name}へのアクセス禁止になる可能性があります。"
     deleted_author_notice: "このスクリプトは削除されており、第三者はアクセスできません。削除タブから削除を取り消しできます。"
     version_notice_html: "%{date}時点のページです。%{latest_version_link}はこちら。"
@@ -839,7 +839,7 @@ ja:
     contact:
       title: "連絡を行う"
       content_html: >
-          <p>{site_name} 自体や本サイト上の事柄について話し合う方法はいくつかあります。</p> <p>サイトに投稿された特定のスクリプトについて、質問やコメントがありますか？その場合、そのスクリプトのページ内のフィードバックタブにある投稿リンクから、話題を投稿してください。スクリプトに対して投稿されたあらゆる話題は、スクリプトの作者のアカウントページに通知されます。</p>
+          <p>%{site_name} 自体や本サイト上の事柄について話し合う方法はいくつかあります。</p> <p>サイトに投稿された特定のスクリプトについて、質問やコメントがありますか？その場合、そのスクリプトのページ内のフィードバックタブにある投稿リンクから、話題を投稿してください。スクリプトに対して投稿されたあらゆる話題は、スクリプトの作者のアカウントページに通知されます。</p>
           <p>%{site_name} 自体やスクリプトの開発について、質問やコメントがありますか？または、誰かに作ってもらいたいスクリプトがありますか？%{forum_link:掲示板への投稿}
           が、その話題への関心を集めるのに最適でしょう。</p> <p>%{site_name}自体のバグ報告や完成されたアイデアがありますか？（%{site_name}に<em>投稿された</em>スクリプトではなく）%{github_link:GitHub
           で投稿してください。}</p> <p>管理者だけが読めるようにしたい質問やコメントがある場合は、%{admin_email_link:メールを送ってください}。</p>
