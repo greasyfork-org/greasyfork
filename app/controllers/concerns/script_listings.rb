@@ -24,7 +24,7 @@ module ScriptListings
 
     respond_to do |format|
       format.html do
-        should_cache_page = current_user.nil? && request.format.html? && (params.keys - %w[locale controller action site page sort]).none? && params[:new].nil?
+        should_cache_page = current_user.nil? && request.format.html? && (params.keys - %w[locale controller action site page sort]).none?
         cache_page(should_cache_page ? "script_index/#{greasy?}/#{params.values.join('/')}" : nil) do
           status = 200
 
@@ -282,69 +282,7 @@ module ScriptListings
     # Search can't do script sets, otherwise we'd use it for everything.
     return load_scripts_for_index_without_sphinx unless params[:set].nil?
 
-    (params[:new] == '0') ? load_scripts_for_index_with_sphinx : load_scripts_for_index_with_es
-  end
-
-  def load_scripts_for_index_with_sphinx
-    begin
-      with = sphinx_options_for_request
-      with[:locale] = @search_locale if @search_locale
-
-      if params[:site]
-        if params[:site] == '*'
-          with[:site_count] = 0
-        else
-          site = SiteApplication.find_by(domain_text: params[:site])
-          if site.nil?
-            @scripts = Script.none.paginate(page: 1)
-          elsif site.blocked
-            render_404(site.blocked_message)
-            return true
-          else
-            with[:site_application_id] = site.id
-          end
-        end
-      end
-
-      case params[:language]
-      when 'css'
-        with[:available_as_css] = true
-      when 'all'
-        # No filter
-      else
-        with[:available_as_js] = true
-      end
-
-      # This should be nil unless there are going to be no results.
-      if @scripts.nil?
-        # :ranker => "expr('top(user_weight)')" means that it will be sorted on the top ranking match rather than
-        # an aggregate of all matches. In other words, something matching on "name" will be tied with everything
-        # else matching on "name".
-        @scripts = Script.sphinx_search(
-          params[:q],
-          with:,
-          page: params[:page],
-          per_page:,
-          order: self.class.get_sort(params, for_sphinx: true),
-          populate: true,
-          sql: { include: [{ localized_attributes: :locale }, :users] },
-          select: '*, weight() myweight, LENGTH(site_application_id) AS site_count',
-          ranker: "expr('top(user_weight)')"
-        )
-        # make it run now so we can catch syntax errors
-        @scripts.empty?
-      end
-    rescue ThinkingSphinx::SyntaxError, ThinkingSphinx::ParseError, ThinkingSphinx::QueryError
-      flash[:alert] = "Invalid search query - '#{params[:q]&.truncate(100)}'."
-      # back to the main listing
-      redirect_to scripts_path
-      return true
-    rescue ThinkingSphinx::OutOfBoundsError
-      # Paginated too far.
-      @scripts = Script.none.paginate(page: 1)
-    end
-
-    false
+    load_scripts_for_index_with_es
   end
 
   def load_scripts_for_index_with_es

@@ -22,6 +22,7 @@ class ShowTest < ApplicationSystemTestCase
   test 'deleted script not replaced' do
     script = Script.find(2)
     script.update!(delete_type: 'keep')
+    script.script_applies_tos.create!(site_application: site_applications(:example_com_application))
     assert_script_deleted_page do
       visit script_path(script, locale: :en)
     end

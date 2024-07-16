@@ -13,7 +13,7 @@ class BlockTest < ApplicationSystemTestCase
       // @description Unit test.
       // @version 1.1
       // @namespace http://greasyfork.local/users/1
-      // @include *
+      // @include https://example.com/*
       // @license MIT
       // ==/UserScript==
       location.href = "https://example.com/unique-test-value"

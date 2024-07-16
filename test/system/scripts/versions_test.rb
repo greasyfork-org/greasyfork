@@ -10,6 +10,7 @@ class VersionsTest < ApplicationSystemTestCase
   test 'deleted script versions' do
     script = Script.find(2)
     script.update!(delete_type: 'keep')
+    script.script_applies_tos.create!(site_application: site_applications(:example_com_application))
     assert_script_deleted_page do
       visit script_script_versions_path(script_id: script, locale: :en)
     end

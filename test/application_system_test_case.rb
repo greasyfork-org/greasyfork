@@ -20,7 +20,7 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
 
   def assert_script_deleted_page
     allow_js_error 'Failed to load resource: the server responded with a status of 404 (Not Found)' do
-      Script.stubs(:sphinx_search).returns(Script.all)
+      Script.stubs(:search).returns(Script.all)
       yield
       assert_content 'The script you requested has been deleted, but here are some related scripts.'
     end

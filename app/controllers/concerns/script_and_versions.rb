@@ -98,20 +98,7 @@ module ScriptAndVersions
           return
         end
 
-        if script && script.site_applications.where(blocked: true).none?
-          with = sphinx_options_for_request
-          with[:site_application_id] = script.site_applications.pluck(:id)
-          with[:locale] = locale.id if locale.scripts?(script_subset)
-
-          @scripts = Script.sphinx_search(
-            params[:q],
-            with:,
-            per_page: 5,
-            order: 'daily_installs DESC',
-            populate: true,
-            sql: { include: [{ localized_attributes: :locale }, :users] }
-          )
-        end
+        @scripts = script.similar_scripts(script_subset:, locale: request_locale.code) if script && script.site_applications.where(blocked: true).none?
 
         @ad_method = AdMethod.no_ad(:script_deleted)
 
