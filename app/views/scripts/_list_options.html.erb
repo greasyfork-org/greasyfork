@@ -7,7 +7,7 @@ libraries = false if !defined?(libraries) || libraries.nil?
 default_sort = @set&.default_sort || (params[:q].present? ? 'relevance' : (libraries ? 'created' : ScriptListings::DEFAULT_SORT))
 rel = nil unless defined?(rel)
 
-current_options = params.to_unsafe_h.slice(:sort, :site, :set, :language, :filter_locale, :new).map {|k, v| [k.to_sym, v] }.to_h.merge(default_sort: default_sort)
+current_options = params.to_unsafe_h.slice(:sort, :site, :set, :language, :filter_locale,).map {|k, v| [k.to_sym, v] }.to_h.merge(default_sort: default_sort)
 current_options[:rel] = rel if rel
 skip_all_sites_link = false unless defined?(skip_all_sites_link)
 %>
@@ -16,7 +16,7 @@ skip_all_sites_link = false unless defined?(skip_all_sites_link)
 
   <% if include_search %>
     <form class="sidebar-search">
-      <% [:filter_locale, :sort, :site, :language, :new].each do |p| %>
+      <% [:filter_locale, :sort, :site, :language].each do |p| %>
         <% if params[p] %><input type="hidden" name="<%= p %>" value="<%= params[p] %>"><% end %>
       <% end %>
       <%= render partial: 'shared/locale_override_field' %>
