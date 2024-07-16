@@ -426,6 +426,12 @@ class User < ApplicationRecord
     json
   end
 
+  # For use from console for people who can't receive emails.
+  def generate_password_reset_link
+    token = set_reset_password_token
+    Rails.application.routes.url_helpers.edit_user_password_url(reset_password_token: token, locale: available_locale_code)
+  end
+
   protected
 
   def password_required?
