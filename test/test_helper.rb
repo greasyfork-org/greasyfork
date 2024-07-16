@@ -43,7 +43,7 @@ module ActiveSupport
     end
 
     def assert_reindexes(&)
-      # TODO Figure out how this might work. With SearchkickDisableMiddleware, we're turning off callbacks in the puma
+      # TODO: Figure out how this might work. With SearchkickDisableMiddleware, we're turning off callbacks in the puma
       # process. Not sure how that would get turned back on.
       yield
     end

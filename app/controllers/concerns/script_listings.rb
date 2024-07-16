@@ -209,20 +209,20 @@ module ScriptListings
       sort = params[:sort] || set&.default_sort || default_sort
       case sort
       when 'total_installs'
-        "total_installs DESC, id"
+        'scripts.total_installs DESC, scripts.id'
       when 'created'
-        "created_at DESC, id"
+        'scripts.created_at DESC, scripts.id'
       when 'updated'
-        "code_updated_at DESC, id"
+        'scripts.code_updated_at DESC, scripts.id'
       when 'daily_installs'
-        "daily_installs DESC, id"
+        'scripts.daily_installs DESC, scripts.id'
       when 'ratings'
-        "fan_score DESC, id"
+        'scripts.fan_score DESC, scripts.id'
       when 'name'
-        "default_name ASC, id"
+        'scripts.default_name ASC, scripts.id'
       else
         params[:sort] = nil
-        "#{DEFAULT_SORT} DESC, id"
+        "scripts.#{DEFAULT_SORT} DESC, scripts.id"
       end
     end
 
