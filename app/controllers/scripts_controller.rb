@@ -687,7 +687,7 @@ class ScriptsController < ApplicationController
 
     if @other_script.is_a?(Script)
       if params[:terser] == '1'
-        unless @other_script.cleaned_code
+        unless @script.cleaned_code && @other_script.cleaned_code
           @diff_error = flash[:notice] = t('.compare_cleaned_code_unavailable')
           return
         end
