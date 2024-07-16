@@ -2,7 +2,7 @@ module UserIndexing
   extend ActiveSupport::Concern
 
   included do
-    searchkick callbacks: :async,
+    searchkick callbacks: false,
                searchable: [:name],
                # All non-string fields are always filterable; we want to limit which string fields are filterable.
                filterable: [:ip, :email_domain],
@@ -54,6 +54,10 @@ module UserIndexing
                    },
                  },
                }
+
+    after_commit if: -> (model) { model.previous_changes.keys.intersect?(['name', 'created_at', 'script_count', 'banned', 'stats_script_daily_installs', 'script_total_installs', 'script_last_created', 'script_last_updated', 'script_ratings', 'email_domain', 'ip']) } do
+      reindex(mode: :async) if Searchkick.callbacks?
+    end
   end
 
   def search_data
