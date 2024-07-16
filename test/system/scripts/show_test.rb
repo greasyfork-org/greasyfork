@@ -44,7 +44,7 @@ class ShowTest < ApplicationSystemTestCase
 
   test 'applies to is rendered' do
     script = Script.find(25)
-    with_sphinx do
+    stub_es(Script) do
       visit script_path(script, locale: :en)
       assert_content('example.com')
     end
@@ -55,7 +55,7 @@ class ShowTest < ApplicationSystemTestCase
     other_script = Script.find(2)
     other_script.script_applies_tos.create!(site_application: script.site_applications.first)
     TopSitesService.refresh!
-    with_sphinx do
+    stub_es(Script) do
       visit script_path(script, locale: :en)
       assert_link('example.com')
     end

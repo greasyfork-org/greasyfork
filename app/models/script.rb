@@ -678,10 +678,11 @@ class Script < ApplicationRecord
     end
 
     @_similiar_scripts = Script
-                         .sphinx_search(
-                           with:,
-                           sql: { include: [{ localized_attributes: :locale }, :users] },
-                           order: 'daily_installs DESC',
+                         .search(
+                           '*',
+                           where: with,
+                           includes: [:localized_attributes, :users],
+                           order: { daily_installs: :desc },
                            per_page: 25
                          )
                          .reject { |script| script.id == id }

@@ -27,7 +27,7 @@ class CreateTest < ApplicationSystemTestCase
   end
 
   test 'css script creation' do
-    with_sphinx do
+    stub_es(Script) do
       user = User.first
       login_as(user, scope: :user)
       visit new_script_version_url(language: 'css')

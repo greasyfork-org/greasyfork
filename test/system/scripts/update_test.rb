@@ -121,7 +121,7 @@ class UpdateTest < ApplicationSystemTestCase
   end
 
   test 'sensitive site' do
-    with_sphinx do
+    stub_es(Script) do
       script = Script.find(1)
       user = script.users.first
       login_as(user, scope: :user)
