@@ -9,6 +9,15 @@ GIT
       thinking-sphinx (>= 3.1.0)
 
 GIT
+  remote: https://github.com/ankane/searchkick.git
+  revision: 614e5da0989d0df47043730720d42bd3cf5478e0
+  ref: 614e5da0989d0df47043730720d42bd3cf5478e0
+  specs:
+    searchkick (5.3.1)
+      activemodel (>= 6.1)
+      hashie
+
+GIT
   remote: https://github.com/seuros/capistrano-puma.git
   revision: 2cc11846540489edda10d83e026c9bea04e6fab1
   specs:
@@ -491,9 +500,6 @@ GEM
     sanitize (6.1.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
-    searchkick (5.3.1)
-      activemodel (>= 6.1)
-      hashie
     selenium-webdriver (4.22.0)
       base64 (~> 0.2)
       logger (~> 1.4)
@@ -645,7 +651,7 @@ DEPENDENCIES
   rubocop-performance
   rubocop-rails
   sanitize
-  searchkick
+  searchkick!
   selenium-webdriver
   sentry-rails
   sentry-ruby
