@@ -1,12 +1,12 @@
 <%= form_tag(scripts_path, id: 'script-search', method: :get) do %>
   <h3><%= t('search.script_search.title') %></h3>
-  <p><%= it('search.script_search.description', sphinx_link: 'http://sphinxsearch.com/docs/current/extended-syntax.html') %></p>
+  <p><%= it('search.script_search.description') %></p>
   <input type="search" name="q"><input class="search-submit" type="submit" value="🔎">
 <% end %>
 
 <%= form_tag(libraries_scripts_path, id: 'library-search', method: :get) do %>
   <h3><%= t('search.library_search.title') %></h3>
-  <p><%= it('search.library_search.description', sphinx_link: 'http://sphinxsearch.com/docs/current/extended-syntax.html') %></p>
+  <p><%= it('search.library_search.description') %></p>
   <input type="search" name="q"><input class="search-submit" type="submit" value="🔎">
 <% end %>
 
