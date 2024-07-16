@@ -31,6 +31,6 @@
       <div class="sidebar-title"><%= t('common.listing_options_title') %></div>
       <div>☰</div>
     </div>
-    <%= render partial: 'list_options', locals: {scripts: @scripts, include_script_sets: false, include_search: true, libraries: true, sort_options: %w[created updated name]} %>
+    <%= render partial: 'list_options', locals: {scripts: @scripts, include_script_sets: false, include_search: true, libraries: true, sort_options: params[:q].present? ? %w[relevance created updated name] : %w[created updated name]} %>
   </div>
 </div>

@@ -125,29 +125,15 @@ module ScriptListings
            end
     with[:script_type] = Script.script_types[:library]
 
-    begin
-      # :ranker => "expr('top(user_weight)')" means that it will be sorted on the top ranking match rather than
-      # an aggregate of all matches. In other words, something matching on "name" will be tied with everything
-      # else matching on "name".
-      @scripts = Script.sphinx_search(
-        params[:q],
-        with:,
-        page: params[:page],
-        per_page:,
-        order: self.class.get_sort(params, for_sphinx: true, set: nil, default_sort: 'created'),
-        populate: true,
-        sql: { include: [{ localized_attributes: :locale }, :users] },
-        select: '*, weight() myweight',
-        ranker: "expr('top(user_weight)')"
-      )
-      # make it run now so we can catch syntax errors
-      @scripts.empty?
-    rescue ThinkingSphinx::SyntaxError
-      flash[:alert] = "Invalid search query - '#{params[:q]}'."
-      # back to the main listing
-      redirect_to scripts_path
-      return
-    end
+    @scripts = Script.search(
+      params[:q].presence || '*',
+      fields: ['name^10', 'description^5', 'author^5', 'additional_info^1'],
+      where: with,
+      order: self.class.get_es_sort(params, default_sort: params[:q].present? ? 'relevance' : 'created'),
+      page: page_number,
+      per_page: per_page(default: 100),
+      includes: [:localized_attributes, :users]
+    )
   end
 
   def reported_not_adult
@@ -245,7 +231,6 @@ module ScriptListings
     end
 
     def get_es_sort(params, set: nil, default_sort: nil)
-      # sphinx has these defined as attributes, outside of sphinx they're possibly ambiguous column names
       sort = params[:sort] || set&.default_sort || default_sort
       case sort
       when 'total_installs'
