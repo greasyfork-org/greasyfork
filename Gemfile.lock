@@ -1,14 +1,4 @@
 GIT
-  remote: https://github.com/JasonBarnabe/ts-sidekiq-delta.git
-  revision: e14da8525c8e5c65d9f3812e80abf787589f2e64
-  branch: ttl
-  specs:
-    ts-sidekiq-delta (0.4.0)
-      sidekiq (>= 2.5.4)
-      sidekiq-unique-jobs (>= 7.0.0)
-      thinking-sphinx (>= 3.1.0)
-
-GIT
   remote: https://github.com/ankane/searchkick.git
   revision: 614e5da0989d0df47043730720d42bd3cf5478e0
   ref: 614e5da0989d0df47043730720d42bd3cf5478e0
@@ -280,7 +270,6 @@ GEM
     image_processing (1.12.2)
       mini_magick (>= 4.9.5, < 5)
       ruby-vips (>= 2.0.17, < 3)
-    innertube (1.1.0)
     io-console (0.7.2)
     irb (1.13.2)
       rdoc (>= 4.0.0)
@@ -288,8 +277,6 @@ GEM
     it (2.0.0)
       actionpack (>= 3.0.0)
     jmespath (1.6.2)
-    joiner (0.6.0)
-      activerecord (>= 6.1.0)
     json (2.7.2)
     jwt (2.8.2)
       base64
@@ -311,7 +298,6 @@ GEM
     marcel (1.0.4)
     matrix (0.4.2)
     memoist (0.16.2)
-    middleware (0.1.0)
     mini_magick (4.12.0)
     mini_mime (1.1.5)
     mini_portile2 (2.8.7)
@@ -462,7 +448,6 @@ GEM
       railties (>= 5.2)
     rexml (3.3.2)
       strscan
-    riddle (2.4.3)
     rouge (4.2.0)
     rubocop (1.64.1)
       json (~> 2.3)
@@ -550,13 +535,6 @@ GEM
     strip_attributes (1.13.0)
       activemodel (>= 3.0, < 8.0)
     strscan (3.1.0)
-    thinking-sphinx (5.6.0)
-      activerecord (>= 4.2.0)
-      builder (>= 2.1.2)
-      innertube (>= 1.0.2)
-      joiner (>= 0.3.4)
-      middleware (>= 0.1.0)
-      riddle (~> 2.3)
     thor (1.3.1)
     tilt (2.3.0)
     timeout (0.4.1)
@@ -661,8 +639,6 @@ DEPENDENCIES
   sidekiq-worker-killer
   stackprof
   strip_attributes
-  thinking-sphinx
-  ts-sidekiq-delta!
   user_agent_parser
   vite_rails
   will-paginate-i18n

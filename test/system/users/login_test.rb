@@ -42,18 +42,16 @@ module Users
     end
 
     test 'can delete account when banned' do
-      with_sphinx do
-        user = users(:one)
-        user.update!(banned_at: Time.zone.now)
-        log_in(user)
-        assert_content 'Your account has been banned.'
-        click_on 'delete your account'
-        fill_in 'Email', with: user.email
-        fill_in 'Password', with: 'password'
-        assert_changes -> { User.find_by(id: user.id) }, to: nil do
-          click_on 'Log in'
-          assert_content 'Your account has been deleted.'
-        end
+      user = users(:one)
+      user.update!(banned_at: Time.zone.now)
+      log_in(user)
+      assert_content 'Your account has been banned.'
+      click_on 'delete your account'
+      fill_in 'Email', with: user.email
+      fill_in 'Password', with: 'password'
+      assert_changes -> { User.find_by(id: user.id) }, to: nil do
+        click_on 'Log in'
+        assert_content 'Your account has been deleted.'
       end
     end
 

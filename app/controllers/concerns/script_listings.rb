@@ -30,13 +30,13 @@ module ScriptListings
 
           begin
             return if load_scripts_for_index
-          rescue ThinkingSphinx::SphinxError => e
+          rescue Searchkick::Error, Elastic::Transport::Transport::Error => e
             raise e unless Rails.env.production?
 
             status = 500 # We'll render a nice page but with an error code so monitoring will notice.
             Sentry.capture_exception(e)
             flash.now[:alert] = t('scripts.search_failed')
-            return if load_scripts_for_index_without_sphinx
+            return if load_scripts_for_index_without_es
           end
 
           is_search = params[:q].present?
@@ -201,32 +201,28 @@ module ScriptListings
         scripts = scripts.where(id: set_script_ids)
       end
       scripts = scripts.where(language: (params[:language] == 'css') ? 'css' : 'js') unless params[:language] == 'all'
-      scripts = scripts.order(get_sort(params, for_sphinx: false, set:, default_sort:))
+      scripts = scripts.order(get_sort(params, set:, default_sort:))
       return scripts
     end
 
-    def get_sort(params, for_sphinx: false, set: nil, default_sort: nil)
-      # sphinx has these defined as attributes, outside of sphinx they're possibly ambiguous column names
-      column_prefix = for_sphinx ? '' : 'scripts.'
+    def get_sort(params, set: nil, default_sort: nil)
       sort = params[:sort] || set&.default_sort || default_sort
       case sort
       when 'total_installs'
-        return "#{column_prefix}total_installs DESC, #{column_prefix}id"
+        "total_installs DESC, id"
       when 'created'
-        return "#{column_prefix}created_at DESC, #{column_prefix}id"
+        "created_at DESC, id"
       when 'updated'
-        return "#{column_prefix}code_updated_at DESC, #{column_prefix}id"
+        "code_updated_at DESC, id"
       when 'daily_installs'
-        return "#{column_prefix}daily_installs DESC, #{column_prefix}id"
+        "daily_installs DESC, id"
       when 'ratings'
-        return "#{column_prefix}fan_score DESC, #{column_prefix}id"
+        "fan_score DESC, id"
       when 'name'
-        return "#{column_prefix}default_name ASC, #{column_prefix}id"
+        "default_name ASC, id"
       else
         params[:sort] = nil
-        return "myweight DESC, #{column_prefix}#{DEFAULT_SORT} DESC, #{column_prefix}id" if for_sphinx
-
-        return "#{column_prefix}#{DEFAULT_SORT} DESC, #{column_prefix}id"
+        "#{DEFAULT_SORT} DESC, id"
       end
     end
 
@@ -280,7 +276,7 @@ module ScriptListings
     end
 
     # Search can't do script sets, otherwise we'd use it for everything.
-    return load_scripts_for_index_without_sphinx unless params[:set].nil?
+    return load_scripts_for_index_without_es unless params[:set].nil?
 
     load_scripts_for_index_with_es
   end
@@ -329,7 +325,7 @@ module ScriptListings
     false
   end
 
-  def load_scripts_for_index_without_sphinx
+  def load_scripts_for_index_without_es
     if params[:set]
       set = ScriptSet.find(params[:set])
       if !current_user&.moderator? && set.user&.banned?

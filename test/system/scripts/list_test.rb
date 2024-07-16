@@ -5,10 +5,6 @@ class ListTest < ApplicationSystemTestCase
     stub_es(Script)
   end
 
-  def around(&)
-    with_sphinx(&)
-  end
-
   test 'script list' do
     visit scripts_url
     assert_selector 'h2', text: 'MyString'

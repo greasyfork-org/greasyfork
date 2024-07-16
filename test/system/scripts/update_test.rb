@@ -20,10 +20,8 @@ class UpdateTest < ApplicationSystemTestCase
     JS
     fill_in 'Code', with: code
     assert_reindexes do
-      # assert_enqueued_with(job: ScriptUpdateCacheClearJob) do
       click_on 'Post new version'
       assert_selector 'h2', text: 'A Test Update!'
-      # end
     end
     assert_selector 'dd', text: '1.3'
   end

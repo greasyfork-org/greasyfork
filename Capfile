@@ -6,7 +6,6 @@ require 'capistrano/deploy'
 require 'capistrano/rbenv'
 
 require 'capistrano/rails'
-require 'thinking_sphinx/capistrano'
 
 require 'capistrano/puma'
 install_plugin Capistrano::Puma

@@ -79,8 +79,6 @@ class Script < ApplicationRecord
   scope :with_includes_for_show, -> { includes(users: {}, license: {}, localized_attributes: :locale, compatibilities: :browser, script_applies_tos: :site_application, antifeatures: :locale) }
   scope :with_bad_integrity_hashes, -> { joins(:subresource_usages).joins('INNER JOIN subresource_integrity_hashes sih ON script_subresource_usages.subresource_id = sih.subresource_id AND script_subresource_usages.algorithm = sih.algorithm AND script_subresource_usages.encoding = sih.encoding AND script_subresource_usages.integrity_hash != sih.integrity_hash').distinct }
 
-  ThinkingSphinx::Callbacks.append(self, behaviours: [:sql, :deltas])
-
   # Must have a default name and description
   validates :default_name, presence: { message: :script_missing_name, unless: proc { |s| s.library? } }
   validates :name, presence: true, if: ->(s) { s.library? }

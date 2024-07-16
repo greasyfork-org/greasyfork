@@ -29,13 +29,6 @@ jobs:
       - run: sudo apt update
       - run: sudo apt install mariadb-client libvips
       - run:
-          name: Install Sphinx
-          command: |
-            cd ~
-            wget http://sphinxsearch.com/files/sphinx-3.2.1-f152e0b-linux-amd64.tar.gz
-            tar -xvf sphinx-3.2.1-f152e0b-linux-amd64.tar.gz
-            echo "export PATH=$PATH:$PWD/sphinx-3.2.1/bin/" >> $BASH_ENV
-      - run:
           name: Which bundler?
           command: bundle -v
       - run:

@@ -2,21 +2,17 @@ require 'application_system_test_case'
 
 class LocalesTest < ApplicationSystemTestCase
   test 'home page works in all locales' do
-    with_sphinx do
-      Rails.application.config.available_locales.keys.each do |locale|
-        ensure_locale_exists(locale)
-        visit root_url(locale:)
-      end
+    Rails.application.config.available_locales.keys.each do |locale|
+      ensure_locale_exists(locale)
+      visit root_url(locale:)
     end
   end
 
   test 'script list works in all locales' do
     stub_es(Script)
-    with_sphinx do
-      Rails.application.config.available_locales.keys.each do |locale|
-        ensure_locale_exists(locale)
-        visit scripts_url(locale:)
-      end
+    Rails.application.config.available_locales.keys.each do |locale|
+      ensure_locale_exists(locale)
+      visit scripts_url(locale:)
     end
   end
 
