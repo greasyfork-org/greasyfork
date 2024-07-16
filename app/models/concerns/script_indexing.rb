@@ -2,7 +2,7 @@ module ScriptIndexing
   extend ActiveSupport::Concern
 
   included do
-    searchkick callbacks: :async,
+    searchkick callbacks: false,
                searchable: [:name, :description, :additional_info, :author],
                filterable: [],
                # Match anywhere in the word, not just the full word.
@@ -74,6 +74,11 @@ module ScriptIndexing
                }
 
     scope :search_import, -> { includes(:localized_attributes, :users, :script_applies_tos) }
+    scope :indexable, -> { not_deleted.where.not(script_type: :unlisted).where.not(review_state: 'required') }
+
+    after_commit if: ->(model) { should_index? && model.previous_changes.keys.intersect?(%w[created_at code_updated_at total_installs daily_installs sensitive script_type fan_score available_as_js available_as_css]) } do
+      reindex(mode: :async) if Searchkick.callbacks?
+    end
   end
 
   def search_data

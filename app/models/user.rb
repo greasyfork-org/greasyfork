@@ -95,6 +95,10 @@ class User < ApplicationRecord
     scripts.touch_all if saved_change_to_name?
   end
 
+  after_update_commit if: ->(model) { model.previous_changes.key?('name') } do
+    scripts.indexable.reindex(mode: :async) if Searchkick.callbacks?
+  end
+
   before_update do
     # Recheck it if it's disposable the next time we need to know.
     self.disposable_email = nil if email_changed? && !disposable_email_changed?

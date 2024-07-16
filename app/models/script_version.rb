@@ -115,6 +115,10 @@ class ScriptVersion < ApplicationRecord
     CleanedCodeJob.perform_later_unless_will_run(script) if script.js?
   end
 
+  after_commit do
+    script.reindex(mode: :async) if script.should_index? && Searchkick.callbacks?
+  end
+
   # Delete the code if not in use by another version.
   after_destroy do
     script_code.destroy! if script_code.present? && ScriptVersion.where(['script_code_id = ? or rewritten_script_code_id = ?', script_code_id, script_code_id]).where.not(id:).none?
