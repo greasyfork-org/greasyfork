@@ -9,6 +9,12 @@ module ActiveSupport
   class TestCase
     ActiveRecord::Migration.check_all_pending!
 
+    parallelize(workers: :number_of_processors)
+
+    parallelize_setup do |i|
+      ActiveStorage::Blob.service.root = "#{ActiveStorage::Blob.service.root}-#{i}"
+    end
+
     # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
     #
     # Note: You'll currently still have to declare fixtures explicitly in integration tests
