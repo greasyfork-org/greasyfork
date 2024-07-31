@@ -35,7 +35,7 @@ vi:
     downgrade: "Hạ xuống phiên bản %{version}"
     reinstall: "Cài đặt lại phiên bản %{version}"
     old_version_warning: "Đây không phải phiên bản mới nhất của script. Nếu bạn cài đặt nó, bạn sẽ không được cập nhật lên phiên bản mới nhất. Bạn chắc chắn muốn cài đặt?"
-    promoted: "Script được khuyến cáo"
+    promoted: "Script được khuyến nghị"
     author_promoted: "Script được tác giả gợi ý"
     promoted_text_html: "Bạn có thế thích %{script_link}"
     library_instructions_html: "Script này sẽ không được không được cài đặt trực tiếp. Nó là một thư viện cho các script khác để bao gồm các chỉ thị meta\n%{code}"
@@ -98,6 +98,7 @@ vi:
       compare_to: "Script ở %{site_name} để so sánh với (URL)"
       compare_button: "So sánh"
       compare_must_be_local_url: "Scrip được so sánh phải là một URL ở  %{site_name}."
+      compare_cleaned_code_unavailable: "Mã Clean của tập lệnh so sánh không có sẵn."
     history_title: "%{script_name} - Lược sử Phiên bản"
     history_only_code_changes_info: "Đây là phiên bản của script này, nơi mã nguồn đã được cập nhật."
     history_all_changes_link: "Hiện tất cả các phiên bản."
@@ -297,14 +298,19 @@ vi:
     search_placeholder: "Tìm script"
     updated: "Script đã được cập nhật."
     preview_additional_info: "Xem trước"
+    must_confirm: "Bạn phải xác nhận tài khoản của mình trước khi có thể đăng tải tập lệnh. Bạn có hai tùy chọn xác nhận - thêm phương thức đăng nhập khác hoặc qua email xác nhận."
     must_confirm_email_button: "Gửi liên kết xác nhận đến %{email}"
+    authors_heading: "Tác giả"
     invitations:
+      form_title: "Mời thêm tác giả khác"
       submit: "Gửi lời mời"
       sent: "Lời mời đã được gửi"
+      subject: "Gửi lời mời cho %{script_name}"
       invitation_not_found: "Không tìm thấy lời mời"
       invitation_expired: "Lời mời đã hết hạn"
       invitation_accepted: "Bây giờ bạn là tác giả của script này "
     remove_author:
+      heading: "Xóa tác giả"
       remove_button: "Xoá"
     new_script_notice:
       install_link_html: "Tôi muốn<b>cài đặt và sử dụng</b>một script"
@@ -315,8 +321,10 @@ vi:
     install_help_dialog:
       js:
         chrome: Bạn sẽ cần cài đặt một tiện ích mở rộng như %{tampermonkey_link:Tampermonkey} hoặc %{violentmonkey_link:Violentmonkey} để cài đặt kịch bản này.
+        bypass: (Tôi đã có Trình quản lý tập lệnh người dùng, hãy cài đặt nó!)
       css:
         opera: Bạn sẽ cần cài đặt một tiện ích mở rộng như %{stylus_link:Stylus} để cài đặt kịch bản này.
+        safari: Bạn sẽ cần cài đặt tiện ích mở rộng Trình quản lý kiểu người dùng để cài đặt tập lệnh này.
         other: Bạn sẽ cần cài đặt tiện ích "Quản lý kiểu người dùng" để cài đặt tập lệnh này.
       close_dialog: OK
     antifeatures:
@@ -326,6 +334,8 @@ vi:
           title: Quảng cáo
         tracking:
           title: Theo dõi
+        miner:
+          title: Thợ đào tiền điện tử
         referral-link:
           title: Link tiếp thị
         membership:
@@ -416,6 +426,8 @@ vi:
     explain_user_scripts_html: "Script của người dùng giúp bạn có những trải nghiệm mới với trình duyệt.Khi được cài đặt, chúng biến những trang bạn truy cập duyệt vời hơn bằng việc thêm những tính năng mới, dễ sử dụng hơn hay loại bỏ những chi tiết làm bạn khó chịu. Script trên %{site_name} được viết bởi những người dùng khác và được đăng để chia sẻ vpis mọi người. Chúng hoàn toàn miễn phis và dễ sử dụng."
     installing_step1_header: "Bước 1: cài đặt một bộ quản lý script người dùng"
     installing_step1_caption: "Tampermonkey trên Chrome"
+    desktop_browsers:
+      title: Máy tính để bàn
     android_browsers:
       title: Điện thoại(Android)
     ios_browsers:
@@ -660,6 +672,7 @@ vi:
     new_title: Thảo luận mới
     new_button: Thảo luận mới
     mark_all_read: Đánh dấu đã đọc
+    search_placeholder: Tìm kiếm các thảo luận
   conversations:
     user_input_note: Nhập tên người dùng hoặc URL dẫn tới profile của họ
     new_title: Tạo một cuộc trò chuyện mới

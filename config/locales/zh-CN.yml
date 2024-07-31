@@ -53,7 +53,7 @@ zh-CN:
     reported_notice_for_author: "在管理员完成审核前，其他用户不能访问此脚本。"
     info_page: "信息"
     code_page: "代码"
-    history_page: "历史版本"
+    history_page: "历史"
     feedback_page: "反馈 (%{count})"
     stats_page: "统计"
     derivatives_page: "相似"
@@ -63,7 +63,7 @@ zh-CN:
     delete_update_behaviour: "你希望对之前安装了你的脚本的用户采取什么措施？"
     delete_update_behaviours:
       keep: "维持原状。"
-      blanked: "脚本通过自动更新功能变成一个无代码的空白脚本。适用于当脚本对其运行的网站产生负面影响的时候"
+      blanked: "脚本通过自动更新功能变成一个无代码的空白脚本。适用于当脚本对其运行的网站产生负面影响的时候。"
       redirect: "脚本将被重定向更新为你在以下所指定的另一个脚本。"
     delete_permanently_heading: "永久删除"
     delete_permanently_explanation_html: >-
@@ -126,10 +126,10 @@ zh-CN:
       year: 最近 365 日
       all: 所有时间
     derivatives_title: "%{script_name} - 相似"
-    derivatives_intro: "这些脚本与您的脚本相似（或你的与他们的脚本相似）。如果有脚本违反授权使用了您的代码，可在那个脚本的反馈面板中举报。"
+    derivatives_intro: "这些脚本与您的脚本相似（或你的与他们的脚本相似）。如果您发现有人未经授权使用了您的代码，请从那个脚本的反馈选项卡进行举报。"
     derivatives_script_html: "%{script}，作者 %{user}，许可证：%{license} %{diff_link:[Diff]}"
-    derivatives_exact_copies_heading: "一模一样"
-    derivatives_exact_copies_list_intro: "以下脚本与你的脚本有着完全相同的代码："
+    derivatives_exact_copies_heading: "完全复制"
+    derivatives_exact_copies_list_intro: "以下脚本代码与您的脚本代码完全相同："
     derivatives_exact_copies_item_html: "%{author_links}发布的%{script_link}，版本：%{version_list}"
     derivatives_exact_copes_none: "%{site_name} 上没有其他脚本与这个脚本的代码完全相同。"
     derivatives_similar_heading: "相似脚本"
@@ -583,6 +583,7 @@ zh-CN:
     listing_new_scripts: "新建脚本"
     listing_updated_scripts: "脚本更新日期"
     listing_registration_date: "注册时间"
+    listing_relevance: "相关程度"
     listing_title: "用户"
     listing_banned_filter:
       banned: "已封禁"
@@ -919,13 +920,16 @@ zh-CN:
   search:
     script_search:
       title: "脚本搜索"
+      description: "搜索脚本。搜索脚本名称、描述、额外说明和作者名称。"
     library_search:
       title: "库搜索"
+      description: "搜索库。搜索库名称、描述、额外说明和作者名称。"
     code_search:
       title: "代码搜索"
       description: "搜索脚本代码。此功能不区分大小写，不支持通配符，搜索纯文本。"
     user_search:
       title: "用户搜索"
+      description: "基于名称搜索用户"
   moderator_logs:
     date_column: "时间"
     moderator_column: "管理员"
@@ -1254,6 +1258,7 @@ zh-CN:
       script_update_not_utf8: "上传的文本必须为 UTF-8 编码"
       script_disallowed_require: "使用了一个未经批准的外部脚本：%{code}"
       script_disallowed_resource: "使用了无效的 @resource：%{code}。资源必须是 http、https 或 data URL。"
+      script_disallowed_base_64_require: "使用 base-64 编码的 @require"
       script_malformed_require: "使用了异样的外部脚本引用：%{code}"
       script_rate_limit: "您已超出脚本发布数量的限制。请稍后再试。"
       missing_include_or_match: "必须包含至少一个 @match 或 @include 规则"
@@ -1362,7 +1367,7 @@ zh-CN:
     subscribed_discussion:
       subject: "站点%{site_name}的讨论%{discussion_title}收到了一条评论。"
       intro: "%{site_name} 上的讨论 %{discussion_link:%{discussion_title}} 收到了一条来自 %{commenter_link:%{commenter_name}} 的评论："
-      outro: "%{comment_link:查看和回复此评论}。您收到此通知是因为您订阅了 %{discussion_link:%{discussion_title}}。%{notification_preferences_link:管理您的通知设置}。"
+      outro: "%{comment_link:查看和回复此评论}。您收到此通知是因为您订阅了讨论 %{discussion_link:%{discussion_title}}。%{notification_preferences_link:管理您的通知设置}。"
     comment_mentioned:
       subject: "%{site_name} 的用户“%{commenter_name}” 提到了你。"
       intro: "%{site_name} 上的讨论 %{discussion_link:%{discussion_title}} 收到了一条来自 %{commenter_link:%{commenter_name}} 的提到您的评论："

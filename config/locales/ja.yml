@@ -922,8 +922,10 @@ ja:
   search:
     script_search:
       title: "スクリプトの検索"
+      description: "スクリプトを検索。スクリプト名、説明、追加の情報、作者。"
     library_search:
       title: "ライブラリの検索"
+      description: "ライブラリを検索。ライブラリ名、説明、追加の情報、作者。"
     code_search:
       title: "コードの検索"
       description: "スクリプトのコードを検索します。大文字と小文字は区別しません。 (ワイルドカードは使用不可)"
@@ -1002,7 +1004,7 @@ ja:
       other: "その他"
     report_intro: "%{reported_item} は「%{reason}」で通報済み。作成者: %{reporter}%{report_date} "
     report_intro_no_reporter: "%{reported_item} は「%{reason}」で通報済み。%{report_date}"
-    report_intro_unauthorized_html: "%{reported_script}は通報済み。作成者: %{reporter}。%{report_date} 。以下を許可なくコピーしたことによる: %{other_script}。"
+    report_intro_unauthorized_html: "%{reported_script}は通報済み。通報者: %{reporter}が%{report_date} に作成。以下を許可なくコピーしたことによる: %{other_script}。"
     report_intro_unauthorized_no_reporter_html: "%{reported_script} は通報済み。%{report_date}。以下を許可なくコピーしたことによる: %{other_script}。"
     report_intro_unauthorized_license: "%{other_script} は %{license_link: %{license_name}} ライセンスです。%{tldr_legal_link:tldrlegal.com} からこのライセンスの意味を確認してください。"
     report_intro_unauthorized_license_no_url: "%{other_script} は %{license_name} ライセンスです。%{tldr_legal_link:tldrlegal.com}  からこのライセンスの意味を確認してください。"
@@ -1051,7 +1053,7 @@ ja:
       intro_html: 'あなたのスクリプトは「%{reason}」 の理由で削除されました。これが誤りだという理由があるか、または追加の情報を提供するか、または問題を解決するようスクリプトを更新したら、抗議することができます。管理担当者が提供された情報や更新に納得すれば、スクリプトは再び利用可能になります。'
       submit: 抗議を作成
     deletion_reason_html: "%{script} は次の理由で削除されました: %{reason}."
-    author_reason: "作成者による抗議:"
+    author_reason: "作者による抗議:"
     pending_review: この抗議は、管理担当者による審査待ちです。
     dismissed_by_moderator: この抗議は、管理担当者に却下されました。
     upheld_by_moderator: この抗議の結果、管理担当者はこのスクリプトの削除を取り消しました。
