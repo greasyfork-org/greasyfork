@@ -429,8 +429,8 @@ ja:
       user_no_sets: "(このユーザーはセットの保有なし)"
       user_no_other_sets: "(このユーザーが保有するセットはすべて登録済みです)"
     edit_auto_sets:
-      heading: "自動生成スクリプトセット"
-      description: "このスクリプトセットに追加、または除外する自動生成されたスクリプトリスト。"
+      heading: "スクリプトセットの自動生成"
+      description: "このスクリプトセットに追加、または除外するスクリプトのリストを自動生成します。"
       included: "追加されるもの一覧"
       included_none: "(未設定)"
       remove_included: "選択項目を一覧から除去"
@@ -532,11 +532,11 @@ ja:
     control_panel: "設定"
     discussions_on_scripts: "あなたのスクリプトに関する議論"
     discussions_on_scripts_feed_alt: "フィード"
-    discussions_on_scripts_none: "まだ投稿はありません。"
+    discussions_on_scripts_none: "投稿なし。"
     discussions_on_scripts_more: "さらに表示..."
     script_list: "スクリプト一覧"
     script_list_none: "まだ投稿していません。"
-    script_list_none_for_filter: "指定した条件に一致するスクリプトはありません。"
+    script_list_none_for_filter: "指定した条件に一致するスクリプトなし。"
     script_list_none_same_user_html: "まだスクリプトを書いていません。%{script_list_none_same_user_info_link}"
     script_list_none_same_user_info_link_text: "スクリプトの書き方を見てみますか？"
     deleted_script_list: "削除したスクリプト"
@@ -722,7 +722,7 @@ ja:
       antifeature_localized_html: "<code>@antifeature</code> の説明を特定の言語で記述します。XX は <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 の2文字コード</a> で、YY として <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 の国名コード</a> を追加することもできます。ユーザーの使用言語に一致したら <code>@antifeature</code> の内容を上書きします。"
     writing_user_scripts:
       title: "ユーザースクリプトの書き方"
-      content_html: "<p>ユーザースクリプトを書くには、JavaScript の知識が必要です。<a href=\"http://wiki.greasespot.net/Tutorials\">GreaseSpot Wiki のチュートリアル</a>は、一般的な JavaScript とユーザースクリプト関連の両方を勉強し始めたいときに便利です。他の人のスクリプトコードを見てみるのも良いでしょう。興味があれば、%{code_rules_link} や %{meta_keys_link} も参考にしてください。スクリプトの開発にあたって助けが必要であれば、お気軽に%{ask_in_forum_link}。</p><p>%{site_name} で投稿するには、アカウントの作成が必要です。自分の%{user_page_link}に%{post_new_script_link}へのリンクがあります。</p>"
+      content_html: "<p>ユーザースクリプトを書くには、JavaScript の知識が必要です。<a href=\"http://wiki.greasespot.net/Tutorials\">GreaseSpot Wiki のチュートリアル</a>は、一般的な JavaScript とユーザースクリプト関連の両方を勉強し始めたいときに便利です。他の人のスクリプトコードを見てみるのも良いでしょう。興味があれば、%{code_rules_link} や %{meta_keys_link} も参考にしてください。スクリプト作成の助けが必要であれば、お気軽に%{ask_in_forum_link}。</p><p>%{site_name} に投稿するには、アカウントの作成が必要です。自分の%{user_page_link}に%{post_new_script_link}へのリンクがあります。</p>"
       ask_in_forum_link_text: '掲示板で問いかけてみてください'
       user_page_link_text: 'ユーザーページ'
       post_new_script_link_text: 'スクリプトの投稿'
@@ -1013,7 +1013,7 @@ ja:
     paid_benefits_feedback: "%{site_name} は、スクリプト作者とユーザー間の取引を記録していないため、これに関する訴えを検証できません。スクリプトの機能を購入し不満なら、代わりにスクリプトの%{feedback_link:フィードバック}として苦情を残してください。"
     unauthorized_code_original_placeholder: "元のコードのURL"
     explanation_placeholder: "追加の詳細を提供 (任意)"
-    create_button: "通報を作成"
+    create_button: "通報を送信"
     report_user: "ユーザーを通報"
     report_comment: "コメントを通報"
     report_message: "メッセージを通報"
@@ -1122,7 +1122,7 @@ ja:
     user_activity:
       title: "最近のコメント"
       no_recent_activity: "このユーザーの最近のコメント投稿はありません。"
-      see_all_activity: "ユーザーのすべての行動履歴を表示。"
+      see_all_activity: "すべての履歴を表示。"
       script_review:
         posted_html: "%{script}のレビューを投稿しました"
         replied_html: "%{script}のレビューに返信"
@@ -1166,9 +1166,9 @@ ja:
     search_placeholder: 議論を検索
   conversations:
     user_input_note: ユーザー名、またはプロフィールのURLを入力
-    new_title: 新しい会話の作成
-    new_link: 新しい会話の作成
-    new_button: 会話の作成
+    new_title: 新しい会話を開始
+    new_link: 新しい会話を開始
+    new_button: 会話を送信
     title_html:
       other: '%{users}との会話'
     send_message: メッセージを送信
@@ -1176,7 +1176,7 @@ ja:
     conversation_link_html:
       other: ' %{users}との会話。'
     conversation_info_html: '%{date}に最新のメッセージ、%{user}が送信。'
-    no_conversations: まだ会話はありません。
+    no_conversations: 会話なし。
     no_recent_conversations: 最近の会話はありません。
     recent:
       title: 最近の会話

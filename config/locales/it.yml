@@ -100,6 +100,7 @@ it:
       compare_to: "Script su %{site_name}da confrontare (URL)"
       compare_button: "Confronta"
       compare_must_be_local_url: "Lo script da confrontare deve essere rappresentato da un URL di %{site_name} "
+      compare_cleaned_code_unavailable: "La versione con codice pulito di questo script non e' ancora disponibile."
     history_title: "%{script_name} - Cambiamenti versioni"
     history_only_code_changes_info: "queste sono le versioni di questo script in cui il codice è stato aggiornato"
     history_all_changes_link: "Visualizza tutte le versioni."
@@ -233,6 +234,7 @@ it:
     localized_additional_info_with_no_name: "Sono state specificate altre informazioni per la lingua  '%{locale_code}', ma nessun non è stato fornito nessun @name:%{locale_code}."
     code_syncing_from_url_html: "Il codice dello script è impostato per sincronizzarsi da: %{field}"
     provide_code_syncing_from_url_html: "%{site_name} può importare script che sono già hostati da altre parti, per esempio in un sistema di controllo versioni (come GitHub), il tuo server, o un altro sito di script hosting. Per abilitare la sincronizzazione per il tuo script, fornisci un URL: %{field}"
+    code_syncing_from_webhook_html: "Il codice di questo script e' impostato per essere sincronizzato con un webhook. Abbineramo le richieste del webhook in base allo script seguendo questo URL:%{field}"
     sync_type_intro: "Lo script verrà sincronizzato: "
     sync_type_1:
       name: Manuale

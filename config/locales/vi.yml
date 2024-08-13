@@ -45,6 +45,7 @@ vi:
     deleted_notice_with_related_and_reason: "Script mà bạn yêu cầu đã bị xoá do %{report_link:bảo cáo này}; và đây là những script liên quan."
     deleted_undelete_notice_html: "Script này đã bị khóa bởi một người điều hành và không thể phục hồi. Lí do được đưa ra là: \"<i>%{delete_reason}</i>\"."
     deleted_locked_author_notice_html: "Script này đã bị xóa bởi người quản trị trong phản hồi %{report_link:this report} và không thể hiển thị với những người khác. Lý do được đưa ra là \"<i>%{delete_reason}</i>\". Hãy xem lại %{code_rules_link:%{site_name}'s rules}. Nếu như bạn tin rằng đây là một sự sai sót, bạn có thể kháng cáo tại %{appeal_link:submit an appeal}. Không đăng lại script này; nếu không bạn sẽ bị ban khỏi %{site_name}."
+    self_deleted_locked_author_notice_html: "Kịch bản này đã bị bạn xóa để phản hồi %{report_link:báo cáo này} và không thể truy cập bởi người khác. Nếu bạn đã cập nhật kịch bản của mình để phù hợp với %{code_rules_link:quy tắc của %{site_name}}, bạn có thể %{appeal_link:gửi yêu cầu kháng cáo} việc xóa này. Không đăng lại kịch bản này; việc làm như vậy có thể dẫn đến việc bạn bị cấm khỏi %{site_name}."
     deleted_author_notice: "Script này đã bị xóa và không thể bị truy cập bởi những người khác. Bạn có thể phục hồi ở Delete tab."
     version_notice_html: "Tính đến %{date}. Xem %{latest_version_link}."
     version_notice_latest_version_link: "phiên bản mới nhất"
@@ -143,6 +144,7 @@ vi:
       low: Tương tự
       none: Không giống
     derivatives_similar_none: "Không có script nào giống cái bạn cần"
+    derivatives_similar_item: "%{score}: %{diff_link:[Diff]} %{script}"
     derivatives_similar_last_check_html: "Chúng tôi đã tìm kiếm những script tương tự cho bạn %{date}"
     derivatives_similar_last_check_soon: "Chúng tôi sẽ tìm kiếm những script tương tự cho bạn ngay thôi."
     derivatives_similar_last_check_again_soon_html: "Lần cuối chúng tôi kiểm tra các tập lệnh tương tự của bạn là vào ngày %{date}. Chúng tôi sẽ kiểm tra lại ngay sau."
@@ -231,6 +233,7 @@ vi:
     localized_additional_info_with_no_name: "Thông tin bổ sung dành cho khu vực  '%{locale_code}', nhưng không có @name:%{locale_code} được cung cấp"
     code_syncing_from_url_html: "Với mã script này được thiết lập để đồng bộ từ: %{field}"
     provide_code_syncing_from_url_html: "%{site_name} có thể lấy những script đã được lưu trữ ở bất kỳ đâu. Ví dụ như một hệ thống quản lý phiên bản (tương tự GitHub), máy chủ của bạn, hoặc dịch vụ lưu trữ script khác. Để bật tính năng đồng bộ script của bạn, Hãy cung cấp liên kết: %{field}"
+    code_syncing_from_webhook_html: "Mã của kịch bản này được thiết lập để đồng bộ hóa với webhook. Chúng tôi sẽ khớp các yêu cầu webhook với kịch bản này dựa trên URL này: %{field}"
     sync_type_intro: "Script sẽ được đồng bộ:"
     sync_type_1:
       name: Thủ công
@@ -275,6 +278,8 @@ vi:
     write_your_own_html: "%{post_a_script_link} (hoặc %{learn_to_write_scripts_link})"
     post_a_script_link_text: "Công khai script bạn đã viết"
     learn_to_write_scripts_link_text: "Học cách để viết một cái"
+    support_feedback_or_report: "%{support_url: Truy cập trang web của tác giả để được hỗ trợ}, %{feedback_link: đặt câu hỏi, đăng đánh giá} hoặc %{report_link: báo cáo tập lệnh}."
+    support_email_feedback_or_report: "%{support_url:Gửi email cho tác giả để được hỗ trợ}, %{feedback_link:đặt câu hỏi, đăng đánh giá}, hoặc %{report_link:báo cáo kịch bản}."
     adult_content: "Nội dung người lớn"
     adult_content_self_report: "Script này chứa nội dung người lớn hoặc được dành cho trang có nội dung người lớn"
     adult_content_self_report_explanation: "%{site_name}  cho phép script với nội dung người lớn, nhưng họ phải đánh dấu để người dùng lựa chọn có thấy nó hay không"
@@ -285,6 +290,7 @@ vi:
     adult_content_on_greasy_not_logged_in_error: "Script này không còn ẩn danh trên trang. %{login_link:Log in} vui lòng kiểm tra thiết lập tài khoản của bạn."
     non_adult_content_on_sleazy: "Script không có sẵn trên trang web này."
     not_js_convertible_override_header: "Chuyển thành JS"
+    not_js_convertible_override_explanation: "%{site_name} có thể tự động tạo %{help_link:bản chuyển đổi JS người dùng} từ CSS người dùng của bạn. Vì bản chuyển đổi JS người dùng và CSS người dùng của bạn sẽ hoạt động hơi khác nhau, chúng tôi khuyên bạn nên kiểm tra bản chuyển đổi JS người dùng. Nếu bạn thấy nó không hoạt động, bạn có thể làm cho nó không khả dụng bằng cách chọn vào ô bên dưới."
     adult_marker: "(Dành cho người lớn)"
     deleted_marker: "(Đã xóa)"
     locked_marker: "(Đã khóa)"
@@ -301,8 +307,11 @@ vi:
     must_confirm: "Bạn phải xác nhận tài khoản của mình trước khi có thể đăng tải tập lệnh. Bạn có hai tùy chọn xác nhận - thêm phương thức đăng nhập khác hoặc qua email xác nhận."
     must_confirm_email_button: "Gửi liên kết xác nhận đến %{email}"
     authors_heading: "Tác giả"
+    error_unauthorized_copy: "Đoạn mã này dường như là một bản sao trái phép của %{script}. Vui lòng tham khảo %{rules_link:quy tắc} của %{site_name} về việc đăng tải kịch bản."
     invitations:
       form_title: "Mời thêm tác giả khác"
+      explanation: "Bạn có thể thêm những người dùng Greasy Fork khác làm tác giả của tập lệnh này. Họ sẽ có quyền tương tự như bạn đối với tập lệnh này."
+      invited_user_url_label: "Người dùng được mời"
       submit: "Gửi lời mời"
       sent: "Lời mời đã được gửi"
       subject: "Gửi lời mời cho %{script_name}"
@@ -311,6 +320,7 @@ vi:
       invitation_accepted: "Bây giờ bạn là tác giả của script này "
     remove_author:
       heading: "Xóa tác giả"
+      success: "%{user_name} đã bị xóa khỏi danh sách tác giả."
       remove_button: "Xoá"
     new_script_notice:
       install_link_html: "Tôi muốn<b>cài đặt và sử dụng</b>một script"
