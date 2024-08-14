@@ -145,7 +145,14 @@ class DiscussionsController < ApplicationController
     if current_user&.moderator? && params[:report_id]
       report = Report.find(params[:report_id])
       @discussion.report = report
-      users_to_mention = report.item.is_a?(User) ? [report.item] : report.item.users
+      users_to_mention = case report.item
+                         when User
+                           [report.item]
+                         when Comment, Discussion
+                           [report.item.poster]
+                         else
+                           report.item.users
+                         end
       text = users_to_mention.map { |user| user.name.match?(/\s+/) ? "@\"#{user.name}\"" : "@#{user.name}" }.join(' ')
     elsif params[:category] && params[:category] != DiscussionCategory::SCRIPT_DISCUSSIONS_KEY
       @discussion.discussion_category = DiscussionCategory.find_by(category_key: params[:category])
