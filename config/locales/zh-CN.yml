@@ -133,7 +133,7 @@ zh-CN:
     derivatives_exact_copies_item_html: "%{author_links}发布的%{script_link}，版本：%{version_list}"
     derivatives_exact_copes_none: "%{site_name} 上没有其他脚本与这个脚本的代码完全相同。"
     derivatives_similar_heading: "相似脚本"
-    derivatives_similar_info: "我们会周期性的检查所有其他脚本的最新版本，从而找出和您的脚本最相似的内容。我们也会在您对您的脚本发布更新的时候根据您的请求来检查。"
+    derivatives_similar_info: "我们会定期检查所有其他脚本的最新版本，以找出与您的脚本最相似的脚本。每当您发布脚本更新时，我们也会进行检查，此外，您也可以在需要时请求检查。"
     similarity_score:
       high: 非常相似
       medium: 比较相似
@@ -157,7 +157,7 @@ zh-CN:
     listing_description_generic: "针对您所访问的网站添加功能或解决问题的用户脚本。"
     listing_sort_label: "脚本排序："
     listing_sort_relevance: "相关程度"
-    listing_sort_daily_installs: "今日安装"
+    listing_sort_daily_installs: "日安装量"
     listing_sort_total_installs: "总安装量"
     listing_sort_ratings: "得分"
     listing_sort_created: "创建日期"
@@ -169,8 +169,8 @@ zh-CN:
     listing_filter_by_language_label: "语言："
     listing_filter_by_site_more_sites: "更多..."
     listing_no_scripts: "找不到相关脚本。"
-    listing_created_feed: "最近创建的脚本"
-    listing_updated_feed: "最近更新的脚本"
+    listing_created_feed: "最近创建脚本"
+    listing_updated_feed: "最近更新脚本"
     listing_none: "(无)"
     listing_set_locale_filter: "现在显示所有语言的结果。%{set_filter_link:只显示 %{language} 的结果}"
     listing_remove_locale_filter: "现在只显示 %{language} 的结果。%{remove_filter_link:显示所有语言的结果。}"
@@ -189,8 +189,8 @@ zh-CN:
     contribution_bitcoin_with_amount_html: "通过捐赠比特币到 %{address} 感谢 %{author}，建议的捐赠数额为 %{amount}。"
     locale_explanation_html: "应当匹配 <code>@name</code>、<code>@description</code> 和第一个附加信息的语言。"
     locale_auto_select: "(自动检测)"
-    sets_label: "位于脚本收藏集："
-    sets_label_no_sets: "脚本收藏集："
+    sets_label: "位于脚本集："
+    sets_label_no_sets: "脚本集："
     sets_remove_inclusion: "从 %{set_name} 中删除"
     sets_remove_exclusion: "从 %{set_name} 的排除列表中移除"
     sets_add_inclusion: "添加到 %{set_name}"
@@ -208,7 +208,7 @@ zh-CN:
     post_new_script: "发布脚本"
     post_updated_script: "发布新版本"
     type_1_html: "公开的用户脚本 - 任何人都可以查看和使用。"
-    type_2_html: "只允许通过链接访问的用户脚本 —— 私人（或半公开）的用户脚本。只有知道链接的人才能访问，该链接不会出现在 %{site_name} 的任何地方。"
+    type_2_html: "未上架的脚本 - 用于（半）私人用途的用户脚本。仅能通过链接访问，但该链接不会出现在%{site_name}上的任何地方。"
     type_3_html: "库 - 用于被其他脚本以 <code>@require</code> 调用而非直接安装的脚本。"
     override_warning_checkbox_label: "仍要保存"
     warning_version_not_incremented_html: "您更新了脚本代码但是没有增加 <code>@version</code> 版本号。之前安装了您的脚本的用户可能不会自动更新到更新后的代码。"
@@ -288,12 +288,12 @@ zh-CN:
     adult_content_on_greasy_not_logged_in_error: "此脚本不再在本网站上匿名可用。请 %{login_link:登录} 并检查您的 Greasy Fork 账号设置。"
     non_adult_content_on_sleazy: "此脚本在本网站上不可用。"
     not_js_convertible_override_header: "转换为 JS"
-    not_js_convertible_override_explanation: "%{site_name} 可以为您的用户样式（user CSS）自动创建一份 %{help_link:用户脚本（user JS）版本} 。两者的运行方式有所不同，我们建议您测试转换后的脚本。如果您发现转换的脚本不能使用，可以选中下方的复选框来禁用它。"
+    not_js_convertible_override_explanation: "%{site_name} 可以自动转换您的用户样式为 %{help_link:用户脚本} 。由于转换后的用户脚本和您的用户样式的工作方式有所不同，我们建议您测试转换后的用户脚本。如果发现其无法正常适用，您可以勾选下面的框将其设置为不可用。"
     not_js_convertible_override_label_html: "<strong>不要为</strong>此样式提供用户脚本版本"
     adult_marker: "(成人)"
     deleted_marker: "(已删除)"
     locked_marker: "(已锁定)"
-    unlisted_marker: "(只允许通过链接访问)"
+    unlisted_marker: "(未上架)"
     library_marker: "(库)"
     libraries_title: "库"
     libraries_description_html: "这些是 %{site_name} 用户发布的库，您可以在您的脚本中 <code>@require</code> 它们。对于其他可以 <code>@require</code> 的库，参见 %{policy_link:%{site_name} 对 <code>@require</code> 的政策}。"
@@ -328,7 +328,7 @@ zh-CN:
       remove_button: "移除"
       remove_confirm: "确定要将 %{user_name} 从作者列表中移除吗？"
       failure: "无法移除该作者。"
-    no_disposable_email: "如果您使用一次性电子邮箱地址，则不能发布脚本。"
+    no_disposable_email: "如果您使用一次性电子邮件地址，则您可能无法发布脚本。"
     rate_limited: "您近期提交了太多脚本。请稍后再试。"
     delayed: "由于垃圾信息问题，新用户不能立即发布脚本。请稍后再试。"
     new_script_notice:
@@ -397,7 +397,7 @@ zh-CN:
           other: "该脚本制定了不匹配的哈希校验值：%{detail}。"
         detail: "<code>%{url}</code> 应设定其哈希校验值为 <code>%{expected_hash}</code>（检查于 %{last_checked_at}）"
   script_sets:
-    description: "脚本收藏集有助于您创建一个自定义的使用 Greasy Fork 浏览的脚本列表。您可以包含单个脚本，以及其他用户或自动生成的脚本收藏集。您也可以用相同的方法排除特定脚本。"
+    description: "脚本集可以让你可以创建一个自定义的脚本列表来浏览 Greasy Fork。您可以从包含单个脚本、其他用户的脚本集或者自动生成的脚本集来将脚本添加到你的脚本集中。你也可以使用相同的方法来从集中排除脚本。"
     favorites_name: "收藏"
     delete: "删除脚本收藏集"
     delete_confirmation: "您确定要删除这个脚本收藏集吗？"
@@ -415,8 +415,8 @@ zh-CN:
       add_include: "包含"
       add_exclude: "排除"
     edit_sets:
-      heading: "脚本收藏集"
-      description: "在您的脚本收藏集中包含或排除其他脚本收藏集。"
+      heading: "脚本集"
+      description: "在您的脚本集中包含或排除其他脚本集。"
       included: "包含"
       included_none: "（无）"
       remove_included: "移除选中"
@@ -426,11 +426,11 @@ zh-CN:
       add_label: "添加脚本（网址或 ID，以空格分隔）"
       add_include: "包含"
       add_exclude: "排除"
-      user_label: "列出属于某个用户的脚本收藏集（网址、ID或名称）"
+      user_label: "列出属于某个用户的脚本集（网址、ID或名称）"
       user_no_sets: "（用户没有建立收藏集）"
       user_no_other_sets: "（用户没有其他收藏集）"
     edit_auto_sets:
-      heading: "自动脚本收藏集"
+      heading: "自动脚本集"
       description: "在您的脚本收藏集中包含或排除自动生成的脚本列表。"
       included: "已包含"
       included_none: "（无）"
@@ -462,7 +462,7 @@ zh-CN:
       all_sites: "所有网站"
       user: "用户 %{user} 的脚本"
       locale: "语言为 %{locale_name} 的脚本"
-    new: 新建脚本收藏集
+    new: 新建脚本集
   home:
     title: "%{site_name} - 安全、实用的用户脚本大全"
     welcome: "欢迎来到 %{site_name}，这里是一个提供用户脚本的网站。"
@@ -535,13 +535,13 @@ zh-CN:
     discussions_on_scripts_feed_alt: "RSS 订阅"
     discussions_on_scripts_none: "还没有呢！"
     discussions_on_scripts_more: "更多讨论…"
-    script_list: "脚本列表"
+    script_list: "脚本"
     script_list_none: "暂无发布的脚本。"
     script_list_none_for_filter: "没有匹配当前搜索条件的脚本。"
     script_list_none_same_user_html: "您还没有编写过用户脚本，%{script_list_none_same_user_info_link}"
     script_list_none_same_user_info_link_text: "想要学习如何编写吗?"
-    deleted_script_list: "已删除的脚本"
-    unlisted_script_list: "未上架的脚本"
+    deleted_script_list: "已删除脚本"
+    unlisted_script_list: "未上架脚本"
     sign_out: "退出"
     edit: "编辑账号信息"
     edit_sign_in: "更改登录方式"
@@ -574,14 +574,14 @@ zh-CN:
     add_external_sign_in_info: "添加第三方登录："
     set_up_webhook: "设置 webhook"
     author_email_notification_type:
-      none: "不发送我的脚本的讨论帖相关通知邮件"
-      discussion_only: "在我的脚本有新的讨论帖时发邮件通知我"
-      discussion_and_comment: "在我的脚本有新的讨论帖，或这些讨论帖有新评论时发邮件通知我"
+      none: "不接收关于您脚本讨论的电子邮件通知"
+      discussion_only: "当有人在您的脚本上发布讨论时接收电子邮件通知"
+      discussion_and_comment: "当有人在您的脚本上发布讨论或这些讨论收到新评论时接收电子邮件通知"
     list_display_html:
       other: "%{user_link} - %{count} 个脚本"
-    listing_number_of_scripts: "发布脚本的数量"
-    listing_new_scripts: "新建脚本"
-    listing_updated_scripts: "脚本更新日期"
+    listing_number_of_scripts: "脚本数量"
+    listing_new_scripts: "最近创建脚本"
+    listing_updated_scripts: "最近更新脚本"
     listing_registration_date: "注册时间"
     listing_relevance: "相关程度"
     listing_title: "用户"
@@ -671,10 +671,10 @@ zh-CN:
     info:
       title: 设置 webhook
       intro_html: |
-          <p>与 %{site_name} 绑定的 Webhook（网页通知事件）可以基于代码仓库的更新而自动更新 %{site_name} 上对应的脚本。%{site_name} 支持 GitHub、GitLab 与 Bitbucket 的“push（推送）”事件和 GitHub 与 GitLab 的“release（发布）”事件。</p>
-          <p>要使用该功能，你必须在 %{site_name} 设定通过地址同步脚本的功能。你可以通过 %{import_link: 导入脚本到 %{site_name}} 来添加，或从已提交脚本的“管理”页面来设定同步。</p>
-          <p>你的脚本在收到第一次自动推送的事件之前，脚本的同步类型还是会显示为“自动”或“手动”。</p>
-      already_syncing_list: "以下是您已设置从支持的提供方同步的脚本："
+          <p>连接到  %{site_name} 的 Webhook 可以使您根据仓库中的事件自动更新 %{site_name} 上对应的脚本。%{site_name} 支持 GitHub、GitLab 与 Bitbucket 的 “push” Webhook 以及 GitHub 与 GitLab 的 “release” Webhook。</p>
+          <p>要使用此功能，您必须在 %{site_name} 上设定脚本通过 URL 与您的仓库同步。您可以通过 %{import_link: 将新脚本导入到  %{site_name}} 来添加新脚本，或从已提交脚本的 “管理” 页面来设定同步。</p>
+          <p>在您的脚本第一次 Webhook 触发之前，脚本的同步类型还是会显示为 “自动” 或 “手动” 。</p>
+      already_syncing_list: "以下是您已经设定为从支持的提供商同步的脚本："
       synced_item_html: "%{script_name} - %{sync_type} 同步，从 %{sync_url}"
       language_note: 因为 GitHub、GitLab 和 Bitbucket 是英语界面，下列操作说明也以英语提供。
   help:
@@ -699,7 +699,7 @@ zh-CN:
       description: "脚本功能的描述，显示在脚本标题下面，必填项。"
       description_localized_html: "用某门语言写成的脚本描述。XX 指 <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 国家代码</a> 以及 YY 指可选的 <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 地区代码</a>。该选项用于提供多语言的<code>@description</code> 脚本介绍。"
       namespace_html: "<code>@namespace</code> 与 <code>@name</code> 这两个属性被作为脚本的唯一标识符，用户脚本管理器根据它们来判断一个脚本是否已安装。%{site_name} 也需要这些属性，若用户在更新脚本时改变了两者中的任意一项，将发出警告。"
-      version: "脚本的版本标记将使用 %{version_format_link:Mozilla 版本格式}，并显示于脚本的简介页面。%{site_name} 要求填写该属性，且当用户更新脚本时没有更新版本号或降低了版本号时将发出警告。"
+      version: "脚本特定版本的标识符，请以 %{version_format_link:Mozilla 版本格式} 为准，版本号会显示在脚本的信息页面上。%{site_name} 要求填写该属性，并会在版本号减少或脚本代码更改时未增加版本号时发出警告。"
       include_html: "描述脚本会在哪些网站上运行。该列表会被解析和展示到脚本的简介页面，并用于脚本的分类。每个脚本须有至少一个 <code>@match</code> 或 <code>@include</code>。<a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">了解格式细则</a>。"
       require_html: "引入外部脚本到用户脚本。查看关于%{external_script_link:引入外部脚本到代码的规则}。如果你使用 SRI（Sub-Resource Integrity） 来记录外部脚本哈希（更多信息请参阅 %{tm_subresource_link:TamerMonkey 文档} 与 %{mdn_subresource_link:MDN 文档})，当 SRI 与文件的实际哈希不一致时将会在 %{site_name} 进行警告。"
       resource_html: "引入外部资源（如 JavaScript、CSS、图像等）到脚本。查看关于%{external_script_link:引入外部脚本到代码的规则}。如果你使用 SRI（Sub-Resource Integrity） 来记录外部脚本哈希（更多信息请参阅 %{tm_subresource_link:TamerMonkey 文档} 与 %{mdn_subresource_link:MDN 文档})，当 SRI 与文件的实际哈希不一致时将会在 %{site_name} 进行警告。"
@@ -713,13 +713,13 @@ zh-CN:
           <li>完全省略，这与具有版权声明相同，但对用户来说不够清晰。</li>
           </ul>
           请注意，如果您的脚本基于其他人编写的代码，则您可能会受到您选择的许可证的限制。
-      supportURL: "该脚本的技术支持链接（如：错误反馈系统、论坛、电子邮箱地址等），该链接将显示在脚本的反馈页面。"
-      contributionURL_html: "用于捐赠脚本作者的链接，该链接将显示在脚本的反馈页面。网址可以为 http、https 或比特币协议的网址。如果您需要链接到贝宝捐赠页面，请使用例如 <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a> 这样的格式，替换为您自己的邮箱地址即可。"
+      supportURL: "用户获得脚本支持的链接（例如，一个错误跟踪器、论坛或电子邮件地址），该支持链接将显示于脚本的反馈页面。"
+      contributionURL_html: "用户用于捐赠脚本作者的链接，该捐赠链接将显示在脚本的反馈页面。网址可以为 http、https 或比特币协议的网址。如果您需要链接到 PayPal 捐赠页面，请使用例如 <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a> 这样的格式，替换其中的示例邮箱地址为您自己的邮箱地址即可。"
       contributionAmount_html: "建议捐赠金额，请配合 <code>@contributionURL</code> 使用。"
       compatible_html: "标记此脚本与某个浏览器兼容，兼容性信息将显示在脚本的简介页面上。您也可以添加额外的兼容说明，如 <code>@compatible firefox 火狐上必须关闭广告过滤器</code> 这样的格式。目前能被网站识别的浏览器名称有：%{browsers}。"
       incompatible_html: "标记此脚本与某个浏览器不兼容，兼容性信息将显示在脚本的简介页面上。您也可以添加额外的兼容说明，如 <code>@incompatible firefox 自火狐 23 开始不兼容</code> 这样的写法。目前能被网站识别的浏览器名称有：%{browsers}。"
       antifeature_html: |
-          披露会为脚本作者而非用户带来额外收益的功能。你可以通过在脚本的元数据中添加 <code>@antifeature type description</code> 值的方法披露。其中<i>type</i>（类型）是必须填写的内容，而 <i>description</i>（描述）则可以留空。%{antifeatures_link:点击此处了解} %{site_name} 读取的 <i>type</i>（类型）的相关信息。
+          披露会为脚本作者而非用户带来额外收益的功能。你可以通过在脚本的元数据中添加 <code>@antifeature 类型 描述</code> 值的方法披露。其中<i>类型</i>是必须填写的内容，而 <i>描述</i>则可以留空。%{antifeatures_link:点击此处了解} %{site_name} 读取的 <i>类型</i>的相关信息。
       antifeature_localized_html: "你可以使用多种语言声明 <code>@antifeature</code> 属性，其中 XX 为 <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 中定义的两个字符的代码</a>，而 YY 则是一个可选的 <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 中定义的国家代码</a>。在<code>@antifeature</code>中制定的每一个类型都可以自定义其本地化的说明。"
     writing_user_scripts:
       title: "如何编写用户脚本"
@@ -747,7 +747,7 @@ zh-CN:
       hosting: 脚本的主要功能必须在 %{site_name} 上的代码中实现。在 %{site_name} 上发布的脚本，如果只是从其他地方加载大部分脚本内容，是不允许的。发布备用下载链接，意图让用户使用这些备用资源而不是 %{site_name} 上发布的版本，也是不允许的。
       external_js: "%{external_scripts_link:能引用其他网站上托管的 JavaScript 脚本是有限制的}。"
       copyright_header: 版权
-      licensing_html: 您的脚本必须遵守他人的版权，这包括代码本身以及所引用的资源（例如图像）。如果你希望使用他人的内容，请遵守其授权规则或获得使用授权。你可以使用 <code>@license</code> 元信息名称来指定脚本使用的授权协议，并通过 %{tldr_legal_link:tldrlegal.com}（英文）获得更多关于该授权协议的限制。
+      licensing_html: 您的脚本必须遵守他人的版权，这包括代码本身以及所引用的资源（例如图像）。如果你希望使用他人的内容，请遵守其授权规则或获得使用授权。你可以使用 <code>@license</code> 元信息名称来指定脚本使用的授权协议，并通过 %{tldr_legal_link:tldrlegal.com} 获得更多关于该授权协议的限制。
       reposts: 即便没有违反版权商的规则，重复提交已经存在于 %{site_name} 的脚本也是不允许的，除非有做出改进。
       miscellaneous_header: 其它
       keywords: 脚本不得包含不相关的关键字或提及不相关的网站以尝试改善搜索排名.
@@ -1277,8 +1277,8 @@ zh-CN:
     url_entry_label: 提供要导入的 URL，每行一个。这应该是原始 JS 或 CSS 文件的网址。
     sync_type_label: "在初始导入后，脚本应该会同步："
     additional_info_html: |
-        <p>对于来自版本控制系统的脚本，请确保使用的网址指向一个分支而非特定次提交，否则脚本永远不会被更新。例如使用 <code>https://bitbucket.org/username/reponame/raw/<b>分支名</b>/script.user.js</code>，而不能是 <code>https://bitbucket.org/username/reponame/raw/<b>commit-hash</b>/script.user.js</code>。</p>
-        <p>从 GitHub、Bitbucket 或 GitLab 导入的脚本可以设置为通过一个 Webhook 自动同步。这样在您推送提交到您的版本库后，Webhook 会触发并立即更新您在 %{site_name} 上的脚本。如果想设置但还没有这样做，请先导入，然后%{webhook_info_link:设置 Webhook}。</p>
+        <p>对于来自源代码管理的脚本，请确保您使用的 URL 指向一个分支，而不是特定的提交，否则脚本将永远不会更新。例如，使用 <code>https://bitbucket.org/username/reponame/raw/<b>branch-name</b>/script.user.js</code>，而不是 <code>https://bitbucket.org/username/reponame/raw/<b>commit-hash</b>/script.user.js</code>。</p>
+        <p>从 GitHub、Bitbucket 或 GitLab 导入的脚本也可以通过 Webhook 设定同步。通过 Webhook，您的脚本在您推送到仓库时会立即在 %{site_name} 上更新。如果您想使用 Webhook 但尚未设定，请先完成导入，然后在 %{webhook_info_link:设定 Webhook} 之后再进行设定。</p>
     submit: 导入
     previously_imported:
       heading: 以前导入的脚本

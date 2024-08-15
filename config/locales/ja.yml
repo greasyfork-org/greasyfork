@@ -9,7 +9,7 @@ ja:
       advanced_search: "詳細検索"
       user_list: "ユーザー一覧"
       libraries: "ライブラリ一覧"
-      moderator_log: "管理担当者のログ"
+      moderator_log: "管理担当者による処置の履歴"
   scripts:
     created_date: "作成日"
     updated_date: "更新日"
@@ -44,10 +44,10 @@ ja:
     deleted_notice_with_related: "このスクリプトは削除されました。関連するスクリプトがあります。"
     deleted_notice_with_related_and_reason: "スクリプトは%{report_link:こちらの通報}により削除されました。関連するスクリプトがあります。"
     deleted_undelete_notice_html: "このスクリプトは管理担当者によりロックされており、削除の取り消しはできません。理由:  \"<i>%{delete_reason}</i>\""
-    deleted_locked_author_notice_html: "このスクリプトは、%{report_link:こちらの通報}のため管理担当者によって削除されており、第三者はアクセスできません。理由: <i>%{delete_reason}</i>。%{code_rules_link:%{site_name}の規則}を確認してください。誤って削除された場合、%{appeal_link:抗議}も行えます。スクリプトの再投稿は行わないでください。%{site_name}へのアクセス禁止になる可能性があります。"
+    deleted_locked_author_notice_html: "このスクリプトは、%{report_link:この通報}により管理担当者が削除したため、第三者はアクセスできません。理由: <i>%{delete_reason}</i>。%{code_rules_link:%{site_name}の規則}をご確認ください。誤って削除された場合、%{appeal_link:抗議}も行えます。スクリプトの再投稿は行わないでください。%{site_name}へのアクセス禁止になる可能性があります。"
     self_deleted_locked_author_notice_html: "このスクリプトは、%{report_link:こちらの通報}のため、あなたによって削除され、ほかの人はアクセスできなくなっています。If you have updated your script to be in line with  %{code_rules_link:%{site_name} の規則}に従ってスクリプトを更新すれば、削除への%{appeal_link:抗議を提出}できます。スクリプトの再投稿は行わないでください。%{site_name}へのアクセス禁止になる可能性があります。"
-    deleted_author_notice: "このスクリプトは削除されており、第三者はアクセスできません。削除タブから削除を取り消しできます。"
-    version_notice_html: "%{date}時点のページです。%{latest_version_link}はこちら。"
+    deleted_author_notice: "このスクリプトは削除済みのため、第三者はアクセスできません。削除タブから削除を取り消しできます。"
+    version_notice_html: "%{date}のページです。%{latest_version_link}はこちら。"
     version_notice_latest_version_link: "最新版"
     reported_notice: "「%{script_name}」は通報されており、管理担当者による審査待ちの状態です。"
     reported_notice_for_author: "管理担当者による審査が行われるまで、他のユーザーはこのスクリプトを使用できません。"
@@ -67,7 +67,7 @@ ja:
       redirect: "以下に指定するスクリプトに転送され、更新されます。"
     delete_permanently_heading: "完全な削除"
     delete_permanently_explanation_html: >-
-        <p>このスクリプトとすべての関連記録を、掲示板での議論と管理担当者による処理のログを除き完全に削除します。</p> <p>このリクエストから7日後に完全に削除されます。この間に完全な削除をキャンセルできます。キャンセルしなかった場合、管理担当者でもこのスクリプトを復元できません。</p>
+        <p>このスクリプトとすべての関連記録を、掲示板での議論と管理担当者による処置の履歴を除き完全に削除します。</p> <p>このリクエストから7日後に完全に削除されます。この間に完全な削除をキャンセルできます。キャンセルしなかった場合、管理担当者でもこのスクリプトを復元できません。</p>
     delete_permanently_confirm: "このスクリプトを完全に削除しますか？"
     delete_permanently_submit: "完全な削除を申請する"
     delete_permanently_immediate_submit: "完全に削除する"
@@ -86,10 +86,10 @@ ja:
       promoted_submit: "推奨スクリプトを設定"
       sync_heading: "ソースの同期"
       locale_heading: "既定の言語"
-      locale_example_html: "このテキストに対する言語: <i>%{text}</i>"
-      locale_multiple_note: "%{meta_keys_link:スクリプトには複数の言語を定義できます}。"
+      locale_example_html: "以下の説明文の言語です: <i>%{text}</i>"
+      locale_multiple_note: "%{meta_keys_link:スクリプトに対し複数の言語別に説明できます}。"
       update_locale: "言語の設定を更新"
-      no_moderator_logs: "このスクリプトに対する管理担当者による処置はありません。"
+      no_moderator_logs: "このスクリプトには管理担当者による処置の履歴なし。"
       compare_title: "別のスクリプトと比較"
       compare_to: "%{site_name} 上のスクリプトと比較 (URL)"
       compare_button: "比較"
@@ -130,7 +130,7 @@ ja:
     derivatives_exact_copies_heading: "正確なコピー"
     derivatives_exact_copies_list_intro: "以下のスクリプトは、このスクリプトと全く同じコードです。"
     derivatives_exact_copies_item_html: "%{script_link} by %{author_links} -バージョン：%{version_list}　"
-    derivatives_exact_copes_none: "%{site_name} に、このスクリプトと全く同じコードのスクリプトはありません。"
+    derivatives_exact_copes_none: "%{site_name} には、このスクリプトとまったく同じコードのスクリプトはありません。"
     derivatives_similar_heading: "似ているスクリプト"
     derivatives_similar_info: "他のスクリプトの最新版を定期的に確認して、このスクリプトと最も類似しているものを探します。また、あなたがスクリプトの更新を投稿した際や、あなたの要望に応じて確認します。"
     similarity_score:
@@ -140,7 +140,7 @@ ja:
       none: 類似性はない
     derivatives_similar_none: "このスクリプトに類似したものはありません。"
     derivatives_similar_item: "%{score}: %{diff_link:[差分]} %{script}"
-    derivatives_similar_last_check_html: "%{date}に似たスクリプトがないか確認しました。"
+    derivatives_similar_last_check_html: "%{date}、似たスクリプトがないか確認しました。"
     derivatives_similar_last_check_soon: "似たスクリプトがないかまもなく確認します。"
     derivatives_similar_last_check_again_soon_html: "最後に確認したのは%{date}です。まもなく再確認します。"
     derivatives_similar_check_now: "今すぐ再確認"
@@ -305,7 +305,7 @@ ja:
     must_confirm: "スクリプトを投稿する前にアカウントの確認が必要です。確認方法は2種類あります。外部のサービスでのアカウントを追加する方法と、確認メールを送信する方法です。"
     must_confirm_email_button: "確認リンクを %{email} に送信"
     authors_heading: "共同の作者"
-    error_unauthorized_copy: "このコードは %{script} の許可のないコピーのようです。投稿されるスクリプトに関する %{site_name} の %{rules_link:規則} を確認してください。"
+    error_unauthorized_copy: "このコードは %{script} の許可のないコピーのようです。投稿するスクリプトに関する %{site_name} の %{rules_link:規則} をご確認ください。"
     invitations:
       form_title: "その他の作者を招待する"
       explanation: "Greasy Fork の他のユーザーをこのスクリプトの作者として追加できます。このスクリプトに対しあなたとまったく同じ権限を持つようになります。"
@@ -345,14 +345,14 @@ ja:
         opera: スクリプトをインストールするには、%{tampermonkey_link:Tampermonkey} や %{violentmonkey_link:Violentmonkey} のような拡張機能のインストールが必要です。
         safari: スクリプトをインストールするには、%{tampermonkey_link:Tampermonkey} や %{userscripts_link:Userscripts} のような拡張機能のインストールが必要です。
         other: このスクリプトをインストールするには、ユーザースクリプト管理ツールの拡張機能をインストールする必要があります。
-        bypass: (ユーザースクリプト管理ツールはあるのでインストールする！)
+        bypass: (ユーザースクリプト管理ツールは設定済みなのでインストール！)
       css:
         firefox: スクリプトをインストールするには、%{stylus_link:Stylus} のような拡張機能のインストールが必要です。
         chrome: スクリプトをインストールするには、%{stylus_link:Stylus} のような拡張機能のインストールが必要です。
         opera: スクリプトをインストールするには、%{stylus_link:Stylus} のような拡張機能のインストールが必要です。
         safari: このスクリプトをインストールするには、ユーザースタイル管理ツールの拡張機能をインストール必要があります。
         other: このスクリプトをインストールするには、ユーザースタイル管理ツールの拡張機能をインストール必要があります。
-        bypass: (ユーザースタイル管理ツールはあるのでインストールする！)
+        bypass: (ユーザースタイル管理ツールは設定済みなのでインストール！)
       close_dialog: OK
     antifeatures:
       label: アンチ機能
@@ -700,8 +700,8 @@ ja:
       namespace_html: "ユーザースクリプト管理ツールは、<code>@namespace</code> と <code>@name</code> の組み合わせで、スクリプトがすでにインストールされているか否かを判断します。%{site_name} ではこのキーを必須としており、スクリプト更新時に変更された場合は警告を表示します。"
       version: "Identifier for a specific version of a script in %{version_format_link:Mozilla のバージョン規則}によるスクリプトのバージョンの指定です。バージョンはスクリプトの情報ページに表示されいます。%{site_name} はこの項目を必須とし、スクリプトのコードが変更された際に、値が減少、または増加していない場合に警告します。"
       include_html: "スクリプトを実行するページを指定します。この一覧は処理されてスクリプトの情報ページに表示され、またスクリプトの分類に使われます。各スクリプトには 1 回以上の<code>@match</code> か <code>@include</code> を含めてください。そのフォーマットについては <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">ここをお読みください。</a>"
-      require_html: "外部の JavaScript をスクリプトに含めます。%{external_script_link:外部のスクリプトをコードに含める際の規則}を確認してください。サブリソースの整合性ハッシュ（%{tm_subresource_link:ここ}と%{mdn_subresource_link:ここ}の情報を参照）を使っていて、ハッシュが使用するURLのハッシュと一致しない際に、%{site_name}は警告します。"
-      resource_html: "スクリプトに外部のリソース（JavaScript、CSS、画像など）を含めます。%{external_script_link:外部のスクリプトをコードに含める際の規則}を確認してください。サブリソースの整合性ハッシュ（%{tm_subresource_link:ここ}と%{mdn_subresource_link:ここ}の情報を参照）を使っていて、ハッシュが使用するURLのハッシュと一致しない際に、%{site_name}は警告します。"
+      require_html: "外部の JavaScript をスクリプトに含めます。%{external_script_link:外部のスクリプトをコードに含める際の規則}をご確認ください。サブリソースの整合性ハッシュ（%{tm_subresource_link:ここ}と%{mdn_subresource_link:ここ}の情報を参照）を使っていて、ハッシュが使用するURLのハッシュと一致しない際に、%{site_name}は警告します。"
+      resource_html: "スクリプトに外部のリソース（JavaScript、CSS、画像など）を含めます。%{external_script_link:外部のスクリプトをコードに含める際の規則}をご確認ください。サブリソースの整合性ハッシュ（%{tm_subresource_link:ここ}と%{mdn_subresource_link:ここ}の情報を参照）を使っていて、ハッシュが使用するURLのハッシュと一致しない際に、%{site_name}は警告します。"
       updateURL: "ユーザースクリプト管理ツールが更新を取得する方法の記述。%{site_name} はこれらのキーを取り除き、%{site_name}　からインストールされたすべてのスクリプトが　%{site_name}　から更新されるようにします。"
       license_html: |
           %{site_name} にスクリプトを投稿することで、あなたは他者にそれをインストールし使用することを許可します。付属させるライセンスは、あなたのスクリプトを、修正したり再配布できるかの許可を説明するものです。ライセンスはスクリプトの情報ページに表示されます。<code>@license</code> は以下のように使用:
@@ -1006,8 +1006,8 @@ ja:
     report_intro_no_reporter: "%{reported_item} は「%{reason}」で通報済み。%{report_date}"
     report_intro_unauthorized_html: "%{reported_script}は通報済み。通報者: %{reporter}が%{report_date} に作成。以下を許可なくコピーしたことによる: %{other_script}。"
     report_intro_unauthorized_no_reporter_html: "%{reported_script} は通報済み。%{report_date}。以下を許可なくコピーしたことによる: %{other_script}。"
-    report_intro_unauthorized_license: "%{other_script} は %{license_link: %{license_name}} ライセンスです。%{tldr_legal_link:tldrlegal.com} からこのライセンスの意味を確認してください。"
-    report_intro_unauthorized_license_no_url: "%{other_script} は %{license_name} ライセンスです。%{tldr_legal_link:tldrlegal.com}  からこのライセンスの意味を確認してください。"
+    report_intro_unauthorized_license: "%{other_script} は %{license_link: %{license_name}} ライセンスです。%{tldr_legal_link:tldrlegal.com} にてこのライセンスの内容を確認できます。"
+    report_intro_unauthorized_license_no_url: "%{other_script} は %{license_name} ライセンスです。%{tldr_legal_link:tldrlegal.com}  にてこのライセンスの内容を確認できます。"
     report_intro_unauthorized_no_license: "%{other_script} にはライセンスの指定がありません。つまり明示的な許可がない限り、複製物の配布は許可されていません。"
     non_functional_feedback: "機能しないスクリプトでは%{feedback_link:そのスクリプトのフィードバック}に報告してください。"
     paid_benefits_feedback: "%{site_name} は、スクリプト作者とユーザー間の取引を記録していないため、これに関する訴えを検証できません。スクリプトの機能を購入し不満なら、代わりにスクリプトの%{feedback_link:フィードバック}として苦情を残してください。"
@@ -1388,9 +1388,9 @@ ja:
         subject: ' %{site_name} 上のあなたのスクリプトの削除に対する抗議は却下されました'
         intro_html: '%{script} の削除に対するあなたの抗議は、管理担当者により却下されました。このスクリプトは削除されたままです。'
         moderator_notes: "管理担当者がコメントしました:"
-        outro: まだこのスクリプトの削除を取り消したいなら、%{report_link:元の通報}と%{rules_link:%{site_name}の規則}を確認してください。
+        outro: まだこのスクリプトの削除を取り消したい場合、%{report_link:元の通報}と%{rules_link:%{site_name}の規則}をご確認ください。
       unlock:
         subject: '%{site_name}のスクリプトの削除への抗議が承認されました'
         intro_html: '%{script}の削除に対するあなたの抗議は、管理担当者により承認されました。このスクリプトの削除は取り消され、再び公開されており誰でもアクセスできます。'
         moderator_notes: "管理担当者がコメントしました:"
-        outro: 今後も削除されないよう%{rules_link:%{site_name} の規則}を確認してください。
+        outro: 今後も削除されないためには、%{rules_link:%{site_name} の規則}をご確認ください。
