@@ -1,5 +1,7 @@
+import onload from '~/onload'
+
 // Add data-submit-anchor to make a form submit to an anchor of your choosing.
-window.addEventListener("DOMContentLoaded", function() {
+onload(function() {
 
   function getParentForm(element) {
     while (element && element.tagName.toLowerCase() != "form") {

@@ -1,4 +1,5 @@
 import {getTampermonkey, getViolentmonkey} from "./managers";
+import onload from '~/onload'
 
 function getInstalledVersion(name, namespace) {
   return new Promise(function(resolve, reject) {
@@ -147,7 +148,7 @@ window.addEventListener("message", function(event) {
   handleInstallResult(installButton, installedVersion, version);
 }, false);
 
-document.addEventListener("DOMContentLoaded", function() {
+onload(function() {
   let installButtonJS = document.querySelector(".install-link[data-install-format=js]");
   if (installButtonJS) {
     checkForUpdatesJS(installButtonJS, true);

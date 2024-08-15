@@ -1,3 +1,5 @@
+import onload from '~/onload'
+
 /*
  *  <div class="previewable" data-markup-option-name="name-of-html-markdown-radios">
  *    <textarea></textarea>
@@ -111,6 +113,4 @@ window.markupPreview = function(p) {
   });
 }
 
-window.addEventListener("DOMContentLoaded", function() {
-  Array.prototype.forEach.call(document.querySelectorAll(".previewable"), markupPreview);
-});
+onload(() => Array.prototype.forEach.call(document.querySelectorAll(".previewable"), markupPreview))

@@ -1,14 +1,4 @@
-function discussionSubscribe(event) {
-  let subscribeContainer = document.querySelector(".discussion-subscription-links");
-  subscribeContainer.classList.add("discussion-subscribed");
-  subscribeContainer.classList.remove("discussion-not-subscribed");
-}
-
-function discussionUnsubscribe(event) {
-  let subscribeContainer = document.querySelector(".discussion-subscription-links");
-  subscribeContainer.classList.add("discussion-not-subscribed");
-  subscribeContainer.classList.remove("discussion-subscribed");
-}
+import onload from '~/onload'
 
 function quoteComment(event) {
   event.preventDefault()
@@ -73,14 +63,6 @@ function init() {
       document.getElementById(link.getAttribute("data-comment-container")).classList.remove("edit-comment-mode");
     });
   }
-  let subscribeLink = document.querySelector(".discussion-subscribe");
-  if (subscribeLink) {
-    subscribeLink.addEventListener("ajax:success", discussionSubscribe);
-  }
-  let unsubscribeLink = document.querySelector(".discussion-unsubscribe");
-  if (unsubscribeLink) {
-    unsubscribeLink.addEventListener("ajax:success", discussionUnsubscribe);
-  }
   for (let link of document.querySelectorAll(".quote-comment")) {
     link.addEventListener("click", quoteComment);
   }
@@ -93,4 +75,5 @@ function init() {
     })
   }
 }
-window.addEventListener("DOMContentLoaded", init);
+
+onload(init)

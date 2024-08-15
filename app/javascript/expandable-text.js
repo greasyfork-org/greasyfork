@@ -1,3 +1,5 @@
+import onload from '~/onload'
+
 function makeExpandable(expandable) {
   // Use a multiple of line height to prevent partially displayed lines
   let height = parseInt(getComputedStyle(expandable).height)
@@ -53,4 +55,4 @@ function makeExpandable(expandable) {
   toggle()
 }
 
-window.addEventListener("DOMContentLoaded", () => { document.querySelectorAll('.expandable').forEach(makeExpandable) })
+onload(() => { document.querySelectorAll('.expandable').forEach(makeExpandable) })

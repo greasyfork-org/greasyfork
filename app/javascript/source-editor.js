@@ -1,6 +1,8 @@
+import onload from '~/onload'
+
 let aceEditor = null;
 
-window.addEventListener("DOMContentLoaded", async () => {
+onload(async () => {
   let enableRadio = document.querySelector('input.enable-source-editor');
 
   if (!enableRadio) {

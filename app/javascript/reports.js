@@ -1,9 +1,22 @@
-window.addEventListener("load", () => {
+import onload from '~/onload'
+
+onload(() => {
   const buttons = document.querySelectorAll(".lazy-load-diff");
   buttons.forEach((button) => {
-    button.parentNode.addEventListener("ajax:success", (e) => {
-      let diffSection = button.closest('.report-diff')
-      diffSection.replaceChild(e.detail[0].body.firstChild, diffSection.firstChild)
-    });
-  });
-});
+    button.addEventListener("click", (e) => {
+      button.disabled = true
+      button.dataset.originalText = button.textContent
+      button.textContent = button.dataset.disableWith
+      fetch(button.dataset.url).then((response) => replaceDiff(button, response))
+    })
+  })
+})
+
+async function replaceDiff(button, response) {
+  let diffSection = button.closest('.report-diff')
+  let html = await response.text()
+  let doc = new DOMParser().parseFromString(html, "text/html")
+  diffSection.replaceChild(doc.body.firstElementChild, diffSection.firstChild)
+  button.textContent = button.dataset.originalText
+  button.disabled = false
+}

@@ -21,7 +21,7 @@
 
     <ul id="user-remove-list">
       <% @script.users.each do |user| %>
-        <li><%= link_to user.name, user %> <%= button_to(t('scripts.remove_author.remove_button'), remove_author_script_path(user_id: user.id), method: :POST, form_class: 'inline-form', data: { confirm: t('scripts.remove_author.remove_confirm', user_name: user.name) }) %></li>
+        <li><%= link_to user.name, user %> <%= button_to(t('scripts.remove_author.remove_button'), remove_author_script_path(user_id: user.id), form_class: 'inline-form', data: { turbo: true, turbo_method: :POST }, form: { data: { turbo: true, turbo_confirm: t('scripts.remove_author.remove_confirm', user_name: user.name) }}) %></li>
       <% end %>
     </ul>
   <% end %>

@@ -1,3 +1,5 @@
+import onload from '~/onload'
+
 function setupEthicalAdsFallback() {
   if (typeof window.ethicalads === "undefined") {
     setTimeout(setupEthicalAdsFallback, 100)
@@ -29,4 +31,4 @@ function setupEthicalAdsFallback() {
   })
 }
 
-window.addEventListener("DOMContentLoaded", setupEthicalAdsFallback)
+onload(setupEthicalAdsFallback)

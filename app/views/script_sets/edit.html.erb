@@ -1,6 +1,6 @@
 <%= render 'form' %>
 
-<%= form_tag([@set.user, @set], method: :delete, data: {confirm: t('script_sets.delete_confirmation')}) do %>
+<%= form_tag([@set.user, @set], data: { turbo: true, turbo_confirm: t('script_sets.delete_confirmation'), turbo_method: :delete }) do %>
   <p>
     <input type="submit" value="<%= t('script_sets.delete') %>">
   </p>

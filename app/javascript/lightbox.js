@@ -1,4 +1,6 @@
-document.addEventListener("DOMContentLoaded", async () => {
+import onload from '~/onload'
+
+onload(async () => {
   if (document.querySelector(".remove-attachments, .user-screenshots")) {
     const { Luminous, LuminousGallery } = await import('luminous-lightbox');
     document.querySelectorAll(".remove-attachments, .user-screenshots").forEach((el) => {

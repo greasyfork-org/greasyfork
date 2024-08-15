@@ -10,7 +10,7 @@
       <h2><%= t('discussions.title') %></h2>
       <% if current_user && @filter_result.read_status != 'read' && @discussions.any? && !params[:q].present? %>
         <div class="discussion-actions">
-          <%= link_to t('discussions.mark_all_read'), mark_all_read_discussions_path(category: @filter_result.category, by_user: @filter_result.by_user&.id, related_to_me: @filter_result.related_to_me, read: @filter_result.read_status), method: :post %>
+          <%= link_to t('discussions.mark_all_read'), mark_all_read_discussions_path(category: @filter_result.category, by_user: @filter_result.by_user&.id, related_to_me: @filter_result.related_to_me, read: @filter_result.read_status), data: { turbo: true, turbo_method: :post } %>
         </div>
       <% end %>
     </div>

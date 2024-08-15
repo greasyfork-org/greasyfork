@@ -4,8 +4,8 @@
   </h2>
   <div class="discussion-actions">
     <div class="discussion-subscription-links <%= current_user.subscribed_to_conversation?(@conversation) ? 'discussion-subscribed' : 'discussion-not-subscribed' %>">
-      <%= link_to t('discussions.subscribe'), subscribe_user_conversation_path(current_user, @conversation), method: :POST, remote: true, class: 'discussion-subscribe' %>
-      <%= link_to t('discussions.unsubscribe'), unsubscribe_user_conversation_path(current_user, @conversation), method: :POST, remote: true, class: 'discussion-unsubscribe' %>
+      <%= link_to t('discussions.subscribe'), subscribe_user_conversation_path(current_user, @conversation), data: { turbo: true, turbo_method: :POST }, class: 'discussion-subscribe' %>
+      <%= link_to t('discussions.unsubscribe'), unsubscribe_user_conversation_path(current_user, @conversation), data: { turbo: true, turbo_method: :POST }, class: 'discussion-unsubscribe' %>
     </div>
   </div>
 </div>

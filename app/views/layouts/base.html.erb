@@ -144,7 +144,7 @@
       <div class="announcement">
         <%= @announcement.content.is_a?(String) ? @announcement.content : instance_exec(&@announcement.content) %>
         <% if @announcement.dismissable %>
-          <%= form_with(url: dismiss_announcement_path(key: @announcement.key), data: { remote: true }, id: 'announcement-dismiss') do |f| %>
+          <%= form_with(url: dismiss_announcement_path(key: @announcement.key), data: { turbo: true, turbo_method: :POST }, id: 'announcement-dismiss') do |f| %>
             <%= f.submit '✖' %>
           <% end %>
         <% end %>

@@ -1,6 +1,7 @@
 import sha1 from 'js-sha1';
 import MicroModal from 'micromodal';
 import { canInstallUserJS, canInstallUserCSS } from "./managers";
+import onload from '~/onload'
 
 function onInstallClick(event) {
   event.preventDefault();
@@ -146,4 +147,4 @@ function init() {
   });
 }
 
-window.addEventListener("DOMContentLoaded", init);
+onload(init);

@@ -1,3 +1,5 @@
+import onload from '~/onload'
+
 async function init() {
   if (!document.querySelector(".browser-list")) {
     return
@@ -29,4 +31,4 @@ function switchList(listId) {
   document.querySelector("[data-for='" + listId + "']").classList.add('browser-list-selector-active')
 }
 
-window.addEventListener("DOMContentLoaded", init);
+onload(init);

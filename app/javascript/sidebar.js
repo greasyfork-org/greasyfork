@@ -1,4 +1,6 @@
-document.addEventListener("DOMContentLoaded", function() {
+import onload from '~/onload'
+
+onload(function() {
   if (document.querySelector(".close-sidebar")) {
     document.querySelector(".close-sidebar").addEventListener("click", function() {
       document.querySelector(".sidebar").classList.add("collapsed");

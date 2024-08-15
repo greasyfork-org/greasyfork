@@ -5,7 +5,7 @@
 <% if script.permanent_deletion_request_date.nil? %>
 
   <%= form_tag(action: 'request_permanent_deletion') do %>
-    <input type="submit" data-confirm="<%= t('scripts.delete_permanently_confirm') %>" value="<%= t('scripts.delete_permanently_immediate_submit') %>">
+    <input type="submit" data-turbo-confirm="<%= t('scripts.delete_permanently_confirm') %>" value="<%= t('scripts.delete_permanently_immediate_submit') %>">
   <% end %>
 
 <% else %>

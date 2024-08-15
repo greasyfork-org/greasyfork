@@ -34,8 +34,8 @@
   <% if current_user && !@discussion.soft_deleted? %>
     <div class="discussion-actions">
       <div class="discussion-subscription-links <%= current_user.subscribed_to?(@discussion) ? 'discussion-subscribed' : 'discussion-not-subscribed' %>">
-        <%= link_to t('discussions.subscribe'), scoped_subscribe_path(@discussion), method: :POST, remote: true, class: 'discussion-subscribe' %>
-        <%= link_to t('discussions.unsubscribe'), scoped_unsubscribe_path(@discussion), method: :POST, remote: true, class: 'discussion-unsubscribe' %>
+        <%= link_to t('discussions.subscribe'), scoped_subscribe_path(@discussion), data: { turbo: true, turbo_method: :POST }, class: 'discussion-subscribe' %>
+        <%= link_to t('discussions.unsubscribe'), scoped_unsubscribe_path(@discussion), data: { turbo: true, turbo_method: :POST }, class: 'discussion-unsubscribe' %>
       </div>
     </div>
   <% end %>
@@ -79,9 +79,9 @@
       <% if !@discussion.soft_deleted? && (current_user&.moderator? || comment.deletable_by?(current_user)) %>
         <div class="comment-meta-item">
           <% if comment.first_comment? %>
-            <%= link_to t('discussions.delete_discussion'), comment.discussion.path, method: :DELETE, data: { confirm: t('discussions.delete_discussion_confirm') } %>
+            <%= link_to t('discussions.delete_discussion'), comment.discussion.path, data: { turbo: true, turbo_method: :DELETE, turbo_confirm: t('discussions.delete_discussion_confirm') } %>
           <% else %>
-            <%= link_to t('discussions.delete_comment'), scoped_comment_path(comment), method: :DELETE, data: { confirm: t('discussions.delete_comment_confirm') } %>
+            <%= link_to t('discussions.delete_comment'), scoped_comment_path(comment), data: { turbo: true, turbo_method: :DELETE, turbo_confirm: t('discussions.delete_comment_confirm') } %>
           <% end %>
         </div>
       <% end %>

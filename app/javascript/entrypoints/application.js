@@ -1,4 +1,6 @@
-import '@rails/ujs';
+import "@hotwired/turbo-rails"
+Turbo.session.drive = false
+
 import '@github/relative-time-element';
 
 import '../stylesheets/application.css'

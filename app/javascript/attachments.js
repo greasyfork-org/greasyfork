@@ -1,4 +1,5 @@
 import highlight from './highlight'
+import onload from '~/onload'
 
 function handlePaste(e) {
   let fileInput = this.closest("form").querySelector("input[type=file][name*=attachments]")
@@ -27,4 +28,4 @@ function init() {
   }
 }
 
-window.addEventListener("DOMContentLoaded", init);
+onload(init);

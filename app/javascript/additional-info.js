@@ -1,3 +1,5 @@
+import onload from '~/onload'
+
 function hookUpAddLocalizedAdditionalInfo() {
   var button = document.getElementById("add-additional-info");
   if (!button) {
@@ -50,5 +52,5 @@ function hookUpAddSyncedLocalizedAdditionalInfo() {
   });
 }
 
-window.addEventListener("DOMContentLoaded", hookUpAddLocalizedAdditionalInfo);
-window.addEventListener("DOMContentLoaded", hookUpAddSyncedLocalizedAdditionalInfo);
+onload(hookUpAddLocalizedAdditionalInfo);
+onload(hookUpAddSyncedLocalizedAdditionalInfo);

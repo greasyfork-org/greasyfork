@@ -1,3 +1,5 @@
+import onload from '~/onload'
+
 function hookUpLocaleSwitcher() {
   document.getElementById("language-selector-locale").addEventListener("change", function(event) {
     var selectedOption = event.target.selectedOptions[0];
@@ -9,4 +11,4 @@ function hookUpLocaleSwitcher() {
   });
 }
 
-window.addEventListener("DOMContentLoaded", hookUpLocaleSwitcher);
+onload(hookUpLocaleSwitcher);
