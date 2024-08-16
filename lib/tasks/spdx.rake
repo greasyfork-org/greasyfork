@@ -25,7 +25,7 @@ namespace :licenses do
   task update_scripts: :environment do
     Script.find_each do |script|
       sv = script.script_versions.last
-      script.update_license(sv.meta['license']&.first)
+      script.update_license(sv.meta['license']&.first&.first(500))
       script.save(validate: false) if script.changed?
     end
   end

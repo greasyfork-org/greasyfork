@@ -24,13 +24,13 @@
              other_script: report.reference_script ? render_script(report.reference_script) : link_to(report.script_url, report.script_url, rel: :nofollow),
              license_link: report.reference_script.license.url,
              license_name: report.reference_script.license.name,
-             tldr_legal_link: It.link("https://tldrlegal.com/search?query=#{URI.encode_www_form_component(report.reference_script.license.code)}", target: 'tldrlegal'))
+             tldr_legal_link: It.link(report.reference_script.license.explanation_url, target: 'tldrlegal'))
       %>
     <% elsif report.reference_script.license || report.reference_script.license_text %>
       <%= it('reports.report_intro_unauthorized_license_no_url',
              other_script: report.reference_script ? render_script(report.reference_script) : link_to(report.script_url, report.script_url, rel: :nofollow),
              license_name: report.reference_script.license&.name || report.reference_script.license_text,
-             tldr_legal_link: It.link("https://tldrlegal.com/search?query=#{URI.encode_www_form_component(report.reference_script.license&.name || report.reference_script.license_text)}", target: 'tldrlegal'))
+             tldr_legal_link: It.link(report.reference_script.license ? report.reference_script.license.explanation_url : License.tldr_search_url(report.reference_script.license_text), target: 'tldrlegal'))
       %>
     <% else %>
       <%= it('reports.report_intro_unauthorized_no_license',
