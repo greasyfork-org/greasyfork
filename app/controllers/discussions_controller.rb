@@ -53,7 +53,7 @@ class DiscussionsController < ApplicationController
         end
 
         param_to_search_option = {
-          'created' => { created: :desc },
+          'comment_created' => { created: :desc },
           'discussion_created' => { discussion_created: :desc },
           'last_comment' => { discussion_last_reply: :desc },
         }
