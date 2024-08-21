@@ -37,45 +37,37 @@
       </p>
 
       <form class="sidebar-search">
-        <% [:me, :read, :show_locale, :visibility].each do |p| %>
-          <% if params[p] %><input type="hidden" name="<%= p %>" value="<%= params[p] %>"><% end %>
+        <% [:sort, :me, :user, :category, :read, :show_locale, :visibility].select {|p| params[p] }.each do |p| %>
+          <input type="hidden" name="<%= p %>" value="<%= params[p] %>">
         <% end %>
         <%= render partial: 'shared/locale_override_field' %>
         <input type="search" name="q" value="<%= params[:q] %>" placeholder="<%= t('discussions.search_placeholder') %>"><input class="search-submit" type="submit" value="🔎">
       </form>
 
+      <div id="discussion-list-sort" class="list-option-group"><%= t('scripts.listing_sort_label') %>
+        <ul>
+          <% if params[:q].present? %>
+            <%= discussion_list_link(t('users.listing_relevance'), sort: nil) %>
+          <% end %>
+          <% if params[:q].present? %>
+            <%= discussion_list_link(t('discussions.sort.comment_created'), sort: 'comment_created') %>
+          <% end %>
+          <%= discussion_list_link(t('discussions.sort.discussion_last_comment'), sort: params[:q].present? ? 'discussion_last_comment' : nil) %>
+          <%= discussion_list_link(t('discussions.sort.discussion_created'), sort: 'discussion_created') %>
+        </ul>
+      </div>
+
+
       <% if current_user %>
         <div class="list-option-group">
           <%= t('discussions.user_filter.label') %>
           <ul>
-            <% if @filter_result.related_to_me.nil? %>
-              <li class="list-option list-current"><%= t('discussions.user_filter.all') %></li>
-            <% else %>
-              <li class="list-option"><%= link_to t('discussions.user_filter.all'), current_path_with_params(me: nil, page: nil) %></li>
-            <% end %>
-            <% if @filter_result.related_to_me == 'started' %>
-              <li class="list-option list-current"><%= t('discussions.user_filter.discussion_by_me') %></li>
-            <% else %>
-              <li class="list-option"><%= link_to t('discussions.user_filter.discussion_by_me'), current_path_with_params(me: 'started', page: nil) %></li>
-            <% end %>
-            <% if @filter_result.related_to_me == 'comment' %>
-              <li class="list-option list-current"><%= t('discussions.user_filter.comment_by_me') %></li>
-            <% else %>
-              <li class="list-option"><%= link_to t('discussions.user_filter.comment_by_me'), current_path_with_params(me: 'comment', page: nil) %></li>
-            <% end %>
-            <% if current_user.scripts.any? %>
-              <% if @filter_result.related_to_me == 'script' %>
-                <li class="list-option list-current"><%= t('discussions.user_filter.on_my_scripts') %></li>
-              <% else %>
-                <li class="list-option"><%= link_to t('discussions.user_filter.on_my_scripts'), current_path_with_params(me: 'script', page: nil) %></li>
-              <% end %>
-            <% end %>
+            <%= discussion_list_link(t('discussions.user_filter.all'), me: nil) %>
+            <%= discussion_list_link(t('discussions.user_filter.discussion_by_me'), me: 'started') %>
+            <%= discussion_list_link(t('discussions.user_filter.comment_by_me'), me: 'comment') %>
+            <%= discussion_list_link(t('discussions.user_filter.on_my_scripts'), me: 'script') %>
             <% if current_user.discussion_subscriptions.any? %>
-              <% if @filter_result.related_to_me == 'subscribed' %>
-                <li class="list-option list-current"><%= t('discussions.user_filter.subscribed') %></li>
-              <% else %>
-                <li class="list-option"><%= link_to t('discussions.user_filter.subscribed'), current_path_with_params(me: 'subscribed', page: nil) %></li>
-              <% end %>
+              <%= discussion_list_link(t('discussions.user_filter.subscribed'), me: 'subscribed') %>
             <% end %>
           </ul>
         </div>
@@ -84,33 +76,20 @@
       <% if @filter_result.by_user %>
         <div class="list-option-group">
           <ul>
-            <li class="list-option"><%= link_to t('discussions.other_user_filter.all'), current_path_with_params(user: nil, page: nil) %></li>
-            <li class="list-option list-current"><%= t('discussions.other_user_filter.comments_by', user: @filter_result.by_user.name) %></li>
+            <%= discussion_list_link(t('discussions.user_filter.all'), user: nil) %>
+            <%= discussion_list_link(t('discussions.other_user_filter.comments_by', user: @filter_result.by_user.name), user: @filter_result.by_user) %>
           </ul>
         </div>
       <% end %>
 
-      <% other_params_for_category = { read: @filter_result.read_status, page: nil, user: @filter_result.by_user&.id, me: @filter_result.related_to_me, q: params[:q] } %>
       <div class="list-option-group">
         <%= t('discussions.category_filter.label') %>
         <ul>
-          <% if @filter_result.category.nil? %>
-            <li class="list-option list-current"><%= t('discussions.category_filter.all') %></li>
-          <% else %>
-            <li class="list-option"><%= link_to t('discussions.category_filter.all'), discussions_path(safe_params(category: nil, **other_params_for_category)) %></li>
+          <%= discussion_list_link(t('discussions.category_filter.all'), category: nil) %>
+          <% DiscussionCategory.visible_to_user(current_user).pluck(:category_key).each do |dc| %>
+            <%= discussion_list_link(t("discussions.categories.#{dc}.name"), category: dc) %>
           <% end %>
-          <% DiscussionCategory.visible_to_user(current_user).each do |dc| %>
-            <% if dc.category_key == @filter_result.category %>
-              <li class="list-option list-current"><%= t("discussions.categories.#{dc.category_key}.name") %></li>
-            <% else %>
-              <li class="list-option"><%= link_to t("discussions.categories.#{dc.category_key}.name"), category_discussion_index_path(category: dc, **other_params_for_category) %></li>
-            <% end %>
-          <% end %>
-          <% if @filter_result.category == DiscussionCategory::NO_SCRIPTS_KEY %>
-            <li class="list-option list-current"><%= t('discussions.categories.no-scripts.name') %></li>
-          <% else %>
-            <li class="list-option"><%= link_to t('discussions.categories.no-scripts.name'), category_discussion_index_path(category: DiscussionCategory::NO_SCRIPTS_KEY, **other_params_for_category) %></li>
-          <% end %>
+          <%= discussion_list_link(t('discussions.categories.no-scripts.name'), category: DiscussionCategory::NO_SCRIPTS_KEY) %>
         </ul>
       </div>
 
@@ -118,21 +97,9 @@
         <div class="list-option-group">
           <%= t('discussions.read_filter.label') %>
           <ul>
-            <% if @filter_result.read_status.nil? %>
-              <li class="list-option list-current"><%= t('discussions.read_filter.all') %></li>
-            <% else %>
-              <li class="list-option"><%= link_to t('discussions.read_filter.all'), current_path_with_params(read: nil, page: nil) %></li>
-            <% end %>
-            <% if @filter_result.read_status == 'read' %>
-              <li class="list-option list-current"><%= t('discussions.read_filter.read') %></li>
-            <% else %>
-              <li class="list-option"><%= link_to t('discussions.read_filter.read'), current_path_with_params(read: 'read', page: nil) %></li>
-            <% end %>
-            <% if @filter_result.read_status == 'unread' %>
-              <li class="list-option list-current"><%= t('discussions.read_filter.unread') %></li>
-            <% else %>
-              <li class="list-option"><%= link_to t('discussions.read_filter.unread'), current_path_with_params(read: 'unread', page: nil) %></li>
-            <% end %>
+            <%= discussion_list_link(t('discussions.read_filter.all'), read: nil) %>
+            <%= discussion_list_link(t('discussions.read_filter.read'), read: 'read') %>
+            <%= discussion_list_link(t('discussions.read_filter.unread'), read: 'unread') %>
           </ul>
         </div>
       <% end %>
@@ -140,17 +107,9 @@
       <div class="list-option-group">
         <%= t('discussions.locale_filter.label') %>
         <ul>
-          <% if @filter_result.locale.nil? %>
-            <li class="list-option list-current"><%= t('discussions.locale_filter.all') %></li>
-          <% else %>
-            <li class="list-option"><%= link_to t('discussions.locale_filter.all'), current_path_with_params(show_locale: nil, page: nil) %></li>
-          <% end %>
+          <%= discussion_list_link(t('discussions.locale_filter.all'), show_locale: nil) %>
+          <%= discussion_list_link(request_locale.best_name, show_locale: request_locale.code) %>
           <% showing_request_locale = @filter_result.locale && @filter_result.locale == request_locale %>
-          <% if showing_request_locale %>
-            <li class="list-option list-current"><%= request_locale.best_name %></li>
-          <% else %>
-            <li class="list-option"><%= link_to request_locale.best_name, current_path_with_params(show_locale: request_locale.code, page: nil) %></li>
-          <% end %>
           <li class="list-option <%= 'list-current' if @filter_result.locale && !showing_request_locale %>">
             <select id="discussion-locale">
               <option></option>
@@ -166,21 +125,9 @@
         <div class="list-option-group">
           Visibility
           <ul>
-            <% if @filter_result.visibility.nil? %>
-              <li class="list-option list-current">Public</li>
-            <% else %>
-              <li class="list-option"><%= link_to 'Public', current_path_with_params(visibility: nil, page: nil) %></li>
-            <% end %>
-            <% if @filter_result.visibility == 'private' %>
-              <li class="list-option list-current">Private</li>
-            <% else %>
-              <li class="list-option"><%= link_to 'Private', current_path_with_params(visibility: 'private', page: nil) %></li>
-            <% end %>
-            <% if @filter_result.visibility == 'all' %>
-              <li class="list-option list-current">All</li>
-            <% else %>
-              <li class="list-option"><%= link_to 'All', current_path_with_params(visibility: 'all', page: nil) %></li>
-            <% end %>
+            <%= discussion_list_link('Public', visibility: nil) %>
+            <%= discussion_list_link('Private', visibility: 'private') %>
+            <%= discussion_list_link('All', visibility: 'all') %>
           </ul>
         </div>
       <% end %>

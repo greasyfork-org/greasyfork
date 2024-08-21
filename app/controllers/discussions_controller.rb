@@ -52,10 +52,18 @@ class DiscussionsController < ApplicationController
           raise "Unknown subset #{script_subset}"
         end
 
+        param_to_search_option = {
+          'created' => { created: :desc },
+          'discussion_created' => { discussion_created: :desc },
+          'last_comment' => { discussion_last_reply: :desc },
+        }
+        order = param_to_search_option[params[:sort]]
+
         @comments = Comment.search(
-          params[:q],
+          params[:q].presence || '*',
           fields: ['discussion_title^2', 'text'],
           where: with,
+          order:,
           page: page_number,
           per_page: per_page(default: 25)
         )
@@ -66,9 +74,14 @@ class DiscussionsController < ApplicationController
 
       else
 
+        order = case params[:sort]
+                when 'discussion_created' then { id: :desc }
+                else { stat_last_reply_date: :desc }
+                end
+
         @discussions = Discussion
                        .includes(:poster, :script, :discussion_category, :stat_first_comment, :stat_last_replier)
-                       .order(stat_last_reply_date: :desc)
+                       .order(order)
 
         case script_subset
         when :sleazyfork

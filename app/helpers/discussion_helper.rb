@@ -66,4 +66,89 @@ module DiscussionHelper
     title = t("discussions.badges.#{key}.long")
     tag.span(class: "badge badge-#{key}", title: (text == title) ? nil : title) { text }
   end
+
+  def discussion_list_link(label, sort: :unchanged, me: :unchanged, user: :unchanged, category: :unchanged, read: :unchanged, show_locale: :unchanged, visibility: :unchanged)
+    current_options = {
+      q: params[:q],
+      sort: params[:sort],
+      me: params[:me],
+      user: params[:user],
+      category: params[:category],
+      read: params[:read],
+      show_locale: params[:show_locale],
+      visibility: params[:visibility],
+    }.compact
+
+    new_options = current_options.dup
+
+    if sort.nil?
+      new_options.delete(:sort)
+    elsif sort == :unchanged
+      # unchanged!
+    else
+      new_options[:sort] = sort
+    end
+
+    if me.nil?
+      new_options.delete(:me)
+    elsif me == :unchanged
+      # unchanged!
+    else
+      new_options[:me] = me
+    end
+
+    if user.nil?
+      new_options.delete(:user)
+    elsif user == :unchanged
+      # unchanged!
+    else
+      new_options[:user] = user
+    end
+
+    if category.nil?
+      new_options.delete(:category)
+    elsif category == :unchanged
+      # unchanged!
+    else
+      new_options[:category] = category
+    end
+
+    if read.nil?
+      new_options.delete(:read)
+    elsif read == :unchanged
+      # unchanged!
+    else
+      new_options[:read] = read
+    end
+
+    if show_locale.nil?
+      new_options.delete(:show_locale)
+    elsif show_locale == :unchanged
+      # unchanged!
+    else
+      new_options[:show_locale] = show_locale
+    end
+
+    if visibility.nil?
+      new_options.delete(:visibility)
+    elsif visibility == :unchanged
+      # unchanged!
+    else
+      new_options[:visibility] = visibility
+    end
+
+    is_link = current_options != new_options
+
+    text = if is_link
+             if new_options[:category]
+               link_to(label, category_discussion_index_path(new_options))
+             else
+               link_to(label, discussions_path(new_options))
+             end
+           else
+             label
+           end
+
+    tag.li(class: "list-option#{is_link ? '' : ' list-current'}") { text }
+  end
 end

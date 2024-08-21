@@ -12,7 +12,7 @@ class DiscussionRead < ApplicationRecord
     # "Mark all as read" discussions
     if user.discussions_read_since
       ids += if discussions.is_a?(Array)
-               discussions.select { |d| d.stat_last_reply_date <= user.discussions_read_since }.map(&:id)
+               discussions.select { |d| d.stat_last_reply_date && d.stat_last_reply_date <= user.discussions_read_since }.map(&:id)
              else
                discussions.where(discussions: { stat_last_reply_date: ..user.discussions_read_since }).pluck(:id)
              end
