@@ -75,8 +75,8 @@ class Discussion < ApplicationRecord
     comments.not_deleted.each(&:soft_destroy!)
   end
 
-  after_commit on: :update do
-    comments.reindex if saved_change_to_attribute?('publicly_visible') && !Rails.env.test?
+  after_commit on: :update, if: ->(model) { model.previous_changes.keys.intersect?(%w[publicly_visible stat_last_reply_date]) } do
+    comments.reindex unless Rails.env.test?
   end
 
   before_save :calculate_publicly_visible
