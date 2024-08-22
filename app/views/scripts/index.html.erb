@@ -63,7 +63,7 @@
         <div class="sidebar-title"><%= t('common.listing_options_title') %></div>
         <div>☰</div>
       </div>
-      <%= render partial: 'list_options', locals: {by_sites: @by_sites, scripts: @scripts, sort_options: @sort_options, include_script_sets: @include_script_sets.nil? ? true : @include_script_sets, include_search: true} %>
+      <%= render partial: 'list_options', locals: {by_sites: @by_sites, scripts: @scripts, sort_options: @sort_options, include_script_sets: @include_script_sets.nil? ? true : @include_script_sets, include_search: action_name != 'code_search'} %>
     </div>
   <% end %>
 </div>

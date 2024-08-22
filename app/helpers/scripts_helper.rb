@@ -3,7 +3,7 @@ require 'memoist'
 module ScriptsHelper
   extend Memoist
 
-  def script_list_link(label, sort: nil, site: nil, set: nil, default_sort: nil, language: nil, filter_locale: nil, rel: nil, new: nil)
+  def script_list_link(label, sort: nil, site: nil, set: nil, default_sort: nil, language: nil, filter_locale: nil, rel: nil, by: nil)
     is_link = true
     is_minified = action_name == 'minified'
     is_code_search = action_name == 'code_search'
@@ -11,7 +11,7 @@ module ScriptsHelper
     # sets can have a different default
     sort_param_to_use = (sort == default_sort) ? nil : sort
     rel ||= (set.present? || filter_locale.present?) ? :nofollow : nil
-    if sort == params[:sort] && site == params[:site] && set == params[:set] && language == params[:language]
+    if sort == params[:sort] && site == params[:site] && set == params[:set] && language == params[:language] && by == params[:by]
       l = label
       is_link = false
     elsif is_libraries
@@ -19,13 +19,13 @@ module ScriptsHelper
     elsif is_minified
       l = link_to(label, minified_scripts_path(sort: sort_param_to_use), rel:)
     elsif is_code_search
-      l = link_to(label, code_search_scripts_path(sort: sort_param_to_use, c: params[:c]), rel:)
+      l = link_to(label, code_search_scripts_path(sort: sort_param_to_use, c: params[:c], language:, by:), rel:)
     elsif site.nil?
-      l = link_to(label, { sort: sort_param_to_use, site: nil, set:, q: params[:q], language:, filter_locale:, new: }, rel:)
+      l = link_to(label, { sort: sort_param_to_use, site: nil, set:, q: params[:q], language:, filter_locale:, by: }, rel:)
     elsif params[:controller] == 'users'
       l = link_to(label, { sort: sort_param_to_use, site:, set:, language:, filter_locale: }, rel:)
     else
-      l = link_to label, by_site_scripts_path(sort: sort_param_to_use, site:, set:, q: params[:q], language:, filter_locale:, new:), rel:
+      l = link_to label, by_site_scripts_path(sort: sort_param_to_use, site:, set:, q: params[:q], language:, filter_locale:, by:), rel:
     end
     tag.li(class: "list-option#{is_link ? '' : ' list-current'}") { l }
   end

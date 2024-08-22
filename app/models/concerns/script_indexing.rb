@@ -38,6 +38,9 @@ module ScriptIndexing
                    author: {
                      type: 'keyword',
                    },
+                   author_ids: {
+                     type: 'integer',
+                   },
                    created_at: {
                      type: 'date',
                    },
@@ -88,6 +91,7 @@ module ScriptIndexing
       description: search_value_from_localized_attributes('description'),
       additional_info: search_value_from_localized_attributes('additional_info'),
       author: users.map(&:name).join(' '),
+      author_ids: users.map(&:id),
       created_at:,
       code_updated_at:,
       total_installs:,

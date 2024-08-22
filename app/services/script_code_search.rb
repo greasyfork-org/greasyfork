@@ -30,8 +30,14 @@ class ScriptCodeSearch
       end
     end
 
-    def search(text)
-      content, _stderr, _status = Open3.capture3('grep', '-R', '-F', '-l', text, BASE_PATH)
+    def search(text, limit_to_ids: nil)
+      content, _stderr, _status = if limit_to_ids.nil?
+                                    Open3.capture3('grep', '-R', '-F', '-l', text, BASE_PATH)
+                                  elsif limit_to_ids.none?
+                                    ['', nil, nil]
+                                  else
+                                    Open3.capture3('grep', '-R', '-F', '-l', text, *limit_to_ids.map { |id| "#{BASE_PATH}/#{id}" })
+                                  end
       content.split("\n").map { |line| line.delete_prefix("#{BASE_PATH}/") }.map(&:to_i)
     end
 

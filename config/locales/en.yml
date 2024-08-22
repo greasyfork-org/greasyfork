@@ -236,6 +236,7 @@ en:
     listing_title_for_search: "'%{search_string}' user scripts"
     # html title for script list page for code search results.
     listing_title_for_code_search: "'%{search_string}' user scripts"
+    listing_description_for_code_search_html: "Code search for <code>%{search_string}</code>"
     # html title for script list page when no other situation applies
     listing_title_generic: "User scripts"
     # html title for script list page for a user's favorites. set_name is script_sets.favorites_name
@@ -283,6 +284,10 @@ en:
     listing_language_all: "All"
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
+    listing_author:
+      all: All authors
+      me: My scripts
+      user: Scripts by %{author_name}
     search_failed: Something went wrong loading your results. Some search functionality may not be working. We've been notified of the issue.
     # link to start the process of importing (creating from an external place) scripts
     import: "Import scripts"

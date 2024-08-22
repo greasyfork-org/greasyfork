@@ -7,7 +7,7 @@ libraries = false if !defined?(libraries) || libraries.nil?
 default_sort = @set&.default_sort || (params[:q].present? ? 'relevance' : (libraries ? 'created' : ScriptListings::DEFAULT_SORT))
 rel = nil unless defined?(rel)
 
-current_options = params.to_unsafe_h.slice(:sort, :site, :set, :language, :filter_locale,).map {|k, v| [k.to_sym, v] }.to_h.merge(default_sort: default_sort)
+current_options = params.to_unsafe_h.slice(:sort, :site, :set, :language, :filter_locale, :by).map {|k, v| [k.to_sym, v] }.to_h.merge(default_sort: default_sort)
 current_options[:rel] = rel if rel
 skip_all_sites_link = false unless defined?(skip_all_sites_link)
 %>
@@ -76,6 +76,23 @@ skip_all_sites_link = false unless defined?(skip_all_sites_link)
         <% default_language_option = controller.is_a?(UsersController) ? 'all' : 'js' %>
         <% { t('scripts.listing_language_all') => 'all', t('scripts.listing_language_js') => 'js', t('scripts.listing_language_css') => 'css' }.each do |language_option, key| %>
           <%= script_list_link(language_option, **current_options.merge(language: default_language_option == key ? nil : key)) %>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if (current_user || params[:by].presence) && controller_name != 'users' %>
+    <div id="script-list-author" class="list-option-group">Authorship:
+      <ul>
+        <%= script_list_link(t('scripts.listing_author.all'), **current_options.merge(by: nil)) %>
+        <% if current_user %>
+          <%= script_list_link(t('scripts.listing_author.me'), **current_options.merge(by: current_user.id.to_s)) %>
+        <% end %>
+        <% if current_user.nil? || current_user.id != params[:by].to_i %>
+          <% by = User.find_by(id: params[:by]) %>
+          <% if by %>
+            <%= script_list_link(t('scripts.listing_author.user', author_name: by.name), **current_options.merge(by: by.id.to_s)) %>
+          <% end %>
         <% end %>
       </ul>
     </div>

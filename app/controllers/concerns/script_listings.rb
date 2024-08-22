@@ -147,8 +147,11 @@ module ScriptListings
       return
     end
 
-    script_ids = ScriptCodeSearch.search(params[:c])
+    limit_to_ids = User.find_by(id: params[:by])&.script_ids if params[:by].presence
+
+    script_ids = ScriptCodeSearch.search(params[:c], limit_to_ids:)
     @scripts = Script.order(self.class.get_sort(params)).includes(:users, :localized_attributes).where(id: script_ids)
+    @scripts = @scripts.where(language: (params[:language] == 'css') ? 'css' : 'js') unless params[:language] == 'all'
     include_deleted = current_user&.moderator? && params[:include_deleted] == '1'
     @scripts = @scripts.listable(script_subset) unless include_deleted
     @scripts = @scripts.paginate(page: page_number, per_page:)
@@ -157,14 +160,16 @@ module ScriptListings
       format.html do
         @bots = 'noindex,nofollow'
         @title = t('scripts.listing_title_for_code_search', search_string: params[:c])
+        @page_description = t('scripts.listing_description_for_code_search_html', search_string: params[:c])
         @canonical_params = [:c, :sort]
         @include_script_sets = false
         if current_user&.moderator?
-          @page_description = if include_deleted
-                                view_context.link_to('Exclude deleted scripts', { c: params[:c], include_deleted: nil })
-                              else
-                                view_context.link_to('Include deleted scripts', { c: params[:c], include_deleted: '1' })
-                              end
+          @page_description += view_context.content_tag(:p,
+                                                        if include_deleted
+                                                          view_context.link_to('Exclude deleted scripts', { c: params[:c], include_deleted: nil })
+                                                        else
+                                                          view_context.link_to('Include deleted scripts', { c: params[:c], include_deleted: '1' })
+                                                        end)
         end
 
         @link_alternates = [
@@ -201,6 +206,7 @@ module ScriptListings
         scripts = scripts.where(id: set_script_ids)
       end
       scripts = scripts.where(language: (params[:language] == 'css') ? 'css' : 'js') unless params[:language] == 'all'
+      scripts = scripts.joins(:authors).where(authors: { user_id: params[:by] }) if params[:by].presence
       scripts = scripts.order(get_sort(params, set:, default_sort:))
       return scripts
     end
@@ -310,6 +316,8 @@ module ScriptListings
     else
       with[:available_as_js] = true
     end
+
+    with[:author_ids] = params[:by] if params[:by]
 
     @scripts = Script.search(
       params[:q].presence || '*',
