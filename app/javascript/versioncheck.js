@@ -89,21 +89,29 @@ function handleInstallResult(installButton, installedVersion, version) {
 
   installButton.removeAttribute("data-ping-url")
 
+  let installLabel
+
   switch (compareVersions(installedVersion, version)) {
     // Upgrade
     case -1:
-      installButton.textContent = installButton.getAttribute("data-update-label");
+      installLabel = installButton.getAttribute("data-update-label");
       break;
     // Downgrade
     case 1:
-      installButton.textContent = installButton.getAttribute("data-downgrade-label");
+      installLabel = installButton.getAttribute("data-downgrade-label");
       break;
     // Equal
     case 0:
-      installButton.textContent = installButton.getAttribute("data-reinstall-label");
+      installLabel = installButton.getAttribute("data-reinstall-label");
       break;
   }
 
+  installButton.textContent = installLabel
+
+  let preinstallModalButton = document.querySelector('#preinstall-modal [data-micromodal-accept]')
+  if (preinstallModalButton) {
+    preinstallModalButton.textContent = installLabel
+  }
 }
 
 function checkForUpdatesJS(installButton, retry) {
