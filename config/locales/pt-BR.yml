@@ -157,6 +157,7 @@ pt-BR:
     listing_description_for_site: "Scripts que adicionam recursos e removem bugs em %{site}"
     listing_title_for_search: "'%{search_string}' scripts"
     listing_title_for_code_search: "'%{search_string}' scripts"
+    listing_description_for_code_search_html: "Busca de Código para %{search_string}"
     listing_title_generic: "Scripts de usuário"
     listing_title_for_favorites: "%{user_name}'s %{set_name}"
     listing_description_generic: "Scripts que adicionam recursos e removem bugs nos sites que você usa"
@@ -182,6 +183,10 @@ pt-BR:
     listing_language_all: "Todos"
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
+    listing_author:
+      all: Todos autores
+      me: Meus scripts
+      user: Scripts de%{author_name}
     search_failed: Algo deu errado ao carregar seus resultados. Algumas funcionalidades de pesquisa podem não estar funcionando. Fomos notificados do problema.
     import: "Scripts importantes"
     new: "Publicar um script que você escreveu"
@@ -234,6 +239,7 @@ pt-BR:
     localized_additional_info_with_no_name: "Informação adicional foi especificada para a regionalização '%{locale_code}', mas nada adicionado a @name:%{locale_code}."
     code_syncing_from_url_html: "O código de script foi configurado para sincronia de: %{field}"
     provide_code_syncing_from_url_html: "%{site_name} pode importar scripts que já foram hospedados em outro lugar, p. ex. num sistema de controle de versão (como GitHub), seu próprio servidor, ou outro site de hospedagem de scripts de usuário. Para habilitar sincronização com seu scrpit, digite a URL: %{field}"
+    code_syncing_from_webhook_html: "O código deste script está configurado para sincronizar com um webhook. Combinaremos as solicitações de webhook para este script com base neste URL:%{field}"
     sync_type_intro: "O script será sincronizado:"
     sync_type_1:
       name: Manual
@@ -383,7 +389,6 @@ pt-BR:
         payment:
           title: Pagamento
           description_html: Este script só será totalmente funcional depois que você <b>realizar um pagamento</b>. %{site_name} não se envolve no pagamento, então não podemos garantir a validade da transação ou te ajudar com reembolso.
-      install_anyway: Instalar script
       cancel_install: Cancelar
     badges:
       js:
@@ -602,6 +607,7 @@ pt-BR:
     listing_new_scripts: "Novos scripts"
     listing_updated_scripts: "Scripts atualizados"
     listing_registration_date: "Data de registro"
+    listing_relevance: "Relevância"
     listing_title: "Usuários"
     listing_banned_filter:
       banned: "Banido"
@@ -985,13 +991,16 @@ pt-BR:
   search:
     script_search:
       title: "Pesquisa de Script"
+      description: "Busca de Scripts. Pesquise por nomes de scripts, descrições, informações adicionais e nomes de autores."
     library_search:
       title: "Pesquisa de Biblioteca"
+      description: "Busque por bibliotecas. Busque por nomes de bibliotecas, descrições, informações adicionais e nomes de autores."
     code_search:
       title: "Pesquisa de Código"
       description: "Pesquisar código de script. Não diferencia maiúsculas e minúsculas e busca texto sem aceitar coringas."
     user_search:
       title: "Pesquisa de Usuário"
+      description: "Busca de usuários por nome"
   moderator_logs:
     date_column: "Data"
     moderator_column: "Moderador"
@@ -1188,6 +1197,10 @@ pt-BR:
     locale_filter:
       label: Idioma
       all: Todas
+    sort:
+      comment_created: Data
+      discussion_last_comment: Data do Último Comentário
+      discussion_created: Data de Início da Discussão
     user_activity:
       title: "Comentários recentes"
       no_recent_activity: "Esse usuário não publicou nenhum comentário recentemente."
@@ -1341,6 +1354,7 @@ pt-BR:
       script_update_not_utf8: "envio deve ser em texto UTF-8"
       script_disallowed_require: "usa um script externo não aprovado: %{code}"
       script_disallowed_resource: "usa um @resource inválido: %{code}. Os recursos devem ser URLs http, https ou data."
+      script_disallowed_base_64_require: "Use um código base-64 @require"
       script_malformed_require: "usa uma referência de script externo malformada: %{code}"
       script_rate_limit: "Você atingiu o limite de postagens. Tente novamente mais tarde."
       missing_include_or_match: "deve incluir pelo menos uma chave @match ou @include"

@@ -158,6 +158,7 @@ nl:
     listing_description_for_site: "Gebruikersscripts die op %{site} functies toevoegen en bugs verwijderen"
     listing_title_for_search: "‘%{search_string}’-gebruikersscripts"
     listing_title_for_code_search: "‘%{search_string}’ gebruikersscripts"
+    listing_description_for_code_search_html: "Code-zoekopdracht: <code>%{search_string}</code>"
     listing_title_generic: "Gebruikersscripts"
     listing_title_for_favorites: "%{user_name}'s %{set_name}"
     listing_description_generic: "Gebruikersscripts die functies toevoegen en bugs verwijderen op sites die je gebruikt"
@@ -183,6 +184,10 @@ nl:
     listing_language_all: "Alles"
     listing_language_js: "JavaScript"
     listing_language_css: "Css"
+    listing_author:
+      all: Alle makers
+      me: Mijn scripts
+      user: Scripts van %{author_name}
     search_failed: Er is iets misgegaan tijdens het laden van de resultaten. De zoekfunctie werkt mogelijk niet geheel naar behoren. Ons team is op de hoogte van dit probleem.
     import: "Scripts importeren"
     new: "Zelfgeschreven script publiceren"
@@ -385,7 +390,6 @@ nl:
         payment:
           title: Betaling
           description_html: Dit script werkt alleen <b>na betaling. %{site_name} is niet betrokken bij de betaling, dus de waarde kan niet worden beoordeeld en er kan geen hulp omtrent terugbetaling worden geboden.
-      install_anyway: Script installeren
       cancel_install: Annuleren
     badges:
       js:

@@ -157,6 +157,7 @@ sk:
     listing_description_for_site: "Používateľské skripty, ktoré pridávajú funkcie a odstraňujú chyby na stránke %{site}"
     listing_title_for_search: "Používateľské skripty pre '%{search_string}'"
     listing_title_for_code_search: "Používateľské skripty pre '%{search_string}'"
+    listing_description_for_code_search_html: "Vyhľadanie kódu <code>%{search_string}</code>"
     listing_title_generic: "Používateľské skripty"
     listing_title_for_favorites: "používateľ %{user_name} má obľúbené %{set_name}"
     listing_description_generic: "Používateľské skripty, ktoré pridávajú funkcie a odstraňujú chyby na stránkach, ktoré používate"
@@ -182,6 +183,10 @@ sk:
     listing_language_all: "Všetky"
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
+    listing_author:
+      all: Všetci autori
+      me: Moje skripty
+      user: Skripty od %{author_name}
     search_failed: Pri načítavaní výsledkov sa niečo pokazilo. Niektoré funkcie vyhľadávania nemusia fungovať. Boli sme upozornení na problém.
     import: "Importovať skripty"
     new: "Zverejniť skript, ktorý ste napísali"
@@ -384,7 +389,6 @@ sk:
         payment:
           title: Platba
           description_html: Tento skript je plne funkčný až po <b>vykonaní platby</b>. Stránka%{site_name} nie je zodpovedná za túto platbu, takže nemôžete potvrdiť, že získate niečo hodnotné, alebo že vám pomôžeme s vrátením peňazí.
-      install_anyway: Inštalovať skript
       cancel_install: Zrušiť
     badges:
       js:

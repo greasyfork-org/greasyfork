@@ -158,6 +158,7 @@ ru:
     listing_description_for_site: "Пользовательские скрипты, которые добавляют функциональность и устраняют ошибки на %{site}"
     listing_title_for_search: "'%{search_string}' пользовательские скрипты"
     listing_title_for_code_search: "'%{search_string}' пользовательские скрипты"
+    listing_description_for_code_search_html: "Поиск по коду для%{search_string}"
     listing_title_generic: "Пользовательские скрипты"
     listing_title_for_favorites: "%{set_name} от %{user_name} "
     listing_description_generic: "Пользовательские скрипты, которые добавляют функциональность и устраняют ошибки на сайтах, которые Вы используете"
@@ -183,6 +184,10 @@ ru:
     listing_language_all: "Все"
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
+    listing_author:
+      all: Все авторы
+      me: Мои скрипты
+      user: Скрипты от %{author_name}
     search_failed: Что-то пошло не так. Поиск может частично не работать. Мы уже оповещены о проблеме.
     import: "Импортировать скрипты"
     new: "Опубликовать ваш скрипт"
@@ -385,7 +390,6 @@ ru:
         payment:
           title: Оплата
           description_html: Для включения всех функций скрипта вы должны <b>заплатить</b>. %{site_name} не участвует в оплате, поэтому не может гарантировать, что вы получите что-то полезное или сможете сделать возврат денег.
-      install_anyway: Установить скрипт
       cancel_install: Не устанавливать скрипт
     badges:
       js:
