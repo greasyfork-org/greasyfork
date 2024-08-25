@@ -73,7 +73,7 @@ class ConversationsController < ApplicationController
     ConversationSubscription.find_or_create_by!(user: current_user, conversation: @conversation)
     respond_to do |format|
       format.js { head :ok }
-      format.all { redirect_to @conversation.path }
+      format.all { redirect_to @conversation.latest_path(current_user, locale: I18n.locale) }
     end
   end
 
@@ -81,7 +81,7 @@ class ConversationsController < ApplicationController
     ConversationSubscription.where(user: current_user, conversation: @conversation).destroy_all
     respond_to do |format|
       format.js { head :ok }
-      format.all { redirect_to @conversation.path }
+      format.all { redirect_to @conversation.latest_path(current_user, locale: I18n.locale) }
     end
   end
 

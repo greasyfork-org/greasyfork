@@ -86,4 +86,22 @@ class ConversationsTest < ApplicationSystemTestCase
     click_on 'Post reply'
     assert_content 'Message is too long'
   end
+
+  test 'subscribing to a conversation' do
+    user = users(:geoff)
+    user.update!(preferred_markup: 'markdown')
+    login_as(user, scope: :user)
+    conversation = conversations(:geoff_and_junior)
+
+    visit user_conversation_url(user, conversation, locale: :en)
+
+    assert_difference -> { ConversationSubscription.count } => 1 do
+      click_link 'Subscribe'
+      assert_link 'Unsubscribe'
+    end
+    assert_difference -> { ConversationSubscription.count } => -1 do
+      click_link 'Unsubscribe'
+      assert_link 'Subscribe'
+    end
+  end
 end
