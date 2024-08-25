@@ -594,6 +594,7 @@ class Script < ApplicationRecord
     users.each do |user|
       user.ban!(moderator:, reason:, private_reason:)
       user.lock_all_scripts!(reason:, moderator:, delete_type: 'blanked')
+      user.scripts.each { |script| Report.uphold_pending_reports_for(script) }
     end
   end
 
