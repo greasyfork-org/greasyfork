@@ -196,4 +196,24 @@ class DiscussionsTest < ApplicationSystemTestCase
     assert_content 'this is an updated reply'
     assert_selector '.user-screenshots img', count: 1
   end
+
+  test 'locale detection' do
+    Greasyfork::Application.config.enable_detect_locale = true
+    DetectLanguage.expects(:simple_detect).with("discussion title\nthis is my comment").returns('fr')
+
+    user = User.first
+    login_as(user, scope: :user)
+    visit new_discussion_path(locale: :en)
+    fill_in 'Title', with: 'discussion title'
+    fill_in 'discussion_comments_attributes_0_text', with: 'this is my comment'
+    choose 'Greasy Fork Feedback'
+    assert_difference -> { Discussion.count } => 1 do
+      click_on 'Post comment'
+      assert_content 'this is my comment'
+    end
+
+    assert_equal locales(:french), Discussion.last.locale
+  ensure
+    Greasyfork::Application.config.enable_detect_locale = false
+  end
 end

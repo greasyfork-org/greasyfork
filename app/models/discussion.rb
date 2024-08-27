@@ -174,6 +174,7 @@ class Discussion < ApplicationRecord
   def full_text
     parts = [title]
     comment = comments.first
+    comment.set_plain_text unless comment.plain_text
     parts << comment.plain_text if comment
     parts.join("\n")
   end
