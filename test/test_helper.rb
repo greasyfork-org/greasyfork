@@ -56,6 +56,7 @@ module ActiveSupport
 
     def stub_es(klass)
       klass.stubs(:search).returns(klass.all.paginate(page: 1))
+      yield if block_given?
     end
   end
 end

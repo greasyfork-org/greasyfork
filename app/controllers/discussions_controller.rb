@@ -212,7 +212,7 @@ class DiscussionsController < ApplicationController
     @discussion.save!
 
     notification_job = CommentNotificationJob
-    notification_job = notification_job.set(wait: Comment::EDITABLE_PERIOD) unless Rails.env.development?
+    notification_job = notification_job.set(wait: Comment::EDITABLE_PERIOD) unless Rails.env.local?
     notification_job.perform_later(@discussion.comments.first)
 
     DiscussionSubscription.find_or_create_by!(user: current_user, discussion: @discussion) if @subscribe

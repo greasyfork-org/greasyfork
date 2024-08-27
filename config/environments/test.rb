@@ -55,7 +55,7 @@ Rails.application.configure do
 
   config.log_cache_misses = true
 
-  config.active_job.queue_adapter = :inline
+  config.active_job.queue_adapter = :test
 
   config.action_controller.allow_forgery_protection = true
 

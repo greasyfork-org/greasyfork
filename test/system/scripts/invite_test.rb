@@ -1,6 +1,8 @@
 require 'application_system_test_case'
 
 class InviteTest < ApplicationSystemTestCase
+  include ActiveJob::TestHelper
+
   test 'bad invited user url' do
     script = Script.find(1)
     login_as(script.users.first, scope: :user)
@@ -36,6 +38,7 @@ class InviteTest < ApplicationSystemTestCase
     fill_in 'User to invite', with: "https://greasyfork.org/users/#{user_to_invite.id}-me"
     click_on 'Send invite'
     assert_selector 'p', text: 'Invitation has been sent.'
+    perform_enqueued_jobs
     mail = ActionMailer::Base.deliveries.last
     assert_not_nil mail
   end

@@ -3,7 +3,9 @@ require 'test_helper'
 module Discussions
   class ListingTest < ApplicationSystemTestCase
     test 'default' do
-      visit discussions_path
+      assert_no_error_reported do
+        visit discussions_path
+      end
     end
 
     test 'sort by discussion date' do

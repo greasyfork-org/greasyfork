@@ -25,7 +25,9 @@ class VersionsTest < ApplicationSystemTestCase
   end
 
   test 'script versions json' do
-    script = Script.find(2)
-    visit script_script_versions_path(script_id: script, locale: :en, format: :json)
+    assert_no_error_reported do
+      script = Script.find(2)
+      visit script_script_versions_path(script_id: script, locale: :en, format: :json)
+    end
   end
 end

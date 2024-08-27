@@ -38,9 +38,11 @@ class UserTextHelperTest < ActionView::TestCase
   end
 
   test 'format_user_text html no hang on long text' do
-    text = Rails.root.join('test/fixtures/files/hamlet.txt').read
-    Timeout.timeout(1) do
-      format_user_text(text, 'html')
+    assert_no_error_reported do
+      text = Rails.root.join('test/fixtures/files/hamlet.txt').read
+      Timeout.timeout(1) do
+        format_user_text(text, 'html')
+      end
     end
   end
 

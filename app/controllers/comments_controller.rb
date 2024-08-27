@@ -26,7 +26,7 @@ class CommentsController < ApplicationController
     end
 
     notification_job = CommentNotificationJob
-    notification_job = notification_job.set(wait: Comment::EDITABLE_PERIOD) unless Rails.env.development?
+    notification_job = notification_job.set(wait: Comment::EDITABLE_PERIOD) unless Rails.env.local?
     notification_job.perform_later(@comment)
 
     CommentSpamCheckJob.perform_later(@comment, request.ip, request.user_agent, request.referer) unless current_user.comments.count > 3

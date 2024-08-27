@@ -2,6 +2,8 @@ require 'application_system_test_case'
 
 module Conversations
   class NotificationsTest < ApplicationSystemTestCase
+    include ActiveJob::TestHelper
+
     def start_conversation(as_user, to_user, change_subscription_state: nil)
       login_as(as_user, scope: :user)
 
@@ -18,6 +20,7 @@ module Conversations
       click_on 'Create conversation'
 
       assert_content "Conversation with #{to_user.name}"
+      perform_enqueued_jobs
     end
 
     def reply(as_user, conversation)
@@ -29,6 +32,9 @@ module Conversations
       click_on 'Post reply'
 
       assert_content 'This is a reply'
+      # Once for MessageNotificationJob, once for the mail job.
+      perform_enqueued_jobs
+      perform_enqueued_jobs
     end
 
     test 'notifications on start to the other user when they subscribe by default' do

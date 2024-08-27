@@ -44,10 +44,12 @@ class ShowTest < ApplicationSystemTestCase
   end
 
   test 'applies to is rendered' do
-    script = Script.find(25)
-    stub_es(Script) do
-      visit script_path(script, locale: :en)
-      assert_content('example.com')
+    assert_no_error_reported do
+      script = Script.find(25)
+      stub_es(Script) do
+        visit script_path(script, locale: :en)
+        assert_content('example.com')
+      end
     end
   end
 

@@ -10,9 +10,9 @@ class Script < ApplicationRecord
   CONSECUTIVE_BAD_RATINGS_GRACE_PERIOD = 2.weeks
   CONSECUTIVE_BAD_RATINGS_NOTIFICATION_DELAY = 1.day
 
-  enum delete_type: { 'keep' => 1, 'blanked' => 2, 'redirect' => 3 }, _prefix: true
-  enum script_type: { 'public' => 1, 'unlisted' => 2, 'library' => 3 }, _prefix: true
-  enum sync_type: { 'manual' => 1, 'automatic' => 2, 'webhook' => 3 }, _prefix: true
+  enum :delete_type, { 'keep' => 1, 'blanked' => 2, 'redirect' => 3 }, prefix: true
+  enum :script_type, { 'public' => 1, 'unlisted' => 2, 'library' => 3 }, prefix: true
+  enum :sync_type, { 'manual' => 1, 'automatic' => 2, 'webhook' => 3 }, prefix: true
 
   belongs_to :promoted_script, class_name: 'Script', optional: true
 

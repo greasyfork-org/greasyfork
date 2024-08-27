@@ -557,7 +557,9 @@ class CssToJsConverterTest < ActiveSupport::TestCase
              line-height:20px!important;
           }
     CSS
-    CssToJsConverter.convert(css)
+    assert_no_error_reported do
+      CssToJsConverter.convert(css)
+    end
   end
 
   test 'js conversion of single blocked code with CSS @namespace' do
