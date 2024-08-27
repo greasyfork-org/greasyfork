@@ -77,6 +77,10 @@ Naming/MethodParameterName:
 Naming/VariableNumber:
   Enabled: false
 
+# False positives per https://github.com/rubocop/rubocop-rails/issues/1269
+Rails/ActionControllerFlashBeforeRender:
+  Enabled: false
+
 # False positives per https://docs.rubocop.org/rubocop-rails/cops_rails.html#railscompactblank
 Rails/CompactBlank:
   Enabled: false

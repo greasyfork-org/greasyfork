@@ -688,7 +688,7 @@ class ScriptsController < ApplicationController
     if @other_script.is_a?(Script)
       if params[:terser] == '1'
         unless @script.cleaned_code && @other_script.cleaned_code
-          @diff_error = flash[:notice] = t('.compare_cleaned_code_unavailable')
+          @diff_error = flash.now[:notice] = t('.compare_cleaned_code_unavailable')
           return
         end
         other_code = @other_script.cleaned_code.code
@@ -699,7 +699,7 @@ class ScriptsController < ApplicationController
       end
       @diff = Diffy::Diff.new(other_code, this_code, include_plus_and_minus_in_html: true, include_diff_info: true, diff: diff_options)
     else
-      @diff_error = flash[:notice] = t('.compare_must_be_local_url', site_name:)
+      @diff_error = flash.now[:notice] = t('.compare_must_be_local_url', site_name:)
     end
   end
 
