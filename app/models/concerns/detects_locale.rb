@@ -1,6 +1,5 @@
 module DetectsLocale
   def detect_locale
-    debugger
     ft = full_text
     return if ft.nil?
 
