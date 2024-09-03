@@ -158,6 +158,7 @@ fr:
     listing_description_for_site: "Scripts utilisateurs qui ajoutent des fonctionnalités et corrigent des bugs sur %{site}"
     listing_title_for_search: "Scripts utilisateurs '%{search_string}'"
     listing_title_for_code_search: "Scripts utilisateurs '%{search_string}'"
+    listing_description_for_code_search_html: "Code rechercher pour <code>%{search_string}</code>"
     listing_title_generic: "Scripts utilisateurs"
     listing_title_for_favorites: "%{set_name} par %{user_name}"
     listing_description_generic: "Scripts utilisateurs qui ajoutent des fonctionnalités et corrigent des bugs sur les sites que vous utilisez"
@@ -183,6 +184,10 @@ fr:
     listing_language_all: "Tout"
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
+    listing_author:
+      all: Touts auteurs
+      me: Mes scripts
+      user: Scripts de %{author_name}
     search_failed: Une erreur s'est produite lors du chargement de vos résultats. Certaines fonctionnalités de recherche peuvent ne pas fonctionner. Nous avons été informés du problème.
     import: "Importer des scripts"
     new: "Publiez un script que vous avez écrit"
@@ -1197,6 +1202,10 @@ fr:
     locale_filter:
       label: Langue
       all: Tout
+    sort:
+      comment_created: Date
+      discussion_last_comment: Date du dernier commentaire
+      discussion_created: Date du premier commentaire
     user_activity:
       title: "Commentaires récents"
       no_recent_activity: "Cet utilisateur n'a posté aucun commentaire récemment."

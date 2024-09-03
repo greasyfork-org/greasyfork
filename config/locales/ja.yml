@@ -105,7 +105,7 @@ ja:
     code_title: "%{script_name} のソースコード"
     feedback_title: "%{script_name} のフィードバック"
     feedback_no_discussions_html: "議論はまだありません。%{start_first_discussion_link}"
-    feedback_no_discussions_on_page_form: "議論はまだ投稿されていません。"
+    feedback_no_discussions_on_page_form: "議論はまだありません。"
     feedback_report_instead: "このスクリプトが %{rules_link:%{site_name} の規則}に違反するなら、%{report_link:削除依頼}してください。"
     feedback_start_first_discussion_link: "このスクリプトについて最初のスレッドを立てる。"
     feedback_discussion_or_report: "%{new_discussion_link:このスクリプトに関する議論を開始}、または %{report_link:削除のために通報}する。"
@@ -149,8 +149,9 @@ ja:
     listing_description_all_sites: "すべてのサイトに機能を追加し、バグを取り除くユーザースクリプト"
     listing_title_for_site: "%{site} で実行されるユーザースクリプト"
     listing_description_for_site: "%{site} に機能を追加し、バグを取り除くユーザースクリプト"
-    listing_title_for_search: "「%{search_string}」の検索結果"
-    listing_title_for_code_search: "「%{search_string}」のソースコード検索結果"
+    listing_title_for_search: "検索「%{search_string}」を含むユーザースクリプト"
+    listing_title_for_code_search: "コード内を検索「%{search_string}」を含むユーザースクリプト"
+    listing_description_for_code_search_html: "「<code>%{search_string}</code>」でコード内を検索"
     listing_title_generic: "ユーザースクリプト一覧"
     listing_title_for_favorites: "%{user_name} の%{set_name}"
     listing_description_generic: "サイトに機能を追加し、バグを取り除くユーザースクリプト"
@@ -171,8 +172,8 @@ ja:
     listing_created_feed: "新しいスクリプト"
     listing_updated_feed: "更新されたスクリプト"
     listing_none: "(なし)"
-    listing_set_locale_filter: "すべての言語の結果を表示しています。%{set_filter_link:%{language}で絞り込む。}"
-    listing_remove_locale_filter: "%{language}で絞り込んだ結果を表示しています。%{remove_filter_link:すべての言語で表示。}"
+    listing_set_locale_filter: "すべての言語での検索結果です。%{set_filter_link:%{language}で絞り込む。}"
+    listing_remove_locale_filter: "%{language}で絞り込んだ結果結果です。%{remove_filter_link:すべての言語で表示。}"
     listing_language_all: "すべて"
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
@@ -339,8 +340,8 @@ ja:
       install_link_html: "スクリプトを<b>インストールして使用したい</b>。"
       share_link_html: " スクリプトを<b>書いた</b>ので、他の人に<b>共有したい</b>。"
     new_title:
-      js: "新しいスクリプトを投稿"
-      css: "新しいスタイルシートを投稿"
+      js: "新規スクリプトを投稿"
+      css: "新規スタイルシートを投稿"
     update_title: "%{script}を更新する"
     install_help_dialog:
       js:
@@ -390,7 +391,7 @@ ja:
       css:
         short: CSS
         long: ユーザースタイル
-    related_scripts: "関連するスクリプトがあります:"
+    related_scripts: "関連スクリプトもお試しください:"
     integrity_hashes:
       user_notice_html:
         other: "正しくないサブリソース整合用のハッシュを持つスクリプトがあります: %{script_links}。"
@@ -467,7 +468,7 @@ ja:
     new: スクリプトセットを作成
   home:
     title: "%{site_name} – 便利で安全なユーザースクリプト"
-    welcome: "%{site_name} はユーザースクリプトの投稿サイトです。"
+    welcome: "%{site_name} はユーザースクリプトの投稿サイトです"
     sleazy_title: "%{site_name} – 便利で安全なアダルトなユーザースクリプト"
     sleazy_welcome: "%{site_name} はアダルトなユーザースクリプトのサイトです。"
     search_placeholder: "ユーザースクリプトを検索"
@@ -535,10 +536,10 @@ ja:
     control_panel: "設定"
     discussions_on_scripts: "あなたのスクリプトに関する議論"
     discussions_on_scripts_feed_alt: "フィード"
-    discussions_on_scripts_none: "投稿なし。"
+    discussions_on_scripts_none: "投稿なし"
     discussions_on_scripts_more: "さらに表示..."
     script_list: "スクリプト一覧"
-    script_list_none: "まだ投稿していません。"
+    script_list_none: "投稿なし"
     script_list_none_for_filter: "指定した条件に一致するスクリプトなし。"
     script_list_none_same_user_html: "まだスクリプトを書いていません。%{script_list_none_same_user_info_link}"
     script_list_none_same_user_info_link_text: "スクリプトの書き方を見てみますか？"
@@ -561,7 +562,7 @@ ja:
     cant_remove_sign_in: "%{provider} との連携を解除する前に、パスワードを設定するか他のソーシャルアカウントでログインできるようにしてください。"
     password_removed: "パスワードを削除しました。"
     edit_sign_in_external: "ソーシャルアカウントによる認証"
-    external_sign_in_info_no_sign_ins: "ソーシャルアカウントを利用して %{site_name} にログインすることができます。"
+    external_sign_in_info_no_sign_ins: "ソーシャルアカウント経由で%{site_name} にログインできます。"
     external_sign_in_info_with_sign_ins: "現在、以下のサービスのアカウントと連携しています。【同期中】のアカウントでログインすると、%{site_name} のアカウント情報 (名前やメールアドレス) が同期中のアカウントと同じものに更新されます。"
     external_sign_in_added: "%{provider} との連携を追加しました。"
     external_sign_in_updated: "%{provider} の同期設定を更新しました。"
@@ -573,7 +574,7 @@ ja:
     enable_syncing: "同期する"
     disable_syncing: "同期を解除する"
     remove_external_sign_in: "連携を解除する"
-    add_external_sign_in_info: "以下のサービスのアカウントを使ってログインできるようにする:"
+    add_external_sign_in_info: "以下のアカウントでログインする:"
     set_up_webhook: "ウェブフックを設定する"
     author_email_notification_type:
       none: "投稿したスクリプトに関する議論の通知メールを受け取らない"
@@ -585,7 +586,7 @@ ja:
     listing_new_scripts: "スクリプトの作成日"
     listing_updated_scripts: "スクリプトの更新日"
     listing_registration_date: "登録日"
-    listing_relevance: "適合性"
+    listing_relevance: "関連度"
     listing_title: "ユーザー一覧"
     listing_banned_filter:
       banned: "禁止中"
@@ -616,7 +617,7 @@ ja:
       script_sets_effect:
         other: "あなたの%{count}個のスクリプトセットは削除されます。"
       forum_effect: "掲示板への投稿は残りますが、投稿者名は「%{user_name}」に変更されます。"
-      email_confirmation: "アカウントを削除する前に、%{email} へ %{site_name} から確認のメールを送信します。"
+      email_confirmation: "アカウントの削除前に、%{email} へ %{site_name} から確認メールを送信します。"
       submit: "アカウント削除"
       confirmation_email_sent: "アカウントの削除について、確認のメールが送信されました。"
       confirmation_email:
@@ -701,7 +702,7 @@ ja:
       description: "スクリプトがなにをするのかについての説明。スクリプト名の下にテキストとして表示。必須。"
       description_localized_html: "特定の言語におけるスクリプトの説明で、XX は<a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1の2文字コード</a>、任意指定の YY は <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166の国名コード</a>。ユーザーが対応する言語で閲覧しているときに、<code>@description</code>を上書きします。"
       namespace_html: "ユーザースクリプト管理ツールは、<code>@namespace</code> と <code>@name</code> の組み合わせで、スクリプトがすでにインストールされているか否かを判断します。%{site_name} ではこのキーを必須としており、スクリプト更新時に変更された場合は警告を表示します。"
-      version: "Identifier for a specific version of a script in %{version_format_link:Mozilla のバージョン規則}によるスクリプトのバージョンの指定です。バージョンはスクリプトの情報ページに表示されいます。%{site_name} はこの項目を必須とし、スクリプトのコードが変更された際に、値が減少、または増加していない場合に警告します。"
+      version: "%{version_format_link:Mozilla のバージョン規則}によるスクリプトのバージョンの指定です。バージョンはスクリプトの情報ページに表示されいます。%{site_name} はこの項目を必須とし、スクリプトのコードが変更された際に、値が減少、または増加していない場合に警告します。"
       include_html: "スクリプトを実行するページを指定します。この一覧は処理されてスクリプトの情報ページに表示され、またスクリプトの分類に使われます。各スクリプトには 1 回以上の<code>@match</code> か <code>@include</code> を含めてください。そのフォーマットについては <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">ここをお読みください。</a>"
       require_html: "外部の JavaScript をスクリプトに含めます。%{external_script_link:外部のスクリプトをコードに含める際の規則}をご確認ください。サブリソースの整合性ハッシュ（%{tm_subresource_link:ここ}と%{mdn_subresource_link:ここ}の情報を参照）を使っていて、ハッシュが使用するURLのハッシュと一致しない際に、%{site_name}は警告します。"
       resource_html: "スクリプトに外部のリソース（JavaScript、CSS、画像など）を含めます。%{external_script_link:外部のスクリプトをコードに含める際の規則}をご確認ください。サブリソースの整合性ハッシュ（%{tm_subresource_link:ここ}と%{mdn_subresource_link:ここ}の情報を参照）を使っていて、ハッシュが使用するURLのハッシュと一致しない際に、%{site_name}は警告します。"
@@ -797,13 +798,13 @@ ja:
       origin_host:
         title: 同じホストからのスクリプトの挿入
         content_html: |
-            <p>同じドメインの外部スクリプトを挿入することは許可されています。https://example.com 上で実行されるスクリプトが https://example.com/script.js をダウンロードし、https://example.com/ へと挿入されることは許可されています。</p>
-            <p>https://example.com/script.js が https://differentsite.com に挿入されることは許可されていません。</p>
+            <p>同じドメインの外部スクリプトを挿入することは許可されています。https://example.com 上で実行されるスクリプトが https://example.com/script.js をダウンロードし、https://example.com/ へと挿入することは許可されています。</p>
+            <p>https://example.com/script.js を https://differentsite.com に挿入することは許可されていません。</p>
     cdns:
       title: 許可されたCDN
       content_html: |
           <p>これは、%{site_name} が認識できる CDN の一覧です。 %{site_name} に投稿されたスクリプトから%{external_code_link:外部のコード}を読み込む際に使われます。 </p>
-          <p>一覧は、以下のようなスクリプトの提供場所です。</p>
+          <p>この一覧は、以下のようなスクリプト提供サイトです。</p>
           <ul>
           <li>公開されている</li>
           <li>内容が頻繁には変更されない</li>
@@ -817,7 +818,7 @@ ja:
         result_ok: この URL は許可されています
         result_not_ok: この URL は許可されていません
     script_rewriting:
-      title: "%{site_name} は投稿されたスクリプトをどのように書き直すか"
+      title: "投稿スクリプトの改定方法%{site_name}"
       content_html: >
           <p>%{site_name} に投稿されたスクリプトは、以下のように書き直されます。</p> <ul>
 
@@ -836,16 +837,16 @@ ja:
       title: "クレジット"
       authors_credit: "%{site_name} は、スクリプトを開発し投稿している製作者なしには成り立ちません。"
       developers_credit: "%{site_name} 自体は、バグ報告や改善提案をしたすべての人の助けを借り、%{developers_link:こちらの人たち}によって開発されています。 "
-      translators_credit: "%{site_name} は、%{translators_link:Transifex の Greasy Translation Force} によって翻訳されました:"
+      translators_credit: "%{site_name} は、%{translators_link:Transifex の Greasy 翻訳チーム} によって翻訳されています:"
       icons_credit: " ブラウザーのアイコンは%{browserlogos} を使用しています。"
     help_with_greasymonkey: "Greasemonkey のヘルプ"
     contact:
       title: "連絡を行う"
       content_html: >
-          <p>%{site_name} 自体や本サイト上の事柄について話し合う方法はいくつかあります。</p> <p>サイトに投稿された特定のスクリプトについて、質問やコメントがありますか？その場合、そのスクリプトのページ内のフィードバックタブにある投稿リンクから、話題を投稿してください。スクリプトに対して投稿されたあらゆる話題は、スクリプトの作者のアカウントページに通知されます。</p>
-          <p>%{site_name} 自体やスクリプトの開発について、質問やコメントがありますか？または、誰かに作ってもらいたいスクリプトがありますか？%{forum_link:掲示板への投稿}
-          が、その話題への関心を集めるのに最適でしょう。</p> <p>%{site_name}自体のバグ報告や完成されたアイデアがありますか？（%{site_name}に<em>投稿された</em>スクリプトではなく）%{github_link:GitHub
-          で投稿してください。}</p> <p>管理者だけが読めるようにしたい質問やコメントがある場合は、%{admin_email_link:メールを送ってください}。</p>
+          <p>%{site_name} 自体や本サイト上の話題を話し合うにはいくつかの方法があります。</p> <p>サイトに投稿された特定のスクリプトについて、質問やコメントがありますか？その場合、そのスクリプトのページ内のフィードバックタブのリンクから、話題を投稿してください。投稿された話題は、そのスクリプトの作者のアカウントページに通知されます。</p>
+          <p>%{site_name} 自体やスクリプトの開発について、質問やコメントがありますか？または、スクリプトを誰かに作ってもらいたいですか？%{forum_link:掲示板に投稿することで}みんなの関心を集めることができます。</p>
+          <p>%{site_name}自体のバグ報告や完成されたアイデアがありますか？（%{site_name}に<em>投稿された</em>スクリプトではなく）それらは%{github_link:GitHub
+          に投稿できます。}</p> <p>管理者だけが読めるようにしたい質問やコメントがあれば、%{admin_email_link:メールを送ってください}。</p>
     privacy_policy:
       title: "プライバシーポリシー"
       content_html: >
@@ -864,7 +865,7 @@ ja:
     user_css_to_user_js:
       title: ユーザーCSSのユーザーJSへの変換
       content_html: |
-          <p>%{site_name} はユーザーCSSをユーザーJS形式に変換できます。 <code>@-moz-document</code> rules are converted into JavaScript <code>if</code> statements, building the CSS to apply. このCSSは<code>&lt;head&gt;</code>タグ、<code>&lt;style&gt;</code> 要素内のものに追加されます。</p>
+          <p>%{site_name} はユーザーCSSをユーザーJS形式に変換できます。 <code>@-moz-document</code> のルールは JavaScript の<code>if</code> 文に変換され、適用するCSSを構築します。 このCSSは<code>&lt;head&gt;</code>タグ、<code>&lt;style&gt;</code> 要素内のものに追加されます。</p>
 
           <p>一部のユーザーCSSの機能が存在すれば、ユーザーJS形式への変換は行われません。</p>
 
@@ -876,7 +877,7 @@ ja:
           <p>%{site_name}のユーザーJSは、ユーザーCSSとは少し異なる形でCSSを読み込むことがあります。</p>
 
           <ul>
-          <li>ユーザーJSでは、CSS は<code>&lt;head&gt;</code>内の最後の要素として挿入されます。ユーザーCSSでは、これは使用される・on the extension :訳不明・によります。この問題を減らすために<code>!important</code>の使用を推奨します。</li>
+          <li>ユーザーJSでは、CSS は<code>&lt;head&gt;</code>内の最後の要素として挿入されます。ユーザーCSSでは使用される拡張機能によります。ここでの問題発生を減らすために<code>!important</code>の使用を推奨します。</li>
           <li>ユーザーJSでは、CSSはページの読み込み時に一度適用されます。JavaScript の History API を使ったページでは、予想通りにCSSが適用されないことがあります。</li>ユーザーJSは、frame や iframe にCSSを適用できません。</li>
           </ul>
 
@@ -1066,7 +1067,7 @@ ja:
     comment_date: "投稿日: %{date}"
     comment_edit_date: "編集日: %{date}"
     posted_by_html: "%{user} %{date}"
-    last_comment: "最新: %{user} %{date}"
+    last_comment: "最終投稿: %{user} %{date}"
     new_discussion_heading: "評価やコメント、質問を投稿"
     new_discussion_submit: "コメントを投稿"
     new_comment_heading: "返信を投稿"
@@ -1107,7 +1108,7 @@ ja:
       discussion_by_me: "あなたが作成"
       comment_by_me: "あなたのコメント"
       on_my_scripts: "あなたのスクリプトについて"
-      subscribed: "購読しています"
+      subscribed: "購読中"
     other_user_filter:
       all: "すべての議論"
       comments_by: "%{user}によるコメント"
@@ -1123,17 +1124,18 @@ ja:
       label: 言語
       all: すべて
     sort:
-      discussion_last_comment: 最新のコメント順
+      comment_created: 日付順
+      discussion_last_comment: 最終コメント日時順
       discussion_created: 議論開始順
     user_activity:
       title: "最近のコメント"
-      no_recent_activity: "このユーザーの最近のコメント投稿はありません。"
-      see_all_activity: "すべての履歴を表示。"
+      no_recent_activity: "このユーザーの最近のコメント投稿なし"
+      see_all_activity: "すべての履歴を表示"
       script_review:
         posted_html: "%{script}のレビューを投稿しました"
         replied_html: "%{script}のレビューに返信"
       script_question:
-        posted_html: "%{script}の質問/コメントに投稿しました。"
+        posted_html: "%{script}の質問/コメントに投稿"
         replied_html: "%{script}に関する質問/コメントに返信しました。"
       discussion:
         posted_html: "議論への投稿: <i>%{title}</i>"
@@ -1182,7 +1184,7 @@ ja:
     conversation_link_html:
       other: ' %{users}との会話。'
     conversation_info_html: '%{date}に最新のメッセージ、%{user}が送信。'
-    no_conversations: 会話なし。
+    no_conversations: 会話なし
     no_recent_conversations: 最近の会話はありません。
     recent:
       title: 最近の会話
@@ -1196,10 +1198,10 @@ ja:
     error_preamble: "投稿された内容に問題がありました…"
     allowed_elements_link: "使用可能なタグ"
     allowed_elements_and_attributes_title: "使用可能なHTMLの要素・属性"
-    allowed_elements_intro: "以下の要素と属性を利用できます。Markdownの場合は、HTMLへの変換後にチェックされます。"
-    allowed_elements_extra_info: "改行は <p> タグや <br> タグに置き換えられます。URLを記述した場合、自動的にリンクが張られます。"
+    allowed_elements_intro: "次の要素と属性が使えます。Markdownでは、HTMLへの変換後に検査されます。"
+    allowed_elements_extra_info: "改行は <p> タグや <br> タグに置き換えられます。URL は自動でリンクされます。"
     allowed_css_intro: "すべての要素で、以下の CSS プロパティが許可されています。"
-    user_references_html: "他の%{site_name} のユーザーへ参照しリンクするには次の形式です。<code>@UserName</code> または <code>@\"User Name\"</code> (ユーザー名に空白を含む場合)。"
+    user_references_html: "%{site_name} ほかのユーザーを参照しリンクするには次の形式で書きます。<code>@UserName</code> または <code>@\"User Name\"</code> (ユーザー名に空白を含む場合)。"
     not_found_text: "404エラー: ページは見つかりませんでした。"
     not_found_title: "404 – ページ未検出"
     not_found_link_home: "トップページに戻る。"
