@@ -152,6 +152,13 @@ en:
       compare_button: "Compare"
       compare_must_be_local_url: "Comparison script must be a URL on %{site_name}."
       compare_cleaned_code_unavailable: "Comparison script's clean code is not yet available."
+      checkup:
+        title: Checkup
+        intro: These are suggestions to improve your script on %{site_name}. These are not %{rules_link:rules}; your script won't be deleted if you don't follow them.
+        license_html: Specify a %{license_link:<code>@license</code>}. This lets others know whether and how they can share and modify your code.
+        globs_html: Avoid the use globs and regular expressions in the domain part of %{include_link:<code>@include</code>} and %{match_link:<code>@match</code>}. These make it hard for %{site_name} to properly classify your script.
+        globs_used: "Non-domain specific includes used: %{globs}"
+        additional_info: Include additional info - list out your features, provide screenshots, etc. so your users know exactly what your script does.
     # HTML title for the history page for a script
     history_title: "%{script_name} - Version history"
     # text explaining that we're only showing versions where the code changed
@@ -269,6 +276,7 @@ en:
     listing_filter_by_language_label: "Language:"
     # link to see a full list of sites that scripts on %{site_name} affect
     listing_filter_by_site_more_sites: "More…"
+    listing_filter_by_authorship_label: "Authorship:"
     # text that shows when no scripts were found with the used parameters
     listing_no_scripts: "No scripts found."
     # feed title for the listing, ordered by created date

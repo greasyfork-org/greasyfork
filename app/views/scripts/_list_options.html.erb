@@ -82,7 +82,7 @@ skip_all_sites_link = false unless defined?(skip_all_sites_link)
   <% end %>
 
   <% if (current_user || params[:by].presence) && controller_name != 'users' %>
-    <div id="script-list-author" class="list-option-group">Authorship:
+    <div id="script-list-author" class="list-option-group"><%= t('scripts.listing_filter_by_authorship_label') %>
       <ul>
         <%= script_list_link(t('scripts.listing_author.all'), **current_options.merge(by: nil)) %>
         <% if current_user %>
