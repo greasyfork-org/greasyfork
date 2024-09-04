@@ -68,19 +68,19 @@ sk:
       keep: "Ponechať to tak, ako to je."
       blanked: "Aktualizovať na prázdny skript. Vhodné pre skripty, ktoré negatívne ovplyvňujú chod stránky."
       redirect: "Budú presmerovaní a aktualizovaní na skript, ktorý zadáte nižšie."
-    delete_permanently_heading: "Trvalé vymazanie"
+    delete_permanently_heading: "Trvalé odstránenie"
     delete_permanently_explanation_html: >-
         <p>Trvalé odstránenie skriptu odstráni skript a všetky jeho záznamy, okrem
         diskusie na fóre a záznamov akcií moderátora.</p> <p>Skript bude natrvalo
         odstránený po 7 dňoch od žiadosti. Počas tejto doby môžete žiadosť o odstránenie
         zrušiť. Ak tak neurobíte, nikto, ani moderátor, nebude môcť skript obnoviť.</p>
     delete_permanently_confirm: "Naozaj chcete natrvalo odstrániť skript?"
-    delete_permanently_submit: "Žiadosť o trvalé vymazanie"
+    delete_permanently_submit: "Žiadosť o trvalé odstránenie"
     delete_permanently_immediate_submit: "Trvale vymazať"
     delete_permanently_notice: "Žiadosť o trvalé odstránenie bola zaznamenaná. Skript bude natrvalo odstránený o 7 dní."
     delete_permanently_already_requested: "Žiadosť o trvalé odstránenie zo dňa %{datetime}."
     delete_permanently_notice_immediate: "Skript bol trvale vymazaný."
-    cancel_delete_permanently_submit: "Zrušiť žiadosť o trvalé vymazanie"
+    cancel_delete_permanently_submit: "Zrušiť žiadosť o trvalé odstránenie"
     cancel_delete_permanently_notice: "Žiadosť o trvalé odstránenie bola zrušená. Skript sa nebude naďalej ostatným zobrazovať."
     delete_permanently_rejected_locked: "Tento skript je uzamknutý a nemôže byť trvalo odstránený"
     admin_page: "Správca"
@@ -101,6 +101,13 @@ sk:
       compare_button: "Porovnať"
       compare_must_be_local_url: "Porovnávaný skript musí byť URL na %{site_name}."
       compare_cleaned_code_unavailable: "Čistý kód porovnávacieho skriptu zatiaľ nie je k dispozícii."
+      checkup:
+        title: Kontrola
+        intro: Toto sú návrhy na zlepšenie vášho skriptu na %{site_name}. Nie sú to %{rules_link:pravidlá}; váš skript nebude odstránený, ak ich nebudete dodržiavať.
+        license_html: Uveďte %{license_link:<code>@license</code>}. Takto ostatným oznámite, či a ako môžu zdieľať a upravovať váš kód.
+        globs_html: Vyhnite sa používaniu globov a regulárnych výrazov v časti domény %{include_link:<code>@include</code>} a %{match_link:<code>@match</code>}. Tie sťažujú správne zaradenie vášho skriptu na stránke %{site_name}.
+        globs_used: "Bližšie neurčené domény: %{globs}"
+        additional_info: Uveďte ďalšie informácie – zoznam funkcií, poskytnite snímky obrazovky atď., aby používatelia presne vedeli, čo váš skript robí.
     history_title: "%{script_name} - História verzií"
     history_only_code_changes_info: "Zoznam verzií skriptu, ktorých kód bol aktualizovaný."
     history_all_changes_link: "Zobraziť všetky verzie."
@@ -174,6 +181,7 @@ sk:
     listing_filter_by_site_all_sites: "(Všetky stránky)"
     listing_filter_by_language_label: "Jazyk:"
     listing_filter_by_site_more_sites: "Viac..."
+    listing_filter_by_authorship_label: "Autorstvo:"
     listing_no_scripts: "Nenašli sa žiadne skripty."
     listing_created_feed: "Nové skripty"
     listing_updated_feed: "Aktualizované skripty"
@@ -206,7 +214,7 @@ sk:
     sets_add_inclusion: "Pridať do %{set_name}"
     sets_add_exclusion: "Vylúčiť z %{set_name}"
     sets_add_to_new: "Pridať do novej zbierky"
-    rules_summary_html: "Skript musí byť <strong>správne popísaný</strong>, nemôže byť <strong>zmätočný</strong> alebo <strong>minifikovaný</strong>, musí rešpektovať<strong>autorské právo</strong>, a používať minimálne množstvo <strong>externého kódu</strong>. %{full_rules_link}"
+    rules_summary_html: "Skript musí byť <strong>správne popísaný</strong>, nemôže byť <strong>zmätočný</strong> alebo <strong>minifikovaný</strong>, musí rešpektovať <strong>autorské právo</strong>, a používať minimálne množstvo <strong>externého kódu</strong>. %{full_rules_link}"
     rules_summary_link_to_full: "Prečítajte si plné znenie pravidiel."
     syncing_notice_html: "Tento skript je %{syncing_notice_sync_type}. Každá aktualizácia, ktorú vykonáte v kóde bude prepísaná počas synchronizácie."
     syncing_notice_sync_type_manual: "nastaviť manuálnu synchronizáciu z %{sync_identifier}"
