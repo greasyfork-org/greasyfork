@@ -4,7 +4,7 @@ class ApplicationMailer < ActionMailer::Base
 
   def unsubscribe_for_user(user)
     # Assuming set_locale was called first
-    @unsubscribe_url = notifications_user_url(user, locale: I18n.locale)
+    @unsubscribe_url = notification_settings_user_url(user, locale: I18n.locale)
     headers['List-Unsubscribe'] = "<#{one_click_unsubscribe_url(token: user.generate_token_for(:one_click_unsubscribe))}>"
     headers['List-Unsubscribe-Post'] = 'List-Unsubscribe=One-Click'
   end

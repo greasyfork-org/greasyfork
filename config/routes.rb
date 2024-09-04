@@ -174,8 +174,9 @@ Rails.application.routes.draw do
         end
       end
       member do
-        get :notifications
-        patch :update_notifications
+        get :notifications, to: redirect('/users/%{id}/notification_settings')
+        get :notification_settings
+        patch :update_notification_settings
         patch :unsubscribe_all
         patch :mark_email_as_confirmed
       end

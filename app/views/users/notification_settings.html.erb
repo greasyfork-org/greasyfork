@@ -1,6 +1,6 @@
 <h2><%= t('users.notifications.title') %></h2>
 
-<%= form_with(model: @user, url: update_notifications_user_path(@user), method: :PATCH, data: { turbo: true }) do |f| %>
+<%= form_with(model: @user, url: update_notification_settings_user_path(@user), method: :PATCH, data: { turbo: true }) do |f| %>
   <div class="form-control">
     <%= f.label :author_email_notification_type_id %><br>
     <%= f.radio_button(:author_email_notification_type_id, User::AUTHOR_NOTIFICATION_NONE) %> <%= f.label :author_email_notification_type_id, t('users.author_email_notification_type.none'), class: 'radio-label', value: User::AUTHOR_NOTIFICATION_NONE %><br>

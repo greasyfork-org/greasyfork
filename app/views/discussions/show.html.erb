@@ -136,7 +136,7 @@
         <%= render partial: 'discussions/comment_entry', locals: { f: f } %>
         <% if @script && @script.users.include?(current_user) && current_user.author_email_notification_type_id == User::AUTHOR_NOTIFICATION_COMMENT %>
           <p class="form-note">
-            <%= it('discussions.notifying_on_script', notifications_link: notifications_user_path(current_user)) %>
+            <%= it('discussions.notifying_on_script', notifications_link: notification_settings_user_path(current_user)) %>
           </p>
         <% else %>
           <%= render partial: 'discussions/subscribe', locals: { subscribe: @subscribe} %>

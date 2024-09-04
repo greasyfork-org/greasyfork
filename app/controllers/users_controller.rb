@@ -329,11 +329,11 @@ class UsersController < ApplicationController
     end
   end
 
-  def notifications
+  def notification_settings
     @user = current_user
   end
 
-  def update_notifications
+  def update_notification_settings
     current_user.update!(params.require(:user).permit(:author_email_notification_type_id, :subscribe_on_discussion, :subscribe_on_comment, :subscribe_on_conversation_starter, :subscribe_on_conversation_receiver, :notify_on_mention, :notify_as_reporter, :notify_as_reported))
     current_user.discussion_subscriptions.destroy_all if params[:unsubscribe_all_discussions] == '1'
     flash[:notice] = t('users.notifications.save_success')

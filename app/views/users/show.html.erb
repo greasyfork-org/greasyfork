@@ -36,7 +36,7 @@
         <li><%= link_to t('users.set_up_webhook'), user_webhook_info_path %></li>
         <li><%= link_to t('users.edit'), edit_user_registration_path %></li>
         <li><%= link_to t('users.edit_sign_in'), user_edit_sign_in_path %></li>
-        <li><%= link_to t('users.edit_notifications'), notifications_user_path(@user) %></li>
+        <li><%= link_to t('users.edit_notifications'), notification_settings_user_path(@user) %></li>
         <li><%= link_to t('users.delete_link'), user_delete_info_path %></li>
         <li><%= link_to t('users.sign_out'), destroy_user_session_path, method: :delete %></li>
       </ul>
