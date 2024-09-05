@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_15_234121) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_04_201648) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -137,7 +137,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_15_234121) do
 
   create_table "authors", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.integer "script_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.index ["script_id", "user_id"], name: "index_authors_on_script_id_and_user_id", unique: true
     t.index ["user_id"], name: "fk_rails_46e884287b"
   end
@@ -212,7 +212,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_15_234121) do
 
   create_table "conversation_subscriptions", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.bigint "conversation_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["conversation_id", "user_id"], name: "index_conversation_subscriptions_on_conversation_id_and_user_id", unique: true
@@ -269,7 +269,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_15_234121) do
 
   create_table "discussion_reads", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.bigint "discussion_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "read_at", precision: nil, null: false
     t.index ["discussion_id"], name: "index_discussion_reads_on_discussion_id"
     t.index ["user_id", "discussion_id"], name: "index_discussion_reads_on_user_id_and_discussion_id", unique: true
@@ -277,7 +277,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_15_234121) do
 
   create_table "discussion_subscriptions", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.bigint "discussion_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["discussion_id", "user_id"], name: "index_discussion_subscriptions_on_discussion_id_and_user_id", unique: true
@@ -313,7 +313,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_15_234121) do
   end
 
   create_table "identities", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.string "provider", limit: 20, null: false
     t.string "uid", limit: 100, null: false
     t.string "url", limit: 500
@@ -378,7 +378,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_15_234121) do
   create_table "mentions", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "mentioning_item_type", null: false
     t.bigint "mentioning_item_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.string "text", null: false
     t.index ["mentioning_item_type", "mentioning_item_id", "user_id"], name: "mention_mentioning"
     t.index ["user_id"], name: "fk_rails_1b711e94aa"
@@ -421,7 +421,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_15_234121) do
     t.bigint "item_id", null: false
     t.string "reason", limit: 25, null: false
     t.text "explanation"
-    t.integer "reporter_id"
+    t.bigint "reporter_id"
     t.string "result", limit: 20
     t.string "auto_reporter", limit: 10
     t.string "explanation_markup", limit: 10, default: "html", null: false
@@ -446,7 +446,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_15_234121) do
   end
 
   create_table "roles_users", id: false, charset: "utf8mb3", collation: "utf8mb3_unicode_ci", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.integer "role_id", null: false
     t.index ["role_id"], name: "index_roles_users_on_role_id"
     t.index ["user_id"], name: "index_roles_users_on_user_id"
@@ -487,7 +487,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_15_234121) do
 
   create_table "script_invitations", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.integer "script_id", null: false
-    t.integer "invited_user_id", null: false
+    t.bigint "invited_user_id", null: false
     t.datetime "expires_at", precision: nil, null: false
     t.index ["invited_user_id"], name: "fk_rails_55c05503c1"
     t.index ["script_id"], name: "fk_rails_f52d98b0ef"
@@ -502,23 +502,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_15_234121) do
     t.text "moderator_notes"
     t.index ["report_id"], name: "fk_rails_c92d139641"
     t.index ["script_id"], name: "fk_rails_b37644914a"
-  end
-
-  create_table "script_reports", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
-    t.datetime "created_at", precision: nil, null: false
-    t.integer "script_id", null: false
-    t.integer "reference_script_id"
-    t.text "details", null: false
-    t.text "additional_info"
-    t.text "rebuttal"
-    t.string "report_type", limit: 20, null: false
-    t.integer "reporter_id"
-    t.string "result", limit: 10
-    t.text "moderator_note"
-    t.string "auto_reporter", limit: 10
-    t.index ["reference_script_id"], name: "index_script_reports_on_reference_script_id"
-    t.index ["reporter_id"], name: "fk_rails_8cb0f3e455"
-    t.index ["script_id"], name: "index_script_reports_on_script_id"
   end
 
   create_table "script_set_automatic_set_inclusions", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
@@ -551,7 +534,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_15_234121) do
   end
 
   create_table "script_sets", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.string "name", limit: 100, null: false
     t.text "description", size: :medium, null: false
     t.datetime "created_at", precision: nil
@@ -712,7 +695,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_15_234121) do
     t.index ["script_id", "update_check_date"], name: "index_update_check_counts_on_script_id_and_update_check_date", unique: true
   end
 
-  create_table "users", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+  create_table "users", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "email", limit: 150, default: "", null: false
     t.string "encrypted_password", default: ""
     t.string "reset_password_token", limit: 150
@@ -794,10 +777,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_15_234121) do
   add_foreign_key "discussions", "scripts", on_delete: :cascade
   add_foreign_key "identities", "users", on_delete: :cascade
   add_foreign_key "localized_script_version_attributes", "script_versions", on_delete: :cascade
-  add_foreign_key "mentions", "users"
+  add_foreign_key "mentions", "users", on_delete: :cascade
   add_foreign_key "messages", "conversations", on_delete: :cascade
   add_foreign_key "moderator_actions", "reports", on_delete: :nullify
-  add_foreign_key "moderator_actions", "script_reports", on_delete: :nullify
   add_foreign_key "reports", "users", column: "reporter_id", on_delete: :cascade
   add_foreign_key "roles_users", "users", on_delete: :cascade
   add_foreign_key "screenshots_script_versions", "script_versions", on_delete: :cascade
@@ -806,9 +788,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_15_234121) do
   add_foreign_key "script_invitations", "users", column: "invited_user_id", on_delete: :cascade
   add_foreign_key "script_lock_appeals", "reports", on_delete: :cascade
   add_foreign_key "script_lock_appeals", "scripts", on_delete: :cascade
-  add_foreign_key "script_reports", "scripts", column: "reference_script_id", on_delete: :cascade
-  add_foreign_key "script_reports", "scripts", on_delete: :cascade
-  add_foreign_key "script_reports", "users", column: "reporter_id", on_delete: :nullify
   add_foreign_key "script_sets", "users", on_delete: :cascade
   add_foreign_key "script_similarities", "scripts", column: "other_script_id", on_delete: :cascade
   add_foreign_key "script_similarities", "scripts", on_delete: :cascade
