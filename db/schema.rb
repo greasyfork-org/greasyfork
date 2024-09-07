@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_04_201648) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_05_201335) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -412,6 +412,19 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_04_201648) do
     t.index ["user_id"], name: "index_moderator_actions_on_user_id"
   end
 
+  create_table "notifications", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "item_type", null: false
+    t.bigint "item_id", null: false
+    t.integer "notification_type", null: false
+    t.datetime "created_at", null: false
+    t.datetime "read_at"
+    t.index ["item_type", "item_id"], name: "index_notifications_on_item"
+    t.index ["user_id", "created_at"], name: "index_notifications_on_user_id_and_created_at"
+    t.index ["user_id", "item_type", "item_id"], name: "index_notifications_on_user_id_and_item_type_and_item_id"
+    t.index ["user_id", "read_at"], name: "index_notifications_on_user_id_and_read_at"
+  end
+
   create_table "redirect_service_domains", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "domain", limit: 50, null: false
   end
@@ -695,6 +708,14 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_04_201648) do
     t.index ["script_id", "update_check_date"], name: "index_update_check_counts_on_script_id_and_update_check_date", unique: true
   end
 
+  create_table "user_notification_settings", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "notification_type", null: false
+    t.integer "delivery_type", null: false
+    t.boolean "enabled", null: false
+    t.index ["user_id", "notification_type"], name: "idx_on_user_id_notification_type_a388ca95c5"
+  end
+
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "email", limit: 150, default: "", null: false
     t.string "encrypted_password", default: ""
@@ -780,6 +801,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_04_201648) do
   add_foreign_key "mentions", "users", on_delete: :cascade
   add_foreign_key "messages", "conversations", on_delete: :cascade
   add_foreign_key "moderator_actions", "reports", on_delete: :nullify
+  add_foreign_key "notifications", "users"
   add_foreign_key "reports", "users", column: "reporter_id", on_delete: :cascade
   add_foreign_key "roles_users", "users", on_delete: :cascade
   add_foreign_key "screenshots_script_versions", "script_versions", on_delete: :cascade

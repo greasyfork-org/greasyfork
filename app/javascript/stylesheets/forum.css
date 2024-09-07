@@ -5,11 +5,11 @@
   width: 100%;
   height: 10em;
 }
-.discussion-meta, .comment-meta {
+.discussion-meta, .comment-meta, .notification-meta {
   display: flex;
   align-items: flex-end;
 }
-.discussion-meta {
+.discussion-meta, .notification-meta {
   font-size: 11px;
 }
 .comment-meta {
@@ -23,7 +23,7 @@
 .comment-meta-item + .comment-meta-item {
   margin-left: 15px;
 }
-.discussion-meta-item {
+.discussion-meta-item, .notification-meta-item {
   flex: 1;
   text-align: left;
 }
@@ -64,17 +64,17 @@
 .discussion-rating {
   margin-top: 10px;
 }
-.discussion-list {
+.discussion-list, .notification-list {
   padding-bottom: 0;
 }
-.discussion-list-item {
+.discussion-list-item, .notification-list-item {
   padding-top: 10px;
   border-top: 1px solid #CCC;
 }
 .discussion-list-container:first-child .discussion-list-item {
   border-top: 0;
 }
-.discussion-list-logged-in .discussion-read {
+.discussion-list-logged-in .discussion-read, .notification-read {
   background-color: #F5F5F5;
   margin-left: -16px;
   margin-right: -16px;
@@ -84,7 +84,7 @@
 .script-discussion-list .discussion-list-item:last-child {
   border-bottom: 1px solid #CCC;
 }
-a.discussion-title {
+a.discussion-title, .notification-list-item a {
   display: block;
   text-decoration: none;
   color: black;
@@ -93,10 +93,10 @@ a.discussion-title {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.discussion-title {
+.discussion-title, .notification-list-item a {
   vertical-align: middle;
 }
-.discussion-title:hover {
+.discussion-title:hover, .notification-list-item a {
   color: #333;
 }
 .rating-icon, .badge-deleted {

@@ -962,6 +962,8 @@ en:
         short: Author
         long: Author of this script
     notifications:
+      on_site: On site
+      email: By email
       discussion_defaults:
         title: Forum notifications
         new_discussion: By default, subscribe to any discussions you start
@@ -969,8 +971,12 @@ en:
         mention: Receive a notification when you are mentioned in a discussion
       conversation_defaults:
         title: Conversation notifications
-        starter: By default, subscribe to any conversations you start
-        receiver: By default, subscribe to any conversations involving you that you do not start
+        intro: You will get notifications for conversations you're subscribed to. You can subscribe or unsubscribe to conversations at any time.
+        new_conversation_subscription:
+          self: You start the conversation
+          other: Someone else starts the conversation
+        new_conversation_notification: When someone starts a conversation with you, and you get subscribed per the setting above, get the notification
+        new_message_notification: When a new message is received on an existing conversation you're subscribed to, get the notification
       report_defaults:
         title: Report notifications
         reporter: Get a notification when a report you created is resolved
@@ -983,6 +989,8 @@ en:
       save_success: Your notification preferences have been updated.
       unsubscribe_all: Unsubscribe from all notifications
       unsubscribe_all_success: You have been unsubscribed from all notifications.
+      new_conversation: "%{user} started a conversation with you: %{text}"
+      new_message: "%{user} sent you a message: %{text}"
     account_banned: This account has been banned.
   webhooks:
     info:
