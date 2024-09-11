@@ -147,7 +147,7 @@ a.discussion-title, .notification-list-item a {
   font-size: smaller;
   padding: 0.5em 0;
 }
-.discussion-header, .discussion-list-header {
+.discussion-header, .discussion-list-header, .notification-list-header {
   display: flex;
   margin-top: 30px;
   margin-bottom: 20px;
@@ -155,17 +155,17 @@ a.discussion-title, .notification-list-item a {
 .discussion-header-no-script {
   margin-top: 16px;
 }
-.discussion-header > *:first-child, .discussion-list-header h2 {
+.discussion-header > *:first-child, .discussion-list-header h2, .notification-list-header > *:first-child {
   flex: 1;
   margin: 0 !important;
 }
-.discussion-header h2, .discussion-header .discussion-up-level {
+.discussion-header h2, .discussion-header .discussion-up-level, .notification-list-header h2 {
   margin: 0;
 }
 .discussion-header .badge {
   vertical-align: middle;
 }
-.discussion-actions {
+.discussion-actions, .notification-actions {
   font-size: smaller;
 }
 .discussion-subscribed .discussion-subscribe {

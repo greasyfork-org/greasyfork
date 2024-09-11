@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   include ShowsAds
   include LocalizedRequest
   include Announcement
+  include NotificationDisplay
 
   if Rails.env.test?
     show_announcement key: :test_announcement,

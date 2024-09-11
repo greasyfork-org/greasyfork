@@ -1,3 +1,12 @@
+<div class="notification-list-header">
+  <h2>Notifications</h2>
+  <% if @notification_count > 0 %>
+    <div class="notification-actions">
+      <%= link_to t('discussions.mark_all_read'), mark_all_read_notifications_path(user: current_user), data: { turbo: true, turbo_method: :post } %>
+    </div>
+  <% end %>
+</div>
+
 <% if @notifications.any? %>
   <div class="notification-list">
     <% @notifications.each do |notification| %>
@@ -26,3 +35,5 @@
 <% else %>
   No notifications yet!
 <% end %>
+
+<p><%= link_to 'Manage your notification settings.', notification_settings_user_path(current_user) %></p>

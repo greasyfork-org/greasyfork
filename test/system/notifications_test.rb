@@ -5,6 +5,8 @@ class NotificationsTest < ApplicationSystemTestCase
     user = users(:one)
     login_as(user)
 
+    assert_notification_widget_count(0)
+
     visit notifications_url(user, locale: :en)
     assert_content 'No notifications yet!'
   end
@@ -17,6 +19,7 @@ class NotificationsTest < ApplicationSystemTestCase
 
     visit notifications_url(user, locale: :en)
     assert_content 'Junior J. Junior, Sr. started a conversation with you: This is my message'
+    assert_notification_widget_count(1)
   end
 
   test 'a message notification' do
@@ -27,5 +30,13 @@ class NotificationsTest < ApplicationSystemTestCase
 
     visit notifications_url(user, locale: :en)
     assert_content 'Geoffrey sent you a message: This is my message'
+  end
+
+  def assert_notification_widget_count(count)
+    if count == 0
+      assert_no_selector('.notification-widget')
+    else
+      assert_selector('.notification-widget', text: count)
+    end
   end
 end
