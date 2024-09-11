@@ -23,7 +23,7 @@ class Message < ApplicationRecord
         if first_message?
           Notification.create!(user:, item: conversation, notification_type: Notification::NOTIFICATION_TYPE_NEW_CONVERSATION)
         else
-          Notification.create!(user:, item: self, notification_type: Notification::NOTIFICATION_TYPE_NEW_CONVERSATION)
+          Notification.create!(user:, item: self, notification_type: Notification::NOTIFICATION_TYPE_NEW_MESSAGE)
         end
       end
       if delivery_types.include?(UserNotificationSetting::DELIVERY_TYPE_EMAIL)
