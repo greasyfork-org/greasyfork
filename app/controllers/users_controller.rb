@@ -329,13 +329,24 @@ class UsersController < ApplicationController
     end
   end
 
+  NOTIFICATION_KEYS = [:new_conversation, :new_message].freeze
+
   def notification_settings
     @user = current_user
+    @notification_settings = {}
+    NOTIFICATION_KEYS.each do |notification_key|
+      @notification_settings[notification_key] = UserNotificationSetting.delivery_types_for_user(@user, notification_key)
+    end
   end
 
   def update_notification_settings
-    current_user.update!(params.require(:user).permit(:author_email_notification_type_id, :subscribe_on_discussion, :subscribe_on_comment, :subscribe_on_conversation_starter, :subscribe_on_conversation_receiver, :notify_on_mention, :notify_as_reporter, :notify_as_reported))
-    current_user.discussion_subscriptions.destroy_all if params[:unsubscribe_all_discussions] == '1'
+    User.transaction do
+      current_user.update!(params.require(:user).permit(:author_email_notification_type_id, :subscribe_on_discussion, :subscribe_on_comment, :subscribe_on_conversation_starter, :subscribe_on_conversation_receiver, :notify_on_mention, :notify_as_reporter, :notify_as_reported))
+      NOTIFICATION_KEYS.each do |notification_key|
+        UserNotificationSetting.update_delivery_types_for_user(current_user, notification_key, params.dig(:notification_settings, notification_key) || [])
+      end
+      current_user.discussion_subscriptions.destroy_all if params[:unsubscribe_all_discussions] == '1'
+    end
     flash[:notice] = t('users.notifications.save_success')
     redirect_to user_path(current_user)
   end

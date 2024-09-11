@@ -83,6 +83,9 @@
             <% if current_user.moderator? %>
               <%= render partial: 'layouts/moderator_notices' %>
             <% end %>
+            <% if notification_widget_count %>
+              <%= link_to notification_widget_count, notifications_path(current_user), class: 'notification-widget' %>
+            <% end %>
             <span class="user-profile-link"><%= link_to(current_user.name, current_user) %></span>
             <span class="sign-out-link">[ <%= link_to t('users.sign_out'), destroy_user_session_path, method: :delete %> ]</span>
           <% else %>

@@ -1,0 +1,40 @@
+<div class="notification-list-header">
+  <h2><%= t('users.notifications.list.header') %></h2>
+  <% if @notification_count > 0 %>
+    <div class="notification-actions">
+      <%= link_to t('users.notifications.list.mark_all_read'), mark_all_read_notifications_path(user: current_user), data: { turbo: true, turbo_method: :post } %>
+    </div>
+  <% end %>
+</div>
+
+<% if @notifications.any? %>
+  <div class="notification-list">
+    <% @notifications.each do |notification| %>
+      <div class="notification-list-item notification-<%= notification.read? ? 'read' : 'not-read' %>">
+        <div class="notification-meta">
+          <div class="notification-meta-item">
+            <%= markup_date(notification.created_at) %>
+          </div>
+        </div>
+        <%= link_to notification.path(locale: I18n.locale) do
+              case notification.notification_type.to_sym
+              when Notification::NOTIFICATION_TYPE_NEW_CONVERSATION
+                other_user = notification.item.users.where.not(id: current_user.id).first
+                t('users.notifications.new_conversation', user: render_user(other_user, other_user.id, skip_link: true), text: notification.item.messages.first.plain_text.truncate(200))
+              when Notification::NOTIFICATION_TYPE_NEW_MESSAGE
+                t('users.notifications.new_message', user: render_user(notification.item.poster, notification.item.poster_id, skip_link: true), text: notification.item.plain_text.truncate(200))
+              else
+                raise "Unexpected notification type - #{notification.notification_type}"
+              end
+        end %>
+      </div>
+    <% end %>
+  </div>
+
+  <%= will_paginate(@notifications) %>
+<% else %>
+  <h2><%= t('users.notifications.list.none') %></h2>
+
+<% end %>
+
+<p><%= link_to t('users.notifications.list.edit_settings'), notification_settings_user_path(current_user) %></p>

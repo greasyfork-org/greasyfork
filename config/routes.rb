@@ -174,11 +174,15 @@ Rails.application.routes.draw do
         end
       end
       member do
-        get :notifications, to: redirect('/users/%{id}/notification_settings')
         get :notification_settings
         patch :update_notification_settings
         patch :unsubscribe_all
         patch :mark_email_as_confirmed
+        resources :notifications, only: 'index' do
+          collection do
+            post :mark_all_read
+          end
+        end
       end
     end
 

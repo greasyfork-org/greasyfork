@@ -48,7 +48,7 @@
       <div class="edit-comment-form">
         <%= form_with(model: message, url: user_conversation_message_path(message.poster, message.conversation, message), method: :PATCH) do |f| %>
           <h3><%= t('conversations.edit_message_header') %></h3>
-          <%= render partial: 'message_entry', locals: { f: f } %>
+          <%= render partial: 'conversations/message_entry', locals: { f: f } %>
           <%= f.submit t('conversations.update_message_submit') %>
           <%= f.submit t('discussions.cancel_update_comment'), class: 'cancel-edit-comment', data: { comment_container: "message-#{message.id}" } %>
         <% end %>

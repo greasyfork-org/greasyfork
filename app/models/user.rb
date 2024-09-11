@@ -26,6 +26,7 @@ class User < ApplicationRecord
   has_many :comments, foreign_key: 'poster_id', inverse_of: :poster, dependent: nil
   has_many :discussion_subscriptions, dependent: :destroy
   has_many :mentions_as_target, class_name: 'Mention', dependent: :destroy
+  has_many :user_notification_settings, dependent: :destroy
 
   # Gotta to it this way because you can't pass a parameter to a has_many, and we need it has_many
   # to do eager loading.
