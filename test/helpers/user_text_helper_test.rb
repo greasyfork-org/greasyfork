@@ -37,6 +37,11 @@ class UserTextHelperTest < ActionView::TestCase
     assert_equal '<p>my url is <a href="https://example.com/" rel="nofollow">https://example.com/</a> and <a href="https://example.com/some-path" rel="nofollow">https://example.com/some-path</a>.</p>', format_user_text(text, 'html')
   end
 
+  test 'format_user_text just https:// is not linkified' do
+    text = 'my url is https://'
+    assert_equal '<p>my url is https://</p>', format_user_text(text, 'html')
+  end
+
   test 'format_user_text html no hang on long text' do
     assert_no_error_reported do
       text = Rails.root.join('test/fixtures/files/hamlet.txt').read
