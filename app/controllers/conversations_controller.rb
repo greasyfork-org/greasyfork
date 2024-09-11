@@ -8,6 +8,7 @@ class ConversationsController < ApplicationController
   before_action :ensure_user_current, only: [:new, :create]
   before_action :find_conversation, only: [:show, :subscribe, :unsubscribe]
   before_action :disable_browser_caching!
+  before_action :mark_notifications_read, only: :show
 
   def index
     unless @user == current_user || current_user&.administrator?
@@ -18,8 +19,6 @@ class ConversationsController < ApplicationController
   end
 
   def show
-    Notification.unread.where(user: current_user, item: [@conversation, @conversation.messages]).mark_read!
-
     @messages = @conversation.messages.paginate(page: params[:page], per_page:)
     @message = @conversation.messages.build(poster: current_user, content_markup: current_user&.preferred_markup)
     @subscribe = current_user.subscribed_to_conversation?(@conversation)
@@ -106,6 +105,11 @@ class ConversationsController < ApplicationController
     return if @user == current_user || (Report.unresolved.where(item: @conversation.messages).any? && current_user&.moderator?) || current_user&.administrator?
 
     render_404('You can only view your own conversations.')
+  end
+
+  def mark_notifications_read
+    Notification.unread.where(user: current_user, item: [@conversation, @conversation.messages]).mark_read!
+    load_notification_count
   end
 
   def conversation_params

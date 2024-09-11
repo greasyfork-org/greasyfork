@@ -1,8 +1,8 @@
 <div class="notification-list-header">
-  <h2>Notifications</h2>
+  <h2><%= t('users.notifications.list.header') %></h2>
   <% if @notification_count > 0 %>
     <div class="notification-actions">
-      <%= link_to t('discussions.mark_all_read'), mark_all_read_notifications_path(user: current_user), data: { turbo: true, turbo_method: :post } %>
+      <%= link_to t('users.notifications.list.mark_all_read'), mark_all_read_notifications_path(user: current_user), data: { turbo: true, turbo_method: :post } %>
     </div>
   <% end %>
 </div>
@@ -33,7 +33,8 @@
 
   <%= will_paginate(@notifications) %>
 <% else %>
-  No notifications yet!
+  <h2><%= t('users.notifications.list.none') %></h2>
+
 <% end %>
 
-<p><%= link_to 'Manage your notification settings.', notification_settings_user_path(current_user) %></p>
+<p><%= link_to t('users.notifications.list.edit_settings'), notification_settings_user_path(current_user) %></p>
