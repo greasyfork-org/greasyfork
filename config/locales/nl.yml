@@ -102,6 +102,13 @@ nl:
       compare_button: "Vergelijken"
       compare_must_be_local_url: "Het te vergelijken script moet een url op %{site_name} zijn."
       compare_cleaned_code_unavailable: "De opgemaakte code van de vergelijking is nog niet beschikbaar."
+      checkup:
+        title: Controle
+        intro: 'Dit zijn suggesties voor het verbeteren van je script op %{site_name}. Maar let op: dit zijn geen %{rules_link:regels}; je script wordt niet verwijderd als je je er niet aan houdt.'
+        license_html: Voer een %{license_link:<code>@license</code>} in. Zo weten anderen of ze en hoe ze je code mogen bewerken en verspreiden.
+        globs_html: Gebruik geen globs en reguliere uitdrukkingen in het domeingedeelte van %{include_link:<code>@include</code>} en %{match_link:<code>@match</code>}. Als je dat wel doet, kan %{site_name} je script moeilijk verwerken.
+        globs_used: "Gebruikte includes die geen betrekking hebben op een domein: %{globs}"
+        additional_info: Voeg aanvullende informatie toe, zoals wat het script kan en doet, schermfoto's, etc.
     history_title: "%{script_name} - Versiegeschiedenis"
     history_only_code_changes_info: "Dit zijn versies van het script waarin de code is bijgewerkt."
     history_all_changes_link: "Alle versies tonen."
@@ -175,6 +182,7 @@ nl:
     listing_filter_by_site_all_sites: "(Alle sites)"
     listing_filter_by_language_label: "Taal:"
     listing_filter_by_site_more_sites: "Meer…"
+    listing_filter_by_authorship_label: "Schrijverschap:"
     listing_no_scripts: "Er zijn geen zoekresultaten."
     listing_created_feed: "Nieuwe scripts"
     listing_updated_feed: "Bijgewerkte scripts"

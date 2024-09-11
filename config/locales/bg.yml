@@ -100,6 +100,13 @@ bg:
       compare_button: "Сравни"
       compare_must_be_local_url: "Скриптът за сравняване трябва да бъде на %{site_name}."
       compare_cleaned_code_unavailable: "Все още няма достъпен чист код за сравняване на скриптове."
+      checkup:
+        title: Проверка
+        intro: Това са предложения за подобряване на вашия скрипт на %{site_name}. Това не са %{rules_link:правила}; скриптът ви няма да бъде изтрит ако не ги спазвате.
+        license_html: Изберете %{license_link:<code>@license</code>}. Това ще помогне на потребителите да разберат дали могат да споделят и променят кода.
+        globs_html: Избягвайте употребата на globs и регулярни изрази в домейн частта на %{include_link:<code>@include</code>} и %{match_link:<code>@match</code>}. Те създават трудности на %{site_name} да определи правилно скрипта ви.
+        globs_used: "Използвано е домейн не специфично: %{globs}"
+        additional_info: Включете допълнителна информация - избройте функциите на скрипта, добавете скрийншоти и т.н., така че вашите потребители да знаят точно какво прави скриптът ви.
     history_title: "%{script_name} - История на версиите"
     history_only_code_changes_info: "Има други версии на този скрипт, където кодът е обновен."
     history_all_changes_link: "Покажи всички версии."
@@ -156,6 +163,7 @@ bg:
     listing_description_for_site: "Скриптове, които добавят екстри или отстраняват бъгове за %{site}"
     listing_title_for_search: "'%{search_string}' скриптове"
     listing_title_for_code_search: "'%{search_string}' скриптове"
+    listing_description_for_code_search_html: "Търсене на код за <code>%{search_string}</code>"
     listing_title_generic: "Потребителски скриптове"
     listing_title_for_favorites: "%{set_name} на %{user_name}"
     listing_description_generic: "Скриптове, добавящи екстри и отстраняващи бъгове в сайтовете, които ползвате"
@@ -172,6 +180,7 @@ bg:
     listing_filter_by_site_all_sites: "(Всички сайтове)"
     listing_filter_by_language_label: "Език:"
     listing_filter_by_site_more_sites: "Още..."
+    listing_filter_by_authorship_label: "Авторство:"
     listing_no_scripts: "Няма намерени скриптове."
     listing_created_feed: "Нови скриптове"
     listing_updated_feed: "Обновени скриптове"
@@ -181,6 +190,10 @@ bg:
     listing_language_all: "Всички"
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
+    listing_author:
+      all: Всички автори
+      me: Моите скриптове
+      user: Скриптове от %{author_name}
     search_failed: Нещо се обърка докато зареждахме резултатите. Някаква фунционалност на търсенето може да не работи. Известени сме за проблема.
     import: "Импортиране на скриптове"
     new: "Публикувай написан от теб скрипт"
