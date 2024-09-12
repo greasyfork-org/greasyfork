@@ -558,7 +558,8 @@ ja:
     edit_sign_in: "ログイン方法の設定"
     edit_sign_in_title: "ログインに利用するアカウントの設定"
     edit_sign_in_password: "パスワードの設定"
-    edit_notifications: "通知設定"
+    edit_notifications: "通知の設定を編集"
+    view_notifications: "通知を表示"
     no_password_set_info: "パスワードを設定すると、メールアドレスとここで設定したパスワードでログインできるようになります。"
     set_password: "設定"
     update_password: "更新"
@@ -657,6 +658,8 @@ ja:
         short: 作者
         long: このスクリプトの作者
     notifications:
+      on_site: サイト上で通知
+      email: 電子メールで通知
       discussion_defaults:
         title: 掲示板の通知
         new_discussion: 既定では、あなたが作成した議論を購読
@@ -664,8 +667,12 @@ ja:
         mention: 議論で言及されたら通知を受け取る
       conversation_defaults:
         title: 会話の通知
-        starter: 既定では、あなたが開始した会話を通知する
-        receiver: 既定では、あなたに言及する会話を通知する
+        intro: 購読中の会話の通知を受信します。いつでも登録および解除できます。
+        new_conversation_subscription:
+          self: 自分が始めた会話
+          other: 他人が始めた会話
+        new_conversation_notification: 誰かがあなたと会話を始めたら、上記の購読の設定に従って通知を受信します。
+        new_message_notification: 購読中の既存の会話に新しいメッセージが届いたら、通知を受信する。
       report_defaults:
         title: 報告の通知
         reporter: あなたが作成した報告が解決されたら通知
@@ -677,6 +684,13 @@ ja:
       save_success: 通知設定を更新しました。
       unsubscribe_all: すべての通知を解除
       unsubscribe_all_success: すべての通知を解除しました。
+      new_conversation: "%{user} が会話を開始しました: %{text}"
+      new_message: "%{user} がメッセージを送信: %{text}"
+      list:
+        header: 通知
+        none: まだ通知がありません！
+        edit_settings: 通知を設定する
+        mark_all_read: すべて既読にする
     account_banned: このアカウントはアクセス禁止になりました。
   webhooks:
     info:

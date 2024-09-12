@@ -581,7 +581,8 @@ sk:
     edit_sign_in: "Zmeniť spôsob prihlasovania"
     edit_sign_in_title: "Zmeniť spôsob prihlasovania"
     edit_sign_in_password: "Heslo"
-    edit_notifications: "Upraviť upozornenia"
+    edit_notifications: "Upraviť nastavenia upozornení"
+    view_notifications: "Zobraziť upozornenia"
     no_password_set_info: "Váš účet nepoužíva heslo."
     set_password: "Nastaviť heslo"
     update_password: "Aktualizovať heslo"
@@ -698,6 +699,8 @@ sk:
         short: Autor
         long: Autor tohto skriptu
     notifications:
+      on_site: Na stráne
+      email: E-mailom
       discussion_defaults:
         title: Upozornenia na fóre
         new_discussion: Predvolene, prihlásiť do každej diskusie, ktorú som začal
@@ -705,8 +708,12 @@ sk:
         mention: Dostávať upozornenie, keď sa o vás niekto zmieni v diskusii
       conversation_defaults:
         title: Upozornenia na konverzácie
-        starter: Predvolene, prihlásiť k odberu konverzácie, ktoré som začal/a
-        receiver: Predvolene, prihlásiť k odberu konverzácie, do ktorých som sa zapojil/a a nezačal/a som ich
+        intro: Budete dostávať upozornenia na konverzácie, ku ktorým ste prihlásení. Odber konverzácií môžete kedykoľvek zrušiť.
+        new_conversation_subscription:
+          self: Začali ste konverzáciu
+          other: Niekto iný začal konverzáciu
+        new_conversation_notification: Keď s vami niekto začne konverzáciu a vy sa prihlásite na odber podľa vyššie uvedeného nastavenia, dostanete upozornenie
+        new_message_notification: Pri prijatí novej správy v existujúcej konverzácii, ku ktorej ste prihlásení, dostanete upozornenie
       report_defaults:
         title: Upozornenia o hláseniach
         reporter: Dostávať upozornenie, keď bude hlásenie, ktoré ste vytvorili, vyriešené
@@ -721,6 +728,13 @@ sk:
       save_success: Vaše nastavenia upozornení boli aktualizované.
       unsubscribe_all: Odhlásiť zo všetkých upozornení
       unsubscribe_all_success: Odhlásili ste sa zo všetkých upozornení.
+      new_conversation: "používateľ %{user} začal s vami konverzáciu: %{text}"
+      new_message: "používateľ %{user} vám poslal správu: %{text}"
+      list:
+        header: Upozornenia
+        none: Zatiaľ žiadne upozornenia!
+        edit_settings: Spravujte nastavenia upozornení.
+        mark_all_read: Označiť všetko ako prečítané
     account_banned: Tento účet bol zablokovaný.
   webhooks:
     info:

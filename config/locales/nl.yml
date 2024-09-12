@@ -575,7 +575,8 @@ nl:
     edit_sign_in: "Inlogmethodes bewerken"
     edit_sign_in_title: "Inlogmethodes bewerken"
     edit_sign_in_password: "Wachtwoord"
-    edit_notifications: "Meldingen aanpassen"
+    edit_notifications: "Meldingsinstellingen aanpassen"
+    view_notifications: "Meldingen bekijken"
     no_password_set_info: "Je account is niet beveiligd met een wachtwoord."
     set_password: "Wachtwoord instellen"
     update_password: "Wachtwoord bijwerken"
@@ -680,6 +681,8 @@ nl:
         short: Maker
         long: Maker van dit script
     notifications:
+      on_site: Op website
+      email: Via e-mail
       discussion_defaults:
         title: Forummeldingen
         new_discussion: Altijd abonneren op eigen discussies
@@ -687,8 +690,12 @@ nl:
         mention: Melding tonen als anderen mij vermelden
       conversation_defaults:
         title: Gespreksmeldingen
-        starter: Altijd abonneren op eigen gesprekken
-        receiver: Altijd abonneren op gesprekken waaraan ik deelneem
+        intro: Je ontvangt meldingen als je je abonneert op gesprekken. Je kunt je hier te allen tijde voor afmelden.
+        new_conversation_subscription:
+          self: Als ik een gesprek start
+          other: Als iemand anders een gesprek start
+        new_conversation_notification: Als iemand een gesprek met je start, ontvang je een melding op basis van bovenstaande instelling.
+        new_message_notification: Als er een reactie is in een gesprek waar je reeds op geabonneerd was, ontvang je een melding.
       report_defaults:
         title: Rapportagemeldingen
         reporter: Melding tonen als een door jou gemeld script is nagekeken
@@ -701,6 +708,13 @@ nl:
       save_success: Je meldingsinstellingen zijn bijgewerkt.
       unsubscribe_all: Geen meldingen tonen
       unsubscribe_all_success: Er worden geen meldingen meer getoond.
+      new_conversation: "%{user} heeft een gesprek met je gestart: %{text}"
+      new_message: "%{user} heeft je een bericht gestuurd: %{text}"
+      list:
+        header: Meldingen
+        none: Er zijn nog geen meldingen.
+        edit_settings: Beheer je meldingsinstellingen.
+        mark_all_read: Alles als gelezen markeren
     account_banned: Je account is verbannen.
   webhooks:
     info:
