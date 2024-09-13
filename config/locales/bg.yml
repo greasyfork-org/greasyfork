@@ -571,6 +571,8 @@ bg:
     edit_sign_in: "Промяна на начините за вход"
     edit_sign_in_title: "Промяна на начините за вход"
     edit_sign_in_password: "Парола"
+    edit_notifications: "Промени настройките за известия"
+    view_notifications: "Виж известията"
     no_password_set_info: "Вашият профил не е конфигуриран с парола."
     set_password: "Сложете парола"
     update_password: "Обновете паролата"
@@ -675,6 +677,8 @@ bg:
         short: Автор
         long: Автор на скрипта
     notifications:
+      on_site: На сайта
+      email: По имейл
       discussion_defaults:
         title: Известия от форума
         new_discussion: По подразбиране, абонирай се за всички започнати от теб дискусии
@@ -682,6 +686,12 @@ bg:
         mention: 'Получаване на известие когато някой Ви спомене в дискусия. '
       conversation_defaults:
         title: Известия за разговори
+        intro: Ще получите известия за разговорите, за които сте абонирани. Можете да се абонирате/отпишете по всяко време.
+        new_conversation_subscription:
+          self: Вие започнахте диалога
+          other: Някой друг започна диалога
+        new_conversation_notification: Когато някой започне разговор с вас и вие се абонирате според настройките по-горе, получете известия
+        new_message_notification: Когато се получи ново съобщение на съществуваща дискусия, за която сте абонирани, получавате известие
       report_defaults:
         title: Известия за доклади
         reporter: Получавай известия, когато има развръзка по изпратен доклад
@@ -694,6 +704,13 @@ bg:
       save_success: Настройките за известията бяха обновени.
       unsubscribe_all: Отпиши се от всички известия
       unsubscribe_all_success: Отписа се от всички известия.
+      new_conversation: "%{user} започна разговор с вас: %{text}"
+      new_message: "%{user} ви изпрати съобщение: %{text}"
+      list:
+        header: Известия
+        none: Все още няма известия!
+        edit_settings: Променете настройките за известия.
+        mark_all_read: Маркитай като прочетени
     account_banned: Акаунтът е блокиран.
   webhooks:
     info:

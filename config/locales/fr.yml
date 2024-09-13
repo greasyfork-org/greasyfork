@@ -579,6 +579,8 @@ fr:
     edit_sign_in: "Modifier mes méthodes d'identification"
     edit_sign_in_title: "Modifier mes méthodes d'identification"
     edit_sign_in_password: "Mot de passe"
+    edit_notifications: "Modifier les paramètres de notification"
+    view_notifications: "Afficher les notifications"
     no_password_set_info: "Votre compte n'est pas configuré avec un mot de passe."
     set_password: "Choisir un mot de passe"
     update_password: "Mettre à jour le mot de passe"
@@ -689,6 +691,8 @@ fr:
         short: Auteur
         long: Auteur de ce script
     notifications:
+      on_site: Sur le site
+      email: Par email
       discussion_defaults:
         title: Notifications du forum
         new_discussion: Par défaut, abonnez-vous à toutes les discussions que vous démarrez
@@ -696,6 +700,12 @@ fr:
         mention: Recevez une notification lorsque vous êtes mentionné dans une discussion
       conversation_defaults:
         title: Notifications des conversations
+        intro: Vous recevrez des notifications pour les conversations auxquelles vous êtes abonné. Vous pouvez vous abonner ou vous désabonner aux conversations à tout moment.
+        new_conversation_subscription:
+          self: Vous démarrez la conversation
+          other: Quelqu'un d'autre démarre la conversation
+        new_conversation_notification: Lorsque quelqu'un démarre une conversation avec vous et que vous êtes abonné selon le paramètre ci-dessus, vous recevrez la notification
+        new_message_notification: Lorsqu'un nouveau message est reçu sur une conversation existante à laquelle vous êtes abonné, vous recevrez la notification
       report_defaults:
         title: Signaler des notifications
         reporter: Recevoir une notification lorsqu'un rapport que vous avez créé est résolu
@@ -709,6 +719,13 @@ fr:
       save_success: Vos préférences de notification ont été mises à jour.
       unsubscribe_all: Se désabonner de toutes les notifications
       unsubscribe_all_success: Vous avez été désabonné de toutes les notifications.
+      new_conversation: "%{user} a commencé une conversation avec vous: %{text}"
+      new_message: "%{user} vous a envoyé un message: %{text}"
+      list:
+        header: Notifications
+        none: Aucune notification pour le moment!
+        edit_settings: Gérez vos paramètres de notification.
+        mark_all_read: Marquer comme tous lus
     account_banned: Ce compte a été banni.
   webhooks:
     info:
