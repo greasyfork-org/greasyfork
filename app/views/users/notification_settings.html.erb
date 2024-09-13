@@ -52,24 +52,27 @@
     </div>
 
     <%= label_tag t('users.notifications.conversation_defaults.new_conversation_notification') %>
-    <%= render partial: 'notification_setting_checkboxes', locals: { current_settings: @notification_settings, notification_type: :new_conversation } %>
+    <%= render partial: 'notification_setting_checkboxes', locals: { current_settings: @notification_settings, notification_type: Notification::NOTIFICATION_TYPE_NEW_CONVERSATION } %>
 
     <%= label_tag t('users.notifications.conversation_defaults.new_message_notification') %>
-    <%= render partial: 'notification_setting_checkboxes', locals: { current_settings: @notification_settings, notification_type: :new_message } %>
+    <%= render partial: 'notification_setting_checkboxes', locals: { current_settings: @notification_settings, notification_type: Notification::NOTIFICATION_TYPE_NEW_MESSAGE } %>
   </div>
 
   <hr>
 
   <div class="form-control">
     <h3><%= t('users.notifications.report_defaults.title') %></h3>
-    <div>
-      <%= f.check_box :notify_as_reporter %>
-      <%= f.label :notify_as_reporter, t('users.notifications.report_defaults.reporter'), class: 'radio-label' %>
-    </div>
-    <div>
-      <%= f.check_box :notify_as_reported %>
-      <%= f.label :notify_as_reported, t('users.notifications.report_defaults.reported'), class: 'radio-label' %>
-    </div>
+
+    <p><%= t('users.notifications.report_defaults.intro', site_name:) %></p>
+
+    <%= label_tag t('users.notifications.report_defaults.as_reporter') %>
+    <%= render partial: 'notification_setting_checkboxes', locals: { current_settings: @notification_settings, notification_type: Notification::NOTIFICATION_TYPE_REPORT_RESOLVED_REPORTER } %>
+
+    <%= label_tag t('users.notifications.report_defaults.as_reported_filed') %>
+    <%= render partial: 'notification_setting_checkboxes', locals: { current_settings: @notification_settings, notification_type: Notification::NOTIFICATION_TYPE_REPORT_FILED_REPORTED } %>
+
+    <%= label_tag t('users.notifications.report_defaults.as_reported_resolved') %>
+    <%= render partial: 'notification_setting_checkboxes', locals: { current_settings: @notification_settings, notification_type: Notification::NOTIFICATION_TYPE_REPORT_RESOLVED_REPORTED } %>
   </div>
 
   <hr>

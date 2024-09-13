@@ -4,15 +4,34 @@ module ReportHelper
     when User
       render_user(report.item, report.item_id, skip_badge: true)
     when Discussion
-      "Discussion #{link_to(report.item.display_title(locale: :en), report.item.path)} by #{render_user(report.item.poster, report.item.poster_id, skip_badge: true)}".html_safe
+      t('reports.report_item.discussion', title: link_to(report.item.display_title(locale: :en), report.item.path), user: render_user(report.item.poster, report.item.poster_id, skip_badge: true)).html_safe
     when Comment
-      "#{link_to('A comment', report.item.path)} by #{render_user(report.item.poster, report.item.poster_id, skip_badge: true)}".html_safe
+      t('reports.report_item.comment', comment: link_to(t('reports.report_item.comment_description', discussion_title: report.item.discussion.display_title(locale: :en)), report.item.path), user: render_user(report.item.poster, report.item.poster_id, skip_badge: true)).html_safe
     when Message
-      "A message by #{render_user(report.item.poster, report.item.poster_id, skip_badge: true)}".html_safe
+      t('reports.report_item.message', user: render_user(report.item.poster, report.item.poster_id, skip_badge: true)).html_safe
     when Script
       render_script(report.item)
     when nil
-      "Deleted #{report.item_type} #{report.item_id}"
+      t('reports.report_item.deleted', type: report.item_type, id: report.item_id)
+    else
+      raise 'Unknown type'
+    end
+  end
+
+  def report_item_text(report)
+    case report.item
+    when User
+      render_user(report.item, report.item_id, skip_badge: true, skip_link: true)
+    when Discussion
+      t('reports.report_item.discussion', title: report.item.display_title(locale: :en), user: render_user(report.item.poster, report.item.poster_id, skip_badge: true, skip_link: true))
+    when Comment
+      t('reports.report_item.comment', comment: t('reports.report_item.comment_description', discussion_title: report.item.discussion.display_title(locale: :en)), user: render_user(report.item.poster, report.item.poster_id, skip_badge: true, skip_link: true))
+    when Message
+      t('reports.report_item.message', user: render_user(report.item.poster, report.item.poster_id, skip_badge: true, skip_link: true))
+    when Script
+      render_script(report.item, skip_link: true)
+    when nil
+      t('reports.report_item.deleted', type: report.item_type, id: report.item_id)
     else
       raise 'Unknown type'
     end

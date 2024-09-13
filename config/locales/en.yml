@@ -979,9 +979,11 @@ en:
         new_conversation_notification: When someone starts a conversation with you, and you get subscribed per the setting above, get the notification
         new_message_notification: When a new message is received on an existing conversation you're subscribed to, get the notification
       report_defaults:
+        intro: Reports are created by users to flag content that is against %{site_name}'s rules. Moderators will review the report and remove the content if necessary.
         title: Report notifications
-        reporter: Get a notification when a report you created is resolved
-        reported: Get a notification when a report against things you post is created or resolved
+        as_reporter: When a report you created is resolved, get the notification
+        as_reported_filed: When a report is filed against an item you posted, get the notification
+        as_reported_resolved: When a report filed against an item you posted is resolved, get the notification
       save_button: Update notification settings
       title: Notifications
       current_discussion_subscriptions:
@@ -992,6 +994,15 @@ en:
       unsubscribe_all_success: You have been unsubscribed from all notifications.
       new_conversation: "%{user} started a conversation with you: %{text}"
       new_message: "%{user} sent you a message: %{text}"
+      report_resolved_reporter:
+        dismissed: Your report against %{item} was dismissed by a moderator.
+        fixed: Your report against %{item} resulted in some changes and a moderator marked the issue as having been resolved.
+        upheld: Your report against %{item} was upheld by a moderator.
+      report_filed_reported: A report was filed against %{item}.
+      report_resolved_reported:
+        dismissed: A report against %{item} was dismissed by a moderator.
+        fixed: A report against %{item} resulted in some changes and a moderator marked the issue as having been resolved.
+        upheld: A report against %{item} was upheld by a moderator.
       list:
         header: Notifications
         none: No notifications yet!
@@ -1407,6 +1418,12 @@ en:
     reported_temporarily_blocked: "Due to recent reports on this item being dismissed by a moderator, further reports on it are blocked until %{date}."
     already_reported_by_reporter: "You have already %{report_link:recently reported} this item."
     already_reported_same_type: "There is already a %{report_link:similar pending report} on this item."
+    report_item:
+      discussion: "Discussion %{title} by %{user}"
+      comment: "%{comment} by %{user}"
+      comment_description: "A comment on %{discussion_title}"
+      message: "A message by %{user}"
+      deleted: "Deleted %{type} #%{id}"
   appeals:
     new:
       title: New script delete appeal

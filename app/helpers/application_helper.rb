@@ -104,12 +104,4 @@ module ApplicationHelper
       <noscript><link rel="stylesheet" href="#{h url}"></noscript>
     HTML
   end
-
-  def notification_widget_count
-    return nil unless @notification_count
-    return nil if @notification_count == 0
-    return '+' if @notification_count > 9
-
-    @notification_count
-  end
 end

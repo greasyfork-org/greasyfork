@@ -409,6 +409,9 @@ class User < ApplicationRecord
       notify_as_reporter: false,
       notify_as_reported: false
     )
+    UsersController::NOTIFICATION_KEYS.each do |notification_type|
+      UserNotificationSetting.update_delivery_types_for_user(self, notification_type, [])
+    end
     discussion_subscriptions.destroy_all
   end
 

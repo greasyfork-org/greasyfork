@@ -248,4 +248,8 @@ class Report < ApplicationRecord
   def url(locale: nil)
     Rails.application.routes.url_helpers.report_url(self, locale:)
   end
+
+  def path(locale: nil)
+    Rails.application.routes.url_helpers.report_path(self, locale:)
+  end
 end

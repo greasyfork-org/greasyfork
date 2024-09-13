@@ -72,7 +72,7 @@ module Conversations
       assert_nil mail
     end
 
-    test "no notifications on start to the other user when notifications are disabled" do
+    test 'no notifications on start to the other user when notifications are disabled' do
       ActionMailer::Base.deliveries.clear
       user = User.first
       to_user = users(:junior)
@@ -97,7 +97,7 @@ module Conversations
 
       logout
 
-      assert_difference -> { Notification.where(user: user).count } => 1 do
+      assert_difference -> { Notification.where(user:).count } => 1 do
         reply(to_user, Conversation.last)
       end
 
@@ -107,7 +107,7 @@ module Conversations
 
       logout
       login_as(user)
-      assert_difference -> { Notification.unread.where(user: user).count } => -1 do
+      assert_difference -> { Notification.unread.where(user:).count } => -1 do
         visit user_conversation_url(user, Conversation.last, locale: :en)
       end
     end
@@ -155,7 +155,7 @@ module Conversations
 
       logout
 
-      assert_difference -> { Notification.where(user: user).count } => 0 do
+      assert_difference -> { Notification.where(user:).count } => 0 do
         reply(to_user, Conversation.last)
       end
 

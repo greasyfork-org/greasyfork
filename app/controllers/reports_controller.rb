@@ -2,6 +2,8 @@ class ReportsController < ApplicationController
   before_action :check_read_only_mode, except: [:index, :show, :diff]
   before_action :authenticate_user!, except: :show
   before_action :moderators_only, only: [:index, :dismiss]
+  before_action :load_report, only: :show
+  before_action :mark_notifications_read, only: :show
 
   before_action do
     @bots = 'noindex'
@@ -34,7 +36,6 @@ class ReportsController < ApplicationController
   end
 
   def show
-    @report = Report.find(params[:id])
     @bots = 'noindex'
     render_404 unless @report.item
   end
@@ -78,7 +79,7 @@ class ReportsController < ApplicationController
     end
 
     if @report.item.is_a?(Script)
-      UserEmailService.notify_authors_for_report(@report) do |user, locale|
+      UserNotificationService.notify_authors_for_report_filed(@report) do |user, locale|
         ScriptReportMailer.report_created(@report, user, locale, site_name).deliver_later
       end
     end
@@ -91,10 +92,10 @@ class ReportsController < ApplicationController
 
     @report.dismiss!(moderator: current_user, moderator_notes: params[:moderator_notes].presence)
     if @report.item.is_a?(Script) && !@report.auto_reporter
-      UserEmailService.notify_authors_for_report(@report) do |user, locale|
+      UserNotificationService.notify_authors_for_report_resolved(@report) do |user, locale|
         ScriptReportMailer.report_dismissed_offender(@report, user, locale, site_name).deliver_later
       end
-      UserEmailService.notify_reporter(@report) do |user, locale|
+      UserNotificationService.notify_reporter(@report) do |user, locale|
         ScriptReportMailer.report_dismissed_reporter(@report, user, locale, site_name).deliver_later
       end
     end
@@ -112,10 +113,10 @@ class ReportsController < ApplicationController
 
     @report.fixed!(moderator: current_user, moderator_notes: params[:moderator_notes].presence)
     if @report.item.is_a?(Script) && !@report.auto_reporter
-      UserEmailService.notify_authors_for_report(@report) do |user, locale|
+      UserNotificationService.notify_authors_for_report_resolved(@report) do |user, locale|
         ScriptReportMailer.report_fixed_offender(@report, user, locale, site_name).deliver_later
       end
-      UserEmailService.notify_reporter(@report) do |user, locale|
+      UserNotificationService.notify_reporter(@report) do |user, locale|
         ScriptReportMailer.report_fixed_reporter(@report, user, locale, site_name).deliver_later
       end
     end
@@ -159,12 +160,12 @@ class ReportsController < ApplicationController
     end
 
     if @report.item.is_a?(Script) && !@report.auto_reporter
-      UserEmailService.notify_authors_for_report(@report) do |user, locale|
+      UserNotificationService.notify_authors_for_report_resolved(@report) do |user, locale|
         ScriptReportMailer.report_upheld_offender(@report, user, locale, site_name).deliver_later
       end
 
       unless user_is_script_author
-        UserEmailService.notify_reporter(@report) do |user, locale|
+        UserNotificationService.notify_reporter(@report) do |user, locale|
           ScriptReportMailer.report_upheld_reporter(@report, user_is_script_author, user, locale, site_name).deliver_later
         end
       end
@@ -188,7 +189,7 @@ class ReportsController < ApplicationController
 
     if rebuttal.present?
       @report.rebut!(rebuttal:, by: current_user)
-      UserEmailService.notify_reporter(@report) do |user, locale|
+      UserNotificationService.notify_reporter(@report) do |user, locale|
         ScriptReportMailer.report_rebutted(@report, user, locale, site_name).deliver_later
       end
     end
@@ -268,5 +269,14 @@ class ReportsController < ApplicationController
   def item_reporting_blocked_until
     recent_reports = Report.resolved.where(item:, created_at: 1.week.ago..).order(:created_at)
     recent_reports.first.created_at + 1.week if recent_reports.count(&:dismissed?) == 5
+  end
+
+  def load_report
+    @report = Report.find(params[:id])
+  end
+
+  def mark_notifications_read
+    Notification.unread.where(user: current_user, item: @report).mark_read!
+    load_notification_count
   end
 end

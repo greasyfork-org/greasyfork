@@ -14,6 +14,6 @@ class ApplicationMailer < ActionMailer::Base
   end
 
   def set_locale_for_user(user, backup_locale: nil)
-    set_locale(UserEmailService.locale_for(user, backup_locale:))
+    set_locale(UserNotificationService.locale_for(user, backup_locale:))
   end
 end
