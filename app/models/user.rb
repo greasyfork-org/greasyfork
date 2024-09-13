@@ -3,6 +3,8 @@ require 'devise'
 require 'digest'
 
 class User < ApplicationRecord
+  self.ignored_columns += %w[notify_as_reporter notify_as_reported]
+
   include MentionsUsers
   include UserIndexing
 
@@ -405,9 +407,7 @@ class User < ApplicationRecord
       subscribe_on_comment: false,
       subscribe_on_conversation_starter: false,
       subscribe_on_conversation_receiver: false,
-      notify_on_mention: false,
-      notify_as_reporter: false,
-      notify_as_reported: false
+      notify_on_mention: false
     )
     UsersController::NOTIFICATION_KEYS.each do |notification_type|
       UserNotificationSetting.update_delivery_types_for_user(self, notification_type, [])
