@@ -1,0 +1,151 @@
+es_419:
+  layouts:
+    application:
+      script_list: "Scripts"
+      forum: "Foro"
+      help: "Ayuda"
+      sign_in: "Iniciar sesión"
+      submenu: "Más"
+      advanced_search: "Búsqueda avanzada"
+      user_list: "Lista de usuarios"
+      libraries: "Bibliotecas"
+      moderator_log: "Registro del moderador"
+  scripts:
+    created_date: "Creado"
+    updated_date: "Actualizado"
+    total_installs: "Instalaciones totales"
+    daily_installs: "Instalaciones diarias"
+    ratings: "Valoraciones"
+    author_name: "Autor"
+    version_number: "Versión"
+    license: "Licencia"
+    no_license: "N/D"
+    compatibility: "Compatibilidad"
+    compatible_with_browser: "Compatible con %{browser}"
+    incompatible_with_browser: "Incompatible con %{browser}"
+    applies_to: "Se aplica a"
+    applies_to_all: "Todos los sitios"
+    install: "Instalar script"
+    install_css: "Instalar como estilo de usuario"
+    install_help: "?"
+    install_help_title: "Cómo instalarlo"
+    update: "Actualizar a la versión %{version}"
+    downgrade: "Degradar a la versión %{version}"
+    reinstall: "Reinstalar versión %{version}"
+    old_version_warning: "Esta no es la versión mas reciente del script. Si la instalas, nunca se actualizará a una versión más nueva. ¿Quieres instalarla de todos modos?"
+    promoted: "Script destacado"
+    author_promoted: "Script recomendado por el autor"
+    promoted_text_html: "Puede que también te guste %{script_link}."
+    library_instructions_html: "Este script no debería instalarse directamente. Es una biblioteca que utilizan otros scripts mediante la meta-directiva de inclusión %{code}"
+    deleted_notice: "Este script ha sido eliminado."
+    deleted_notice_with_reason: "Este script ha sido eliminado debido a %{report_link:this report}."
+    deleted_notice_with_related: "El script que buscabas ha sido eliminado, pero aquí hay algunos scripts relacionados"
+    deleted_notice_with_related_and_reason: "El script que buscabas ha sido eliminado debido a %{report_link:this report}, pero aquí hay algunos scripts relacionados."
+    deleted_undelete_notice_html: "Un moderador ha bloqueado este script y no se puede restaurar. La razón es la siguiente: \"<i>%{delete_reason}</i>\"."
+    deleted_locked_author_notice_html: "Un moderador ha borrado este script y ya no es visible para el resto de usuarios. La razón es la siguiente: «<i>%{delete_reason}</i>». Revisa las %{code_rules_link:reglas de %{site_name}} para que no tengas más problemas de este tipo en el futuro. Puedes %{appeal_link:pedir que lo revisen otra vez} y darle otra oportunidad. No intentes volver a subirlo tal cual porque te pueden echar de %{site_name}."
+    self_deleted_locked_author_notice_html: "Has borrado este script %{report_link:debido a esta denuncia} y ya no es visible para el resto de usuarios. Revisa las %{code_rules_link:reglas de %{site_name}} para que no tengas más problemas de este tipo en el futuro. Puedes %{appeal_link:pedir que lo revisen otra vez} y darle otra oportunidad. No intentes volver a subirlo tal cual porque te pueden echar de %{site_name}."
+    deleted_author_notice: "Este escript ha sido eliminado y ya no es visible para el resto de usuarios. Puedes restaurarlo desde la pestaña de borrados."
+    version_notice_html: "En fecha %{date}. Consulte %{latest_version_link}."
+    version_notice_latest_version_link: "Versión más reciente."
+    reported_notice: "\"%{script_name}\" ha sido reportado y su revisión esta pendiente por un moderador."
+    reported_notice_for_author: "Este script no esta disponible para el resto de usuarios hasta que sea revisado por un moderador."
+    info_page: "Info"
+    code_page: "Código"
+    history_page: "Historial"
+    feedback_page: "Comentarios (%{count})"
+    stats_page: "Estadísticas"
+    derivatives_page: "Scripts derivados "
+    update_page: "Actualizar"
+    delete_page: "Eliminar"
+    delete_explanation: "Eliminar tu script lo hace inaccesible para todos excepto para ti y a los moderadores de Greasy Fork. Pero puedes restaurarlo en cualquier momento."
+    delete_update_behaviour: "¿Qué te gustaría que pasara con los usuarios que ya han instalado tu script?"
+    delete_update_behaviours:
+      keep: "Nada. Dejarlos tal cual."
+      blanked: "La próxima vez que los usuarios actualicen recibirán un script en blanco. Útil cuando el script tiene efectos adversos en sus respectivos sitios."
+      redirect: "La próxima vez que actualicen el script se sustituirá por el de más abajo."
+    delete_permanently_heading: "Eliminación permanente"
+    delete_permanently_explanation_html: >-
+        <p>Borrar de forma permanente tu script hará que se elimine todo el código
+        e información relacionada, exceptuando conversaciones del foro y el registro
+        con las acciones de moderación.</p> <p>Tu script se borrará pasados siete
+        (7) días desde la fecha de petición de borrado. Si te arrepientes, puedes
+        cancelar el borrado en el transcurso de esos siete días. Si no lo haces, nadie,
+        ni siquiera los moderadores, podrá restaurar tu script.</p>
+    delete_permanently_confirm: "¿Seguro que quieres eliminar de forma permanente tu script?"
+    delete_permanently_submit: "Solicitar eliminación permanente"
+    delete_permanently_immediate_submit: "Este script ha sido borrado permanentemente."
+    delete_permanently_notice: "Se ha registrado la solicitud de borrado permanente, por lo que el script se eliminará pasados siete (7) días desde la fecha actual."
+    delete_permanently_already_requested: "Solicitaste la eliminación permanente, %{datetime}."
+    delete_permanently_notice_immediate: "Este script ha sido eliminado permanentemente."
+    cancel_delete_permanently_submit: "Cancelar solicitud de eliminación permanente"
+    cancel_delete_permanently_notice: "Se ha cancelado tu solicitud de eliminación permanente, pero los demás todavía no pueden ver tu script."
+    delete_permanently_rejected_locked: "Este script está bloqueado y no se puede eliminar de forma permanentemente"
+    admin_page: "Administrador"
+    admin:
+      title: "Administrar - %{script_name}"
+      promoted_heading: "Script destacado"
+      promoted_explanation: "%{site_name} puede sugerir al usuario otro script interesante una vez se haya pulsado en «instalar»."
+      promoted_script_label: "Dirección URL del script a destacar"
+      promoted_submit: "Destacar script"
+      sync_heading: "Sincronizar código"
+      locale_heading: "configuración regional por defecto"
+      locale_example_html: "Regionalización de este texto: <i>%{text}</i>"
+      locale_multiple_note: "Ten en cuenta que %{meta_keys_link:puedes utilizar varios idiomas en un mismo script}."
+      update_locale: "Actualizar regionalización"
+      no_moderator_logs: "No se ha tomado ninguna decisión por parte de los moderadores sobre este script."
+      compare_title: "Comparar con otro script"
+      compare_to: "Scripts de usuario en %{site_name} que comparar con (URL)"
+      compare_button: "Comparar"
+      compare_must_be_local_url: "El script a comparar debe ser la dirección URL de un script en %{site_name}"
+      compare_cleaned_code_unavailable: "El código limpio del script a comparación aún no está disponible."
+      checkup:
+        title: Revisión
+        intro: Estas son sugerencias para mejorar tu script %{site_name}. Y estas no %{rules_link:rules}; tu script no será eliminado si no las sigues.
+        license_html: Especifique una %{license_link:<code>@license</code>}. Esto permite que otros sepan si pueden compartir y modificar tu código y cómo hacerlo.
+        globs_html: Evita el uso de expresiones regulares en la parte de dominio de %{include_link:<code>@include</code>} y %{match_link:<code>@match</code>}. Esto dificulta a %{site_name} para clasificar tu script.
+    history_title: "%{script_name} - Historial de versiones"
+    history_only_code_changes_info: "A continuación se muestran las versiones de este script en las que se actualizó el código."
+    history_all_changes_link: "Ver todas las versiones."
+    history_all_changes_info: "Estas son todas las versiones de este script."
+    history_only_code_changes_link: "Mostrar solo las versiones donde el código cambió."
+    diff_button: "Comparar versiones seleccionadas"
+    stats_daily_installs_heading: "Instalaciones diarias"
+    stats_weekly_installs_heading: "Instalaciones semanales"
+    stats_daily_update_checks_heading: "Comprobaciones de actualización diarias"
+    stats_raw_data_header: "Datos sin procesar"
+    stats_no_data: "N/D"
+    stats_filter_options:
+      all: Todo el tiempo
+    derivatives_exact_copies_list_intro: "Los siguientes scripts tienen el mismo codigo que el tuyo:"
+    listing_description_for_site: "Scripts de usuario que añaden características y corrigen bugs en %{site}"
+    listing_description_generic: "Scripts de usuario que añaden características y que corrigen bugs en los sitios que usas"
+    deleted_marker: "(Eliminado)"
+  reports:
+    new_report_title:
+      message: "Reportar un comentario por %{user}"
+      script: "Reportar %{script}"
+    new_script_report_notes_html: >
+        <p>Antes de denunciar ten en cuenta que:</p> <ul>
+
+        <li>Los scripts solo se retiran si incumplen %{rules_link:las normas}. Si
+        por el contrario el script viene roto de serie o ya no funciona, %{feedback_link:deja
+        un comentario.}</li>
+
+        <li>Un moderador revisará tu denuncia y actuará en consonancia.</li>
+
+        <li>Abusar de la funcionalidad de denuncia, o utilizarla sin ton ni son puede
+        hacer que te juegues <i>tu cuenta</i>.</li>
+
+        </ul>
+    reason:
+      unauthorized_code: "Copia no autorizada"
+      malware: "Software malicioso"
+      minified: "Código minimizado"
+      external_code: "Código externo no permitido"
+      undisclosed_antifeature: "Característica %{antifeature_link:adversa no revelada} (por ejemplo, un anuncio, un rastreador, minería de criptomonedas)"
+      other: "Otros"
+    report_intro_unauthorized_html: "%{reported_script} ha sido reportado %{report_date} como copia no autorizada de %{other_script} por %{reporter}."
+    unauthorized_code_original_placeholder: "URL del código original"
+  errors:
+    messages:
+      script_malformed_require: "hace referencia a un script externo mal formado: %{code}"

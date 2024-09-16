@@ -707,9 +707,11 @@ fr:
         new_conversation_notification: Lorsque quelqu'un démarre une conversation avec vous et que vous êtes abonné selon le paramètre ci-dessus, vous recevrez la notification
         new_message_notification: Lorsqu'un nouveau message est reçu sur une conversation existante à laquelle vous êtes abonné, vous recevrez la notification
       report_defaults:
+        intro: Les rapports sont créés par les utilisateurs pour signaler le contenu contraire aux règles de %{site_name}. Les modérateurs examineront le rapport et supprimeront le contenu si nécessaire.
         title: Signaler des notifications
-        reporter: Recevoir une notification lorsqu'un rapport que vous avez créé est résolu
-        reported: Recevez une notification lorsqu'un rapport sur les éléments que vous publiez est créé ou résolu.
+        as_reporter: Lorsqu'un rapport que vous avez créé sera résolu, vous recevrez une notification
+        as_reported_filed: Lorsqu'un rapport est envoyer concernant un élément que vous avez publié, vous recevez une notification
+        as_reported_resolved: Lorsqu'un rapport est envoyer concernant un élément que vous avez publié est résolu, vous recevrez une notification
       save_button: Mettre à jour les paramètres de notification
       title: Notifications
       current_discussion_subscriptions:
@@ -721,6 +723,15 @@ fr:
       unsubscribe_all_success: Vous avez été désabonné de toutes les notifications.
       new_conversation: "%{user} a commencé une conversation avec vous: %{text}"
       new_message: "%{user} vous a envoyé un message: %{text}"
+      report_resolved_reporter:
+        dismissed: Votre rapport contre %{item} a été rejeté par un modérateur.
+        fixed: Votre rapport sur %{item} a entraîné quelques modifications et un modérateur a marqué le problème comme étant résolu.
+        upheld: Votre rapport contre %{item} a été confirmé par un modérateur.
+      report_filed_reported: Un rapport a été déposé contre %{item}.
+      report_resolved_reported:
+        dismissed: Un rapport contre %{item} a été rejeté par un modérateur.
+        fixed: Un rapport sur %{item} a entraîné quelques modifications et un modérateur a marqué le problème comme ayant été résolu.
+        upheld: Un rapport contre %{item} a été confirmé par un modérateur.
       list:
         header: Notifications
         none: Aucune notification pour le moment!
@@ -1152,6 +1163,12 @@ fr:
     reported_temporarily_blocked: "En raison de rapports récents sur cet article ayant été rejetés par un modérateur, les autres rapports le concernant sont bloqués jusqu'au %{date}."
     already_reported_by_reporter: "Vous avez déjà %{report_link:récemment signalé} cet élément."
     already_reported_same_type: "Il existe déjà un %{report_link:rapport similaire en attente} sur cet élément."
+    report_item:
+      discussion: "Discussion %{title} par %{user}"
+      comment: "%{comment} par %{user}"
+      comment_description: "Un commentaire sur %{discussion_title}"
+      message: "Un message de %{user}"
+      deleted: "Supprimé %{type} #%{id}"
   appeals:
     new:
       title: Appel de suppression de nouveau script

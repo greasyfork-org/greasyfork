@@ -715,9 +715,11 @@ sk:
         new_conversation_notification: Keď s vami niekto začne konverzáciu a vy sa prihlásite na odber podľa vyššie uvedeného nastavenia, dostanete upozornenie
         new_message_notification: Pri prijatí novej správy v existujúcej konverzácii, ku ktorej ste prihlásení, dostanete upozornenie
       report_defaults:
+        intro: Používatelia vytvárajú hlásenia na označenie obsahu, ktorý je v rozpore s pravidlami %{site_name}. Moderátori hlásenie preskúmajú a v prípade potreby obsah odstránia.
         title: Upozornenia o hláseniach
-        reporter: Dostávať upozornenie, keď bude hlásenie, ktoré ste vytvorili, vyriešené
-        reported: Dostať upozornenie, keď sa vytvorí alebo vyrieši hlásenie o veciach, ktoré ste odoslali
+        as_reporter: Keď je vaše hlásenie vyriešené, upozorníme vás
+        as_reported_filed: Keď sa podá hlásenie o položke, ktorú ste zverejnili, upozorníme vás
+        as_reported_resolved: Keď sa vyrieši hlásenie podané k vašej položke, upozorníme vás
       save_button: Aktualizovať nastavenia upozornenia
       title: Upozornenia
       current_discussion_subscriptions:
@@ -730,6 +732,15 @@ sk:
       unsubscribe_all_success: Odhlásili ste sa zo všetkých upozornení.
       new_conversation: "používateľ %{user} začal s vami konverzáciu: %{text}"
       new_message: "používateľ %{user} vám poslal správu: %{text}"
+      report_resolved_reporter:
+        dismissed: Vaše hlásenie proti %{item} bolo moderátorom zamietnuté.
+        fixed: Vaše hlásenie týkajúce sa %{item} viedlo k určitým zmenám a moderátor označil problém za vyriešený.
+        upheld: Vaše hlásenie proti %{item} bolo potvrdené moderátorom.
+      report_filed_reported: Bolo podané hlásenie proti %{item}.
+      report_resolved_reported:
+        dismissed: Moderátor zamietol hlásenie proti %{item}.
+        fixed: Hlásenie proti %{item} viedlo k určitým zmenám a moderátor označil problém za vyriešený.
+        upheld: Moderátor potvrdil hlásenie proti %{item}.
       list:
         header: Upozornenia
         none: Zatiaľ žiadne upozornenia!
@@ -1154,6 +1165,12 @@ sk:
     reported_temporarily_blocked: "Vzhľadom na to, že nedávne hlásenia o tejto položke boli moderátorom zamietnuté, ďalšie hlásenia o nej sú zablokované až do %{date}."
     already_reported_by_reporter: "Túto položku ste už %{report_link:nedávno nahlásili}."
     already_reported_same_type: "K tejto položke už existuje %{report_link:podobné čakajúce hlásenie}."
+    report_item:
+      discussion: "Diskusia %{title} používateľa %{user}"
+      comment: "Komentár %{comment} od používateľa %{user}"
+      comment_description: "Komentár na %{discussion_title}"
+      message: "Správa od %{user}"
+      deleted: "Odstránené %{type} #%{id}"
   appeals:
     new:
       title: Nové odvolanie proti odstráneniu skriptu
