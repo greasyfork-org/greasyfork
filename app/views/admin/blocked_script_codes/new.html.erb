@@ -29,5 +29,10 @@
     <%= f.label :serious, 'Ban/delete', class: 'radio-label' %>
   </div>
 
+  <div class="form-control">
+    <%= f.check_box :notify_admin %>
+    <%= f.label :notify_admin, 'Notify admin', class: 'radio-label' %>
+  </div>
+
   <%= f.submit %>
 <% end %>

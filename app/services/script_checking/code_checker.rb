@@ -12,7 +12,8 @@ module ScriptChecking
             bc.serious ? ScriptChecking::Result::RESULT_CODE_BAN : ScriptChecking::Result::RESULT_CODE_BLOCK,
             bc.public_reason,
             bc.private_reason,
-            bc
+            bc,
+            notify: bc.notify_admin
           )
         end
 

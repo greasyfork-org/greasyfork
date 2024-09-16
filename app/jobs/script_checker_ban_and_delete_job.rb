@@ -38,6 +38,6 @@ class ScriptCheckerBanAndDeleteJob < ApplicationJob
 
     Report.uphold_pending_reports_for(script)
 
-    AdminMailer.delete_confirm(script, private_reason).deliver_later
+    AdminMailer.delete_confirm(script, private_reason).deliver_later if script_check_results.first['notify']
   end
 end

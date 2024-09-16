@@ -5,13 +5,14 @@ module ScriptChecking
     RESULT_CODE_REVIEW = :review
     RESULT_CODE_BAN = :ban
 
-    attr_accessor :code, :public_reason, :private_reason, :related_object
+    attr_accessor :code, :public_reason, :private_reason, :related_object, :notify
 
-    def initialize(code, public_reason = nil, private_reason = nil, related_object = nil)
+    def initialize(code, public_reason = nil, private_reason = nil, related_object = nil, notify: true)
       @code = code
       @public_reason = public_reason
       @private_reason = private_reason
       @related_object = related_object
+      @notify = notify
     end
 
     def as_json(_options = {})
@@ -21,6 +22,7 @@ module ScriptChecking
         private_reason:,
         related_object_id: related_object&.id,
         related_object_class: related_object&.class&.name,
+        notify:,
       }
     end
 
