@@ -27,7 +27,12 @@ class UserNotificationService
     notify_users(users, notification_type: Notification::NOTIFICATION_TYPE_REPORT_RESOLVED_REPORTED, item: report, backup_locale: report.item.locale, &)
   end
 
-  def self.notify_reporter(report, &)
+  def self.notify_reporter_for_report_rebutted(report, &)
+    users = [report.reporter].compact
+    notify_users(users, notification_type: Notification::NOTIFICATION_TYPE_REPORT_REBUTTED_REPORTER, item: report, &)
+  end
+
+  def self.notify_reporter_for_report_resolved(report, &)
     users = [report.reporter].compact
     notify_users(users, notification_type: Notification::NOTIFICATION_TYPE_REPORT_RESOLVED_REPORTER, item: report, &)
   end

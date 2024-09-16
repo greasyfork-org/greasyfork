@@ -95,7 +95,7 @@ class ReportsController < ApplicationController
       UserNotificationService.notify_authors_for_report_resolved(@report) do |user, locale|
         ScriptReportMailer.report_dismissed_offender(@report, user, locale, site_name).deliver_later
       end
-      UserNotificationService.notify_reporter(@report) do |user, locale|
+      UserNotificationService.notify_reporter_for_report_resolved(@report) do |user, locale|
         ScriptReportMailer.report_dismissed_reporter(@report, user, locale, site_name).deliver_later
       end
     end
@@ -116,7 +116,7 @@ class ReportsController < ApplicationController
       UserNotificationService.notify_authors_for_report_resolved(@report) do |user, locale|
         ScriptReportMailer.report_fixed_offender(@report, user, locale, site_name).deliver_later
       end
-      UserNotificationService.notify_reporter(@report) do |user, locale|
+      UserNotificationService.notify_reporter_for_report_resolved(@report) do |user, locale|
         ScriptReportMailer.report_fixed_reporter(@report, user, locale, site_name).deliver_later
       end
     end
@@ -165,7 +165,7 @@ class ReportsController < ApplicationController
       end
 
       unless user_is_script_author
-        UserNotificationService.notify_reporter(@report) do |user, locale|
+        UserNotificationService.notify_reporter_for_report_resolved(@report) do |user, locale|
           ScriptReportMailer.report_upheld_reporter(@report, user_is_script_author, user, locale, site_name).deliver_later
         end
       end
@@ -189,7 +189,7 @@ class ReportsController < ApplicationController
 
     if rebuttal.present?
       @report.rebut!(rebuttal:, by: current_user)
-      UserNotificationService.notify_reporter(@report) do |user, locale|
+      UserNotificationService.notify_reporter_for_report_rebutted(@report) do |user, locale|
         ScriptReportMailer.report_rebutted(@report, user, locale, site_name).deliver_later
       end
     end

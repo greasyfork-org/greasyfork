@@ -31,11 +31,11 @@
                   t('users.notifications.report_resolved_reporter.fixed', item: report_item_text(notification.item))
                 when Report::RESULT_UPHELD
                   t('users.notifications.report_resolved_reporter.upheld', item: report_item_text(notification.item))
-                when nil
-                  t('users.notifications.report_resolved_reporter.rebutted', item: report_item_text(notification.item))
                 else
                   raise "Unexpected report result '#{notification.item.result}' for notification #{notification.id}."
                 end
+              when Notification::NOTIFICATION_TYPE_REPORT_REBUTTED_REPORTER
+                t('users.notifications.report_resolved_reporter.rebutted', item: report_item_text(notification.item))
               when Notification::NOTIFICATION_TYPE_REPORT_FILED_REPORTED
                 t('users.notifications.report_filed_reported', item: report_item_text(notification.item))
               when Notification::NOTIFICATION_TYPE_REPORT_RESOLVED_REPORTED

@@ -22,6 +22,9 @@ class UserNotificationSetting < ApplicationRecord
   }.freeze
 
   def self.delivery_types_for_user(user, notification_type)
+    # Rebutted has the same pref as resolved
+    notification_type = Notification::NOTIFICATION_TYPE_REPORT_RESOLVED_REPORTER if notification_type == Notification::NOTIFICATION_TYPE_REPORT_REBUTTED_REPORTER
+
     saved_prefs = where(user:, notification_type:).index_by { |uns| uns.delivery_type.to_sym }
     [DELIVERY_TYPE_EMAIL, DELIVERY_TYPE_ON_SITE].select { |delivery_type| saved_prefs[delivery_type].present? ? saved_prefs[delivery_type].enabled : DEFAULT_NOTIFICATIONS[notification_type].include?(delivery_type) }
   end

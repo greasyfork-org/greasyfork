@@ -121,7 +121,7 @@ class NotificationsTest < ApplicationSystemTestCase
     report = reports(:derivative_with_same_name_report)
     report.update!(result: nil)
 
-    Notification.create!(user:, notification_type: Notification::NOTIFICATION_TYPE_REPORT_RESOLVED_REPORTER, item: report)
+    Notification.create!(user:, notification_type: Notification::NOTIFICATION_TYPE_REPORT_REBUTTED_REPORTER, item: report)
 
     visit notifications_url(user, locale: :en)
     assert_content 'Your report against MyString received a reply from the reported user. A moderator will review your report and this reply.'
