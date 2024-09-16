@@ -115,6 +115,18 @@ class NotificationsTest < ApplicationSystemTestCase
     assert_content 'Your report against MyString resulted in some changes and a moderator marked the issue as having been resolved.'
   end
 
+  test 'a report rebutted notification as the reporter' do
+    user = users(:junior)
+    login_as(user)
+    report = reports(:derivative_with_same_name_report)
+    report.update!(result: nil)
+
+    Notification.create!(user:, notification_type: Notification::NOTIFICATION_TYPE_REPORT_RESOLVED_REPORTER, item: report)
+
+    visit notifications_url(user, locale: :en)
+    assert_content 'Your report against MyString received a reply from the reported user. A moderator will review your report and this reply.'
+  end
+
   def assert_notification_widget_count(count)
     if count == 0
       assert_no_selector('.notification-widget')
