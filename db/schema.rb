@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_16_150622) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_16_153301) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -802,7 +802,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_16_150622) do
   add_foreign_key "mentions", "users", on_delete: :cascade
   add_foreign_key "messages", "conversations", on_delete: :cascade
   add_foreign_key "moderator_actions", "reports", on_delete: :nullify
-  add_foreign_key "notifications", "users"
+  add_foreign_key "notifications", "users", on_delete: :cascade
   add_foreign_key "reports", "users", column: "reporter_id", on_delete: :cascade
   add_foreign_key "roles_users", "users", on_delete: :cascade
   add_foreign_key "screenshots_script_versions", "script_versions", on_delete: :cascade
@@ -816,4 +816,5 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_16_150622) do
   add_foreign_key "script_similarities", "scripts", on_delete: :cascade
   add_foreign_key "script_versions", "scripts", name: "fk_script_versions_script_id"
   add_foreign_key "scripts", "scripts", column: "promoted_script_id", on_delete: :nullify
+  add_foreign_key "user_notification_settings", "users", on_delete: :cascade
 end
