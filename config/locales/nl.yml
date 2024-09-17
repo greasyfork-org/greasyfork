@@ -697,7 +697,11 @@ nl:
         new_conversation_notification: Als iemand een gesprek met je start, ontvang je een melding op basis van bovenstaande instelling.
         new_message_notification: Als er een reactie is in een gesprek waar je reeds op geabonneerd was, ontvang je een melding.
       report_defaults:
+        intro: Meldingen worden door gebruikers gedaan, om inhoud die tegen de regels van %{site_name} ingaat te melden. Moderators bekijken meldingen en verwijderen inhoud, indien nodig.
         title: Rapportagemeldingen
+        as_reporter: Melding tonen indien gemelde inhoud is behandeld
+        as_reported_filed: Melding tonen indien inhoud van mij wordt gemeld
+        as_reported_resolved: Melding tonen indien gemelde inhoud van mij is behandeld
       save_button: Updatemeldingen
       title: Meldingen
       current_discussion_subscriptions:
@@ -708,6 +712,16 @@ nl:
       unsubscribe_all_success: Er worden geen meldingen meer getoond.
       new_conversation: "%{user} heeft een gesprek met je gestart: %{text}"
       new_message: "%{user} heeft je een bericht gestuurd: %{text}"
+      report_resolved_reporter:
+        dismissed: De melding met betrekking tot ‘%{item}’ is afgewezen door een moderator.
+        fixed: De melding met betrekking tot ‘%{item}’ heeft tot verbetering geleid. Een moderator heeft de zaak behandeld.
+        upheld: De melding met betrekking tot ‘%{item}’ is ingewilligd door een moderator.
+        rebutted: Er is een reactie geplaatst bij de melding omtrent ‘%{item}’. Een moderator zal de zaak en reactie behandelen.
+      report_filed_reported: Er is melding gemaakt omtrent ‘%{item}’.
+      report_resolved_reported:
+        dismissed: De melding met betrekking tot ‘%{item}’ is afgewezen door een moderator.
+        fixed: De melding met betrekking tot ‘%{item}’ heeft tot verbetering geleid. Een moderator heeft de zaak behandeld.
+        upheld: De melding met betrekking tot ‘%{item}’ is ingewilligd door een moderator.
       list:
         header: Meldingen
         none: Er zijn nog geen meldingen.
@@ -1128,6 +1142,12 @@ nl:
     reported_temporarily_blocked: "Er zijn onlangs meerdere van je meldingen verworpen door een moderator. Om die reden mag je tot en met %{date} geen nieuwe meldingen doen."
     already_reported_by_reporter: "Je hebt dit item %{report_link:onlangs al gemeld}."
     already_reported_same_type: "Er is al %{report_link:melding gemaakt} over dit item."
+    report_item:
+      discussion: "Discussie “%{title}” van %{user}"
+      comment: "%{comment} van %{user}"
+      comment_description: "Een reactie op “%{discussion_title}”"
+      message: "Een bericht van %{user}"
+      deleted: "%{type} #%{id} verwijderd"
   appeals:
     new:
       title: Bezwaar ingediend tegen scriptverwijdering
