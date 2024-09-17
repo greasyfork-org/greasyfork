@@ -127,6 +127,22 @@ class NotificationsTest < ApplicationSystemTestCase
     assert_content 'Your report against MyString received a reply from the reported user. A moderator will review your report and this reply.'
   end
 
+  test 'mark all read' do
+    user = users(:geoff)
+    login_as(user)
+
+    Notification.create!(user:, notification_type: Notification::NOTIFICATION_TYPE_NEW_CONVERSATION, item: conversations(:geoff_and_junior))
+
+    visit notifications_url(user, locale: :en)
+    assert_content 'Junior J. Junior, Sr. started a conversation with you: This is my message'
+    assert_notification_widget_count(1)
+
+    assert_difference -> { Notification.unread.count } => -1 do
+      click_link 'Mark all read'
+      assert_notification_widget_count(0)
+    end
+  end
+
   def assert_notification_widget_count(count)
     if count == 0
       assert_no_selector('.notification-widget')
