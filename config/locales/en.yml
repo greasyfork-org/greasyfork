@@ -967,13 +967,17 @@ en:
       email: By email
       discussion_defaults:
         title: Forum notifications
-        new_discussion: By default, subscribe to any discussions you start
-        new_comment: By default, subscribe to any discussions you comment in
+        intro: You will get notifications for discussions you're subscribed to. You can subscribe or unsubscribe to discussions at any time.
+        discussion_subscription_defaults:
+          overall_label: By default, subscribe to discussions when
+          start: You start the discussion
+          comment: You comment on the discussion
         mention: Receive a notification when you are mentioned in a discussion
       conversation_defaults:
         title: Conversation notifications
         intro: You will get notifications for conversations you're subscribed to. You can subscribe or unsubscribe to conversations at any time.
         new_conversation_subscription:
+          overall_label: By default, subscribe to new conversations when
           self: You start the conversation
           other: Someone else starts the conversation
         new_conversation_notification: When someone starts a conversation with you, and you get subscribed per the setting above, get the notification

@@ -12,14 +12,21 @@
 
   <div class="form-control">
     <h3><%= t('users.notifications.discussion_defaults.title') %></h3>
-    <div>
-      <%= f.check_box :subscribe_on_discussion %>
-      <%= f.label :subscribe_on_discussion, t('users.notifications.discussion_defaults.new_discussion'), class: 'radio-label' %>
+
+    <p><%= t('users.notifications.discussion_defaults.intro') %></p>
+
+    <%= label_tag t('users.notifications.discussion_defaults.discussion_subscription_defaults.overall_label') %>
+    <div class="form-control">
+      <div>
+        <%= f.check_box :subscribe_on_discussion %>
+        <%= f.label :subscribe_on_discussion, t('users.notifications.discussion_defaults.discussion_subscription_defaults.start'), class: 'radio-label' %>
+      </div>
+      <div>
+        <%= f.check_box :subscribe_on_comment %>
+        <%= f.label :subscribe_on_comment, t('users.notifications.discussion_defaults.discussion_subscription_defaults.comment'), class: 'radio-label' %>
+      </div>
     </div>
-    <div>
-      <%= f.check_box :subscribe_on_comment %>
-      <%= f.label :subscribe_on_comment, t('users.notifications.discussion_defaults.new_comment'), class: 'radio-label' %>
-    </div>
+
     <div>
       <%= f.check_box :notify_on_mention %>
       <%= f.label :notify_on_mention, t('users.notifications.discussion_defaults.mention'), class: 'radio-label' %>
@@ -39,7 +46,7 @@
 
     <p><%= t('users.notifications.conversation_defaults.intro') %></p>
 
-    <%= label_tag 'By default, subscribe to new conversations when' %>
+    <%= label_tag t('users.notifications.conversation_defaults.new_conversation_subscription.overall_label') %>
     <div class="form-control">
       <div>
         <%= f.check_box :subscribe_on_conversation_starter %>
