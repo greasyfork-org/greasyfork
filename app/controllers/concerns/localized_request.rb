@@ -110,9 +110,12 @@ module LocalizedRequest
   def parse_accept_language(value)
     return [] if value.nil?
 
-    return value.split(',').map do |r|
+    return value.split(',').filter_map do |r|
+      locale = r.split(';').first.strip
+      next nil unless locale
+
       # make sure the region is uppercase
-      locale_parts = r.split(';').first.strip.split('-', 2)
+      locale_parts = locale.split('-', 2)
       locale_parts[1].upcase! if locale_parts.length > 1
       next locale_parts.join('-')
     end
