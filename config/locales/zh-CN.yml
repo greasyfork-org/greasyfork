@@ -96,6 +96,8 @@ zh-CN:
       compare_button: "比较"
       compare_must_be_local_url: "比较脚本必须是一个位于 %{site_name} 的网址。"
       compare_cleaned_code_unavailable: "比较脚本的干净代码尚不可用。"
+      checkup:
+        license_html: 指定 %{license_link：@license}，以让其他人知道他们是否可以以及如何分享、修改您的代码。
     history_title: "%{script_name} - 版本历史"
     history_only_code_changes_info: "这些是代码更新过的版本。"
     history_all_changes_link: "显示所有版本"
@@ -551,6 +553,8 @@ zh-CN:
     edit_sign_in: "更改登录方式"
     edit_sign_in_title: "更改登录方式"
     edit_sign_in_password: "密码"
+    edit_notifications: "编辑通知设置"
+    view_notifications: "查看通知"
     no_password_set_info: "您的账号尚未启用密码登录。"
     set_password: "设置密码"
     update_password: "更新密码"
@@ -651,9 +655,16 @@ zh-CN:
     notifications:
       discussion_defaults:
         title: 论坛通知
+        intro: 您订阅的讨论有更新时将通知您，您可以随时取消订阅讨论
+        discussion_subscription_defaults:
+          start: 您发起的讨论
+          comment: 您参与的讨论
         mention: 当我在讨论帖中被提到时发送通知
       conversation_defaults:
         title: 私信通知
+        new_conversation_subscription:
+          self: 您发起的私信
+          other: 其他人发起的私信
       report_defaults:
         title: 举报通知
       save_button: 更新通知设置
@@ -663,6 +674,20 @@ zh-CN:
       save_success: 您的通知设定已更新。
       unsubscribe_all: 取消接收所有通知
       unsubscribe_all_success: 您已取消接收所有通知。
+      new_message: "%{user} 给你发送了一则信息：%{text}"
+      report_resolved_reporter:
+        dismissed: 您的的举报（%{item}）已被管理员驳回
+        upheld: 管理员已通过您的举报（%{item}）。
+        rebutted: 您的举报（%{item}）收到了一则回应。管理员将查阅您的举报与该则回应。
+      report_filed_reported: 已举报 %{item}.
+      report_resolved_reported:
+        dismissed: 关于%{item}的举报已被管理员驳回
+        upheld: 管理员已通过该举报（%{item}）。
+      list:
+        header: 通知
+        none: 暂无通知
+        edit_settings: 管理您的通知设置
+        mark_all_read: 全部标为已读
     account_banned: 该账号已被封禁。
   webhooks:
     info:
@@ -926,7 +951,7 @@ zh-CN:
       description: "搜索脚本代码。此功能不区分大小写，不支持通配符，搜索纯文本。"
     user_search:
       title: "用户搜索"
-      description: "基于名称搜索用户"
+      description: "按名称搜索用户"
   moderator_logs:
     date_column: "时间"
     moderator_column: "管理员"
@@ -1038,6 +1063,12 @@ zh-CN:
     reported_temporarily_blocked: "由于最近对此项目的举报被管理员驳回，进一步对其的举报将被阻止，直到 %{date}为止。"
     already_reported_by_reporter: "您已在%{report_link:最近举报过}此项目。"
     already_reported_same_type: "此项目上已经有一个 %{report_link:类似的待处理举报}。"
+    report_item:
+      discussion: "来自%{user}的讨论：%{title}"
+      comment: "%{user} 的评论：%{comment}"
+      comment_description: "关于%{discussion_title}的评论"
+      message: "%{user} 的评论"
+      deleted: "删除 %{type} #%{id}"
   appeals:
     new:
       title: 新建删除脚本申诉
@@ -1077,7 +1108,7 @@ zh-CN:
       question: "不评分 - 只是一个提问、评论或功能请求"
       bad: "差评 - 脚本失效或无法使用"
       ok: "一般 - 脚本能用，但还有一些问题"
-      good: "好评 - 脚本一切正常"
+      good: "好评 - 脚本运行良好"
     ratings_short:
       question: "提问/评论"
       bad: "差评"
@@ -1236,7 +1267,7 @@ zh-CN:
       report:
         reason: "举报原因"
       discussion:
-        rating: "评级"
+        rating: "评分"
         category: "分类"
         title: 标题
       conversation:
@@ -1276,7 +1307,7 @@ zh-CN:
     title: 导入脚本
     intro: "%{site_name} 可以从其他网站导入脚本，比如代码版本控制系统 (例：GitHub)、您自己的服务器或其它的用户脚本网站。"
     url_entry_label: 提供要导入的 URL，每行一个。这应该是原始 JS 或 CSS 文件的网址。
-    sync_type_label: "在初始导入后，脚本应该会同步："
+    sync_type_label: "在初始导入后，脚本将会同步："
     additional_info_html: |
         <p>对于来自源代码管理的脚本，请确保您使用的 URL 指向一个分支，而不是特定的提交，否则脚本将永远不会更新。例如，使用 <code>https://bitbucket.org/username/reponame/raw/<b>branch-name</b>/script.user.js</code>，而不是 <code>https://bitbucket.org/username/reponame/raw/<b>commit-hash</b>/script.user.js</code>。</p>
         <p>从 GitHub、Bitbucket 或 GitLab 导入的脚本也可以通过 Webhook 设定同步。通过 Webhook，您的脚本在您推送到仓库时会立即在 %{site_name} 上更新。如果您想使用 Webhook 但尚未设定，请先完成导入，然后在 %{webhook_info_link:设定 Webhook} 之后再进行设定。</p>

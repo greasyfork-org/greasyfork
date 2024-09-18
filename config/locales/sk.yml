@@ -703,11 +703,17 @@ sk:
       email: E-mailom
       discussion_defaults:
         title: Upozornenia na fóre
+        intro: Budete dostávať upozornenia na diskusie, do ktorých ste prihlásení. K diskusiám sa môžete kedykoľvek prihlásiť alebo odhlásiť.
+        discussion_subscription_defaults:
+          overall_label: V predvolenom nastavení sa prihláste na odber diskusií, keď
+          start: Začali ste diskusiu
+          comment: Komentovali ste v diskusii
         mention: Dostávať upozornenie, keď sa o vás niekto zmieni v diskusii
       conversation_defaults:
         title: Upozornenia na konverzácie
         intro: Budete dostávať upozornenia na konverzácie, ku ktorým ste prihlásení. Odber konverzácií môžete kedykoľvek zrušiť.
         new_conversation_subscription:
+          overall_label: V predvolenom nastavení sa prihláste na odber nových konverzácií, keď
           self: Začali ste konverzáciu
           other: Niekto iný začal konverzáciu
         new_conversation_notification: Keď s vami niekto začne konverzáciu a vy sa prihlásite na odber podľa vyššie uvedeného nastavenia, dostanete upozornenie
@@ -1224,8 +1230,8 @@ sk:
     user_filter:
       label: "Diskusie so mnou"
       all: "Všetky diskusie"
-      discussion_by_me: "Začal som"
-      comment_by_me: "Komentoval som"
+      discussion_by_me: "Moje diskusie"
+      comment_by_me: "Moje komentáre"
       on_my_scripts: "K mojim skriptom"
       subscribed: "Prihlásené na odber"
     other_user_filter:
@@ -1286,7 +1292,7 @@ sk:
     category_display: "%{name} - %{description}"
     new_title: Nová diskusia
     new_button: Nová diskusia
-    script_notice: Ak chcete diskutovať o konkrétnom skripte, prejdite na stránku spätnej väzby skriptu a začnite diskusiu odtiaľ .
+    script_notice: Ak chcete diskutovať o konkrétnom skripte, prejdite na stránku spätnej väzby skriptu a začnite diskusiu odtiaľ.
     no_discussions: Žiadna diskusia.
     mark_all_read: Označiť ako prečítané
     pending_moderator_review: Táto diskusia nie je dostupná pre ostatných používateľov, kým ju neskontroluje moderátor.
