@@ -28,7 +28,7 @@ class MessagesController < ApplicationController
     notification_job = notification_job.set(wait: Message::EDITABLE_PERIOD) unless Rails.env.local?
     notification_job.perform_later(@message)
 
-    redirect_to user_conversation_path(current_user, @conversation, anchor: "message-#{@message.id}")
+    redirect_to @conversation.latest_path(current_user, locale: I18n.locale)
   end
 
   def update
@@ -45,7 +45,7 @@ class MessagesController < ApplicationController
       message.save!
     end
 
-    redirect_to user_conversation_path(current_user, @conversation, anchor: "message-#{message.id}")
+    redirect_to @conversation.path_for_message(current_user, message, locale: I18n.locale)
   end
 
   private
