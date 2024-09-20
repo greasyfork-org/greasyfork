@@ -482,7 +482,7 @@ ja:
     search_placeholder: "ユーザースクリプトを検索"
     scripts_for_label: "サイト別のスクリプト:"
     explain_user_scripts_heading: "ユーザースクリプトについて"
-    explain_user_scripts_html: "ユーザースクリプトは、サイト閲覧時の主導権をあなたにもたらします。サイトを使いやすく。機能を追加する。余分なものを消す、など。いったんインストールすれば自動でサイトを改善します。%{site_name} は、ユーザーが作成し投稿したスクリプトを共有しています。自由にインストールでき使うのも簡単です。"
+    explain_user_scripts_html: "ユーザースクリプトは、あなたにサイト閲覧時の主導権を与えます。サイトを使いやすく。機能を追加する。余分なものを消す、など。いったんインストールすれば自動でサイトを改善します。%{site_name} は、ユーザーが作成し投稿したスクリプトを共有しています。自由にインストールでき使うのも簡単です。"
     installing_step1_header: "1. ユーザースクリプト管理ツールをインストール"
     installing_step1_caption: "Tampermonkey (Chrome 版)"
     installing_step1_description_html: >
@@ -662,17 +662,27 @@ ja:
       email: 電子メールで通知
       discussion_defaults:
         title: 掲示板の通知
+        intro: 購読中の議論の通知です。議論の購読・解除はいつでも可能です。
+        discussion_subscription_defaults:
+          overall_label: いつ議論を購読するかの初期設定
+          start: 議論をあなたが開始したら
+          comment: あなたがその議論にコメントしたら
         mention: 議論で言及されたら通知を受け取る
       conversation_defaults:
         title: 会話の通知
         intro: 購読中の会話の通知を受信します。いつでも登録および解除できます。
         new_conversation_subscription:
+          overall_label: いつ新しい会話を購読するかの初期設定
           self: 自分が始めた会話
           other: 他人が始めた会話
         new_conversation_notification: 誰かがあなたと会話を始めたら、上記の購読の設定に従って通知を受信します。
         new_message_notification: 購読中の既存の会話に新しいメッセージが届いたら、通知を受信する。
       report_defaults:
+        intro: 通報は、 %{site_name} の規則に違反するコンテンツだと利用者が報告したものです。管理担当者がその通報を審査し、その結果、コンテンツが削除されることもあります。
         title: 報告の通知
+        as_reporter: あなたが作成した通報が解決したら、通知を受け取る
+        as_reported_filed: あなたが投稿したものへの通報が作成されたら、通知を受け取る
+        as_reported_resolved: あなたが投稿したものへの通報が解決されたら、通知を受け取る
       save_button: 通知設定を更新
       title: 通知
       current_discussion_subscriptions:
@@ -682,6 +692,16 @@ ja:
       unsubscribe_all_success: すべての通知を解除しました。
       new_conversation: "%{user} が会話を開始しました: %{text}"
       new_message: "%{user} がメッセージを送信: %{text}"
+      report_resolved_reporter:
+        dismissed: '%{item} へのあなたの通報は、管理担当者により却下されました。'
+        fixed: '%{item} へのあなたの通報により改善されたため、管理担当者が解決済みの問題にしました。'
+        upheld: '%{item} へのあなたの通報を管理担当者が承認しました。'
+        rebutted: '%{item} へのあなたの通報に対し、通報された利用者の返信がありました。管理担当者が、通報と返信を審査します。'
+      report_filed_reported: '%{item} への通報が作成されました。'
+      report_resolved_reported:
+        dismissed: '%{item} への通報は管理担当者が却下しました。'
+        fixed: '%{item} への通報は、改善されたため、管理担当者が解決済みの問題にしました。'
+        upheld: '%{item} への通報を管理担当者が承認しました。'
       list:
         header: 通知
         none: まだ通知がありません！
@@ -1041,7 +1061,7 @@ ja:
     report_message: "メッセージを通報"
     result_dismissed: "この通報は管理担当者に却下されました。"
     result_upheld: "この通報は管理担当者に承認されました。"
-    result_upheld_reason_override: "この通報は管理担当者により承認されましたが、 %{reason}に分類されました。"
+    result_upheld_reason_override: "この通報を管理担当者が承認しましたが、 %{reason}に分類されました。"
     result_self_upheld: "この通報のため、作者が自分でスクリプトを削除しました。"
     result_fixed: "この通報は管理担当者により作者が問題を修正したとして解決されました。"
     result_pending: "この通報は管理担当者による審査待ちです。"
@@ -1069,6 +1089,12 @@ ja:
     reported_temporarily_blocked: "この項目に関する最近の通報が管理担当者によって却下されたことが原因で、%{date} まで新たな通報はブロックされます。"
     already_reported_by_reporter: "これは、%{report_link:すでに通報済み}です。"
     already_reported_same_type: "これに関して%{report_link:類似の審査待ちの通報}が既に存在します。"
+    report_item:
+      discussion: "議論 %{title} /作成者 %{user}"
+      comment: "%{comment} /発言者 %{user}"
+      comment_description: "コメントあり: %{discussion_title} "
+      message: "%{user}からメッセージ"
+      deleted: "削除されました %{type} #%{id}"
   appeals:
     new:
       title: スクリプト削除への新しい抗議
