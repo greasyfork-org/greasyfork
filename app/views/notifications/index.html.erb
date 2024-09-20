@@ -1,6 +1,6 @@
 <div class="notification-list-header">
   <h2><%= t('users.notifications.list.header') %></h2>
-  <% if @notification_count > 0 %>
+  <% if notification_widget_count %>
     <div class="notification-actions">
       <%= link_to t('users.notifications.list.mark_all_read'), mark_all_read_notifications_path(user: current_user), data: { turbo: true, turbo_method: :post } %>
     </div>
