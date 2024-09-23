@@ -10,6 +10,7 @@ class Notification < ApplicationRecord
   NOTIFICATION_TYPE_REPORT_FILED_REPORTED = :report_filed_reported
   NOTIFICATION_TYPE_REPORT_RESOLVED_REPORTED = :report_resolved_reported
   NOTIFICATION_TYPE_REPORT_REBUTTED_REPORTER = :report_rebutted_reporter
+  NOTIFICATION_TYPE_NEW_COMMENT = :new_comment
 
   enum :notification_type, {
     NOTIFICATION_TYPE_NEW_CONVERSATION => 0,
@@ -18,6 +19,7 @@ class Notification < ApplicationRecord
     NOTIFICATION_TYPE_REPORT_FILED_REPORTED => 3,
     NOTIFICATION_TYPE_REPORT_RESOLVED_REPORTED => 4,
     NOTIFICATION_TYPE_REPORT_REBUTTED_REPORTER => 5,
+    NOTIFICATION_TYPE_NEW_COMMENT => 6,
   }
 
   def self.mark_read!

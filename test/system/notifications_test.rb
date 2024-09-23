@@ -127,6 +127,17 @@ class NotificationsTest < ApplicationSystemTestCase
     assert_content 'Your report against MyString received a reply from the reported user. A moderator will review your report and this reply.'
   end
 
+  test 'a new comment notification' do
+    user = users(:junior)
+    login_as(user)
+    comment = comments(:script_comment)
+
+    Notification.create!(user:, notification_type: Notification::NOTIFICATION_TYPE_NEW_COMMENT, item: comment)
+
+    visit notifications_url(user, locale: :en)
+    assert_content 'Geoffrey posted a comment on A question about MyString'
+  end
+
   test 'mark all read' do
     user = users(:geoff)
     login_as(user)

@@ -1,4 +1,5 @@
-# Some helpers when sending to potentially multiple users.
+# Some helpers when sending notifications to potentially multiple users. These methods will handle creating the
+# Notification objects and will `yield` for each user who should get an email.
 class UserNotificationService
   def self.notify_users(users, item:, notification_type: nil, backup_locale: nil)
     users
@@ -35,6 +36,21 @@ class UserNotificationService
   def self.notify_reporter_for_report_resolved(report, &)
     users = [report.reporter].compact
     notify_users(users, notification_type: Notification::NOTIFICATION_TYPE_REPORT_RESOLVED_REPORTER, item: report, &)
+  end
+
+  # This also returns the list of users who are subscribed so that they can be exempted from further notifications.
+  def self.notify_discussion_subscribed(comment, ignored_users: [], &)
+    discussion = comment.discussion
+    subscribed_users = discussion
+                       .discussion_subscriptions
+                       .where.not(user: ignored_users)
+                       .where(created_at: ...comment.created_at) # Notifications are delayed. We don't want to notify about anything that happened before they subscribed.
+                       .includes(:user)
+                       .map(&:user)
+                       .uniq
+    subscribed_users = subscribed_users.select(&:moderator?) if discussion.discussion_category.moderators_only?
+    notify_users(subscribed_users, notification_type: Notification::NOTIFICATION_TYPE_NEW_COMMENT, item: comment, &)
+    subscribed_users
   end
 
   def self.locale_for(user, backup_locale: nil)

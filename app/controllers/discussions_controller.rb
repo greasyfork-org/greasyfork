@@ -10,6 +10,8 @@ class DiscussionsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :subscribe, :unsubscribe]
   before_action :greasy_only, only: :new
   before_action :check_ip, only: :create
+  before_action :load_discussion, only: :show
+  before_action :mark_notifications_read, only: :show
   skip_before_action :set_locale, only: [:old_redirect]
 
   layout 'discussions', only: :index
@@ -113,8 +115,6 @@ class DiscussionsController < ApplicationController
   end
 
   def show
-    # Allow mods and the poster to see discussions under review.
-    @discussion = discussion_scope(permissive: true).find(params[:id])
     @canonical_params = [:id, :script_id, :category, :page, :per_page]
 
     if @discussion.script
@@ -375,5 +375,17 @@ class DiscussionsController < ApplicationController
     end
 
     FILTER_RESULT.new(category, by_user, related_to_me, read_status, locale, discussions, visibility)
+  end
+
+  def load_discussion
+    # Allow mods and the poster to see discussions under review.
+    @discussion = discussion_scope(permissive: true).find(params[:id])
+  end
+
+  def mark_notifications_read
+    return unless current_user
+
+    Notification.unread.where(user: current_user, item: [@discussion.comments]).mark_read!
+    load_notification_count
   end
 end

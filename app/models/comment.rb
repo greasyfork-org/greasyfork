@@ -65,14 +65,7 @@ class Comment < ApplicationRecord
     end
     users_received_notification.merge(satn)
 
-    subscribed_users = discussion
-                       .discussion_subscriptions
-                       .where.not(user: users_received_notification)
-                       .where(created_at: ...created_at) # Notifications are delayed. We don't want to notify about anything that happened before they subscribed.
-                       .includes(:user)
-                       .map(&:user)
-    subscribed_users = subscribed_users.select(&:moderator?) if discussion_category.moderators_only?
-    subscribed_users.each do |user|
+    subscribed_users = UserNotificationService.notify_discussion_subscribed(self, ignored_users: users_received_notification) do |user|
       ForumMailer.comment_on_subscribed(user, self).deliver_later
     end
     users_received_notification.merge(subscribed_users)

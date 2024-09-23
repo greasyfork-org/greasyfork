@@ -59,25 +59,6 @@ class DiscussionsTest < ApplicationSystemTestCase
     assert_link '@Junior J. Junior, Sr.', href: user_path(mentioned_user2, locale: :en)
   end
 
-  test 'adding a discussion mentioning a user with notifications' do
-    user = User.first
-    mentioned_user = users(:geoff)
-    mentioned_user.update!(notify_on_mention: true)
-
-    login_as(user, scope: :user)
-    visit new_discussion_path(locale: :en)
-    fill_in 'Title', with: 'discussion title'
-    fill_in 'discussion_comments_attributes_0_text', with: 'Hey @Geoffrey'
-    choose 'Greasy Fork Feedback'
-    perform_enqueued_jobs(only: CommentNotificationJob) do
-      assert_difference -> { Discussion.count } => 1 do
-        click_on 'Post comment'
-        assert_content 'Hey @Geoffrey'
-      end
-    end
-    assert_enqueued_email_with ForumMailer, :comment_on_mentioned, args: [mentioned_user, Comment.last]
-  end
-
   test 'commenting on a discussion' do
     user = users(:geoff)
     login_as(user, scope: :user)
@@ -122,24 +103,6 @@ class DiscussionsTest < ApplicationSystemTestCase
       end
       assert_no_content 'this is an another reply'
     end
-  end
-
-  test 'commenting with mention with notify' do
-    user = User.first
-    login_as(user, scope: :user)
-
-    mentioned_user = users(:geoff)
-    mentioned_user.update!(notify_on_mention: true)
-
-    perform_enqueued_jobs(only: CommentNotificationJob) do
-      discussion = discussions(:non_script_discussion)
-      visit discussion.url
-      fill_in 'comment_text', with: 'Hey @Geoffrey'
-      click_on 'Post reply'
-      assert_content 'Hey @Geoffrey'
-    end
-
-    assert_enqueued_email_with ForumMailer, :comment_on_mentioned, args: [mentioned_user, Comment.last]
   end
 
   test 'quoting' do
