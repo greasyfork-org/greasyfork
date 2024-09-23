@@ -6,9 +6,7 @@ class User < ApplicationRecord
   include MentionsUsers
   include UserIndexing
 
-  AUTHOR_NOTIFICATION_NONE = 1
-  AUTHOR_NOTIFICATION_DISCUSSION = 2
-  AUTHOR_NOTIFICATION_COMMENT = 3
+  self.ignored_columns += %w[author_email_notification_type_id]
 
   serialize :announcements_seen, type: Array, coder: YAML
 
@@ -124,7 +122,6 @@ class User < ApplicationRecord
   validates :profile, length: { maximum: 10_000 }
   validates :profile_markup, inclusion: { in: %w[html markdown] }
   validates :preferred_markup, inclusion: { in: %w[html markdown] }
-  validates :author_email_notification_type_id, inclusion: { in: [AUTHOR_NOTIFICATION_NONE, AUTHOR_NOTIFICATION_DISCUSSION, AUTHOR_NOTIFICATION_COMMENT] }
   validates :locale, presence: { message: :invalid }, if: -> { locale_id.present? }
 
   validate do
@@ -401,7 +398,7 @@ class User < ApplicationRecord
 
   def unsubscribe_all!
     update!(
-      author_email_notification_type_id: User::AUTHOR_NOTIFICATION_NONE,
+      subscribe_on_script_discussion: false,
       subscribe_on_discussion: false,
       subscribe_on_comment: false,
       subscribe_on_conversation_starter: false,

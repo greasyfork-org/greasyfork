@@ -348,7 +348,7 @@ class UsersController < ApplicationController
 
   def update_notification_settings
     User.transaction do
-      current_user.update!(params.require(:user).permit(:author_email_notification_type_id, :subscribe_on_discussion, :subscribe_on_comment, :subscribe_on_conversation_starter, :subscribe_on_conversation_receiver, :notify_on_mention))
+      current_user.update!(params.require(:user).permit(:subscribe_on_discussion, :subscribe_on_comment, :subscribe_on_script_discussion, :subscribe_on_conversation_starter, :subscribe_on_conversation_receiver, :notify_on_mention))
       NOTIFICATION_KEYS.each do |notification_key|
         UserNotificationSetting.update_delivery_types_for_user(current_user, notification_key, params.dig(:notification_settings, notification_key) || [])
       end

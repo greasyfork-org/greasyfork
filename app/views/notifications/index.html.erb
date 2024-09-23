@@ -50,7 +50,11 @@
                   raise "Unexpected report result '#{notification.item.result}' for notification #{notification.id}."
                 end
               when Notification::NOTIFICATION_TYPE_NEW_COMMENT
-                t('users.notifications.new_comment', user: render_user_text(notification.item.poster, notification.item.poster_id), discussion: notification.item.discussion.display_title(locale: I18n.locale))
+                if notification.item.first_comment? && notification.item.script
+                  t('users.notifications.new_comment_script', user: render_user_text(notification.item.poster, notification.item.poster_id), script: notification.item.script.name(locale: I18n.locale))
+                else
+                  t('users.notifications.new_comment', user: render_user_text(notification.item.poster, notification.item.poster_id), discussion: notification.item.discussion.display_title(locale: I18n.locale))
+                end
               else
                 raise "Unexpected notification type '#{notification.notification_type}' for notification #{notification.id}."
               end

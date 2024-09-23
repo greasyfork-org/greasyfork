@@ -73,5 +73,45 @@ module Discussions
         assert_content 'this is a test discussion'
       end
     end
+
+    test 'adding a discussion on a script subscribes the author if the setting is true' do
+      user = users(:consumer)
+      login_as(user, scope: :user)
+
+      script = Script.first
+      author = script.users.first
+      author.update!(subscribe_on_script_discussion: true)
+
+      visit feedback_script_url(script, locale: :en)
+      fill_in 'discussion_comments_attributes_0_text', with: 'this is my comment'
+      choose 'Good'
+      assert_difference -> { Discussion.count } => 1 do
+        click_on 'Post comment'
+        assert_content 'this is my comment'
+      end
+
+      perform_enqueued_jobs(only: CommentNotificationJob)
+      assert author.subscribed_to?(Discussion.last)
+    end
+
+    test 'adding a discussion on a script does not subscribe the author if the setting is false' do
+      user = users(:consumer)
+      login_as(user, scope: :user)
+
+      script = Script.first
+      author = script.users.first
+      author.update!(subscribe_on_script_discussion: false)
+
+      visit feedback_script_url(script, locale: :en)
+      fill_in 'discussion_comments_attributes_0_text', with: 'this is my comment'
+      choose 'Good'
+      assert_difference -> { Discussion.count } => 1 do
+        click_on 'Post comment'
+        assert_content 'this is my comment'
+      end
+
+      perform_enqueued_jobs(only: CommentNotificationJob)
+      assert_not author.subscribed_to?(Discussion.last)
+    end
   end
 end

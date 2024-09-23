@@ -59,14 +59,19 @@ class Comment < ApplicationRecord
   def send_notifications!
     users_received_notification = Set.new([poster])
 
-    satn = script_authors_to_notify
-    satn.each do |author_user|
-      ForumMailer.comment_on_script(author_user, self).deliver_later
+    if first_comment? && discussion.script
+      users_to_subscribe = discussion.script.users.where(subscribe_on_script_discussion: true) - [poster]
+      users_to_subscribe.each do |user|
+        DiscussionSubscription.create!(user:, discussion:)
+      end
     end
-    users_received_notification.merge(satn)
 
     subscribed_users = UserNotificationService.notify_discussion_subscribed(self, ignored_users: users_received_notification) do |user|
-      ForumMailer.comment_on_subscribed(user, self).deliver_later
+      if first_comment?
+        ForumMailer.comment_on_script(user, self).deliver_later
+      else
+        ForumMailer.comment_on_subscribed(user, self).deliver_later
+      end
     end
     users_received_notification.merge(subscribed_users)
 
@@ -80,15 +85,6 @@ class Comment < ApplicationRecord
     mentioned_users.each do |user|
       ForumMailer.comment_on_mentioned(user, self).deliver_later
     end
-  end
-
-  def script_authors_to_notify
-    return User.none unless script
-
-    script
-      .users
-      .reject { |user| poster == user }
-      .select { |author_user| author_user.author_email_notification_type_id == User::AUTHOR_NOTIFICATION_COMMENT || (author_user.author_email_notification_type_id == User::AUTHOR_NOTIFICATION_DISCUSSION && first_comment?) }
   end
 
   def notify_subscribers!; end

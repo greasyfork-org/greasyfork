@@ -130,12 +130,23 @@ class NotificationsTest < ApplicationSystemTestCase
   test 'a new comment notification' do
     user = users(:junior)
     login_as(user)
+    comment = comments(:non_script_comment)
+
+    Notification.create!(user:, notification_type: Notification::NOTIFICATION_TYPE_NEW_COMMENT, item: comment)
+
+    visit notifications_url(user, locale: :en)
+    assert_content "Timmy O'Toole posted a comment on discussing something"
+  end
+
+  test 'a new script discussion notification' do
+    user = users(:junior)
+    login_as(user)
     comment = comments(:script_comment)
 
     Notification.create!(user:, notification_type: Notification::NOTIFICATION_TYPE_NEW_COMMENT, item: comment)
 
     visit notifications_url(user, locale: :en)
-    assert_content 'Geoffrey posted a comment on A question about MyString'
+    assert_content 'Geoffrey posted a discussion on your script MyString'
   end
 
   test 'mark all read' do

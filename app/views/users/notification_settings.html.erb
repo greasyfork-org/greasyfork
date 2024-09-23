@@ -2,15 +2,6 @@
 
 <%= form_with(model: @user, url: update_notification_settings_user_path(@user), method: :PATCH, data: { turbo: true }) do |f| %>
   <div class="form-control">
-    <%= f.label :author_email_notification_type_id %><br>
-    <%= f.radio_button(:author_email_notification_type_id, User::AUTHOR_NOTIFICATION_NONE) %> <%= f.label :author_email_notification_type_id, t('users.author_email_notification_type.none'), class: 'radio-label', value: User::AUTHOR_NOTIFICATION_NONE %><br>
-    <%= f.radio_button(:author_email_notification_type_id, User::AUTHOR_NOTIFICATION_DISCUSSION) %> <%= f.label :author_email_notification_type_id, t('users.author_email_notification_type.discussion_only'), class: 'radio-label', value: User::AUTHOR_NOTIFICATION_DISCUSSION %><br>
-    <%= f.radio_button(:author_email_notification_type_id, User::AUTHOR_NOTIFICATION_COMMENT) %> <%= f.label :author_email_notification_type_id, t('users.author_email_notification_type.discussion_and_comment'), class: 'radio-label', value: User::AUTHOR_NOTIFICATION_COMMENT %><br>
-  </div>
-
-  <hr>
-
-  <div class="form-control">
     <h3><%= t('users.notifications.discussion_defaults.title') %></h3>
 
     <p><%= t('users.notifications.discussion_defaults.intro') %></p>
@@ -24,6 +15,10 @@
       <div>
         <%= f.check_box :subscribe_on_comment %>
         <%= f.label :subscribe_on_comment, t('users.notifications.discussion_defaults.discussion_subscription_defaults.comment'), class: 'radio-label' %>
+      </div>
+      <div>
+        <%= f.check_box :subscribe_on_script_discussion %>
+        <%= f.label :subscribe_on_script_discussion, t('users.notifications.discussion_defaults.discussion_subscription_defaults.script'), class: 'radio-label' %>
       </div>
     </div>
 
@@ -89,7 +84,7 @@
 
   <div>
     <%= f.submit t('users.notifications.save_button') %>
-    <% if @user.author_email_notification_type_id != User::AUTHOR_NOTIFICATION_NONE || @user.subscribe_on_discussion || @user.subscribe_on_comment || @user.subscribe_on_conversation_starter || @user.subscribe_on_conversation_receiver || @user.notify_on_mention || @user.discussion_subscriptions.any? %>
+    <% if @user.subscribe_on_script_discussion || @user.subscribe_on_discussion || @user.subscribe_on_comment || @user.subscribe_on_conversation_starter || @user.subscribe_on_conversation_receiver || @user.notify_on_mention || @user.discussion_subscriptions.any? %>
       <%= f.submit t('users.notifications.unsubscribe_all'), formaction: unsubscribe_all_user_path(@user) %>
     <% end %>
   </div>

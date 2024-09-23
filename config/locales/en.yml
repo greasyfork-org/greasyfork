@@ -867,13 +867,6 @@ en:
     add_external_sign_in_info: "Add a sign in:"
     # link to docs on how to set up a webhook for script syncing
     set_up_webhook: "Set up a webhook"
-    author_email_notification_type:
-      # notification option: don't send the user e-mails
-      none: "Don't get emails about discussions on your scripts"
-      # notification option: send e-mails on new discussions but not new posts on existing discussions
-      discussion_only: "Get an email when discussions are posted on your scripts"
-      # notification option: send e-mails on new discussoins and on new posts on existing discussions
-      discussion_and_comment: "Get an email when discussions are posted on your scripts or when those discussions get new comments"
     # display of a single user when displaying a list of users. user_link is a link to the user's page with text of the user name, count is the number of public scripts authored
     list_display_html:
       one: "%{user_link} - %{count} script"
@@ -972,6 +965,7 @@ en:
           overall_label: By default, subscribe to discussions when
           start: You start the discussion
           comment: You comment on the discussion
+          script: It's about one of your scripts
         subscribed_discussion_notification: When a comment is posted on a discussion you're subscribed to, get the notification
         mention: Receive a notification when you are mentioned in a discussion
       conversation_defaults:
@@ -1000,6 +994,7 @@ en:
       new_conversation: "%{user} started a conversation with you: %{text}"
       new_message: "%{user} sent you a message: %{text}"
       new_comment: "%{user} posted a comment on %{discussion}"
+      new_comment_script: "%{user} posted a discussion on your script %{script}"
       report_resolved_reporter:
         dismissed: Your report against %{item} was dismissed by a moderator.
         fixed: Your report against %{item} resulted in some changes and a moderator marked the issue as having been resolved.
@@ -1525,7 +1520,6 @@ en:
     subscribe: Subscribe
     unsubscribe: Unsubscribe
     notify: Notify me of any replies
-    notifying_on_script: You will be notified of any replies due to your %{notifications_link:script notification settings}.
     categories:
       greasyfork:
         name: Greasy Fork Feedback
@@ -1620,8 +1614,6 @@ en:
         profile: "Profile"
         # user field: locale
         locale: "Preferred locale"
-        # user field: setting to send e-mails when discussions or comments are posted to a user's scripts. options are under users.author_email_notification_type
-        author_email_notification_type_id: "Script discussion notifications"
         # user field: show ads
         show_ads: "Show ads"
         # user field: show sensitive
@@ -1804,7 +1796,7 @@ en:
     script_comment:
       subject: "Your script %{script_name} on %{site_name} has received a comment."
       intro: "Your script %{script_link:%{script_name}} on %{site_name} has received a comment by user %{commenter_link:%{commenter_name}}:"
-      outro: "%{comment_link:View and reply to this comment.} You received this notification because you chose to be notified about discussions on your scripts. %{notification_preferences_link:Manage your notification preferences.}"
+      outro: "%{comment_link:View and reply to this comment.} You received this notification because you chose to be subscribed to discussions about your scripts. %{notification_preferences_link:Manage your notification preferences.}"
     subscribed_discussion:
       subject: "The discussion %{discussion_title} on %{site_name} has received a comment."
       intro: "The discussion %{discussion_link:%{discussion_title}} on %{site_name} has received a comment by user %{commenter_link:%{commenter_name}}:"
