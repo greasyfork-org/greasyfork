@@ -53,6 +53,10 @@ class UserNotificationService
     subscribed_users
   end
 
+  def self.notify_discussion_mention(comment, mentioned_users: [], &)
+    notify_users(mentioned_users, notification_type: Notification::NOTIFICATION_TYPE_MENTION, item: comment, &)
+  end
+
   def self.locale_for(user, backup_locale: nil)
     backup_locale = nil unless I18n.locale_available?(backup_locale&.code)
     user.available_locale_code || backup_locale&.code || :en

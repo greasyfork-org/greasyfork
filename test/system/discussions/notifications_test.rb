@@ -7,7 +7,7 @@ module Discussions
     test 'adding a discussion mentioning a user with notifications' do
       user = User.first
       mentioned_user = users(:geoff)
-      mentioned_user.update!(notify_on_mention: true)
+      UserNotificationSetting.update_delivery_types_for_user(mentioned_user, Notification::NOTIFICATION_TYPE_MENTION, UserNotificationSetting::ALL_DELIVERY_TYPES)
 
       login_as(user, scope: :user)
       visit new_discussion_path(locale: :en)
@@ -15,9 +15,11 @@ module Discussions
       fill_in 'discussion_comments_attributes_0_text', with: 'Hey @Geoffrey'
       choose 'Greasy Fork Feedback'
       perform_enqueued_jobs(only: CommentNotificationJob) do
-        assert_difference -> { Discussion.count } => 1 do
-          click_on 'Post comment'
-          assert_content 'Hey @Geoffrey'
+        assert_difference -> { Notification.count } => 1 do
+          assert_difference -> { Discussion.count } => 1 do
+            click_on 'Post comment'
+            assert_content 'Hey @Geoffrey'
+          end
         end
       end
       assert_enqueued_email_with ForumMailer, :comment_on_mentioned, args: [mentioned_user, Comment.last]
@@ -48,14 +50,16 @@ module Discussions
       login_as(user, scope: :user)
 
       mentioned_user = users(:geoff)
-      mentioned_user.update!(notify_on_mention: true)
+      UserNotificationSetting.update_delivery_types_for_user(mentioned_user, Notification::NOTIFICATION_TYPE_MENTION, UserNotificationSetting::ALL_DELIVERY_TYPES)
 
       perform_enqueued_jobs(only: CommentNotificationJob) do
-        discussion = discussions(:non_script_discussion)
-        visit discussion.url
-        fill_in 'comment_text', with: 'Hey @Geoffrey'
-        click_on 'Post reply'
-        assert_content 'Hey @Geoffrey'
+        assert_difference -> { Notification.count } => 1 do
+          discussion = discussions(:non_script_discussion)
+          visit discussion.url
+          fill_in 'comment_text', with: 'Hey @Geoffrey'
+          click_on 'Post reply'
+          assert_content 'Hey @Geoffrey'
+        end
       end
 
       assert_enqueued_email_with ForumMailer, :comment_on_mentioned, args: [mentioned_user, Comment.last]

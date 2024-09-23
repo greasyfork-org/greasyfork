@@ -45,10 +45,8 @@
     <%= label_tag t('users.notifications.discussion_defaults.subscribed_discussion_notification') %>
     <%= render partial: 'notification_setting_checkboxes', locals: { current_settings: @notification_settings, notification_type: Notification::NOTIFICATION_TYPE_NEW_COMMENT } %>
 
-    <div>
-      <%= f.check_box :notify_on_mention %>
-      <%= f.label :notify_on_mention, t('users.notifications.discussion_defaults.mention'), class: 'radio-label' %>
-    </div>
+    <%= label_tag t('users.notifications.discussion_defaults.mention') %>
+    <%= render partial: 'notification_setting_checkboxes', locals: { current_settings: @notification_settings, notification_type: Notification::NOTIFICATION_TYPE_MENTION } %>
   </div>
 
   <hr>

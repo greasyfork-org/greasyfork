@@ -336,6 +336,7 @@ class UsersController < ApplicationController
     Notification::NOTIFICATION_TYPE_REPORT_FILED_REPORTED,
     Notification::NOTIFICATION_TYPE_REPORT_RESOLVED_REPORTED,
     Notification::NOTIFICATION_TYPE_NEW_COMMENT,
+    Notification::NOTIFICATION_TYPE_MENTION,
   ].freeze
 
   def notification_settings
@@ -348,7 +349,7 @@ class UsersController < ApplicationController
 
   def update_notification_settings
     User.transaction do
-      current_user.update!(params.require(:user).permit(:subscribe_on_discussion, :subscribe_on_comment, :subscribe_on_script_discussion, :subscribe_on_conversation_starter, :subscribe_on_conversation_receiver, :notify_on_mention))
+      current_user.update!(params.require(:user).permit(:subscribe_on_discussion, :subscribe_on_comment, :subscribe_on_script_discussion, :subscribe_on_conversation_starter, :subscribe_on_conversation_receiver))
       NOTIFICATION_KEYS.each do |notification_key|
         UserNotificationSetting.update_delivery_types_for_user(current_user, notification_key, params.dig(:notification_settings, notification_key) || [])
       end

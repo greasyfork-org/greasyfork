@@ -6,7 +6,7 @@ class User < ApplicationRecord
   include MentionsUsers
   include UserIndexing
 
-  self.ignored_columns += %w[author_email_notification_type_id]
+  self.ignored_columns += %w[author_email_notification_type_id notify_on_mention]
 
   serialize :announcements_seen, type: Array, coder: YAML
 
@@ -402,7 +402,6 @@ class User < ApplicationRecord
       subscribe_on_comment ||
       subscribe_on_conversation_starter ||
       subscribe_on_conversation_receiver ||
-      notify_on_mention ||
       discussion_subscriptions.any? ||
       conversation_subscriptions.any? ||
       UserNotificationSetting::DEFAULT_NOTIFICATIONS.keys.any? { |dn| UserNotificationSetting.delivery_types_for_user(self, dn).any? }
@@ -418,8 +417,7 @@ class User < ApplicationRecord
       subscribe_on_discussion: false,
       subscribe_on_comment: false,
       subscribe_on_conversation_starter: false,
-      subscribe_on_conversation_receiver: false,
-      notify_on_mention: false
+      subscribe_on_conversation_receiver: false
     )
     UsersController::NOTIFICATION_KEYS.each do |notification_type|
       UserNotificationSetting.update_delivery_types_for_user(self, notification_type, [])

@@ -55,6 +55,8 @@
                 else
                   t('users.notifications.new_comment', user: render_user_text(notification.item.poster, notification.item.poster_id), discussion: notification.item.discussion.display_title(locale: I18n.locale))
                 end
+              when Notification::NOTIFICATION_TYPE_MENTION
+                t('users.notifications.mention', user: render_user_text(notification.item.poster, notification.item.poster_id), discussion: notification.item.discussion.display_title(locale: I18n.locale))
               else
                 raise "Unexpected notification type '#{notification.notification_type}' for notification #{notification.id}."
               end

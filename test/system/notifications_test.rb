@@ -165,6 +165,17 @@ class NotificationsTest < ApplicationSystemTestCase
     end
   end
 
+  test 'a mention notification' do
+    user = users(:junior)
+    login_as(user)
+    comment = comments(:non_script_comment)
+
+    Notification.create!(user:, notification_type: Notification::NOTIFICATION_TYPE_MENTION, item: comment)
+
+    visit notifications_url(user, locale: :en)
+    assert_content "Timmy O'Toole mentioned you in discussing something"
+  end
+
   def assert_notification_widget_count(count)
     if count == 0
       assert_no_selector('.notification-widget')

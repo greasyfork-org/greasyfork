@@ -78,11 +78,10 @@ class Comment < ApplicationRecord
     mentioned_users = mentions
                       .where.not(user: users_received_notification)
                       .includes(:user)
-                      .where(users: { notify_on_mention: true })
                       .map(&:user)
                       .uniq
     mentioned_users = mentioned_users.select(&:moderator?) if discussion_category.moderators_only?
-    mentioned_users.each do |user|
+    UserNotificationService.notify_discussion_mention(self, mentioned_users:) do |user|
       ForumMailer.comment_on_mentioned(user, self).deliver_later
     end
   end

@@ -36,8 +36,8 @@ class DiscussionsTest < ApplicationSystemTestCase
     user = User.first
     mentioned_user1 = users(:geoff)
     mentioned_user2 = users(:junior)
-    mentioned_user1.update!(notify_on_mention: false)
-    mentioned_user2.update!(notify_on_mention: false)
+    UserNotificationSetting.update_delivery_types_for_user(mentioned_user1, Notification::NOTIFICATION_TYPE_MENTION, [])
+    UserNotificationSetting.update_delivery_types_for_user(mentioned_user2, Notification::NOTIFICATION_TYPE_MENTION, [])
 
     login_as(user, scope: :user)
     visit new_discussion_path(locale: :en)
