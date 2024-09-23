@@ -353,6 +353,7 @@ class UsersController < ApplicationController
         UserNotificationSetting.update_delivery_types_for_user(current_user, notification_key, params.dig(:notification_settings, notification_key) || [])
       end
       current_user.discussion_subscriptions.destroy_all if params[:unsubscribe_all_discussions] == '1'
+      current_user.conversation_subscriptions.destroy_all if params[:unsubscribe_all_conversations] == '1'
     end
     flash[:notice] = t('users.notifications.save_success')
     redirect_to user_path(current_user)

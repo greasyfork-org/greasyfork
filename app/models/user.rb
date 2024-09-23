@@ -409,6 +409,7 @@ class User < ApplicationRecord
       UserNotificationSetting.update_delivery_types_for_user(self, notification_type, [])
     end
     discussion_subscriptions.destroy_all
+    conversation_subscriptions.destroy_all
   end
 
   def blocked_from_reporting_until

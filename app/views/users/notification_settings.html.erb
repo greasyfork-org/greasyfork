@@ -45,6 +45,13 @@
 
     <p><%= t('users.notifications.conversation_defaults.intro') %></p>
 
+    <% if @user.conversation_subscriptions.any? %>
+      <div class="form-control">
+        <%= check_box_tag :unsubscribe_all_conversations, '1' %>
+        <%= label_tag :unsubscribe_all_conversations, it('users.notifications.current_conversation_subscriptions', count: @user.conversation_subscriptions.count), class: 'radio-label' %>
+      </div>
+    <% end %>
+
     <%= label_tag t('users.notifications.conversation_defaults.new_conversation_subscription.overall_label') %>
     <div class="form-control">
       <div>
