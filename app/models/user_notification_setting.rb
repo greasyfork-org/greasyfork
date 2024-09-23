@@ -36,7 +36,7 @@ class UserNotificationSetting < ApplicationRecord
   end
 
   def self.update_delivery_types_for_user(user, notification_type, delivery_types)
-    delivery_types.map!(&:to_sym)
+    delivery_types = delivery_types.map(&:to_sym)
     [DELIVERY_TYPE_EMAIL, DELIVERY_TYPE_ON_SITE].each do |delivery_type|
       uns = find_or_initialize_by(user:, notification_type:, delivery_type:)
       uns.enabled = delivery_types.include?(delivery_type)
