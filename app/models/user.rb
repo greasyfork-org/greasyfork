@@ -3,8 +3,6 @@ require 'devise'
 require 'digest'
 
 class User < ApplicationRecord
-  self.ignored_columns += %w[notify_as_reporter notify_as_reported]
-
   include MentionsUsers
   include UserIndexing
 
