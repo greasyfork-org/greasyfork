@@ -32,6 +32,21 @@ module Users
       end
       visit notification_settings_user_path(user, locale: :en)
       assert_no_selector 'input[type=submit]', text: 'Unsubscribe from all notifications'
+      assert_not user.reload.subscribed_to_anything?
+    end
+
+    test 'unsubscribing from emails' do
+      user = users(:one)
+      user.update(subscribe_on_discussion: true)
+      login_as(user)
+      visit notification_settings_user_path(user, locale: :en)
+      assert_checked_field 'By email'
+      click_on 'Unsubscribe from all email notifications'
+      assert_content 'You have been unsubscribed from all email notifications.'
+      visit notification_settings_user_path(user, locale: :en)
+      assert_no_selector 'input[type=submit]', text: 'Unsubscribe from all email notifications'
+      assert_no_checked_field 'By email'
+      assert_not user.reload.any_email_notifications?
     end
 
     test 'changing a notification setting from default' do

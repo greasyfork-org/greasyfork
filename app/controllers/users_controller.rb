@@ -365,6 +365,12 @@ class UsersController < ApplicationController
     redirect_to user_path(current_user)
   end
 
+  def unsubscribe_email
+    current_user.unsubscribe_email!
+    flash[:notice] = t('users.notifications.unsubscribe_email_success')
+    redirect_to user_path(current_user)
+  end
+
   def self.apply_sort(finder, sort:)
     case sort
     when 'name'

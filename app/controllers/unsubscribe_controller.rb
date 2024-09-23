@@ -8,7 +8,7 @@ class UnsubscribeController < ActionController::Base # rubocop:disable Rails/App
       return
     end
 
-    user.unsubscribe_all!
+    user.unsubscribe_email!
     head :ok
   end
 end

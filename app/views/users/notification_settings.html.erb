@@ -1,6 +1,19 @@
 <h2><%= t('users.notifications.title') %></h2>
 
 <%= form_with(model: @user, url: update_notification_settings_user_path(@user), method: :PATCH, data: { turbo: true }) do |f| %>
+
+  <p><%= t('users.notifications.intro', site_name:) %></p>
+
+  <% if @user.any_email_notifications? %>
+    <%= f.submit t('users.notifications.unsubscribe_email'), formaction: unsubscribe_email_user_path(@user) %>
+  <% end %>
+
+  <% if @user.subscribed_to_anything? %>
+    <%= f.submit t('users.notifications.unsubscribe_all'), formaction: unsubscribe_all_user_path(@user) %>
+  <% end %>
+
+  <hr>
+
   <div class="form-control">
     <h3><%= t('users.notifications.discussion_defaults.title') %></h3>
 
@@ -92,8 +105,5 @@
 
   <div>
     <%= f.submit t('users.notifications.save_button') %>
-    <% if @user.subscribe_on_script_discussion || @user.subscribe_on_discussion || @user.subscribe_on_comment || @user.subscribe_on_conversation_starter || @user.subscribe_on_conversation_receiver || @user.notify_on_mention || @user.discussion_subscriptions.any? %>
-      <%= f.submit t('users.notifications.unsubscribe_all'), formaction: unsubscribe_all_user_path(@user) %>
-    <% end %>
   </div>
 <% end %>

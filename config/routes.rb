@@ -177,6 +177,7 @@ Rails.application.routes.draw do
         get :notification_settings
         patch :update_notification_settings
         patch :unsubscribe_all
+        patch :unsubscribe_email
         patch :mark_email_as_confirmed
         resources :notifications, only: 'index' do
           collection do

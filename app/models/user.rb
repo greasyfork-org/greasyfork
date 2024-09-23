@@ -396,6 +396,22 @@ class User < ApplicationRecord
     }
   end
 
+  def subscribed_to_anything?
+    subscribe_on_script_discussion ||
+      subscribe_on_discussion ||
+      subscribe_on_comment ||
+      subscribe_on_conversation_starter ||
+      subscribe_on_conversation_receiver ||
+      notify_on_mention ||
+      discussion_subscriptions.any? ||
+      conversation_subscriptions.any? ||
+      UserNotificationSetting::DEFAULT_NOTIFICATIONS.keys.any? { |dn| UserNotificationSetting.delivery_types_for_user(self, dn).any? }
+  end
+
+  def any_email_notifications?
+    UserNotificationSetting::DEFAULT_NOTIFICATIONS.keys.any? { |dn| UserNotificationSetting.delivery_types_for_user(self, dn).include?(UserNotificationSetting::DELIVERY_TYPE_EMAIL) }
+  end
+
   def unsubscribe_all!
     update!(
       subscribe_on_script_discussion: false,
@@ -410,6 +426,12 @@ class User < ApplicationRecord
     end
     discussion_subscriptions.destroy_all
     conversation_subscriptions.destroy_all
+  end
+
+  def unsubscribe_email!
+    UsersController::NOTIFICATION_KEYS.each do |notification_type|
+      UserNotificationSetting.update_delivery_types_for_user(self, notification_type, UserNotificationSetting.delivery_types_for_user(self, notification_type) - [UserNotificationSetting::DELIVERY_TYPE_EMAIL])
+    end
   end
 
   def blocked_from_reporting_until
