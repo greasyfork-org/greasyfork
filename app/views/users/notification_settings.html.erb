@@ -6,6 +6,13 @@
 
     <p><%= t('users.notifications.discussion_defaults.intro') %></p>
 
+    <% if @user.discussion_subscriptions.any? %>
+      <div class="form-control">
+        <%= check_box_tag :unsubscribe_all_discussions, '1' %>
+        <%= label_tag :unsubscribe_all_discussions, it('users.notifications.current_discussion_subscriptions', count: @user.discussion_subscriptions.count, discussions_link: discussions_path(me: 'subscribed')), class: 'radio-label' %>
+      </div>
+    <% end %>
+
     <%= label_tag t('users.notifications.discussion_defaults.discussion_subscription_defaults.overall_label') %>
     <div class="form-control">
       <div>
@@ -29,12 +36,6 @@
       <%= f.check_box :notify_on_mention %>
       <%= f.label :notify_on_mention, t('users.notifications.discussion_defaults.mention'), class: 'radio-label' %>
     </div>
-    <% if @user.discussion_subscriptions.any? %>
-      <div>
-        <%= check_box_tag :unsubscribe_all_discussions, '1' %>
-        <%= label_tag :unsubscribe_all_discussions, it('users.notifications.current_discussion_subscriptions', count: @user.discussion_subscriptions.count, discussions_link: discussions_path(me: 'subscribed')), class: 'radio-label' %>
-      </div>
-    <% end %>
   </div>
 
   <hr>
