@@ -37,3 +37,6 @@
     script_delete_job:
       interval: '1h'
       class: ScriptDeleteJob
+    delete_old_notifications_job:
+      interval: '1h'
+      class: DeleteOldNotificationsJob
