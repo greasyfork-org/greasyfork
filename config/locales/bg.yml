@@ -598,10 +598,6 @@ bg:
     remove_external_sign_in: "Премахване"
     add_external_sign_in_info: "Добавяне на вход:"
     set_up_webhook: "Настройте webhook"
-    author_email_notification_type:
-      none: "Изключване на email-и при обсъждане на скриптовете ви"
-      discussion_only: "Получаване на email когато някой остави коментар за ваш скрипт"
-      discussion_and_comment: "Получаване на email когато е създадено обсъждане за ваш скрипт, или е пуснат нов коментар."
     list_display_html:
       one: "%{user_link} - %{count} скрипт"
       other: "%{user_link} - %{count} скрипта"
@@ -704,9 +700,6 @@ bg:
         as_reported_resolved: Когато доклад, подаден срещу ваше съдържание, е разрешен, получете известие
       save_button: Промени настройките за известия
       title: Известия
-      current_discussion_subscriptions:
-        one: Отпиши се от %{discussions_link:%{count} дискусия} за която си абониран(а)
-        other: Отпиши се от %{discussions_link:%{count} разговора} за който си абониран(а)
       save_success: Настройките за известията бяха обновени.
       unsubscribe_all: Отпиши се от всички известия
       unsubscribe_all_success: Отписа се от всички известия.
@@ -1245,7 +1238,6 @@ bg:
     subscribe: Абонирай се
     unsubscribe: Премахни абонамент
     notify: Извести ме за всеки отговор
-    notifying_on_script: Ще бъдеш известяван за всички отговори, заради %{notifications_link:настройките за известия}.
     categories:
       greasyfork:
         name: Обратна връзка за Greasy Fork
@@ -1328,7 +1320,6 @@ bg:
         name: "Име"
         profile: "Профил"
         locale: "Предпочитана локализация"
-        author_email_notification_type_id: "Известия при обсъждане на скриптовете"
         show_ads: "Покажи рекламите"
         show_sensitive: "Съдържание за възрастни"
         preferred_markup: "Предпочитан код"
@@ -1482,7 +1473,6 @@ bg:
     script_comment:
       subject: "Получихте коментар за вашия скрипт %{script_name} на %{site_name}."
       intro: "Вашият скрипт %{script_link:%{script_name}} на %{site_name} има коментар от потребител %{commenter_link:%{commenter_name}}:"
-      outro: "%{comment_link:Прегледайте и отговорете на коментара.} Получихте това известие, защото сте избрали да бъдете уведомени за дискусии по вашите скриптове. %{notification_preferences_link:Управление на настройките за известията.}"
     subscribed_discussion:
       subject: "В дискусията %{discussion_title} на %{site_name} има получен коментар."
       intro: "Дискусията %{discussion_link:%{discussion_title}} на %{site_name} има коментар от потребител %{commenter_link:%{commenter_name}}:"

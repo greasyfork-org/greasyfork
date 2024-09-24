@@ -570,10 +570,6 @@ it:
     remove_external_sign_in: "Rimuovi"
     add_external_sign_in_info: "Aggiungi un'autenticazione:"
     set_up_webhook: "Crea un webhook"
-    author_email_notification_type:
-      none: "Non ricevere email riguardanti le discussioni sui tuoi script"
-      discussion_only: "Ricevi un'e-mail quando ci sono delle nuove discussioni sui tuoi script"
-      discussion_and_comment: "Ricevi un'e-mail quando ci sono delle nuove discussioni sui tuoi script o quando queste discussioni ricevono nuovi commenti"
     list_display_html:
       one: "%{user_link} - %{count} script"
       many: "%{user_link} - %{count} script"
@@ -663,10 +659,6 @@ it:
         title: Notifiche per le segnalazioni
       save_button: Aggiorna impostazioni notifiche
       title: Notifiche
-      current_discussion_subscriptions:
-        one: Disiscriviti dalla %{discussions_link:%{count} discussione} a cui sei iscritto
-        many: Disiscriviti dalle %{discussions_link:%{count} discussioni} a cui sei iscritto
-        other: Disiscriviti dalle %{discussions_link:%{count} discussioni} a cui sei iscritto
       save_success: Le preferenze per le tue notifiche sono state aggiornate.
       unsubscribe_all: Disiscriviti da tutte le notifiche
       unsubscribe_all_success: Ti sei disiscritto da tutte le notifiche.
@@ -1103,7 +1095,6 @@ it:
     subscribe: Iscriviti
     unsubscribe: Disiscriviti
     notify: Avvisami di ogni risposta
-    notifying_on_script: Sarai avvisato di qualsiasi risposta per via delle tue %{notifications_link:impostazioni sulle notifiche degli script}.
     categories:
       greasyfork:
         name: Feedback di Greasy Fork
@@ -1188,7 +1179,6 @@ it:
         name: "Nome"
         profile: "Profilo"
         locale: "Lingua preferita"
-        author_email_notification_type_id: "Notifiche discussioni degli script"
         show_ads: "Mostra ads"
         show_sensitive: "Contenuto per adulti"
         preferred_markup: "Markup preferito"

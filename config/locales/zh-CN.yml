@@ -580,10 +580,6 @@ zh-CN:
     remove_external_sign_in: "移除"
     add_external_sign_in_info: "添加第三方登录："
     set_up_webhook: "设置 webhook"
-    author_email_notification_type:
-      none: "不接收关于您脚本讨论的电子邮件通知"
-      discussion_only: "当有人在您的脚本上发布讨论时接收电子邮件通知"
-      discussion_and_comment: "当有人在您的脚本上发布讨论或这些讨论收到新评论时接收电子邮件通知"
     list_display_html:
       other: "%{user_link} - %{count} 个脚本"
     listing_number_of_scripts: "脚本数量"
@@ -669,8 +665,6 @@ zh-CN:
         title: 举报通知
       save_button: 更新通知设置
       title: 通知
-      current_discussion_subscriptions:
-        other: 取消订阅我之前所订阅的 %{discussions_link:%{count} 条讨论帖}
       save_success: 您的通知设定已更新。
       unsubscribe_all: 取消接收所有通知
       unsubscribe_all_success: 您已取消接收所有通知。
@@ -1163,7 +1157,6 @@ zh-CN:
     subscribe: 订阅
     unsubscribe: 取消订阅
     notify: 若该讨论有新回复，请通知我
-    notifying_on_script: 根据您的 %{notifications_link:脚本通知设置}，有新回复时您将收到通知。
     categories:
       greasyfork:
         name: Greasy Fork 反馈
@@ -1242,7 +1235,6 @@ zh-CN:
         name: "账户名"
         profile: "个人信息"
         locale: "首选语言"
-        author_email_notification_type_id: "脚本讨论帖通知"
         show_ads: "显示广告"
         show_sensitive: "成人内容"
         preferred_markup: "首选标记语言"
@@ -1394,7 +1386,6 @@ zh-CN:
     script_comment:
       subject: "您对于站点%{site_name}的脚本%{script_name}收到了一条评论。"
       intro: "您在 %{site_name}  上的脚本 %{script_link:%{script_name}} 收到了用户 %{commenter_link:%{commenter_name}} 的评论："
-      outro: "%{comment_link:查看并回复该评论}。你收到了该则通知，因为你的一个脚本收到了一则评论并且你选择接收该通知。%{notification_preferences_link:你可以管理该通知选项}。"
     subscribed_discussion:
       subject: "站点%{site_name}的讨论%{discussion_title}收到了一条评论。"
       intro: "%{site_name} 上的讨论 %{discussion_link:%{discussion_title}} 收到了一条来自 %{commenter_link:%{commenter_name}} 的评论："

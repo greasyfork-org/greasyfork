@@ -577,10 +577,6 @@ es:
     remove_external_sign_in: "Eliminar"
     add_external_sign_in_info: "Añadir un inicio de sesión:"
     set_up_webhook: "Configurar un «webhook»"
-    author_email_notification_type:
-      none: "No recibir correos electrónicos sobre comentarios en tus scripts"
-      discussion_only: "Recibir un correo cuando se publiquen comentarios en tus scripts"
-      discussion_and_comment: "Recibir un correo cuando se publiquen comentarios en tus scripts o cuando recibas una contestación a una conversación."
     list_display_html:
       one: "%{user_link} - %{count} script"
       many: "%{user_link} - %{count} scripts"
@@ -670,10 +666,6 @@ es:
         title: Informar notificaciones
       save_button: Actualizar ajustes de notificaciones
       title: Notificaciones
-      current_discussion_subscriptions:
-        one: Desuscribirte de %{discussions_link:%{count} conversación} a la que estás suscrito
-        many: Desuscribirte de %{discussions_link:%{count} conversaciones} a las que estás suscrito
-        other: Desuscribirte de %{discussions_link:%{count} conversaciones} a las que estás suscrito
       save_success: Se han actualizado tus preferencias de notificaciones
       unsubscribe_all: Anular la suscripción para todas las notificaciones
       unsubscribe_all_success: Se ha cancelado la suscripción de todas las notificaciones.
@@ -1114,7 +1106,6 @@ es:
     subscribe: Suscribirse a la conversación
     unsubscribe: Dejar de seguir
     notify: Avisarme de futuros mensajes
-    notifying_on_script: Se te notificará de cualquier respuesta tal y como se establece en tus %{notifications_link:ajustes de notificación}.
     categories:
       greasyfork:
         name: Comentarios y opiniones sobre Greasy Fork
@@ -1199,7 +1190,6 @@ es:
         name: "Nombre"
         profile: "Perfil"
         locale: "Idioma preferido"
-        author_email_notification_type_id: "Notificaciones sobre conversaciones en scripts"
         show_ads: "Mostrar anuncios"
         show_sensitive: "Contenido para adultos"
         preferred_markup: "Formato de texto preferido"
@@ -1352,7 +1342,6 @@ es:
     script_comment:
       subject: "Alguien ha comentado en %{script_name} en %{site_name}."
       intro: "Tu script %{script_link:%{script_name}} en %{site_name} ha recibido un comentario del usuario %{commenter_link:%{commenter_name}}:"
-      outro: "%{comment_link:Ver y responder a este comentario.} Has recibido esta notificación porque has elegido que se te notifiquen los debates sobre tus scripts. %{notification_preferences_link:Gestiona tus preferencias de notificación.}"
     subscribed_discussion:
       subject: "La conversación «%{discussion_title}» en %{site_name} ha recibido un comentario."
       intro: "La conversación %{discussion_link:%{discussion_title}} en %{site_name} ha recibido un comentario del usuario %{commenter_link:%{commenter_name}}:"

@@ -40,8 +40,11 @@ id:
     promoted_text_html: "Kamu mungkin juga suka %{script_link}."
     library_instructions_html: "Skrip ini tidak untuk dipasang secara langsung. Ini adalah pustaka skrip lain untuk disertakan dengan direktif meta %{code}"
     deleted_notice: "Skrip ini telah dihapus."
+    deleted_notice_with_reason: "Skrip ini telah dihapus karena %{report_link:this report}."
     deleted_notice_with_related: "Skrip yang kamu cari sudah dihapus.\ntapi ada beberapa skrip yang mirip."
+    deleted_notice_with_related_and_reason: "Skrip yang Anda minta telah dihapus karena %{report_link:this report}, Berikut ini beberapa skrip yang terkait."
     deleted_undelete_notice_html: "Skrip ini sudah dikunci oleh moderator dan tidak dapat tidak dihapus. alasan yang disediakan: \"<i>%{delete_reason}</i>\"."
+    deleted_locked_author_notice_html: "Skrip ini telah dihapus oleh moderator sebagai tanggapan terhadap %{report_link:this report} dan tidak dapat diakses oleh orang lain. Alasan yang diberikan adalah: \"<i>%{delete_reason}</i>\". Mohon ditinjau aturannya %{code_rules_link: %{site_name}} . Jika Anda yakin penghapusan tersebut merupakan kesalahan, Anda dapat mengajukan banding atas penghapusan tersebut %{appeal_link:submit an appeal} . Jangan memposting ulang skrip ini; karena anda bisa dibanned dari %{site_name}."
     deleted_author_notice: "Skrip ini telah dihapus dan tidak dapat diakses oleh orang lain. Anda dapat membatalkan penghapusan dari tab Hapus. "
     version_notice_html: "Pada tanggal %{date}. Lihat %(latest_version_link)."
     version_notice_latest_version_link: "versi terakhir"
@@ -96,6 +99,9 @@ id:
       compare_to: "Skrip pada %{site_name} untuk membandingkan dengan (URL)"
       compare_button: "Bandingkan"
       compare_must_be_local_url: "Skrip perbandingan harus berupa URL pada %{site_name}"
+      checkup:
+        title: Pemeriksaan
+        additional_info: Sertakan info tambahan - buat daftar fitur Anda, berikan tangkapan layar, dll. sehingga pengguna Anda tahu persis apa yang dilakukan skrip Anda.
     history_title: "%{script_name} - Riwayat versi"
     history_only_code_changes_info: "Ini adalah versi dari skrip ini yang kodenya telah diperbarui."
     history_all_changes_link: "Tampilkan semua versi."
@@ -131,6 +137,11 @@ id:
     derivatives_similar_info: "Kami secara berkala memeriksa versi terbaru dari semua skrip lain untuk menemukan yang paling mirip dengan Anda. Kami juga memeriksa setiap kali Anda memposting pembaruan ke skrip Anda dan atas permintaan Anda."
     similarity_score:
       high: Sangat mirip
+      medium: Cukup serupa
+      low: Agak serupa
+      none: Tidak serupa
+    derivatives_similar_none: "Tidak ada Skrip yang serupa untuk Anda."
+    derivatives_similar_last_check_soon: "Kami akan segera memeriksa skrip yang serupa untuk Anda."
     derivatives_similar_check_now: "Mengecek ulang sekarang"
     derivatives_similiar_queued: Pemeriksaan kesamaan akan selesai dalam beberapa menit.
     listing_title_all_sites: "Skrip untuk semua situs"
@@ -270,18 +281,25 @@ id:
       already_author: "Pengguna yang Anda tentukan sudah menjadi penulis skrip ini."
       sent: "Undangan telah dikirim."
       current_user_already_author: "Anda sudah menjadi penulis skrip ini."
+    no_disposable_email: "Anda tidak diperbolehkan memposting skrip jika Anda menggunakan alamat email sekali pakai."
+    rate_limited: "Anda telah memposting terlalu banyak skrip baru-baru ini. Silakan coba lagi nanti."
+    delayed: "Karena masalah spam, akun baru mungkin tidak langsung memposting skrip. Coba lagi nanti."
+    new_script_notice:
+      title: "Apa yang ingin kamu lakukan?"
     new_title:
       css: "Posting style baru"
     badges:
       css:
         long: Style pengguna
   script_sets:
+    description: "Kumpulan skrip memungkinkan Anda membuat daftar skrip yang disesuaikan untuk menelusuri Greasy Fork. Anda dapat menambahkan skrip ke kumpulan Anda dengan menyertakan skrip individual, kumpulan milik pengguna lain, atau kumpulan yang dibuat secara otomatis. Anda juga dapat mengecualikan skrip dari kumpulan Anda dengan metode yang sama."
     favorites_name: "Favorit"
     delete: "Hapus set skrip"
     delete_confirmation: "Apakah anda yakin ingin menghapus set skrip ini?"
     site_default_sort: "(Bawaan situs)"
     edit_scripts:
       heading: "Skrip"
+      description: "Sertakan atau kecualikan skrip individual dalam set skrip Anda."
       remove_included: "Hilangkan yang dipilih"
       remove_excluded: "Hilangkan yang dipilih"
     edit_sets:
@@ -357,10 +375,6 @@ id:
     disable_syncing: "Matikan penyelarasan"
     remove_external_sign_in: "Buang"
     add_external_sign_in_info: "Tambah opsi masuk:"
-    author_email_notification_type:
-      none: "Jangan dapatkan surel tentang diskusi pada skrip anda."
-      discussion_only: "Dapatkan surel ketika diskusi dikirimkan untuk skrip anda"
-      discussion_and_comment: "Dapatkan surel ketika diskusi dikirimkan pada skrip anda atau ketika diskusi tersebut mendapatkan komentar baru"
     list_display_html:
       other: "%{user_link} - %{count} skrip"
     listing_number_of_scripts: "Jumlah skrip"
@@ -474,7 +488,6 @@ id:
         name: "Nama"
         profile: "Profil"
         locale: "Lokal pilihan"
-        author_email_notification_type_id: "Notifikasi diskusi skrip"
         show_ads: "Tampilkan iklan"
         show_sensitive: "Konten dewasa"
         preferred_markup: "Markup pilihan"

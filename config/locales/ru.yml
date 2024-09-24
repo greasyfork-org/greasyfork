@@ -606,10 +606,6 @@ ru:
     remove_external_sign_in: "Убрать"
     add_external_sign_in_info: "Добавить учетную запись для входа:"
     set_up_webhook: "Настроить webhook"
-    author_email_notification_type:
-      none: "Не получать почту об обсуждениях ваших скриптов"
-      discussion_only: "Получать почту о начале новых обсуждений ваших скриптов"
-      discussion_and_comment: "Получать почту о начале новых обсуждений ваших скриптов или добавлении новых комментариев в существующие обсуждения"
     list_display_html:
       one: "%{user_link} - %{count} скрипт"
       few: "%{user_link} - %{count} скрипта"
@@ -724,16 +720,12 @@ ru:
         as_reported_resolved: Получать уведомление после рассмотрения жалобы на размещенный вами контент
       save_button: Обновить настройки уведомлений
       title: Уведомления
-      current_discussion_subscriptions:
-        one: Отписаться от %{discussions_link:%{count} обсуждения}, на которое вы подписаны
-        few: Отписаться от %{discussions_link:%{count} обсуждений}, на которые вы подписаны
-        many: Отписаться от %{discussions_link:%{count} обсуждений}, на которые вы подписаны
-        other: Отписаться от %{discussions_link:%{count} обсуждений}, на которые вы подписаны
       save_success: Ваши настройки уведомления были обновлены.
       unsubscribe_all: Отписаться от всех уведомлений
       unsubscribe_all_success: Вы отписаны от всех уведомлений.
       new_conversation: "%{user} начал с вами разговор: %{text}"
       new_message: "%{user} отправил вам сообщение: %{text}"
+      mention: "%{user} упомянул(а) вас в %{discussion}"
       report_resolved_reporter:
         dismissed: Ваша жалоба на %{item} отклонена модератором.
         fixed: Ваша жалоба на %{item} привела к некоторым исправлениям, и модератор отметил проблему как решенную.
@@ -1276,7 +1268,6 @@ ru:
     subscribe: Подписаться
     unsubscribe: Отписаться
     notify: Уведомлять меня об ответах
-    notifying_on_script: Вы получите уведомление об ответах, в соответствии с %{notifications_link:настройкой уведомления скрипта}.
     categories:
       greasyfork:
         name: Обсуждение сайта Greasy Fork
@@ -1367,7 +1358,6 @@ ru:
         name: "Имя"
         profile: "Профиль"
         locale: "Язык"
-        author_email_notification_type_id: "Уведомления об обсуждении скрипта"
         show_ads: "Показывать рекламу"
         show_sensitive: "Взрослый контент"
         preferred_markup: "Разметка по умолчанию"
@@ -1521,7 +1511,6 @@ ru:
     script_comment:
       subject: "Ваш скрипт %{script_name} на %{site_name} получил комментарий."
       intro: "Ваш скрипт %{script_link:%{script_name}} на %{site_name} прокомментировал пользователь %{commenter_link:%{commenter_name}}:"
-      outro: "%{comment_link:Просмотреть и ответить на этот комментарий.} Вы получили это уведомление, потому что в настройках включены уведомления об обсуждении ваших скриптов. %{notification_preferences_link:Настройка уведомлений.}"
     subscribed_discussion:
       subject: "В обсуждении %{discussion_title} на %{site_name} был добавлен комментарий."
       intro: "Пользователь %{commenter_link:%{commenter_name}} добавил комментарий в обсуждение %{discussion_link:%{discussion_title}} на %{site_name}:"

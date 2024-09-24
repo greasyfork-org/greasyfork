@@ -606,10 +606,6 @@ fr:
     remove_external_sign_in: "Supprimer"
     add_external_sign_in_info: "Ajouter une identification externe :"
     set_up_webhook: "Mettre en place un Webhook"
-    author_email_notification_type:
-      none: "Ne pas recevoir de courriel à propos des dicusssions sur vos scripts"
-      discussion_only: "Recevoir un courriel quand une discussion est postée sur l'un de vos scripts"
-      discussion_and_comment: "Recevoir un email quand une discussion est postée sur l'un de vos scripts, ou quand un nouveau commentaire est posté sur l'une de ces discussions"
     list_display_html:
       one: "%{user_link} - %{count} script"
       many: "%{user_link} - %{count} scripts"
@@ -700,6 +696,8 @@ fr:
           overall_label: Par défaut, vous êtes abonnez aux discussions lorsque
           start: vous démarrez la discussion
           comment: vous commentez une discussion
+          script: Il s'agit d'un de vos scripts
+        subscribed_discussion_notification: Lorsqu'un commentaire est publié sur une discussion à laquelle vous êtes abonné, vous recevrez une notification
         mention: Recevez une notification lorsque vous êtes mentionné dans une discussion
       conversation_defaults:
         title: Notifications des conversations
@@ -718,13 +716,11 @@ fr:
         as_reported_resolved: Lorsqu'un rapport est envoyer concernant un élément que vous avez publié est résolu, vous recevrez une notification
       save_button: Mettre à jour les paramètres de notification
       title: Notifications
-      current_discussion_subscriptions:
-        one: Se désabonner de la %{discussions_link:%{count} discussion} au quelle vous êtes abonné
-        many: Se désabonner des %{discussions_link:%{count} discussions} auxquels vous êtes abonné
-        other: Se désabonner des %{discussions_link:%{count} discussions} auxquels vous êtes abonné
       save_success: Vos préférences de notification ont été mises à jour.
       unsubscribe_all: Se désabonner de toutes les notifications
       unsubscribe_all_success: Vous avez été désabonné de toutes les notifications.
+      unsubscribe_email: Se désabonner de toutes les notifications par e-mail
+      unsubscribe_email_success: Vous avez été désabonné de toutes les notifications par e-mail.
       new_conversation: "%{user} a commencé une conversation avec vous: %{text}"
       new_message: "%{user} vous a envoyé un message: %{text}"
       report_resolved_reporter:
@@ -1268,7 +1264,6 @@ fr:
     subscribe: S'abonner
     unsubscribe: Se désabonner
     notify: Notifiez-moi de toute réponse
-    notifying_on_script: Vous serez informé de toute réponse en raison de vos %{notifications_link:paramètres de notification}.
     categories:
       greasyfork:
         name: Greasy Fork Feedback
@@ -1355,7 +1350,6 @@ fr:
         name: "Nom"
         profile: "Profil"
         locale: "Région préférée"
-        author_email_notification_type_id: "Notifications de discussion sur vos scripts"
         show_ads: "Afficher les publicités"
         show_sensitive: "Contenu pour adulte"
         preferred_markup: "Mise en forme préférée"
@@ -1509,7 +1503,7 @@ fr:
     script_comment:
       subject: "Votre script %{script_name} sur %{site_name} a reçu un commentaire."
       intro: "Votre script %{script_link:%{script_name}} sur %{site_name} a reçu un commentaire de l'utilisateur %{commenter_link:%{commenter_name}}:"
-      outro: "%{comment_link:Afficher et répondre à ce commentaire.} Vous avez reçu cette notification car vous avez choisi d'être informé des discussions sur vos scripts. %{notification_preferences_link:Gérez vos préférences de notification.}"
+      outro: "%{comment_link: Affichez et répondez à ce commentaire.} Vous avez reçu cette notification car vous avez choisi de vous abonner aux discussions de vos scripts. %{notification_preferences_link: gérez vos préférences de notification.}"
     subscribed_discussion:
       subject: "La discussion %{discussion_title} sur %{site_name} a reçu un commentaire."
       intro: "La discussion %{discussion_link:%{discussion_title}} sur %{site_name} a reçu un commentaire de l'utilisateur %{commenter_link:%{commenter_name}}:"

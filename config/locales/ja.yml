@@ -585,10 +585,6 @@ ja:
     remove_external_sign_in: "連携を解除する"
     add_external_sign_in_info: "以下のアカウントでログインする:"
     set_up_webhook: "ウェブフックを設定する"
-    author_email_notification_type:
-      none: "投稿したスクリプトに関する議論の通知メールを受け取らない"
-      discussion_only: "投稿したスクリプトに関する議論が開始されたら、通知メールを受け取る"
-      discussion_and_comment: "投稿したスクリプトに関する議論の開始、またそこへコメントが投稿されたら、通知メールを受け取る"
     list_display_html:
       other: "%{user_link} – %{count}個のスクリプト"
     listing_number_of_scripts: "スクリプト数"
@@ -685,8 +681,6 @@ ja:
         as_reported_resolved: あなたが投稿したものへの通報が解決されたら、通知を受け取る
       save_button: 通知設定を更新
       title: 通知
-      current_discussion_subscriptions:
-        other: '%{discussions_link:%{count} 議論}の購読を解除する'
       save_success: 通知設定を更新しました。
       unsubscribe_all: すべての通知を解除
       unsubscribe_all_success: すべての通知を解除しました。
@@ -1189,7 +1183,6 @@ ja:
     subscribe: 購読
     unsubscribe: 購読解除
     notify: 返信を通知
-    notifying_on_script: 返信があれば通知されます。%{notifications_link:スクリプトに関する通知の設定}。
     categories:
       greasyfork:
         name: Greasy Fork への意見
@@ -1268,7 +1261,6 @@ ja:
         name: "名前"
         profile: "自己紹介"
         locale: "優先する言語"
-        author_email_notification_type_id: "スクリプトの議論の通知"
         show_ads: "広告の表示"
         show_sensitive: "アダルトコンテンツ"
         preferred_markup: "優先するマークアップ"
@@ -1422,7 +1414,6 @@ ja:
     script_comment:
       subject: "スクリプト %{script_name} (%{site_name}) にコメントがあります。"
       intro: "%{site_name} のあなたのスクリプト %{script_link: %{script_name}} にユーザー %{commenter_link:%{commenter_name}} からコメント:"
-      outro: "%{comment_link:このコメントを表示し返信。}あなたのスクリプトに関する議論は、通知されています。%{notification_preferences_link:通知の設定を管理。}"
     subscribed_discussion:
       subject: "%{site_name} の議論「%{discussion_title}」にコメントがあります。"
       intro: " %{site_name} の議論「%{discussion_link:%{discussion_title}} 」にユーザー%{commenter_link:%{commenter_name}}からの返信:"

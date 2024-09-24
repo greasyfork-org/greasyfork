@@ -572,10 +572,6 @@ el:
     remove_external_sign_in: "Απομάκρυνση"
     add_external_sign_in_info: "Προσθήκη μιας σύνδεσης:"
     set_up_webhook: "Ορισμός ενός ιστοάγκιστρου"
-    author_email_notification_type:
-      none: "Να μη λαμβάνονται ηλεκτρονικές επιστολές για συζητήσεις που αφορούν τους κώδικές σας."
-      discussion_only: "Να λαμβάνεται ηλεκτρονική επιστολη όταν δημοσιεύονται συζητήσεις για τους κώδικές σας"
-      discussion_and_comment: "Να λαμβάνεται ηλεκτρονική επιστολή όταν δημοσιεύονται συζητήσεις για τους κώδικές σας ή όταν αυτές οι συζητήσεις λαμβάνουν νέα σχόλια"
     list_display_html:
       one: "%{user_link} - %{count} κώδικας"
       other: "%{user_link} - %{count} κώδικες"
@@ -659,9 +655,6 @@ el:
         title: Ειδοποιήσεις αναφοράς
       save_button: Ενημέρωση ρυθμίσεων ειδοποιήσεων
       title: Ειδοποιήσεις
-      current_discussion_subscriptions:
-        one: Ακύρωση εγγραφής από τη %{discussions_link:%{count} συνομιλία} που έχετε εγγραφεί
-        other: Ακύρωση εγγραφής από τις %{discussions_link:%{count} συνομιλίες} που έχετε εγγραφεί
       save_success: Οι προτιμήσεις ειδοποιήσεων σας έχουν ενημερωθεί.
       unsubscribe_all: Ακύρωση εγγραφής από όλες τις ειδοποιήσεις
       unsubscribe_all_success: Έχετε ακυρώσει την εγγραφή σας από όλες τις ειδοποιήσεις.
@@ -976,7 +969,6 @@ el:
     subscribe: Εγγραφή
     unsubscribe: Ακύρωση εγγραφής
     notify: Ειδοποίηση για οποιαδήποτε απάντηση
-    notifying_on_script: Θα ενημερωθείτε για τυχόν απαντήσεις λόγω των %{notifications_link:ρυθμίσεων ειδοποιήσεων κώδικα}.
     categories:
       greasyfork:
         name: Greasy Fork Ανατροφοδότηση
@@ -1056,7 +1048,6 @@ el:
         name: "Όνομα"
         profile: "Προφίλ"
         locale: "Προτιμώμενη γλώσσα"
-        author_email_notification_type_id: "Ειδοποιήσεις συζητήσεων κώδικα"
         show_ads: "Προβολή διαφημίσεων"
         show_sensitive: "Περιεχόμενο για ενήλικες"
         preferred_markup: "Προτιμητέα χρήση ετικετών"

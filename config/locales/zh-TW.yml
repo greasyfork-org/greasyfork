@@ -541,10 +541,6 @@ zh-TW:
     remove_external_sign_in: "移除"
     add_external_sign_in_info: "新增登入方式："
     set_up_webhook: "設定 Webhook"
-    author_email_notification_type:
-      none: "腳本收到評論時請不要寄郵件通知我"
-      discussion_only: "腳本收到評論時請發郵件通知我"
-      discussion_and_comment: "腳本收到評論，或這些評論有新回覆時請發郵件通知我"
     list_display_html:
       other: "%{user_link} - %{count} 個腳本"
     listing_number_of_scripts: "腳本數目"
@@ -622,8 +618,6 @@ zh-TW:
         title: 新的通知
       save_button: 更新通知設定
       title: 通知
-      current_discussion_subscriptions:
-        other: 取消訂閱你之前所訂閱的 %{discussions_link:%{count} 條討論}
       save_success: 您的通知設定已更新。
       unsubscribe_all: 停止所有的通知
       unsubscribe_all_success: 您已停用所有通知。
@@ -878,7 +872,6 @@ zh-TW:
     subscribe: 追蹤
     unsubscribe: 取消追蹤
     notify: 通知我所有在該討論的回覆
-    notifying_on_script: 基於您%{notifications_link:腳本的通知設定}，你會收到回覆的通知。
     categories:
       greasyfork:
         name: Greasy Fork 回應
@@ -950,7 +943,6 @@ zh-TW:
         name: "使用者名稱"
         profile: "個人資料"
         locale: "慣用語言"
-        author_email_notification_type_id: "腳本討論通知設定"
         show_ads: "顯示廣告"
         show_sensitive: "成人內容"
         preferred_markup: "預設文章格式"

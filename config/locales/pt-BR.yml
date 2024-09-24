@@ -598,10 +598,6 @@ pt-BR:
     remove_external_sign_in: "Remover"
     add_external_sign_in_info: "Adicionar um sinal em:"
     set_up_webhook: "Configurar um webhook"
-    author_email_notification_type:
-      none: "Não receber emails sobre discussões em seus scripts"
-      discussion_only: "Receber email quando discussões são postadas em seus scripts"
-      discussion_and_comment: "Receber um email quando discussões são postadas em seus scripts ou quando estas discussões recebem novos comentários"
     list_display_html:
       one: "%{user_link} - %{count} script"
       many: "%{user_link} - %{count} scripts"
@@ -694,10 +690,6 @@ pt-BR:
         title: Relatório de notificações
       save_button: Atualizar configurações de notificação
       title: Notificações
-      current_discussion_subscriptions:
-        one: Desinscrever da %{discussions_link:%{count} discussão} que você está inscrito
-        many: Desinscrever das %{discussions_link:%{count} discussões} que você está inscrito
-        other: Desinscrever das %{discussions_link:%{count} discussões} que você está inscrito
       save_success: Suas preferências de notificação foram atualizadas
       unsubscribe_all: Desinscrever-se de todas as notificações
       unsubscribe_all_success: Você foi desinscrito de todas as notificações.
@@ -1218,7 +1210,6 @@ pt-BR:
     subscribe: Inscrever
     unsubscribe: Desinscrever
     notify: Me notificar sobre qualquer resposta
-    notifying_on_script: Você será notificado de qualquer respostas devido às suas %{notifications_link:configurações de notificação de script}.
     categories:
       greasyfork:
         name: Feedback do Greasy Fork
@@ -1305,7 +1296,6 @@ pt-BR:
         name: "Nome"
         profile: "Perfil"
         locale: "Idioma preferido"
-        author_email_notification_type_id: "Notificações de comentários no script"
         show_ads: "Mostrar anúncios"
         show_sensitive: "Conteúdo adulto"
         preferred_markup: "Marcação preferencial"
@@ -1457,7 +1447,6 @@ pt-BR:
     script_comment:
       subject: "Seu script %{script_name} no %{site_name} recebeu um comentário."
       intro: "Seu script %{script_link:%{script_name}} em %{site_name} recebeu um comentário do usuário %{commenter_link:%{commenter_name}}:"
-      outro: "%{comment_link: Visualize e responda a este comentário.}  Você recebeu essa notificação porque optou por ser notificado sobre as discussões no seus scripts. % {notification_preferences_link: Gerenciar suas preferências de notificação.} "
     subscribed_discussion:
       subject: "A discussão %{discussion_title} no %{site_name} recebeu um comentário."
       intro: "A discussão %{discussion_link:%{discussion_title}} em %{site_name} recebeu um comentário do usuário %{commenter_link:%{commenter_name}}:"

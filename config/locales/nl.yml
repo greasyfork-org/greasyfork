@@ -602,10 +602,6 @@ nl:
     remove_external_sign_in: "Verwijderen"
     add_external_sign_in_info: "Inlogdienst toevoegen:"
     set_up_webhook: "Webkoppeling instellen"
-    author_email_notification_type:
-      none: "Geen e-mails ontvangen over discussies aangaande mijn scripts"
-      discussion_only: "E-mails ontvangen over discussies aangaande mijn scripts"
-      discussion_and_comment: "E-mails ontvangen over discussies aangaande mijn scripts of nieuwe reacties in discussies"
     list_display_html:
       one: "%{user_link} - %{count} script"
       other: "%{user_link} - %{count} scripts"
@@ -708,9 +704,6 @@ nl:
         as_reported_resolved: Melding tonen indien gemelde inhoud van mij is behandeld
       save_button: Updatemeldingen
       title: Meldingen
-      current_discussion_subscriptions:
-        one: Geen meldingen tonen omtrent de %{discussions_link:%{count} discussie} waarop je geabonneerd bent
-        other: Geen meldingen tonen omtrent de %{discussions_link:%{count} discussies} waarop je geabonneerd bent
       save_success: Je meldingsinstellingen zijn bijgewerkt.
       unsubscribe_all: Geen meldingen tonen
       unsubscribe_all_success: Er worden geen meldingen meer getoond.
@@ -1246,7 +1239,6 @@ nl:
     subscribe: Abonneren
     unsubscribe: Deabonneren
     notify: Melding tonen bij nieuwe reacties
-    notifying_on_script: Je wordt op de hoogte gehouden van nieuwe reacties op basis van je %{notifications_link:meldingsinstellingen}.
     categories:
       greasyfork:
         name: Greasy Fork-feedback
@@ -1329,7 +1321,6 @@ nl:
         name: "Naam"
         profile: "Profiel"
         locale: "Voorkeurstaal"
-        author_email_notification_type_id: "Scriptdiscussiemeldingen"
         show_ads: "Reclame tonen"
         show_sensitive: "Inhoud voor volwassenen"
         preferred_markup: "Voorkeursopmaak"
@@ -1483,7 +1474,6 @@ nl:
     script_comment:
       subject: "Er is een reactie geplaatst bij je script ‘%{script_name}’ op %{site_name}."
       intro: "Er is een reactie geplaatst op je script ‘%{script_link:%{script_name}}’ op %{site_name} door %{commenter_link:%{commenter_name}}."
-      outro: "%{comment_link:Bekijk en reageer op deze reactie.} Je ontvangt deze melding omdat je er voor gekozen hebt meldingen over discussies bij je scripts te ontvangen. %{notification_preferences_link:Meldingsinstellingen beheren}"
     subscribed_discussion:
       subject: "Er is een reactie geplaatst in de discussie ‘%{discussion_title}’ op %{site_name}. "
       intro: "Er is een reactie geplaatst door %{commenter_link:%{commenter_name}} in de discussie ‘%{discussion_link:%{discussion_title}}’ op %{site_name}."

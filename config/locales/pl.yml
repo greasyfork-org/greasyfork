@@ -579,10 +579,6 @@ pl:
     remove_external_sign_in: "Usuń"
     add_external_sign_in_info: "Dodaj metodę logowania:"
     set_up_webhook: "Stwórz nowego webhooka"
-    author_email_notification_type:
-      none: "Nie otrzymuj e-maili o nowych dyskusjach na temat twoich skryptów"
-      discussion_only: "Otrzymuj e-maile o nowych dyskusjach na temat twoich skryptów"
-      discussion_and_comment: "Otrzymuj e-maile o nowych dyskusjach na temat twoich skryptów oraz gdy te dyskusje będą miały nowe komentarze"
     list_display_html:
       one: "%{user_link} — %{count} skrypt"
       few: "%{user_link} — %{count} skrypty"
@@ -678,11 +674,6 @@ pl:
         title: Zgłoszenie powiadomienie
       save_button: Zaktualizuj ustawienia powiadomień
       title: Powiadomienia
-      current_discussion_subscriptions:
-        one: Odsubskrybuj %{discussions_link:%{count} dyskusję}, którą subskrybujesz
-        few: Odsubskrybuj z %{discussions_link:%{count} dyskusji}, które subskrybujesz
-        many: Odsubskrybuj z %{discussions_link:%{count} dyskusji}, które subskrybujesz
-        other: Odsubskrybuj z %{discussions_link:%{count} dyskusji}, które subskrybujesz
       save_success: Twoje ustawienia powiadomień zostały zaktualizowane
       unsubscribe_all: Wypisz się z wszystkich powiadomień
       unsubscribe_all_success: Zostałeś wypisany ze wszystkich powiadomień
@@ -1084,7 +1075,6 @@ pl:
     subscribe: Subskrybuj
     unsubscribe: Odsubskrybuj
     notify: Powiadom mnie o wszelkich odpowiedziach
-    notifying_on_script: Otrzymasz powiadomienie gdy ktoś odpowie, zgodnie z  %{notifications_link:script notification settings}.
     categories:
       greasyfork:
         name: Greasy Fork Feedback
@@ -1173,7 +1163,6 @@ pl:
         name: "Imię"
         profile: "Profil"
         locale: "Preferowany język"
-        author_email_notification_type_id: "Powiadomienia o dyskusjach skryptu"
         show_ads: "Pokaż reklamy"
         show_sensitive: "Zawartość dla pełnoletnich"
         preferred_markup: "Preferowany znacznik"

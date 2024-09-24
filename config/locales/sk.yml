@@ -608,10 +608,6 @@ sk:
     remove_external_sign_in: "Odstrániť"
     add_external_sign_in_info: "Pridať prihlásenie:"
     set_up_webhook: "Nastaviť webook"
-    author_email_notification_type:
-      none: "Nezasielať emaily o diskusiách pre vaše skripty"
-      discussion_only: "Nezasielať emaily o novej diskusii pre vaše skripty"
-      discussion_and_comment: "Nezasielať emaily o nových diskusiách pre vaše skripty alebo nových komentároch v diskusiách"
     list_display_html:
       one: "%{user_link} - %{count} skript"
       few: "%{user_link} - %{count} skripty"
@@ -708,6 +704,8 @@ sk:
           overall_label: V predvolenom nastavení sa prihláste na odber diskusií, keď
           start: Začali ste diskusiu
           comment: Komentovali ste v diskusii
+          script: Ide o jeden z vašich skriptov
+        subscribed_discussion_notification: Keď je v diskusii, do ktorej ste prihlásení, uverejnený komentár, dostanete upozornenie
         mention: Dostávať upozornenie, keď sa o vás niekto zmieni v diskusii
       conversation_defaults:
         title: Upozornenia na konverzácie
@@ -727,15 +725,26 @@ sk:
       save_button: Aktualizovať nastavenia upozornenia
       title: Upozornenia
       current_discussion_subscriptions:
-        one: Odhlásiť z %{discussions_link:%{count} diskusie}, ku ktorej ste prihlásený
-        few: Odhlásiť z %{discussions_link:%{count} diskusií}, ku ktorým ste prihlásený
-        many: Odhlásiť z %{discussions_link:%{count} diskusií}, ku ktorým ste prihlásený
-        other: Odhlásiť z %{discussions_link:%{count} diskusií}, ku ktorým ste prihlásený
+        one: Odhlásiť sa z odberu %{discussions_link:%{count} diskusie}, na odber ktorej ste sa už prihlásili
+        few: Odhlásiť sa z odberu %{discussions_link:%{count} diskusií}, na odber ktorých ste sa už prihlásili
+        many: Odhlásiť sa z odberu %{discussions_link:%{count} diskusií}, na odber ktorých ste sa už prihlásili
+        other: Odhlásiť sa z odberu %{discussions_link:%{count} diskusií}, na odber ktorých ste sa už prihlásili
+      current_conversation_subscriptions:
+        one: Odhlásiť sa z odberu %{count} konverzácie, na odber ktorej ste sa už prihlásili
+        few: Odhlásiť sa z odberu %{count} konverzácií, na odber ktorých ste sa už prihlásili
+        many: Odhlásiť sa z odberu %{count} konverzácií, na odber ktorých ste sa už prihlásili
+        other: Odhlásiť sa z odberu %{count} konverzácií, na odber ktorých ste sa už prihlásili
+      intro: "%{site_name} vám môže posielať upozornenia e-mailom alebo cez miniaplikácie upozornení na stránke. Väčšina týchto upozornení je možná až po vykonaní akcie, ako je začatie diskusie alebo odoslanie skriptu. Tieto nastavenia upozornení neovplyvňujú transakčné e-maily, ako sú žiadosti o obnovenie hesla."
       save_success: Vaše nastavenia upozornení boli aktualizované.
       unsubscribe_all: Odhlásiť zo všetkých upozornení
       unsubscribe_all_success: Odhlásili ste sa zo všetkých upozornení.
+      unsubscribe_email: Odhlásiť sa zo všetkých e-mailových upozornení
+      unsubscribe_email_success: Odhlásili ste sa zo všetkých e-mailových upozornení.
       new_conversation: "používateľ %{user} začal s vami konverzáciu: %{text}"
       new_message: "používateľ %{user} vám poslal správu: %{text}"
+      new_comment: "%{user} pridal komenár do %{discussion}"
+      new_comment_script: "Používateľ %{user} zverejnil diskusiu k vášmu skriptu %{script}"
+      mention: "Používateľ %{user} sa o vás zmienil v %{discussion}"
       report_resolved_reporter:
         dismissed: Vaše hlásenie proti %{item} bolo moderátorom zamietnuté.
         fixed: Vaše hlásenie týkajúce sa %{item} viedlo k určitým zmenám a moderátor označil problém za vyriešený.
@@ -1270,7 +1279,6 @@ sk:
     subscribe: Prihlásiť na odber
     unsubscribe: Odhlásiť z odberu
     notify: Upozorniť ma na každú odpoveď
-    notifying_on_script: Na všetky odpovede budete upozornený podľa %{notifications_link:nastavenia upozornenia skriptu}.
     categories:
       greasyfork:
         name: Spätná väzba ku Greasy Fork
@@ -1361,7 +1369,6 @@ sk:
         name: "Meno"
         profile: "Profil"
         locale: "Preferovaný jazyk"
-        author_email_notification_type_id: "Notifikácie na diskusiu k skriptu"
         show_ads: "Zobraziť reklamu"
         show_sensitive: "Obsah pre dospelých"
         preferred_markup: "Preferované značky"
@@ -1516,7 +1523,7 @@ sk:
     script_comment:
       subject: "Váš skript %{script_name} na %{site_name} bol komentovaný."
       intro: "Váš skript %{script_link:%{script_name}} na %{site_name} bol komentovaný používateľom %{commenter_link:%{commenter_name}}:"
-      outro: "%{comment_link:Zobraziť a odpovedať na tento komentár.} Toto upozornenie ste dostali, pretože chcete byť upozornený na diskusiu o vašich skriptoch. %{notification_preferences_link:Spravujte svoje predvoľby oznámení.}</p>"
+      outro: "%{comment_link:Zobraziť a odpovedať na tento komentár.} Toto upozornenie ste dostali, pretože chcete byť upozornený na diskusiu o vašich skriptoch. %{notification_preferences_link:Spravujte svoje predvoľby upozornení.}"
     subscribed_discussion:
       subject: "Do diskusie %{discussion_title} na %{site_name} bol pridaný komentár."
       intro: "Diskusia %{discussion_link:%{discussion_title}} na %{site_name} bola komentovaná používateľom %{commenter_link:%{commenter_name}}:"
