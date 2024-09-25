@@ -661,9 +661,11 @@ ja:
         intro: 購読中の議論の通知です。議論の購読・解除はいつでも可能です。
         discussion_subscription_defaults:
           overall_label: いつ議論を購読するかの初期設定
-          start: 議論をあなたが開始したら
+          start: あなたが議論を開始したら
           comment: あなたがその議論にコメントしたら
-        mention: 議論で言及されたら通知を受け取る
+          script: あなたのスクリプトについて
+        subscribed_discussion_notification: 購読中の議論にコメントがあれば通知する
+        mention: 議論であなたが言及されたら通知する
       conversation_defaults:
         title: 会話の通知
         intro: 購読中の会話の通知を受信します。いつでも登録および解除できます。
@@ -671,21 +673,31 @@ ja:
           overall_label: いつ新しい会話を購読するかの初期設定
           self: 自分が始めた会話
           other: 他人が始めた会話
-        new_conversation_notification: 誰かがあなたと会話を始めたら、上記の購読の設定に従って通知を受信します。
-        new_message_notification: 購読中の既存の会話に新しいメッセージが届いたら、通知を受信する。
+        new_conversation_notification: 誰かがあなたと会話を始めたら、上記の購読の設定に従って通知する
+        new_message_notification: 購読中の既存の会話に新しいメッセージが届いたら、通知する
       report_defaults:
         intro: 通報は、 %{site_name} の規則に違反するコンテンツだと利用者が報告したものです。管理担当者がその通報を審査し、その結果、コンテンツが削除されることもあります。
         title: 報告の通知
-        as_reporter: あなたが作成した通報が解決したら、通知を受け取る
-        as_reported_filed: あなたが投稿したものへの通報が作成されたら、通知を受け取る
-        as_reported_resolved: あなたが投稿したものへの通報が解決されたら、通知を受け取る
+        as_reporter: あなたが作成した通報が解決したら、通知する
+        as_reported_filed: あなたが投稿したものへの通報が作成されたら、通知する
+        as_reported_resolved: あなたが投稿したものへの通報が解決されたら、通知する
       save_button: 通知設定を更新
       title: 通知
+      current_discussion_subscriptions:
+        other: 購読中の %{discussions_link:%{count} 件の議論}の購読を解除
+      current_conversation_subscriptions:
+        other: 購読中の %{count} 会話の購読を解除
+      intro: "%{site_name} は、メールやサイト上の通知ウィジェットからあなたに通知します。以下の通知の多くは、議論の開始やスクリプトの投稿など、あなたによる操作の実行後のものです。パスワードの初期化のようなデータ変更にかかわるメールには影響しません。"
       save_success: 通知設定を更新しました。
       unsubscribe_all: すべての通知を解除
       unsubscribe_all_success: すべての通知を解除しました。
+      unsubscribe_email: すべてのメール通知の購読を解除
+      unsubscribe_email_success: すべてのメール通知の配信を停止しました。
       new_conversation: "%{user} が会話を開始しました: %{text}"
       new_message: "%{user} がメッセージを送信: %{text}"
+      new_comment: "%{user} が以下にコメント %{discussion}"
+      new_comment_script: "%{user} が、次のあなたのスクリプトに議論を投稿 %{script}"
+      mention: "%{user} が、以下であなたに言及 %{discussion}"
       report_resolved_reporter:
         dismissed: '%{item} へのあなたの通報は、管理担当者により却下されました。'
         fixed: '%{item} へのあなたの通報により改善されたため、管理担当者が解決済みの問題にしました。'
@@ -1414,6 +1426,7 @@ ja:
     script_comment:
       subject: "スクリプト %{script_name} (%{site_name}) にコメントがあります。"
       intro: "%{site_name} のあなたのスクリプト %{script_link: %{script_name}} にユーザー %{commenter_link:%{commenter_name}} からコメント:"
+      outro: "%{comment_link:このコメントを表示し返信。} あなたのスクリプトに関する議論を購読しているため、通知されています。 %{notification_preferences_link:通知の設定を開く。}"
     subscribed_discussion:
       subject: "%{site_name} の議論「%{discussion_title}」にコメントがあります。"
       intro: " %{site_name} の議論「%{discussion_link:%{discussion_title}} 」にユーザー%{commenter_link:%{commenter_name}}からの返信:"

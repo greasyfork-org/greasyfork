@@ -716,6 +716,15 @@ fr:
         as_reported_resolved: Lorsqu'un rapport est envoyer concernant un élément que vous avez publié est résolu, vous recevrez une notification
       save_button: Mettre à jour les paramètres de notification
       title: Notifications
+      current_discussion_subscriptions:
+        one: Se désabonner d' %{discussions_link:%{count} discussion} auxquelle vous êtes actuellement abonné
+        many: Se désabonner des %{discussions_link:%{count} discussions} auxquelles vous êtes actuellement abonné
+        other: Se désabonner des %{discussions_link:%{count} discussions} auxquelles vous êtes actuellement abonné
+      current_conversation_subscriptions:
+        one: Se désabonner d' %{count} conversation dont vous êtes actuellement abonné
+        many: Se désabonner des %{count} conversations auxquelles vous êtes actuellement abonné
+        other: Se désabonner des %{count} conversations auxquelles vous êtes actuellement abonné
+      intro: "%{site_name} peut vous envoyer des notifications par e-mail ou via un widget de notification sur le site. La plupart de ces notifications ne sont possibles qu'après avoir effectué une action, comme démarrer une discussion ou publier un script. Ces paramètres de notification n'affectent pas les e-mails de transaction comme les demandes de réinitialisation de mot de passe."
       save_success: Vos préférences de notification ont été mises à jour.
       unsubscribe_all: Se désabonner de toutes les notifications
       unsubscribe_all_success: Vous avez été désabonné de toutes les notifications.
@@ -723,6 +732,9 @@ fr:
       unsubscribe_email_success: Vous avez été désabonné de toutes les notifications par e-mail.
       new_conversation: "%{user} a commencé une conversation avec vous: %{text}"
       new_message: "%{user} vous a envoyé un message: %{text}"
+      new_comment: "%{user} a posté un commentaire sur %{discussion}"
+      new_comment_script: "%{user} a posté un commentaire sur votre script %{script}"
+      mention: "%{user} vous a mentionné dans %{discussion} "
       report_resolved_reporter:
         dismissed: Votre rapport contre %{item} a été rejeté par un modérateur.
         fixed: Votre rapport sur %{item} a entraîné quelques modifications et un modérateur a marqué le problème comme étant résolu.
