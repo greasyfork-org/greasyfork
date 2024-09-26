@@ -702,6 +702,8 @@ ru:
           overall_label: Подписываться на обсуждения когда
           start: Вы начинаете обсуждение
           comment: Вы отвечаете в обсуждении
+          script: Оно касается одного из ваших скриптов
+        subscribed_discussion_notification: При размещении нового комментария в обсуждении, на которое вы подписаны, получить уведомление
         mention: Получать уведомления при упоминании вас в обсуждении
       conversation_defaults:
         title: Уведомления о разговорах
@@ -720,11 +722,25 @@ ru:
         as_reported_resolved: Получать уведомление после рассмотрения жалобы на размещенный вами контент
       save_button: Обновить настройки уведомлений
       title: Уведомления
+      current_discussion_subscriptions:
+        one: Отписаться от %{discussions_link:%{count} обсуждения}, на которое вы уже подписаны
+        few: Отписаться от %{discussions_link:%{count} обсуждений}, на которые вы уже подписаны
+        many: Отписаться от %{discussions_link:%{count} обсуждений}, на которые вы уже подписаны
+        other: Отписаться от %{discussions_link:%{count} обсуждений}, на которые вы уже подписаны
+      current_conversation_subscriptions:
+        one: Отписаться от %{count} разговора, на который вы уже подписаны
+        few: Отписаться от %{count} разговоров, на которые вы уже подписаны
+        many: Отписаться от %{count} разговоров, на которые вы уже подписаны
+        other: Отписаться от %{count} разговоров, на которые вы уже подписаны
       save_success: Ваши настройки уведомления были обновлены.
       unsubscribe_all: Отписаться от всех уведомлений
       unsubscribe_all_success: Вы отписаны от всех уведомлений.
+      unsubscribe_email: Отписаться от всех почтовых уведомлений
+      unsubscribe_email_success: Вы отписаны от всех почтовых уведомлений
       new_conversation: "%{user} начал с вами разговор: %{text}"
       new_message: "%{user} отправил вам сообщение: %{text}"
+      new_comment: "%{user} разместил(а) комментарий в %{discussion}"
+      new_comment_script: "%{user} начал обсуждение вашего скрипта %{script}"
       mention: "%{user} упомянул(а) вас в %{discussion}"
       report_resolved_reporter:
         dismissed: Ваша жалоба на %{item} отклонена модератором.
@@ -1511,6 +1527,7 @@ ru:
     script_comment:
       subject: "Ваш скрипт %{script_name} на %{site_name} получил комментарий."
       intro: "Ваш скрипт %{script_link:%{script_name}} на %{site_name} прокомментировал пользователь %{commenter_link:%{commenter_name}}:"
+      outro: "%{comment_link:Просмотреть и ответить на этот комментарий.} Вы получили это уведомление, потому что настроили подписку на обсуждения ваших скриптов. %{notification_preferences_link:Изменить настройки уведомлений.}"
     subscribed_discussion:
       subject: "В обсуждении %{discussion_title} на %{site_name} был добавлен комментарий."
       intro: "Пользователь %{commenter_link:%{commenter_name}} добавил комментарий в обсуждение %{discussion_link:%{discussion_title}} на %{site_name}:"
