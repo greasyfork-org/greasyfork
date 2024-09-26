@@ -62,7 +62,7 @@ class Comment < ApplicationRecord
     if first_comment? && discussion.script
       users_to_subscribe = discussion.script.users.where(subscribe_on_script_discussion: true) - [poster]
       users_to_subscribe.each do |user|
-        DiscussionSubscription.create!(user:, discussion:)
+        DiscussionSubscription.find_or_create_by(user:, discussion:)
       end
     end
 
