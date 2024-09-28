@@ -176,6 +176,9 @@ ko:
     listing_language_all: "전부"
     listing_language_js: "Javascript"
     listing_language_css: "CSS"
+    listing_author:
+      me: 내 스크립트
+      user: '%{author_name}의 스크립트'
     search_failed: 결과를 가져오는데 오류가 발생했습니다. 어떤 검색 기능은 작동하지 않을 수 있습니다.  우리는 이 문제에 대해서 알렸습니다.
     import: "스크립트 가져오기"
     new: "새 스크립트"
@@ -346,6 +349,7 @@ ko:
         bypass: (이미 유저 스타일 관리자가 있으니 설치 링크나 주세요!)
       close_dialog: 확인
     antifeatures:
+      label: 역기능
       warning_title: 이 스크립트는 역기능이 있습니다.
       author_explanation_intro: "스크립트 개발자가 적은 바로는"
       types:
@@ -518,6 +522,7 @@ ko:
     edit_sign_in: "인증 설정"
     edit_sign_in_title: "인증 설정"
     edit_sign_in_password: "비밀번호"
+    view_notifications: "알림 보기"
     no_password_set_info: "당신의 계정은 비밀번호가 설정되지 않았습니다."
     set_password: "비밀번호 설정"
     update_password: "비밀번호 변경"
@@ -611,6 +616,8 @@ ko:
         short: 개발자
         long: 이 스크립트의 개발자
     notifications:
+      on_site: 사이트에서
+      email: 이메일로
       discussion_defaults:
         title: 게시판 알림
         mention: 누가 나를 멘션할 때 알림을 받습니다.
@@ -621,6 +628,9 @@ ko:
       save_success: 알림 설정을 반영했습니다.
       unsubscribe_all: 모든 알림 해제
       unsubscribe_all_success: 모든 알림을 해제했습니다.
+      list:
+        header: 알림
+        mark_all_read: 모두 읽음 처리
     account_banned: 이 계정은 밴되었습니다.
   webhooks:
     info:
@@ -988,6 +998,9 @@ ko:
     locale_filter:
       label: 언어
       all: 전부
+    sort:
+      comment_created: 날짜
+      discussion_last_comment: 최신 댓글 날짜
     user_activity:
       title: "최근 댓글"
       no_recent_activity: "최근에 단 댓글이 없습니다."
@@ -1049,6 +1062,7 @@ ko:
       title: 최근 쪽지
       more: 모든 쪽지 보기
     edit_message_header: 메세지 수정하기
+    update_message_submit: 메세지 업데이트
   screenshots:
     requirements: "%{size} 미만의 png, gif, jpg, webp 이미지를 최대 %{number}개 까지"
   common:
