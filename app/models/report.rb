@@ -60,6 +60,7 @@ class Report < ApplicationRecord
 
   has_many :discussions
   has_many :script_lock_appeals
+  has_many :notifications, inverse_of: :item, dependent: :destroy
 
   validates :reason, inclusion: { in: NON_SCRIPT_REASONS }, presence: true, unless: -> { item.is_a?(Script) || item.is_a?(Discussion) }
   validates :moderator_reason_override, inclusion: { in: NON_SCRIPT_REASONS }, allow_nil: true, unless: -> { item.is_a?(Script) || item.is_a?(Discussion) }
