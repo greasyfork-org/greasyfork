@@ -686,6 +686,8 @@ nl:
           overall_label: Altijd abonneren op discussies als
           start: Ik een discussie start
           comment: Ik een reactie op een discussie geef
+          script: Reacties op mijn scripts
+        subscribed_discussion_notification: Melding tonen indien een reactie wordt geplaatst in een gesprek waarop ik reeds geabonneerd ben
         mention: Melding tonen als anderen mij vermelden
       conversation_defaults:
         title: Gespreksmeldingen
@@ -704,11 +706,23 @@ nl:
         as_reported_resolved: Melding tonen indien gemelde inhoud van mij is behandeld
       save_button: Updatemeldingen
       title: Meldingen
+      current_discussion_subscriptions:
+        one: Geen meldingen tonen omtrent de %{discussions_link:%{count} discussie} waarop ik geabonneerd ben
+        other: Geen meldingen tonen omtrent de %{discussions_link:%{count} discussies} waarop ik geabonneerd ben
+      current_conversation_subscriptions:
+        one: Geen meldingen tonen omtrent het %{count} gesprek waarop ik geabonneerd ben
+        other: Geen meldingen tonen omtrent de %{count} gesprekken waarop ik geabonneerd ben
+      intro: "%{site_name} kan meldingen tonen per e-mail of de meldingswidget op de site. De meeste meldingen worden alleen getoond na het uitvoeren van een actie, zoals het beginnen van een discussie of het publiceren van een script. Let op: deze meldingsinstellingen zijn niet van toepassing op algemene e-mails, zoals wachtwoordherstelverzoeken."
       save_success: Je meldingsinstellingen zijn bijgewerkt.
       unsubscribe_all: Geen meldingen tonen
       unsubscribe_all_success: Er worden geen meldingen meer getoond.
+      unsubscribe_email: Geen e-mailmeldingen tonen
+      unsubscribe_email_success: Er worden geen e-mailmeldingen meer getoond.
       new_conversation: "%{user} heeft een gesprek met je gestart: %{text}"
       new_message: "%{user} heeft je een bericht gestuurd: %{text}"
+      new_comment: "%{user} heeft een reactie geplaatst in ‘%{discussion}’"
+      new_comment_script: "%{user} is een discussie gestart bij ‘%{script}’"
+      mention: "%{user} heeft je vermeld in ‘%{discussion}’"
       report_resolved_reporter:
         dismissed: De melding met betrekking tot ‘%{item}’ is afgewezen door een moderator.
         fixed: De melding met betrekking tot ‘%{item}’ heeft tot verbetering geleid. Een moderator heeft de zaak behandeld.
@@ -1474,6 +1488,7 @@ nl:
     script_comment:
       subject: "Er is een reactie geplaatst bij je script ‘%{script_name}’ op %{site_name}."
       intro: "Er is een reactie geplaatst op je script ‘%{script_link:%{script_name}}’ op %{site_name} door %{commenter_link:%{commenter_name}}."
+      outro: "%{comment_link:Bekijk en reageer op deze reactie.} Je ontvangt deze melding omdat je er voor gekozen hebt meldingen over discussies bij je scripts te ontvangen. %{notification_preferences_link:Meldingsinstellingen beheren}"
     subscribed_discussion:
       subject: "Er is een reactie geplaatst in de discussie ‘%{discussion_title}’ op %{site_name}. "
       intro: "Er is een reactie geplaatst door %{commenter_link:%{commenter_name}} in de discussie ‘%{discussion_link:%{discussion_title}}’ op %{site_name}."

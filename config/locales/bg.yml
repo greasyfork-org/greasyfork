@@ -682,6 +682,8 @@ bg:
           overall_label: По подразбиране, абонирайте се за дискусии когато
           start: Вие сте започнали дискусията
           comment: Вие коментирате в дискусията
+          script: Става дума за един от вашите скриптове
+        subscribed_discussion_notification: Когато някой коментира в дискусия, за която сте абонирани, получете известие
         mention: 'Получаване на известие когато някой Ви спомене в дискусия. '
       conversation_defaults:
         title: Известия за разговори
@@ -700,11 +702,23 @@ bg:
         as_reported_resolved: Когато доклад, подаден срещу ваше съдържание, е разрешен, получете известие
       save_button: Промени настройките за известия
       title: Известия
+      current_discussion_subscriptions:
+        one: Отпишете се от %{discussions_link:%{count} дискусия} за която сте абонирани
+        other: Отпишете се от %{discussions_link:%{count} дискусии} за които сте абонирани
+      current_conversation_subscriptions:
+        one: Отпишете се от %{count} разговор, за който вече сте абонирани
+        other: Отпишете се от %{count} разговора, за които вече сте абонирани
+      intro: "%{site_name} може да ви изпраща известия по имейл или чрез прозорец в браузъра на сайта. Повечето от известията са възможни само след извършени действия от ваша страна, като започване на дискусия или публикуване на скрипт. Тези известия не влияят на имейли за транзакции, като заявки за възстановяване на паролата."
       save_success: Настройките за известията бяха обновени.
       unsubscribe_all: Отпиши се от всички известия
       unsubscribe_all_success: Отписа се от всички известия.
+      unsubscribe_email: Отпишете се от всички известия по имейл
+      unsubscribe_email_success: Бяхте отписани от всички известия по имейл.
       new_conversation: "%{user} започна разговор с вас: %{text}"
       new_message: "%{user} ви изпрати съобщение: %{text}"
+      new_comment: "%{user} публикува коментар на %{discussion}"
+      new_comment_script: "%{user} публикува дискусия за вашия скрипт %{script}"
+      mention: "%{user} ви спомена в %{discussion}"
       report_resolved_reporter:
         dismissed: Модератор игнорира вашия доклад срещу %{item}.
         fixed: Вашият доклад срещу %{item} доведе до някои промени и модератор маркира проблема за разрешен.
@@ -1473,6 +1487,7 @@ bg:
     script_comment:
       subject: "Получихте коментар за вашия скрипт %{script_name} на %{site_name}."
       intro: "Вашият скрипт %{script_link:%{script_name}} на %{site_name} има коментар от потребител %{commenter_link:%{commenter_name}}:"
+      outro: "%{comment_link:Вижте и отговорете на коментара.} Получавате това известие, защото сте се абонирали за дискусии за вашите скриптове. %{notification_preferences_link:Управление на настройките за известия.}"
     subscribed_discussion:
       subject: "В дискусията %{discussion_title} на %{site_name} има получен коментар."
       intro: "Дискусията %{discussion_link:%{discussion_title}} на %{site_name} има коментар от потребител %{commenter_link:%{commenter_name}}:"
