@@ -134,6 +134,21 @@ module ScriptListings
       per_page: per_page(default: 100),
       includes: [:localized_attributes, :users]
     )
+
+    respond_to do |format|
+      format.html do
+        # Render normally
+      end
+      format.atom do
+        render 'index'
+      end
+      format.json do
+        render json: (params[:meta] == '1') ? { count: @scripts.count } : scripts_as_json(@scripts)
+      end
+      format.jsonp do
+        render json: (params[:meta] == '1') ? { count: @scripts.count } : scripts_as_json(@scripts), callback: clean_json_callback_param
+      end
+    end
   end
 
   def reported_not_adult
@@ -354,6 +369,7 @@ module ScriptListings
   end
 
   def scripts_as_json(scripts)
+    scripts = scripts.results if scripts.is_a?(Searchkick::Relation)
     scripts.as_json(include: { users: { sleazy: sleazy? } }, sleazy: sleazy?)
   end
 end
