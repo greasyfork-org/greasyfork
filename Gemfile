@@ -35,8 +35,7 @@ gem 'hiredis'
 gem 'redis'
 
 gem 'elasticsearch'
-# For https://github.com/ankane/searchkick/commit/9b6e4ce212e77e428a065509f53c5691f42ca469, in not-yet-released 5.4.0.
-gem 'searchkick', git: 'https://github.com/ankane/searchkick.git', ref: '614e5da0989d0df47043730720d42bd3cf5478e0'
+gem 'searchkick'
 
 gem 'stackprof'
 
