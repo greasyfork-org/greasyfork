@@ -1,3 +1,5 @@
+<%# locals: (notification_type:, current_settings:) %>
+
 <div id="notification-setting-<%= notification_type %>" class="form-control">
   <div id="notification-setting-<%= notification_type %>-<%= UserNotificationSetting::DELIVERY_TYPE_ON_SITE %>>">
     <%= check_box_tag "notification_settings[#{notification_type}][]", UserNotificationSetting::DELIVERY_TYPE_ON_SITE, id: "notification_settings_#{notification_type}_#{UserNotificationSetting::DELIVERY_TYPE_ON_SITE}", checked: current_settings[notification_type].include?(UserNotificationSetting::DELIVERY_TYPE_ON_SITE) %>

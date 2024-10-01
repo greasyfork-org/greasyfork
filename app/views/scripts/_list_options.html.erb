@@ -1,15 +1,11 @@
+<%# locals: (scripts:, include_script_sets: true, by_sites: nil, include_search: false, sort_options: nil, libraries: false, rel: nil, skip_all_sites_link: false)  %>
+
 <%
-include_script_sets = true if !defined?(include_script_sets) || include_script_sets.nil?
-by_sites = nil unless defined?(by_sites)
-include_search = false if !defined?(include_search) || include_search.nil?
-sort_options = %w[daily_installs total_installs ratings created updated name] if !defined?(sort_options) || sort_options.nil?
-libraries = false if !defined?(libraries) || libraries.nil?
+sort_options ||= %w[daily_installs total_installs ratings created updated name]
 default_sort = @set&.default_sort || (params[:q].present? ? 'relevance' : (libraries ? 'created' : ScriptListings::DEFAULT_SORT))
-rel = nil unless defined?(rel)
 
 current_options = params.to_unsafe_h.slice(:sort, :site, :set, :language, :filter_locale, :by).map {|k, v| [k.to_sym, v] }.to_h.merge(default_sort: default_sort)
 current_options[:rel] = rel if rel
-skip_all_sites_link = false unless defined?(skip_all_sites_link)
 %>
 
 <div id="script-list-option-groups" class="list-option-groups">
@@ -61,7 +57,7 @@ skip_all_sites_link = false unless defined?(skip_all_sites_link)
             <%= script_list_link(dt, **current_options.merge(site: dt)) %>
           <% end %>
         <% end
-        # Include the currrent site if it was not displayed as one of the top ones
+        # Include the current site if it was not displayed as one of the top ones
         if !current_site_is_top and !params[:site].nil? and !scripts.empty? %>
           <%= script_list_link(params[:site], **current_options) %>
         <% end %>

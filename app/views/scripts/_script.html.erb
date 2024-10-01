@@ -1,6 +1,5 @@
-<%
-show_author_details = defined?(show_author_details) && show_author_details
-%>
+<%# locals: (script:, show_author_details: false) %>
+
 <li data-script-id="<%= script.id %>" data-script-name="<%= script.name(request_locale) %>" data-script-authors="<%= script.users.map { |u| [u.id, u.name] }.to_h.to_json %>" data-script-daily-installs="<%= script.daily_installs %>" data-script-total-installs="<%= script.total_installs %>" data-script-rating-score="<%= script.fan_score %>" data-script-created-date="<%= script.created_at.strftime('%Y-%m-%d') %>" data-script-updated-date="<%= script.code_updated_at.strftime('%Y-%m-%d') %>" data-script-type="<%= script.script_type %>" data-script-version="<%= script.version %>" data-sensitive="<%= script.sensitive %>" data-script-language="<%= script.language %>" data-css-available-as-js="<%= script.css_convertible_to_js %>" data-code-url="<%= script.code_url %>">
   <article>
     <h2>

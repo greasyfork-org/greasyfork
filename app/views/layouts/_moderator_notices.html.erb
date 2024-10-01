@@ -1,3 +1,5 @@
+<%# locals: ()  %>
+
 <% requiring_review_count = Script.not_deleted.where(review_state: :required).count %>
 <% if requiring_review_count > 0 %>
   <%= link_to "[#{requiring_review_count}]", admin_blocked_script_texts_path, title: 'Requiring review' %>

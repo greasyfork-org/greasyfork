@@ -1,3 +1,5 @@
+<%# locals: (f:)  %>
+
 <div class="form-control radio-group discussion-rating">
   <%= f.label :category %><br>
   <% DiscussionCategory.visible_to_user(current_user).non_script.each do |category| %>

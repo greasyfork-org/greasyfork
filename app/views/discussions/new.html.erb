@@ -21,7 +21,7 @@
     <% end %>
 
     <%= f.fields_for(:comments) do |cf| %>
-      <%= render partial: 'discussions/comment_entry', locals: { f: cf, markup_name: 'discussion[comments_attributes][0][text_markup]' } %>
+      <%= render partial: 'discussions/comment_entry', locals: { f: cf } %>
     <% end %>
 
     <% if @discussion.report %>

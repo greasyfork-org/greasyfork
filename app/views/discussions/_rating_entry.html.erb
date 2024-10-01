@@ -1,7 +1,8 @@
+<%# locals: (f:, full_label: false)  %>
+
 <% if f.object.by_script_author? %>
   <%= f.hidden_field :rating %>
 <% else %>
-  <% full_label = false unless defined?(full_label) %>
   <div class="form-control radio-group discussion-rating">
     <label>
       <% if full_label %>

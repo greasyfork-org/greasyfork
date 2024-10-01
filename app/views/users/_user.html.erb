@@ -1,3 +1,5 @@
+<%# locals: (user:, script_counts:) %>
+
 <li>
   <%= t('users.list_display_html', user_link: render_user(user, user.id, force_author: script_counts[user.id].present?), count: script_counts[user.id] || 0) %>
 </li>

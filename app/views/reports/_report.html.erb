@@ -1,4 +1,5 @@
-<% i = 0 unless defined?(i) %>
+<%# locals: (report:, i: 0)  %>
+
 <% show_reporter = current_user && (current_user.moderator? || current_user == report.reporter || report.reporter&.moderator?) %>
 
 <h4 id="open-report-<%= i %>">

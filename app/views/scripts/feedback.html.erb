@@ -60,7 +60,7 @@
   <% if current_user %>
     <%= form_with(model: @discussion, url: script_discussions_path(@script), method: :POST, id: 'new-script-discussion') do |f| %>
       <%= f.fields_for(:comments) do |cf| %>
-        <%= render partial: 'discussions/comment_entry', locals: { f: cf, markup_name: 'discussion[comments_attributes][0][text_markup]' } %>
+        <%= render partial: 'discussions/comment_entry', locals: { f: cf } %>
       <% end %>
       <%= render partial: 'discussions/rating_entry', locals: { f: f } %>
       <%= render partial: 'discussions/subscribe', locals: { subscribe: @subscribe} %>

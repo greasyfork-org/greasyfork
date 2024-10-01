@@ -1,3 +1,5 @@
+<%# locals: (f:, current_attachments: nil)  %>
+
 <% current_attachments ||= f.object.attachments.reject(&:new_record?) %>
 <%= t('screenshots.requirements', size: number_to_human_size(Rails.configuration.screenshot_max_size), number: Rails.configuration.screenshot_max_count ) %>
 <div>

@@ -1,4 +1,4 @@
-<% return_to = nil unless defined?(return_to) %>
+<%# locals: (return_to: nil) %>
 
 <% available_providers = (Rails.application.config.available_auths.keys - current_user.identity_providers_used) %>
 <% if !available_providers.empty? %>

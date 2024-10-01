@@ -1,3 +1,5 @@
+<%# locals: (f:)  %>
+
 <%= with_user_text_preview_for_form(form: f, markup_name: :text_markup) do
   f.text_area :text, required: true, class: 'comment-entry'
 end %>

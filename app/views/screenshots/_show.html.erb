@@ -1,3 +1,5 @@
+<%# locals: (attachable:)  %>
+
 <% attachments = attachable.attachments.includes(:blob).load %>
 <% if attachments.any? %>
   <div class="user-screenshots">

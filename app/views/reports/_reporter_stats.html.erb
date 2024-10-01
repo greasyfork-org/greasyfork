@@ -1,4 +1,5 @@
-<% ignore_report = nil unless defined?(ignore_report) %>
+<%# locals: (reporter:, ignore_report: nil)  %>
+
 <% reporter_stats = reporter.report_stats(ignore_report: ignore_report) %>
 <% if reporter_stats.values.any?{ |v| v > 0 } %>
   <p>
