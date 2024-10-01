@@ -164,7 +164,7 @@ class DiscussionsController < ApplicationController
                          when Comment, Discussion
                            [report.item.poster]
                          else
-                           report.item.users
+                           report.item&.users || []
                          end
       text = users_to_mention.map { |user| user.name.match?(/\s+/) ? "@\"#{user.name}\"" : "@#{user.name}" }.join(' ')
     elsif params[:category] && params[:category] != DiscussionCategory::SCRIPT_DISCUSSIONS_KEY
