@@ -89,8 +89,8 @@ class UsersController < ApplicationController
         @canonical_params = [:page, :per_page, :sort, :q]
         render layout: 'base'
       end
-      format.json { render json: @users.as_json }
-      format.jsonp { render json: @users.as_json, callback: clean_json_callback_param }
+      format.json { render json: @users.results.as_json }
+      format.jsonp { render json: @users.results.as_json, callback: clean_json_callback_param }
     end
   end
 
