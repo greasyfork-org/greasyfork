@@ -332,7 +332,7 @@ module ScriptListings
       with[:available_as_js] = true
     end
 
-    with[:author_ids] = params[:by] if params[:by]
+    with[:author_ids] = params[:by] unless params[:by].to_i.zero?
 
     @scripts = Script.search(
       params[:q].presence || '*',
