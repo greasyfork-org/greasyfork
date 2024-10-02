@@ -104,6 +104,7 @@ pt-BR:
       checkup:
         intro: Estas são sugestões para melhorar seu script em%{site_name}. Estas não são %{rules_link:rules}; seu script não será excluído se você não segui-lo.
         license_html: Especifique uma   %{license_link:<code>@license</code>}. Isso permite que outras pessoas saibam se e como podem compartilhar e modificar seu código.
+        additional_info: Inclua informações adicionais - liste seus recursos, forneça capturas de tela, etc. para que seus usuários saibam exatamente o que seu script faz.
     history_title: "%{script_name} - Histórico da Versão"
     history_only_code_changes_info: "Estas são as versões deste script em que houve atualização do código."
     history_all_changes_link: "Mostar todas versões."
@@ -177,6 +178,7 @@ pt-BR:
     listing_filter_by_site_all_sites: "(Todos sites)"
     listing_filter_by_language_label: "Idioma:"
     listing_filter_by_site_more_sites: "Mais..."
+    listing_filter_by_authorship_label: "Autoria:"
     listing_no_scripts: "Nenhum script encontrado."
     listing_created_feed: "Novos scripts"
     listing_updated_feed: "Scripts atualizados"
@@ -572,6 +574,7 @@ pt-BR:
     edit_sign_in: "Editar métodos de entrada"
     edit_sign_in_title: "Editar métodos de entrada"
     edit_sign_in_password: "Senha"
+    edit_notifications: "Editar configurações de notificação"
     view_notifications: "Ver notificações"
     no_password_set_info: "Sua conta não está configurado com uma senha."
     set_password: "Digitar senha"
@@ -683,11 +686,29 @@ pt-BR:
       email: Por email
       discussion_defaults:
         title: Notificações do forum
+        intro: Você receberá notificações para conversas nas quais você está inscrito. Você pode assinar ou cancelar a assinatura de conversas a qualquer momento.
+        discussion_subscription_defaults:
+          overall_label: Por padrão, assine as conversas quando
+          start: Você inicia a conversa
+          comment: Você comenta a conversa
+          script: É sobre um dos seus scripts
+        subscribed_discussion_notification: Quando um comentário for publicado em uma conversa na qual você está inscrito, receba a notificação
         mention: Receber uma notificação quando você for mencionado em uma discussão
       conversation_defaults:
         title: Notificações de conversa
+        intro: Quando um comentário for publicado em uma conversa na qual você está inscrito, receba a notificação
+        new_conversation_subscription:
+          overall_label: Por padrão, assine as conversas quando
+          self: Você inicia a conversa
+          other: Alguém inicia a conversa
+        new_conversation_notification: Quando alguém inicia uma conversa com você e você é inscrito de acordo com a configuração acima, receba a notificação
+        new_message_notification: Quando uma nova mensagem for recebida em uma conversa existente na qual você está inscrito, receba a notificação
       report_defaults:
+        intro: Os relatórios são criados por usuários para sinalizar conteúdo que é contra as regras do %{site_name}. Os moderadores revisarão o relatório e removerão o conteúdo, se necessário.
         title: Relatório de notificações
+        as_reporter: Quando um relatório que você criou for resolvido, receba a notificação
+        as_reported_filed: Quando um relatório é registrado contra um item que você postou, receba a notificação.
+        as_reported_resolved: Quando um relatório registrado contra um item que você postou for resolvido, receba a notificação.
       save_button: Atualizar configurações de notificação
       title: Notificações
       save_success: Suas preferências de notificação foram atualizadas
