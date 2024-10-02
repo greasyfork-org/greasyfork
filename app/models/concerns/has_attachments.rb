@@ -11,6 +11,7 @@ module HasAttachments
     validates :attachments,
               content_type: ALLOWED_CONTENT_TYPES,
               size: { less_than: Rails.configuration.screenshot_max_size },
-              limit: { max: Rails.configuration.screenshot_max_count }
+              limit: { max: Rails.configuration.screenshot_max_count },
+              processable_image: true
   end
 end
