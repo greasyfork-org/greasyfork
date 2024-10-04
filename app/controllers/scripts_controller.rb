@@ -854,7 +854,7 @@ class ScriptsController < ApplicationController
 
   def handle_replaced_script(script)
     if !script.replaced_by_script_id.nil? && script.replaced_by_script && script.delete_type_redirect?
-      redirect_to(user_js_script_path(script.replaced_by_script, name: script.replaced_by_script.url_name, locale_override: nil), status: :moved_permanently)
+      redirect_to(script.replaced_by_script.code_path, status: :moved_permanently)
       return true
     end
     return false
@@ -982,7 +982,7 @@ class ScriptsController < ApplicationController
     script_info = load_minimal_script_info(script_id, script_version_id)
 
     if script_info.replaced_by_script_id && script_info.delete_type == Script.delete_types[:redirect]
-      redirect_to(id: script_info.replaced_by_script_id, status: :moved_permanently)
+      redirect_to(Script.find(script_info.replaced_by_script_id).code_url(format_override: 'meta.js'), status: :moved_permanently)
       return
     end
 
