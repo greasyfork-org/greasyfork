@@ -982,7 +982,7 @@ class ScriptsController < ApplicationController
     script_info = load_minimal_script_info(script_id, script_version_id)
 
     if script_info.replaced_by_script_id && script_info.delete_type == Script.delete_types[:redirect]
-      redirect_to(Script.find(script_info.replaced_by_script_id).code_url(format_override: 'meta.js'), status: :moved_permanently)
+      redirect_to(Script.find(script_info.replaced_by_script_id).code_url(sleazy: sleazy?, format_override: (language == :css) ? 'meta.css' : 'meta.js'), status: :moved_permanently, allow_other_host: true)
       return
     end
 
