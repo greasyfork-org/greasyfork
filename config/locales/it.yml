@@ -891,6 +891,7 @@ it:
       description: "Cerca nel codice dello script. Questa è una ricerca che non distingue tra maiuscole e minuscole, nel solo testo, senza caratteri jolly."
     user_search:
       title: "Cerca utente"
+      description: "Ricerca utenti per nome."
   moderator_logs:
     date_column: "Data"
     moderator_column: "Moderatore"
@@ -1077,6 +1078,9 @@ it:
     locale_filter:
       label: Lingua
       all: Tutte
+    sort:
+      comment_created: Data
+      discussion_last_comment: Data ultimo commento
     user_activity:
       title: "Commenti recenti"
       no_recent_activity: "Questo utente non ha pubblicato alcun commento di recente."
@@ -1120,6 +1124,7 @@ it:
     no_discussions: Nessuna discussione trovata.
     mark_all_read: Segna come letto tutto
     pending_moderator_review: Questa discussione non è disponibile agli altri utenti finché non è approvata da un moderatore.
+    search_placeholder: Cerca discussioni
   conversations:
     user_input_note: Inserisci il nome utente o l'URL del profilo.
     new_title: Crea una nuova conversazione
