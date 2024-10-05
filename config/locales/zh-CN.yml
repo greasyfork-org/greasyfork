@@ -97,7 +97,12 @@ zh-CN:
       compare_must_be_local_url: "比较脚本必须是一个位于 %{site_name} 的网址。"
       compare_cleaned_code_unavailable: "比较脚本的干净代码尚不可用。"
       checkup:
+        title: 检查
+        intro: 这些是在 %{site_name} 上提高您脚本质量的建议。这些并不是 %{rules_link:规则}；如果您不遵循这些建议，您的脚本也不会被删除。
         license_html: 指定 %{license_link:@license}，以让其他人知道他们是否可以以及如何分享、修改您的代码。
+        globs_html: 避免在 %{include_link:<code>@include</code>} 和 %{match_link:<code>@match</code>} 中使用通配符和正则表达式。这会使 %{site_name} 难以正确分类您的脚本。
+        globs_used: "使用的非特定域包含：%{globs}"
+        additional_info: 添加附加信息 - 列出您的功能，提供截图等，以便用户清楚您脚本的具体作用。
     history_title: "%{script_name} - 版本历史"
     history_only_code_changes_info: "这些是代码更新过的版本。"
     history_all_changes_link: "显示所有版本"
@@ -171,6 +176,7 @@ zh-CN:
     listing_filter_by_site_all_sites: "(所有网站)"
     listing_filter_by_language_label: "语言："
     listing_filter_by_site_more_sites: "更多..."
+    listing_filter_by_authorship_label: "作者："
     listing_no_scripts: "找不到相关脚本。"
     listing_created_feed: "最近创建脚本"
     listing_updated_feed: "最近更新脚本"
@@ -649,33 +655,59 @@ zh-CN:
         short: 作者
         long: 此脚本的作者
     notifications:
+      on_site: 网站收取
+      email: 邮件收取
       discussion_defaults:
         title: 论坛通知
         intro: 您订阅的讨论有更新时将通知您，您可以随时取消订阅讨论
         discussion_subscription_defaults:
+          overall_label: 默认情况下，当发生以下情况时自动订阅讨论
           start: 您发起的讨论
           comment: 您参与的讨论
+          script: 有关您脚本的讨论
+        subscribed_discussion_notification: 在您订阅的讨论中有新评论发布时，收取通知
         mention: 当我在讨论帖中被提到时发送通知
       conversation_defaults:
         title: 私信通知
+        intro: 您将收到您订阅的私信通知。您可以随时订阅或取消订阅私信。
         new_conversation_subscription:
+          overall_label: 默认情况下，当有新私信时自动订阅
           self: 您发起的私信
           other: 其他人发起的私信
+        new_conversation_notification: 在有人向您发起私信，并且您根据上述设置自动订阅时，收取通知
+        new_message_notification: 在您订阅的现有私信收到新消息时，收取通知
       report_defaults:
+        intro: 用户创建举报是为了标记违反 %{site_name} 规则的内容。管理员将查阅举报，并在必要时删除相关内容。
         title: 举报通知
+        as_reporter: 在您创建的举报被处理时，收取通知
+        as_reported_filed: 在针对您发布的项目提出举报时，收取通知
+        as_reported_resolved: 在针对您发布的项目的举报被处理时，收取通知
       save_button: 更新通知设置
       title: 通知
+      current_discussion_subscriptions:
+        other: 取消订阅您已订阅的 %{discussions_link:%{count} 条讨论}
+      current_conversation_subscriptions:
+        other: 取消订阅您已订阅的 %{count} 条私信。
+      intro: "%{site_name} 可以通过邮件或网站上的通知小组件向您发送通知。大多数通知只有在您执行某些操作后才会发送，例如发起了一条讨论或发布了一个脚本。这些通知设置不会影响事务性的邮件，例如密码重置请求。"
       save_success: 您的通知设定已更新。
-      unsubscribe_all: 取消接收所有通知
-      unsubscribe_all_success: 您已取消接收所有通知。
+      unsubscribe_all: 取消订阅所有通知
+      unsubscribe_all_success: 您已取消订阅所有通知。
+      unsubscribe_email: 取消订阅所有邮件通知
+      unsubscribe_email_success: 您已取消订阅所有电子邮件通知。
+      new_conversation: "%{user} 向您发起了一条私信：%{text}。"
       new_message: "%{user} 给你发送了一则信息：%{text}"
+      new_comment: "%{user} 在 %{discussion} 中发布了一条评论。"
+      new_comment_script: "%{user} 在您的脚本 %{script} 上发布了一条讨论。"
+      mention: "%{user} 在 %{discussion} 中提到了您。"
       report_resolved_reporter:
         dismissed: 您的的举报（%{item}）已被管理员驳回
+        fixed: 您针对 %{item} 的举报导致了一些更改，管理员已将该问题标记为已解决。
         upheld: 管理员已通过您的举报（%{item}）。
         rebutted: 您的举报（%{item}）收到了一则回应。管理员将查阅您的举报与该则回应。
       report_filed_reported: 已举报 %{item}.
       report_resolved_reported:
         dismissed: 关于%{item}的举报已被管理员驳回
+        fixed: 针对 %{item} 的举报导致了一些更改，管理员已将该问题标记为已解决。
         upheld: 管理员已通过该举报（%{item}）。
       list:
         header: 通知
@@ -1386,6 +1418,7 @@ zh-CN:
     script_comment:
       subject: "您对于站点%{site_name}的脚本%{script_name}收到了一条评论。"
       intro: "您在 %{site_name}  上的脚本 %{script_link:%{script_name}} 收到了用户 %{commenter_link:%{commenter_name}} 的评论："
+      outro: "%{comment_link:查看并回复此评论。}您收到此通知是因为您订阅了有关您脚本的讨论。%{notification_preferences_link:管理您的通知偏好设置。}"
     subscribed_discussion:
       subject: "站点%{site_name}的讨论%{discussion_title}收到了一条评论。"
       intro: "%{site_name} 上的讨论 %{discussion_link:%{discussion_title}} 收到了一条来自 %{commenter_link:%{commenter_name}} 的评论："

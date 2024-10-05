@@ -30,6 +30,7 @@ pt:
       other: "Ver %{count}outros scripts para %{site}"
     applies_to_all: "Todos os sites"
     install: "Instalar este script"
+    install_css: "Instalado como estilo do utilizador"
     install_help: "?"
     install_help_title: "Como instalar"
     update: "Atualizar para a versão %{version}"
@@ -40,8 +41,16 @@ pt:
     author_promoted: "Script sugerido pelo autor"
     promoted_text_html: "Também pode gostar de %{script_link}"
     deleted_notice: "Este script foi eliminado."
+    deleted_notice_with_reason: "Este script foi eliminado devido a %{report_link:este relatório}."
+    deleted_notice_with_related: "O script que solicitou foi eliminado, mas aqui estão alguns scripts relacionados."
+    deleted_notice_with_related_and_reason: "O script que solicitou foi eliminado devido a %{report_link:este relatório}, mas aqui estão alguns scripts relacionados."
+    deleted_undelete_notice_html: "Este script foi bloqueado por um moderador e não pode ser recuperado. Motivo fornecido: \"<i>%{delete_reason}</i>\"."
+    deleted_locked_author_notice_html: "Este script foi eliminado por um moderador em resposta a %{report_link:este relatório} e não está acessível para outros. Motivo fornecido: \"<i>%{delete_reason}</i>\". Por favor, reveja as regras em %{code_rules_link:%{site_name}}'. Se acredita que esta eliminação foi um erro, pode %{appeal_link:submeter um recurso} sobre a eliminação. Não reposte ou replique este script; fazê-lo pode resultar num banimento de %{site_name}."
+    deleted_author_notice: "Este script foi eliminado e não está acessível para outros. Pode recuperá-lo na aba Eliminados."
     version_notice_html: "Desde %{date}. Ver %{latest_version_link}."
     version_notice_latest_version_link: "a última versão"
+    reported_notice: "\"%{script_name}\" foi denunciado e aguarda revisão por um moderador."
+    reported_notice_for_author: "Este script está indisponível para outros utilizadores até ser revisto por um moderador."
     info_page: "Info"
     code_page: "Código"
     history_page: "Histórico"
@@ -52,7 +61,22 @@ pt:
     delete_page: "Remover"
     delete_explanation: "Remover o seu script torna-o inacessível para todos, excepto para si e para os moderadores do Greasy Fork. Pode anular esta opção a qualquer altura."
     delete_update_behaviour: "O que quer que aconteça com utilizadores que anteriormente instalaram o seu script?"
+    delete_update_behaviours:
+      keep: "Será por eles mantido tal como está."
+      blanked: "Serão atualizados para um script vazio. Isto é apropriado quando o script tem um efeito negativo nos sites em que é executado."
+      redirect: "Serão redirecionados e atualizados para um script que especifique abaixo."
+    delete_permanently_heading: "Eliminação permanente."
+    delete_permanently_explanation_html: >-
+        <p>Eliminar permanentemente o seu script vai eliminá-lo e a todos os seus
+        registos associados, com exceção dos fóruns de discussão e o log de ações
+        de moderadores.</p><p>O seu script será eliminado permanentemente 7 dias após
+        o seu pedido. Pode cancelar a eliminação permanente neste período. Se optar
+        por não o fazer, ninguém, nem mesmo moderadores, serão capazes de recuperar
+        o seu script.</p>
+    delete_permanently_confirm: "Tem a certeza que quer eliminar permanentemente o seu script?"
+    delete_permanently_submit: "Solicitar eliminação permanente."
     delete_permanently_immediate_submit: "Eliminar permanentemente"
+    delete_permanently_notice: "O pedido de eliminação permanente foi registado. O seu script vai ser permanentemente eliminado em 7 dias."
     admin_page: "Admin"
     admin:
       promoted_heading: "Script promovido"
