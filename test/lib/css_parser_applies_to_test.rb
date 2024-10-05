@@ -243,4 +243,13 @@ class CssParserAppliesToTest < ActiveSupport::TestCase
     CSS
     assert_equal [{ text: 'http:///*[[ip]]*//*', domain: false, tld_extra: false }], get_applies_tos(css)
   end
+
+  test 'applies to invalid domain' do
+    css = <<~CSS
+      @-moz-document domain(/*[[yourDomain]]*/) {
+        a { color: red; }
+      }
+    CSS
+    assert_equal [{ text: '/*[[yourDomain]]*/', domain: false, tld_extra: false }], get_applies_tos(css)
+  end
 end

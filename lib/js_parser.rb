@@ -8,6 +8,9 @@ class JsParser
   TLD_EXPANSION = ['com', 'net', 'org', 'de', 'co.uk'].freeze
   APPLIES_TO_ALL_PATTERNS = ['http://*', 'https://*', 'http://*/*', 'https://*/*', 'http*://*', 'http*://*/*', '*', '*://*', '*://*/*', 'http*'].freeze
 
+  # Include * in this too as that's allowed in various scenarios
+  VALID_DOMAIN_REGEXP = /\A[a-z0-9\-.\*]+\z/i
+
   class << self
     def get_meta_block(code)
       return nil if code.nil?
@@ -172,7 +175,7 @@ class JsParser
           uri = URI(pre_wildcard)
           if uri.host.nil?
             applies_to_names << { text: original_pattern, domain: false, tld_extra: false }
-          elsif uri.host.exclude?('.') || uri.host.include?('*')
+          elsif uri.host.exclude?('.') || uri.host.include?('*') || !uri.host.match?(VALID_DOMAIN_REGEXP)
             # ensure the host is something sane
             applies_to_names << { text: original_pattern, domain: false, tld_extra: false }
           elsif uri.host.ends_with?('.tld')

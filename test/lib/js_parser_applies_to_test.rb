@@ -196,4 +196,8 @@ class JsParserAppliesToTest < ActiveSupport::TestCase
   test 'character type in character set' do
     assert_equal [{ text: 'aaidu.com', domain: true, tld_extra: false }], get_applies_to(['/^https?\:\/\/www\.[\w]aidu\.com\//'])
   end
+
+  test 'bad character in domain' do
+    assert_equal [{ text: 'https://www.example.com$', domain: false, tld_extra: false }], get_applies_to(['https://www.example.com$'])
+  end
 end

@@ -170,7 +170,10 @@ class CssParser
       when 'regexp'
         return { text: css_document_match.value, domain: false, tld_extra: false }
       when 'domain'
-        return { text: MatchURI.get_tld_plus_1(css_document_match.value), domain: true, tld_extra: false }
+        # Don't return it as a domain unless it looks like a valid domain.
+        return { text: MatchURI.get_tld_plus_1(css_document_match.value), domain: true, tld_extra: false } if JsParser::VALID_DOMAIN_REGEXP.match?(css_document_match.value)
+
+        return { text: css_document_match.value, domain: false, tld_extra: false }
       else
         begin
           uri = URI(css_document_match.value)
