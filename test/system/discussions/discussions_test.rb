@@ -179,4 +179,15 @@ class DiscussionsTest < ApplicationSystemTestCase
   ensure
     Greasyfork::Application.config.enable_detect_locale = false
   end
+
+  test 'preventing comments that format to blank' do
+    user = User.first
+    login_as(user, scope: :user)
+    visit new_discussion_path(locale: :en)
+    fill_in 'Title', with: 'discussion title'
+    fill_in 'discussion_comments_attributes_0_text', with: '<script>alert("xss")</script>'
+    choose 'Greasy Fork Feedback'
+    click_on 'Post comment'
+    assert_content "text can't be blank"
+  end
 end

@@ -15,6 +15,11 @@ class Comment < ApplicationRecord
   validates :text, presence: true, length: { maximum: 65_535 }
   validates :text_markup, inclusion: { in: %w[html markdown] }, presence: true
 
+  validate do
+    formatted_text = ApplicationController.helpers.format_user_text(text, text_markup)
+    errors.add(:text, :blank) if formatted_text.empty? || formatted_text == '<p></p>'
+  end
+
   delegate :script, :discussion_category, to: :discussion
 
   strip_attributes only: :text
