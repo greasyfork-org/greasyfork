@@ -58,6 +58,9 @@ class ScriptsController < ApplicationController
 
   skip_before_action :verify_authenticity_token, only: [:install_ping, :user_js, :meta_js, :user_css, :meta_css, :show, :show_code]
 
+  # Avoid a query on these common actions - we don't need to restrict banned users from them.
+  skip_before_action :banned?, only: [:user_js, :meta_js, :user_css, :meta_css]
+
   # The value a syncing additional info will have after syncing is added but before the first sync succeeds
   ADDITIONAL_INFO_SYNC_PLACEHOLDER = '(Awaiting sync)'.freeze
 
