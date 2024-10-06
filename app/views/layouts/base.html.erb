@@ -92,18 +92,15 @@
             <span class="sign-in-link"><%= link_to(t('layouts.application.sign_in'), new_user_session_path(request.get? ? {return_to: @return_to || request.fullpath} : {}), {rel: 'nofollow'}) %></span>
           <% end %>
 
-          <% form_action = if request.get?
-            current_path_with_params(locale: nil)
-          else
-            root_path({locale: nil})
-                        end %>
+          <% valid_request_for_locale_switch = request.get? && !@routing_error %>
+          <% form_action = valid_request_for_locale_switch ? current_path_with_params(locale: nil) : root_path({locale: nil}) %>
           <form id="language-selector" action="<%= form_action %>">
             <% user_with_locale = !current_user.nil? && !current_user.locale.nil?
             locale_with_override_param = user_with_locale ? '1' : nil
             switch_url_without_locale = current_path_with_params(locale: 'XX', locale_override: locale_with_override_param).delete_prefix('/XX') %>
             <select id="language-selector-locale" name="locale" data-translate-url="<%= Rails.configuration.help_translate_url %>">
               <% Rails.configuration.available_locales.each do |code, name|
-                if request.get? %>
+                if valid_request_for_locale_switch %>
                   <option data-language-url="/<%= code %><%= switch_url_without_locale %>" value="<%= code %>"<% if params[:locale] == code %> selected<% end %>>
                     <%= name %> (<%= code %>)
                   </option>
