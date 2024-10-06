@@ -56,6 +56,10 @@ class ScriptsController < ApplicationController
 
   before_action :check_read_only_mode, except: [:show, :show_code, :user_js, :meta_js, :user_css, :meta_css, :feedback, :stats, :diff, :derivatives, :index, :by_site]
 
+  before_action only: :user_css do
+    log_headers if params[:id].include?('461379')
+  end
+
   skip_before_action :verify_authenticity_token, only: [:install_ping, :user_js, :meta_js, :user_css, :meta_css, :show, :show_code]
 
   # Avoid a query on these common actions - we don't need to restrict banned users from them.

@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
   include LocalizedRequest
   include Announcement
   include NotificationDisplay
+  include RequestDebugging
 
   if Rails.env.test?
     show_announcement key: :test_announcement,
