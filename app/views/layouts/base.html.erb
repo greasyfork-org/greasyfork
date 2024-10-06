@@ -22,7 +22,8 @@
   <link rel="canonical" href="<%= canonical_url(@canonical_params) %>">
   <link rel="icon" href="<%= vite_asset_path('images/blacklogo16.png') %>">
   <%= non_blocking_stylesheet_tag('https://fonts.googleapis.com/css?family=Open+Sans&display=swap') unless Rails.env.test? %>
-  <% if request.get?
+  <% valid_request_for_locale_switch = request.get? && !@routing_error %>
+  <% if valid_request_for_locale_switch
     # https://support.google.com/webmasters/answer/189077
     alternate_url_without_locale = current_path_with_params(locale: 'XX').sub(/\A\/XX/, '') %>
     <link rel="alternate" hreflang="x-default" href="<%= current_path_with_params(locale: nil) %>">
@@ -92,7 +93,6 @@
             <span class="sign-in-link"><%= link_to(t('layouts.application.sign_in'), new_user_session_path(request.get? ? {return_to: @return_to || request.fullpath} : {}), {rel: 'nofollow'}) %></span>
           <% end %>
 
-          <% valid_request_for_locale_switch = request.get? && !@routing_error %>
           <% form_action = valid_request_for_locale_switch ? current_path_with_params(locale: nil) : root_path({locale: nil}) %>
           <form id="language-selector" action="<%= form_action %>">
             <% user_with_locale = !current_user.nil? && !current_user.locale.nil?
