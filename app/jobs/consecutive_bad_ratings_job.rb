@@ -9,7 +9,7 @@ class ConsecutiveBadRatingsJob
 
     # Delete those that are old.
     Script.not_deleted.where(consecutive_bad_ratings_at: ...Script::CONSECUTIVE_BAD_RATINGS_GRACE_PERIOD.ago).find_each do |script|
-      script.update(
+      script.update_columns(
         delete_type: 'keep',
         delete_reason: "Script received #{Script::CONSECUTIVE_BAD_RATINGS_COUNT} bad ratings without an author response.",
         consecutive_bad_ratings_at: nil
@@ -20,7 +20,7 @@ class ConsecutiveBadRatingsJob
     # Limit to scripts that have received any discussions for performance reasons.
     Script.not_deleted.where(id: scripts_with_discussions).where(consecutive_bad_ratings_at: nil).find_each do |script|
       if script.consecutive_bad_ratings?
-        script.update(consecutive_bad_ratings_at: Time.current)
+        script.update_columns(consecutive_bad_ratings_at: Time.current)
         UserNotificationService.notify_authors(script) do |user, locale|
           ConsecutiveBadRatingsMailer.notify(script, user, locale).deliver_later
         end

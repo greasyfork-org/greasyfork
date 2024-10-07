@@ -1,5 +1,8 @@
 class ConsecutiveBadRatingsMailer < ApplicationMailer
   def notify(script, user, locale)
+    # If it was fixed before this ran, then don't send the notification.
+    return if script.consecutive_bad_ratings_at.nil?
+
     set_locale(locale)
     script_name = script.name(locale)
     mail(to: user.email, subject: t('mailers.consecutive_bad_ratings.notify.subject', site_name: 'Greasy Fork', script_name:)) do |format|
