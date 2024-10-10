@@ -16,13 +16,6 @@ class UsersController < ApplicationController
   before_action :disable_browser_caching!, only: [:edit_sign_in]
 
   def index
-    # Limit to 1000 results. Otherwise bots get at it and load way far into the list, which has performance problems.
-    pp = per_page
-    if page_number > MAX_LIST_ENTRIES / pp
-      render_404 'User list is limited to 1000 results.'
-      return
-    end
-
     with = {}
 
     with[:email_domain] = params[:email_domain] if current_user&.moderator? && params[:email_domain].present?
