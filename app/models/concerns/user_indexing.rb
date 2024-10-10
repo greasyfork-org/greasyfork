@@ -55,7 +55,7 @@ module UserIndexing
                  },
                }
 
-    after_commit if: ->(model) { model.previous_changes.keys.intersect?(%w[name created_at script_count banned stats_script_daily_installs script_total_installs script_last_created script_last_updated script_ratings email_domain ip]) } do
+    after_commit if: ->(model) { model.previous_changes.keys.intersect?(%w[name created_at script_count banned_at stats_script_daily_installs script_total_installs script_last_created script_last_updated script_ratings email_domain ip]) } do
       reindex(mode: :async) if Searchkick.callbacks?
     end
   end
