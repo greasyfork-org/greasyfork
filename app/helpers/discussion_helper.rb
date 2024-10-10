@@ -113,6 +113,9 @@ module DiscussionHelper
       new_options[:category] = category
     end
 
+    # Stop routing errors if they use something invalid
+    new_options.delete(:category) unless %w[greasyfork development requests script-discussions no-scripts moderators].include?(new_options[:category])
+
     if read.nil?
       new_options.delete(:read)
     elsif read == :unchanged
