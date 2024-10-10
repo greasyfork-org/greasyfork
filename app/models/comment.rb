@@ -16,7 +16,7 @@ class Comment < ApplicationRecord
   validates :text_markup, inclusion: { in: %w[html markdown] }, presence: true
 
   validate do
-    formatted_text = ApplicationController.helpers.format_user_text(text, text_markup)
+    formatted_text = ApplicationController.helpers.format_user_text(text&.gsub(/[\r\n]/m, ''), text_markup)
     errors.add(:text, :blank) if formatted_text.empty? || formatted_text == '<p></p>'
   end
 

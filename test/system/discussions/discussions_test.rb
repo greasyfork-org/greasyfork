@@ -190,4 +190,15 @@ class DiscussionsTest < ApplicationSystemTestCase
     click_on 'Post comment'
     assert_content "text can't be blank"
   end
+
+  test 'preventing comments that format to blank a different way' do
+    user = User.first
+    login_as(user, scope: :user)
+    visit new_discussion_path(locale: :en)
+    fill_in 'Title', with: 'discussion title'
+    fill_in 'discussion_comments_attributes_0_text', with: "<script>alert(\"xss\")</script>\n<script>alert(\"xss\")</script>"
+    choose 'Greasy Fork Feedback'
+    click_on 'Post comment'
+    assert_content "text can't be blank"
+  end
 end
