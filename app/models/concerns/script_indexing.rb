@@ -83,6 +83,11 @@ module ScriptIndexing
     after_commit if: ->(model) { should_index? && model.previous_changes.keys.intersect?(%w[created_at code_updated_at total_installs daily_installs sensitive script_type fan_score available_as_js available_as_css]) } do
       reindex(mode: :async) if Searchkick.callbacks?
     end
+
+    # Because these change the authors' "script author" and "number of scripts" stats
+    after_create_commit :reindex_authors
+    after_destroy_commit :reindex_authors
+    after_update_commit :reindex_authors, if: ->(model) { model.previous_changes.keys.intersect?(%w[deleted_at script_type]) }
   end
 
   def search_data
@@ -118,5 +123,9 @@ module ScriptIndexing
 
   def should_index?
     !unlisted? && !deleted? && !review_required?
+  end
+
+  def reindex_authors
+    users.each { |u| u.reindex(mode: :async) } if Searchkick.callbacks?
   end
 end
