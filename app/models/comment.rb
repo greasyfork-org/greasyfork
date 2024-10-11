@@ -64,13 +64,6 @@ class Comment < ApplicationRecord
   def send_notifications!
     users_received_notification = Set.new([poster])
 
-    if first_comment? && discussion.script
-      users_to_subscribe = discussion.script.users.where(subscribe_on_script_discussion: true) - [poster]
-      users_to_subscribe.each do |user|
-        DiscussionSubscription.find_or_create_by(user:, discussion:)
-      end
-    end
-
     subscribed_users = UserNotificationService.notify_discussion_subscribed(self, ignored_users: users_received_notification) do |user|
       if first_comment?
         ForumMailer.comment_on_script(user, self).deliver_later

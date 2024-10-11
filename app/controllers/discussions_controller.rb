@@ -211,11 +211,18 @@ class DiscussionsController < ApplicationController
     comment.construct_mentions(detect_possible_mentions(comment.text, comment.text_markup))
     @discussion.save!
 
+    DiscussionSubscription.find_or_create_by!(user: current_user, discussion: @discussion) if @subscribe
+
+    if @discussion.script
+      users_to_subscribe = @discussion.script.users.where(subscribe_on_script_discussion: true) - [current_user]
+      users_to_subscribe.each do |user|
+        DiscussionSubscription.find_or_create_by!(user:, discussion: @discussion)
+      end
+    end
+
     notification_job = CommentNotificationJob
     notification_job = notification_job.set(wait: Comment::EDITABLE_PERIOD) unless Rails.env.local?
     notification_job.perform_later(@discussion.comments.first)
-
-    DiscussionSubscription.find_or_create_by!(user: current_user, discussion: @discussion) if @subscribe
 
     DiscussionSpamCheckJob.perform_later(@discussion, request.ip, request.user_agent, request.referer) unless current_user.discussions.count > 3
 
