@@ -44,7 +44,14 @@ class UserNotificationService
     subscribed_users = discussion
                        .discussion_subscriptions
                        .where.not(user: ignored_users)
-                       .where(created_at: ...comment.created_at) # Notifications are delayed. We don't want to notify about anything that happened before they subscribed.
+
+    # Notifications are delayed. We don't want to notify about anything that happened before they subscribed. However
+    # in the case of a first comment on a script, the author can be auto-subscribed and this gets created slightly after
+    # the comment, and we do want to notify in that case, so add a bit of padding.
+    subscribed_before = (comment.first_comment? && comment.script) ? comment.created_at + 5.seconds : comment.created_at
+    subscribed_users = subscribed_users.where(created_at: ...subscribed_before)
+
+    subscribed_users = subscribed_users
                        .includes(:user)
                        .map(&:user)
                        .uniq

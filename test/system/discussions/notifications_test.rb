@@ -96,6 +96,7 @@ module Discussions
 
       perform_enqueued_jobs(only: CommentNotificationJob)
       assert author.subscribed_to?(Discussion.last)
+      assert_enqueued_email_with ForumMailer, :comment_on_script, args: [author, Comment.last]
     end
 
     test 'adding a discussion on a script does not subscribe the author if the setting is false' do
