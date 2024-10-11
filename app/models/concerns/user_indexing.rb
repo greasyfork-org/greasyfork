@@ -3,6 +3,7 @@ module UserIndexing
 
   included do
     searchkick callbacks: false,
+               max_result_window: 10_000, # Refuse to load past this, as ES raises an error anyway
                searchable: [:name],
                # All non-string fields are always filterable; we want to limit which string fields are filterable.
                filterable: [:ip, :email_domain],
