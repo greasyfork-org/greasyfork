@@ -350,7 +350,7 @@ module UserTextHelper
   end
 
   def markdown
-    @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML.new({ link_attributes: { rel: 'nofollow' } }), fenced_code_blocks: true, lax_spacing: true, tables: true, strikethrough: true)
+    @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML.new({ link_attributes: { rel: 'nofollow' } }), fenced_code_blocks: true, lax_spacing: true, tables: true, strikethrough: true, no_intra_emphasis: true)
   end
 
   def previewable_text_field_form(markup_name:, markup_choice_html:)

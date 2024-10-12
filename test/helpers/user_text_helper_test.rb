@@ -123,6 +123,11 @@ class UserTextHelperTest < ActionView::TestCase
     assert_equal expected, rendered
   end
 
+  test 'format_user_text markdown no emphasis in urls with underscores' do
+    text = 'https://example.com/its_my_url'
+    assert_equal("<p><a href=\"https://example.com/its_my_url\" rel=\"nofollow\">https://example.com/its_my_url</a></p>\n", format_user_text(text, 'markdown'))
+  end
+
   def request_locale
     locales(:english)
   end
