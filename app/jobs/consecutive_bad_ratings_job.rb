@@ -21,7 +21,7 @@ class ConsecutiveBadRatingsJob
     Script.not_deleted.where(id: scripts_with_discussions).where(consecutive_bad_ratings_at: nil).find_each do |script|
       if script.consecutive_bad_ratings?
         script.update_columns(consecutive_bad_ratings_at: Time.current)
-        UserNotificationService.notify_authors(script) do |user, locale|
+        UserNotificationService.notify_authors(script, notification_type: Notification::NOTIFICATION_TYPE_CONSECUTIVE_BAD_RATINGS) do |user, locale|
           ConsecutiveBadRatingsMailer.notify(script, user, locale).deliver_later
         end
       end

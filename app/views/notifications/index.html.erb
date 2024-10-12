@@ -10,7 +10,7 @@
 <% if @notifications.any? %>
   <div class="notification-list">
     <% @notifications.each do |notification| %>
-      <div class="notification-list-item notification-<%= notification.read? ? 'read' : 'not-read' %>">
+      <div class="notification-list-item notification-<%= notification.read? ? 'read' : 'not-read' %> notification-type-<%= notification.notification_type %>">
         <div class="notification-meta">
           <div class="notification-meta-item">
             <%= markup_date(notification.created_at) %>
@@ -57,6 +57,8 @@
                 end
               when Notification::NOTIFICATION_TYPE_MENTION
                 t('users.notifications.mention', user: render_user_text(notification.item.poster, notification.item.poster_id), discussion: notification.item.discussion.display_title(locale: I18n.locale))
+              when Notification::NOTIFICATION_TYPE_CONSECUTIVE_BAD_RATINGS
+                t('users.notifications.consecutive_bad_ratings', script: notification.item.name(locale: I18n.locale))
               else
                 raise "Unexpected notification type '#{notification.notification_type}' for notification #{notification.id}."
               end

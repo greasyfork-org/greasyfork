@@ -393,6 +393,7 @@ class DiscussionsController < ApplicationController
     return unless current_user
 
     Notification.unread.where(user: current_user, item: [@discussion.comments]).mark_read!
+    Notification.unread.where(user: current_user, item: [@discussion.script], notification_type: Notification::NOTIFICATION_TYPE_CONSECUTIVE_BAD_RATINGS).mark_read! if @discussion.script
     load_notification_count
   end
 end

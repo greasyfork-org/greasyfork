@@ -101,6 +101,17 @@
 
   <hr>
 
+  <div class="form-control">
+    <h3><%= t('users.notifications.script.title') %></h3>
+
+    <p><%= t('users.notifications.script.intro', site_name:) %></p>
+
+    <%= label_tag t('users.notifications.script.consecutive_bad_ratings') %>
+    <%= render partial: 'notification_setting_checkboxes', locals: { current_settings: @notification_settings, notification_type: Notification::NOTIFICATION_TYPE_CONSECUTIVE_BAD_RATINGS } %>
+  </div>
+
+  <hr>
+
   <div>
     <%= f.submit t('users.notifications.save_button') %>
   </div>

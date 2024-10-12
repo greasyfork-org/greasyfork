@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class ConsecutiveBadRatingsJobTest < ActiveSupport::TestCase
+  include ActionMailer::TestHelper
+
   test 'date is cleared if it no longer applies' do
     script = Script.first
     script.update(consecutive_bad_ratings_at: Time.current)
@@ -12,7 +14,10 @@ class ConsecutiveBadRatingsJobTest < ActiveSupport::TestCase
     script = Script.first
     Script.any_instance.expects(:consecutive_bad_ratings?).returns(true)
     ConsecutiveBadRatingsJob.any_instance.expects(:scripts_with_discussions).returns([script.id])
-    ConsecutiveBadRatingsJob.perform_inline
+    assert_difference -> { Notification.count } => 1 do
+      ConsecutiveBadRatingsJob.perform_inline
+    end
+    assert_enqueued_email_with ConsecutiveBadRatingsMailer, :notify, args: [script, script.users.first, :en]
     assert_not_nil script.reload.consecutive_bad_ratings_at
   end
 

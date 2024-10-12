@@ -12,6 +12,7 @@ class Notification < ApplicationRecord
   NOTIFICATION_TYPE_REPORT_REBUTTED_REPORTER = :report_rebutted_reporter
   NOTIFICATION_TYPE_NEW_COMMENT = :new_comment
   NOTIFICATION_TYPE_MENTION = :mention
+  NOTIFICATION_TYPE_CONSECUTIVE_BAD_RATINGS = :consecutive_bad_ratings
 
   enum :notification_type, {
     NOTIFICATION_TYPE_NEW_CONVERSATION => 0,
@@ -22,6 +23,7 @@ class Notification < ApplicationRecord
     NOTIFICATION_TYPE_REPORT_REBUTTED_REPORTER => 5,
     NOTIFICATION_TYPE_NEW_COMMENT => 6,
     NOTIFICATION_TYPE_MENTION => 7,
+    NOTIFICATION_TYPE_CONSECUTIVE_BAD_RATINGS => 8,
   }
 
   def self.mark_read!
@@ -33,6 +35,8 @@ class Notification < ApplicationRecord
   end
 
   def path(locale:)
+    return item.feedback_path(locale:) if notification_type.to_sym == NOTIFICATION_TYPE_CONSECUTIVE_BAD_RATINGS
+
     case item
     when Conversation, Message
       item.path(user, locale:)

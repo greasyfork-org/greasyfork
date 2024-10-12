@@ -12,6 +12,7 @@ class UserNotificationSetting < ApplicationRecord
     Notification::NOTIFICATION_TYPE_REPORT_RESOLVED_REPORTED => 4,
     Notification::NOTIFICATION_TYPE_NEW_COMMENT => 5,
     Notification::NOTIFICATION_TYPE_MENTION => 6,
+    Notification::NOTIFICATION_TYPE_CONSECUTIVE_BAD_RATINGS => 7,
   }
   enum :delivery_type, { DELIVERY_TYPE_ON_SITE => 0, DELIVERY_TYPE_EMAIL => 1 }
 
@@ -25,6 +26,7 @@ class UserNotificationSetting < ApplicationRecord
     Notification::NOTIFICATION_TYPE_REPORT_RESOLVED_REPORTED => ALL_DELIVERY_TYPES,
     Notification::NOTIFICATION_TYPE_NEW_COMMENT => ALL_DELIVERY_TYPES,
     Notification::NOTIFICATION_TYPE_MENTION => [DELIVERY_TYPE_ON_SITE],
+    Notification::NOTIFICATION_TYPE_CONSECUTIVE_BAD_RATINGS => ALL_DELIVERY_TYPES,
   }.freeze
 
   def self.delivery_types_for_user(user, notification_type)

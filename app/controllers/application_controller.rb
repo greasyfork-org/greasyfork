@@ -17,23 +17,6 @@ class ApplicationController < ActionController::Base
                       show_if: -> { params[:test] == '1' },
                       content: 'This is a test announcement'
   end
-  show_announcement key: :consecutive_bad_ratings,
-                    show_if: -> { current_user.scripts.not_deleted.where.not(consecutive_bad_ratings_at: nil).any? },
-                    content: lambda {
-                      scripts = current_user.scripts.not_deleted.where.not(consecutive_bad_ratings_at: nil)
-                      t('notifications.consecutive_bad_ratings',
-                        script_names: scripts.map { |script| link_to(script.name(request_locale), script) }.to_sentence,
-                        count: scripts.count).html_safe
-                    },
-                    dismissable: false
-  show_announcement key: :open_reports,
-                    show_if: -> { Report.unresolved.where(item: current_user.scripts, rebuttal: nil).any? },
-                    content: lambda {
-                      reports = Report.unresolved.where(item: current_user.scripts, rebuttal: nil)
-                      t('notifications.open_reports',
-                        report_links: reports.map { |report| link_to(t('reports.name', id: report.id), report) }.join(' ')).html_safe
-                    },
-                    dismissable: false
 
   rescue_from ActiveRecord::RecordNotFound, with: :routing_error
   def routing_error

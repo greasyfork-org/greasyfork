@@ -983,6 +983,10 @@ en:
         as_reporter: When a report you created is resolved, get the notification
         as_reported_filed: When a report is filed against an item you posted, get the notification
         as_reported_resolved: When a report filed against an item you posted is resolved, get the notification
+      script:
+        intro: These settings relate to scripts you post.
+        title: Script notifications
+        consecutive_bad_ratings: When your script is in danger of being deleted due to bad reviews, get the notification
       save_button: Update notification settings
       title: Notifications
       current_discussion_subscriptions:
@@ -1012,6 +1016,7 @@ en:
         dismissed: A report against %{item} was dismissed by a moderator.
         fixed: A report against %{item} resulted in some changes and a moderator marked the issue as having been resolved.
         upheld: A report against %{item} was upheld by a moderator.
+      consecutive_bad_ratings: "%{script} has received bad reviews and is in danger of being removed. Fix your script or respond to the reviews to ensure it stays active."
       list:
         header: Notifications
         none: No notifications yet!
@@ -1329,11 +1334,6 @@ en:
     item_user_html: "User: %{user_link}"
     item_report: "%{report_link: Report #%{report_id}}"
     item_script_lock_appeal: "%{appeal_link:Appeal #%{appeal_id}}"
-  notifications:
-    consecutive_bad_ratings:
-      one: "%{script_names} has received consecutive bad ratings. Please review your script and reply to the concerns raised in the ratings."
-      other: "%{script_names} have received consecutive bad ratings. Please review your scripts and reply to the concerns raised in the ratings."
-    open_reports: "Some of your scripts have been reported. Please review the reports and provide any information you can. %{report_links}"
   reports:
     name: "Report #%{id}"
     report_filed: "Your report will be reviewed by a moderator."

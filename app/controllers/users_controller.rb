@@ -330,6 +330,7 @@ class UsersController < ApplicationController
     Notification::NOTIFICATION_TYPE_REPORT_RESOLVED_REPORTED,
     Notification::NOTIFICATION_TYPE_NEW_COMMENT,
     Notification::NOTIFICATION_TYPE_MENTION,
+    Notification::NOTIFICATION_TYPE_CONSECUTIVE_BAD_RATINGS,
   ].freeze
 
   def notification_settings

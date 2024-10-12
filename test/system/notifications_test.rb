@@ -176,6 +176,17 @@ class NotificationsTest < ApplicationSystemTestCase
     assert_content "Timmy O'Toole mentioned you in discussing something"
   end
 
+  test 'a consecutive bad ratings notification' do
+    script = scripts(:one)
+    user = script.users.first
+    login_as(user)
+
+    Notification.create!(user:, notification_type: Notification::NOTIFICATION_TYPE_CONSECUTIVE_BAD_RATINGS, item: script)
+
+    visit notifications_url(user, locale: :en)
+    assert_content 'MyString has received bad reviews and is in danger of being removed. Fix your script or respond to the reviews to ensure it stays active.'
+  end
+
   def assert_notification_widget_count(count)
     if count == 0
       assert_no_selector('.notification-widget')

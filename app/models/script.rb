@@ -556,6 +556,10 @@ class Script < ApplicationRecord
     "/scripts/#{id}/#{filename}#{extension}"
   end
 
+  def feedback_path(locale: nil)
+    url_helpers.feedback_script_path(self, locale:)
+  end
+
   def serializable_hash(options = nil)
     sleazy = options&.[](:sleazy)
     super(

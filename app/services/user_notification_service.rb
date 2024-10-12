@@ -1,7 +1,7 @@
 # Some helpers when sending notifications to potentially multiple users. These methods will handle creating the
 # Notification objects and will `yield` for each user who should get an email.
 class UserNotificationService
-  def self.notify_users(users, item:, notification_type: nil, backup_locale: nil)
+  def self.notify_users(users, item:, notification_type:, backup_locale: nil)
     users
       .select { |u| notification_type.nil? || UserNotificationSetting.delivery_types_for_user(u, notification_type).include?(UserNotificationSetting::DELIVERY_TYPE_EMAIL) }
       .each do |user|
@@ -14,8 +14,8 @@ class UserNotificationService
       .each { |u| Notification.create!(notification_type:, user: u, item:) }
   end
 
-  def self.notify_authors(script, &)
-    notify_users(script.users, item: script, backup_locale: script.locale, &)
+  def self.notify_authors(script, notification_type:, &)
+    notify_users(script.users, item: script, notification_type:, backup_locale: script.locale, &)
   end
 
   def self.notify_authors_for_report_filed(report, &)
