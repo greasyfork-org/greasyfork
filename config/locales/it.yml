@@ -903,12 +903,6 @@ it:
     item_user_html: "Utente: %{user_link}"
     item_report: "%{report_link: Rapporto #%{report_id}}"
     item_script_lock_appeal: "%{appeal_link:Ricorso #%{appeal_id}}"
-  notifications:
-    consecutive_bad_ratings:
-      one: "%{script_names} ha ricevuto una serie di valutazioni negative. Rivedi il tuo script e rispondi ai problemi fatti presente nelle valutazioni."
-      many: "%{script_names} hanno ricevuto una serie di valutazioni negative. Rivedi i tuoi script e rispondi ai problemi fatti presente nelle valutazioni."
-      other: "%{script_names} hanno ricevuto una serie di valutazioni negative. Rivedi i tuoi script e rispondi ai problemi fatti presente nelle valutazioni."
-    open_reports: "Alcuni dei tuoi scripts sono stati segnalati. Per favore, visiona le segnalazioni e fornisci tutte le informazioni che puoi. %{report_links}"
   reports:
     name: "Rapporto #%{id}"
     report_filed: "La tua segnalazione sarà presa in carico da un moderatore."

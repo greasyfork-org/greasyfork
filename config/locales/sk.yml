@@ -722,6 +722,10 @@ sk:
         as_reporter: Keď je vaše hlásenie vyriešené, upozorníme vás
         as_reported_filed: Keď sa podá hlásenie o položke, ktorú ste zverejnili, upozorníme vás
         as_reported_resolved: Keď sa vyrieši hlásenie podané k vašej položke, upozorníme vás
+      script:
+        intro: Tieto nastavenia sa týkajú skriptov, ktoré odosielate.
+        title: Upozornenia na skripty
+        consecutive_bad_ratings: Keď vášmu skriptu hrozí odstránenie z dôvodu zlých recenzií, dostanete upozornenie
       save_button: Aktualizovať nastavenia upozornenia
       title: Upozornenia
       current_discussion_subscriptions:
@@ -755,6 +759,7 @@ sk:
         dismissed: Moderátor zamietol hlásenie proti %{item}.
         fixed: Hlásenie proti %{item} viedlo k určitým zmenám a moderátor označil problém za vyriešený.
         upheld: Moderátor potvrdil hlásenie proti %{item}.
+      consecutive_bad_ratings: "%{script} získal zlé recenzie a hrozí mu odstránenie. Opravte svoj skript alebo reagujte na recenzie, aby ste zabezpečili, že zostane aktívny."
       list:
         header: Upozornenia
         none: Zatiaľ žiadne upozornenia!
@@ -1065,13 +1070,6 @@ sk:
     item_user_html: "Používateľ: %{user_link}"
     item_report: "%{report_link: Sťažnosť #%{report_id}}"
     item_script_lock_appeal: "%{appeal_link:Odvolanie #%{appeal_id}}"
-  notifications:
-    consecutive_bad_ratings:
-      one: "%{script_names} dostal po sebe idúce zlé hodnotenia. Preskúmajte váš skript a odpovedzte na obavy uvedené v hodnoteniach."
-      few: "%{script_names} dostal po sebe idúce zlé hodnotenia. Preskúmajte vaše skripty a odpovedzte na obavy uvedené v hodnoteniach."
-      many: "%{script_names} dostal po sebe idúce zlé hodnotenia. Preskúmajte vaše skripty a odpovedzte na obavy uvedené v hodnoteniach."
-      other: "%{script_names} dostal po sebe idúce zlé hodnotenia. Preskúmajte vaše skripty a odpovedzte na obavy uvedené v hodnoteniach."
-    open_reports: "Niektoré z vašich skriptov boli nahlásené. Prosím, prezrite si správu o hlásení a poskytnite všetky informácie, ktoré máte. %{report_links}"
   reports:
     name: "Hlásenie #%{id}"
     report_filed: "Vaša sťažnosť bude posúdená moderátorom."

@@ -704,6 +704,10 @@ nl:
         as_reporter: Melding tonen indien gemelde inhoud is behandeld
         as_reported_filed: Melding tonen indien inhoud van mij wordt gemeld
         as_reported_resolved: Melding tonen indien gemelde inhoud van mij is behandeld
+      script:
+        intro: Deze instellingen zijn van toepassing op door jouw gepubliceerde scripts.
+        title: Scriptmeldingen
+        consecutive_bad_ratings: Melding tonen indien script mogelijk verwijderd wordt wegens slechte beoordelingen
       save_button: Updatemeldingen
       title: Meldingen
       current_discussion_subscriptions:
@@ -733,6 +737,7 @@ nl:
         dismissed: De melding met betrekking tot ‘%{item}’ is afgewezen door een moderator.
         fixed: De melding met betrekking tot ‘%{item}’ heeft tot verbetering geleid. Een moderator heeft de zaak behandeld.
         upheld: De melding met betrekking tot ‘%{item}’ is ingewilligd door een moderator.
+      consecutive_bad_ratings: "%{script} heeft slechte beoordelingen ontvangen en wordt mogelijk verwijderd. Pas het script aan of reageer op de beoordelingen."
       list:
         header: Meldingen
         none: Er zijn nog geen meldingen.
@@ -1040,11 +1045,6 @@ nl:
     item_user_html: "Gebruiker: %{user_link}"
     item_report: "%{report_link: Melding #%{report_id}}"
     item_script_lock_appeal: "%{appeal_link:Bezwaar #%{appeal_id}}"
-  notifications:
-    consecutive_bad_ratings:
-      one: "%{script_names} heeft meermaals een slechte beoordeling gekregen. Controleer je script en luister naar de aangedragen feedback."
-      other: "%{script_names} hebben meermaals een slechte beoordeling gekregen. Controleer je scripts en luister naar de aangedragen feedback."
-    open_reports: "Er is melding gemaakt van enkele van je scripts. Loop de meldingen na en geef, waar mogelijk, aanvullende informatie. %{report_links}"
   reports:
     name: "Melding maken van #%{id}"
     report_filed: "Je melding wordt beoordeeld door een moderator."
