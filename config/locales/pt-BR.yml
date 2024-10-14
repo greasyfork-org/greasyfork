@@ -102,8 +102,13 @@ pt-BR:
       compare_must_be_local_url: "O script de comparação deve ser uma URL do %{site_name}."
       compare_cleaned_code_unavailable: "O código limpo do script de comparação ainda não está disponível."
       checkup:
+        title: Checkup
         intro: Estas são sugestões para melhorar seu script em%{site_name}. Estas não são %{rules_link:rules}; seu script não será excluído se você não segui-lo.
         license_html: Especifique uma   %{license_link:<code>@license</code>}. Isso permite que outras pessoas saibam se e como podem compartilhar e modificar seu código.
+        globs_html: 'Evite usar "globs" e expressões regulares na parte do domínio de  %{include_link:<code>@include</code>} e %{match_link:<code>@match}.
+
+          Eles fazer difícil para %{site_name} para apropriadamente classificar seu script'
+        globs_used: "Não-domínio especifico inclui usado: %{globs}"
         additional_info: Inclua informações adicionais - liste seus recursos, forneça capturas de tela, etc. para que seus usuários saibam exatamente o que seu script faz.
     history_title: "%{script_name} - Histórico da Versão"
     history_only_code_changes_info: "Estas são as versões deste script em que houve atualização do código."
@@ -709,11 +714,27 @@ pt-BR:
         as_reporter: Quando um relatório que você criou for resolvido, receba a notificação
         as_reported_filed: Quando um relatório é registrado contra um item que você postou, receba a notificação.
         as_reported_resolved: Quando um relatório registrado contra um item que você postou for resolvido, receba a notificação.
+      script:
+        intro: Essas configurações relacionam com scripts que você publicou.
+        title: Notificações do script
+        consecutive_bad_ratings: Quando seu script está em perigo de ser deletado por analises ruins, recebera uma notificação
       save_button: Atualizar configurações de notificação
       title: Notificações
+      current_conversation_subscriptions:
+        one: Desinscreva da %{count} conversa que você já se inscreveu em
+        many: Desinscreva das %{count} conversas que você já se inscreveu em
+        other: Desinscreva das %{count} conversas que você já se inscreveu em
+      intro: "%{site_name}pode enviar a você notificações via email ou notificações pelo widget no site. a maioria dessas notificações apenas são possível depois de você realizar uma ação, como começar uma discussão ou publicar um script. Essas configurações de notificação não afetam o envio de emails de solicitações de alteração de senha."
       save_success: Suas preferências de notificação foram atualizadas
       unsubscribe_all: Desinscrever-se de todas as notificações
       unsubscribe_all_success: Você foi desinscrito de todas as notificações.
+      report_filed_reported: Um reporte foi preenchido contra %{item}
+      consecutive_bad_ratings: "%{script} teve recebido analises ruins está em perigo de ser removido.\nCorrigia seu script ou responda para as analises para garantir que ele se mantenha ativo."
+      list:
+        header: Notificações
+        none: Sem notificações ainda!
+        edit_settings: Gerencie sua configuração de notificações.
+        mark_all_read: Marcar tudo como lido
     account_banned: Esta conta foi banida.
   webhooks:
     info:
@@ -1131,6 +1152,12 @@ pt-BR:
     reported_temporarily_blocked: "Devido ao fato de denúncias recentes sobre esse item terem sido rejeitadas por um moderador, outras denúncias sobre ele estarão bloqueadas até %{date} ."
     already_reported_by_reporter: "Você já %{report_link:denunciou recentemente} esse item."
     already_reported_same_type: "Já existe uma %{report_link:denúncia pendente semelhante} para este item."
+    report_item:
+      discussion: "Discussão%{title}por%{user} "
+      comment: "%{comment}por%{user}"
+      comment_description: "Um comentário em %{discussion_title}"
+      message: "Uma mensagem por %{user}"
+      deleted: "Apagado %{type}%{id}"
   appeals:
     new:
       title: Novo recurso de exclusão de script
