@@ -613,6 +613,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
     sv.version_check_override = true
     assert_not sv.valid?
     sv.allow_code_previously_posted = true
+    sv.meta_not_at_start_confirmation = true
     assert sv.valid?
   end
 
@@ -1015,5 +1016,25 @@ class ScriptVersionTest < ActiveSupport::TestCase
     sv.allow_code_previously_posted = true
     sv.save!
     assert_nil script.reload.consecutive_bad_ratings_at
+  end
+
+  test 'meta not at start' do
+    script = valid_script
+    script_version = script.script_versions.first
+    script_version.code = <<~JS
+      /* My license is here */
+      // ==UserScript==
+      // @name		blah blah
+      // @description		description
+      // @version 1.0
+      // @namespace http://greasyfork.local/users/1
+      // @include *
+      // @license MIT
+      // ==/UserScript==
+      let foo = 1
+    JS
+    assert_not script_version.valid?
+    assert_equal :base, script_version.errors.first.attribute
+    assert_equal 'warning-meta_not_at_start', script_version.errors.first.type
   end
 end

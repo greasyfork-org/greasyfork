@@ -308,7 +308,7 @@ class ScriptVersionsController < ApplicationController
       .require(:script_version)
       .permit(:code, :changelog, :changelog_markup, :version_check_override, :add_missing_version, :namespace_check_override,
               :add_missing_namespace, :minified_confirmation, :sensitive_site_confirmation, :license_missing_override,
-              :not_js_convertible_override, :allow_code_previously_posted, attachments: [])
+              :not_js_convertible_override, :allow_code_previously_posted, :meta_not_at_start_confirmation, attachments: [])
   end
 
   def check_for_deleted_by_script_id

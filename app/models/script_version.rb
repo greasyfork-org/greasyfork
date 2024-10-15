@@ -135,6 +135,7 @@ class ScriptVersion < ApplicationRecord
     w << :automatic_sensitive if automatic_sensitive?
     w << :code_previously_posted if code_previously_posted?
     w << :license_missing if license_missing? && !script.missing_license_warned
+    w << :meta_not_at_start if meta_not_at_start?
     return w
   end
 
@@ -249,9 +250,18 @@ class ScriptVersion < ApplicationRecord
     parser_class.parse_meta(code)['license'].blank?
   end
 
+  def meta_not_at_start?
+    return false if meta_not_at_start_confirmation
+
+    return false unless js? && !script.library?
+
+    code.include?(JsParser::META_START_COMMENT) && !code.starts_with?(JsParser::META_START_COMMENT)
+  end
+
   attr_accessor :version_check_override, :add_missing_version, :namespace_check_override, :add_missing_namespace,
                 :minified_confirmation, :truncate_description, :sensitive_site_confirmation,
-                :allow_code_previously_posted, :previously_posted_scripts, :license_missing_override
+                :allow_code_previously_posted, :previously_posted_scripts, :license_missing_override,
+                :meta_not_at_start_confirmation
 
   def initialize(*)
     # Allow code to be updated without version being upped
@@ -272,6 +282,7 @@ class ScriptVersion < ApplicationRecord
     @allow_code_previously_posted = false
     @previously_posted_scripts = []
     @license_missing_override = false
+    @meta_not_at_start_confirmation = false
     super
   end
 
@@ -355,6 +366,7 @@ class ScriptVersion < ApplicationRecord
     @sensitive_site_confirmation = true
     @allow_code_previously_posted = true
     @license_missing_override = true
+    @meta_not_at_start_confirmation = true
   end
 
   def calculate_all(previous_description = nil)
