@@ -13,6 +13,7 @@ class Report < ApplicationRecord
   REASON_NO_DESCRIPTION = 'no_description'.freeze
   REASON_WRONG_CATEGORY = 'wrong_category'.freeze
   REASON_NO_CODE = 'no_code'.freeze
+  REASON_LEGAL_CLAIM = 'legal_claim'.freeze
   REASON_OTHER = 'other'.freeze
 
   SCRIPT_REASONS = [
@@ -27,6 +28,7 @@ class Report < ApplicationRecord
     REASON_UNDISCLOSED_ANTIFEATURE,
     REASON_NO_DESCRIPTION,
     REASON_NO_CODE,
+    REASON_LEGAL_CLAIM,
     REASON_OTHER,
   ].freeze
 
@@ -39,6 +41,8 @@ class Report < ApplicationRecord
   REASONS_WARRANTING_BLANKING = [REASON_SPAM, REASON_ABUSE, REASON_ILLEGAL, REASON_MALWARE].freeze
 
   NON_BLOCKING_REASONS = [REASON_NO_DESCRIPTION, REASON_OTHER].freeze
+
+  ADMIN_ONLY_REASONS = [REASON_LEGAL_CLAIM].freeze
 
   RESULT_DISMISSED = 'dismissed'.freeze
   RESULT_UPHELD = 'upheld'.freeze
@@ -68,6 +72,7 @@ class Report < ApplicationRecord
   validates :moderator_reason_override, inclusion: { in: SCRIPT_REASONS, message: :invalid }, allow_nil: true, if: -> { item.is_a?(Script) }
   validates :reason, inclusion: { in: DISCUSSION_REASONS, message: :invalid }, presence: true, if: -> { item.is_a?(Discussion) }
   validates :moderator_reason_override, inclusion: { in: DISCUSSION_REASONS, message: :invalid }, allow_nil: true, if: -> { item.is_a?(Discussion) }
+  validates :reason, exclusion: { in: ADMIN_ONLY_REASONS }, unless: -> { reporter&.administrator? }
 
   validates :reporter, presence: true, if: -> { auto_reporter.nil? }
   validates :explanation, presence: true, if: -> { [REASON_UNDISCLOSED_ANTIFEATURE, REASON_MALWARE, REASON_ILLEGAL, REASON_OTHER].include?(reason) }, on: :create
@@ -231,7 +236,13 @@ class Report < ApplicationRecord
   def resolvable_by_moderator?(moderator)
     return true if moderator.administrator?
 
+    return false if admin_only?
+
     reporter != moderator && reported_users.exclude?(moderator)
+  end
+
+  def admin_only?
+    ADMIN_ONLY_REASONS.include?(reason)
   end
 
   def recent_other_reports
@@ -239,11 +250,13 @@ class Report < ApplicationRecord
   end
 
   def possible_reasons
-    case item
-    when Script then Report::SCRIPT_REASONS
-    when Discussion then Report::DISCUSSION_REASONS
-    else Report::NON_SCRIPT_REASONS
-    end
+    reasons = case item
+              when Script then Report::SCRIPT_REASONS
+              when Discussion then Report::DISCUSSION_REASONS
+              else Report::NON_SCRIPT_REASONS
+              end
+    reasons -= Report::ADMIN_ONLY_REASONS unless reporter.administrator?
+    reasons
   end
 
   def url(locale: nil)

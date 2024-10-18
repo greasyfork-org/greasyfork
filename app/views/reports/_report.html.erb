@@ -297,6 +297,8 @@
   <% end %>
   <% if report.resolvable_by_moderator?(current_user) %>
     <%= render partial: 'reports/moderator_controls', locals: { report: report, i: i } %>
+  <% elsif report.admin_only? %>
+    <p class="report-resolution-options">(This report can only be resolved by admin.)</p>
   <% else %>
     <p class="report-resolution-options">(You're involved in this report, you can't resolve it yourself.)</p>
   <% end %>
