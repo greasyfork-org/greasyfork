@@ -94,6 +94,10 @@ zh-TW:
       compare_to: "與 %{site_name} 上的腳本比較（網址）"
       compare_button: "比較"
       compare_must_be_local_url: "欲比較的腳本須為 %{site_name} 上的網址。"
+      checkup:
+        intro: 這些是您在%{site_name}上腳本的改善建議。這些不是 %{rules_link:規則}; 就算您不遵循這些建議，您的腳本也不會被刪除。
+        license_html: 指定一個 %{license_link:<code>@license</code>}，讓其他人知道他們能否以及如何分享、修改您的程式碼。
+        globs_used: "使用的非特定域包含：%{globs}"
     history_title: "%{script_name} - 版本歷史"
     history_only_code_changes_info: "這裡只顯示彼此間有代碼差異的版本。"
     history_all_changes_link: "顯示所有版本。"
@@ -166,6 +170,7 @@ zh-TW:
     listing_filter_by_site_all_sites: "(全域執行)"
     listing_filter_by_language_label: "語言："
     listing_filter_by_site_more_sites: "更多…"
+    listing_filter_by_authorship_label: "作者："
     listing_no_scripts: "找不到相關腳本 :<"
     listing_created_feed: "新出爐的腳本"
     listing_updated_feed: "最近更新的腳本"
@@ -175,6 +180,10 @@ zh-TW:
     listing_language_all: "全部"
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
+    listing_author:
+      all: 所有作者
+      me: 我的腳本清單
+      user: '%{author_name} 的脚本'
     search_failed: 載入結果時出現問題，部分搜尋功能可能無法正常運作，我們已收到此問題。
     import: "匯入腳本"
     new: "發佈您撰寫的腳本"
@@ -516,6 +525,8 @@ zh-TW:
     edit_sign_in: "登入方式設定"
     edit_sign_in_title: "登入方式設定"
     edit_sign_in_password: "密碼"
+    edit_notifications: "編輯通知設定"
+    view_notifications: "查看通知"
     no_password_set_info: "您的帳號沒有設定密碼。"
     set_password: "設定密碼"
     update_password: "更新密碼"
@@ -547,6 +558,7 @@ zh-TW:
     listing_new_scripts: "最近發佈腳本時間"
     listing_updated_scripts: "最近更新腳本時間"
     listing_registration_date: "註冊日期"
+    listing_relevance: "相關性"
     listing_title: "使用者"
     listing_banned_filter:
       banned: "已封鎖"
@@ -611,16 +623,47 @@ zh-TW:
     notifications:
       discussion_defaults:
         title: 論壇通知
+        intro: 您訂閱的討論有更新時將通知您，您可以隨時取消訂閱討論。
+        discussion_subscription_defaults:
+          start: 您發起討論
+          comment: 您評論的討論
+          script: 這有關您的一個腳本
+        subscribed_discussion_notification: 您訂閱的討論中有新評論時，接收通知
         mention: 當您在討論中被提及時收到通知
       conversation_defaults:
         title: 會話通知
+        intro: 您訂閱的對話有更新時將通知您，您可以隨時訂閱或取消訂閱對話。
+        new_conversation_subscription:
+          overall_label: 預設訂閱新對話
+          self: 您發起的對話
+          other: 其他人發起的對話
+        new_conversation_notification: 當有人與您開啟對話時，且依據您上述設定自動訂閱時，接收通知
       report_defaults:
         title: 新的通知
+      script:
+        title: 腳本通知
+        consecutive_bad_ratings: 當您的腳本由於負面審查結果可能遭移除時，接收通知
       save_button: 更新通知設定
       title: 通知
+      current_discussion_subscriptions:
+        other: 取消訂閱你之前訂閱的 %{discussions_link:%{count} 條討論}
+      current_conversation_subscriptions:
+        other: 取消您之前訂閱的%{count}對話
       save_success: 您的通知設定已更新。
       unsubscribe_all: 停止所有的通知
       unsubscribe_all_success: 您已停用所有通知。
+      unsubscribe_email: 取消訂閱所有電子郵件通知
+      unsubscribe_email_success: 您已取消訂閱所有電子郵件通知
+      new_conversation: "%{user}開始了與您的對話：%{text}"
+      new_message: "%{user}向您傳送了一則訊息：%{text}"
+      new_comment: "%{user}在%{discussion}中發佈一則評論"
+      new_comment_script: "%{user}在您的%{script}腳本發佈一則新討論"
+      mention: "%{user} 在 %{discussion} 中提到了您。"
+      list:
+        header: 通知
+        none: 暫無通知
+        edit_settings: 編輯通知設定
+        mark_all_read: 全部標為已讀
     account_banned: 該帳戶已被禁止使用。
   webhooks:
     info:
@@ -670,13 +713,26 @@ zh-TW:
       description: 腳本皆必須包含一段描述其功能的敘述，且腳本不得做出明顯超出該敘述的行為。使用者都應該在安裝腳本前了解它會做些什麼。
       reason: 腳本必須要有被編寫為腳本的理由。例如：只會將使用者導向到一個網站的腳本沒有必要被編寫為腳本，它可以是個連結。而在當前頁面使用其他網站服務的腳本（例如透過某些方式將其轉換）是被允許的。
       code_header: 代碼
+      external_js: "%{external_scripts_link:使用外部 JavaScript 腳本是有限制的}。"
       copyright_header: 版權
       miscellaneous_header: 雜項
+      keywords: 不得在腳本中提及無關的關鍵字或網站來改善搜尋排名。
+      adult_content_rule: 腳本若包含成人內容、或執行的網站中有成人內容，作者應將其正確標示讓使用者選擇是否要顯示它們。
       reposting_deleted: 請勿重新發布因違反規則而被刪除的腳本； 請改用申訴功能。 重新發布已刪除的腳本可能會導致禁止。
     external_scripts:
       title: "%{site_name} 對於外部程式碼的政策"
       cdns:
         title: 內容傳遞網路（CDNs）
+      allowed_external_codes:
+        heading: 允許外部程式碼
+      origin_host:
+        title: 來自原始主機的腳本注入
+    cdns:
+      title: 允許的 CDN
+      test_url:
+        label: 測試網址
+        result_ok: 允許此網址
+        result_not_ok: 不允許此網址
     script_rewriting:
       title: "%{site_name} 會如何改寫發表的腳本"
     site_feedback_link: "回報關於 %{site_name} 的問題或想法。"
@@ -775,8 +831,12 @@ zh-TW:
       minified: "極簡化代碼"
       external_code: "未允許的外部代碼"
       wrong_category: "分類錯誤"
+      no_code: '沒有程式碼/hello world'
       other: "其他"
+    report_intro: "%{reporter}在%{report_date}檢舉了%{reported_item}，因為：%{reason}"
+    report_intro_no_reporter: "%{reported_item}在%{report_date}被檢舉，因為：%{reason}"
     report_intro_unauthorized_html: "%{reported_script}於%{report_date}被%{reporter}檢舉為%{other_script}的未授權副本。"
+    report_intro_unauthorized_no_reporter_html: "%{reported_script}在%{report_date}被檢舉為%{other_script}的未授權副本。"
     non_functional_feedback: "請在腳本頁面的%{feedback_link:意見回饋}回報無效的腳本。"
     unauthorized_code_original_placeholder: "原始代碼的連結"
     explanation_placeholder: "提供額外資訊（可選）"
@@ -786,6 +846,8 @@ zh-TW:
     report_message: "舉報訊息"
     result_dismissed: "該檢舉已被管理員駁回。"
     result_upheld: "管理員已通過該檢舉。"
+    result_self_upheld: "作者因為這份檢舉決定刪除自己的腳本。"
+    result_fixed: "管理員已關閉這則檢舉，因為管理員認為作者已修正該問題。"
     result_pending: "該檢舉尚待管理員檢視。"
     rebuttal_placeholder: '向管理員解釋為何此腳本不應該被刪除。'
     submit_rebuttal: "提交上訴"
@@ -793,6 +855,22 @@ zh-TW:
     view_discussion: "檢視討論"
     load_diff: "載入差異"
     loading_diff: "正在載入…"
+    script_updated_since_report: "自檢舉提交以來，腳本已被修改過。"
+    report_item:
+      comment: "%{user}的評論%{comment}"
+      comment_description: "一則%{discussion_title}的評論"
+      message: "來自%{user}的訊息"
+      deleted: "已刪除%{type} #%{id}"
+  appeals:
+    new:
+      title: 建立腳本移除申訴
+      intro_html: '您的腳本由於%{reason}而被移除，如果您認為此操作有誤，或者您想提供額外的訊息，又或者您已更新您的腳本以解決此問題，您可以提出申訴。如果管理員看到您提供的訊息已滿足相關標準，他們將恢復您的腳本的訪問權限。'
+      submit: 送出申訴
+    author_reason: "申訴提交者："
+    pending_review: 此申訴正在等待管理員審核。
+    dismissed_by_moderator: 管理員已駁回此申訴
+    upheld_by_moderator: 由於此申訴，一位管理員恢復了這個被刪除的腳本。
+    submitted: 已收到您的申訴，請等待管理員審核。
   discussions:
     title: 討論
     comment_date: "發表於：%{date}"
@@ -815,8 +893,10 @@ zh-TW:
     quote_comment: "引用"
     question_heading_html: "提問/評論"
     review_heading_html: "評論：%{rating}"
+    update_rating_note: "(您可以透過發佈新評論來變更評分)"
     update_rating: "更新您對 %{script_name} 的評價"
     ratings:
+      question: "不評價 - 僅提問、評論或功能請求"
       bad: "負評 - 腳本失效或無法使用"
       good: "正評 - 腳本一切正常"
     ratings_short:
@@ -851,6 +931,10 @@ zh-TW:
     locale_filter:
       label: 語言 Language
       all: 全部
+    sort:
+      comment_created: 日期
+      discussion_last_comment: 最新評論日期
+      discussion_created: 討論開始時間
     user_activity:
       title: "近期評論"
       no_recent_activity: "該使用者最近沒有撰寫任何評論"
@@ -894,6 +978,7 @@ zh-TW:
     no_discussions: 未找到貼文。
     mark_all_read: 全部標為已讀
     pending_moderator_review: 這篇貼文暫時不可用，請等候管理員審核通過。
+    search_placeholder: 搜尋討論
   conversations:
     user_input_note: 輸入使用者名稱或者使用者頁面的URL。
     new_title: 建立新的對話
@@ -912,6 +997,7 @@ zh-TW:
       title: 最近的會話
       more: 查看全部會話
     edit_message_header: 編輯訊息
+    update_message_submit: 更新訊息
   screenshots:
     requirements: "最多上傳 %{number} 張 PNG、GIF 、 JPEG 、或 WEBP 圖片，且每張圖片不得超過 %{size}。"
   common:
@@ -931,10 +1017,13 @@ zh-TW:
     listing_options_title: "搜尋選項"
     quote:
       prefix_html: "%{user}說："
+      anonymous_reporter_html: "檢舉人說："
   activerecord:
     models:
       script:
         other: "%{count}個腳本"
+      comment:
+        other: "%{count}則評論"
     attributes:
       user:
         name: "使用者名稱"
@@ -986,8 +1075,11 @@ zh-TW:
       must_be_greasy_fork_script: "必須為本站的腳本"
       script_update_not_utf8: "上傳之腳本的編碼格式須為 UTF-8"
       script_disallowed_require: "使用了未經批準的外部腳本: %{code}"
+      script_disallowed_resource: "使用了無效的 @resource：%{code}。資源必須是 http、https 或 data URLs。"
+      script_disallowed_base_64_require: "使用 base-64 編碼的 @require"
       script_rate_limit: "超出發布限制，請稍後再試。"
       missing_include_or_match: "必須至少包含一個@match或@include密鑰"
+      no_executable: "未包含可執行程式碼"
       meta_too_long: "%{key} 太長（最大值是 %{count} 字元）"
   opensearch:
     short_name: "%{site_name} 搜尋"
@@ -999,7 +1091,10 @@ zh-TW:
     url_entry_label: 提供要導入的URL，以新行分隔。這些URL應該指向原始的JavaScript或CSS文件。
     submit: 導入
     previously_imported:
+      heading: 以前匯入的腳本
+      successful_entry_html: "%{script_link} - %{sync_type}同步中，上次同步於%{last_sync_date}。"
       unknown_date: "（未知）"
+      failed_entry_html: "%{script_link} - %{sync_type}同步中，上次嘗試同步於%{last_sync_attempt_date}，%{sync_error}"
     results:
       title: "匯入結果"
       success: "以下的腳本已經成功地匯入："
@@ -1014,12 +1109,18 @@ zh-TW:
         subject: "您在%{site_name}的腳本%{script_name}已被刪除。"
       report_dismissed_offender:
         subject: "您關於%{site_name}上腳本%{script_name}的報告已被關閉"
+      report_fixed_offender:
+        subject: "一則您在%{site_name}發布的腳本%{script_name}的檢舉被標為已解決"
       report_rebutted_reporter:
         subject: "您在關於%{site_name}上的腳本%{script_name}的報告已收到回复"
       report_upheld_reporter:
         subject: "您關於%{site_name}上的腳本%{script_name}的報告已保留"
+      report_script_deleted_reporter:
+        subject: "您在%{site_name}的腳本%{script_name}提出的檢舉已被關閉。"
       report_dismissed_reporter:
         subject: "您在%{site_name}上對於%{script_name}腳本的檢舉被駁回"
+      report_fixed_reporter:
+        subject: "您在%{site_name}回報的%{script_name}已被標記為解決"
     consecutive_bad_ratings:
       notify:
         subject: "您在 %{site_name}發佈的腳本 %{script_name} 收到了多個負評。"
@@ -1040,8 +1141,12 @@ zh-TW:
       intro: "使用者 %{user_link:%{user_name}} 在 %{site_name}向您傳送了一則訊息。"
     script_lock_appeal:
       dismiss:
+        subject: 您對%{site_name}的腳本移除申訴已被駁回
+        intro_html: 管理員駁回您對%{script}的移除申訴。該腳本仍維持移除狀態。
         moderator_notes: "版主已留下留言："
         outro: 如果您仍希望復原此腳本，請查看 %{report_link:原舉報} 和 %{rules_link:%{site_name}的規定}。
       unlock:
+        subject: 您在%{site_name}的腳本移除申訴已通過
+        intro_html: 管理員通過您對%{script}的移除申訴。該腳本已被恢復並可被公開訪問。
         moderator_notes: "管理員回覆："
         outro: 為了防止將來的刪除，請審查%{rules_link:%{site_name}'s rules}中的規則。
