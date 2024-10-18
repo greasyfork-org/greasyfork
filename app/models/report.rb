@@ -255,7 +255,7 @@ class Report < ApplicationRecord
               when Discussion then Report::DISCUSSION_REASONS
               else Report::NON_SCRIPT_REASONS
               end
-    reasons -= Report::ADMIN_ONLY_REASONS unless reporter.administrator?
+    reasons -= Report::ADMIN_ONLY_REASONS unless reporter&.administrator?
     reasons
   end
 
