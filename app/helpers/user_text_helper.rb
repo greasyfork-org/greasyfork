@@ -27,14 +27,20 @@ module UserTextHelper
     previewable_text_field_form(markup_name: "#{form.object_name}[#{markup_name}]", markup_choice_html:, &)
   end
 
-  def format_user_text(text, markup_type, mentions: [])
+  def format_user_text(text, markup_type, mentions: [], relative_url_base: nil)
     return '' if text.nil?
     return text if markup_type == 'text'
 
     sanitize_config = sanitize_config_for_display(markup_type).dup
     add_mention_transformer(sanitize_config, mentions) if mentions.any?
 
-    text = markdown.render(text) if markup_type == 'markdown'
+    if markup_type == 'markdown'
+      text = markdown.render(text)
+      # This is done on import for HTML, but here for Markdown. This is because we don't have a function to adjust
+      # Markdown.
+      text = ScriptImporter::BaseScriptImporter.absolutize_references(text, relative_url_base) if relative_url_base
+    end
+
     Sanitize.clean(text, sanitize_config).html_safe
   end
 

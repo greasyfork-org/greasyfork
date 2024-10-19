@@ -126,4 +126,16 @@ class AdditionalInfoTest < ApplicationSystemTestCase
       end
     end
   end
+
+  test 'relative links in imported markdown are relative to sync source' do
+    script = Script.find(1)
+    ai = script.localized_additional_infos.first
+    ai.update!(attribute_value: '[Relative link](/mylink)', value_markup: 'markdown')
+    visit script_url(script, locale: :en)
+    assert_selector 'a[href="/mylink"]'
+
+    ai.update!(sync_identifier: 'https://example.com')
+    visit script_url(script, locale: :en)
+    assert_selector 'a[href="https://example.com/mylink"]'
+  end
 end

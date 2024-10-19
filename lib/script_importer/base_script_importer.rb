@@ -53,8 +53,11 @@ module ScriptImporter
 
         begin
           ai = ScriptSyncer.choose_importer.download(la.sync_identifier)
-          absolute_ai = absolutize_references(ai, la.sync_identifier)
-          ai = absolute_ai unless absolute_ai.nil?
+          # We don't have the ability to adjust the Markdown to absolutize the references, so we do that at render time.
+          if la.value_markup == 'html'
+            absolute_ai = absolutize_references(ai, la.sync_identifier)
+            ai = absolute_ai unless absolute_ai.nil?
+          end
           new_la.attribute_value = ai
         rescue StandardError => e
           # if something fails here, we'll just ignore.

@@ -105,7 +105,7 @@
 <% localized_additional_info = @script.localized_attribute_for('additional_info', I18n.locale)
 if localized_additional_info.present? || @script_version.attachments.any? %>
   <div id="additional-info" class="user-content" <% if !localized_additional_info.nil? %> lang="<%= localized_additional_info.locale.code %>"<% end %>>
-    <%= format_user_text(localized_additional_info.attribute_value, localized_additional_info.value_markup, mentions: localized_additional_info.mentions) if localized_additional_info %>
+    <%= format_user_text(localized_additional_info.attribute_value, localized_additional_info.value_markup, mentions: localized_additional_info.mentions, relative_url_base: localized_additional_info.sync_identifier) if localized_additional_info %>
     <%= render partial: 'screenshots/show', locals: { attachable: @script_version } %>
   </div>
 <% elsif (similar_scripts = @script.similar_scripts(script_subset: script_subset, locale: I18n.locale)).any? %>
