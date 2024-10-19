@@ -242,6 +242,7 @@ fr:
     warning_code_previously_posted_html: "Ce code a déjà été posté dans %{script_links}. Les reposte peuvent être supprimés par les modérateurs."
     warning_license_missing_html: "Vous n'avez pas spécifié de <code>@license</code>. En publiant sur %{site_name}, vous autorisez les autres à utiliser votre code, mais une licence vous permettra également de dire aux autres comment ils peuvent modifier et redistribuer votre code. Par exemple, <code>// @license MIT</code> signifie que vous autorisez quiconque à modifier et redistribuer le code que vous avez écrit. %{license_chooser_link:Plus d'informations sur les licences sont disponibles ici.} Si vous ne fournissez pas de licence, cela supposera que vous n'autorisez pas les autres à apporter des modifications ou à redistribuer des copies. Notez que si vous n'êtes pas le seul auteur du code que vous publiez, vous n'êtes généralement pas autorisé à le publier à moins d'avoir la permission de tous les autres auteurs."
     warning_license_missing_override_html: "Enregistrer sans licence"
+    warning_meta_not_at_start_html: "Si votre code ne commence pas par <code>// ==UserScript==</code>. Incluent du code, des commentaires ou d'espaces peut entraîner des problèmes de compatibilité avec certains gestionnaires de scripts utilisateur."
     additional_info_locale_prompt: "(Sélectionner une langue)"
     additional_info_add_localized: "Ajouter une information additionnelle dans une autre langue"
     additional_info_locale_repeated: "Ne spécifiez qu'une information additionnelle pour la région '%{locale_code}'."
@@ -714,6 +715,10 @@ fr:
         as_reporter: Lorsqu'un rapport que vous avez créé sera résolu, vous recevrez une notification
         as_reported_filed: Lorsqu'un rapport est envoyer concernant un élément que vous avez publié, vous recevez une notification
         as_reported_resolved: Lorsqu'un rapport est envoyer concernant un élément que vous avez publié est résolu, vous recevrez une notification
+      script:
+        intro: Ces paramètres concernent les scripts que vous publiez.
+        title: Notifications de script
+        consecutive_bad_ratings: Lorsque votre script risque d'être supprimé en raison de mauvaises critiques, vous recevez une notification
       save_button: Mettre à jour les paramètres de notification
       title: Notifications
       current_discussion_subscriptions:
@@ -745,6 +750,7 @@ fr:
         dismissed: Un rapport contre %{item} a été rejeté par un modérateur.
         fixed: Un rapport sur %{item} a entraîné quelques modifications et un modérateur a marqué le problème comme ayant été résolu.
         upheld: Un rapport contre %{item} a été confirmé par un modérateur.
+      consecutive_bad_ratings: "%{script} a reçu de mauvaises critiques et risque d'être supprimé. Corrigez votre script ou répondez aux critiques en répondant commentaires pour vous assurer qu'il reste actif."
       list:
         header: Notifications
         none: Aucune notification pour le moment!
@@ -1122,6 +1128,7 @@ fr:
       wrong_category: "Mauvaise catégorie"
       wrong_category_with_suggestion: "Mauvaise catégorie (suggéré: %{suggested_category} )"
       no_code: 'No code/hello world'
+      legal_claim: "Réclamation légale"
       other: "Autre"
     report_intro: "%{reported_item} a été signalé le %{report_date} par %{reporter} pour %{reason}"
     report_intro_no_reporter: "%{reported_item}a été signalé %{report_date} pour %{reason} "
