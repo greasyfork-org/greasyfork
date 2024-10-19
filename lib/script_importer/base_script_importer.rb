@@ -113,10 +113,14 @@ module ScriptImporter
         url_text = node[url_param]
         next unless url_text
 
-        new_url = base_url.merge(url_text)
-        if url_text != new_url.to_s
-          changed = true
-          node[url_param] = new_url
+        begin
+          new_url = base_url.merge(url_text)
+          if url_text != new_url.to_s
+            changed = true
+            node[url_param] = new_url
+          end
+        rescue URI::InvalidURIError
+          # Leave as is
         end
       end
       return html unless changed

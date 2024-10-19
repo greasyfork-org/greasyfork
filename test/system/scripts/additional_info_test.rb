@@ -138,4 +138,12 @@ class AdditionalInfoTest < ApplicationSystemTestCase
     visit script_url(script, locale: :en)
     assert_selector 'a[href="https://example.com/mylink"]'
   end
+
+  test 'relative bad links in imported markdown are left alone' do
+    script = Script.find(1)
+    ai = script.localized_additional_infos.first
+    ai.update!(attribute_value: '<a href="#:~:text=View all publish scripts">Relative link</a>', value_markup: 'markdown', sync_identifier: 'https://example.com')
+    visit script_url(script, locale: :en)
+    assert_selector 'a[href="#:~:text=View%20all%20publish%20scripts"]'
+  end
 end
