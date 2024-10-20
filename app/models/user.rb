@@ -74,6 +74,16 @@ class User < ApplicationRecord
     BannedEmailHash.where(email_hash: hash).any?
   end
 
+  def self.allow_registrations_for_email!(email)
+    email = EmailAddress.canonical(email)
+    hash = Digest::SHA1.hexdigest(BANNED_EMAIL_SALT + email)
+    beh = BannedEmailHash.find_by(email_hash: hash)
+    return false unless beh
+
+    beh.destroy!
+    true
+  end
+
   before_validation do
     self.canonical_email = EmailAddress.canonical(email)
   end
