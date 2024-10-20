@@ -103,20 +103,56 @@ es_419:
         intro: Estas son sugerencias para mejorar tu script %{site_name}. Y estas no %{rules_link:rules}; tu script no será eliminado si no las sigues.
         license_html: Especifique una %{license_link:<code>@license</code>}. Esto permite que otros sepan si pueden compartir y modificar tu código y cómo hacerlo.
         globs_html: Evita el uso de expresiones regulares en la parte de dominio de %{include_link:<code>@include</code>} y %{match_link:<code>@match</code>}. Esto dificulta a %{site_name} para clasificar tu script.
+        globs_used: "Inclusiones no específicas de un dominio usadas: %{globs}"
+        additional_info: Incluya información adicional - enumere sus funciones, proporcione capturas de pantalla, etc. para que los usuarios sepan exactamente qué hace su script.
     history_title: "%{script_name} - Historial de versiones"
     history_only_code_changes_info: "A continuación se muestran las versiones de este script en las que se actualizó el código."
     history_all_changes_link: "Ver todas las versiones."
     history_all_changes_info: "Estas son todas las versiones de este script."
     history_only_code_changes_link: "Mostrar solo las versiones donde el código cambió."
     diff_button: "Comparar versiones seleccionadas"
+    list_all_script_versions: "Ver todas las versiones del script"
+    code_title: "%{script_name} - Código fuente"
+    feedback_title: "%{script_name} - Comentarios"
+    feedback_no_discussions_html: "Todavía no se ha publicado nada. %{start_first_discussion_link}"
+    feedback_no_discussions_on_page_form: "Aún no se ha publicado ninguna conversación."
+    feedback_report_instead: "Si crees que este script incumple las %{rules_link:normas de %{site_name}}, puedes %{report_link:denunciarlo para que otros lo borren}."
+    feedback_start_first_discussion_link: "Sea el primero en comentar este script."
+    feedback_discussion_or_report: "%{new_discussion_link:Abre un hilo de conversación sobre el script} o %{report_link:notifica una posible infracción de las normas}."
+    stats_title: "%{script_name} - Estadísticas"
     stats_daily_installs_heading: "Instalaciones diarias"
     stats_weekly_installs_heading: "Instalaciones semanales"
     stats_daily_update_checks_heading: "Comprobaciones de actualización diarias"
+    stats_daily_installs_date_column_heading: "Fecha"
+    stats_daily_installs_install_count_column_heading: "Instalaciones"
+    stats_daily_installs_update_check_count_column_heading: "Comprobaciones de actualización"
     stats_raw_data_header: "Datos sin procesar"
+    stats_download_raw_data_html: "Descargar todos los datos como: %{links}"
     stats_no_data: "N/D"
+    stats_filters: "Filtros: %{filter_options}"
     stats_filter_options:
+      month: Últimos 30 días
+      year: Últimos 365 días
       all: Todo el tiempo
+    derivatives_title: "%{script_name} - Derivados"
+    derivatives_intro: "Estos scripts pueden basarse en el tuyo (o viceversa). Si detectas un uso no autorizado de tu código, denuncia el script desde su pestaña de «comentarios y opiniones»."
+    derivatives_script_html: "%{script} por %{user}, licencia: %{license} %{diff_link:[Diff]}"
+    derivatives_exact_copies_heading: "Copias exactas"
     derivatives_exact_copies_list_intro: "Los siguientes scripts tienen el mismo codigo que el tuyo:"
+    derivatives_exact_copies_item_html: "%{script_link} por %{author_links} - versiones: %{version_list}"
+    derivatives_exact_copes_none: "No parece que haya ningún otro script en %{site_name} que coincida exactamente con el tuyo."
+    derivatives_similar_heading: "Scripts similares"
+    derivatives_similar_info: "Comprobamos de forma periódica las últimas versiones de todos los otros scripts alojados en la página para encontrar coincidencias con el tuyo. También lo comprobamos cuando actualizas tu script o lo solicitas."
+    similarity_score:
+      high: Casi iguales
+      medium: Parecidos
+      low: Algo similar
+      none: No similar
+    derivatives_similar_none: "No hay scripts similares al tuyo."
+    derivatives_similar_item: "%{score}: %{diff_link:[Diferencias]} %{script}"
+    derivatives_similar_last_check_html: "La última vez que verificamos guiones similares al tuyo fue el %{date}."
+    derivatives_similar_last_check_soon: "Empezaremos a escanear scripts parecidos a los tuyos en breve."
+    derivatives_similar_last_check_again_soon_html: "La última vez que se hizo la comprobación de coincidencias fue el %{date}. Y lo volveremos a comprobar otra vez en breve."
     listing_description_for_site: "Scripts de usuario que añaden características y corrigen bugs en %{site}"
     listing_description_generic: "Scripts de usuario que añaden características y que corrigen bugs en los sitios que usas"
     deleted_marker: "(Eliminado)"
