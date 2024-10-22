@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_22_180155) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_22_180716) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -349,7 +349,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_180155) do
     t.integer "percent_complete", default: 0
   end
 
-  create_table "localized_script_attributes", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+  create_table "localized_script_attributes", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.integer "script_id", null: false
     t.integer "locale_id", null: false
     t.string "attribute_key", null: false
@@ -361,7 +361,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_180155) do
     t.index ["script_id"], name: "index_localized_script_attributes_on_script_id"
   end
 
-  create_table "localized_script_version_attributes", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+  create_table "localized_script_version_attributes", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.integer "script_version_id", null: false
     t.integer "locale_id", null: false
     t.string "attribute_key", null: false
