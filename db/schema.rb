@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_22_202445) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_22_203127) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -628,7 +628,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_202445) do
     t.index ["review_state"], name: "index_scripts_on_review_state"
   end
 
-  create_table "sensitive_sites", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+  create_table "sensitive_sites", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "domain", limit: 150, null: false
     t.index ["domain"], name: "index_sensitive_sites_on_domain", unique: true
   end
