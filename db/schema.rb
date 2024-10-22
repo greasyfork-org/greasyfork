@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_22_181918) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_22_182214) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -462,7 +462,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_181918) do
     t.index ["user_id"], name: "index_roles_users_on_user_id"
   end
 
-  create_table "script_applies_tos", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+  create_table "script_applies_tos", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.integer "script_id", null: false
     t.integer "site_application_id", null: false
     t.boolean "tld_extra", default: false, null: false
