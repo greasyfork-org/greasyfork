@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_22_201401) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_22_201807) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -494,7 +494,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_201401) do
     t.index ["script_id"], name: "fk_rails_b37644914a"
   end
 
-  create_table "script_set_automatic_set_inclusions", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+  create_table "script_set_automatic_set_inclusions", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.integer "parent_id", null: false
     t.integer "script_set_automatic_type_id", null: false
     t.string "value", limit: 100
@@ -503,11 +503,11 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_201401) do
     t.index ["script_set_automatic_type_id"], name: "ssasi_script_set_automatic_type_id"
   end
 
-  create_table "script_set_automatic_types", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+  create_table "script_set_automatic_types", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "name", limit: 50, null: false
   end
 
-  create_table "script_set_script_inclusions", id: :integer, charset: "utf8mb3", collation: "utf8mb3_unicode_ci", force: :cascade do |t|
+  create_table "script_set_script_inclusions", charset: "utf8mb3", collation: "utf8mb3_unicode_ci", force: :cascade do |t|
     t.integer "parent_id", null: false
     t.integer "child_id", null: false
     t.boolean "exclusion", default: false, null: false
@@ -515,7 +515,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_201401) do
     t.index ["parent_id"], name: "index_script_set_script_inclusions_on_parent_id"
   end
 
-  create_table "script_set_set_inclusions", id: :integer, charset: "utf8mb3", collation: "utf8mb3_unicode_ci", force: :cascade do |t|
+  create_table "script_set_set_inclusions", charset: "utf8mb3", collation: "utf8mb3_unicode_ci", force: :cascade do |t|
     t.integer "parent_id", null: false
     t.integer "child_id", null: false
     t.boolean "exclusion", default: false, null: false
@@ -523,7 +523,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_201401) do
     t.index ["parent_id"], name: "index_script_set_set_inclusions_on_parent_id"
   end
 
-  create_table "script_sets", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+  create_table "script_sets", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "name", limit: 100, null: false
     t.text "description", size: :medium, null: false
