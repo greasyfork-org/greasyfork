@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_22_172039) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_22_172508) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -735,7 +735,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_172039) do
     t.string "profile", limit: 10000
     t.string "profile_markup", limit: 10, default: "html", null: false
     t.string "webhook_secret", limit: 128
-    t.integer "author_email_notification_type_id", default: 1, null: false
     t.string "remember_token", limit: 150
     t.integer "locale_id"
     t.boolean "show_ads", default: true, null: false
@@ -760,7 +759,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_172039) do
     t.string "email_domain", limit: 100
     t.string "session_token", limit: 32
     t.boolean "filter_locale_default", default: true, null: false
-    t.boolean "notify_on_mention", default: false, null: false
     t.integer "stats_script_count", default: 0, null: false
     t.integer "stats_script_total_installs", default: 0, null: false
     t.integer "stats_script_daily_installs", default: 0, null: false
