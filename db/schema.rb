@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_22_181543) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_22_181918) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -462,21 +462,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_181543) do
     t.index ["user_id"], name: "index_roles_users_on_user_id"
   end
 
-  create_table "screenshots", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
-    t.string "screenshot_file_name"
-    t.string "screenshot_content_type"
-    t.integer "screenshot_file_size"
-    t.datetime "screenshot_updated_at", precision: nil
-    t.string "caption", limit: 500
-  end
-
-  create_table "screenshots_script_versions", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
-    t.integer "screenshot_id"
-    t.integer "script_version_id"
-    t.index ["screenshot_id"], name: "index_screenshots_script_versions_on_screenshot_id"
-    t.index ["script_version_id"], name: "index_screenshots_script_versions_on_script_version_id"
-  end
-
   create_table "script_applies_tos", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.integer "script_id", null: false
     t.integer "site_application_id", null: false
@@ -798,7 +783,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_181543) do
   add_foreign_key "notifications", "users", on_delete: :cascade
   add_foreign_key "reports", "users", column: "reporter_id", on_delete: :cascade
   add_foreign_key "roles_users", "users", on_delete: :cascade
-  add_foreign_key "screenshots_script_versions", "script_versions", on_delete: :cascade
   add_foreign_key "script_applies_tos", "scripts", name: "fk_script_applies_tos_script_id"
   add_foreign_key "script_invitations", "scripts", on_delete: :cascade
   add_foreign_key "script_invitations", "users", column: "invited_user_id", on_delete: :cascade
