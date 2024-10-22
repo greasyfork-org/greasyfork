@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_22_173046) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_22_173429) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -170,7 +170,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_173046) do
     t.boolean "prefix", default: false, null: false
   end
 
-  create_table "browsers", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+  create_table "browsers", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "code", limit: 20, null: false
     t.string "name", limit: 20, null: false
   end
@@ -200,7 +200,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_173046) do
 
   create_table "compatibilities", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.integer "script_id", null: false
-    t.integer "browser_id", null: false
+    t.bigint "browser_id", null: false
     t.boolean "compatible", null: false
     t.string "comments", limit: 200
     t.index ["browser_id"], name: "fk_rails_d7eb310317"
