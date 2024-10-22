@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_22_203555) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_22_203932) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -669,13 +669,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_203555) do
     t.integer "script_id", null: false
     t.text "html", size: :medium, null: false
     t.index ["script_id"], name: "index_syntax_highlighted_codes_on_script_id"
-  end
-
-  create_table "test_update_counts", id: false, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
-    t.integer "script_id", null: false
-    t.datetime "update_date", precision: nil, null: false
-    t.string "ip", limit: 15, null: false
-    t.index ["script_id", "ip"], name: "update_script_id_and_ip", unique: true
   end
 
   create_table "update_check_counts", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
