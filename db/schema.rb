@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_22_175341) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_22_175916) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -333,7 +333,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_175341) do
     t.string "summary_url"
   end
 
-  create_table "locale_contributors", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+  create_table "locale_contributors", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.integer "locale_id", null: false
     t.string "transifex_user_name", limit: 50, null: false
     t.index ["locale_id"], name: "index_locale_contributors_on_locale_id"
