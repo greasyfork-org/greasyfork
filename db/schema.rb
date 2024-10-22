@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_22_182214) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_22_182612) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -469,7 +469,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_182214) do
     t.index ["script_id"], name: "index_script_applies_tos_on_script_id"
   end
 
-  create_table "script_codes", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=COMPRESSED", force: :cascade do |t|
+  create_table "script_codes", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=COMPRESSED", force: :cascade do |t|
     t.text "code", size: :long, null: false
     t.string "code_hash", limit: 40, null: false
     t.index ["code_hash"], name: "index_script_codes_on_code_hash"
