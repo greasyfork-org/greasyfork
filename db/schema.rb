@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_22_174031) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_22_175231) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -250,7 +250,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_174031) do
     t.string "object_type", null: false
   end
 
-  create_table "disallowed_codes", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+  create_table "disallowed_codes", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "pattern", null: false
     t.string "description", null: false
     t.datetime "created_at", precision: nil
