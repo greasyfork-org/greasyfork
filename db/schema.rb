@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_22_203932) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_22_205323) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -123,7 +123,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_203932) do
   end
 
   create_table "antifeatures", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
-    t.integer "script_id", null: false
+    t.bigint "script_id", null: false
     t.bigint "locale_id"
     t.integer "antifeature_type", null: false
     t.text "description"
@@ -132,7 +132,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_203932) do
   end
 
   create_table "authors", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
-    t.integer "script_id", null: false
+    t.bigint "script_id", null: false
     t.bigint "user_id", null: false
     t.index ["script_id", "user_id"], name: "index_authors_on_script_id_and_user_id", unique: true
     t.index ["user_id"], name: "fk_rails_46e884287b"
@@ -150,7 +150,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_203932) do
     t.string "public_reason", null: false
     t.string "private_reason", null: false
     t.boolean "serious", default: false, null: false
-    t.integer "originating_script_id"
+    t.bigint "originating_script_id"
     t.boolean "case_insensitive", default: false, null: false
     t.boolean "notify_admin", default: true, null: false
     t.index ["originating_script_id"], name: "fk_rails_6f37f4eb64"
@@ -176,7 +176,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_203932) do
   end
 
   create_table "cleaned_codes", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
-    t.integer "script_id", null: false
+    t.bigint "script_id", null: false
     t.text "code", size: :long, null: false
     t.index ["script_id"], name: "index_cleaned_codes_on_script_id", unique: true
   end
@@ -199,7 +199,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_203932) do
   end
 
   create_table "compatibilities", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
-    t.integer "script_id", null: false
+    t.bigint "script_id", null: false
     t.bigint "browser_id", null: false
     t.boolean "compatible", null: false
     t.string "comments", limit: 200
@@ -230,14 +230,14 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_203932) do
   end
 
   create_table "daily_install_counts", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
-    t.integer "script_id", null: false
+    t.bigint "script_id", null: false
     t.string "ip", limit: 45, null: false
     t.timestamp "install_date", default: -> { "current_timestamp()" }, null: false
     t.index ["script_id", "ip"], name: "index_daily_install_counts_on_script_id_and_ip", unique: true
   end
 
   create_table "daily_update_check_counts", id: false, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
-    t.integer "script_id", null: false
+    t.bigint "script_id", null: false
     t.datetime "update_date", precision: nil, null: false
     t.string "ip", limit: 45, null: false
     t.index ["script_id", "ip"], name: "update_script_id_and_ip", unique: true
@@ -285,7 +285,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_203932) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "poster_id", null: false
-    t.integer "script_id"
+    t.bigint "script_id"
     t.integer "rating"
     t.integer "stat_reply_count", default: 0, null: false
     t.datetime "stat_last_reply_date", precision: nil
@@ -320,7 +320,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_203932) do
   end
 
   create_table "install_counts", charset: "utf8mb3", collation: "utf8mb3_unicode_ci", force: :cascade do |t|
-    t.integer "script_id", null: false
+    t.bigint "script_id", null: false
     t.date "install_date", null: false
     t.integer "installs", null: false
     t.index ["script_id", "install_date"], name: "index_install_counts_on_script_id_and_install_date", unique: true
@@ -350,7 +350,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_203932) do
   end
 
   create_table "localized_script_attributes", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
-    t.integer "script_id", null: false
+    t.bigint "script_id", null: false
     t.integer "locale_id", null: false
     t.string "attribute_key", null: false
     t.string "value_markup", null: false
@@ -395,7 +395,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_203932) do
 
   create_table "moderator_actions", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.datetime "created_at", precision: nil, null: false
-    t.integer "script_id"
+    t.bigint "script_id"
     t.integer "moderator_id", null: false
     t.text "action", null: false
     t.string "reason"
@@ -436,7 +436,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_203932) do
     t.string "auto_reporter", limit: 10
     t.string "explanation_markup", limit: 10, default: "html", null: false
     t.string "script_url"
-    t.integer "reference_script_id"
+    t.bigint "reference_script_id"
     t.text "rebuttal"
     t.integer "rebuttal_by_user_id"
     t.text "moderator_notes"
@@ -463,7 +463,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_203932) do
   end
 
   create_table "script_applies_tos", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
-    t.integer "script_id", null: false
+    t.bigint "script_id", null: false
     t.integer "site_application_id", null: false
     t.boolean "tld_extra", default: false, null: false
     t.index ["script_id"], name: "index_script_applies_tos_on_script_id"
@@ -476,7 +476,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_203932) do
   end
 
   create_table "script_invitations", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
-    t.integer "script_id", null: false
+    t.bigint "script_id", null: false
     t.bigint "invited_user_id", null: false
     t.datetime "expires_at", precision: nil, null: false
     t.index ["invited_user_id"], name: "fk_rails_55c05503c1"
@@ -484,7 +484,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_203932) do
   end
 
   create_table "script_lock_appeals", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
-    t.integer "script_id", null: false
+    t.bigint "script_id", null: false
     t.bigint "report_id"
     t.text "text", null: false
     t.string "text_markup", limit: 10, default: "html", null: false
@@ -535,8 +535,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_203932) do
   end
 
   create_table "script_similarities", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
-    t.integer "script_id", null: false
-    t.integer "other_script_id", null: false
+    t.bigint "script_id", null: false
+    t.bigint "other_script_id", null: false
     t.decimal "similarity", precision: 4, scale: 3, null: false
     t.datetime "checked_at", precision: nil, null: false
     t.boolean "tersed", default: false, null: false
@@ -555,7 +555,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_203932) do
   end
 
   create_table "script_versions", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
-    t.integer "script_id", null: false
+    t.bigint "script_id", null: false
     t.text "changelog", size: :medium
     t.string "changelog_markup", limit: 10, default: "text", null: false
     t.string "version", limit: 200, null: false
@@ -569,7 +569,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_203932) do
     t.index ["script_id"], name: "index_script_versions_on_script_id"
   end
 
-  create_table "scripts", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+  create_table "scripts", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.integer "daily_installs", default: 0, null: false
@@ -595,13 +595,13 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_203932) do
     t.integer "good_ratings", default: 0
     t.integer "ok_ratings", default: 0
     t.integer "bad_ratings", default: 0
-    t.integer "replaced_by_script_id"
+    t.bigint "replaced_by_script_id"
     t.string "version", limit: 200, null: false
     t.boolean "sensitive", default: false, null: false
     t.datetime "not_adult_content_self_report_date", precision: nil
     t.datetime "permanent_deletion_request_date", precision: nil
     t.boolean "promoted", default: false, null: false
-    t.integer "promoted_script_id"
+    t.bigint "promoted_script_id"
     t.boolean "adsense_approved"
     t.integer "page_views", default: 0, null: false
     t.boolean "has_syntax_error", default: false, null: false
@@ -625,6 +625,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_203932) do
     t.index ["delta"], name: "index_scripts_on_delta"
     t.index ["promoted"], name: "index_scripts_on_promoted"
     t.index ["promoted_script_id"], name: "fk_rails_f98f8b875c"
+    t.index ["replaced_by_script_id"], name: "fk_rails_58606610ec"
     t.index ["review_state"], name: "index_scripts_on_review_state"
   end
 
@@ -666,13 +667,13 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_203932) do
   end
 
   create_table "syntax_highlighted_codes", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
-    t.integer "script_id", null: false
+    t.bigint "script_id", null: false
     t.text "html", size: :medium, null: false
     t.index ["script_id"], name: "index_syntax_highlighted_codes_on_script_id"
   end
 
   create_table "update_check_counts", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
-    t.integer "script_id", null: false
+    t.bigint "script_id", null: false
     t.date "update_check_date", null: false
     t.integer "update_checks", null: false
     t.index ["script_id", "update_check_date"], name: "index_update_check_counts_on_script_id_and_update_check_date", unique: true
@@ -750,7 +751,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_203932) do
   add_foreign_key "antifeatures", "scripts", on_delete: :cascade
   add_foreign_key "authors", "scripts", on_delete: :cascade
   add_foreign_key "authors", "users", on_delete: :cascade
-  add_foreign_key "blocked_script_codes", "scripts", column: "originating_script_id", on_delete: :cascade
+  add_foreign_key "blocked_script_codes", "scripts", column: "originating_script_id", on_delete: :nullify
   add_foreign_key "cleaned_codes", "scripts", on_delete: :cascade
   add_foreign_key "comments", "discussions", on_delete: :cascade
   add_foreign_key "compatibilities", "browsers", on_delete: :cascade
@@ -758,12 +759,16 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_203932) do
   add_foreign_key "conversation_subscriptions", "conversations", on_delete: :cascade
   add_foreign_key "conversation_subscriptions", "users", on_delete: :cascade
   add_foreign_key "conversations_users", "conversations", on_delete: :cascade
+  add_foreign_key "daily_install_counts", "scripts", on_delete: :cascade
+  add_foreign_key "daily_update_check_counts", "scripts", on_delete: :cascade
   add_foreign_key "discussion_reads", "discussions", on_delete: :cascade
   add_foreign_key "discussion_reads", "users", on_delete: :cascade
   add_foreign_key "discussion_subscriptions", "discussions", on_delete: :cascade
   add_foreign_key "discussion_subscriptions", "users", on_delete: :cascade
   add_foreign_key "discussions", "scripts", on_delete: :cascade
   add_foreign_key "identities", "users", on_delete: :cascade
+  add_foreign_key "install_counts", "scripts", on_delete: :cascade
+  add_foreign_key "localized_script_attributes", "scripts", on_delete: :cascade
   add_foreign_key "localized_script_version_attributes", "script_versions", on_delete: :cascade
   add_foreign_key "mentions", "users", on_delete: :cascade
   add_foreign_key "messages", "conversations", on_delete: :cascade
@@ -771,7 +776,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_203932) do
   add_foreign_key "notifications", "users", on_delete: :cascade
   add_foreign_key "reports", "users", column: "reporter_id", on_delete: :cascade
   add_foreign_key "roles_users", "users", on_delete: :cascade
-  add_foreign_key "script_applies_tos", "scripts", name: "fk_script_applies_tos_script_id"
+  add_foreign_key "script_applies_tos", "scripts", on_delete: :cascade
   add_foreign_key "script_invitations", "scripts", on_delete: :cascade
   add_foreign_key "script_invitations", "users", column: "invited_user_id", on_delete: :cascade
   add_foreign_key "script_lock_appeals", "reports", on_delete: :cascade
@@ -779,7 +784,11 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_22_203932) do
   add_foreign_key "script_sets", "users", on_delete: :cascade
   add_foreign_key "script_similarities", "scripts", column: "other_script_id", on_delete: :cascade
   add_foreign_key "script_similarities", "scripts", on_delete: :cascade
-  add_foreign_key "script_versions", "scripts", name: "fk_script_versions_script_id"
+  add_foreign_key "script_subresource_usages", "scripts", on_delete: :cascade
+  add_foreign_key "script_versions", "scripts", on_delete: :cascade
   add_foreign_key "scripts", "scripts", column: "promoted_script_id", on_delete: :nullify
+  add_foreign_key "scripts", "scripts", column: "replaced_by_script_id", on_delete: :nullify
+  add_foreign_key "syntax_highlighted_codes", "scripts", on_delete: :cascade
+  add_foreign_key "update_check_counts", "scripts", on_delete: :cascade
   add_foreign_key "user_notification_settings", "users", on_delete: :cascade
 end
