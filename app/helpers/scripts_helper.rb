@@ -15,7 +15,7 @@ module ScriptsHelper
       l = label
       is_link = false
     elsif is_libraries
-      l = link_to(label, libraries_scripts_path(sort: sort_param_to_use, q: params[:q], set:), rel:)
+      l = link_to(label, libraries_scripts_path(sort: sort_param_to_use, q: params[:q], set:, by:), rel:)
     elsif is_minified
       l = link_to(label, minified_scripts_path(sort: sort_param_to_use), rel:)
     elsif is_code_search

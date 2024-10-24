@@ -124,6 +124,7 @@ module ScriptListings
              {}
            end
     with[:script_type] = Script.script_types[:library]
+    with[:author_ids] = params[:by] unless params[:by].to_i.zero?
 
     @scripts = Script.search(
       params[:q].presence || '*',
