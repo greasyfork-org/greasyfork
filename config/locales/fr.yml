@@ -777,6 +777,10 @@ fr:
       title: 'Comment installer des scripts utilisateurs'
     installing_user_styles:
       title: 'Où installer des styles'
+      content_html: |
+          <p>Certains scripts sur %{site_name} peuvent être installés en tant que styles utilisateur.</p>
+          <p>Les styles utilisateur peuvent être installés avec %{stylus_firefox_link:Stylus pour Firefox}, %{stylus_chrome_link:Stylus pour Chrome} et %{stylus_opera_link:Stylus pour Opera}.</p>
+          <p>%{styles_link: Afficher tous les styles utilisateur disponibles.}</p>
     meta_keys:
       title: "Métadonnées utilisées par %{site_name}"
       intro_html: "Voici une liste de <a href=\"http://wiki.greasespot.net/Metadata_Block\">métadonnées</a> que %{site_name} peut utiliser. Les entrées non citées dans cette liste peuvent être utilisées dans de nouveaux scripts. Elles seront alors exploitables dans le script installé, mais n'auront aucun effet sur l'interace de %{site_name}."
@@ -929,6 +933,7 @@ fr:
       translators_credit: "%{site_name} a été traduit par %{translators_link:la Greasy Translation Force sur Transifex}:"
       icons_credit: "Les icônes du navigateur sont de %{browserlogos}."
     help_with_greasymonkey: "Aide avec Greasemonkey"
+    help_with_tampermonkey: "Aide avec Tampermonkey"
     contact:
       title: "Contactez une personne"
       content_html: >
