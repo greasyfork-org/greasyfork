@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_25_160732) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_25_161335) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -268,22 +268,23 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_25_160732) do
   create_table "discussions", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "poster_id", null: false
+    t.bigint "poster_id", null: false
     t.bigint "script_id"
     t.integer "rating"
     t.integer "stat_reply_count", default: 0, null: false
     t.datetime "stat_last_reply_date", precision: nil
-    t.integer "stat_last_replier_id"
+    t.bigint "stat_last_replier_id"
     t.integer "migrated_from"
-    t.integer "discussion_category_id", null: false
+    t.bigint "discussion_category_id", null: false
     t.string "title"
     t.datetime "deleted_at", precision: nil
-    t.integer "deleted_by_user_id"
+    t.bigint "deleted_by_user_id"
     t.string "review_reason", limit: 10
-    t.integer "stat_first_comment_id"
-    t.integer "locale_id"
-    t.integer "report_id"
+    t.bigint "stat_first_comment_id"
+    t.bigint "locale_id"
+    t.bigint "report_id"
     t.boolean "publicly_visible", default: true, null: false
+    t.index ["discussion_category_id"], name: "fk_rails_e08db1bd53"
     t.index ["locale_id"], name: "index_discussions_on_locale_id"
     t.index ["migrated_from"], name: "index_discussions_on_migrated_from"
     t.index ["poster_id"], name: "index_discussions_on_poster_id"
@@ -749,6 +750,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_25_160732) do
   add_foreign_key "discussion_reads", "users", on_delete: :cascade
   add_foreign_key "discussion_subscriptions", "discussions", on_delete: :cascade
   add_foreign_key "discussion_subscriptions", "users", on_delete: :cascade
+  add_foreign_key "discussions", "discussion_categories"
+  add_foreign_key "discussions", "locales"
+  add_foreign_key "discussions", "reports", on_delete: :cascade
   add_foreign_key "discussions", "scripts", on_delete: :cascade
   add_foreign_key "identities", "users", on_delete: :cascade
   add_foreign_key "install_counts", "scripts", on_delete: :cascade
