@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_26_203409) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_26_204531) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -370,7 +370,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_26_203409) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "conversation_id", null: false
-    t.integer "poster_id", null: false
+    t.bigint "poster_id", null: false
     t.string "content", limit: 10000, null: false
     t.string "content_markup", limit: 10, default: "html", null: false
     t.datetime "edited_at", precision: nil
@@ -381,10 +381,10 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_26_203409) do
   create_table "moderator_actions", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.datetime "created_at", precision: nil, null: false
     t.bigint "script_id"
-    t.integer "moderator_id", null: false
+    t.bigint "moderator_id", null: false
     t.text "action", null: false
     t.string "reason"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.text "private_reason"
     t.bigint "report_id"
     t.bigint "script_report_id"
@@ -423,12 +423,12 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_26_203409) do
     t.string "script_url"
     t.bigint "reference_script_id"
     t.text "rebuttal"
-    t.integer "rebuttal_by_user_id"
+    t.bigint "rebuttal_by_user_id"
     t.text "moderator_notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "discussion_category_id"
-    t.integer "resolver_id"
+    t.bigint "resolver_id"
     t.boolean "self_upheld", default: false
     t.string "moderator_reason_override", limit: 25
     t.index ["item_type", "item_id"], name: "index_reports_on_item_type_and_item_id"
@@ -596,7 +596,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_26_203409) do
     t.string "review_state", default: "not_required", null: false
     t.datetime "deleted_at", precision: nil
     t.datetime "consecutive_bad_ratings_at", precision: nil
-    t.integer "marked_adult_by_user_id"
+    t.bigint "marked_adult_by_user_id"
     t.boolean "self_deleted", default: false, null: false
     t.integer "sync_attempt_count", default: 0, null: false
     t.integer "delete_type"
