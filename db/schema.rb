@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_26_205203) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_26_205306) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -442,7 +442,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_26_205203) do
 
   create_table "roles_users", id: false, charset: "utf8mb3", collation: "utf8mb3_unicode_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.integer "role_id", null: false
+    t.bigint "role_id", null: false
     t.index ["role_id"], name: "index_roles_users_on_role_id"
     t.index ["user_id"], name: "index_roles_users_on_user_id"
   end
@@ -768,6 +768,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_26_205203) do
   add_foreign_key "moderator_actions", "reports", on_delete: :nullify
   add_foreign_key "notifications", "users", on_delete: :cascade
   add_foreign_key "reports", "users", column: "reporter_id", on_delete: :cascade
+  add_foreign_key "roles_users", "roles"
   add_foreign_key "roles_users", "users", on_delete: :cascade
   add_foreign_key "script_applies_tos", "scripts", on_delete: :cascade
   add_foreign_key "script_invitations", "scripts", on_delete: :cascade
