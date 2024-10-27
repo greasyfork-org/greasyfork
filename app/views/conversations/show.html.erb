@@ -1,4 +1,4 @@
-<% title t('conversations.title_html', count: @conversation.users.count - 1, users: (@conversation.users - [current_user]).map{ |u| link_to(u.name, user_path(u)) }.to_sentence.html_safe) %>
+<% title t('conversations.title_html', count: @conversation.users.count - 1, users: (@conversation.users - [current_user]).map(&:name).to_sentence) %>
 
 <div class="discussion-header">
   <h2>
