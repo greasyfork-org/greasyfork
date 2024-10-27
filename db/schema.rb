@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_27_215557) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_27_220118) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -547,8 +547,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_27_215557) do
     t.string "version", limit: 200, null: false
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
-    t.integer "script_code_id", null: false
-    t.integer "rewritten_script_code_id", null: false
+    t.bigint "script_code_id", null: false
+    t.bigint "rewritten_script_code_id", null: false
     t.boolean "not_js_convertible_override", default: false, null: false
     t.index ["rewritten_script_code_id"], name: "index_script_versions_on_rewritten_script_code_id"
     t.index ["script_code_id"], name: "index_script_versions_on_script_code_id"
@@ -788,6 +788,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_27_215557) do
   add_foreign_key "script_similarities", "scripts", on_delete: :cascade
   add_foreign_key "script_subresource_usages", "scripts", on_delete: :cascade
   add_foreign_key "script_subresource_usages", "subresources", on_delete: :cascade
+  add_foreign_key "script_versions", "script_codes"
+  add_foreign_key "script_versions", "script_codes", column: "rewritten_script_code_id"
   add_foreign_key "script_versions", "scripts", on_delete: :cascade
   add_foreign_key "scripts", "locales"
   add_foreign_key "scripts", "scripts", column: "promoted_script_id", on_delete: :nullify
