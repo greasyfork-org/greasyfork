@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_27_220118) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_27_220836) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -568,7 +568,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_27_220118) do
     t.datetime "last_successful_sync_date", precision: nil
     t.boolean "delta", default: true, null: false
     t.string "license_text", limit: 500
-    t.integer "license_id"
+    t.bigint "license_id"
     t.boolean "locked", default: false, null: false
     t.string "support_url", limit: 500
     t.bigint "locale_id"
@@ -605,10 +605,12 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_27_220118) do
     t.boolean "pure_404", default: false, null: false
     t.boolean "missing_license_warned", default: false, null: false
     t.integer "script_type", default: 1, null: false
-    t.integer "delete_report_id"
+    t.bigint "delete_report_id"
     t.text "deletion_message"
+    t.index ["delete_report_id"], name: "fk_rails_98da13b1a3"
     t.index ["delete_type"], name: "index_scripts_on_delete_type"
     t.index ["delta"], name: "index_scripts_on_delta"
+    t.index ["license_id"], name: "fk_rails_45570d785a"
     t.index ["locale_id"], name: "fk_rails_8d9ea2abb5"
     t.index ["promoted"], name: "index_scripts_on_promoted"
     t.index ["promoted_script_id"], name: "fk_rails_f98f8b875c"
@@ -768,7 +770,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_27_220118) do
   add_foreign_key "messages", "conversations", on_delete: :cascade
   add_foreign_key "moderator_actions", "reports", on_delete: :nullify
   add_foreign_key "notifications", "users", on_delete: :cascade
-  add_foreign_key "reports", "users", column: "reporter_id", on_delete: :cascade
+  add_foreign_key "reports", "users", column: "reporter_id", on_delete: :nullify
   add_foreign_key "roles_users", "roles"
   add_foreign_key "roles_users", "users", on_delete: :cascade
   add_foreign_key "script_applies_tos", "scripts", on_delete: :cascade
@@ -791,7 +793,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_27_220118) do
   add_foreign_key "script_versions", "script_codes"
   add_foreign_key "script_versions", "script_codes", column: "rewritten_script_code_id"
   add_foreign_key "script_versions", "scripts", on_delete: :cascade
+  add_foreign_key "scripts", "licenses"
   add_foreign_key "scripts", "locales"
+  add_foreign_key "scripts", "reports", column: "delete_report_id"
   add_foreign_key "scripts", "scripts", column: "promoted_script_id", on_delete: :nullify
   add_foreign_key "scripts", "scripts", column: "replaced_by_script_id", on_delete: :nullify
   add_foreign_key "syntax_highlighted_codes", "scripts", on_delete: :cascade
