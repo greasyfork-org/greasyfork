@@ -112,6 +112,7 @@ module ScriptImporter
         url_param = tags[node.name]
         url_text = node[url_param]
         next unless url_text
+        next if url_text.starts_with?('#')
 
         begin
           new_url = base_url.merge(url_text)
