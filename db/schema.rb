@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_27_215209) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_27_215557) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -502,8 +502,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_27_215209) do
   end
 
   create_table "script_set_set_inclusions", charset: "utf8mb3", collation: "utf8mb3_unicode_ci", force: :cascade do |t|
-    t.integer "parent_id", null: false
-    t.integer "child_id", null: false
+    t.bigint "parent_id", null: false
+    t.bigint "child_id", null: false
     t.boolean "exclusion", default: false, null: false
     t.index ["child_id"], name: "index_script_set_set_inclusions_on_child_id"
     t.index ["parent_id"], name: "index_script_set_set_inclusions_on_parent_id"
@@ -781,6 +781,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_27_215209) do
   add_foreign_key "script_set_automatic_set_inclusions", "script_sets", column: "parent_id", on_delete: :cascade
   add_foreign_key "script_set_script_inclusions", "script_sets", column: "parent_id", on_delete: :cascade
   add_foreign_key "script_set_script_inclusions", "scripts", column: "child_id", on_delete: :cascade
+  add_foreign_key "script_set_set_inclusions", "script_sets", column: "child_id", on_delete: :cascade
+  add_foreign_key "script_set_set_inclusions", "script_sets", column: "parent_id", on_delete: :cascade
   add_foreign_key "script_sets", "users", on_delete: :cascade
   add_foreign_key "script_similarities", "scripts", column: "other_script_id", on_delete: :cascade
   add_foreign_key "script_similarities", "scripts", on_delete: :cascade
