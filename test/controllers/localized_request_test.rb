@@ -26,4 +26,9 @@ class LocalizedRequestTest < ActionDispatch::IntegrationTest
     top, _preferred = detect_locale(nil, 'zh-MO, fr-FR;q=0.8, fr;q=0.7')
     assert_equal 'zh-TW', top.code
   end
+
+  test 'invalid locale to non-redirect paths' do
+    get '/invalidlocale/scripts/1/code/Name.user.js'
+    assert_response :moved_permanently
+  end
 end

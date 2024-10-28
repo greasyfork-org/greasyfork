@@ -25,7 +25,7 @@ module LocalizedRequest
        %w[omniauth_callback omniauth_failure sso webhook user_js meta_js user_css meta_css].include?(params[:action]) ||
        action_name == 'routing_error' ||
        %w[js json jsonp].include?(params[:format])
-      params[:locale] = params[:locale] || 'en'
+      params[:locale] = I18n.locale_available?(params[:locale]) ? params[:locale] : 'en'
       I18n.locale = params[:locale]
       return
     end
