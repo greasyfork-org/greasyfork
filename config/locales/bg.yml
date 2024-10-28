@@ -240,6 +240,7 @@ bg:
     warning_code_previously_posted_html: "Този код вече е бил публикуван тук %{script_links}. Повторно публикуван код ще бъде премахван от модераторите.."
     warning_license_missing_html: "Не сте указали <code>@license</code>. Публикувайки на %{site_name}, вие давате достъп на останалите да използват вашия код, а лицензът дава информация дали кодът може да бъде променян и разпространяван.. Например, <code>// @license MIT</code> означава, че разрешавате на всеки да променя и разпространява кода ви. %{license_chooser_link:Тук има повече информация за лицензите.} Ако не укажете лиценз, %{site_name} ще приеме, че не позволявате на другите да променят или разпространяват копия. Имате предвид, че ако не сте единствен автор, вие нямате право да публикувате, освен ако нямате разрешение от другите автори."
     warning_license_missing_override_html: "Запиши без указан лиценз"
+    warning_meta_not_at_start_html: "Кодът на скрипта не започва с <code>// ==UserScript==</code>. Включително кодът, коментарите или празни интервали могат да предизвикат проблеми със съвместимостта с някои мениджъри на потребителски скриптове."
     additional_info_locale_prompt: "(Изберете локализация)"
     additional_info_add_localized: "Добавяне на допълнителна локализация"
     additional_info_locale_repeated: "Предложете само една допълнителна информация за локализацията '%{locale_code}'."
@@ -700,6 +701,10 @@ bg:
         as_reporter: Когато създаденият от вас доклад е разрешен, получете известие
         as_reported_filed: Когато някой подаде доклад срещу съдържание, което сте публикували, получете известие
         as_reported_resolved: Когато доклад, подаден срещу ваше съдържание, е разрешен, получете известие
+      script:
+        intro: Тези настройки се отнасят за скриптовете, които публикувате.
+        title: Известия за скрипта
+        consecutive_bad_ratings: Получавайте известия ако заради лоши отзиви скриптът ви е застрашен от изтриване.
       save_button: Промени настройките за известия
       title: Известия
       current_discussion_subscriptions:
@@ -729,6 +734,7 @@ bg:
         dismissed: Модератор игнорира вашия доклад срещу %{item}.
         fixed: Доклад срещу %{item} доведе до някои промени и модератор маркира проблема за разрешен.
         upheld: Доклад срещу %{item} беше задържан от модератор.
+      consecutive_bad_ratings: "%{script} е получил лоши отзиви и е застрашен да бъде премахнат. Оправете скрипта или отговорете на отзивите, за да остане активен."
       list:
         header: Известия
         none: Все още няма известия!
@@ -755,6 +761,10 @@ bg:
       title: 'Как да инсталираме потребителските скриптове'
     installing_user_styles:
       title: 'Как да инсталирате потребителски стилове'
+      content_html: |
+          <p>Някои скриптове на %{site_name} могат да бъдат инсталирани като потребителски стилове.</p>
+          <p>Потребителските стилове могат да бъдат инсталирани с %{stylus_firefox_link:Stylus за Firefox}, %{stylus_chrome_link:Stylus за Chrome}, and %{stylus_opera_link:Stylus за Opera}.</p>
+          <p>%{styles_link:Виж всички потребителски стилове.}</p>
     meta_keys:
       title: "Meta keys, четени от %{site_name}"
       intro_html: "Това е списък с <a href=\"http://wiki.greasespot.net/Metadata_Block\">user script мета данни</a>, които %{site_name} ще прочете. Данните, които не са включени в този списък, могат да са включени в, и ще се ползват в инсталираните скриптове, но няма да имат ефект върху интерфейса на %{site_name}'s."
@@ -908,6 +918,7 @@ bg:
       translators_credit: "%{site_name} беше преведен с помощта на %{translators_link:the Greasy Translation Force не Transifex}:"
       icons_credit: "Иконите за браузъра са от %{browserlogos}."
     help_with_greasymonkey: "Помощ за Greasemonkey"
+    help_with_tampermonkey: "Помощ за Tampermonkey"
     contact:
       title: "Свържете се с някого"
       content_html: >
@@ -1096,6 +1107,7 @@ bg:
       wrong_category: "Грешна категория"
       wrong_category_with_suggestion: "Грешна категория (предложена: %{suggested_category})"
       no_code: 'Без код/hello world'
+      legal_claim: "Правен иск"
       other: "Друго"
     report_intro: "%{reported_item} беше докладван на %{report_date} от %{reporter} за %{reason}"
     report_intro_no_reporter: "%{reported_item} беше докладван %{report_date} за %{reason}"
