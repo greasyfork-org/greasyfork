@@ -33,7 +33,7 @@ module Admin
     end
 
     def contains_disallowed_keyword?(script)
-      script.localized_attributes.any? { |la| disallowed_keyword_regexp.match?(la.attribute_value) }
+      script.localized_attributes.any? { |la| disallowed_keyword_regexp.match?(ApplicationController.helpers.format_user_text_as_plain(la.attribute_value, la.value_markup)) }
     end
     helper_method :contains_disallowed_keyword?
   end
