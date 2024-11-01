@@ -24,7 +24,7 @@ module ScriptImporter
         code = download(sync_id)
       rescue OpenURI::HTTPError, Errno::ETIMEDOUT => e
         return [:failure, nil, "Could not download source. #{e.message}"]
-      rescue Timeout::Error => e
+      rescue Timeout::Error
         return [:failure, nil, 'Could not download source. Download did not complete in allowed time.']
       rescue StandardError => e
         return [:failure, nil, "Could not download source. #{e.message}"]
