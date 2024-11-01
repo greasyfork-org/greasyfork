@@ -4,7 +4,7 @@ module Sidekiq
 
     class_methods do
       def runs_sidekiq?
-        queue_adapter.is_a?(ActiveJob::QueueAdapters.lookup(:sidekiq))
+        queue_adapter.is_a?(::ActiveJob::QueueAdapters.lookup(:sidekiq))
       end
 
       # Returns an Array of Sidekiq::Job.
