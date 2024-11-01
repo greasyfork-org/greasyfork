@@ -10,6 +10,7 @@ require 'digest'
 class ScriptsController < ApplicationController
   include ScriptAndVersions
   include PageCache
+  include FileCaching
 
   MEMBER_AUTHOR_ACTIONS = [:sync_update, :update_promoted, :request_permanent_deletion, :unrequest_permanent_deletion, :update_promoted, :invite, :remove_author].freeze
   MEMBER_AUTHOR_OR_MODERATOR_ACTIONS = [:delete, :do_delete, :undelete, :do_undelete, :derivatives, :admin, :update_locale, :request_duplicate_check].freeze
@@ -876,10 +877,7 @@ class ScriptsController < ApplicationController
     # Make sure each portion is under the filesystem limit
     return unless cache_path.to_s.split('/').all? { |portion| portion.bytesize <= 255 }
 
-    FileUtils.mkdir_p(cache_path.parent)
-    File.write(cache_path, response_body) unless File.exist?(cache_path)
-    # nginx does not seem to automatically compress with try_files, so give it a .gz to use, but keep the original.
-    system('gzip', '--keep', cache_path.to_s) unless File.exist?("#{cache_path}.gz")
+    file_cache_content(cache_path, response_body)
   end
 
   def cache_code_request(response_body, script_id:, script_version_id_param:, extension:, code_updated_at:)
@@ -893,20 +891,7 @@ class ScriptsController < ApplicationController
                   base_path.join('versioned', 'scripts', script_id.to_s, "#{script_version_id_param}#{extension}")
                 end
 
-    cache_path = base_path.cleanpath
-
-    FileUtils.mkdir_p(cache_path.parent)
-
-    unless File.exist?(cache_path)
-      File.write(cache_path, response_body)
-      File.utime(code_updated_at.to_time, code_updated_at.to_time, cache_path)
-    end
-
-    # nginx does not seem to automatically compress with try_files, so give it a .gz to use, but keep the original.
-    return if File.exist?("#{cache_path}.gz")
-
-    system('gzip', '--keep', cache_path.to_s)
-    File.utime(code_updated_at.to_time, code_updated_at.to_time, "#{cache_path}.gz")
+    file_cache_content(base_path.cleanpath, response_body, update_time: code_updated_at)
   end
 
   def handle_wrong_url(resource, id_param_name)
