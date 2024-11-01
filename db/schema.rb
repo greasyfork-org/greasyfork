@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_27_220836) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_01_004022) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -795,7 +795,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_27_220836) do
   add_foreign_key "script_versions", "scripts", on_delete: :cascade
   add_foreign_key "scripts", "licenses"
   add_foreign_key "scripts", "locales"
-  add_foreign_key "scripts", "reports", column: "delete_report_id"
   add_foreign_key "scripts", "scripts", column: "promoted_script_id", on_delete: :nullify
   add_foreign_key "scripts", "scripts", column: "replaced_by_script_id", on_delete: :nullify
   add_foreign_key "syntax_highlighted_codes", "scripts", on_delete: :cascade
