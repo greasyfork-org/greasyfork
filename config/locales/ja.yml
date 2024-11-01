@@ -1349,10 +1349,6 @@ ja:
     script_report:
       report_created_offender:
         subject: "%{site_name}上の、あなたのスクリプト%{script_name}が通報されました"
-        body_html: |
-            <p>
-            このスクリプト %{script_link:%{script_name}} は %{site_name}の規則に違反していると報告されました。具体的な理由: %{reason}。%{report_link:この報告を確認し反論する}ことも可能です。反論しない場合、スクリプトは管理担当者により削除される可能性があります。
-            </p>
       report_upheld_offender:
         subject: "%{site_name}上の、あなたのスクリプト %{script_name} は削除されました。"
         body_html: |

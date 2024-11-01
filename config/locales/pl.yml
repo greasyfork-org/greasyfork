@@ -1235,9 +1235,6 @@ pl:
     script_report:
       report_created_offender:
         subject: "Twój skrypt %{script_name} dla %{site_name} został zgłoszony"
-        body_html: |
-            <p>
-            Twój skrypt %{script_link:%{script_name}} został zgłoszony za złamanie zasad %{site_name}. Jako powód podano „%{reason}”. Możesz %{report_link:zobaczyć zgłoszenie i odesłać odpowiedź}. Jeżeli nie odpowiesz na zgłoszenie, skrypt może zostać usunięty przez moderatorów.</p>.
       report_upheld_offender:
         subject: "Twój skrypt %{script_name} dla %{site_name} został usunięty"
         body_html: |

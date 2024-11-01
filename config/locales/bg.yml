@@ -1421,10 +1421,6 @@ bg:
     script_report:
       report_created_offender:
         subject: "Скриптът ви %{script_name} на %{site_name} беше докладван"
-        body_html: |
-            <p>
-            Вашият скрипт %{script_link:%{script_name}} беше докладван за нарушаване на правилата на %{site_name}. За причина беше посочено: %{reason}. Можете да %{report_link:прегледате доклада и да изпратите опровержение}. Ако не изпратите опровержение, скриптът може да бъде изтрит от модераторите.
-            </p>
       report_upheld_offender:
         subject: "Скриптът ви %{script_name} на %{site_name} беше изтрит"
         body_html: |

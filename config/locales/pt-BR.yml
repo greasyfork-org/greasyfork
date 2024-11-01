@@ -1418,8 +1418,6 @@ pt-BR:
     script_report:
       report_created_offender:
         subject: "O seu script %{script_name} no %{site_name} foi denunciado"
-        body_html: |
-            <p>Seu script %{script_link:%{script_name}} foi reportado por violar as regras do %{site_name}. O motivo específico foi: %{reason}. Você pode %{report_link: analisar este reporte e refutá-lo}. Caso não seja enviada uma refutação, seu script pode ser removido pelos moderadores.</p>
       report_upheld_offender:
         subject: "Seu script %{script_name} no %{site_name} foi removido"
         body_html: |

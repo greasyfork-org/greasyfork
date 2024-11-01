@@ -1261,12 +1261,6 @@ es:
     script_report:
       report_created_offender:
         subject: "Alguien ha denunciado tu script %{script_name} en %{site_name}"
-        body_html: |
-            <p>
-            Su script %{script_link:%{script_name}} ha sido reportado por violar las reglas de %{site_name}. La razón específica dada: %{reason}. puedes %{report_link:revisar este informe y enviar una refutación}. Si no envías una refutación, tu script puede ser eliminado por los moderadores.
-            </p>
-
-            Tu script %{script_link:%{script_name}} ha sido denunciado por incumplir las normas de %{site_name}. El motivo específico es: %{reason}. Puedes %{report_link:revisar la denuncia y enviar una reclamación}. Si no envías una reclamación, tu script puede que sea eliminado por los moderadores.
       report_upheld_offender:
         subject: "Tu script %{script_name} en %{site_name} ha sido eliminado."
         body_html: |

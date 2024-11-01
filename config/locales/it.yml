@@ -1255,10 +1255,6 @@ it:
     script_report:
       report_created_offender:
         subject: "Il tuo script %{script_name} su %{site_name} è stato segnalato"
-        body_html: |
-            <p>
-            Il tuo script %{script_link:%{script_name}} è stato segnalato poiché viola le regole di %{site_name}. La ragione specifica che è stata fornita è: %{reason}. Puoi %{report_link:controllare questa segnalazione e inviare una contestazione}. Se non invii una contestazione, il tuo script potrebbe venire eliminato dai moderatori.
-            </p>
       report_upheld_offender:
         subject: "Il tuo script %{script_name} su%{site_name} è stato eliminato"
         body_html: |

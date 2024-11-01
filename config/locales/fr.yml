@@ -1448,10 +1448,6 @@ fr:
     script_report:
       report_created_offender:
         subject: "Votre script %{script_name} par %{site_name}  a été signalé"
-        body_html: |
-            <p>
-            Votre script %{script_link:%{script_name}} a été signalé comme enfreignant les règles de %{site_name}. La raison précise invoquée est : %{reason}. Vous pouvez %{report_link:examiner ce rapport et soumettre une réfutation}. Si vous ne soumettez pas de réfutation, votre script peut être supprimé par les modérateurs.
-            </p>
       report_upheld_offender:
         subject: "Votre script %{script_name} par %{site_name} a été supprimé"
         body_html: |

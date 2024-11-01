@@ -1343,9 +1343,6 @@ zh-CN:
     script_report:
       report_created_offender:
         subject: "您的脚本 %{script_name} 在 %{site_name} 上被举报"
-        body_html: |
-            <p>
-            您的脚本%{script_link:%{script_name}} 被报告违反了%{site_name}的规则。给出的理由是：%{reason}您可以%{report_link:审核此举报并提交反驳}。如果您不提交反驳，您的脚本可能会被审核员删除。
       report_upheld_offender:
         subject: "您的脚本 %{script_name} 在 %{site_name} 上已被删除"
         body_html: |
