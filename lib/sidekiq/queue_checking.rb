@@ -91,7 +91,7 @@ module Sidekiq
 
       def job_hash_matches_args?(job_hash, *args)
         job_args = job_hash['args'].first['arguments']
-        check_args = ActiveJob::Arguments.serialize(args)
+        check_args = ::ActiveJob::Arguments.serialize(args)
         job_args == check_args
       end
 
@@ -107,7 +107,7 @@ module Sidekiq
         end
 
         if will_run
-          ::Rails.logger.info("#{name} is already enqueued with args #{ActiveJob::Arguments.serialize(args)}, not enqueuing again.")
+          ::Rails.logger.info("#{name} is already enqueued with args #{::ActiveJob::Arguments.serialize(args)}, not enqueuing again.")
         else
           perform_later(*args)
         end
@@ -125,7 +125,7 @@ module Sidekiq
         end
 
         if will_run
-          ::Rails.logger.info("#{name} is already enqueued with args #{ActiveJob::Arguments.serialize(args)}, not enqueuing again.")
+          ::Rails.logger.info("#{name} is already enqueued with args #{::ActiveJob::Arguments.serialize(args)}, not enqueuing again.")
         else
           perform_later(*args)
         end
