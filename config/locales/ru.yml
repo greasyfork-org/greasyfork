@@ -1460,6 +1460,10 @@ ru:
     script_report:
       report_created_offender:
         subject: "На ваш скрипт %{script_name} на %{site_name} поступила жалоба"
+        body_html: |
+            <p>
+            На ваш скрипт %{script_link:%{script_name}} поступила жалоба о нарушении правил%{site_name}, а именно: %{reason}. Модераторы рассмотрят жалобу и могут удалить ваш скрипт, если решат, что он нарушает правила. Вы можете %{report_link:посмотреть эту жалобу} и отправить опровержение, если захотите предоставить аргументы и пояснения.
+            </p>
       report_upheld_offender:
         subject: "Ваш скрипт %{script_name} на %{site_name} был удалён"
         body_html: |
