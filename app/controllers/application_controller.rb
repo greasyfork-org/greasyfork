@@ -191,7 +191,7 @@ class ApplicationController < ActionController::Base
   end
 
   def update_host?
-    request.subdomain == 'update'
+    request.subdomain == 'update' || (Rails.env.test? && request.domain == 'localhost')
   end
 
   helper_method :cache_with_log, :greasy?, :sleazy?, :script_subset, :site_name

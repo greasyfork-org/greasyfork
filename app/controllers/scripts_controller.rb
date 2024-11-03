@@ -202,7 +202,13 @@ class ScriptsController < ApplicationController
       return
     end
 
-    script, script_version = minimal_versionned_script(script_id, script_version_id)
+    begin
+      script, script_version = minimal_versionned_script(script_id, script_version_id)
+    rescue ActiveRecord::RecordNotFound => e
+      cache_code_404(script_id:, script_version_id_param: script_version_id)
+      raise e
+    end
+
     return if handle_replaced_script(script)
 
     if script.library? && request.path.ends_with?('.user.js')
@@ -257,7 +263,13 @@ class ScriptsController < ApplicationController
       return
     end
 
-    script, script_version = minimal_versionned_script(script_id, script_version_id)
+    begin
+      script, script_version = minimal_versionned_script(script_id, script_version_id)
+    rescue ActiveRecord::RecordNotFound => e
+      cache_code_404(script_id:, script_version_id_param: script_version_id)
+      raise e
+    end
+
     return if handle_replaced_script(script)
 
     if script.js?
@@ -894,6 +906,34 @@ class ScriptsController < ApplicationController
     file_cache_content(base_path.cleanpath, response_body, update_time: code_updated_at)
   end
 
+  ALL_POSSIBLE_CODE_EXTENSIONS = ['.user.js', '.meta.js', '.js', '.user.css', '.meta.css'].freeze
+
+  # Creates a file that indicates to nginx that this will always 404, presumably because the script was deleted. This
+  # way we are avoiding hitting the app.
+  def cache_code_404(script_id:, script_version_id_param:)
+    # If that ID hasn't been used yet, don't 404 it, as we want it to work when it does exist.
+    return if script_id > Script.maximum(:id)
+
+    script_version_id_param = script_version_id_param.to_i
+
+    base_path = Rails.application.config.cached_code_404_path.join(sleazy? ? 'sleazyfork' : 'greasyfork')
+
+    if script_version_id_param == 0
+      base_path = base_path.join('latest', 'scripts')
+      paths = ALL_POSSIBLE_CODE_EXTENSIONS.map do |extension|
+        base_path.join("#{script_id}#{extension}")
+      end
+    else
+      base_path = base_path.join('versioned', 'scripts', script_id.to_s)
+      paths = ALL_POSSIBLE_CODE_EXTENSIONS.map do |extension|
+        base_path.join("#{script_version_id_param}#{extension}")
+      end
+    end
+
+    FileUtils.mkdir_p(base_path)
+    FileUtils.touch(paths)
+  end
+
   def handle_wrong_url(resource, id_param_name)
     raise ActiveRecord::RecordNotFound if resource.nil?
     return true if handle_wrong_site(resource)
@@ -967,7 +1007,12 @@ class ScriptsController < ApplicationController
     script_id = params[:id].to_i
     script_version_id = (params[:version] || 0).to_i
 
-    script_info = load_minimal_script_info(script_id, script_version_id)
+    begin
+      script_info = load_minimal_script_info(script_id, script_version_id)
+    rescue ActiveRecord::RecordNotFound => e
+      cache_code_404(script_id:, script_version_id_param: script_version_id)
+      raise e
+    end
 
     if script_info.replaced_by_script_id && script_info.delete_type == Script.delete_types[:redirect]
       redirect_to(Script.find(script_info.replaced_by_script_id).code_url(sleazy: sleazy?, format_override: (language == :css) ? 'meta.css' : 'meta.js'), status: :moved_permanently, allow_other_host: true)
