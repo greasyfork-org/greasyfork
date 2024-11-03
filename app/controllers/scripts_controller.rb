@@ -906,8 +906,6 @@ class ScriptsController < ApplicationController
     file_cache_content(base_path.cleanpath, response_body, update_time: code_updated_at)
   end
 
-  ALL_POSSIBLE_CODE_EXTENSIONS = ['.user.js', '.meta.js', '.js', '.user.css', '.meta.css'].freeze
-
   # Creates a file that indicates to nginx that this will always 404, presumably because the script was deleted. This
   # way we are avoiding hitting the app.
   def cache_code_404(script_id:, script_version_id_param:)
@@ -916,22 +914,16 @@ class ScriptsController < ApplicationController
 
     script_version_id_param = script_version_id_param.to_i
 
-    base_path = Rails.application.config.cached_code_404_path.join(sleazy? ? 'sleazyfork' : 'greasyfork')
+    path = Rails.application.config.cached_code_404_path.join(sleazy? ? 'sleazyfork' : 'greasyfork')
 
-    if script_version_id_param == 0
-      base_path = base_path.join('latest', 'scripts')
-      paths = ALL_POSSIBLE_CODE_EXTENSIONS.map do |extension|
-        base_path.join("#{script_id}#{extension}")
-      end
-    else
-      base_path = base_path.join('versioned', 'scripts', script_id.to_s)
-      paths = ALL_POSSIBLE_CODE_EXTENSIONS.map do |extension|
-        base_path.join("#{script_version_id_param}#{extension}")
-      end
-    end
+    path = if script_version_id_param == 0
+             path.join('latest', 'scripts', script_id.to_s)
+           else
+             path.join('versioned', 'scripts', script_id.to_s, script_version_id_param)
+           end
 
-    FileUtils.mkdir_p(base_path)
-    FileUtils.touch(paths)
+    FileUtils.mkdir_p(path.parent)
+    FileUtils.touch(path)
   end
 
   def handle_wrong_url(resource, id_param_name)

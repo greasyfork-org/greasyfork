@@ -16,12 +16,12 @@ class ScriptsControllerTest < ActionDispatch::IntegrationTest
     script = Script.first
     script.destroy!
     FileUtils.rm_r(Rails.application.config.cached_code_404_path) if Dir.exist?(Rails.application.config.cached_code_404_path)
-    assert_not File.exist?(Rails.application.config.cached_code_404_path.join('greasyfork', 'latest', 'scripts', "#{script.id}.user.js"))
+    assert_not File.exist?(Rails.application.config.cached_code_404_path.join('greasyfork', 'latest', 'scripts', script.id.to_s))
 
     get user_js_script_url(script, name: script.url_name, locale: :en)
     assert_response :not_found
 
-    assert_path_exists(Rails.application.config.cached_code_404_path.join('greasyfork', 'latest', 'scripts', "#{script.id}.user.js"))
+    assert_path_exists(Rails.application.config.cached_code_404_path.join('greasyfork', 'latest', 'scripts', script.id.to_s))
   end
 
   test 'does not generate a placeholder for nginx on record not found for future IDs' do
@@ -31,6 +31,6 @@ class ScriptsControllerTest < ActionDispatch::IntegrationTest
     get user_js_script_url(id, name: 'whatever', locale: :en)
     assert_response :not_found
 
-    refute_path_exists(Rails.application.config.cached_code_404_path.join('greasyfork', 'latest', 'scripts', "#{id}.user.js"))
+    refute_path_exists(Rails.application.config.cached_code_404_path.join('greasyfork', 'latest', 'scripts', id.to_s))
   end
 end
