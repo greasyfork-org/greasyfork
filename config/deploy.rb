@@ -17,7 +17,7 @@ set :assets_roles, [:web, :worker]
 
 append :linked_files, 'config/database.yml', 'config/credentials/production.key', 'config/initializers/omniauth.rb', 'config/initializers/detect_language.rb', 'bin/git', 'config/application.yml'
 
-append :linked_dirs, '.bundle', 'log', 'tmp', 'public/data', 'public/cached_pages', 'public/cached_code'
+append :linked_dirs, '.bundle', 'log', 'tmp', 'public/data', 'public/cached_pages', 'public/cached_code', 'public/cached_code_404'
 
 namespace :deploy do
   after :published, 'transifex_update_meta'
