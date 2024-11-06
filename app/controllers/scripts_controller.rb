@@ -204,7 +204,7 @@ class ScriptsController < ApplicationController
 
     begin
       script, script_version = minimal_versionned_script(script_id, script_version_id)
-    rescue ActiveRecord::RecordNotFound => e
+    rescue ActiveRecord::RecordNotFound
       handle_code_404(script_id:, script_version_id_param: script_version_id)
       return
     end
@@ -265,7 +265,7 @@ class ScriptsController < ApplicationController
 
     begin
       script, script_version = minimal_versionned_script(script_id, script_version_id)
-    rescue ActiveRecord::RecordNotFound => e
+    rescue ActiveRecord::RecordNotFound
       handle_code_404(script_id:, script_version_id_param: script_version_id)
       return
     end
@@ -906,27 +906,12 @@ class ScriptsController < ApplicationController
     file_cache_content(base_path.cleanpath, response_body, update_time: code_updated_at)
   end
 
-  # Creates a file that indicates to nginx that this will always 404, presumably because the script was deleted. This
-  # way we are avoiding hitting the app.
   def handle_code_404(script_id:, script_version_id_param:)
     # If that ID hasn't been used yet, don't 404 it, as we want it to work when it does exist.
     if script_id > Script.maximum(:id)
       head :not_found
       return
     end
-
-    script_version_id_param = script_version_id_param.to_i
-
-    path = Rails.application.config.cached_code_404_path.join(sleazy? ? 'sleazyfork' : 'greasyfork')
-
-    path = if script_version_id_param == 0
-             path.join('latest', 'scripts', script_id.to_s)
-           else
-             path.join('versioned', 'scripts', script_id.to_s, script_version_id_param)
-           end
-
-    FileUtils.mkdir_p(path.parent)
-    FileUtils.touch(path)
 
     response.headers['Cache-Control'] = 'public,max-age=604800'
     head :gone
@@ -1007,7 +992,7 @@ class ScriptsController < ApplicationController
 
     begin
       script_info = load_minimal_script_info(script_id, script_version_id)
-    rescue ActiveRecord::RecordNotFound => e
+    rescue ActiveRecord::RecordNotFound
       handle_code_404(script_id:, script_version_id_param: script_version_id)
       return
     end

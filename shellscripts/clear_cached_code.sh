@@ -11,4 +11,3 @@ awk 'BEGIN {FS="\t"};{ system("find /www/greasyfork/shared/tmp/cached_code/*/lat
 # Delete anything with a ctime (which is create time for our purposes) over a day old, just in case we missed something
 # above, and also to clear out any deleted or rarely-accessed files.
 find /www/greasyfork/shared/public/cached_code/ -cmin +1440 -type f -delete 2>/dev/null
-find /www/greasyfork/shared/public/cached_code_404/ -cmin +1440 -type f -delete 2>/dev/null
