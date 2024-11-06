@@ -205,7 +205,7 @@ class ScriptsController < ApplicationController
     begin
       script, script_version = minimal_versionned_script(script_id, script_version_id)
     rescue ActiveRecord::RecordNotFound
-      handle_code_404(script_id:, script_version_id_param: script_version_id)
+      handle_code_404(script_id:)
       return
     end
 
@@ -266,7 +266,7 @@ class ScriptsController < ApplicationController
     begin
       script, script_version = minimal_versionned_script(script_id, script_version_id)
     rescue ActiveRecord::RecordNotFound
-      handle_code_404(script_id:, script_version_id_param: script_version_id)
+      handle_code_404(script_id:)
       return
     end
 
@@ -906,7 +906,7 @@ class ScriptsController < ApplicationController
     file_cache_content(base_path.cleanpath, response_body, update_time: code_updated_at)
   end
 
-  def handle_code_404(script_id:, script_version_id_param:)
+  def handle_code_404(script_id:)
     # If that ID hasn't been used yet, don't 404 it, as we want it to work when it does exist.
     if script_id > Script.maximum(:id)
       head :not_found
@@ -993,7 +993,7 @@ class ScriptsController < ApplicationController
     begin
       script_info = load_minimal_script_info(script_id, script_version_id)
     rescue ActiveRecord::RecordNotFound
-      handle_code_404(script_id:, script_version_id_param: script_version_id)
+      handle_code_404(script_id:)
       return
     end
 
