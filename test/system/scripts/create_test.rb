@@ -142,4 +142,41 @@ class CreateTest < ApplicationSystemTestCase
     visit new_script_version_url
     assert_content 'You have posted too many scripts recently. Please try again later.'
   end
+
+  test 'multilang creation' do
+    user = User.first
+    login_as(user, scope: :user)
+    visit new_script_version_url
+    code = <<~JS
+      // ==UserScript==
+      // @name A Test!
+      // @name:fr Un test!
+      // @description Unit test.
+      // @description:fr Test d'unit
+      // @version 1.1
+      // @namespace http://greasyfork.local/users/1
+      // @include *
+      // @license MIT
+      // ==/UserScript==
+      var foo = 1;
+    JS
+    fill_in 'Code', with: code
+    fill_in 'Additional info', with: 'English additional info'
+
+    click_on 'Add a localized additional info'
+    select 'Français (fr)', from: 'script_version[additional_info][1][locale]', match: :first
+    fill_in 'script_version[additional_info][1][attribute_value]', with: 'Additional info en francais'
+
+    click_on 'Post script'
+
+    assert_selector 'h2', text: 'A Test!'
+    assert_includes(Script.last.users, user)
+    assert_content 'Unit test.'
+    assert_content 'English additional info'
+
+    visit script_path(Script.last, locale: :fr)
+    assert_selector 'h2', text: 'Un test!'
+    assert_content "Test d'unit"
+    assert_content 'Additional info en francais'
+  end
 end
