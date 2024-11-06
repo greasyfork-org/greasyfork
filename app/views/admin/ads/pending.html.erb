@@ -7,7 +7,7 @@
           (<%= script.page_views %>)
         </h2>
         <div>
-          <span class="script-description"><%= script.description(I18n.locale) %></span>
+          <span class="script-description"><%= script.description(request_locale) %></span>
         </div>
         <p>
           <%= script.site_applications.map { |s| s.domain? ? link_to(s.text, "http://#{s.text}") : s.text}.join(', ').html_safe %>

@@ -51,7 +51,7 @@
                 end
               when Notification::NOTIFICATION_TYPE_NEW_COMMENT
                 if notification.item.first_comment? && notification.item.script
-                  t('users.notifications.new_comment_script', user: render_user_text(notification.item.poster, notification.item.poster_id), script: notification.item.script.name(locale: I18n.locale))
+                  t('users.notifications.new_comment_script', user: render_user_text(notification.item.poster, notification.item.poster_id), script: notification.item.script.name(locale: request_locale))
                 else
                   t('users.notifications.new_comment', user: render_user_text(notification.item.poster, notification.item.poster_id), discussion: notification.item.discussion.display_title(locale: I18n.locale))
                 end

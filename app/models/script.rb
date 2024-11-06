@@ -667,10 +667,12 @@ class Script < ApplicationRecord
     sas = site_applications.domain.pluck(:id)
     return Script.none if sas.none?
 
+    locale = Locale.find_by(code: locale) if locale.is_a?(String) || locale.is_a?(Symbol)
+
     with = {
       script_type: Script.script_types[:public],
       site_application_id: sas,
-      locale: Locale.find_by(code: locale).id,
+      locale: locale.id,
     }
 
     case script_subset
