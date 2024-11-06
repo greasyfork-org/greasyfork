@@ -205,8 +205,8 @@ class ScriptsController < ApplicationController
     begin
       script, script_version = minimal_versionned_script(script_id, script_version_id)
     rescue ActiveRecord::RecordNotFound => e
-      cache_code_404(script_id:, script_version_id_param: script_version_id)
-      raise e
+      handle_code_404(script_id:, script_version_id_param: script_version_id)
+      return
     end
 
     return if handle_replaced_script(script)
@@ -266,8 +266,8 @@ class ScriptsController < ApplicationController
     begin
       script, script_version = minimal_versionned_script(script_id, script_version_id)
     rescue ActiveRecord::RecordNotFound => e
-      cache_code_404(script_id:, script_version_id_param: script_version_id)
-      raise e
+      handle_code_404(script_id:, script_version_id_param: script_version_id)
+      return
     end
 
     return if handle_replaced_script(script)
@@ -908,9 +908,12 @@ class ScriptsController < ApplicationController
 
   # Creates a file that indicates to nginx that this will always 404, presumably because the script was deleted. This
   # way we are avoiding hitting the app.
-  def cache_code_404(script_id:, script_version_id_param:)
+  def handle_code_404(script_id:, script_version_id_param:)
     # If that ID hasn't been used yet, don't 404 it, as we want it to work when it does exist.
-    return if script_id > Script.maximum(:id)
+    if script_id > Script.maximum(:id)
+      head :not_found
+      return
+    end
 
     script_version_id_param = script_version_id_param.to_i
 
@@ -924,6 +927,9 @@ class ScriptsController < ApplicationController
 
     FileUtils.mkdir_p(path.parent)
     FileUtils.touch(path)
+
+    response.headers['Cache-Control'] = 'public,max-age=604800'
+    head :gone
   end
 
   def handle_wrong_url(resource, id_param_name)
@@ -1002,8 +1008,8 @@ class ScriptsController < ApplicationController
     begin
       script_info = load_minimal_script_info(script_id, script_version_id)
     rescue ActiveRecord::RecordNotFound => e
-      cache_code_404(script_id:, script_version_id_param: script_version_id)
-      raise e
+      handle_code_404(script_id:, script_version_id_param: script_version_id)
+      return
     end
 
     if script_info.replaced_by_script_id && script_info.delete_type == Script.delete_types[:redirect]

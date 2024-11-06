@@ -19,7 +19,7 @@ class ScriptsControllerTest < ActionDispatch::IntegrationTest
     assert_not File.exist?(Rails.application.config.cached_code_404_path.join('greasyfork', 'latest', 'scripts', script.id.to_s))
 
     get user_js_script_url(script, name: script.url_name, locale: :en)
-    assert_response :not_found
+    assert_response :gone
 
     assert_path_exists(Rails.application.config.cached_code_404_path.join('greasyfork', 'latest', 'scripts', script.id.to_s))
   end
