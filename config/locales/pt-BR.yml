@@ -243,6 +243,7 @@ pt-BR:
     warning_code_previously_posted_html: "Este código foi postado anteriormente em %{script_links}. Repostagens estão sujeitas a exclusão pelos moderadores."
     warning_license_missing_html: "Você não especificou uma <code>@license</code>. Ao postar em %{site_name}, você autoriza outros a utilizarem seu código, mas uma licença permite especificar como outros podem modificar e redistribuir seu código. Por exemplo, <code>//@license MIT</code> significa que você permite a todos modificar e redistribuir o código que você escreveu. %{license_chooser_link:Mais informações sobre licenças disponível aqui.} Se você não especificar uma licença, %{site_name} assumirá que você não autoriza outros a fazer modificações ou redistribuir cópias. Note que se você não é o único autor do código que está postando, geralmente você não tem permissão para posta-lo a menos que tenha permissão dos demais autores."
     warning_license_missing_override_html: "Salvar sem uma licença"
+    warning_meta_not_at_start_html: "Seu código não começa com // ==UserScript==. Incluir código, comentários ou espaços em branco pode causar problemas de compatibilidade com alguns gerenciadores de scripts de usuário"
     additional_info_locale_prompt: "(Selecione uma regionalização)"
     additional_info_add_localized: "Adicionar uma informação regionalizada adicional"
     additional_info_locale_repeated: "Informar somente uma informação adicional para a regionalização '%{locale_code}'"
@@ -720,6 +721,10 @@ pt-BR:
         consecutive_bad_ratings: Quando seu script está em perigo de ser deletado por analises ruins, recebera uma notificação
       save_button: Atualizar configurações de notificação
       title: Notificações
+      current_discussion_subscriptions:
+        one: Cancelar a inscrição das %{discussions_link:%{count}discussões} às quais você já está inscrito
+        many: Cancelar a inscrição das %{discussions_link:%{count}discussões} às quais você já está inscrito
+        other: Cancelar a inscrição das %{discussions_link:%{count}discussões} às quais você já está inscrito
       current_conversation_subscriptions:
         one: Desinscreva da %{count} conversa que você já se inscreveu em
         many: Desinscreva das %{count} conversas que você já se inscreveu em
@@ -728,7 +733,23 @@ pt-BR:
       save_success: Suas preferências de notificação foram atualizadas
       unsubscribe_all: Desinscrever-se de todas as notificações
       unsubscribe_all_success: Você foi desinscrito de todas as notificações.
+      unsubscribe_email: Cancelar a inscrição de todas as notificações por e-mail
+      unsubscribe_email_success: Você foi removido da inscrição de todas as notificações por e-mail.
+      new_conversation: "%{user}iniciou uma conversa com você:%{text}"
+      new_message: "%{user}te enviou uma mensagem:%{text}"
+      new_comment: "%{user}postou um comentário em%{discussion}"
+      new_comment_script: "%{user} postou uma discussão sobre o seu script%{script}"
+      mention: "%{user}mencionou você em%{discussion}"
+      report_resolved_reporter:
+        dismissed: Seu relatório contra %{item} foi rejeitado por um moderador.
+        fixed: Seu relatório contra %{item} resultou em algumas mudanças e um moderador marcou o problema como resolvido.
+        upheld: Seu relatório contra %{item} foi aceito por um moderador.
+        rebutted: Seu relatório contra %{item} recebeu uma resposta do usuário denunciado. Um moderador irá revisar seu relatório e esta resposta.
       report_filed_reported: Um reporte foi preenchido contra %{item}
+      report_resolved_reported:
+        dismissed: Um relatório contra%{item} foi rejeitado por um moderador.
+        fixed: Um relatório contra %{item} resultou em algumas mudanças e um moderador marcou o problema como resolvido.
+        upheld: Um relatório contra %{item} foi aceito por um moderador.
       consecutive_bad_ratings: "%{script} teve recebido analises ruins está em perigo de ser removido.\nCorrigia seu script ou responda para as analises para garantir que ele se mantenha ativo."
       list:
         header: Notificações
@@ -756,6 +777,10 @@ pt-BR:
       title: 'Como instalar scripts de usuários'
     installing_user_styles:
       title: 'Como instalar estilos de usuário'
+      content_html: |
+          <p>Alguns scripts em %{site_name} podem ser instalados como estilos de usuário. </p>
+          <p> Estilos de usuário podem ser instalados com %{stylus_firefox_link:Stylus para Firefox}, %{stylus_chrome_link:Stylus para Chrome} e %{stylus_opera_link:Stylus para Opera}.</p>
+          <p> %{styles_link:Ver todos os estilos de usuário disponíveis.}</p>
     meta_keys:
       title: "Chaves de metadados de scripts lidas pelo %{site_name}"
       intro_html: "Esta é uma lista de <a href=\"http://wiki.greasespot.net/Metadata_Block\">meta chaves de scripts de usuário</a> que %{site_name} irá ler. Chaves fora desta lista podem ser incluídas nos scripts, e serão apresentados no script instalado, mas não surtirão efeito na UI de %{site_name}."
@@ -908,6 +933,7 @@ pt-BR:
       translators_credit: "O %{site_name} foi traduzido por %{translators_link:the Greasy Translation Force on Transifex}:"
       icons_credit: "Os ícones do navegador são do %{browserlogos}."
     help_with_greasymonkey: "Ajuda com o Greasemonkey"
+    help_with_tampermonkey: "Ajuda com o Tampermonkey"
     contact:
       title: "Contacte alguém"
       content_html: >
@@ -1100,6 +1126,7 @@ pt-BR:
       wrong_category: "Categoria errada"
       wrong_category_with_suggestion: "Categoria errada (sugestão: %{suggested_category})"
       no_code: 'Sem codigo/Olá mundo'
+      legal_claim: "Reclamação legal"
       other: "Outro"
     report_intro: "%{reported_item} foi reportado %{report_date} por %{reporter} por %{reason}"
     report_intro_no_reporter: "%{reported_item} foi reportado %{report_date} por %{reason}"
@@ -1418,6 +1445,8 @@ pt-BR:
     script_report:
       report_created_offender:
         subject: "O seu script %{script_name} no %{site_name} foi denunciado"
+        body_html: |
+            <p>Seu script %{script_link:%{script_name}} foi denunciado por violar as regras de %{site_name}. O motivo específico informado foi: %{reason}. Moderadores irão revisar este relatório e podem excluir seu script se concordarem que ele está violando as regras. Você pode %{report_link:revisar este relatório} e enviar uma réplica caso queira fornecer um argumento ou explicação.
       report_upheld_offender:
         subject: "Seu script %{script_name} no %{site_name} foi removido"
         body_html: |
@@ -1483,6 +1512,7 @@ pt-BR:
     script_comment:
       subject: "Seu script %{script_name} no %{site_name} recebeu um comentário."
       intro: "Seu script %{script_link:%{script_name}} em %{site_name} recebeu um comentário do usuário %{commenter_link:%{commenter_name}}:"
+      outro: "%{comment_link:Veja e responda a este comentário.} Você recebeu esta notificação porque escolheu ser inscrito em discussões sobre seus scripts. %{notification_preferences_link:Gerencie suas preferências de notificação.}"
     subscribed_discussion:
       subject: "A discussão %{discussion_title} no %{site_name} recebeu um comentário."
       intro: "A discussão %{discussion_link:%{discussion_title}} em %{site_name} recebeu um comentário do usuário %{commenter_link:%{commenter_name}}:"
