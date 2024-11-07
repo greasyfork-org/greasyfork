@@ -80,7 +80,7 @@ module ScriptListings
         load_scripts_for_index
       end
       format.json do
-        return if load_scripts_for_index
+        return if load_scripts_for_index(for_json: true)
 
         render json: (params[:meta] == '1') ? { count: @scripts.count } : scripts_as_json(@scripts)
       end
@@ -286,7 +286,7 @@ module ScriptListings
     ]
   end
 
-  def load_scripts_for_index
+  def load_scripts_for_index(for_json: false)
     locale = request_locale
     if locale.scripts?(script_subset)
       if params[:filter_locale] == '0' || (params[:filter_locale].nil? && current_user && !current_user.filter_locale_default)
@@ -300,10 +300,10 @@ module ScriptListings
     # Search can't do script sets, otherwise we'd use it for everything.
     return load_scripts_for_index_without_es unless params[:set].nil?
 
-    load_scripts_for_index_with_es
+    load_scripts_for_index_with_es(for_json:)
   end
 
-  def load_scripts_for_index_with_es
+  def load_scripts_for_index_with_es(for_json: false)
     with = es_options_for_request
 
     with[:locale] = @search_locale if @search_locale
@@ -335,6 +335,9 @@ module ScriptListings
 
     with[:author_ids] = params[:by] unless params[:by].to_i.zero?
 
+    includes = [:localized_attributes, :users]
+    includes.push(:locale, :license) if for_json
+
     @scripts = Script.search(
       params[:q].presence || '*',
       fields: ['name^10', 'description^5', 'author^5', 'additional_info^1'],
@@ -343,7 +346,7 @@ module ScriptListings
       order: self.class.get_es_sort(params),
       page: page_number,
       per_page: per_page(default: 100),
-      includes: [:localized_attributes, :users]
+      includes:
     )
 
     false
