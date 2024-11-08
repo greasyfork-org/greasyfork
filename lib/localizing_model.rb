@@ -70,13 +70,11 @@ module LocalizingModel
 
   # Builds a localized attribute on this record based on the passed localized attribute and return it
   def build_localized_attribute(other_la)
-    la = localized_attributes.build({ attribute_key: other_la.attribute_key, attribute_value: other_la.attribute_value, attribute_default: other_la.attribute_default, locale: other_la.locale, value_markup: other_la.value_markup })
+    la = localized_attributes.build({ attribute_key: other_la.attribute_key, attribute_value: other_la.attribute_value, attribute_default: other_la.attribute_default, locale_id: other_la.locale_id, value_markup: other_la.value_markup })
     la.sync_identifier = other_la.sync_identifier if la.respond_to?(:sync_identifier) && other_la.respond_to?(:sync_identifier)
     # Prevent runaway mentions from hogging CPU.
-    if other_la.mentions.count < 50
-      other_la.mentions.each do |mention|
-        la.mentions.build(user_id: mention.user_id, text: mention.text)
-      end
+    other_la.mentions.to_a.first(50).each do |mention|
+      la.mentions.build(user_id: mention.user_id, text: mention.text)
     end
     return la
   end

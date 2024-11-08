@@ -311,15 +311,17 @@ class Script < ApplicationRecord
 
     localized_attributes_for('description').select { |la| la.attribute_value.length > MAX_LENGTHS[:description] }.each { |la| la.attribute_value = la.attribute_value[0, MAX_LENGTHS[:description]] } if script_version.truncate_description
 
-    applies_to_names = script_version.calculate_applies_to_names
-    applies_to_delete = script_applies_tos.reject { |sat| applies_to_names.any? { |atn| sat.text == atn[:text] && sat.tld_extra == atn[:tld_extra] && sat.domain? == atn[:domain] } }
-    applies_to_delete.each(&:mark_for_destruction)
-    applies_to_add = applies_to_names.reject { |atn| script_applies_tos.any? { |sat| sat.text == atn[:text] && sat.tld_extra == atn[:tld_extra] && sat.domain? == atn[:domain] } }
+    unless library?
+      applies_to_names = script_version.calculate_applies_to_names
+      applies_to_delete = script_applies_tos.reject { |sat| applies_to_names.any? { |atn| sat.text == atn[:text] && sat.tld_extra == atn[:tld_extra] && sat.domain? == atn[:domain] } }
+      applies_to_delete.each(&:mark_for_destruction)
+      applies_to_add = applies_to_names.reject { |atn| script_applies_tos.any? { |sat| sat.text == atn[:text] && sat.tld_extra == atn[:tld_extra] && sat.domain? == atn[:domain] } }
 
-    existing_site_applications = SiteApplication.where(text: applies_to_add.pluck(:text))
-    applies_to_add.each do |atn|
-      site_application = existing_site_applications.find { |esa| esa.text == atn[:text] && esa.domain? == atn[:domain] } || SiteApplication.new(text: atn[:text], domain_text: atn[:domain] ? atn[:text] : nil)
-      script_applies_tos.build(site_application:, tld_extra: atn[:tld_extra])
+      existing_site_applications = SiteApplication.where(text: applies_to_add.pluck(:text))
+      applies_to_add.each do |atn|
+        site_application = existing_site_applications.find { |esa| esa.text == atn[:text] && esa.domain? == atn[:domain] } || SiteApplication.new(text: atn[:text], domain_text: atn[:domain] ? atn[:text] : nil)
+        script_applies_tos.build(site_application:, tld_extra: atn[:tld_extra])
+      end
     end
 
     if new_record? || code_updated_at.nil?
@@ -724,7 +726,7 @@ class Script < ApplicationRecord
     existing_localized_attributes = localized_attributes_for(attr_name)
 
     unless default_value.nil?
-      default_la = existing_localized_attributes.find { |la| la.locale == locale && la.attribute_key == attr_name && la.attribute_default }
+      default_la = existing_localized_attributes.find { |la| la.locale_id == locale&.id && la.attribute_key == attr_name && la.attribute_default }
       if default_la.nil?
         default_la = localized_attributes.build({ attribute_key: attr_name, attribute_default: true, locale: })
       else

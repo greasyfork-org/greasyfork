@@ -73,7 +73,7 @@ module ScriptAndVersions
     script.language = current_script.language
     script.css_convertible_to_js = current_script.css_convertible_to_js
 
-    current_script.localized_attributes.each { |la| script.build_localized_attribute(la) }
+    current_script.localized_attributes.includes(:mentions).find_each { |la| script.build_localized_attribute(la) }
 
     script.apply_from_script_version(script_version)
     script.id = script_id
