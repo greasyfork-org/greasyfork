@@ -15,7 +15,8 @@ class Subresource < ApplicationRecord
 
     begin
       contents = download
-    rescue OpenURI::HTTPError, Timeout::Error, Errno::ECONNREFUSED
+    rescue OpenURI::HTTPError, Timeout::Error, Errno::ECONNREFUSED, Socket::ResolutionError => e
+      Rails.logger.warn(e)
       return
     end
 
