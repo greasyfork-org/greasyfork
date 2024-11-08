@@ -17,15 +17,19 @@ class ScriptCodeSearch
     end
 
     def index_all
-      script_and_sv_ids = Script.connection.select_rows('SELECT script_id, MAX(id) FROM script_versions GROUP BY script_id')
-      script_ids = script_and_sv_ids.map(&:first)
-      script_version_ids = script_and_sv_ids.map(&:last)
-      script_version_ids.in_groups_of(1000, false) do |batch|
-        Script.connection.select_rows("SELECT script_id, code FROM script_versions JOIN script_codes ON rewritten_script_code_id = script_codes.id WHERE script_versions.id in (#{batch.join(',')})").each do |row|
-          index_content(row[0], row[1], skip_dir_create: true)
+      Rails.logger.info('Determining latest script version IDs')
+      latest_script_version_ids = Script.connection.select_rows('SELECT MAX(id) FROM script_versions GROUP BY script_id')
+      code_to_script = Script.connection.select_rows("SELECT rewritten_script_code_id, script_id FROM script_versions WHERE id IN (#{latest_script_version_ids.join(',')})").to_h
+
+      Rails.logger.info('Writing files')
+      code_to_script.keys.sort.in_groups_of(1000, false) do |batch|
+        Script.connection.select_rows("SELECT id, code FROM script_codes WHERE id in (#{batch.join(',')})").each do |row|
+          index_content(code_to_script[row[0]], row[1], skip_dir_create: true)
         end
       end
-      (Set.new(Dir.children(BASE_PATH)) - script_ids.to_set(&:to_s)).each do |f|
+
+      Rails.logger.info('Removing stale files')
+      (Set.new(Dir.children(BASE_PATH)) - code_to_script.values.to_set(&:to_s)).each do |f|
         File.delete(File.join(BASE_PATH, f))
       end
     end
@@ -53,7 +57,6 @@ class ScriptCodeSearch
     end
 
     def path_for(script_id)
-      system('mkdir', '-p', BASE_PATH)
       File.join(BASE_PATH, script_id.to_s)
     end
   end
