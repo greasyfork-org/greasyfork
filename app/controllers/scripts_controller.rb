@@ -209,25 +209,25 @@ class ScriptsController < ApplicationController
     begin
       script, script_version = minimal_versionned_script(script_id, script_version_id)
     rescue ActiveRecord::RecordNotFound
-      handle_code_404(script_id:)
+      handle_code_not_found(script_id:)
       return
     end
 
     return if handle_replaced_script(script)
 
     if script.library? && request.path.ends_with?('.user.js')
-      head :not_found
+      handle_code_not_available
       return
     end
 
     user_js_code = if script.delete_type_blanked?
                      script_version.generate_blanked_code
                    elsif script.deleted?
-                     head :not_found
+                     handle_code_not_available
                      return
                    elsif script.css?
                      unless script.css_convertible_to_js?
-                       head :not_found
+                       handle_code_not_available
                        return
                      end
                      CssToJsConverter.convert(script_version.rewritten_code)
@@ -270,7 +270,7 @@ class ScriptsController < ApplicationController
     begin
       script, script_version = minimal_versionned_script(script_id, script_version_id)
     rescue ActiveRecord::RecordNotFound
-      handle_code_404(script_id:)
+      handle_code_not_found(script_id:)
       return
     end
 
@@ -910,15 +910,22 @@ class ScriptsController < ApplicationController
     file_cache_content(base_path.cleanpath, response_body, update_time: code_updated_at)
   end
 
-  def handle_code_404(script_id:)
-    # If that ID hasn't been used yet, don't 404 it, as we want it to work when it does exist.
+  # Logic for code requests where the script does not exist (yet or anymore)
+  def handle_code_not_found(script_id:)
+    # If that ID hasn't been used yet, don't 410 it, as we want it to work when it does exist.
     if script_id > Script.maximum(:id)
-      head :not_found
+      handle_code_not_available
       return
     end
 
     response.headers['Cache-Control'] = 'public,max-age=604800'
     head :gone
+  end
+
+  # Logic for code requests where we don't serve up code, but we may in the future (e.g. by soft-undeletion)
+  def handle_code_not_available
+    response.headers['Cache-Control'] = 'public,max-age=600'
+    head :not_found
   end
 
   def handle_wrong_url(resource, id_param_name)
@@ -997,7 +1004,7 @@ class ScriptsController < ApplicationController
     begin
       script_info = load_minimal_script_info(script_id, script_version_id)
     rescue ActiveRecord::RecordNotFound
-      handle_code_404(script_id:)
+      handle_code_not_found(script_id:)
       return
     end
 
