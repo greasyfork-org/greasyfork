@@ -1014,13 +1014,13 @@ class ScriptsController < ApplicationController
     end
 
     unless script_info.delete_type.nil?
-      head :not_found
+      handle_code_not_available
       return
     end
 
     # A style can serve out either JS or CSS. A script can only serve out JS.
     if script_info.language == 'js' && is_css
-      head :not_found
+      handle_code_not_available
       return
     end
 
