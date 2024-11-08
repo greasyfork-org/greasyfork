@@ -161,33 +161,37 @@ class ScriptsController < ApplicationController
     cachable_request = request.query_parameters.empty? && current_user.nil? && request.format.html?
     page_key = "script/feedback/#{params[:id]}/#{request_locale.id}" if cachable_request
 
-    cache_page(page_key) do
-      @script, @script_version = versionned_script(params[:id], params[:version])
+    respond_to do |format|
+      format.html do
+        cache_page(page_key) do
+          @script, @script_version = versionned_script(params[:id], params[:version])
 
-      return if handle_publicly_deleted(@script)
+          return if handle_publicly_deleted(@script)
 
-      return if handle_wrong_url(@script, :id)
+          return if handle_wrong_url(@script, :id)
 
-      @discussions = @script.discussions
-                            .visible
-                            .where(report_id: nil)
-                            .includes(:stat_first_comment, :poster)
-                            .order(stat_last_reply_date: :desc)
-                            .paginate(page: page_number, per_page: per_page(default: 25))
-      @discussion = @discussions.build(discussion_category: DiscussionCategory.script_discussions, poster: current_user)
-      @discussion.rating = Discussion::RATING_QUESTION if @discussion.by_script_author?
+          @discussions = @script.discussions
+                                .visible
+                                .where(report_id: nil)
+                                .includes(:stat_first_comment, :poster)
+                                .order(stat_last_reply_date: :desc)
+                                .paginate(page: page_number, per_page: per_page(default: 25))
+          @discussion = @discussions.build(discussion_category: DiscussionCategory.script_discussions, poster: current_user)
+          @discussion.rating = Discussion::RATING_QUESTION if @discussion.by_script_author?
 
-      @discussion.comments.build(text_markup: current_user&.preferred_markup)
+          @discussion.comments.build(text_markup: current_user&.preferred_markup)
 
-      @subscribe = current_user&.subscribe_on_discussion
+          @subscribe = current_user&.subscribe_on_discussion
 
-      set_bots_directive
-      @canonical_params = [:id, :version]
+          set_bots_directive
+          @canonical_params = [:id, :version]
 
-      @ad_method = choose_ad_method_for_script(@script)
-      @placed_ads = @ad_method&.ea?
+          @ad_method = choose_ad_method_for_script(@script)
+          @placed_ads = @ad_method&.ea?
 
-      render_to_string
+          render_to_string
+        end
+      end
     end
   end
 
