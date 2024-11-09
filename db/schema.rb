@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_01_004022) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_09_012359) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -586,7 +586,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_01_004022) do
     t.boolean "sensitive", default: false, null: false
     t.datetime "not_adult_content_self_report_date", precision: nil
     t.datetime "permanent_deletion_request_date", precision: nil
-    t.boolean "promoted", default: false, null: false
     t.bigint "promoted_script_id"
     t.boolean "adsense_approved"
     t.integer "page_views", default: 0, null: false
@@ -612,7 +611,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_01_004022) do
     t.index ["delta"], name: "index_scripts_on_delta"
     t.index ["license_id"], name: "fk_rails_45570d785a"
     t.index ["locale_id"], name: "fk_rails_8d9ea2abb5"
-    t.index ["promoted"], name: "index_scripts_on_promoted"
     t.index ["promoted_script_id"], name: "fk_rails_f98f8b875c"
     t.index ["replaced_by_script_id"], name: "fk_rails_58606610ec"
     t.index ["review_state"], name: "index_scripts_on_review_state"
