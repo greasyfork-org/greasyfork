@@ -1,6 +1,6 @@
 <%# locals: (attachable:)  %>
 
-<% attachments = attachable.attachments.includes(:blob).load %>
+<% attachments = attachable.attachments.includes(blob: { variant_records: { image_attachment: :blob }}).load %>
 <% if attachments.any? %>
   <div class="user-screenshots">
     <% attachments.each do |attachment| %>
