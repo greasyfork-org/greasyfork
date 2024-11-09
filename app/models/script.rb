@@ -6,8 +6,6 @@ class Script < ApplicationRecord
   include DetectsLocale
   include ScriptIndexing
 
-  self.ignored_columns += ['promoted']
-
   CONSECUTIVE_BAD_RATINGS_COUNT = 3
   CONSECUTIVE_BAD_RATINGS_GRACE_PERIOD = 2.weeks
   CONSECUTIVE_BAD_RATINGS_NOTIFICATION_DELAY = 1.day
