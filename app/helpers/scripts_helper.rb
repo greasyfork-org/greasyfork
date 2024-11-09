@@ -58,10 +58,8 @@ module ScriptsHelper
     return nil if sleazy?
     return nil if for_script.sensitive
     return nil if current_user && !current_user.show_ads
-    return for_script.promoted_script if for_script.promoted_script
-    return nil unless Random.rand(Rails.application.config.promoted_script_divisor) == 0
 
-    return Script.where(promoted: true).sample
+    return for_script.promoted_script
   end
   memoize :promoted_script
 
