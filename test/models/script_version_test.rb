@@ -602,21 +602,6 @@ class ScriptVersionTest < ActiveSupport::TestCase
     assert script.valid?, script.errors.full_messages
   end
 
-  test 'posting previously posted code as update' do
-    script = Script.find(3)
-    assert script.valid? && script.script_versions.length == 1 && script.script_versions.first.valid?
-    sv = ScriptVersion.new
-    sv.code = ScriptCode.find(13).code
-    sv.script = script
-    sv.calculate_all
-    sv.namespace_check_override = true
-    sv.version_check_override = true
-    assert_not sv.valid?
-    sv.allow_code_previously_posted = true
-    sv.meta_not_at_start_confirmation = true
-    assert sv.valid?
-  end
-
   test 'linebreak only update code without changing version' do
     script = Script.find(3)
     assert script.valid? && script.script_versions.length == 1 && script.script_versions.first.valid?

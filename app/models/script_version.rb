@@ -232,12 +232,17 @@ class ScriptVersion < ApplicationRecord
     return false if allow_code_previously_posted || !new_record?
 
     hash = script_code.calculate_hash
-    previously_posted_scope = ScriptVersion.joins(:script).merge(Script.not_deleted).where.not(script_id:)
+    previously_posted_scope = ScriptVersion.joins(:script).merge(Script.not_deleted)
     # Split into two queries to better use the indexes.
-    self.previously_posted_scripts = (
-          previously_posted_scope.joins(:script_code).where(script_codes: { code_hash: hash }) +
-          previously_posted_scope.joins(:rewritten_script_code).where(script_codes: { code_hash: hash })
-        ).map(&:script).uniq
+    potential_previous_posts = (
+      previously_posted_scope.joins(:script_code).where(script_codes: { code_hash: hash }) +
+        previously_posted_scope.joins(:rewritten_script_code).where(script_codes: { code_hash: hash })
+    ).map(&:script).uniq
+
+    # If it was previously posted on the same script, we won't warn about it, even if there are other scripts that are
+    # using it too. This ensures that the original author is not warned if someone later copies their code and then
+    # they do an update without changing code.
+    self.previously_posted_scripts = potential_previous_posts.include?(script) ? [] : potential_previous_posts
     previously_posted_scripts.any?
   end
 
