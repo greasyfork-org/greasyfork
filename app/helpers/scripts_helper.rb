@@ -30,8 +30,11 @@ module ScriptsHelper
     tag.li(class: "list-option#{is_link ? '' : ' list-current'}") { l }
   end
 
-  def script_applies_to_list_contents(script, by_sites)
+  def script_applies_to_list_contents(script)
     sats_with_domains, sats_without_domains = script.script_applies_tos.partition(&:domain?)
+
+    by_sites = TopSitesService.script_counts_for_sites(sites: sats_with_domains.map(&:domain_text), script_subset:)
+
     return (
     sats_with_domains.map do |sat|
       content_for_script_applies_to_that_has_domain(sat, count_of_other_scripts_with_sat(sat, script, by_sites))
@@ -82,10 +85,11 @@ module ScriptsHelper
   end
 
   def count_of_other_scripts_with_sat(script_applies_to, script, by_sites)
-    return 0 if by_sites[script_applies_to.domain_text].nil?
+    count = by_sites[script_applies_to.domain_text]
+    return 0 if count.nil? || count == 0
 
     # take this one out of the count if it's a listable
-    return (by_sites[script_applies_to.domain_text][:scripts] - (script.listable? ? 1 : 0))
+    return (count - (script.listable? ? 1 : 0))
   end
 
   def similarity_string(score)

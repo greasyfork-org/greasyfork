@@ -96,7 +96,6 @@ class ScriptsController < ApplicationController
             return
           end
 
-          @by_sites = TopSitesService.get_by_sites(script_subset:)
           @link_alternates = [
             { url: current_path_with_params(format: :json), type: 'application/json' },
             { url: current_path_with_params(format: :jsonp, callback: 'callback'), type: 'application/javascript' },

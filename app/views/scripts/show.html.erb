@@ -92,7 +92,7 @@
           <%= t('scripts.applies_to_all') %>
         <% else %>
           <ul class="block-list expandable">
-            <% script_applies_to_list_contents(@script, @by_sites).each do |script_applies_to_content| %>
+            <% script_applies_to_list_contents(@script).each do |script_applies_to_content| %>
               <li><%= script_applies_to_content %></li>
             <% end %>
           </ul>

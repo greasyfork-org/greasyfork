@@ -185,6 +185,7 @@ class ApplicationController < ActionController::Base
 
     return current_user.show_sensitive ? :all : :greasyfork
   end
+  helper_method :script_subset
 
   def greasy_only
     render_404 unless greasy?

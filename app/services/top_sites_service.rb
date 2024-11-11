@@ -43,7 +43,13 @@ class TopSitesService
         Rails.logger.warn('Combining by_sites and all_sites') if Greasyfork::Application.config.log_cache_misses
         # combine with "All sites" number
         a = ([[nil] + all_sites] + by_sites)
-        a.to_h { |key, install_count, script_count| [key, { installs: install_count.to_i, scripts: script_count.to_i }] }
+        rv = a.to_h { |key, install_count, script_count| [key, { installs: install_count.to_i, scripts: script_count.to_i }] }
+
+        # We also write a cache key for each individual site as just reading the the full list from redis takes ~50ms,
+        # and we want to avoid that for scripts/show.
+        Rails.cache.write_multi(rv.to_h { |site, stats| [site_script_count_cache_key(site:, script_subset:), stats[:scripts]] }) if locale_id.nil? && user_id.nil?
+
+        rv
       end
     end
 
@@ -66,6 +72,16 @@ class TopSitesService
         SQL
         Script.connection.select_all(sql).first
       end
+    end
+
+    # Returns a Hash of site name to script count.
+    def script_counts_for_sites(sites:, script_subset:)
+      values = Rails.cache.read_multi(*sites.map { |site| site_script_count_cache_key(site:, script_subset:) })
+      sites.index_with { |site| values[site_script_count_cache_key(site:, script_subset:)] || 0 }
+    end
+
+    def site_script_count_cache_key(site:, script_subset:)
+      "site_script_count/#{script_subset}/#{site}"
     end
 
     def refresh!
