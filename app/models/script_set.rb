@@ -53,11 +53,23 @@ class ScriptSet < ApplicationRecord
   end
 
   def child_script_inclusions
-    script_inclusions.reject(&:marked_for_destruction?).reject(&:exclusion).map(&:child)
+    si = script_inclusions
+    si = if new_record?
+           si.reject(&:marked_for_destruction?).reject(&:exclusion)
+         else
+           si.includes(:child).where(exclusion: false)
+         end
+    si.map(&:child)
   end
 
   def child_script_exclusions
-    script_inclusions.reject(&:marked_for_destruction?).select(&:exclusion).map(&:child)
+    si = script_inclusions
+    si = if new_record?
+           si.reject(&:marked_for_destruction?).select(&:exclusion)
+         else
+           si.includes(:child).where(exclusion: true)
+         end
+    si.map(&:child)
   end
 
   def child_automatic_set_inclusions
