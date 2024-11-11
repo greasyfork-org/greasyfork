@@ -47,6 +47,7 @@ it:
     deleted_notice_with_related_and_reason: "Lo script che hai richiesto è stato eliminato a causa di %{report_link:this report}, ma ecco alcuni script correlati."
     deleted_undelete_notice_html: "Lo script è stato bloccato da un moderatore e non può essere cancellato. La motivazione fornita è: \"<i>%{delete_reason}</i>\"."
     deleted_locked_author_notice_html: "Questo script è stato eliminato da un moderatore in risposta a %{report_link:this report} e non sarà accessibile ad altri. La spiegazione fornita è \"<i>%{delete_reason}</i>\". Per favore controlla il %{code_rules_link:regolamento di %{site_name}}. Se pensi che la cancellazione sia un errore, puoi %{appeal_link:presentare ricorso} per questa cancellazione. Non ripubblicare questo script; ciò potrebbe portarti ad essere bandito da %{site_name}."
+    self_deleted_locked_author_notice_html: "Questo script è stato cancellato dall'utente in risposta a %{report_link:questa segnalazione} e non è accessibile ad altri. Se hai aggiornato il tuo script per renderlo in linea con le regole di %{code_rules_link:%{site_name}}, puoi %{appeal_link:presentare un appello} a questa cancellazione. Non ripubblicare questo script; ciò potrebbe comportare il ban da %{site_name}."
     deleted_author_notice: "Lo script è stato cancellato e non è accessibile da altri. Puoi ripristinarlo dalla finestra Elimina."
     version_notice_html: "Versione datata %{date}. Vedi la nuova versione %{latest_version_link}."
     version_notice_latest_version_link: "l'ultima versione"
@@ -101,6 +102,8 @@ it:
       compare_button: "Confronta"
       compare_must_be_local_url: "Lo script da confrontare deve essere rappresentato da un URL di %{site_name} "
       compare_cleaned_code_unavailable: "La versione con codice pulito di questo script non e' ancora disponibile."
+      checkup:
+        title: Checkup
     history_title: "%{script_name} - Cambiamenti versioni"
     history_only_code_changes_info: "queste sono le versioni di questo script in cui il codice è stato aggiornato"
     history_all_changes_link: "Visualizza tutte le versioni."
