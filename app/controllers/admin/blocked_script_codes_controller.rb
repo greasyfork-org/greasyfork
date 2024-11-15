@@ -37,6 +37,9 @@ module Admin
     def destroy
       @blocked_script_code = BlockedScriptCode.find(params[:id])
       @blocked_script_code.destroy!
+      # rubocop:disable Rails/I18nLocaleTexts
+      flash[:notice] = 'Blocked Script Code deleted'
+      # rubocop:enable Rails/I18nLocaleTexts
       redirect_to admin_blocked_script_codes_path
     end
 

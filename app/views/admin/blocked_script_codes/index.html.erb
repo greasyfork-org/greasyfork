@@ -35,7 +35,7 @@
         <td><%= link_to(blocked_script_code.originating_script.default_name, blocked_script_code.originating_script) if blocked_script_code.originating_script %></td>
         <td>
           <%= link_to('Edit', edit_admin_blocked_script_code_path(blocked_script_code)) if current_user.administrator? %>
-          <%= link_to('Delete', admin_blocked_script_code_path(blocked_script_code), method: :delete) if current_user.administrator? %>
+          <%= link_to('Delete', admin_blocked_script_code_path(blocked_script_code), data: { turbo: true, turbo_method: :DELETE}) if current_user.administrator? %>
         </td>
       </tr>
     <% end %>
