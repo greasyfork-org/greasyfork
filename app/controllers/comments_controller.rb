@@ -67,11 +67,15 @@ class CommentsController < ApplicationController
 
   def destroy
     comment = @discussion.comments.not_deleted.find(params[:id])
-    unless current_user&.moderator? || comment.deletable_by?(current_user)
+    normally_deletable = comment.deletable_by?(current_user)
+
+    unless normally_deletable || current_user&.moderator?
       render_access_denied
       return
     end
     comment.soft_destroy!(by_user: current_user)
+    ModeratorAction.create!(moderator: current_user, comment:, action: 'Delete') unless normally_deletable
+
     redirect_to @discussion.path(locale: request_locale.code)
   end
 

@@ -137,6 +137,9 @@ class Discussion < ApplicationRecord
 
   def display_title(locale: nil)
     return title if title
+
+    locale = locale.code if locale.is_a?(Locale)
+
     return I18n.t('discussions.review_title', script_name: script.name(locale), locale:) if actual_rating?
 
     I18n.t('discussions.question_title', script_name: script.name(locale), locale:)

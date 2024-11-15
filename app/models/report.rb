@@ -112,12 +112,14 @@ class Report < ApplicationRecord
       when Comment
         reported_users.each { |user| user.ban!(moderator:, delete_comments:, delete_scripts:, ban_related: true, report: self) } if ban_user
         item.soft_destroy!(by_user: moderator) unless item.soft_deleted?
+        ModeratorAction.create!(moderator:, comment: item, action: 'Delete', report: self, private_reason: moderator_notes) unless item.soft_deleted? || ban_user
       when Discussion
         if reason == REASON_WRONG_CATEGORY
           item.update!(discussion_category_id:, script_id: nil, rating: nil, title: item.first_comment.plain_text.truncate(200))
         else
           reported_users.each { |user| user.ban!(moderator:, delete_comments:, delete_scripts:, ban_related: true, report: self) } if ban_user
           item.soft_destroy!(by_user: moderator) unless item.soft_deleted?
+          ModeratorAction.create!(moderator:, discussion: item, action: 'Delete', report: self, private_reason: moderator_notes) unless item.soft_deleted? || ban_user
         end
       when Script
         if unauthorized_code? && reference_script

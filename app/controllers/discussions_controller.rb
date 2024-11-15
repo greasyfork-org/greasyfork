@@ -231,7 +231,15 @@ class DiscussionsController < ApplicationController
 
   def destroy
     discussion = discussion_scope.find(params[:id])
+    normally_deletable = discussion.deletable_by?(current_user)
+    unless normally_deletable || current_user&.moderator?
+      render_access_denied
+      return
+    end
+
     discussion.soft_destroy!
+    ModeratorAction.create!(moderator: current_user, discussion:, action: 'Delete') unless normally_deletable
+
     if discussion.script
       redirect_to script_path(discussion.script)
     else

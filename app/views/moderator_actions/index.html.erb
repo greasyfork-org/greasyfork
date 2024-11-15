@@ -22,6 +22,10 @@
           <%= t('moderator_logs.item_deleted_script', id: action.script_id) %>
         <% elsif action.user_id %>
           <%= t('moderator_logs.item_user_html', user_link: render_user(action.user, action.user_id, skip_badge: true)) %>
+        <% elsif action.discussion %>
+          <%= t('moderator_logs.item_discussion_html', discussion_link: (action.discussion.soft_deleted? && !current_user&.moderator?) ? action.discussion.display_title(locale: request_locale) : link_to(action.discussion.display_title(locale: request_locale), action.discussion.path)) %>
+        <% elsif action.comment %>
+          <%= t('moderator_logs.item_comment_html', comment_link: (action.comment.discussion.soft_deleted? && !current_user&.moderator?) ? action.comment.discussion.display_title(locale: request_locale) : link_to(action.comment.discussion.display_title(locale: request_locale), action.comment.path)) %>
         <% end %>
       </td>
       <td><%= action.action %></td>
