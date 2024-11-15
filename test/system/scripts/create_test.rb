@@ -122,8 +122,10 @@ class CreateTest < ApplicationSystemTestCase
     user = User.first
     user.skip_reconfirmation!
     user.update(email: 'salomon@fishy.hut', confirmed_at: nil)
+    user.scripts.delete_all
     login_as(user, scope: :user)
     visit new_script_version_url
+    click_link "I've written a script"
     assert_content 'You must confirm your account before you can post scripts.'
   end
 
