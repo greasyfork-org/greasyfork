@@ -43,6 +43,7 @@ class ScriptPreviouslyDeletedChecker < ApplicationJob
       reference_script:,
       auto_reporter: 'hardy',
       reason:,
+      blatant: scripts_and_reports.count >= 10,
       explanation_markup: 'markdown',
       explanation: <<~TEXT)
         Script is similar to previously deleted scripts:

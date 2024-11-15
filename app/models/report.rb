@@ -52,7 +52,7 @@ class Report < ApplicationRecord
   scope :resolved, -> { where.not(result: nil) }
   scope :upheld, -> { where(result: RESULT_UPHELD) }
   scope :resolved_and_valid, -> { where(result: [RESULT_UPHELD, RESULT_FIXED], moderator_reason_override: nil) }
-  scope :block_on_pending, -> { unresolved.trusted_reporter.where.not(reason: NON_BLOCKING_REASONS) }
+  scope :block_on_pending, -> { unresolved.where.not(reason: NON_BLOCKING_REASONS).trusted_reporter.or(unresolved.where.not(reason: NON_BLOCKING_REASONS).where(blatant: true)) }
   scope :trusted_reporter, -> { joins(:reporter).where(users: { trusted_reports: true }) }
 
   belongs_to :item, polymorphic: true
