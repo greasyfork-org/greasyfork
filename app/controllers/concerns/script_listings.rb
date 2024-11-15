@@ -333,7 +333,7 @@ module ScriptListings
       with[:available_as_js] = true
     end
 
-    with[:author_ids] = params[:by] unless params[:by].to_i.zero?
+    with[:author_ids] = params[:by].to_i unless params[:by].to_i.zero?
 
     includes = [:localized_attributes, :users]
     includes.push(:locale, :license) if for_json
