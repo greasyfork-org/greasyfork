@@ -11,6 +11,7 @@ class Comment < ApplicationRecord
   # Optional because the user may no longer exist.
   belongs_to :poster, class_name: 'User', optional: true
   has_many :reports, as: :item, dependent: :destroy
+  has_many :notifications, as: :item, dependent: :destroy
 
   validates :text, presence: true, length: { maximum: 65_535 }
   validates :text_markup, inclusion: { in: %w[html markdown] }, presence: true
@@ -51,6 +52,7 @@ class Comment < ApplicationRecord
 
   after_soft_destroy do
     discussion.soft_destroy! if first_comment? && !discussion.soft_deleted?
+    notifications.destroy_all
   end
 
   after_commit do

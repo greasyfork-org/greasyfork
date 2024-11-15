@@ -56,4 +56,12 @@ class CommentTest < ActiveSupport::TestCase
     comment = comments(:non_script_comment_2)
     assert_not comment.deletable_by?(users(:one))
   end
+
+  test 'soft deleting a comment deletes related notifications' do
+    comment = comments(:non_script_comment_2)
+    Notification.create!(user: User.first, notification_type: Notification::NOTIFICATION_TYPE_NEW_COMMENT, item: comment)
+    assert_difference -> { Notification.count } => -1 do
+      comment.soft_destroy!
+    end
+  end
 end
