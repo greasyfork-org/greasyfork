@@ -54,7 +54,7 @@ class ScriptSet < ApplicationRecord
 
   def child_script_inclusions
     si = script_inclusions
-    si = if new_record?
+    si = if new_record? || si.loaded?
            si.reject(&:marked_for_destruction?).reject(&:exclusion)
          else
            si.includes(:child).where(exclusion: false)
@@ -64,7 +64,7 @@ class ScriptSet < ApplicationRecord
 
   def child_script_exclusions
     si = script_inclusions
-    si = if new_record?
+    si = if new_record? || si.loaded?
            si.reject(&:marked_for_destruction?).select(&:exclusion)
          else
            si.includes(:child).where(exclusion: true)
