@@ -80,7 +80,7 @@ module ScriptIndexing
     scope :search_import, -> { includes(:localized_attributes, :users, :script_applies_tos) }
     scope :indexable, -> { not_deleted.where.not(script_type: :unlisted).where.not(review_state: 'required') }
 
-    after_commit if: ->(model) { should_index? && model.previous_changes.keys.intersect?(%w[created_at code_updated_at total_installs daily_installs sensitive script_type fan_score available_as_js available_as_css]) } do
+    after_commit if: ->(model) { should_index? && model.previous_changes.keys.intersect?(%w[created_at code_updated_at total_installs daily_installs sensitive script_type fan_score available_as_js available_as_css deleted_at script_type]) } do
       reindex(mode: :async) if Searchkick.callbacks?
     end
 
