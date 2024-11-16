@@ -229,7 +229,9 @@ class Script < ApplicationRecord
   end
 
   after_create_commit do |script|
-    ScriptDuplicateCheckerJob.perform_async(script.id)
+    # Increase the priority on this job because it's a new script. ScriptPreviouslyDeletedChecker runs off of this call
+    # and we want that to happen quickly.
+    ScriptDuplicateCheckerJob.set(queue: 'default').perform_async(script.id)
   end
 
   # Check saved_change_to to determine whether to run, but have to run after_commit for the changes to be visible to the
@@ -240,10 +242,7 @@ class Script < ApplicationRecord
 
   after_update_commit do |script|
     if @_code_changed
-      unless Rails.env.development?
-        ScriptDuplicateCheckerJob.perform_async(script.id)
-        # ScriptUpdateCacheClearJob.perform_later(script.id)
-      end
+      ScriptDuplicateCheckerJob.perform_async(script.id) unless Rails.env.development?
       clear_latest_cached_code
     end
     @_code_changed = false
