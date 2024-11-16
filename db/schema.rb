@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_15_164257) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_16_204100) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -729,6 +729,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_15_164257) do
     t.datetime "stats_script_last_created", precision: nil
     t.datetime "stats_script_last_updated", precision: nil
     t.boolean "subscribe_on_script_discussion", default: true, null: false
+    t.string "registration_email_domain", limit: 100
     t.index ["canonical_email"], name: "index_users_on_canonical_email"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true

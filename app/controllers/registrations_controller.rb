@@ -67,7 +67,7 @@ class RegistrationsController < Devise::RegistrationsController
 
     if User.where(banned_at: 1.week.ago..)
            .where('current_sign_in_ip = :ip OR last_sign_in_ip = :ip', ip: request.remote_ip)
-           .where(email_domain:)
+           .where('email_domain = :email_domain OR registration_email_domain = :email_domain', email_domain:)
            .count >= 2 ||
        User.where(banned_at: 1.day.ago..).where('current_sign_in_ip = :ip OR last_sign_in_ip = :ip', ip: request.remote_ip).any?
       @text = 'Your IP address has been banned.'

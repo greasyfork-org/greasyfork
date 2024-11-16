@@ -88,6 +88,7 @@ class User < ApplicationRecord
 
   before_save do
     self.email_domain = email&.split('@')&.last
+    self.registration_email_domain ||= email_domain
   end
 
   after_create_commit do
