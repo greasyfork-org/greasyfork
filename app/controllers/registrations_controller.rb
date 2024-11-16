@@ -66,7 +66,7 @@ class RegistrationsController < Devise::RegistrationsController
     return unless Rails.application.config.ip_address_tracking
 
     if User.where(banned_at: 1.week.ago..)
-           .where(current_sign_in_ip: request.remote_ip)
+           .where('current_sign_in_ip = :ip OR last_sign_in_ip = :ip', ip: request.remote_ip)
            .where(email_domain:)
            .count >= 2
       @text = 'Your IP address has been banned.'
