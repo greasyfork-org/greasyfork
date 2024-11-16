@@ -84,7 +84,7 @@ module ScriptIndexing
       reindex(mode: :async) if Searchkick.callbacks?
     end
 
-    after_commit if: ->(model) { model.previous_changes.keys.intersect?(%w[deleted_at script_type]) } do
+    after_commit if: ->(model) { model.previous_changes.keys.intersect?(%w[deleted_at script_type delete_type]) } do
       reindex(mode: :async) if Searchkick.callbacks?
     end
 
