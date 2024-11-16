@@ -1,3 +1,5 @@
+require 'levenshtein'
+
 class ScriptPreviouslyDeletedChecker < ApplicationJob
   include Rails.application.routes.url_helpers
 
@@ -6,21 +8,8 @@ class ScriptPreviouslyDeletedChecker < ApplicationJob
 
     return if script.locked?
 
-    similar_locked_scripts = ScriptSimilarity
-                             .where(script_id:)
-                             .joins(:other_script)
-                             .where(scripts: { locked: true })
+    similar_locked_scripts = (check_by_code(script) + check_by_name(script)).uniq
 
-    clean_length = CleanedCode.find_by(script_id:)&.code&.length
-
-    # Be more lenient if it's a very short (code-wise) script.
-    similar_locked_scripts = if clean_length && clean_length < 250
-                               similar_locked_scripts.where('(similarity >= 0.8 AND !tersed) OR (similarity >= 0.9 AND tersed)')
-                             else
-                               similar_locked_scripts.where('similarity >= 0.8')
-                             end
-
-    similar_locked_scripts = similar_locked_scripts.map(&:other_script).uniq
     return unless similar_locked_scripts.count > 1
 
     # No description is removed because there could be that info in additional info, which is not checked by this
@@ -50,5 +39,28 @@ class ScriptPreviouslyDeletedChecker < ApplicationJob
 
         #{scripts_and_reports.first(10).map { |other_script, reports| "- [#{other_script.default_name}](#{script_url(other_script, locale: nil)}) [Diff](#{admin_script_path(script, compare: script_url(other_script, locale: nil), locale: nil, anchor: 'script-comparison', terser: 1)}) #{reports.each_with_index.map { |r, i| "[#{i + 1}](#{report_url(r, locale: nil)})" }.join(' ')}" }.join("\n")}
       TEXT
+  end
+
+  def check_by_code(script)
+    other_scripts = ScriptSimilarity
+                    .where(script_id: script.id)
+                    .joins(:other_script)
+                    .where(scripts: { locked: true })
+
+    clean_length = CleanedCode.find_by(script_id: script.id)&.code&.length
+
+    # Be more lenient if it's a very short (code-wise) script.
+    other_scripts = if clean_length && clean_length < 250
+                      other_scripts.where('(similarity >= 0.8 AND !tersed) OR (similarity >= 0.9 AND tersed)')
+                    else
+                      other_scripts.where('similarity >= 0.8')
+                    end
+
+    other_scripts.map(&:other_script).uniq
+  end
+
+  def check_by_name(script)
+    other_scripts = Script.locked.where(deleted_at: 1.month.ago..)
+    other_scripts.select { |other_script| Levenshtein.distance(other_script.default_name, script.default_name, 3) }
   end
 end

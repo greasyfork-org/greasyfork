@@ -109,4 +109,38 @@ class ScriptPreviouslyDeletedCheckerTest < ActiveSupport::TestCase
       ScriptPreviouslyDeletedChecker.perform_now(script.id)
     end
   end
+
+  test 'when there similar locked by name, it matches' do
+    script = Script.first
+
+    script_2 = Script.second
+    script_3 = Script.third
+
+    script_2.update_columns(default_name: "#{script.default_name}!", delete_type: 'keep', deleted_at: Time.zone.now, locked: true)
+    script_3.update_columns(default_name: "#{script.default_name}?", delete_type: 'keep', deleted_at: Time.zone.now, locked: true)
+
+    Report.create!(item: script_2, result: Report::RESULT_UPHELD, reason: Report::REASON_MALWARE, reporter: User.first, explanation: 'virus')
+    Report.create!(item: script_3, result: Report::RESULT_UPHELD, reason: Report::REASON_MALWARE, reporter: User.first, explanation: 'virus')
+
+    assert_difference -> { Report.count } => 1 do
+      ScriptPreviouslyDeletedChecker.perform_now(script.id)
+    end
+  end
+
+  test 'when there locked by name with different names, it does not match' do
+    script = Script.first
+
+    script_2 = Script.second
+    script_3 = Script.third
+
+    script_2.update_columns(default_name: "#{script.default_name} and then more text", delete_type: 'keep', deleted_at: Time.zone.now, locked: true)
+    script_3.update_columns(default_name: "#{script.default_name} and even more after that", delete_type: 'keep', deleted_at: Time.zone.now, locked: true)
+
+    Report.create!(item: script_2, result: Report::RESULT_UPHELD, reason: Report::REASON_MALWARE, reporter: User.first, explanation: 'virus')
+    Report.create!(item: script_3, result: Report::RESULT_UPHELD, reason: Report::REASON_MALWARE, reporter: User.first, explanation: 'virus')
+
+    assert_no_difference -> { Report.count } do
+      ScriptPreviouslyDeletedChecker.perform_now(script.id)
+    end
+  end
 end
