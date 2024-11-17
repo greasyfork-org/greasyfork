@@ -19,5 +19,10 @@
     <%= f.text_field :private_reason, required: true %>
   </div>
 
+  <div class="form-control">
+    <%= f.check_box :notify_admin %>
+    <%= f.label :notify_admin, 'Notify admin', class: 'radio-label' %>
+  </div>
+
   <%= f.submit %>
 <% end %>

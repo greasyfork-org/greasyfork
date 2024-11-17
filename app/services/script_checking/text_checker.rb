@@ -4,8 +4,14 @@ module ScriptChecking
       def check(script_version)
         bst = BlockedScriptText.all.load
         results = attributes_to_check(script_version).map do |attr|
-          bst.map do |b|
-            ScriptChecking::Result.new(b.ban? ? ScriptChecking::Result::RESULT_CODE_BAN : ScriptChecking::Result::RESULT_CODE_REVIEW, b.public_reason, b.private_reason, b) if attr.include?(b.text.downcase)
+          bst.select { |b| attr.include?(b.text.downcase) }.map do |b|
+            ScriptChecking::Result.new(
+              b.ban? ? ScriptChecking::Result::RESULT_CODE_BAN : ScriptChecking::Result::RESULT_CODE_REVIEW,
+              b.public_reason,
+              b.private_reason,
+              b,
+              notify: b.notify_admin
+            )
           end
         end
         results = results.flatten.compact
