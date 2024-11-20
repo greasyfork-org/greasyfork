@@ -14,7 +14,7 @@
 
       <%= it('scripts.admin.checkup.globs_html', include_link: help_meta_keys_path(anchor: 'meta-include'), match_link: help_meta_keys_path(anchor: 'meta-include'), site_name:) %>
       <% if non_domain_applies_tos.any? %>
-        <%= t('scripts.admin.checkup.globs_used', globs: safe_join(non_domain_applies_tos.map(&:site_application).map(&:text).map {|t| content_tag(:code, t) }, ', ')) %>
+        <%= t('scripts.admin.checkup.globs_used_html', globs: safe_join(non_domain_applies_tos.map(&:site_application).map(&:text).map {|t| content_tag(:code, t) }, ', ')) %>
       <% end %>
     </li>
 
