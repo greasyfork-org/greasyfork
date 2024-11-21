@@ -576,6 +576,10 @@ nl:
     edit_sign_in: "Inlogmethodes bewerken"
     edit_sign_in_title: "Inlogmethodes bewerken"
     edit_sign_in_password: "Wachtwoord"
+    edit_sign_in_2fa_enabled: Verificatie in twee stappen (2FA) is ingesteld.
+    edit_sign_in_disable_2fa: 2FA uitschakelen
+    edit_sign_in_2fa_disabled: Je kunt verificatie in twee stappen (2FA) inschakelen om je %{site_name}-account beter te beveiligen.
+    edit_sign_in_enable_2fa: 2FA inschakelen
     edit_notifications: "Meldingsinstellingen aanpassen"
     view_notifications: "Meldingen bekijken"
     no_password_set_info: "Je account is niet beveiligd met een wachtwoord."
@@ -602,6 +606,25 @@ nl:
     disable_syncing: "Synchroniseren uitschakelen"
     remove_external_sign_in: "Verwijderen"
     add_external_sign_in_info: "Inlogdienst toevoegen:"
+    2fa_enabled: 2FA is ingeschakeld.
+    2fa_enabled_already: 2FA is al ingeschakeld.
+    2fa_enable_code_incorrect: De 2FA-code is onjuist - probeer het opnieuw.
+    2fa_disabled: 2FA is uitgeschakeld.
+    2fa_disabled_already: 2FA is al uitgeschakeld.
+    2fa_entry:
+      intro_html: "Ingelogd als <b>%{email}</b>"
+    enable_2fa:
+      intro: "Voeg %{site_name} toe aan je 2FA-app aan de hand van een van onderstaande methoden en voer vervolgens de code in."
+      qr_heading: Met een QR-code
+      url_heading: Met een link
+      url_info: Als je dit vanaf hetzelfde apparaat als je 2FA-app leest, kun je ook %{auth_link:deze direct link} proberen.
+      manual_heading: Handmatig
+      manual_entry_code_name: "Codenaam: %{code_name}"
+      manual_entry_your_key: "Sleutel: %{key}"
+      manual_entry_type_of_key: "Soort sleutel: tijdsgebaseerd"
+      code_entry_heading: Voer de code in
+      code_entry: "Voer de code uit je 2FA-app in om 2FA in te schakelen op je %{site_name}-account:"
+      verify_code: Code verifiëren
     set_up_webhook: "Webkoppeling instellen"
     list_display_html:
       one: "%{user_link} - %{count} script"
@@ -1347,6 +1370,7 @@ nl:
         current_password: "Huidig wachtwoord"
         new_password: "Nieuw wachtwoord"
         new_password_confirmation: "Wachtwoord herhalen"
+        otp_attempt: Verificatie in twee stappen (2FA)-code
       script:
         name: "Naam"
         description: "Beschrijving"
