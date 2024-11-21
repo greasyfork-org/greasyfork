@@ -1,0 +1,21 @@
+<p>
+  <%= t('users.enable_2fa.intro') %>
+</p>
+
+<%= image_tag(qr_path(url: current_user.otp_provisioning_uri(current_user.email, issuer: site_name), format: :svg), style: 'max-width: 400px;') %>
+
+<p>
+  <%= t('users.enable_2fa.manual_entry_into') %><br>
+  <%= t('users.enable_2fa.manual_entry_code_name', code_name: site_name) %><br>
+  <%= t('users.enable_2fa.manual_entry_your_key', key: current_user.otp_secret) %><br>
+  <%= t('users.enable_2fa.manual_entry_type_of_key') %>
+</p>
+
+<p>
+  <%= t('users.enable_2fa.code_entry', site_name:) %>
+
+  <%= form_tag(user_confirm_2fa_path, method: :patch) do %>
+    <input name="code" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code" required>
+    <input type="submit" value="<%= t('users.enable_2fa.verify_code') %>">
+  <% end %>
+</p>

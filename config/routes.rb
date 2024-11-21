@@ -60,6 +60,9 @@ Rails.application.routes.draw do
     get '/users/delete_confirm' => 'users#delete_confirm', :as => 'user_delete_confirm'
     post '/users/delete_complete' => 'users#delete_complete', :as => 'user_delete_complete'
     post '/dismiss_announcement/:key' => 'users#dismiss_announcement', as: 'dismiss_announcement'
+    patch '/users/enable_2fa' => 'users#enable_2fa', as: 'user_enable_2fa'
+    patch '/users/disable_2fa' => 'users#disable_2fa', as: 'user_disable_2fa'
+    patch '/users/confirm_2fa' => 'users#confirm_2fa', as: 'user_confirm_2fa'
 
     # disable destroying users
     devise_for :users, skip: :registrations, controllers: { sessions: 'sessions' }
@@ -274,6 +277,8 @@ Rails.application.routes.draw do
   get '/forum/discussion/:id/:slug' => 'discussions#old_redirect'
 
   post '/unsubscribe/:token' => 'unsubscribe#process_one_click', as: :one_click_unsubscribe
+
+  get '/qr' => 'qr#show', as: :qr
 
   get '404', to: 'home#routing_error'
 end

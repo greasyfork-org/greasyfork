@@ -1,0 +1,18 @@
+<%= form_for(User.new, as: 'user', url: session_path(resource_name)) do |f| %>
+  <% [:email, :password, :remember_me].each do |param| %>
+    <%= hidden_field_tag("user[#{param}]", params[:user][param]) %>
+  <% end %>
+
+  <p>
+    <%= t('users.2fa_entry.intro_html', email: params[:user][:email]) %>
+  </p>
+
+  <div class="field">
+    <%= f.label :otp_attempt %>
+    <%= text_field_tag 'user[otp_attempt]', nil, inputmode: :numeric, pattern: '[0-9]*', autocomplete: 'one-time-code', required: true %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit t('devise.sessions.new.sign_in') %>
+  </div>
+<% end %>

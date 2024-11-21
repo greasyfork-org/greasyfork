@@ -366,6 +366,46 @@ class UsersController < ApplicationController
     redirect_to user_path(current_user)
   end
 
+  def enable_2fa
+    if current_user.otp_required_for_login
+      flash[:alert] = t('users.2fa_enabled_already')
+      redirect_to user_path(current_user)
+      return
+    end
+
+    return if current_user.otp_secret
+
+    current_user.otp_secret = User.generate_otp_secret
+    current_user.save!
+  end
+
+  def disable_2fa
+    unless current_user.otp_required_for_login
+      flash[:alert] = t('users.2fa_disabled_already')
+      redirect_to user_edit_sign_in_path
+      return
+    end
+
+    current_user.otp_required_for_login = false
+    current_user.otp_secret = nil
+    current_user.save!
+    flash[:notice] = t('users.2fa_disabled')
+    redirect_to user_edit_sign_in_path
+  end
+
+  def confirm_2fa
+    unless current_user.validate_and_consume_otp!(params[:code])
+      flash[:alert] = t('users.2fa_enable_code_incorrect')
+      render :enable_2fa
+      return
+    end
+
+    current_user.otp_required_for_login = true
+    current_user.save!
+    flash[:notice] = t('users.2fa_enabled')
+    redirect_to user_edit_sign_in_path
+  end
+
   def self.apply_sort(finder, sort:)
     case sort
     when 'name'

@@ -35,6 +35,28 @@
   <% end %>
 <% end %>
 
+<% if current_user.encrypted_password %>
+  <hr>
+
+  <% if current_user.otp_required_for_login %>
+    <%= form_tag(user_disable_2fa_path, method: :patch, class: 'inline-form') do |f| %>
+      <p>
+        <%= t('users.edit_sign_in_2fa_enabled') %>
+        <input type="submit" value="<%= t('users.edit_sign_in_disable_2fa') %>">
+      </p>
+    <% end %>
+  <% else %>
+    <%= form_tag(user_enable_2fa_path, method: :patch, class: 'inline-form') do |f| %>
+      <p>
+        <%= t('users.edit_sign_in_2fa_disabled', site_name:) %>
+        <input type="submit" value="<%= t('users.edit_sign_in_enable_2fa') %>">
+      </p>
+    <% end %>
+  <% end %>
+<% end %>
+
+<hr>
+
 <% if !current_user.encrypted_password.nil? and !current_user.identities.empty? %>
   <%= form_tag(user_remove_password_path, method: :put, class: 'inline-form') do |f| %>
     <p><%= t('users.remove_password_info') %> <input type="submit" value="<%= t('users.remove_password') %>"></p>

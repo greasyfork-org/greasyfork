@@ -167,6 +167,18 @@ class SessionsController < Devise::SessionsController
     super
   end
 
+  def create
+    user = User.find_by(email: params[:user][:email])
+
+    # If user exists, password is right, and 2FA is enabled, go to the 2FA code entry screen. Otherwise, normal processing.
+    if user&.otp_required_for_login && user.valid_password?(params[:user][:password]) && params[:user][:otp_attempt].nil?
+      render :two_fa_entry
+      return
+    end
+
+    super
+  end
+
   # Prevent session termination vulnerability
   # https://makandracards.com/makandra/53562-devise-invalidating-all-sessions-for-a-user
   def destroy

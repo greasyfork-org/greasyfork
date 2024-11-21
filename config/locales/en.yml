@@ -816,6 +816,10 @@ en:
     edit_sign_in_title: "Edit sign in methods"
     # heading for the password section of the edit sign in methods page
     edit_sign_in_password: "Password"
+    edit_sign_in_2fa_enabled: You are set up with two-factor authentication (2FA).
+    edit_sign_in_disable_2fa: Disable 2FA
+    edit_sign_in_2fa_disabled: You can enable two-factor authentication (2FA) for better security on your %{site_name} account.
+    edit_sign_in_enable_2fa: Enable 2FA
     edit_notifications: "Edit notification settings"
     view_notifications: "View notifications"
     # informational text telling the user they're not using a password
@@ -866,6 +870,24 @@ en:
     remove_external_sign_in: "Remove"
     # information text indicating that the list of links below it are for addding an external sign in
     add_external_sign_in_info: "Add a sign in:"
+    2fa_enabled: 2FA has been enabled.
+    2fa_enabled_already: 2FA is already enabled.
+    2fa_enable_code_incorrect: 2FA code is not correct. Please try again.
+    2fa_disabled: 2FA has been disabled.
+    2fa_disabled_already: 2FA is already disabled.
+    2fa_entry:
+      intro_html: "Logging in as <b>%{email}</b>"
+    enable_2fa:
+      intro: "Add the following to your two-factor authentication (2FA) app, such as Google Authenticator or Authy:"
+      manual_entry_into: (Same info as above, if you need to enter it manually:)
+      # Should match the UI of Google Authenticator
+      manual_entry_code_name: "Code name: %{code_name}"
+      # Should match the UI of Google Authenticator
+      manual_entry_your_key: "Your key: %{key}"
+      # Should match the UI of Google Authenticator
+      manual_entry_type_of_key: "Type of key: Time based"
+      code_entry: "Enter the code from your 2FA app to enable it on your %{site_name} account:"
+      verify_code: Verify code
     # link to docs on how to set up a webhook for script syncing
     set_up_webhook: "Set up a webhook"
     # display of a single user when displaying a list of users. user_link is a link to the user's page with text of the user name, count is the number of public scripts authored
@@ -1636,6 +1658,7 @@ en:
         current_password: "Current password"
         new_password: "New password"
         new_password_confirmation: "Confirm new password"
+        otp_attempt: Two-factor authentication (2FA) code
       script:
         # name of the script
         name: "Name"

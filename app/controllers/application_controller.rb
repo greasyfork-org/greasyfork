@@ -52,6 +52,7 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :locale_id])
     devise_parameter_sanitizer.permit(:account_update, keys: [:name, :profile, :profile_markup, :preferred_markup, :locale_id, :show_ads, :show_sensitive, :filter_locale_default])
+    devise_parameter_sanitizer.permit(:sign_in, keys: [:otp_attempt])
   end
 
   def authorize_by_script_id
