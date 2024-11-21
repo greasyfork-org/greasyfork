@@ -1,15 +1,28 @@
 <p>
-  <%= t('users.enable_2fa.intro') %>
+  <%= t('users.enable_2fa.intro', site_name:) %>
 </p>
 
-<%= image_tag(qr_path(url: current_user.otp_provisioning_uri(current_user.email, issuer: site_name), format: :svg), style: 'max-width: 400px;') %>
+<% opt_url = current_user.otp_provisioning_uri(current_user.email, issuer: site_name) %>
+
+<h3><%= t('users.enable_2fa.qr_heading') %></h3>
+
+<%= image_tag(qr_path(url: opt_url, format: :svg), style: 'max-width: 400px;') %>
+
+<h3><%= t('users.enable_2fa.url_heading') %></h3>
 
 <p>
-  <%= t('users.enable_2fa.manual_entry_into') %><br>
+  <%= it('users.enable_2fa.url_info', auth_link: opt_url) %>
+</p>
+
+<h3><%= t('users.enable_2fa.manual_heading') %></h3>
+
+<p>
   <%= t('users.enable_2fa.manual_entry_code_name', code_name: site_name) %><br>
   <%= t('users.enable_2fa.manual_entry_your_key', key: current_user.otp_secret) %><br>
   <%= t('users.enable_2fa.manual_entry_type_of_key') %>
 </p>
+
+<h3><%= t('users.enable_2fa.code_entry_heading') %></h3>
 
 <p>
   <%= t('users.enable_2fa.code_entry', site_name:) %>
