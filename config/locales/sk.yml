@@ -106,6 +106,7 @@ sk:
         intro: Toto sú návrhy na zlepšenie vášho skriptu na %{site_name}. Nie sú to %{rules_link:pravidlá}; váš skript nebude odstránený, ak ich nebudete dodržiavať.
         license_html: Uveďte %{license_link:<code>@license</code>}. Takto ostatným oznámite, či a ako môžu zdieľať a upravovať váš kód.
         globs_html: Vyhnite sa používaniu globov a regulárnych výrazov v časti domény %{include_link:<code>@include</code>} a %{match_link:<code>@match</code>}. Tie sťažujú správne zaradenie vášho skriptu na stránke %{site_name}.
+        globs_used_html: "Použité bližšie neurčené domény: %{globs}"
         additional_info: Uveďte ďalšie informácie – zoznam funkcií, poskytnite snímky obrazovky atď., aby používatelia presne vedeli, čo váš skript robí.
     history_title: "%{script_name} - História verzií"
     history_only_code_changes_info: "Zoznam verzií skriptu, ktorých kód bol aktualizovaný."
@@ -581,6 +582,10 @@ sk:
     edit_sign_in: "Zmeniť spôsob prihlasovania"
     edit_sign_in_title: "Zmeniť spôsob prihlasovania"
     edit_sign_in_password: "Heslo"
+    edit_sign_in_2fa_enabled: Máte nastavené dvojfaktorové overovanie (2FA).
+    edit_sign_in_disable_2fa: Zakázať 2FA
+    edit_sign_in_2fa_disabled: Pre lepšiu bezpečnosť môžete na svojom účte %{site_name} povoliť dvojfaktorovú autentifikáciu (2FA).
+    edit_sign_in_enable_2fa: Povoliť 2FA
     edit_notifications: "Upraviť nastavenia upozornení"
     view_notifications: "Zobraziť upozornenia"
     no_password_set_info: "Váš účet nepoužíva heslo."
@@ -607,6 +612,21 @@ sk:
     disable_syncing: "Vypnúť synchronizáciu"
     remove_external_sign_in: "Odstrániť"
     add_external_sign_in_info: "Pridať prihlásenie:"
+    2fa_enabled: 2FA bola povolená.
+    2fa_enabled_already: 2FA je už povolená.
+    2fa_enable_code_incorrect: Kód 2FA je nesprávny. Skúste to znova.
+    2fa_disabled: 2FA bola zakázaná.
+    2fa_disabled_already: 2FA je už zakázaná.
+    2fa_entry:
+      intro_html: "Prihlasujete sa ako <b>%{email}</b>"
+    enable_2fa:
+      intro: "Do aplikácie na dvojfaktorové overovanie (2FA), napríklad Google Authenticator alebo Authy, pridajte nasledujúce:"
+      manual_entry_into: (Rovnaké informácie ako vyššie, ak ich potrebujete zadať ručne:)
+      manual_entry_code_name: "Názov kódu: %{code_name}"
+      manual_entry_your_key: "Váš kľúč: %{key}"
+      manual_entry_type_of_key: "Typ kľúča: Časové obmedzenie"
+      code_entry: "Zadajte kód z aplikácie 2FA a aktivujte ho na svojom účte %{site_name}:"
+      verify_code: Overiť kód
     set_up_webhook: "Nastaviť webook"
     list_display_html:
       one: "%{user_link} - %{count} skript"
@@ -1378,6 +1398,7 @@ sk:
         current_password: "Súčasné heslo"
         new_password: "Nové heslo"
         new_password_confirmation: "Potvrdiť nové heslo"
+        otp_attempt: Kód dvojfaktorového overovania (2FA)
       script:
         name: "Názov skriptu"
         description: "Popis"

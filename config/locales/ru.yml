@@ -580,6 +580,10 @@ ru:
     edit_sign_in: "Изменить способ входа"
     edit_sign_in_title: "Изменение способа входа"
     edit_sign_in_password: "Пароль"
+    edit_sign_in_2fa_enabled: Для вашей учетной записи настроена двухфакторная аутентификация (2FA).
+    edit_sign_in_disable_2fa: Отключить 2FA
+    edit_sign_in_2fa_disabled: Вы можете включить двухфакторную аутентификацию (2FA) для повышения безопасности вашей учетной записи на %{site_name}.
+    edit_sign_in_enable_2fa: Включить 2FA
     edit_notifications: "Изменить настройки уведомлений"
     view_notifications: "Просмотр уведомлений"
     no_password_set_info: "Ваша учетная запись не использует пароль для входа."
@@ -606,6 +610,21 @@ ru:
     disable_syncing: "Выключить синхронизацию"
     remove_external_sign_in: "Убрать"
     add_external_sign_in_info: "Добавить учетную запись для входа:"
+    2fa_enabled: 2FA включена.
+    2fa_enabled_already: 2FA уже включена.
+    2fa_enable_code_incorrect: Код 2FA не верен. Пожалуйста, попробуйте еще раз.
+    2fa_disabled: 2FA отключена.
+    2fa_disabled_already: 2FA уже отключена.
+    2fa_entry:
+      intro_html: "Вход на сайт как <b>%{email}</b>"
+    enable_2fa:
+      intro: "Добавьте следующую информацию в приложение для двухфакторной аутентификации (2FA), например Google Authenticator или Authy:"
+      manual_entry_into: (Та же информация, что и выше, если вам необходим ручной ввод:)
+      manual_entry_code_name: "Кодовое имя: %{code_name}"
+      manual_entry_your_key: "Ваш ключ: %{key}"
+      manual_entry_type_of_key: "Тип ключа: По времени"
+      code_entry: "Чтобы активировать 2FA для вашей учетной записи на %{site_name} введите код из вашего 2FA приложения:"
+      verify_code: Проверочный код
     set_up_webhook: "Настроить webhook"
     list_display_html:
       one: "%{user_link} - %{count} скрипт"
@@ -1385,6 +1404,7 @@ ru:
         current_password: "Текущий пароль"
         new_password: "Новый пароль"
         new_password_confirmation: "Повторите новый пароль"
+        otp_attempt: Код двухфакторной аутентификации (2FA)
       script:
         name: "Название"
         description: "Описание"
