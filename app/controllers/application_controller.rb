@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :banned?
   before_action :set_active_storage_url_options, if: -> { Rails.env.test? }
 
   skip_before_action :verify_authenticity_token, if: -> { request.format.jsonp? }
@@ -11,6 +10,7 @@ class ApplicationController < ActionController::Base
   include Announcement
   include NotificationDisplay
   include RequestDebugging
+  include BannedUser
 
   if Rails.env.test?
     show_announcement key: :test_announcement,
@@ -113,14 +113,6 @@ class ApplicationController < ActionController::Base
       return true
     end
     return false
-  end
-
-  def banned?
-    return false unless current_user.present? && current_user.banned?
-
-    sign_out current_user
-    flash[:alert] = t('users.account_banned')
-    root_path
   end
 
   def clean_redirect_param(param_name)

@@ -3,6 +3,7 @@ class RegistrationsController < Devise::RegistrationsController
   include LoginMethods
   include BrowserCaching
   include UserTextHelper
+  include BannedUser
 
   before_action :check_captcha, only: [:create]
   before_action :check_read_only_mode
