@@ -9,7 +9,7 @@
 
 <% if @notifications.any? %>
   <div class="notification-list">
-    <% @notifications.each do |notification| %>
+    <% @notifications.select(&:item).each do |notification| %>
       <div class="notification-list-item notification-<%= notification.read? ? 'read' : 'not-read' %> notification-type-<%= notification.notification_type %>">
         <div class="notification-meta">
           <div class="notification-meta-item">

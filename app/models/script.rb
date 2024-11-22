@@ -21,7 +21,7 @@ class Script < ApplicationRecord
   has_many :script_versions, dependent: :destroy
   has_many :script_applies_tos, dependent: :destroy, autosave: true
   has_many :site_applications, through: :script_applies_tos
-  has_many :discussions, dependent: nil
+  has_many :discussions, dependent: :destroy
   has_many :comments, through: :discussions
   has_many :script_set_script_inclusions, foreign_key: 'child_id', dependent: :destroy, inverse_of: :child
   has_many :favorited_in_sets, -> { includes(:users).where(favorite: true) }, through: :script_set_script_inclusions, class_name: 'ScriptSet', source: 'parent'
