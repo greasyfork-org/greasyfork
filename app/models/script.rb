@@ -40,6 +40,7 @@ class Script < ApplicationRecord
   has_many :script_lock_appeals, dependent: :destroy
   has_many :subresource_usages, dependent: :destroy, class_name: 'ScriptSubresourceUsage', autosave: true
   has_many :subresources, through: :subresource_usages
+  has_many :notifications, inverse_of: :item, dependent: :destroy
 
   has_one :cleaned_code, dependent: :delete
 
