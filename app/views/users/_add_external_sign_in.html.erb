@@ -1,6 +1,6 @@
 <%# locals: (return_to: nil) %>
 
-<% available_providers = (Rails.application.config.available_auths.keys - current_user.identity_providers_used) %>
+<% available_providers = (available_auths.keys - current_user.identity_providers_used) %>
 <% if !available_providers.empty? %>
   <%= t('users.add_external_sign_in_info') %>
   <% available_providers.each do |provider| %>

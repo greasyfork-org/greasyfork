@@ -11,12 +11,12 @@
   <h3><%= t('users.sign_in_external') %></h3>
 
   <div>
-    <% if Rails.application.config.available_auths.empty? %>
+    <% if available_auths.empty? %>
       <p>(No external providers configured.)</p>
     <% else %>
       <%= form_tag '', class: 'inline-form external-login-form' do %>
         <div>
-          <% Rails.application.config.available_auths.keys.reverse_each do |provider| %>
+          <% available_auths.keys.reverse_each do |provider| %>
             <span class="external-login-container">
               <button formaction="/auth/<%= provider %>?locale_id=<%= request_locale.id %>" class="external-login <%= provider %>-login">
                 <%= t('users.sign_in_with', provider: Identity.pretty_provider(provider)) %>
