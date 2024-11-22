@@ -143,4 +143,23 @@ class ScriptPreviouslyDeletedCheckerTest < ActiveSupport::TestCase
       ScriptPreviouslyDeletedChecker.perform_now(script.id)
     end
   end
+
+  test 'when there locked by with the same code hash, it matches' do
+    script = Script.first
+    script_2 = Script.second
+    script_3 = Script.third
+
+    [script, script_2, script_3].each do |s|
+      s.newest_saved_script_version.script_code.update(code_hash: 'abc123')
+    end
+
+    [script_2, script_3].each do |s|
+      s.update_columns(delete_type: 'keep', deleted_at: Time.zone.now, locked: true)
+      Report.create!(item: s, result: Report::RESULT_UPHELD, reason: Report::REASON_MALWARE, reporter: User.first, explanation: 'virus')
+    end
+
+    assert_difference -> { Report.count } => 1 do
+      ScriptPreviouslyDeletedChecker.perform_now(script.id)
+    end
+  end
 end

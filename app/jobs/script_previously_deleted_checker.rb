@@ -8,7 +8,7 @@ class ScriptPreviouslyDeletedChecker < ApplicationJob
 
     return if script.locked?
 
-    similar_locked_scripts = (check_by_code(script) + check_by_name(script)).uniq
+    similar_locked_scripts = (check_by_code(script) + check_by_name(script) + check_by_exact_code(script)).uniq
 
     return unless similar_locked_scripts.count > 1
 
@@ -62,5 +62,15 @@ class ScriptPreviouslyDeletedChecker < ApplicationJob
   def check_by_name(script)
     other_scripts = Script.locked.where(deleted_at: 1.month.ago..)
     other_scripts.select { |other_script| Levenshtein.distance(other_script.default_name, script.default_name, 3) }
+  end
+
+  def check_by_exact_code(script)
+    script_version = script.newest_saved_script_version
+    hashes = [script_version.script_code, script_version.rewritten_script_code].map(&:code_hash)
+
+    script_code_ids = ScriptCode.where(code_hash: hashes.uniq).pluck(:id)
+    script_ids = ScriptVersion.where('script_code_id IN (:script_code_ids) OR rewritten_script_code_id IN (:script_code_ids)', script_code_ids:).pluck(:script_id) - [script.id]
+
+    Script.locked.where(id: script_ids)
   end
 end

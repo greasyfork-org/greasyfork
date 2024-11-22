@@ -275,7 +275,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
       // @include *
       // @license MIT
       // ==/UserScript==
-      var foo = 2;
+      var foo = 2000;
     JS
     sv.calculate_all
     assert sv.valid?, sv.errors.full_messages.join(' ')
@@ -288,7 +288,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
       // @include *
       // @license MIT
       // ==/UserScript==
-      var foo = 2;
+      var foo = 2000;
     JS
     sv.add_missing_version = true
     sv.calculate_all
@@ -309,7 +309,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
       // @include *
       // @license MIT
       // ==/UserScript==
-      var foo = 2;
+      var foo = 100;
     JS
     sv.script = script
     sv.calculate_all
