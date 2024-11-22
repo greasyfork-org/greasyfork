@@ -620,9 +620,15 @@ sk:
     2fa_entry:
       intro_html: "Prihlasujete sa ako <b>%{email}</b>"
     enable_2fa:
+      intro: "Pridajte %{site_name} do aplikácie dvojfaktorového overovania (2FA) pomocou jednej z týchto metód, a potom zadajte nižšie uvedený kód."
+      qr_heading: Cez QR kód
+      url_heading: Cez odkaz
+      url_info: Ak ste na rovnakom zariadení ako aplikácia na dvojfaktorovú autentifikáciu, možno ju budete môcť pridať pomocou %{auth_link:tento odkaz}.
+      manual_heading: Manuálne
       manual_entry_code_name: "Názov kódu: %{code_name}"
       manual_entry_your_key: "Váš kľúč: %{key}"
       manual_entry_type_of_key: "Typ kľúča: Časové obmedzenie"
+      code_entry_heading: Zadajte kód
       code_entry: "Zadajte kód z aplikácie 2FA a aktivujte ho na svojom účte %{site_name}:"
       verify_code: Overiť kód
     set_up_webhook: "Nastaviť webook"
