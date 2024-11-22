@@ -47,19 +47,24 @@ class CommentsController < ApplicationController
       render_access_denied
       return
     end
-    Comment.transaction do
-      if comment.first_comment? && @discussion.poster == current_user
-        rating = params.dig(:comment, :discussion, :rating)
-        title = params.dig(:comment, :discussion, :title)
-        @discussion.update!(rating:) if rating && @discussion.for_script?
-        @discussion.update!(title:) if title && !@discussion.for_script?
-        params[:comment].delete(:discussion)
+
+    begin
+      Comment.transaction do
+        if comment.first_comment? && @discussion.poster == current_user
+          rating = params.dig(:comment, :discussion, :rating)
+          title = params.dig(:comment, :discussion, :title)
+          @discussion.update!(rating:) if rating && @discussion.for_script?
+          @discussion.update!(title:) if title && !@discussion.for_script?
+          params[:comment].delete(:discussion)
+        end
+        comment.edited_at = Time.current
+        comment.assign_attributes(comments_params)
+        comment.attachments.reject(&:new_record?).select { |attachment| params["remove-attachment-#{attachment.signed_id}"] == '1' }.each(&:destroy!)
+        comment.construct_mentions(detect_possible_mentions(comment.text, comment.text_markup))
+        comment.save!
       end
-      comment.edited_at = Time.current
-      comment.assign_attributes(comments_params)
-      comment.attachments.reject(&:new_record?).select { |attachment| params["remove-attachment-#{attachment.signed_id}"] == '1' }.each(&:destroy!)
-      comment.construct_mentions(detect_possible_mentions(comment.text, comment.text_markup))
-      comment.save!
+    rescue ActiveRecord::RecordInvalid
+      flash[:alert] = comment.errors.full_messages.to_sentence
     end
 
     redirect_to comment.path(locale: request_locale.code)

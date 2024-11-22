@@ -37,12 +37,17 @@ class MessagesController < ApplicationController
       render_access_denied
       return
     end
-    Comment.transaction do
-      message.edited_at = Time.current
-      message.assign_attributes(message_params)
-      message.attachments.select { |attachment| params["remove-attachment-#{attachment.signed_id}"] == '1' }.each(&:destroy!)
-      message.construct_mentions(detect_possible_mentions(message.content, message.content_markup))
-      message.save!
+
+    begin
+      Message.transaction do
+        message.edited_at = Time.current
+        message.assign_attributes(message_params)
+        message.attachments.reject(&:new_record?).select { |attachment| params["remove-attachment-#{attachment.signed_id}"] == '1' }.each(&:destroy!)
+        message.construct_mentions(detect_possible_mentions(message.content, message.content_markup))
+        message.save!
+      end
+    rescue ActiveRecord::RecordInvalid
+      flash[:alert] = message.errors.full_messages.to_sentence
     end
 
     redirect_to @conversation.path_for_message(current_user, message, locale: I18n.locale)
