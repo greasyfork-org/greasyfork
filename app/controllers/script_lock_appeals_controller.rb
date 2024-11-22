@@ -16,6 +16,13 @@ class ScriptLockAppealsController < ApplicationController
   def show; end
 
   def new
+    open_appeal = @script.script_lock_appeals.unresolved.first
+    if open_appeal
+      flash[:notice] = t('appeals.already_open')
+      redirect_to script_script_lock_appeal_path(@script, open_appeal)
+      return
+    end
+
     @script_lock_appeal = @script.script_lock_appeals.build
   end
 
