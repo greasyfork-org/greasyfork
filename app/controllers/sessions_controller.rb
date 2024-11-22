@@ -7,6 +7,9 @@ class SessionsController < Devise::SessionsController
 
   skip_before_action :verify_authenticity_token, only: [:omniauth_callback]
 
+  # We can provide a more specific message with #after_sign_in_path_for.
+  skip_before_action :banned?, only: :create
+
   def after_sign_in_path_for(resource)
     if resource.is_a?(User) && resource.banned?
       sign_out resource

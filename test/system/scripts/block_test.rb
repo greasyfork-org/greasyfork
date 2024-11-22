@@ -20,9 +20,8 @@ class BlockTest < ApplicationSystemTestCase
     JS
     fill_in 'Code', with: code
     assert_changes -> { user.reload.banned? }, from: false, to: true do
-      assert_script_deleted_page do
-        click_on 'Post script'
-      end
+      click_on 'Post script'
+      assert_content 'This account has been banned.'
     end
   end
 

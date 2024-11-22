@@ -10,6 +10,6 @@ module BannedUser
 
     sign_out current_user
     flash[:alert] = t('users.account_banned')
-    root_path
+    redirect_to root_path
   end
 end
