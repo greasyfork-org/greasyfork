@@ -1,6 +1,4 @@
 class SessionsController < Devise::SessionsController
-  BANNED_DELETE_PATH = '/users/banned_delete'.freeze
-
   include Devise::Controllers::Rememberable
   include LoginMethods
   include LocalizedRequest
@@ -22,16 +20,7 @@ class SessionsController < Devise::SessionsController
         return root_path
       end
 
-      moderator_action = ModeratorAction.order(id: :desc).find_by(user: resource)
-      delete_link = new_user_session_path(return_to: BANNED_DELETE_PATH)
-      flash[:html_safe] = true
-      flash[:alert] = if moderator_action&.report
-                        It.it('users.banned_notice.with_report', report_link: report_path(moderator_action.report), delete_link:)
-                      elsif moderator_action&.reason.present?
-                        It.it('users.banned_notice.with_reason', reason: moderator_action.reason, delete_link:)
-                      else
-                        It.it('users.banned_notice.no_report_no_reason', delete_link:)
-                      end
+      show_banned_user_message(resource)
       return root_path
     end
     return super

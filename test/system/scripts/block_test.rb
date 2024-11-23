@@ -21,7 +21,7 @@ class BlockTest < ApplicationSystemTestCase
     fill_in 'Code', with: code
     assert_changes -> { user.reload.banned? }, from: false, to: true do
       click_on 'Post script'
-      assert_content 'This account has been banned.'
+      assert_content 'Your account has been banned.'
     end
   end
 
