@@ -26,3 +26,4 @@ import "../host-check"
 import '../source-editor'
 import '../stats'
 import '../login'
+import '../header'

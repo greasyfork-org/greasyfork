@@ -1,0 +1,199 @@
+#main-header {
+  background-color: #670000;
+  background-image: linear-gradient(#670000, #990000);
+  box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.5);
+  padding: 0.25em 0;
+}
+#main-header .width-constraint {
+  padding: 0 0 0.25em 0;
+  /* enable absolute positioning for children */
+  position: relative;
+}
+#site-name img {
+  vertical-align: bottom;
+}
+#site-name-text {
+  display: inline-block;
+  vertical-align: top;
+}
+#site-name-text h1  {
+  line-height: 1.1em;
+}
+
+#main-header, #main-header a, #main-header a:visited, #main-header a:active {
+  color: white;
+}
+#main-header h1 {
+  font-size: 72px;
+  margin: 0;
+  margin-top: 0px;
+  letter-spacing: -2px;
+}
+#main-header h1 a {
+  text-decoration: none;
+}
+#main-header .subtitle {
+  margin: -8px 0 0 10px;
+  font-size: 0.7em;
+  /* in case it overlaps the y in Greasy */
+  text-shadow: -1px -1px 0px #670000, 1px -1px 0px #670000, -1px 1px 0px #670000, 1px 1px 0px #670000;
+}
+
+#site-nav > nav, #nav-user-info {
+  text-align: end;
+  position: absolute;
+  right: 0;
+}
+#site-nav > nav {
+  bottom: 0;
+}
+#nav-user-info {
+  top: 0;
+}
+#site-nav > nav a:hover {
+  color: white;
+}
+#site-nav > nav {
+  padding: 0;
+}
+#site-nav > nav > li {
+  list-style-type: none;
+  display: inline-block;
+}
+#site-nav > nav > li + li {
+  margin-left: 0.5em;
+}
+#script-search, .language-selector {
+  display: inline;
+}
+#nav-user-info {
+  font-size: small;
+}
+#nav-user-info select, #nav-user-info input {
+  font-size: 11px;
+}
+
+nav nav {
+  position: absolute;
+  right: 0;
+  background-color: #990000;
+  min-width: 100%;
+  display: none;
+  padding: 5px 0;
+  z-index: 10;
+}
+nav nav li {
+  white-space: nowrap;
+  margin: 0;
+}
+nav nav li a {
+  display: block;
+  padding: 5px 15px;
+}
+nav a:hover + nav, nav nav:hover, nav a:focus + nav {
+  display: block;
+}
+.with-submenu {
+  /* Enable positioning for the submenu */
+  position: relative;
+  padding-right: 15px;
+}
+nav .with-submenu > a::after {
+  content: ' ▾';
+}
+
+@media screen and (max-width: 920px) {
+  /* site main header, make site-name not ovelape with others */
+  #site-name img {
+    max-width: 96px;
+    max-height: 96px;
+    width: 12%;
+    height: 12%;
+  }
+  #site-name-text {
+    margin-top: 1.15vw;
+    margin-bottom: 1.15vw;
+  }
+  /* main header font size: 10% of viewport width */
+  #main-header h1 {
+    font-size: 8.3vw;
+  }
+  #main-header .subtitle {
+    margin: -0.8em 0 0 10px;
+    font-size: 2vw;
+  }
+  #site-nav {
+    margin-top: -1vw;
+  }
+  #site-nav>nav, #nav-user-info {
+    display: block;
+    position: unset;
+    right: unset;
+    padding-top: 0.3em;
+  }
+  #site-nav>nav {
+    bottom: unset;
+  }
+  #nav-user-info {
+    top: unset;
+    font-size: unset;
+    width: 100%;
+  }
+  #nav-user-info .sign-in-link {
+    padding-right: 0.7em;
+  }
+  #script-search, .language-selector {
+    display: unset;
+  }
+}
+
+#mobile-nav {
+  display: none;
+}
+.mobile-nav-opener {
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 8.3vw;
+  padding: 0 2vw;
+}
+#mobile-nav .collapsed {
+  display: none;
+}
+#mobile-nav nav {
+  text-align: end;
+  position: absolute;
+  top: calc(100% + 4px);
+  right: -1.2vw;
+  background-color: #990000;
+  z-index: 1000;
+  border-radius: 0 0 0 5px;
+  font-size: 24px;
+}
+#mobile-nav nav li {
+  list-style-type: none;
+}
+#mobile-nav nav li > a {
+  display: block;
+  padding: 10px 15px;
+}
+#mobile-nav nav select {
+  margin: 10px 15px;
+}
+#mobile-nav nav li.multi-link-nav {
+  padding: 10px 15px;
+}
+#mobile-nav nav li.multi-link-nav a {
+  display: inline;
+  padding: 0;
+}
+
+@media screen and (max-width: 920px) {
+  #site-nav {
+    display: none;
+  }
+  #mobile-nav {
+    display: block;
+  }
+}

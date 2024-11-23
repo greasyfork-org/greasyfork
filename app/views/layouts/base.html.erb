@@ -93,33 +93,32 @@
             <span class="sign-in-link"><%= link_to(t('layouts.application.sign_in'), new_user_session_path(request.get? ? {return_to: @return_to || request.fullpath} : {}), {rel: 'nofollow'}) %></span>
           <% end %>
 
-          <% form_action = valid_request_for_locale_switch ? current_path_with_params(locale: nil) : root_path({locale: nil}) %>
-          <form id="language-selector" action="<%= form_action %>">
-            <% user_with_locale = !current_user.nil? && !current_user.locale.nil?
-            locale_with_override_param = user_with_locale ? '1' : nil
-            switch_url_without_locale = current_path_with_params(locale: 'XX', locale_override: locale_with_override_param).delete_prefix('/XX') if valid_request_for_locale_switch %>
-            <select id="language-selector-locale" name="locale" data-translate-url="<%= Rails.configuration.help_translate_url %>">
-              <% Rails.configuration.available_locales.each do |code, name|
-                if valid_request_for_locale_switch %>
-                  <option data-language-url="/<%= code %><%= switch_url_without_locale %>" value="<%= code %>"<% if params[:locale] == code %> selected<% end %>>
-                    <%= name %> (<%= code %>)
-                  </option>
-                <% else %>
-                  <option data-language-url="<%= root_path({locale: code, locale_override: locale_with_override_param}) %>" value="<%= code %>"<% if params[:locale] == code %> selected<% end %>>
-                    <%= name %> (<%= code %>)
-                  </option>
-                <% end
-              end %>
-              <option value="help">Help us translate!</option>
-            </select><input id="language-selector-submit" type="submit" value="→">
-            <script>
-              /* submit is handled by js if enabled */
-              document.getElementById("language-selector-submit").style.display = "none"
-            </script>
-            <% if user_with_locale %>
-              <input type="hidden" name="locale_override" value="1">
-            <% end %>
-          </form>
+          <% locale_selector = capture do %>
+            <% form_action = valid_request_for_locale_switch ? current_path_with_params(locale: nil) : root_path({locale: nil}) %>
+            <form class="language-selector" action="<%= form_action %>">
+              <% user_with_locale = !current_user.nil? && !current_user.locale.nil?
+              locale_with_override_param = user_with_locale ? '1' : nil
+              switch_url_without_locale = current_path_with_params(locale: 'XX', locale_override: locale_with_override_param).delete_prefix('/XX') if valid_request_for_locale_switch %>
+              <select class="language-selector-locale" name="locale" data-translate-url="<%= Rails.configuration.help_translate_url %>">
+                <% Rails.configuration.available_locales.each do |code, name|
+                  if valid_request_for_locale_switch %>
+                    <option data-language-url="/<%= code %><%= switch_url_without_locale %>" value="<%= code %>"<% if params[:locale] == code %> selected<% end %>>
+                      <%= name %> (<%= code %>)
+                    </option>
+                  <% else %>
+                    <option data-language-url="<%= root_path({locale: code, locale_override: locale_with_override_param}) %>" value="<%= code %>"<% if params[:locale] == code %> selected<% end %>>
+                      <%= name %> (<%= code %>)
+                    </option>
+                  <% end
+                end %>
+                <option value="help">Help us translate!</option>
+              </select><input class="language-selector-submit" type="submit" value="→">
+              <% if user_with_locale %>
+                <input type="hidden" name="locale_override" value="1">
+              <% end %>
+            </form>
+          <% end %>
+          <%= locale_selector %>
         </div>
         <nav>
           <li class="scripts-index-link"><%= link_to(t('layouts.application.script_list'), scripts_path) %></li>
@@ -136,6 +135,41 @@
           </li>
         </nav>
       </div>
+
+      <div id="mobile-nav">
+        <div class="mobile-nav-opener">☰</div>
+        <nav class="collapsed">
+          <li class="scripts-index-link"><%= link_to(t('layouts.application.script_list'), scripts_path) %></li>
+          <li class="forum-link"><%= link_to(t('layouts.application.forum'), discussions_path) %></li>
+          <li class="help-link"><%= link_to_unless_current(t('layouts.application.help'), help_path) %></li>
+          <li><%= link_to t('layouts.application.advanced_search'), search_path %></li>
+          <li><%= link_to t('layouts.application.user_list'), users_path %></li>
+          <li><%= link_to t('layouts.application.libraries'), libraries_scripts_path %></li>
+          <li><%= link_to t('layouts.application.moderator_log'), moderator_actions_path %></li>
+          <% if user_signed_in? %>
+            <li class="multi-link-nav">
+              <% if current_user.moderator? %>
+                <%= render partial: 'layouts/moderator_notices' %>
+              <% end %>
+              <% if notification_widget_count %>
+                <%= link_to notification_widget_count, notifications_path(current_user), class: 'notification-widget' %>
+              <% end %>
+              <span class="user-profile-link"><%= link_to(current_user.name, current_user) %></span>
+              <span class="sign-out-link">[ <%= link_to t('users.sign_out'), destroy_user_session_path, method: :delete %> ]</span>
+            </li>
+          <% else %>
+            <li class="multi-link-nav">
+              <span class="sign-in-link"><%= link_to(t('layouts.application.sign_in'), new_user_session_path(request.get? ? {return_to: @return_to || request.fullpath} : {}), {rel: 'nofollow'}) %></span>
+            </li>
+          <% end %>
+          <li><%= locale_selector %></li>
+        </nav>
+      </div>
+
+      <script>
+        /* submit is handled by js if enabled */
+        document.querySelectorAll(".language-selector-submit").forEach((lss) => { lss.style.display = "none" })
+      </script>
     </div>
   </header>
 
