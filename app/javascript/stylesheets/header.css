@@ -103,7 +103,7 @@ nav .with-submenu > a::after {
 }
 
 @media screen and (max-width: 920px) {
-  /* site main header, make site-name not ovelape with others */
+  /* site main header, make site-name not overlap with others */
   #site-name img {
     max-width: 96px;
     max-height: 96px;
@@ -195,5 +195,10 @@ nav .with-submenu > a::after {
   }
   #mobile-nav {
     display: block;
+  }
+}
+@media screen and (max-width: 400px) {
+  #site-name {
+    margin-left: 1em;
   }
 }

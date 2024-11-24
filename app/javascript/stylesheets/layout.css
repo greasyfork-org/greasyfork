@@ -42,41 +42,10 @@ input[type="checkbox"], input[type="radio"] {
     margin: auto 1.2vw;
   }
 }
-
-#script-info {
-  border: 1px solid #BBBBBB;
-  border-radius: 5px;
-  clear: left;
-  background-color: white;
-  margin: 1em 0;
-  box-shadow: 0 0 5px #DDDDDD;
-}
-
-#script-content {
-  margin-top: 1.5em;
-}
-#script-content > *:first-child {
-  margin-top: 0;
-}
-#script-info header h2 {
-  margin: 0.25em 0 0 0;
-  font-size: 2em;
-  overflow-wrap: anywhere;
-}
-#script-description {
-  margin: 0;
-}
-#version-note, #reported-note, #deleted-note {
-  font-style: italic;
-  background-color: #FFFF99;
-  border: 2px dotted #CC9999;
-  padding: 0.5em;
-}
-#script-feedback-suggestion {
-  margin: 0.75em 0;
-}
-#script-content h3 {
-  margin-top: 30px;
+@media screen and (max-width: 400px) {
+  .width-constraint {
+    margin: auto 0;
+  }
 }
 
 .inline-list, .block-list {
@@ -190,6 +159,9 @@ label.subselection-radio-title {
   box-sizing: border-box;
   margin: 14px 0;
 }
+.text-content:last-child {
+  margin-bottom: 0;
+}
 .user-list {
   padding: 1em;
   margin: 1em 0;
@@ -209,6 +181,39 @@ label.subselection-radio-title {
     padding: 0 1.2vw 1.2vw;
   }
 }
+@media screen and (max-width: 400px) {
+  .script-list, .user-list, .text-content, .discussion-list, .notification-list {
+    border-left: 0;
+    border-right: 0;
+  }
+  .user-list, .text-content, .discussion-list, .notification-list, .script-list-description {
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+  .script-list li.ad-entry {
+    padding: 0;
+  }
+  .discussion-list-header, .user-list-header, .library-list-header {
+    padding-left: 1em;
+    padding-right: 1em;
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+  #script-info {
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+  #script-links {
+    margin-left: -1em;
+    margin-right: -1em;
+    padding: 0;
+  }
+  #additional-info {
+    margin-left: -1em;
+    margin-right: -1em;
+  }
+}
+
 
 .script-list li:not(.ad-entry) {
   border-bottom: 1px solid #DDDDDD;
@@ -292,6 +297,12 @@ label.subselection-radio-title {
 .pagination > a:hover, .pagination > a:focus {
   background-color: #e2c5c5;
 }
+@media screen and (max-width: 400px) {
+  .pagination, .script-list + .pagination, .user-list + .pagination {
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+}
 
 .good-rating-count, .ok-rating-count, .bad-rating-count {
   display: inline-block;
@@ -331,8 +342,6 @@ label.subselection-radio-title {
 }
 
 #help-allowed-elements, #help-allowed-styles {
-  -moz-column-width: 20em;
-  -webkit-column-width: 20em;
   column-width: 20em;
 }
 #help-allowed-elements li, #help-allowed-styles li {
@@ -635,4 +644,11 @@ figcaption {
 
 summary {
   cursor: pointer;
+}
+
+@media screen and (max-width: 400px) {
+  .user-list {
+    padding-top: 1em;
+    padding-bottom: 1em;
+  }
 }

@@ -15,25 +15,25 @@
         <% end %>
       </h3>
       <% if !@set.favorite %>
-        <p><%= @set.description %></p>
+        <p class="script-list-description"><%= @set.description %></p>
       <% end %>
     <% end %>
 
     <% if defined?(@page_description) %>
-      <p><%= @page_description %></p>
+      <p class="script-list-description"><%= @page_description %></p>
     <% end %>
 
     <% if @current_locale_filter %>
       <% if current_user && !current_user.filter_locale_default %>
-        <p><%= it('scripts.listing_remove_locale_filter', language: @current_locale_filter.best_name, remove_filter_link: current_path_with_params(filter_locale: nil)) %></p>
+        <p class="script-list-description"><%= it('scripts.listing_remove_locale_filter', language: @current_locale_filter.best_name, remove_filter_link: current_path_with_params(filter_locale: nil)) %></p>
       <% else %>
-        <p><%= it('scripts.listing_remove_locale_filter', language: @current_locale_filter.best_name, remove_filter_link: It.link(current_path_with_params(filter_locale: '0'), rel: :nofollow)) %></p>
+        <p class="script-list-description"><%= it('scripts.listing_remove_locale_filter', language: @current_locale_filter.best_name, remove_filter_link: It.link(current_path_with_params(filter_locale: '0'), rel: :nofollow)) %></p>
       <% end %>
     <% elsif @offer_filtered_results_for_locale && @scripts.any? %>
       <% if current_user && !current_user.filter_locale_default %>
-        <p><%= it('scripts.listing_set_locale_filter', language: @offer_filtered_results_for_locale.best_name, set_filter_link: It.link(current_path_with_params(filter_locale: '1'), rel: :nofollow)) %></p>
+        <p class="script-list-description"><%= it('scripts.listing_set_locale_filter', language: @offer_filtered_results_for_locale.best_name, set_filter_link: It.link(current_path_with_params(filter_locale: '1'), rel: :nofollow)) %></p>
       <% else %>
-        <p><%= it('scripts.listing_set_locale_filter', language: @offer_filtered_results_for_locale.best_name, set_filter_link: current_path_with_params(filter_locale: nil)) %></p>
+        <p class="script-list-description"><%= it('scripts.listing_set_locale_filter', language: @offer_filtered_results_for_locale.best_name, set_filter_link: current_path_with_params(filter_locale: nil)) %></p>
       <% end %>
     <% end %>
 
@@ -65,7 +65,7 @@
       <% end %>
   <% end %>
 
-    <p><%= t('scripts.write_your_own_html', post_a_script_link: link_to(t('scripts.post_a_script_link_text'), new_script_version_path), learn_to_write_scripts_link: link_to(t('scripts.learn_to_write_scripts_link_text'), help_writing_user_scripts_path)) %></p>
+    <p class="script-list-description"><%= t('scripts.write_your_own_html', post_a_script_link: link_to(t('scripts.post_a_script_link_text'), new_script_version_path), learn_to_write_scripts_link: link_to(t('scripts.learn_to_write_scripts_link_text'), help_writing_user_scripts_path)) %></p>
   </div>
 
   <% if !defined?(@skip_search_options) || !@skip_search_options %>

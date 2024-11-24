@@ -7,7 +7,9 @@
       ☰
     </div>
 
-    <h2><%= t('users.listing_title') %></h2>
+    <div class="user-list-header">
+      <h2><%= t('users.listing_title') %></h2>
+    </div>
 
     <% if @users.empty? %>
       <p>No users!</p>

@@ -128,9 +128,6 @@ a.discussion-title, .notification-list-item a {
   background-color: rgb(255, 230, 230);
   color: rgb(255, 0, 0);
 }
-.discussion-list-main-content {
-  overflow-x: hidden;
-}
 .discussion-meta-item-script-name {
   overflow: hidden;
 }
@@ -151,6 +148,12 @@ a.discussion-title, .notification-list-item a {
   display: flex;
   margin-top: 30px;
   margin-bottom: 20px;
+}
+@media screen and (max-width: 400px) {
+  .discussion-header, .discussion-list-header, .notification-list-header, .user-list-header {
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
 }
 .discussion-header-no-script {
   margin-top: 16px;

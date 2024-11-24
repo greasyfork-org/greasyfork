@@ -7,9 +7,11 @@
       ☰
     </div>
 
-    <h2><%= t('scripts.libraries_title') %></h2>
+    <div class="library-list-header">
+      <h2><%= t('scripts.libraries_title') %></h2>
+    </div>
 
-    <p><%= it('scripts.libraries_description_html', policy_link: help_code_rules_path(anchor: 'require'), site_name: site_name) %></p>
+    <p class="script-list-description"><%= it('scripts.libraries_description_html', policy_link: help_code_rules_path(anchor: 'require'), site_name: site_name) %></p>
 
     <% if @scripts.empty? %>
       <p><%= t('scripts.listing_no_scripts') %></p>

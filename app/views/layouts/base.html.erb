@@ -123,7 +123,7 @@
         <nav>
           <li class="scripts-index-link"><%= link_to(t('layouts.application.script_list'), scripts_path) %></li>
           <li class="forum-link"><%= link_to(t('layouts.application.forum'), discussions_path) %></li>
-          <li class="help-link"><%= link_to_unless_current(t('layouts.application.help'), help_path) %></li>
+          <li class="help-link"><%= link_to(t('layouts.application.help'), help_path) %></li>
           <li class="with-submenu">
             <a href="#" onclick="return false"><%= t('layouts.application.submenu') %></a>
             <nav>
@@ -141,7 +141,7 @@
         <nav class="collapsed">
           <li class="scripts-index-link"><%= link_to(t('layouts.application.script_list'), scripts_path) %></li>
           <li class="forum-link"><%= link_to(t('layouts.application.forum'), discussions_path) %></li>
-          <li class="help-link"><%= link_to_unless_current(t('layouts.application.help'), help_path) %></li>
+          <li class="help-link"><%= link_to(t('layouts.application.help'), help_path) %></li>
           <li><%= link_to t('layouts.application.advanced_search'), search_path %></li>
           <li><%= link_to t('layouts.application.user_list'), users_path %></li>
           <li><%= link_to t('layouts.application.libraries'), libraries_scripts_path %></li>
