@@ -572,6 +572,10 @@ bg:
     edit_sign_in: "Промяна на начините за вход"
     edit_sign_in_title: "Промяна на начините за вход"
     edit_sign_in_password: "Парола"
+    edit_sign_in_2fa_enabled: Двуфакторната автентикация е настроена (2FA).
+    edit_sign_in_disable_2fa: Забрани 2FA
+    edit_sign_in_2fa_disabled: Можете да разрешите двуфакторната автентикация (2FA) за по-добра сигурност на вашия %{site_name} акаунт.
+    edit_sign_in_enable_2fa: Разреши 2FA
     edit_notifications: "Промени настройките за известия"
     view_notifications: "Виж известията"
     no_password_set_info: "Вашият профил не е конфигуриран с парола."
@@ -598,6 +602,25 @@ bg:
     disable_syncing: "Изключване синхронизацията"
     remove_external_sign_in: "Премахване"
     add_external_sign_in_info: "Добавяне на вход:"
+    2fa_enabled: 2FA беше разрешена.
+    2fa_enabled_already: 2FA вече е разрешена.
+    2fa_enable_code_incorrect: 2FA кодът не е правилен. Моля, опитайте отново.
+    2fa_disabled: 2FA беше забранена.
+    2fa_disabled_already: 2FA вече е забранена.
+    2fa_entry:
+      intro_html: "Влизане като <b>%{email}</b>"
+    enable_2fa:
+      intro: "Добавете %{site_name} към вашето приложение за двуфакторна автентикация (2FA) чрез един от тези методи, а после въведете кода по-долу.."
+      qr_heading: Чрез QR код
+      url_heading: Чрез връзка
+      url_info: Ако сте на същото устройство, на което е и приложението за двустепенна автентикация, можете да го добавите чрез %{auth_link:тази връзка}.
+      manual_heading: Ръчно
+      manual_entry_code_name: "Кодово име: %{code_name}"
+      manual_entry_your_key: "Вашият ключ: %{key}"
+      manual_entry_type_of_key: "Тип ключ: Базиран на време"
+      code_entry_heading: Въведете кода
+      code_entry: "Въведете кода от вашето 2FA приложение, за да го разрешите на вашия %{site_name} акаунт:"
+      verify_code: Провери кода
     set_up_webhook: "Настройте webhook"
     list_display_html:
       one: "%{user_link} - %{count} скрипт"
@@ -1173,6 +1196,7 @@ bg:
     dismissed_by_moderator: Модератор отхвърли възражението.
     upheld_by_moderator: В резултат от възражението, модератор възстанови скрипта.
     submitted: Възражението ви беше получено и ще бъде прегледано от модератор.
+    already_open: Вече има отворен апел за този скрипт
   discussions:
     title: Дискусии
     comment_date: "Публикуван на: %{date}"
@@ -1345,6 +1369,7 @@ bg:
         current_password: "Текуща парола"
         new_password: "Нова парола"
         new_password_confirmation: "Потвърди новата парола"
+        otp_attempt: Код за двуфакторна (2FA) автентикация
       script:
         name: "Име"
         description: "Описание"
