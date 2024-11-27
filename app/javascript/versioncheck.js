@@ -120,6 +120,9 @@ function checkForUpdatesJS(installButton, retry) {
   let version = installButton.getAttribute("data-script-version");
 
   getInstalledVersion(name, namespace).then(function(installedVersion) {
+    if (version != null) {
+      console.debug("Found already installed version " + installedVersion)
+    }
     handleInstallResult(installButton, installedVersion, version);
   }, function() {
     if (retry) {
