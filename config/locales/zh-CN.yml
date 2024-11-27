@@ -101,6 +101,7 @@ zh-CN:
         intro: 这些是在 %{site_name} 上提高您脚本质量的建议。这些并不是 %{rules_link:规则}；如果您不遵循这些建议，您的脚本也不会被删除。
         license_html: 指定 %{license_link:@license}，以让其他人知道他们是否可以以及如何分享、修改您的代码。
         globs_html: 避免在 %{include_link:<code>@include</code>} 和 %{match_link:<code>@match</code>} 中使用通配符和正则表达式。这会使 %{site_name} 难以正确分类您的脚本。
+        globs_used_html: "使用的非特定域包含：%{globs}"
         additional_info: 添加附加信息 - 列出您的功能，提供截图等，以便用户清楚您脚本的具体作用。
     history_title: "%{script_name} - 版本历史"
     history_only_code_changes_info: "这些是代码更新过的版本。"
@@ -235,6 +236,7 @@ zh-CN:
     warning_code_previously_posted_html: "此代码已在 %{script_links} 发布。重新发布此脚本可能被管理员移除。"
     warning_license_missing_html: "您未声明<code>@license</code>。通过在 %{site_name} 上发布代码，意味着您允许其他人使用你的代码，但许可证还可以让您告知其他人可以如何修改并分发您的代码。例如，<code>// @license MIT</code>表示你允许任何人修改和重新分发你编写的代码。%{license_chooser_link:这里有更多关于许可证的信息。} 如果你没有提供许可证，%{site_name} 将假设您不允许他人修改或重新分发代码。请注意，如果你不是发布代码的唯一作者，通常您不能发布代码，除非你获得了所有其他作者的许可。"
     warning_license_missing_override_html: "不要求许可就保存"
+    warning_meta_not_at_start_html: "您的代码没有以 <code>// ==UserScript==</code> 开头。包括代码、注释或空白可能会导致与某些用户脚本管理器的兼容性问题。"
     additional_info_locale_prompt: "(选择语言)"
     additional_info_add_localized: "添加一个本地化的附加信息"
     additional_info_locale_repeated: "您只能对“%{locale_code}”提供一条附加信息。"
@@ -558,6 +560,10 @@ zh-CN:
     edit_sign_in: "更改登录方式"
     edit_sign_in_title: "更改登录方式"
     edit_sign_in_password: "密码"
+    edit_sign_in_2fa_enabled: 您已设置两步验证 (2FA)。
+    edit_sign_in_disable_2fa: 禁用两步验证
+    edit_sign_in_2fa_disabled: 您可以为您的 %{site_name} 账户启用两步验证（2FA），以增强安全性。
+    edit_sign_in_enable_2fa: 启用两步验证
     edit_notifications: "编辑通知设置"
     view_notifications: "查看通知"
     no_password_set_info: "您的账号尚未启用密码登录。"
@@ -584,6 +590,25 @@ zh-CN:
     disable_syncing: "关闭同步"
     remove_external_sign_in: "移除"
     add_external_sign_in_info: "添加第三方登录："
+    2fa_enabled: 两步验证已被启用。
+    2fa_enabled_already: 两步验证已启用。
+    2fa_enable_code_incorrect: 两步验证代码不正确。请再试一次。
+    2fa_disabled: 两步验证已被禁用。
+    2fa_disabled_already: 两步验证已禁用。
+    2fa_entry:
+      intro_html: "正在以 %{email} 登录"
+    enable_2fa:
+      intro: "使用以下其中一种方法将 %{site_name} 添加到您的两步验证（2FA）应用中，然后在下面输入代码。"
+      qr_heading: 通过二维码
+      url_heading: 通过链接
+      url_info: 如果您与您的两步验证应用在同一设备上，您可以通过 %{auth_link:此链接} 添加它。
+      manual_heading: 手动
+      manual_entry_code_name: "代号：%{code_name}"
+      manual_entry_your_key: "您的密钥：%{key}"
+      manual_entry_type_of_key: "密钥类型：基于时间"
+      code_entry_heading: 输入代码
+      code_entry: "请输入来自您的两步验证应用的代码，以启用 %{site_name} 账户上的两步验证："
+      verify_code: 检查代码
     set_up_webhook: "设置 webhook"
     list_display_html:
       other: "%{user_link} - %{count} 个脚本"
@@ -681,6 +706,10 @@ zh-CN:
         as_reporter: 在您创建的举报被处理时，收取通知
         as_reported_filed: 在针对您发布的项目提出举报时，收取通知
         as_reported_resolved: 在针对您发布的项目的举报被处理时，收取通知
+      script:
+        intro: 这些设置与您发布的脚本相关。
+        title: 脚本通知
+        consecutive_bad_ratings: 当您的脚本因差评而面临被删除的风险时，收取通知
       save_button: 更新通知设置
       title: 通知
       current_discussion_subscriptions:
@@ -699,15 +728,16 @@ zh-CN:
       new_comment_script: "%{user} 在您的脚本 %{script} 上发布了一条讨论。"
       mention: "%{user} 在 %{discussion} 中提到了您。"
       report_resolved_reporter:
-        dismissed: 您的的举报（%{item}）已被管理员驳回
+        dismissed: 您对 %{item} 的举报已被管理员驳回。
         fixed: 您针对 %{item} 的举报导致了一些更改，管理员已将该问题标记为已解决。
-        upheld: 管理员已通过您的举报（%{item}）。
-        rebutted: 您的举报（%{item}）收到了一则回应。管理员将查阅您的举报与该则回应。
+        upheld: 您对 %{item} 的举报已被管理员通过。
+        rebutted: 您对 %{item} 的举报已收到被举报用户的回复。管理员将查阅您的举报以及该回复。
       report_filed_reported: 已举报 %{item}.
       report_resolved_reported:
         dismissed: 关于%{item}的举报已被管理员驳回
         fixed: 针对 %{item} 的举报导致了一些更改，管理员已将该问题标记为已解决。
-        upheld: 管理员已通过该举报（%{item}）。
+        upheld: 对 %{item}的举报已被管理员通过。
+      consecutive_bad_ratings: "%{script} 已收到差评，并面临被删除的风险。请修复您的脚本或回应这些评论，以确保其保持有效。"
       list:
         header: 通知
         none: 暂无通知
@@ -733,6 +763,10 @@ zh-CN:
       title: '如何安装用户脚本'
     installing_user_styles:
       title: '如何安装用户样式'
+      content_html: |
+          <p>%{site_name} 上的某些脚本可以安装为用户样式。</p>
+          <p>用户样式可以通过 %{stylus_firefox_link:适用于 Firefox 的 Stylus}、%{stylus_chrome_link:适用于 Chrome 的 Stylus}，以及 %{stylus_opera_link:适用于 Opera 的 Stylus} 来安装。</p>
+          <p>%{styles_link:浏览所有可用的用户样式。}</p>
     meta_keys:
       title: "%{site_name} 要读取的脚本元属性值"
       intro_html: "这是 %{site_name} 将读取的 <a href=\"http://wiki.greasespot.net/Metadata_Block\">用户脚本属性值</a> 的一个列表。不在此列表的属性也可以写在脚本中，那些不在此列表的属性值也会包含在用户安装的脚本中，但是并不会对 %{site_name} 上的脚本页面做任何变动。"
@@ -879,6 +913,7 @@ zh-CN:
       translators_credit: "%{site_name} 的翻译由 %{translators_link: Transifex 上的「Greasy 翻译小队」制作}，参与翻译的人员名单如下："
       icons_credit: "浏览器图标来自 %{browserlogos}。"
     help_with_greasymonkey: "Greasemonkey 的相关帮助"
+    help_with_tampermonkey: "篡改猴的相关帮助"
     contact:
       title: "联系某人"
       content_html: >
@@ -889,17 +924,16 @@ zh-CN:
     privacy_policy:
       title: "隐私政策"
       content_html: >
-          <p>本页面描述了 %{site_name} 如何记录和跟踪用户信息。如果您有任何顾虑，请 %{admin_email_link:发邮件至管理员}。</p>
-          <h2>服务器日志</h2> <p>%{site_name} 会使用典型的服务器日志方式记录所有请求。记录的信息包括：被访问的页面，IP 地址，以及
-          User Agent 字段。这些日志用于调试和服务器分析目的。此数据将保留一周。此数据不会被分享或公开。</p> <h2>脚本统计数据</h2>
-          <p>为了生成统计数据，%{site_name} 会记录带有 IP 地址信息的安装和更新请求。此信息保留一天，然后汇总为不包含 IP 地址的数据。特定
-          IP 地址的数据不会被分享或公开提供，但汇总数据会。</p> <h2>Cookie（未登录时）</h2> <p>%{site_name} 可能设置临时会话
-          Cookie 以实现某些网站功能。这些 Cookie 不设置为持久，并且可能在浏览器关闭时被清除（取决于浏览器设置）。</p> <h2>用户账号</h2>
-          <p>%{site_name} 需要用户创建一个账号以发布脚本、参与讨论和访问某些网站功能。在创建账号时，诸如 IP 地址、电子邮箱地址，以及用户代理信息可能被永久存储。其中某些信息可能对其他用户可见。</p>
-          <p>在登录时执行的操作，例如发布脚本或者评论，将可能对其他用户可见。</p> <p>如果登录时选中了“记住我”的选项，%{site_name}
-          将设置一个持久的 Cookie 以保持登录状态。</p> <h2>发布在 %{site_name} 的脚本</h2> <p>%{site_name}
-          由用户生成的内容组成，而脚本可能会包含追踪代码；安装此类脚本会导致用户信息被搜集。</p> <h2>第三方库</h2> <p>%{site_name}
-          可能包含第三方代码以收集统计数据或者在网站上显示广告。这些库可能存在跟踪逻辑。</p>
+          <p>本页面描述了 %{site_name} 如何记录和跟踪用户。如果您有任何顾虑，请通过 %{admin_email_link:电子邮件联系管理员}。</p>
+          <h2>服务器日志</h2> <p>%{site_name} 以典型的服务器日志方式记录所有请求。记录的信息包括访问的页面、IP 地址和用户代理字符串。这些日志用于调试和服务器分析。数据仅保留一周，不会被共享或公开。</p>
+          <h2>脚本统计数据</h2> <p>为了生成统计数据，%{site_name} 会记录安装和更新请求的 IP 地址信息。这些信息将保留一天，然后会被聚合为不包含
+          IP 地址的数据。IP 地址相关的具体数据不会被共享或公开，但聚合的数据可能会被公开。</p> <h2>Cookie（未登录时）</h2> <p>%{site_name}
+          可能会设定临时会话 Cookie 以实现某些网站功能。这些 Cookie 不会持久保存，并且可能在浏览器关闭时被清除（取决于浏览器设置）。</p>
+          <h2>用户账号</h2> <p>%{site_name} 需要用户创建一个账号以发布脚本、参与讨论或使用某些站点功能。在创建账号时，可能会永久存储信息，例如
+          IP 地址、电子邮件地址和用户代理字符串。其中部分信息可能会向其他用户公开。</p> <p>用户登录后执行的操作，例如发布脚本和评论，可能会被其他用户看到。</p>
+          <p>如果在登录账户时勾选了“记住我”选项，%{site_name} 将设置一个持久性 Cookie 来保持登录状态。</p> <h2>发布在
+          %{site_name} 的脚本</h2> <p>%{site_name} 由用户生成的内容组成，而脚本可能会包含追踪代码，安装此类脚本会导致用户信息被搜集。</p>
+          <h2>第三方库</h2> <p>%{site_name} 可能会包含用于收集统计数据或显示广告的第三方代码。这些库可能包含跟踪逻辑。</p>
     user_css_to_user_js:
       title: 将用户样式（user CSS）转换为用户脚本（user JS）
       content_html: |
@@ -935,14 +969,14 @@ zh-CN:
           <li>宣传脚本作者的主页、代码仓库、Discord 语音群、微信等信息。</li>
           </ul>
       membership_html: |
-          <p>这个脚本需要用户先订阅某频道、加入某群组、在某页点赞等后才能使用全部功能。</p>
+          <p>该脚本需要用户先做出订阅某个频道、加入某群组、点赞某页等行为后，才能使用脚本的全部功能。</p>
 
-          <p>请注意下述情况 <i>不需要</i> 声明 <code>@antifeature membership</code>：</p>
+          <p>以下情况 <i>不需要</i> 声明 <code>@antifeature membership</code>：</p>
 
           <ul>
-          <li>脚本运作于需要由会员登入后的网站，但是脚本自己不需要额外登入。</li>
-          <li>在不影响用户使用全部功能的前提下提供付费支持，即用户可以在不付费支持的情况下使用脚本的完整功能。</li>
-          <li>在不影响脚本功能的前提下添加作者频道、群或页面等链接。</li>
+          <li>脚本运行于需要会员登录的网站，但是脚本自身不需要额外登录。</li>
+          <li>脚本在不影响用户使用全部功能的情况下提供付费的技术支持，即用户可以在不付费支持的情况下使用脚本的完整功能。</li>
+          <li>在不影响脚本功能的情况下添加作者频道、群组或者页面等链接。</li>
           </ul>
       miner_html: |
           <p>这个脚本含有挖矿软件或其他能够使用用户资源来为作者执行某些任务代码的脚本。</p>
@@ -983,6 +1017,8 @@ zh-CN:
     item_user_html: "用户：%{user_link}"
     item_report: "%{report_link:举报 #%{report_id}}"
     item_script_lock_appeal: "%{appeal_link:针对 #%{appeal_id} 提交申诉}"
+    item_discussion_html: "讨论：%{discussion_link}"
+    item_comment_html: "讨论评论：%{comment_link}"
   reports:
     name: "举报 #%{id}"
     report_filed: "您提交的举报将由管理员审核。"
@@ -1033,13 +1069,14 @@ zh-CN:
       wrong_category: "分类错误"
       wrong_category_with_suggestion: "分类错误（推荐: %{suggested_category}）"
       no_code: '无代码/世界你好'
+      legal_claim: "法律声明"
       other: "其它"
     report_intro: "%{reporter} 在 %{report_date} 举报了 %{reported_item}，原因是：%{reason}"
     report_intro_no_reporter: "%{reported_item} %{report_date} 被举报，原因是：%{reason}"
     report_intro_unauthorized_html: "%{reporter} 在 %{report_date}举报 %{reported_script} 含有未授权的副本，原脚本为 %{other_script}。"
     report_intro_unauthorized_no_reporter_html: "%{reported_script} 在 %{report_date}被举报含有未授权的副本，原脚本为 %{other_script}。"
-    report_intro_unauthorized_license: "%{other_script} 使用 %{license_link: %{license_name}} 授权协议。请访问 %{tldr_legal_link:tldrlegal.com}（英文）来帮助理解该授权协议。"
-    report_intro_unauthorized_license_no_url: "%{other_script} 使用 %{license_name} 授权协议。请访问 %{tldr_legal_link:tldrlegal.com}（英文）来帮助理解该授权协议。"
+    report_intro_unauthorized_license: "%{other_script} 使用 %{license_link: %{license_name}} 许可证。访问 %{tldr_legal_link:tldrlegal.com} 了解更多关于该许可证的含义。"
+    report_intro_unauthorized_license_no_url: "%{other_script} 使用 %{license_name} 许可证。访问 %{tldr_legal_link:tldrlegal.com} 以帮助理解该许可证的含义。"
     report_intro_unauthorized_no_license: "%{other_script} 未明确指定所使用的授权协议，即只有在明确表示获得授权的情况下才允许分发副本。"
     non_functional_feedback: "请在脚本%{feedback_link:反馈区}举报失效的脚本。"
     paid_benefits_feedback: "%{site_name} 没有办法记录任何脚本作者和用户之间的交易，因此无法验证与之相关的任何声明。如果您在脚本中支付了功能费用并感到不满意，请在脚本上以%{feedback_link:反馈}来提出您的投诉。"
@@ -1096,6 +1133,7 @@ zh-CN:
     dismissed_by_moderator: 管理员驳回了该申诉。
     upheld_by_moderator: 一位管理员通过了此申诉，并解除了该则脚本的删除状态。
     submitted: 已收到您提交的申诉，请等待管理员审核。
+    already_open: 此脚本已有一个未决的申诉。
   discussions:
     title: 讨论
     comment_date: "发表于：%{date}"
@@ -1264,6 +1302,7 @@ zh-CN:
         current_password: "当前密码"
         new_password: "新的密码"
         new_password_confirmation: "确认新密码"
+        otp_attempt: 两步验证（2FA）代码
       script:
         name: "名称"
         description: "描述"
@@ -1316,12 +1355,12 @@ zh-CN:
     short_name: "%{site_name} 搜索"
     description: "搜索 %{site_name} 上的用户脚本。"
     long_name: "%{site_name} 用户脚本搜索"
-    attribution: "脚本作者保留所有权利，详见各脚本许可证"
+    attribution: "版权归脚本的作者所有，具体许可信息请查看每个脚本的相关说明。"
   importing:
     title: 导入脚本
     intro: "%{site_name} 可以从其他网站导入脚本，比如代码版本控制系统 (例：GitHub)、您自己的服务器或其它的用户脚本网站。"
     url_entry_label: 提供要导入的 URL，每行一个。这应该是原始 JS 或 CSS 文件的网址。
-    sync_type_label: "在初始导入后，脚本将会同步："
+    sync_type_label: "初次导入后，脚本应进行同步："
     additional_info_html: |
         <p>对于来自源代码管理的脚本，请确保您使用的 URL 指向一个分支，而不是特定的提交，否则脚本将永远不会更新。例如，使用 <code>https://bitbucket.org/username/reponame/raw/<b>branch-name</b>/script.user.js</code>，而不是 <code>https://bitbucket.org/username/reponame/raw/<b>commit-hash</b>/script.user.js</code>。</p>
         <p>从 GitHub、Bitbucket 或 GitLab 导入的脚本也可以通过 Webhook 设定同步。通过 Webhook，您的脚本在您推送到仓库时会立即在 %{site_name} 上更新。如果您想使用 Webhook 但尚未设定，请先完成导入，然后在 %{webhook_info_link:设定 Webhook} 之后再进行设定。</p>
@@ -1341,6 +1380,10 @@ zh-CN:
     script_report:
       report_created_offender:
         subject: "您的脚本 %{script_name} 在 %{site_name} 上被举报"
+        body_html: |
+            <p>
+            您的脚本 %{script_link:%{script_name}} 被举报违反了 %{site_name} 的规则。给出的理由为：%{reason}。管理员将会查阅此举报，并且如果他们认为脚本确实违反了规则，可能会删除该脚本。如果您希望提供反驳或解释，您可以 %{report_link:查阅此举报} 并提交反驳。
+            </p>
       report_upheld_offender:
         subject: "您的脚本 %{script_name} 在 %{site_name} 上已被删除"
         body_html: |
