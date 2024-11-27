@@ -97,7 +97,7 @@ async function doInstall(installLink) {
       try {
         let pingKey = sha1(installLink.getAttribute("data-ip-address") + installLink.getAttribute("data-script-id") + installLink.getAttribute("data-ping-key"));
         let fullPingUrl = pingUrl + (pingUrl.includes('?') ? '&' : '?') + "ping_key=" + encodeURIComponent(pingKey)
-        navigator.sendBeacon(pingUrl)
+        navigator.sendBeacon(fullPingUrl)
 
         gtag('event', 'Script install', {
           'event_label': installLink.getAttribute('data-script-id'),
