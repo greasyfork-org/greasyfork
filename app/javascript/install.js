@@ -94,13 +94,11 @@ async function doInstall(installLink) {
     let pingUrl = installLink.getAttribute("data-ping-url")
 
     if (pingUrl) {
-      let ping_key = sha1(installLink.getAttribute("data-ip-address") + installLink.getAttribute("data-script-id") + installLink.getAttribute("data-ping-key"));
-      let xhr = new XMLHttpRequest();
-      xhr.open("POST", pingUrl + (pingUrl.includes('?') ? '&' : '?') + "ping_key=" + encodeURIComponent(ping_key), true);
-      xhr.overrideMimeType("text/plain");
-      xhr.send();
-
       try {
+        let pingKey = sha1(installLink.getAttribute("data-ip-address") + installLink.getAttribute("data-script-id") + installLink.getAttribute("data-ping-key"));
+        let fullPingUrl = pingUrl + (pingUrl.includes('?') ? '&' : '?') + "ping_key=" + encodeURIComponent(pingKey)
+        navigator.sendBeacon(pingUrl)
+
         gtag('event', 'Script install', {
           'event_label': installLink.getAttribute('data-script-id'),
           'script_id': installLink.getAttribute('data-script-id'),
@@ -108,17 +106,12 @@ async function doInstall(installLink) {
         });
       } catch (ex) {
         // Oh well, don't die.
+        console.log(ex)
       }
-
-      // Give time for the ping request to happen.
-      setTimeout(function () {
-        location.href = installLink.href;
-        resolve(true)
-      }, 100);
-    } else {
-     location.href = installLink.href;
-      resolve(true)
     }
+
+    location.href = installLink.href;
+    resolve(true)
   })
 }
 
