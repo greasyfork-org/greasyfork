@@ -141,7 +141,7 @@ class ScriptVersionsController < ApplicationController
     @script.script_type = params['script']['script_type'].to_i
     @script.locale_id = params['script']['locale_id'] if params['script'].key?('locale_id')
 
-    if !@script.sensitive? && params['script']['adult_content_self_report'] == '1'
+    if !@script.sensitive? && (params['script']['adult_content_self_report'] == '1' || sleazy?)
       @script.marked_adult_by_user = current_user
       @script.adult_content_self_report = true
     end

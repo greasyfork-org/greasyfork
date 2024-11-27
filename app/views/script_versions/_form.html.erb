@@ -164,27 +164,36 @@
     </div>
   </div>
 
-  <div class="form-section">
-    <% if !script_version.script.sensitive || script_version.script.adult_content_self_report %>
-      <div class="form-control radio-group">
+  <% if sleazy? %>
+    <div class="form-section">
+      <div class="form-control">
         <label><%= t('scripts.adult_content') %></label><br>
-        <%= t('scripts.adult_content_self_report_explanation', site_name: site_name) %><br>
-        <%= check_box('script', :adult_content_self_report) %>
-        <label for="script_adult_content_self_report" class="radio-label"><%= t('scripts.adult_content_self_report') %></label>
+        <%= it('scripts.adult_content_notice_from_sleazy', site_name:, greasyfork_link: @script.new_record? ? new_script_version_url(host: greasyfork_host) : new_script_script_version_url(@script, host: greasyfork_host)) %>
       </div>
-    <% else %>
-      <div class="form-control radio-group">
-        <label><%= t('scripts.adult_content') %></label><br>
-        <% if @script.for_sensitive_site? %>
-          <%= t('scripts.not_adult_content_self_report_explanation_automatic', site_name: site_name, domain_list: @script.matching_sensitive_sites.pluck(:domain).to_sentence) %><br>
-        <% else %>
-          <%= t('scripts.not_adult_content_self_report_explanation', site_name: site_name) %><br>
-          <%= check_box('script', :not_adult_content_self_report, checked: @script.not_adult_content_self_report_date.present?) %>
-          <label for="script_not_adult_content_self_report" class="radio-label"><%= t('scripts.not_adult_content_self_report_html') %></label>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
+    </div>
+  <% else %>
+    <div class="form-section">
+      <% if !script_version.script.sensitive || script_version.script.adult_content_self_report %>
+        <div class="form-control radio-group">
+          <label><%= t('scripts.adult_content') %></label><br>
+          <%= t('scripts.adult_content_self_report_explanation', site_name: site_name) %><br>
+          <%= check_box('script', :adult_content_self_report) %>
+          <label for="script_adult_content_self_report" class="radio-label"><%= t('scripts.adult_content_self_report') %></label>
+        </div>
+      <% else %>
+        <div class="form-control radio-group">
+          <label><%= t('scripts.adult_content') %></label><br>
+          <% if @script.for_sensitive_site? %>
+            <%= t('scripts.not_adult_content_self_report_explanation_automatic', site_name: site_name, domain_list: @script.matching_sensitive_sites.pluck(:domain).to_sentence) %><br>
+          <% else %>
+            <%= t('scripts.not_adult_content_self_report_explanation', site_name: site_name) %><br>
+            <%= check_box('script', :not_adult_content_self_report, checked: @script.not_adult_content_self_report_date.present?) %>
+            <label for="script_not_adult_content_self_report" class="radio-label"><%= t('scripts.not_adult_content_self_report_html') %></label>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 
   <% if @script.css? %>
     <div class="form-section">

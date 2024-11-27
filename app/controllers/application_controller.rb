@@ -172,6 +172,12 @@ class ApplicationController < ActionController::Base
     sleazy? ? 'Sleazy Fork' : 'Greasy Fork'
   end
 
+  def greasyfork_host
+    return 'greasyfork.org' if Rails.env.production?
+
+    'greasyfork.local'
+  end
+
   def script_subset
     return :sleazyfork if sleazy?
     return :greasyfork unless user_signed_in?
@@ -188,7 +194,7 @@ class ApplicationController < ActionController::Base
     request.subdomain == 'update' || (Rails.env.test? && request.domain == 'localhost')
   end
 
-  helper_method :cache_with_log, :greasy?, :sleazy?, :script_subset, :site_name
+  helper_method :cache_with_log, :greasy?, :sleazy?, :script_subset, :site_name, :greasyfork_host
 
   def get_script_from_input(value, allow_deleted: false)
     allowed_hosts = ['https://greasyfork.org', 'https://sleazyfork.org']
