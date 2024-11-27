@@ -98,8 +98,13 @@
         </p>
         <p class="installation-instructions-modal-content-safari">
           <%= it('scripts.install_help_dialog.js.safari',
-                 tampermonkey_link: It.link('https://addons.opera.com/extensions/details/tampermonkey-beta/', target: 'tampermonkey'),
+                 tampermonkey_link: It.link('https://www.tampermonkey.net/?browser=safari', target: 'tampermonkey'),
                  userscripts_link: It.link('https://apps.apple.com/app/userscripts/id1463298887', target: 'Userscripts'))
+          %>
+        </p>
+        <p class="installation-instructions-modal-content-edge">
+          <%= it('scripts.install_help_dialog.js.edge',
+                 tampermonkey_link: It.link('https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd', target: 'tampermonkey'))
           %>
         </p>
         <p class="installation-instructions-modal-content-other">
@@ -145,6 +150,9 @@
         </p>
         <p class="installation-instructions-modal-content-safari">
           <%= t('scripts.install_help_dialog.css.safari') %>
+        </p>
+        <p class="installation-instructions-modal-content-edge">
+          <%= t('scripts.install_help_dialog.css.edge') %>
         </p>
         <p class="installation-instructions-modal-content-other">
           <%= t('scripts.install_help_dialog.css.other') %>

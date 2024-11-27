@@ -38,6 +38,7 @@ function installationHelpFunction(js) {
       case 'chrome':
       case 'opera':
       case 'safari':
+      case 'edge':
         modal.classList.add("installation-instructions-modal-" + browserType)
         break;
       default:
