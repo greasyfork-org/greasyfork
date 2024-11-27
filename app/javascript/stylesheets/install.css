@@ -20,7 +20,7 @@
   border-radius: 0 0.25rem 0.25rem 0;
 }
 
-.installation-instructions-modal-content-firefox, .installation-instructions-modal-content-chrome, .installation-instructions-modal-content-opera, .installation-instructions-modal-content-safari, .installation-instructions-modal-content-other {
+.installation-instructions-modal-content-firefox, .installation-instructions-modal-content-chrome, .installation-instructions-modal-content-opera, .installation-instructions-modal-content-safari, .installation-instructions-modal-content-edge, .installation-instructions-modal-content-other {
   display: none;
 }
 .installation-instructions-modal-firefox .installation-instructions-modal-content-firefox {
@@ -33,6 +33,9 @@
   display: block;
 }
 .installation-instructions-modal-safari .installation-instructions-modal-content-safari {
+  display: block;
+}
+.installation-instructions-modal-edge .installation-instructions-modal-content-edge {
   display: block;
 }
 .installation-instructions-modal-other .installation-instructions-modal-content-other {
