@@ -304,6 +304,7 @@ nl:
     not_adult_content_self_report_html: "Dit script bevat <strong>geen</strong> inhoud voor volwassenen en is ook <strong>niet</strong> bestemd voor een website met inhoud voor volwassenen."
     not_adult_content_self_report_explanation: "%{site_name} staat scripts met inhoud voor volwassenen toe, mits deze als dusdanig gemarkeerd zijn zodat gebruikers zelf kunnen kiezen of ze dit willen zien of niet. Je script is aangemerkt als ‘inhoud voor volwassenen’. Je kunt er voor kiezen om het te melden als je van mening bent dat dit onjuist is. In dat geval zal het script worden nagekeken door een moderator."
     not_adult_content_self_report_explanation_automatic: "%{site_name} staat scripts met volwassen inhoud toe, mits ze zo gemarkeerd zijn dat gebruikers kunnen kiezen of ze het willen zien. Je script is aangemerkt als ‘inhoud voor volwassenen’, want deze is bestemd voor %{domain_list}."
+    adult_content_notice_from_sleazy: Door je script op %{site_name} te publiceren, wordt aangenomen dat het inhoud voor volwassenen bevat of gemaakt is voor dito websites. Als dat niet het geval is, %{greasyfork_link:publiceer je script dan op Greasy Fork}.
     adult_content_on_greasy_logged_in_error: "Dit script is niet meer anoniem beschikbaar op deze site met je huidige %{edit_account_link:Greasy Fork-accountinstellingen}."
     adult_content_on_greasy_not_logged_in_error: "Dit script is niet meer anoniem verkrijgbaar op deze site. %{login_link:Log in} en controleer jeGreasy Fork-accountinstellingen."
     non_adult_content_on_sleazy: "Dit script is niet beschikbaar op deze site."
@@ -365,6 +366,7 @@ nl:
         chrome: Voor het installeren van scripts heb je een extensie nodig, zoals %{tampermonkey_link:Tampermonkey} of %{violentmonkey_link:Violentmonkey}.
         opera: Voor het installeren van scripts heb je een extensie nodig, zoals %{tampermonkey_link:Tampermonkey} of %{violentmonkey_link:Violentmonkey}.
         safari: Voor het installeren van scripts heb je een extensie nodig, zoals %{tampermonkey_link:Tampermonkey} of %{userscripts_link:Userscripts}.
+        edge: Voor het installeren van scripts heb je een extensie nodig, zoals {tampermonkey_link:Tampermonkey}.
         other: Voor het installeren van scripts heb je een gebruikersscriptbeheerder nodig.
         bypass: (Ik heb al een user script manager, laat me het downloaden!)
       css:
@@ -372,6 +374,7 @@ nl:
         chrome: Voor het installeren van gebruikersstijlen heb je een extensie nodig, zoals {stylus_link:Stylus}.
         opera: Voor het installeren van gebruikersstijlen heb je een extensie nodig, zoals {stylus_link:Stylus}.
         safari: Voor het installeren van gebruikersstijlen heb je een gebruikersstijlbeheerder nodig.
+        edge: Voor het installeren van gebruikersstijlen heb je een gebruikersstijlbeheerder nodig.
         other: Voor het installeren van gebruikersstijlen heb je een gebruikersstijlbeheerder nodig.
         bypass: (Ik heb al een beheerder - laat me doorgaan met de installatie!)
       close_dialog: Oké
@@ -517,6 +520,7 @@ nl:
       browser_list_html: |
           <ul>
           <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey} of %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
           <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
           <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
           <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>

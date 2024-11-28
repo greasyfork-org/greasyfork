@@ -355,11 +355,6 @@ es:
         other: Necesitarás instalar una extensión para administrar scripts de usuario si quieres instalar este script.
         bypass: (Ya tengo un administrador de scripts de usuario, déjame instalarlo)
       css:
-        firefox: Necesitarás instalar una extensión como %{stylus_link:Stylus} para instalar este script.
-        chrome: Necesitarás instalar una extensión como %{stylus_link:Stylus} para instalar este script.
-        opera: Necesitarás instalar una extensión como %{stylus_link:Stylus} para instalar este script.
-        safari: Necesitarás instalar una extensión de administrador de estilo de usuario para instalar este script.
-        other: Necesitarás instalar una extensión de administrador de estilo de usuario para instalar este script.
         bypass: (Ya tengo un administrador de estilos de usuario, déjame instalarlo)
       close_dialog: Aceptar
     antifeatures:
@@ -493,16 +488,6 @@ es:
       title: Navegadores de escritorio
     android_browsers:
       title: Para Android
-      browser_list_html: |
-          <ul>
-          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, o %{firefox_violentmonkey_link:Violentmonkey}</li>
-          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
-          <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
-          <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
-          <li>Kiwi: %{chrome_tampermonkey_link:Tampermonkey} o %{chrome_violentmonkey_link:Violentmonkey}</li>
-          <li>%{xbrowser_link:XBrowser}</li>
-          %{locale_specific_browsers}
-          </ul>
     ios_browsers:
       title: Para iOS
       browser_list_html: |

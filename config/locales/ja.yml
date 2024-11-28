@@ -360,11 +360,6 @@ ja:
         other: このスクリプトをインストールするには、ユーザースクリプト管理ツールの拡張機能をインストールする必要があります。
         bypass: (ユーザースクリプト管理ツールは設定済みなのでインストール！)
       css:
-        firefox: スクリプトをインストールするには、%{stylus_link:Stylus} のような拡張機能のインストールが必要です。
-        chrome: スクリプトをインストールするには、%{stylus_link:Stylus} のような拡張機能のインストールが必要です。
-        opera: スクリプトをインストールするには、%{stylus_link:Stylus} のような拡張機能のインストールが必要です。
-        safari: このスクリプトをインストールするには、ユーザースタイル管理ツールの拡張機能をインストール必要があります。
-        other: このスクリプトをインストールするには、ユーザースタイル管理ツールの拡張機能をインストール必要があります。
         bypass: (ユーザースタイル管理ツールは設定済みなのでインストール！)
       close_dialog: OK
     antifeatures:
@@ -501,16 +496,6 @@ ja:
           </ul>
     android_browsers:
       title: モバイル (Android)
-      browser_list_html: |
-          <ul>
-          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}、%{firefox_tampermonkey_link:Tampermonkey} / %{firefox_violentmonkey_link:Violentmonkey}</li>
-          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
-          <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
-          <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
-          <li>Kiwi: %{chrome_tampermonkey_link:Tampermonkey} / %{chrome_violentmonkey_link:Violentmonkey}</li>
-          <li>%{xbrowser_link:XBrowser}</li>
-          %{locale_specific_browsers}
-          </ul>
     ios_browsers:
       title: モバイル (iOS)
       browser_list_html: |

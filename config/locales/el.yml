@@ -347,11 +347,6 @@ el:
         other: Θα χρειαστεί να εγκαταστήσετε μια επέκταση διαχείρισης κώδικα χρήστη για να εγκαταστήσετε αυτόν τον κώδικα.
         bypass: (Έχω ήδη έναν διαχειριστή κώδικα χρήστη, επιτρέψτε μου να τον εγκαταστήσω!)
       css:
-        firefox: Θα χρειαστεί να εγκαταστήσετε μια επέκταση όπως το %{stylus_link:Stylus} για να εγκαταστήσετε αυτόν τον κώδικα.
-        chrome: Θα χρειαστεί να εγκαταστήσετε μια επέκταση όπως το %{stylus_link:Stylus} για να εγκαταστήσετε αυτόν τον κώδικα.
-        opera: Θα χρειαστεί να εγκαταστήσετε μια επέκταση όπως το %{stylus_link:Stylus} για να εγκαταστήσετε αυτόν τον κώδικα.
-        safari: Θα χρειαστεί να εγκαταστήσετε μια επέκταση διαχείρισης στυλ χρήστη για να εγκαταστήσετε αυτόν τον κώδικα.
-        other: Θα χρειαστεί να εγκαταστήσετε μια επέκταση διαχείρισης στυλ χρήστη για να εγκαταστήσετε αυτόν τον κώδικα.
         bypass: (Έχω ήδη έναν διαχειριστή στυλ χρήστη, επιτρέψτε μου να τον εγκαταστήσω!)
       close_dialog: Εντάξει
     antifeatures:
@@ -483,16 +478,6 @@ el:
       title: Επιτραπέζιο
     android_browsers:
       title: Κινητό (Android)
-      browser_list_html: |
-          <ul>
-          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, ή %{firefox_violentmonkey_link:Violentmonkey}</li>
-          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
-          <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
-          <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
-          <li>Kiwi: %{chrome_tampermonkey_link:Tampermonkey} ή %{chrome_violentmonkey_link:Violentmonkey}</li>
-          <li>%{xbrowser_link:XBrowser}</li>
-          %{locale_specific_browsers}
-          </ul>
     ios_browsers:
       title: Κινητό (iOS)
       browser_list_html: |

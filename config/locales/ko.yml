@@ -341,11 +341,6 @@ ko:
         other: 스크립트를 설치하려면 유저 스크립트 관리자 확장을 설치해야 합니다.
         bypass: (이미 유저 스크립트 관리자가 있으니 설치 링크나 주세요!)
       css:
-        firefox: 이 스타일을 설치하려면 %{stylus_link:Stylus} 같은 확장을 설치해야 합니다.
-        chrome: 이 스타일을 설치하려면 %{stylus_link:Stylus} 같은 확장을 설치해야 합니다.
-        opera: 이 스타일을 설치하려면 %{stylus_link:Stylus} 같은 확장을 설치해야 합니다.
-        safari: 스타일을 설치하려면 유저 스타일 관리자 확장을 설치해야 합니다.
-        other: 스타일을 설치하려면 유저 스타일 관리자 확장을 설치해야 합니다.
         bypass: (이미 유저 스타일 관리자가 있으니 설치 링크나 주세요!)
       close_dialog: 확인
     antifeatures:
@@ -473,16 +468,6 @@ ko:
           </ul>
     android_browsers:
       title: 모바일(안드로이드)
-      browser_list_html: |
-          <ul>
-          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, 또는 %{firefox_violentmonkey_link:Violentmonkey}</li>
-          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
-          <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
-          <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
-          <li>Kiwi: %{chrome_tampermonkey_link:Tampermonkey} 또는 %{chrome_violentmonkey_link:Violentmonkey}</li>
-          <li>%{xbrowser_link:XBrowser}</li>
-          %{locale_specific_browsers}
-          </ul>
     ios_browsers:
       title: 모바일(iOS)
       browser_list_html: |

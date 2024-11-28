@@ -354,11 +354,6 @@ it:
         other: Dovrai installare un gestore di script utente per installare questo script.
         bypass: (Ho già un gestore di script utente, lasciamelo installare!)
       css:
-        firefox: Dovrai installare un'estensione come  %{stylus_link:Stylus}  per installare questo script.
-        chrome: Dovrai installare un'estensione come  %{stylus_link:Stylus}  per installare questo script.
-        opera: Dovrai installare un'estensione come  %{stylus_link:Stylus}  per installare questo script.
-        safari: Dovrai installare un gestore di stile utente per installare questo script.
-        other: Dovrai installare un gestore di stile utente per installare questo script.
         bypass: (Ho già un gestore di stile utente, lasciamelo installare!)
       close_dialog: OK
     antifeatures:
@@ -485,16 +480,6 @@ it:
       title: Desktop
     android_browsers:
       title: Mobile (Android)
-      browser_list_html: |
-          <ul>
-          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, o %{firefox_violentmonkey_link:Violentmonkey}</li>
-          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
-          <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
-          <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
-          <li>Kiwi: %{chrome_tampermonkey_link:Tampermonkey} o %{chrome_violentmonkey_link:Violentmonkey}</li>
-          <li>%{xbrowser_link:XBrowser}</li>
-          %{locale_specific_browsers}
-          </ul>
     ios_browsers:
       title: Mobile (iOS)
       browser_list_html: |

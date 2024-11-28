@@ -348,11 +348,6 @@ tr:
         other: Bu komut dosyasını yüklemek için bir kullanıcı komut dosyası yöneticisi uzantısı yüklemeniz gerekecek.
         bypass: (Zaten bir kullanıcı komut dosyası yöneticim var, kurmama izin verin!)
       css:
-        firefox: Bu komut dosyasını yüklemek için %{stylus_link:Stylus} gibi bir uzantı yüklemeniz gerekecek.
-        chrome: Bu komut dosyasını yüklemek için %{stylus_link:Stylus} gibi bir uzantı yüklemeniz gerekecek.
-        opera: Bu komut dosyasını yüklemek için %{stylus_link:Stylus} gibi bir uzantı yüklemeniz gerekecek.
-        safari: Bu komut dosyasını yüklemek için bir kullanıcı stili yöneticisi uzantısı yüklemeniz gerekecek.
-        other: Bu komut dosyasını yüklemek için bir kullanıcı stili yöneticisi uzantısı yüklemeniz gerekecek.
         bypass: (Zateb bir user-style yöneticim var, yükleyeyim!)
       close_dialog: Tamam
     antifeatures:
@@ -478,16 +473,6 @@ tr:
       title: Masaüstü
     android_browsers:
       title: Mobil (Android)
-      browser_list_html: |
-          <ul>
-          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, ya da %{firefox_violentmonkey_link:Violentmonkey}</li>
-          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
-          <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
-          <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
-          <li>Kiwi: %{chrome_tampermonkey_link:Tampermonkey} ya da %{chrome_violentmonkey_link:Violentmonkey}</li>
-          <li>%{xbrowser_link:XBrowser}</li>
-          %{locale_specific_browsers}
-          </ul>
     ios_browsers:
       title: Mobil (iOS)
       browser_list_html: |

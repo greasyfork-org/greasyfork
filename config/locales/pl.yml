@@ -351,11 +351,6 @@ pl:
         other: Aby zainstalować ten skrypt, musisz zainstalować rozszerzenie menedżera skryptów użytkownika.
         bypass: (Mam już menedżera skryptów użytkownika, pozwól mi to zainstalować!)
       css:
-        firefox: Musisz posiadać rozszerzenie, takie jak %{stylus_link:Stylus}, by zainstalować ten skrypt.
-        chrome: Musisz posiadać rozszerzenie, takie jak %{stylus_link:Stylus}, by zainstalować ten skrypt.
-        opera: Musisz posiadać rozszerzenie, takie jak %{stylus_link:Stylus}, by zainstalować ten skrypt.
-        safari: Aby zainstalować ten skrypt, potrzebujesz menedżera stylu.
-        other: Aby zainstalować ten skrypt, musisz zainstalować rozszerzenie menedżera stylów użytkownika.
         bypass: (Mam już menedżera stylów użytkownika, pozwól mi to zainstalować!)
       close_dialog: OK
     antifeatures:
@@ -492,16 +487,6 @@ pl:
       title: Komputer stacjonarny
     android_browsers:
       title: Urządzenie mobilne z systemem Android
-      browser_list_html: |
-          <ul>
-          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, or %{firefox_violentmonkey_link:Violentmonkey}</li>
-          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
-          <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
-          <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
-          <li>Kiwi: %{chrome_tampermonkey_link:Tampermonkey} or %{chrome_violentmonkey_link:Violentmonkey}</li>
-          <li>%{xbrowser_link:XBrowser}</li>
-          %{locale_specific_browsers}
-          </ul>
     ios_browsers:
       title: Urządzenie mobilne z systemem iOS
       browser_list_html: |

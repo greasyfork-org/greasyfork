@@ -362,11 +362,6 @@ zh-CN:
         other: 您需要先安装一个用户脚本管理器扩展后才能安装该脚本。
         bypass: （我已经安装了用户脚本管理器，让我安装！）
       css:
-        firefox: 您需要先安装一个用户样式管理器扩展，如 %{stylus_link:Stylus} 后才能安装该脚本。
-        chrome: 您需要先安装一个用户样式管理器扩展，如 %{stylus_link:Stylus} 后才能安装该脚本。
-        opera: 您需要先安装一个用户样式管理器扩展，如 %{stylus_link:Stylus} 后才能安装该脚本。
-        safari: 您需要先安装一个用户样式管理器扩展后才能安装该脚本。
-        other: 您需要先安装一个用户样式管理器扩展后才能安装该脚本。
         bypass: （我已经安装了用户样式管理器，让我安装！）
       close_dialog: 确定
     antifeatures:
@@ -503,16 +498,6 @@ zh-CN:
           </ul>
     android_browsers:
       title: 移动端（Android）
-      browser_list_html: |
-          <ul>
-          <li>Firefox：%{firefox_greasemonkey_link:Greasemonkey}、%{firefox_tampermonkey_link:Tampermonkey} 或 %{firefox_violentmonkey_link:Violentmonkey}</li>
-          <li>Maxthon：%{maxthon_violentmonkey_link:Violentmonkey}</li>
-          <li>Dolphin：%{dolphin_tampermonkey_link:Tampermonkey}</li>
-          <li>UC：%{uc_tampermonkey_link:Tampermonkey}</li>
-          <li>Kiwi：%{chrome_tampermonkey_link:Tampermonkey} 或 %{chrome_violentmonkey_link:Violentmonkey}</li>
-          <li>%{xbrowser_link:X浏览器}</li>
-          %{locale_specific_browsers}
-          </ul>
     ios_browsers:
       title: 移动端（iOS）
       browser_list_html: |
