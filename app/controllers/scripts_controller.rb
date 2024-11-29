@@ -6,6 +6,7 @@ require 'css_to_js_converter'
 require 'css_parser'
 require 'js_parser'
 require 'digest'
+require 'data_centre_ips'
 
 class ScriptsController < ApplicationController
   include ScriptAndVersions
