@@ -624,11 +624,6 @@ class ScriptsController < ApplicationController
                       end
       end
 
-      if @script.disable_stats && !current_user&.moderator?
-        @stats_disabled = true
-        return
-      end
-
       install_sql = "SELECT install_date, installs FROM install_counts where script_id = #{Script.connection.quote(@script.id)}"
       install_sql += " and install_date >= #{Script.connection.quote(@start_date)}" if @start_date
       install_values = Script.connection.select_rows(install_sql).to_h
