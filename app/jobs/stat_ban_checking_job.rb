@@ -33,8 +33,8 @@ class StatBanCheckingJob
 
     gf_install_data = Script.connection.select_rows("select script_id, installs from install_counts where install_date = '#{date}' AND installs > #{MIN_INSTALL_COUNT} #{"AND script_id IN (#{limit_to_script_ids.join(',')})" if limit_to_script_ids} group by script_id order by installs").to_h
 
-    ga_gf_install_data = GoogleAnalytics.report_installs(Date.yesterday)
-    ga_sf_install_data = GoogleAnalytics.report_installs(Date.yesterday, site: :sleazyfork)
+    ga_gf_install_data = GoogleAnalytics.report_installs(date)
+    ga_sf_install_data = GoogleAnalytics.report_installs(date, site: :sleazyfork)
     ga_install_data = ga_gf_install_data.merge(ga_sf_install_data) { |_key, gf_v, sf_v| gf_v + sf_v }
 
     gf_install_data.select { |script_id, installs| ga_install_data[script_id] && installs / ga_install_data[script_id] > MIN_DISCREPANCY_MULTIPLIER }.keys
