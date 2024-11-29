@@ -336,18 +336,28 @@ class ScriptsController < ApplicationController
       return
     end
 
-    if install_keys.any? { |install_key| Digest::SHA1.hexdigest(request.remote_ip + script_id + install_key) == params[:ping_key] }
-      passed_checks = PingRequestCheckingService.check(request)
-      session[PingRequestChecking::SessionInstallKey::SESSION_KEY] -= [script_id.to_i] if session[PingRequestChecking::SessionInstallKey::SESSION_KEY]
-      if passed_checks.count == PingRequestCheckingService::STRATEGIES.count
-        ip = Array.new(4) { rand(256) }.join('.') unless Rails.application.config.ip_address_tracking
-        Rails.logger.warn("Recorded for script #{script_id} and IP #{ip} - passed ping checks: #{passed_checks.join(', ')}")
-        Script.record_install(script_id, ip)
-      else
-        Rails.logger.warn("Not recorded for script #{script_id} and IP #{ip} - only passed ping checks: #{passed_checks.join(', ')}")
-      end
+    unless install_keys.any? { |install_key| Digest::SHA1.hexdigest(request.remote_ip + script_id + install_key) == params[:ping_key] }
+      Rails.logger.warn("Install not recorded for script #{script_id} and IP #{ip} - install key does not match.")
+      head :no_content
+      return
     end
 
+    if DataCentreIps.data_centre?(ip)
+      Rails.logger.warn("Install not recorded for script #{script_id} and IP #{ip} - appears to be a data centre.")
+      head :no_content
+      return
+    end
+
+    passed_checks = PingRequestCheckingService.check(request)
+    session[PingRequestChecking::SessionInstallKey::SESSION_KEY] -= [script_id.to_i] if session[PingRequestChecking::SessionInstallKey::SESSION_KEY]
+    unless passed_checks.count == PingRequestCheckingService::STRATEGIES.count
+      Rails.logger.warn("Install not recorded for script #{script_id} and IP #{ip} - only passed ping checks: #{passed_checks.join(', ')}")
+      head :no_content
+      return
+    end
+
+    ip = Array.new(4) { rand(256) }.join('.') unless Rails.application.config.ip_address_tracking
+    Script.record_install(script_id, ip)
     head :no_content
   end
 
