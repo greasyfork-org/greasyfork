@@ -1,3 +1,6 @@
+-- drop installs from scripts in stat ban jail
+DELETE daily_install_counts.* FROM daily_install_counts JOIN stat_bans USING (script_id) WHERE expires_at > NOW();
+
 -- daily installs - anything in the last 24 hours
 UPDATE scripts SET daily_installs = 0;
 UPDATE scripts s
