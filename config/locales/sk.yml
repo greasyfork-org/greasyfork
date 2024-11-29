@@ -303,6 +303,7 @@ sk:
     not_adult_content_self_report_html: "Tento skript <strong>neobsahuje</strong> obsah pre dospelých a  <strong>nie je</strong> určený pre stránky s takýmto obsahom."
     not_adult_content_self_report_explanation: "%{site_name} povoľuje skripty s obsahom pre dospelých, ale musia byť označené tak, aby používatelia si mohli vybrať, či ich chcú zobraziť. Váš skript bol označený, že obsahuje mládeži neprístupný obsah. Môžete nahlásiť, že to tak nie je; hlásenie bude posúdené moderátorom. "
     not_adult_content_self_report_explanation_automatic: "%{site_name} povoľuje skripty s obsahom pre dospelých, ale musia byť takto označené, aby si používatelia mohli vybrať, či ho chcú vidieť. Váš skript bol označený ako s obsahom pre dospelých pretože je pre %{domain_list}."
+    adult_content_notice_from_sleazy: Keďže tento skript uverejňujete na %{site_name}, predpokladá sa, že váš skript obsahuje obsah pre dospelých alebo je určený pre stránku s obsahom pre dospelých. Ak to nie je pravda, namiesto toho prosím %{greasyfork_link:zverejnite svoj skript na Greasy Fork}.
     adult_content_on_greasy_logged_in_error: "Tento skript už nie je dostupný na tejto stránke s vaším aktuálnym %{edit_account_link:nastavením účtu Greasy Fork}."
     adult_content_on_greasy_not_logged_in_error: "Tento skript už nie je dostupný anonymne. %{login_link:Prihláste sa} a skontroluje nastavenie svojho účtu na Greasy Fork."
     non_adult_content_on_sleazy: "Tento skript nie je dostupný na tejto stránke."
@@ -364,9 +365,16 @@ sk:
         chrome: Na nainštalovanie skriptu si budete musieť nainštalovať rozšírenie, ako napríklad %{tampermonkey_link:Tampermonkey}, % alebo %{violentmonkey_link:Violentmonkey}.
         opera: Na nainštalovanie skriptu si budete musieť nainštalovať rozšírenie, ako napríklad %{tampermonkey_link:Tampermonkey}, % alebo %{violentmonkey_link:Violentmonkey}.
         safari: Na nainštalovanie skriptu si budete musieť nainštalovať rozšírenie, ako napríklad %{tampermonkey_link:Tampermonkey} alebo %{userscripts_link:Userscripts}.
+        edge: Na inštaláciu tohto skriptu je potrebné nainštalovať rozšírenie, ako napríklad %{tampermonkey_link:Tampermonkey}.
         other: Na inštaláciu tohto skriptu je potrebné nainštalovať rozšírenie správcu používateľských skriptov.
         bypass: (Už mám správcu používateľských skriptov, nechajte ma ho nainštalovať!)
       css:
+        firefox: Na inštaláciu tohto štýlu je potrebné nainštalovať rozšírenie, ako napríklad %{stylus_link:Stylus}.
+        chrome: Na inštaláciu tohto štýlu je potrebné nainštalovať rozšírenie, ako napríklad %{stylus_link:Stylus}.
+        opera: Na inštaláciu tohto štýlu je potrebné nainštalovať rozšírenie, ako napríklad %{stylus_link:Stylus}.
+        safari: Na inštaláciu tohto štýlu je potrebné nainštalovať rozšírenie správcu používateľských štýlov.
+        edge: Na inštaláciu tohto štýlu je potrebné nainštalovať rozšírenie správcu používateľských štýlov.
+        other: Na inštaláciu tohto štýlu je potrebné nainštalovať rozšírenie správcu používateľských štýlov.
         bypass: (Už mám správcu používateľských štýlov, nechajte ma ho nainštalovať!)
       close_dialog: OK
     antifeatures:
@@ -514,6 +522,17 @@ sk:
           </ul>
     android_browsers:
       title: Mobil (Android)
+      browser_list_html: |
+          <ul>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, alebo %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+          <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+          <li>Kiwi: %{chrome_tampermonkey_link:Tampermonkey} alebo %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>%{xbrowser_link:XBrowser}</li>
+          %{locale_specific_browsers}
+          </ul>
     ios_browsers:
       title: Mobil (iOS)
       browser_list_html: |
