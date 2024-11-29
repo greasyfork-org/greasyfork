@@ -343,7 +343,7 @@ class ScriptsController < ApplicationController
       return
     end
 
-    if DataCentreIps.data_centre?(ip)
+    if DataCentreIps.new.data_centre?(ip)
       Rails.logger.warn("Install not recorded for script #{script_id} and IP #{ip} - appears to be a data centre.")
       head :no_content
       return
