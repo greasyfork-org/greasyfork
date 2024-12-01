@@ -302,6 +302,7 @@ bg:
     not_adult_content_self_report_html: "Този скрипт <strong>не</strong> съдържа съдържание за възрастни и <strong>не</strong> е за сайтове със съдържание за възрастни."
     not_adult_content_self_report_explanation: "%{site_name} позволява скриптове със съдържание за възрастни, но те трябва да бъдат маркирани като такива, така че потребителите да могат да избират дали да ги видят. Вашият скрипт беше маркиран, че има съдържание за възрастни. Можете да го докладвате, че не е такъв; това ще бъде прегледано от модератор."
     not_adult_content_self_report_explanation_automatic: "%{site_name} позволява скриптове със съдържание за възрастни, но те трябва да маркират по такъв начин, че потребителите да могат да избират дали да ги виждат. Вашият скрипт е маркиран, че има съдържание за възрастни, заради принадлежността си към  %{domain_list}."
+    adult_content_notice_from_sleazy: Вие публикувате скрипт на %{site_name}, като се предполага, че той има съдържание за възрастни, или е предназначен за такъв сайт. Ако това не е така, %{greasyfork_link:публикувайте на Greasy Fork}.
     adult_content_on_greasy_logged_in_error: "Скриптът вече не достъпен на този сайт с вашите текущи %{edit_account_link:Greasy Fork настройки на акаунта}."
     adult_content_on_greasy_not_logged_in_error: "Този скрипт повече не е достъпен анонимно на сайта. %{login_link:Влезте} и проверете вашите настройки за профила в Greasy Fork."
     non_adult_content_on_sleazy: "Скриптът не е достъпен на този сайт."
@@ -363,9 +364,16 @@ bg:
         chrome: За да инсталирате този скрипт, трябва да имате инсталирано разширение като  %{tampermonkey_link:Tampermonkey} или %{violentmonkey_link:Violentmonkey}.
         opera: За да инсталирате този скрипт, трябва да имате инсталирано разширение като  %{tampermonkey_link:Tampermonkey} или %{violentmonkey_link:Violentmonkey}.
         safari: За да инсталирате този скрипт, трябва да имате инсталирано разширение като  %{tampermonkey_link:Tampermonkey} или %{userscripts_link:Userscripts}.
+        edge: За да инсталирате скрипта, трябва да инсталирате разширение като %{tampermonkey_link:Tampermonkey}.
         other: За да инсталирате този скрипт, трябва да имате инсталиран скриптов мениджър.
         bypass: (Вече имам скриптов мениджър, искам да го инсталирам!)
       css:
+        firefox: За да инсталирате този стил, трябва да инсталирате разширение като %{stylus_link:Stylus}.
+        chrome: За да инсталирате този стил, трябва да инсталирате разширение като %{stylus_link:Stylus}.
+        opera: За да инсталирате този стил, трябва да инсталирате разширение като %{stylus_link:Stylus}.
+        safari: За да инсталирате този стил, трябва да имате инсталиран мениджър на потребителски стилове.
+        edge: За да инсталирате този стил, трябва да имате инсталиран мениджър на потребителски стилове.
+        other: За да инсталирате този стил, трябва да имате инсталиран мениджър на потребителски стилове.
         bypass: (Вече имам инсталиран мениджър на стиловете, искам да го инсталирам!)
       close_dialog: ОК
     antifeatures:
@@ -506,6 +514,17 @@ bg:
           </ul>
     android_browsers:
       title: Мобилен (Андроид)
+      browser_list_html: |
+          <ul>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, или %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+          <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+          <li>Kiwi: %{chrome_tampermonkey_link:Tampermonkey} или %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>%{xbrowser_link:XBrowser}</li>
+          %{locale_specific_browsers}
+          </ul>
     ios_browsers:
       title: Мобилен (iOS)
       browser_list_html: |
