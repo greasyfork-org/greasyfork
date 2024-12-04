@@ -337,6 +337,12 @@ class ScriptsController < ApplicationController
       return
     end
 
+    unless get_script_from_input(request.headers['Referer'], verify_existence: false) == script_id
+      Rails.logger.warn("Install not recorded for script #{script_id} and IP #{ip} - referer does not match.")
+      head :no_content
+      return
+    end
+
     unless install_keys.any? { |install_key| Digest::SHA1.hexdigest(request.remote_ip + script_id + install_key) == params[:ping_key] }
       Rails.logger.warn("Install not recorded for script #{script_id} and IP #{ip} - install key does not match.")
       head :no_content

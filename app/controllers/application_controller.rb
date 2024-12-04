@@ -196,7 +196,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :cache_with_log, :greasy?, :sleazy?, :script_subset, :site_name, :greasyfork_host
 
-  def get_script_from_input(value, allow_deleted: false)
+  def get_script_from_input(value, allow_deleted: false, verify_existence: true)
     allowed_hosts = ['https://greasyfork.org', 'https://sleazyfork.org']
     allowed_hosts += ['https://greasyfork.local', 'https://sleazyfork.local'] unless Rails.env.production?
 
@@ -216,6 +216,8 @@ class ApplicationController < ActionController::Base
 
       script_id = url_match[1]
     end
+
+    return script_id unless verify_existence
 
     # Validate it's a good replacement
     begin
