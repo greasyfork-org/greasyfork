@@ -8,7 +8,7 @@ module PingRequestChecking
       case user_agent.family
       when 'Chrome'
         user_agent.version.major && user_agent.version.major.to_i >= 80
-      when 'axios', 'IE', 'Electron'
+      when 'axios', 'IE', 'Electron', 'Python Requests'
         false
       else
         true
