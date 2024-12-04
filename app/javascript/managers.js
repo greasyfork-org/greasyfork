@@ -6,8 +6,13 @@ export function getViolentmonkey() {
   return window.external?.Violentmonkey
 }
 
+export function getFiremonkey() {
+  return window.external?.FireMonkey
+}
+
+
 export function canInstallUserJS() {
-  return getTampermonkey() || getViolentmonkey()
+  return getTampermonkey() || getViolentmonkey() || getFiremonkey()
 }
 
 export async function canInstallUserCSS() {

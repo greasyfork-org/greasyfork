@@ -1,4 +1,4 @@
-import {getTampermonkey, getViolentmonkey} from "./managers";
+import {getFiremonkey, getTampermonkey, getViolentmonkey} from "./managers";
 import onload from '~/onload'
 
 function getInstalledVersion(name, namespace) {
@@ -19,22 +19,27 @@ function getInstalledVersion(name, namespace) {
     if (vm) {
       vm.isInstalled(name, namespace).then(resolve);
       return;
-    };
+    }
 
+    let fm = getFiremonkey()
+    if (fm) {
+      resolve(fm.installedScriptVersion || null)
+      return
+    }
     reject()
   });
 }
 
 // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/version/format
 function compareVersions(a, b) {
-  if (a == b) {
+  if (a === b) {
     return 0;
   }
   let aParts = a.split('.');
   let bParts = b.split('.');
   for (let i = 0; i < aParts.length; i++) {
     let result = compareVersionPart(aParts[i], bParts[i]);
-    if (result != 0) {
+    if (result !== 0) {
       return result;
     }
   }
@@ -50,10 +55,10 @@ function compareVersionPart(partA, partB) {
   let partBParts = parseVersionPart(partB);
   for (let i = 0; i < partAParts.length; i++) {
     // "A string-part that exists is always less than a string-part that doesn't exist"
-    if (partAParts[i].length > 0 && partBParts[i].length == 0) {
+    if (partAParts[i].length > 0 && partBParts[i].length === 0) {
       return -1;
     }
-    if (partAParts[i].length == 0 && partBParts[i].length > 0) {
+    if (partAParts[i].length === 0 && partBParts[i].length > 0) {
       return 1;
     }
     if (partAParts[i] > partBParts[i]) {
@@ -142,7 +147,7 @@ window.addEventListener("message", function(event) {
   if (event.origin !== "https://greasyfork.org" && event.origin !== "https://sleazyfork.org")
     return;
 
-  if (event.data.type != "style-version")
+  if (event.data.type !== "style-version")
     return;
 
   let installButton = document.querySelector(".install-link[data-install-format=css]");
