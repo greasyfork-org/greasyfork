@@ -2,7 +2,7 @@
 
 <div class="form-control">
   <%# Need to disambiguate between unchecked (unsubscribe) and the case where we don't show this at all (do nothing). %>
-  <%= hidden_field_tag :subscribe, '0' %>
+  <%= hidden_field_tag :subscribe, '0', id: nil %>
   <%= check_box_tag :subscribe, '1', subscribe %>
   <%= label_tag :subscribe, t('discussions.notify'), class: 'radio-label' %>
 </div>
