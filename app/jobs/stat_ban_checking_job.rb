@@ -3,7 +3,7 @@ require 'google_analytics'
 class StatBanCheckingJob
   include Sidekiq::Job
 
-  MIN_DISCREPANCY_MULTIPLIER = 10
+  MIN_DISCREPANCY_MULTIPLIER = 5
   MIN_INSTALL_COUNT = 100
   DAYS_AGO_TO_CHECK = [2, 3, 4].freeze
 
