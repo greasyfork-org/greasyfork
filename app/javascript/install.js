@@ -17,12 +17,12 @@ async function doInstallProcess(installLink) {
 }
 
 async function detectCanInstall(installLink) {
-  let installTypeJS = installLink.getAttribute("data-install-format") == 'js';
+  let installTypeJS = installLink.getAttribute("data-install-format") === 'js';
   if (installTypeJS) {
-    if (localStorage.getItem('manualOverrideInstallJS') == '1' || canInstallUserJS()) {
+    if (localStorage.getItem('manualOverrideInstallJS') === '1' || canInstallUserJS()) {
       return true;
     }
-  } else if (localStorage.getItem('manualOverrideInstallCSS') == '1' || await canInstallUserCSS()) {
+  } else if (localStorage.getItem('manualOverrideInstallCSS') === '1' || await canInstallUserCSS()) {
     return true;
   }
   return installationHelpFunction(installTypeJS)(installLink)
@@ -54,7 +54,7 @@ function installationHelpFunction(js) {
         event.preventDefault()
       })
       MicroModal.show(modal.id, {
-        onClose: modal => resolve(false)
+        onClose: _modal => resolve(false)
       })
     })
   }
@@ -62,7 +62,7 @@ function installationHelpFunction(js) {
 
 async function showPreviousVersionWarning(installLink) {
   return new Promise(resolve => {
-    if (installLink.getAttribute("data-is-previous-version") == "true") {
+    if (installLink.getAttribute("data-is-previous-version") === "true") {
       if (!confirm(installLink.getAttribute("data-previous-version-warning"))) {
         resolve(false)
         return;
@@ -118,8 +118,10 @@ async function doInstall(installLink) {
 
 function onInstallMouseOver(event) {
   let url = event.target.getAttribute("data-ping-url");
-  if (url && !/[&?]mo=3$/.test(url)) {
-    event.target.setAttribute("data-ping-url", url + (url.includes('?') ? '&' : '?') + "mo=3");
+  let now = new Date()
+  let moValue = sha1('3' + now.getUTCFullYear().toString() + (now.getUTCMonth() + 1).toString() + now.getUTCDate().toString() + now.getUTCHours().toString())
+  if (url && !/[&?]mo=.+$/.test(url)) {
+    event.target.setAttribute("data-ping-url", url + (url.includes('?') ? '&' : '?') + "mo=" + moValue);
   }
 }
 
