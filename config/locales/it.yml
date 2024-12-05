@@ -104,6 +104,10 @@ it:
       compare_cleaned_code_unavailable: "La versione con codice pulito di questo script non e' ancora disponibile."
       checkup:
         title: Checkup
+        intro: Questi sono suggerimento per migliorare il tuo script su %{site_name}, non sono %{rules_link:regole}; il tuo script non verrà eliminato se non li segui.
+        license_html: Specifica una %{license_link:<code>@license</code>}. Questo permette agli altri di sapere se e come possono condividere e modificare il tuo codice.
+        globs_used_html: "Inclusioni usate non specifiche per un dominio: %{globs}"
+        additional_info: Includi informazioni aggiuntive - elenca le funzioni, fornisci delle schermate, ecc. in modo che i tuoi utenti sappiano esattamente cosa fa il tuo script.
     history_title: "%{script_name} - Cambiamenti versioni"
     history_only_code_changes_info: "queste sono le versioni di questo script in cui il codice è stato aggiornato"
     history_all_changes_link: "Visualizza tutte le versioni."
@@ -160,6 +164,7 @@ it:
     listing_description_for_site: "Script che aggiungono funzioni e rimuovono errori in %{site}"
     listing_title_for_search: "'%{search_string}' Script"
     listing_title_for_code_search: "'%{search_string}' Script"
+    listing_description_for_code_search_html: "Ricerca codice per <code>%{search_string}</code>"
     listing_title_generic: "Script"
     listing_title_for_favorites: "%{user_name} %{set_name}"
     listing_description_generic: "Script che aggiungono funzionalità e rimuovono bug nei siti che usi"
@@ -185,6 +190,10 @@ it:
     listing_language_all: "Tutti"
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
+    listing_author:
+      all: Tutti gli autori
+      me: I miei script
+      user: Script di %{author_name}
     search_failed: Qualcosa è andato storto nel caricamento dei tuoi risultati. Alcune delle funzioni di ricerca potrebbero non funzionare correttamente. Siamo stati notificati del problema.
     import: "Importa script"
     new: "Pubblica uno script che hai creato"
@@ -231,6 +240,7 @@ it:
     warning_code_previously_posted_html: "Questo codice è stato precedentemente pubblicato in %{script_links}. Le ripubblicazioni sono soggette all'eliminazione da parte dei moderatori."
     warning_license_missing_html: "Non hai specificato una <code>@license</code>. Pubblicando su %{site_name}, stai permettendo agli altri di utilizzare il tuo codice, ma una licenza ti permetterà anche di dire agli altri a che condizioni loro possono modificare e redistribuire il tuo codice. Ad esempio, <code>// @license MIT</code> significa che stai permettendo a chiunque di modificare e redistribuire il codice che hai scritto. %{license_chooser_link:Maggiori informazioni sulle licenze sono disponibili qui.} Se non vuoi fornire una licenza, %{site_name} darà per assunto che tu non conceda il permesso agli altri di effettuare modifiche o redistribuire copie. Nota che se non sei il solo autore del codice che stai pubblicando, generalmente non sei autorizzato a pubblicarlo a meno che tu non abbia il permesso di tutti gli altri autori."
     warning_license_missing_override_html: "Salva senza una licenza"
+    warning_meta_not_at_start_html: "Il tuo codice non inizia con<code>// ==UserScript==</code>. Includere del codice, dei commenti o degli spazi potrebbe causare problemi di compatibilità con alcuni gestori di script utente."
     additional_info_locale_prompt: "(Seleziona luogo)"
     additional_info_add_localized: "Aggiungi informazione aggiuntiva sul luogo"
     additional_info_locale_repeated: "Fornisci solo un informazione aggiuntiva per la lingua '%{locale_code}'."
@@ -351,9 +361,16 @@ it:
         chrome: Dovrai installare un'estensione come %{tampermonkey_link:Tampermonkey} o %{violentmonkey_link:Violentmonkey} per installare questo script.
         opera: Dovrai installare un'estensione come %{tampermonkey_link:Tampermonkey} o %{violentmonkey_link:Violentmonkey} per installare questo script.
         safari: Dovrai installare un'estensione come %{tampermonkey_link:Tampermonkey} o %{userscripts_link:Userscripts} per installare questo script.
+        edge: Dovrai installare un'estensione come ad esempio %{tampermonkey_link:Tampermonkey} per installare questo script.
         other: Dovrai installare un gestore di script utente per installare questo script.
         bypass: (Ho già un gestore di script utente, lasciamelo installare!)
       css:
+        firefox: Dovrai installare un'estensione come ad esempio %{stylus_link:Stylus} per installare questo stile.
+        chrome: Dovrai installare un'estensione come ad esempio %{stylus_link:Stylus} per installare questo stile.
+        opera: Dovrai installare un'estensione come ad esempio %{stylus_link:Stylus} per installare questo stile.
+        safari: Dovrai installare un'estensione per la gestione degli stili utente per installare questo stile.
+        edge: Dovrai installare un'estensione per la gestione degli stili utente per installare questo stile.
+        other: Dovrai installare un'estensione per la gestione degli stili utente per installare questo stile.
         bypass: (Ho già un gestore di stile utente, lasciamelo installare!)
       close_dialog: OK
     antifeatures:
@@ -478,8 +495,29 @@ it:
         browser utilizzi.</p>
     desktop_browsers:
       title: Desktop
+      browser_list_html: |
+          <ul>
+          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} o %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, o %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} o %{safari_userscripts_link:Userscripts}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} o %{edge_violentmonkey_link:Violentmonkey}</li>
+          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} o %{opera_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>%{adguard_link:AdGuard}: (nessun software aggiuntivo richiesto)</li>
+          </ul>
     android_browsers:
       title: Mobile (Android)
+      browser_list_html: |
+          <ul>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, o %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+          <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+          <li>Kiwi: %{chrome_tampermonkey_link:Tampermonkey} o %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>%{xbrowser_link:XBrowser}</li>
+          %{locale_specific_browsers}
+          </ul>
     ios_browsers:
       title: Mobile (iOS)
       browser_list_html: |
@@ -533,6 +571,12 @@ it:
     edit_sign_in: "Modifica il metodo di accesso"
     edit_sign_in_title: "Modifica il metodo di accesso"
     edit_sign_in_password: "Password"
+    edit_sign_in_2fa_enabled: Il tuo account è impostato con l'autenticazione a due fattori (2FA).
+    edit_sign_in_disable_2fa: Disabilita 2FA
+    edit_sign_in_2fa_disabled: Puoi abilitare l'autenticazione a due fattori (2FA) per una maggiore sicurezza sul tuo account di %{site_name}.
+    edit_sign_in_enable_2fa: Abilita 2FA
+    edit_notifications: "Modifica le impostazioni per le notifiche"
+    view_notifications: "Guarda le notifiche"
     no_password_set_info: "Il tuo account non è configurato con una password"
     set_password: "Imposta password"
     update_password: "Aggiorna password"
@@ -557,6 +601,25 @@ it:
     disable_syncing: "Disattiva sincronizzazione"
     remove_external_sign_in: "Rimuovi"
     add_external_sign_in_info: "Aggiungi un'autenticazione:"
+    2fa_enabled: 2FA è stata abilitata.
+    2fa_enabled_already: 2FA è già abilitata.
+    2fa_enable_code_incorrect: Il codice 2FA non è corretto. Per favore riprova.
+    2fa_disabled: 2FA è stata disabilitata.
+    2fa_disabled_already: 2FA è già disabilitata.
+    2fa_entry:
+      intro_html: "Stai accedendo come <b>%{email}</b>"
+    enable_2fa:
+      intro: "Aggiungi %{site_name} alla tua applicazione per l'autenticazione a due fattori (2FA) usando uno di questi metodi, poi inserisci il codice sottostante."
+      qr_heading: Tramite codice QR
+      url_heading: Tramite collegamento
+      url_info: Se sei sullo stesso dispositivo su cui hai l'app per l'autenticazione a due fattori, potresti riuscire ad aggiungerla da %{auth_link:questo collegamento}.
+      manual_heading: Manualmente
+      manual_entry_code_name: "Nome del codice: %{code_name}"
+      manual_entry_your_key: "La tua chiave: %{key}"
+      manual_entry_type_of_key: "Tipo di chiave: basata sul tempo"
+      code_entry_heading: Inserisci codice
+      code_entry: "Inserisci il codice dalla tua applicazione 2FA per abilitarla sul tuo account di %{site_name}:"
+      verify_code: Verifica codice
     set_up_webhook: "Crea un webhook"
     list_display_html:
       one: "%{user_link} - %{count} script"
@@ -566,6 +629,7 @@ it:
     listing_new_scripts: "Nuovi script"
     listing_updated_scripts: "Script aggiornati"
     listing_registration_date: "Data di registrazione"
+    listing_relevance: "Rilevanza"
     listing_title: "Utenti"
     listing_banned_filter:
       banned: "Bannato"
@@ -638,18 +702,53 @@ it:
         short: Autore
         long: Autore di questo script
     notifications:
+      on_site: Sul sito
+      email: Via email
       discussion_defaults:
         title: Notifiche del forum
+        intro: Riceverai notifiche per le discussioni a cui sei iscritto/a. Puoi iscriverti o disiscriverti dalle discussioni in ogni momento.
+        discussion_subscription_defaults:
+          overall_label: Per impostazione predefinita, iscriviti alle discussioni quando
+          start: Hai avviato la discussione
+          comment: Hai commentato la discussione
+          script: Riguarda uno dei tuoi scripts
+        subscribed_discussion_notification: Quando un commento viene pubblicato su una discussione a cui sei iscritto/a, ricevi la notifica.
         mention: Ricevi una notifica quando sei menzionato in una discussione
       conversation_defaults:
         title: Notifiche conversazioni
+        intro: Riceverai le notifiche per conversazioni a cui sei iscritto/a. Puoi iscriverti o disiscriverti dalle conversazioni in ogni momento.
+        new_conversation_subscription:
+          overall_label: Per impostazione predefinita, iscriviti alle conversazioni quando
+          self: Hai avviato la conversazione
+          other: Qualcun'altro ha avviato la conversazione
       report_defaults:
         title: Notifiche per le segnalazioni
+        as_reporter: Quando una segnalazione che hai creato viene risolta, ricevi la notifica
+        as_reported_filed: Quando viene inoltrata una segnalazione contro un contenuto che hai pubblicato, ricevi la notifica
+        as_reported_resolved: Quando una segnalazione inoltrata contro un contenuto che hai pubblicato viene risolta, ricevi la notifica
+      script:
+        intro: Queste impostazioni sono correlate agli scripts che pubblichi.
+        title: Notifiche sullo script
+        consecutive_bad_ratings: Quando il tuo script è a rischio di essere eliminato a causa di recensioni negative, ricevi la notifica
       save_button: Aggiorna impostazioni notifiche
       title: Notifiche
+      current_discussion_subscriptions:
+        one: Disiscriviti da %{discussions_link:%{count} discussione} a cui sei già iscritto/a
+        many: Disiscriviti dalle %{discussions_link:%{count} discussioni} a cui sei già iscritto/a
+        other: Disiscriviti dalle %{discussions_link:%{count} discussioni} a cui sei già iscritto/a
+      current_conversation_subscriptions:
+        one: Disiscriviti da %{count} conversazione a cui sei già iscritto/a
+        many: Disiscriviti dalle %{count} conversazioni a cui sei già iscritto/a
+        other: Disiscriviti dalle %{count} conversazioni a cui sei già iscritto/a
+      intro: "%{site_name} può inviarti notifiche per email o tramite un widget di notifica sul sito. La maggior parte di queste notifiche sono possibili solo dopo che hai compiuto un'azione, come avviare una discussione o pubblicare uno script. Queste notifiche non hanno effetto sulle e mail di comunicazione come le richieste di reimpostazione della password."
       save_success: Le preferenze per le tue notifiche sono state aggiornate.
       unsubscribe_all: Disiscriviti da tutte le notifiche
       unsubscribe_all_success: Ti sei disiscritto da tutte le notifiche.
+      unsubscribe_email: Disiscriviti da tutte le notifiche via email
+      list:
+        header: Notifiche
+        none: Ancora nessuna notifica!
+        edit_settings: Gestisci le impostazioni per le tue notifiche.
   webhooks:
     info:
       title: Impostare un webhook
