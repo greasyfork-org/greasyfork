@@ -48,7 +48,9 @@ module UsersHelper
   end
 
   def render_user_text(user, user_id)
-    user&.name || "(Deleted user #{user_id})"
+    return t('users.deleted_user_without_id') if user.nil? && user_id.nil?
+
+    user&.name || t('users.deleted_user_with_id', id: user_id)
   end
 
   def render_user(user, user_id, skip_link: false, script: nil, force_author: false, skip_badge: false)
