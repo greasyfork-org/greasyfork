@@ -976,6 +976,13 @@ en:
     banned_delete:
       intro: "Deleting your account will also delete any scripts you posted. Any forum contributions you made will remain, but your username will be anonymized. Even after deleting, you will not be able to register again with the same email address. Sign in below to delete your account."
       complete: "Your account has been deleted."
+    suggest_secure_login: As a script author, we suggest you %{edit_login_link:use a more secure sign-in method}.
+    secure_login_explanation_html: |
+      <p>As a script author, we recommend you protect your account and users by using a secure sign-in method. You can accomplish this in one of two ways:</p>
+      <ol>
+        <li>Add two-factor authentication (2FA) to your password-based login.</li>
+        <li>Remove your password and rely solely on an external sign in (and ideally, enable the security features that service provides).</li>
+      </ol>
     badges:
       banned:
         short: Banned

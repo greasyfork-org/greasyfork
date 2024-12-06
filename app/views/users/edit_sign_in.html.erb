@@ -1,5 +1,9 @@
 <%- title t('users.edit_sign_in_title') %>
 
+<% if current_user.suggest_secure_login? %>
+  <%= t('users.secure_login_explanation_html') %>
+<% end %>
+
 <h3><%= t('users.edit_sign_in_password') %></h3>
 
 <% if !current_user.errors.empty? %>

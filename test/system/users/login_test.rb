@@ -14,7 +14,7 @@ module Users
     test 'can log in' do
       user = users(:one)
       log_in(user)
-      assert_content 'Signed in successfully.'
+      assert_link "Timmy O'Toole"
     end
 
     test "can't log in when banned" do
@@ -58,6 +58,27 @@ module Users
     test 'login with a really long URL' do
       visit code_search_scripts_path(q: '1' * 4000)
       assert_content 'You need to sign in or sign up before continuing.'
+    end
+
+    test 'login shows secure message when the user has scripts' do
+      user = users(:one)
+      assert user.scripts.any?
+      log_in(user)
+      assert_content 'As a script author, we suggest you use a more secure sign-in method.'
+    end
+
+    test 'login does not show secure message when the user has no scripts' do
+      user = users(:one)
+      user.scripts.delete_all
+      log_in(user)
+      assert_no_content 'As a script author, we suggest you use a more secure sign-in method.'
+    end
+
+    test 'login does not show secure message when the user already uses secure login' do
+      user = users(:one)
+      User.any_instance.expects(:uses_secure_login?).returns(true)
+      log_in(user)
+      assert_no_content 'As a script author, we suggest you use a more secure sign-in method.'
     end
   end
 end

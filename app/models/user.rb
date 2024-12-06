@@ -464,6 +464,18 @@ class User < ApplicationRecord
     Rails.application.routes.url_helpers.edit_user_password_url(reset_password_token: token, locale: available_locale_code)
   end
 
+  def uses_secure_login?
+    otp_required_for_login || encrypted_password.nil?
+  end
+
+  def suggestable_secure_login?
+    scripts.any?
+  end
+
+  def suggest_secure_login?
+    !uses_secure_login? && suggestable_secure_login?
+  end
+
   protected
 
   def password_required?

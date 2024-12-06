@@ -23,7 +23,13 @@ class SessionsController < Devise::SessionsController
       show_banned_user_message(resource)
       return root_path
     end
-    return super
+
+    if resource.is_a?(User) && resource.suggest_secure_login?
+      flash[:html_safe] = true
+      flash[:notice] = It.it('users.suggest_secure_login', edit_login_link: user_edit_sign_in_path).html_safe
+    end
+
+    super
   end
 
   def omniauth_callback
