@@ -20,7 +20,7 @@
               case notification.notification_type.to_sym
               when Notification::NOTIFICATION_TYPE_NEW_CONVERSATION
                 other_user = notification.item.users.where.not(id: current_user.id).first
-                t('users.notifications.new_conversation', user: render_user_text(other_user, other_user.id), text: notification.item.messages.first.plain_text.truncate(200))
+                t('users.notifications.new_conversation', user: render_user_text(other_user, other_user&.id), text: notification.item.messages.first.plain_text.truncate(200))
               when Notification::NOTIFICATION_TYPE_NEW_MESSAGE
                 t('users.notifications.new_message', user: render_user_text(notification.item.poster, notification.item.poster_id), text: notification.item.plain_text.truncate(200))
               when Notification::NOTIFICATION_TYPE_REPORT_RESOLVED_REPORTER
