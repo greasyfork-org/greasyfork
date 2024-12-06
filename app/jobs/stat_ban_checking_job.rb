@@ -20,12 +20,7 @@ class StatBanCheckingJob
     Rails.logger.info("Already banned script IDs: #{already_actively_banned_script_ids}")
     script_ids -= already_actively_banned_script_ids
 
-    script_ids.each do |script_id|
-      previous_bans = StatBan.where(script_id: script_id).count
-      ban_length_days = 2 ^ (previous_bans + 1)
-      Rails.logger.info("Banning script #{script_id} for #{ban_length_days} days")
-      StatBan.create!(script_id:, expires_at: ban_length_days.days.from_now)
-    end
+    script_ids.each { |script_id| StatBan.add_next_ban!(script_id) }
   end
 
   def find_discrepancies(date, limit_to_script_ids: nil)
