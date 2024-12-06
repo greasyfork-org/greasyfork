@@ -106,6 +106,7 @@ it:
         title: Checkup
         intro: Questi sono suggerimento per migliorare il tuo script su %{site_name}, non sono %{rules_link:regole}; il tuo script non verrà eliminato se non li segui.
         license_html: Specifica una %{license_link:<code>@license</code>}. Questo permette agli altri di sapere se e come possono condividere e modificare il tuo codice.
+        globs_html: Evita l'uso di glob pattern ed espressioni regolari nella parte del dominio di %{include_link:<code>@include</code>} and %{match_link:<code>@match</code>}. Queste rendono difficile classificare correttamente il tuo script per %{site_name}.
         globs_used_html: "Inclusioni usate non specifiche per un dominio: %{globs}"
         additional_info: Includi informazioni aggiuntive - elenca le funzioni, fornisci delle schermate, ecc. in modo che i tuoi utenti sappiano esattamente cosa fa il tuo script.
     history_title: "%{script_name} - Cambiamenti versioni"
@@ -258,6 +259,8 @@ it:
     sync_type_3:
       name: Webhook
       description: sarà aggiornato quando invii delle modifiche a questo file sulla tua repository
+    sync_webhook_info_without_sync: Dopo aver impostato la sincronizzazione sopra, se stai sincronizzando con una repository di GitHub, GitLab, o BitBucket, puoi anche %{webhook_info_link:impostare un webhook} per aggiornare automaticamente %{site_name} quando aggiorni la tua repository.
+    sync_webhook_info_with_sync: Se stai sincronizzando con una repository di GitHub, GitLab, o BitBucket, puoi %{webhook_info_link:impostare un webhook} per aggiornare automaticamente %{site_name} quando aggiorni la tua repository.
     sync_name_and_description: "%{name} - %{description}"
     sync_failed_info_html: "L'ultimo tentativo di sincronizzazione è stato in data  %{date}, con il seguente risultato: %{error}."
     sync_success_info_html: "Ultima sincronizzazione avvenuta il %{date}."
@@ -300,6 +303,7 @@ it:
     not_adult_content_self_report_html: "Questo script <strong>non</strong> contiene contenuti per adulti e <strong>non</strong> è per un sito che contiene materiale per a dulti."
     not_adult_content_self_report_explanation: "%{site_name} permette script con contenuti per adulti, ma devono essere identificati come tali in modo che gli utenti possano scegliere se visualizzarli. Il tuo script è stato identificato come avente contenuti per adulti. Puoi riportare che non è vero; verrà controllato da un moderatore."
     not_adult_content_self_report_explanation_automatic: "%{site_name} permette gli script con contenuto per adulti, ma devono essere indicati come tali in modo che gli utenti possano decidere se visualizzarli o meno. Il tuo script è stato indicato come contenuto per adulti poiché è per %{domain_list}."
+    adult_content_notice_from_sleazy: Dal momento in cui stai pubblicando questo script su %{site_name}, viene dato per assunto che il tuo script contenga contenuto per adulti o che sia per un sito con contenuti per adulti. Se così non fosse, per favore %{greasyfork_link:pubblica il tuo script su Greasy Fork} invece.
     adult_content_on_greasy_logged_in_error: "Questo script non è più disponibile su questo sito con le tue %{edit_account_link:impostazioni account di Greasy Fork}."
     adult_content_on_greasy_not_logged_in_error: "Questo script non è più disponibile in modo anonimo su questo sito. %{login_link:Accedi} e controlla le tue impostazioni account di Greasy Fork."
     non_adult_content_on_sleazy: "Questo script non è disponibile su questo sito."
@@ -407,7 +411,15 @@ it:
         long: Stile utente
     related_scripts: "Puoi provare anche questi scripts collegati:"
     integrity_hashes:
+      user_notice_html:
+        one: "Hai uno script con un hash di integrità delle sottorisorse errato: %{script_links}."
+        many: "Hai degli scripts con degli hash di integrità delle sottorisorse errati: %{script_links}."
+        other: "Hai degli scripts con degli hash di integrità delle sottorisorse errati: %{script_links}."
       script_notice:
+        text_html:
+          one: "Questo script usa un hash di integrità delle sottorisorse errato: %{detail}."
+          many: "Questi scripts usano degli hash di integrità delle sottorisorse errati: %{detail}."
+          other: "Questo script usa un hash di integrità delle sottorisorse errato: %{detail}."
         detail: "<code>%{url}</code>dovresti usare l'hash <code>%{expected_hash}</code> (ultimo controllo: %{last_checked_at})"
   script_sets:
     description: "Gli insiemi di script ti permettono di creare una lista personalizzata di script con cui navigare su Greasy Fork. Puoi aggiungere script al tuo insieme includendo script individuali, insiemi di altri utenti, o insiemi generati automaticamente. Puoi inoltre escludere degli script dal tuo insieme con gli stessi metodi."
@@ -721,7 +733,10 @@ it:
           overall_label: Per impostazione predefinita, iscriviti alle conversazioni quando
           self: Hai avviato la conversazione
           other: Qualcun'altro ha avviato la conversazione
+        new_conversation_notification: Quando qualcuno avvia una conversazione con te, e tu vieni iscritto per via dell'impostazione sopra, ricevi la notifica
+        new_message_notification: Quando viene ricevuto un messaggio su una conversazione preesistente alla quale sei iscritto/a, ricevi la notifica
       report_defaults:
+        intro: Le segnalazioni sono create dagli utenti per indicare i contenuti che sono contrari alle regole di %{site_name}. I moderatori verificheranno la segnalazione e rimuoveranno il contenuto, se necessario.
         title: Notifiche per le segnalazioni
         as_reporter: Quando una segnalazione che hai creato viene risolta, ricevi la notifica
         as_reported_filed: Quando viene inoltrata una segnalazione contro un contenuto che hai pubblicato, ricevi la notifica
@@ -745,10 +760,26 @@ it:
       unsubscribe_all: Disiscriviti da tutte le notifiche
       unsubscribe_all_success: Ti sei disiscritto da tutte le notifiche.
       unsubscribe_email: Disiscriviti da tutte le notifiche via email
+      unsubscribe_email_success: Sei stato/a disiscritto/a da tutte le notifiche via email.
+      new_conversation: "%{user} ha avviato una conversazione con te: %{text}"
+      new_message: "%{user} ti ha inviato un messaggio: %{text}"
+      new_comment: "%{user} ha pubblicato un commento su %{discussion}"
+      new_comment_script: "%{user} ha pubblicato una discussione sul tuo script %{script}"
+      mention: "%{user} ha menzionato te in %{discussion}"
+      report_resolved_reporter:
+        dismissed: La tua segnalazione contro %{item} è stata rigettata da un moderatore.
+        upheld: La tua segnalazione contro %{item} è stata confermata da un moderatore.
+        rebutted: La tua segnalazione contro %{item} ha ricevuto una risposta da parte dell'utente segnalato. Un moderatore ricontrollerà la tua segnalazione e questa risposta.
+      report_filed_reported: È stata inoltrata una segnalazione contro %{item}.
+      report_resolved_reported:
+        dismissed: Una segnalazione contro %{item} è stata rigettata da un moderatore.
+        upheld: Una segnalazione contro %{item} è stata confermata da un moderatore.
+      consecutive_bad_ratings: "%{script} ha ricevuto cattive recensioni ed è a rischio di essere rimosso. Correggi il tuo script o rispondi alle recensioni per assicurarti che rimanga attivo."
       list:
         header: Notifiche
         none: Ancora nessuna notifica!
         edit_settings: Gestisci le impostazioni per le tue notifiche.
+        mark_all_read: Segna tutto come letto
   webhooks:
     info:
       title: Impostare un webhook
@@ -822,14 +853,21 @@ it:
       reposting_deleted: Non ripubblicare gli scripts che sono stati eliminati a causa di violazioni delle regole; usa la funzione ricorso invece. Ripubblicare gli scripts eliminati potrebbe risultare in un ban.
       advertising_in_description: Gli autori degli script non possono pubblicare pubblicità sulle pagine di Greasy Fork, ad esempio nella descrizione dello script. La promozione della pagina dell'autore dello script, della repository per il codice, di Discord, di WeChat, ecc. è consentita.
       reporting: Se noti uno script che ricade al di fuori di questi parametri, per favore segnalalo andando sul collegamento Feedback per quello script e scegliendo l'opzione "Segnala lo script".
+      excessive_updates: Gli autori degli scripts non possono aggiornare gli scripts eccessivamente con il solo scopo di mantenere alto il posizionamento dello script nell'elenco.
+      non_functional_includes_html: 'Gli scripts non possono includere <code>@include</code>s o <code>@match</code>es per siti per i quali non forniscono funzionalità. '
+      content_language: I nomi, le descrizioni e gli altri contenuti degli scripts devono essere marcati con la lingua appropriata.
     external_scripts:
       title: "Politiche di %{site_name} per gli script esterni"
       rationale:
         title: fondamento logico
       cdns:
         title: Reti di distribuzione dei contenuti (CDN)
+        content_html: |
+            <p>Il codice dai CDN è approvato. %{cdns_link:Controlla questa lista di CDN riconosciuti.}  Il codice può essere minimizzato, ma non offuscato.</p>
       sri:
         title: Script con hash di integrità delle sottorisorse
+        content_html: |
+            <p>L'uso di <code>@require</code> e <code>@resource</code> con degli URL con %{mdn_sri_link:integrità delle sottorisorse} nel %{tm_sri_link:formato di Tampermonkey} è consentito.</p>
       allowed_external_codes:
         heading: Codici esterni permessi
       libraries:
@@ -852,6 +890,7 @@ it:
       translators_credit: "%{site_name} è stato tradotto da %{translators_link:Greasy Translation Force su Transifex}:"
       icons_credit: "Le icone dei browser provengono da %{browserlogos}."
     help_with_greasymonkey: "Aiuto con Greasemonkey"
+    help_with_tampermonkey: "Aiuto con Tampermonkey"
     contact:
       title: "Contatta qualcuno"
       content_html: >
@@ -966,8 +1005,10 @@ it:
   search:
     script_search:
       title: "Cerca script"
+      description: "Ricerca gli scripts: cerca i nomi degli scripts, le descrizioni, le informazioni aggiuntive e i nomi degli autori."
     library_search:
       title: "Ricerca nella libreria"
+      description: "Ricerca le librerie: cerca i nomi delle librerie, le descrizioni, le informazioni aggiuntive, i nomi degli autori."
     code_search:
       title: "Cerca codice"
       description: "Cerca nel codice dello script. Questa è una ricerca che non distingue tra maiuscole e minuscole, nel solo testo, senza caratteri jolly."
@@ -985,6 +1026,8 @@ it:
     item_user_html: "Utente: %{user_link}"
     item_report: "%{report_link: Rapporto #%{report_id}}"
     item_script_lock_appeal: "%{appeal_link:Ricorso #%{appeal_id}}"
+    item_discussion_html: "Discussione: %{discussion_link}"
+    item_comment_html: "Commenta una discussione: %{comment_link}"
   reports:
     name: "Rapporto #%{id}"
     report_filed: "La tua segnalazione sarà presa in carico da un moderatore."
@@ -1046,6 +1089,7 @@ it:
       wrong_category: "Categoria errata"
       wrong_category_with_suggestion: "Categoria errata (suggerita: %{suggested_category})"
       no_code: 'Nessun codice/ciao mondo'
+      legal_claim: "Reclamo legale"
       other: "Altro"
     report_intro: "%{reported_item} è stato segnalato %{report_date} da %{reporter} per %{reason}"
     report_intro_no_reporter: "%{reported_item} è stato segnalato il %{report_date} per %{reason}"
@@ -1055,6 +1099,7 @@ it:
     report_intro_unauthorized_license_no_url: "%{other_script} usa la licenza %{license_name}. Visita %{tldr_legal_link:tldrlegal.com}  per un aiuto alla comprensione di ciò che questa licenza significa."
     report_intro_unauthorized_no_license: "%{other_script} non specifica una licenza, che significa che distribuire copie non è consentito a meno che un permesso esplicito non sia concesso."
     non_functional_feedback: "Per favore segnala gli script non funzionali come %{feedback_link:feedback} sullo script invece."
+    paid_benefits_feedback: "%{site_name} non registra le transazioni tra gli autori degli scripts e gli utenti e non può quindi validare alcun reclamo riguardo ad esse. Se hai pagato per una funzionalità dello script e non sei soddisfatto/a, per favore rivolgi invece le tue rimostranze tramite una %{feedback_link:recensione} dello script."
     unauthorized_code_original_placeholder: "URL del codice originale"
     explanation_placeholder: "Fornisci ulteriori dettagli (opzionale)"
     create_button: "Crea segnalazione"
@@ -1063,6 +1108,7 @@ it:
     report_message: "Segnala messaggio"
     result_dismissed: "Questa segnalazione è stata rigettata da un moderatore."
     result_upheld: "Questa segnalazione è stata confermata da un moderatore."
+    result_upheld_reason_override: "Questa segnalazione è stata approvata da un moderatore, ma il moderatore l'ha marcata come %{reason}."
     result_self_upheld: "L'autore ha eliminato il proprio script in seguito a questa segnalazione."
     result_fixed: "Questa segnalazione è stata risolta da un moderatore poiché ritiene che l'autore abbia risolto il problema."
     result_pending: "Questa segnalazione non è ancora stata controllata da un moderatore."
@@ -1083,9 +1129,24 @@ it:
     load_cleaned_diff: "Carica codice pulito diff"
     loading_diff: "Caricamento..."
     reported_user_activity_html: "%{user} (l'utente segnalato) ha fatto:"
+    script_updated_since_report: "Questo script è stato aggiornato da quando è stato inoltrata la segnalazione."
+    script_previous_reports:
+      one: "Questo script ha avuto %{count} segnalazione precedentemente confermata o risolta."
+      many: "Questo script ha avuto %{count} segnalazioni precedentemente confermate o risolte."
+      other: "Questo script ha avuto %{count} segnalazioni precedentemente confermate o risolte."
+    reporter_temporarily_blocked: "A causa del tuo recente storico di segnalazioni che sono state respinte da un moderatore, ti è stata bloccata la possibilità di inoltrare reclami fino al %{date}. Per favore rileggi le %{rules_link:regole di %{site_name}} per assicurarti che i prossimi reclami siano accurati."
+    already_reported_by_reporter: "Hai già %{report_link:segnalato recentemente} questo elemento. "
+    already_reported_same_type: "C'è già una %{report_link:segnalazione simile in attesa} riguardo a questo elemento."
+    report_item:
+      discussion: "Discussione %{title} di %{user}"
+      comment: "%{comment} di %{user}"
+      comment_description: "Un commento su %{discussion_title}"
+      message: "Un messaggio di %{user}"
+      deleted: "Eliminato %{type}#%{id}"
   appeals:
     new:
       title: Nuovo ricorso all'eliminazione di uno script
+      intro_html: 'Il tuo script è stato eliminato a causa di %{reason}. Se credi che si sia trattato di un errore, o se hai informazioni aggiuntive da fornire, o se hai aggiornato lo script per correggere il problema, puoi inoltrare un ricorso. Se un moderatore sarà soddisfatto dai tuoi aggiornamenti e dalle informaizoni che avrai fornito, questi ripristinerà l''accesso al tuo script.'
       submit: Presenta ricorso
     deletion_reason_html: "%{script} è stato eliminato a causa di: %{reason}."
     author_reason: "Ricorso presentato dall'autore:"
@@ -1093,6 +1154,7 @@ it:
     dismissed_by_moderator: Un moderatore ha respinto questo ricorso.
     upheld_by_moderator: In seguito a questo ricorso, un moderatore ha ripristinato questo script.
     submitted: Il tuo ricorso è stato ricevuto e un moderatore lo visionerà.
+    already_open: C'è già un ricorso aperto per questo script.
   discussions:
     title: Discussioni
     comment_date: "Pubblicato: %{date}"
@@ -1157,6 +1219,7 @@ it:
     sort:
       comment_created: Data
       discussion_last_comment: Data ultimo commento
+      discussion_created: Data di inizio della discussione
     user_activity:
       title: "Commenti recenti"
       no_recent_activity: "Questo utente non ha pubblicato alcun commento di recente."
@@ -1224,6 +1287,7 @@ it:
       more: Vedi tutte le conversazioni
     edit_message_header: Modifica messaggio
     update_message_submit: Aggiorna messaggio
+    moderator_notice: Se vuoi segnalare un'infrazione delle regole di %{site_name}, usa il collegamento Segnalazione su quello script, utente o commento. I moderatori non possono eliminare contenuti basandosi su segnalazioni inviate via messaggio diretto.
   screenshots:
     requirements: "Massimo %{number} immagini PNG, GIF, JPEG o WebP, più piccole di %{size} ciascuna."
   common:
@@ -1267,6 +1331,7 @@ it:
         current_password: "Password attuale"
         new_password: "Nuova password"
         new_password_confirmation: "Conferma nuova password"
+        otp_attempt: Codice di autenticazione a due fattori (2FA)
       script:
         name: "Nome"
         description: "Descrizione"
@@ -1306,12 +1371,15 @@ it:
       must_be_greasy_fork_script: "deve essere l'URL dello script su %{site_name}"
       script_update_not_utf8: "il testo caricato deve rispettare lo standard UTF-8 "
       script_disallowed_require: "utilizza uno script esterno non ammesso: %{code}"
+      script_disallowed_resource: "utilizza una @resource: non valida: %{code} Le risorse devono essere http, https o URL data"
+      script_disallowed_base_64_require: "utilizza un @require codificato in base-64"
       script_malformed_require: "utilizza un riferimento di script esterno errato:%{code}"
       script_rate_limit: "Hai superato il limite di caricamento. Riprova più tardi."
       missing_include_or_match: "deve includere almeno una chiave @match o @include"
       invalid_meta: "ha una direttiva meta non valida. Il formato giusto è // @foo"
       no_executable: "non contiene alcun codice eseguibile"
       meta_too_long: "%{key} è troppo lungo (il massimo è %{count} caratteri)"
+      style_missing_meta: "manca di un blocco di metadati. Vedi https://github.com/openstyles/stylus/wiki/Writing-UserCSS per degli esempi"
   opensearch:
     short_name: "ricerca %{site_name}"
     description: "Ricerca per user script su %{site_name}."
