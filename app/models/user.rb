@@ -245,7 +245,7 @@ class User < ApplicationRecord
   end
 
   def confirmed_or_identidied?
-    confirmed? || identities.where.not(provider: 'gitlab').any? || scripts.any?
+    confirmed? || identities.any? || scripts.any?
   end
 
   def in_confirmation_period?
