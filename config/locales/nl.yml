@@ -694,6 +694,15 @@ nl:
     banned_delete:
       intro: "Door het verwijderen van je account worden ook alle door jou gepubliceerde scripts verwijderd. Je forumbijdragen worden bewaard, maar je gebruikersnaam wordt geanonimiseerd. Let op: na het verwijderen kun je je niet meer registreren met dit e-mailadres. Log hieronder in om je account te verwijderen."
       complete: "Je account is verwijderd."
+    deleted_user_with_id: "(verwijderde gebruiker%{id})"
+    deleted_user_without_id: "(verwijderde gebruiker)"
+    suggest_secure_login: Aangezien je scriptmaker bent, raden we aan gebruik te maken van %{edit_login_link:een veiliger inlogmethode}.
+    secure_login_explanation_html: |
+        <p>Aangezien je scriptmaker bent, raden we aan om je account en andere gebruikers te beveiligen door gebruik te maken van een veiliger inlogmethode. Dit kan op twee manieren:</p>
+        <ol>
+        <li>Authenticatie in twee stappen (2FA);</li>
+        <li>Het verwijderen van je wachtwoord en alleen inloggen met een externe dienst (en idealiter de beveiligingsfuncties van die dienst).</li>
+        </ol>
     badges:
       banned:
         short: Verbannen

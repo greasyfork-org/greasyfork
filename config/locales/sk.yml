@@ -588,7 +588,7 @@ sk:
     edit_sign_in_password: "Heslo"
     edit_sign_in_2fa_enabled: Máte nastavené dvojfaktorové overovanie (2FA).
     edit_sign_in_disable_2fa: Zakázať 2FA
-    edit_sign_in_2fa_disabled: Pre lepšiu bezpečnosť môžete na svojom účte %{site_name} povoliť dvojfaktorovú autentifikáciu (2FA).
+    edit_sign_in_2fa_disabled: Pre lepšiu bezpečnosť môžete na svojom účte %{site_name} povoliť dvojfaktorové overovanie(2FA).
     edit_sign_in_enable_2fa: Povoliť 2FA
     edit_notifications: "Upraviť nastavenia upozornení"
     view_notifications: "Zobraziť upozornenia"
@@ -627,7 +627,7 @@ sk:
       intro: "Pridajte %{site_name} do aplikácie dvojfaktorového overovania (2FA) pomocou jednej z týchto metód, a potom zadajte nižšie uvedený kód."
       qr_heading: Cez QR kód
       url_heading: Cez odkaz
-      url_info: Ak ste na rovnakom zariadení ako aplikácia na dvojfaktorovú autentifikáciu, možno ju budete môcť pridať pomocou %{auth_link:tento odkaz}.
+      url_info: Ak ste na rovnakom zariadení ako aplikácia na dvojfaktorové overovanie, možno ju budete môcť pridať pomocou %{auth_link:tento odkaz}.
       manual_heading: Manuálne
       manual_entry_code_name: "Názov kódu: %{code_name}"
       manual_entry_your_key: "Váš kľúč: %{key}"
@@ -712,6 +712,15 @@ sk:
     banned_delete:
       intro: "Odstránením vášho účtu dôjde k odstráneniu všetkých skriptov, ktoré ste odoslali. Každý príspevok do fóra bude ponechaný v anonymizovanej podobe. Po odstránení nebudete môcť zaregistrovať účet s tou istou emailovou adresou. Pre odstránenie účtu sa prihláste."
       complete: "Váš účet bol odstránený."
+    deleted_user_with_id: "(Odstránený používateľ %{id})"
+    deleted_user_without_id: "(Odstránený použivateľ)"
+    suggest_secure_login: Ako autorovi skriptu vám navrhujeme %{edit_login_link:používať bezpečnejší spôsob prihlasovania}.
+    secure_login_explanation_html: |
+        <p>Ako autorovi skriptu vám odporúčame chrániť si svoj účet a používateľov bezpečnejším spôsobom prihlasovania. Môžete to dosiahnuť jedným z dvoch spôsobov:</p>
+        <ol>
+        <li>Pridať dvojfaktorové overovanie (2FA) k vášmu prihlasovaniu s heslom.</li>
+        <li>Odstrániť heslo a spoliehať sa výlučne na externé prihlasovanie (a v ideálnom prípade zapnúť bezpečnostné funkcie, ktoré táto služba poskytuje).
+        </ol>
     badges:
       banned:
         short: Zablokovaný

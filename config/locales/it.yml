@@ -703,6 +703,15 @@ it:
     banned_delete:
       intro: "Eliminare il tuo account eliminerà anche qualunque script tu abbia pubblicato. Qualsiasi contributo al forum che tu abbia fatto rimarrà, ma il tuo nome utente sarà anonimizzato. Nemmeno dopo l'eliminazione avrai la possibilità di registrarti nuovamente con lo stesso indirizzo email. Conferma qui sotto per eliminare il tuo account."
       complete: "Il tuo account è stato eliminato."
+    deleted_user_with_id: "(Utente eliminato %{id})"
+    deleted_user_without_id: "(Utente eliminato)"
+    suggest_secure_login: Come autore di scripts, ti suggeriamo di %{edit_login_link:usare un metodo di autenticazione più sicuro}.
+    secure_login_explanation_html: |
+        <p>Come autore di scripts, ti raccomandiamo di proteggere il tuo account e i tuoi utenti utilizzando un metodo di autenticazione sicuro. Puoi farlo in uno di questi due modi:</p>
+        <ol>
+        <li>Aggiungi l'autenticazione a due fattori (2FA) alla tua autenticazione basata su password.</li>
+        <li>Rimuovi la tua password ed affidati esclusivamente su un'autenticazione esterna (e idealmente, abilita le misure di sicurezza che il servizio fornisce).</li>
+        </ol>
     badges:
       banned:
         short: Bannato
@@ -768,11 +777,13 @@ it:
       mention: "%{user} ha menzionato te in %{discussion}"
       report_resolved_reporter:
         dismissed: La tua segnalazione contro %{item} è stata rigettata da un moderatore.
+        fixed: La tua segnalazione contro %{item} è risultata in delle modifiche e un moderatore ha segnato il problema come risolto.
         upheld: La tua segnalazione contro %{item} è stata confermata da un moderatore.
         rebutted: La tua segnalazione contro %{item} ha ricevuto una risposta da parte dell'utente segnalato. Un moderatore ricontrollerà la tua segnalazione e questa risposta.
       report_filed_reported: È stata inoltrata una segnalazione contro %{item}.
       report_resolved_reported:
         dismissed: Una segnalazione contro %{item} è stata rigettata da un moderatore.
+        fixed: Una segnalazione contro %{item} è risultata in delle modifiche e un moderatore ha segnato il problema come risolto.
         upheld: Una segnalazione contro %{item} è stata confermata da un moderatore.
       consecutive_bad_ratings: "%{script} ha ricevuto cattive recensioni ed è a rischio di essere rimosso. Correggi il tuo script o rispondi alle recensioni per assicurarti che rimanga attivo."
       list:
@@ -800,6 +811,10 @@ it:
       title: 'Come installare gli script'
     installing_user_styles:
       title: 'Come installare gli user styles'
+      content_html: |
+          <p>Alcuni scripts su %{site_name} possono essere installati come stili utente.</p>
+          <p>Gli stili utente possono essere installati con %{stylus_firefox_link:Stylus per Firefox}, %{stylus_chrome_link:Stylus per Chrome}, e %{stylus_opera_link:Stylus per Opera}.</p>
+          <p>%{styles_link:Guarda tutti gli stili utente disponibili.}</p>
     meta_keys:
       title: "Meta key dello script lette da %{site_name}"
       intro_html: "Questa è una lista di <a href=\"http://wiki.greasespot.net/Metadata_Block\">meta key degli user script</a> che %{site_name} può leggere. Le meta key al di fuori di questa lista possono essere incluse nello script, ma non hanno effetto sull'interfaccia utente di %{site_name}."
@@ -811,6 +826,7 @@ it:
       version: "Identificatore per una versione specifica di uno script nel %{version_format_link:formato versione Mozilla}. La versione è mostrata nella pagina di informazioni dello script. %{site_name} richiede questo campo e avviserà se è stato decrementato o se non è stato incrementato quando il codice dello script viene cambiato."
       include_html: "Descrivi su quali pagine lo script lavorerà. Questa lista verrà processata, mostrata sulla pagina di informazioni dello script e usata per categorizzare gli scripts. Ogni script deve avere almeno un <code>@match</code> o un <code>@include</code>. <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">Leggi qui per quanto riguarda il formato.</a>"
       require_html: "Include codice JavaScript esterno in uno script. Controlla le {external_script_link:regole per codice che include script esterni}. Se tu usi gli hash di integrità delle sottorisorse (controlla info %{tm_subresource_link:qui}  e %{mdn_subresource_link:qui}), %{site_name} ti notificherà se il tuo hash non combacia con la risorsa all'URL che stai usando."
+      resource_html: "Include una risorsa esterna (JavaScript, CSS, immagini, ecc...) in uno script. Vedi le %{external_script_link:regole per codice contenente script esterni}. Se usi gli hash di integrità delle sottorisorse (guarda le informazioni %{tm_subresource_link:qui} e %{mdn_subresource_link:qui}),  %{site_name} ti avvertirà se i tuoi hashes non corrispondono al contenuto nell'URL che stai usando."
       updateURL: "Descrive come i gestori script utente debbano ottenere gli aggiornamenti. %{site_name} rimuoverà queste chiavi, il che farà sì che ogni script installato da %{site_name} riceva gli aggiornamenti solo da %{site_name}."
       supportURL: "URL che punta a una pagina dove gli utenti possano ottenere supporto per uno script (ad es. un bug tracker, un forum, un indirizzo e-mail). L'URL di supporto viene visualizzato nella pagina dei feedback dello script."
       contributionURL_html: "URL che punta a una pagina dove gli utenti possano fare una donazione all'autore dello script. L'URL può avere come protocollo HTTP, HTTPS o Bitcoin. Per inserire un collegamento a una pagina per le donazioni di PayPal, utilizza un URL nel formato <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Donazione+Greasy+Fork\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Donazione+Greasy+Fork</a>, sostituendo l'indirizzo e-mail di esempio con il tuo."
@@ -832,6 +848,7 @@ it:
       functionality_header: Funzionalità
       description: Gli scripts devono includere una descrizione di cosa fanno e non devono fare cose irragionevolmente al di fuori di questa descrizione. Gli utenti devono sapere cosa uno script farà, prima di installarlo.
       reason: Gli scripts devono avere una ragione per essere script. Per esempio, uno script che semplicemente rimanda un utente a un sito non ha bisogno di essere uno script; potrebbe essere un link. Gli scripts che usano un servizio web per compiere un azione sulla pagina corrente (es. per convertirla in qualche maniera) sono consentiti.
+      monetization_html: Gli scripts che contengono funzionalità a beneficio dell'<em>autore</em> piuttosto che dell'utente (come tracciamento, pubblicità e miners) sono consentiti, ma queste devono essere dichiarate con i %{antifeature_link:metadati <code>@antifeature</code>}. Gli script non devono aggiungere <code>@include</code>s o <code>@match</code>es per il solo scopo che aggiungere antifunzionalità.
       code_header: Codice
       obfuscation: Il codice pubblicato su %{site_name} non deve essere offuscato o minimizzato. Agli utenti deve essere data l'opportunità di capire uno script prima di installarlo. Se lo script è compresso da uno strumento  come webpack, deve essere esportato in forma non minimizzata, con gli spazi e i nomi delle variabili conservati.
       size_html: |
@@ -858,6 +875,9 @@ it:
       content_language: I nomi, le descrizioni e gli altri contenuti degli scripts devono essere marcati con la lingua appropriata.
     external_scripts:
       title: "Politiche di %{site_name} per gli script esterni"
+      intro_html: |
+          <p>%{site_name} permette l'uso di codice esterno in specifici casi. Qualunque script che venisse individuato a includere codice esterno al di fuori di quanto permesso sarà soggetto a eliminazione. Se trovi uno script che sta violando queste regole, per favore segnalalo.</p>
+          <p>Nota che queste regole si applicano solo al codice esterno eseguibile. Il caricamento di codice non eseguibile, come ad esempio JSON o CSS, non è soggetto a limitazioni.</p>
       rationale:
         title: fondamento logico
       cdns:
@@ -870,10 +890,17 @@ it:
             <p>L'uso di <code>@require</code> e <code>@resource</code> con degli URL con %{mdn_sri_link:integrità delle sottorisorse} nel %{tm_sri_link:formato di Tampermonkey} è consentito.</p>
       allowed_external_codes:
         heading: Codici esterni permessi
+        content_html: |
+            <p>I seguenti sono i modi in cui il codice esterno è consentito su %{site_name}. A meno che sia specificato altrimenti, tutte le altre %{code_rules_link:regole per il codice} si applicano al codice esterno.</p>
       libraries:
         title: "Librerie di %{site_name}"
+        content_html: |
+            <p>Gli scripts pubblicati come librerie su %{site_name} sono consentiti. Le librerie possono essere create scegliendo la relativa opzione durante la creazione di un nuovo script. Queste possono in aggiunta essere impostate per sincronizzarsi con un URL esterno, come una repository di GitHub.</p>
       origin_host:
         title: Iniezione degli scripts dall'host originale
+        content_html: |
+            <p>L'iniezione di script esterni sullo stesso dominio da cui provengono sono consentite. Se uno script venisse eseguito su https://example.com e scarica https://example.com/script.js, lo modificasse e lo reiniettasse in https://example.com/, questo sarebbe consentito.</p>
+            <p>Se https://example.com/script.js fosse iniettato su https://differentsite.com, ciò non sarebbe consentito.</p>
     cdns:
       title: CDN Permessi
       test_url:
@@ -1135,6 +1162,7 @@ it:
       many: "Questo script ha avuto %{count} segnalazioni precedentemente confermate o risolte."
       other: "Questo script ha avuto %{count} segnalazioni precedentemente confermate o risolte."
     reporter_temporarily_blocked: "A causa del tuo recente storico di segnalazioni che sono state respinte da un moderatore, ti è stata bloccata la possibilità di inoltrare reclami fino al %{date}. Per favore rileggi le %{rules_link:regole di %{site_name}} per assicurarti che i prossimi reclami siano accurati."
+    reported_temporarily_blocked: "Poiché varie recenti segnalazioni su questo elemento sono state rigettate da un moderatore, ulteriori segnalazioni su di esso vengono bloccate fino al %{date}."
     already_reported_by_reporter: "Hai già %{report_link:segnalato recentemente} questo elemento. "
     already_reported_same_type: "C'è già una %{report_link:segnalazione simile in attesa} riguardo a questo elemento."
     report_item:
@@ -1409,6 +1437,10 @@ it:
     script_report:
       report_created_offender:
         subject: "Il tuo script %{script_name} su %{site_name} è stato segnalato"
+        body_html: |
+            <p>
+            Il tuo script %{script_link:%{script_name}} è stato segnalato poiché viola le regole di %{site_name}. La ragione specifica che è stata fornita è: %{reason}. I moderatori verificheranno questa segnalazione e potrebbero eliminare il tuo script se confermassero che sta violando le regole. Puoi %{report_link:controllare questa segnalazione} e inviare una contestazione se desideri fornire un'argomentazione o una spiegazione.
+            </p>
       report_upheld_offender:
         subject: "Il tuo script %{script_name} su%{site_name} è stato eliminato"
         body_html: |
@@ -1450,8 +1482,17 @@ it:
             </p>
       report_dismissed_reporter:
         subject: "La tua segnalazione a riguardo di %{script_name} su %{site_name} è stata respinta"
+        body_html: |
+            <p>
+            La tua segnalazione a proposito di %{script_link:%{script_name}} su %{site_name} è stata rigettata da un moderatore e lo script che avevi segnalato rimarrà attivo. Puoi %{report_link:ricontrollare la segnalazione}.
+            </p>
       report_fixed_reporter:
         subject: "La tua segnalazione relativa a %{script_name} su%{site_name} è stata contrassegnata come risolta"
+        body_html: |
+            <p>
+            La tua segnalazione riguardo a %{script_link:%{script_name}} su %{site_name} è stata segnata come risolta da un moderatore, ritenendo che l'autore abbia corretto il problema. Lo script rimarrà attivo. Puoi %{report_link:ricontrollare questa segnalazione}.
+            </p>
+      reporter_outro: "Hai ricevuto questa notifica perché hai creato una segnalazioen riguardo a uno script su %{site_name}. %{notification_preferences_link:Gestisci le tue preferenze per le notifiche.}"
     consecutive_bad_ratings:
       notify:
         subject: "Il tuo script %{script_name} su %{site_name} ha ricevuto molteplici segnalazioni come \"Cattivo\"."
