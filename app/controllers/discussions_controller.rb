@@ -19,7 +19,7 @@ class DiscussionsController < ApplicationController
 
   def index
     should_cache_page = current_user.nil? && request.format.html? && (params.keys - %w[locale controller action site page]).none?
-    cache_page(should_cache_page ? "discussion_index/#{params.values.join('/')}" : nil, ttl: 5.minutes) do
+    cache_page(should_cache_page ? "discussion_index/#{site_name}/#{params.values.join('/')}" : nil, ttl: 5.minutes) do
       if params[:q].presence
         with = { discussion_category_id: discussion_category_filter.pluck(:id) }
 
