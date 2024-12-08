@@ -166,7 +166,8 @@ class SessionsController < Devise::SessionsController
   end
 
   def create
-    user = User.find_by(email: params[:user][:email])
+    email = params.dig(:user, :email)
+    user = User.find_by(email:) if email
 
     # If user exists, password is right, and 2FA is enabled, go to the 2FA code entry screen. Otherwise, normal processing.
     if user&.otp_required_for_login && user.valid_password?(params[:user][:password]) && params[:user][:otp_attempt].nil?
