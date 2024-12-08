@@ -12,6 +12,7 @@ Greasy Fork welcomes contributions. Learn about [running Greasy Fork locally](ht
 
 If you like Greasy Fork, consider making a donation to help pay for hosting. Suggested amount is $10.
 
+* [Donate via Stripe](https://donate.stripe.com/aEU03m025575fMk7ss)
 * [Donate by PayPal or credit card](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=jason.barnabe@gmail.com&item_name=Contribution+for+Greasy+Fork)
 
 ## License
