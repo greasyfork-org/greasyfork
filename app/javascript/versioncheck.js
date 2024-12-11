@@ -137,6 +137,13 @@ function checkForUpdatesJS(installButton, retry) {
 }
 
 function checkForUpdatesCSS(installButton) {
+  let fm = getFiremonkey()
+  if (fm?.installedStyleVersion) {
+    handleCSSVersionResponse(fm.installedStyleVersion)
+    return
+  }
+
+  // Fire a message to see if Stylus is installed
   let name = installButton.getAttribute("data-script-name");
   let namespace = installButton.getAttribute("data-script-namespace");
   postMessage({ type: 'style-version-query', name: name, namespace: namespace, url: location.href }, location.origin);
@@ -144,22 +151,25 @@ function checkForUpdatesCSS(installButton) {
 
 // Response from Stylus
 window.addEventListener("message", function(event) {
+  // Validate that this is the message we want.
   if (event.origin !== "https://greasyfork.org" && event.origin !== "https://sleazyfork.org")
     return;
 
   if (event.data.type !== "style-version")
     return;
 
+  handleCSSVersionResponse(event.data.version)
+}, false);
+
+function handleCSSVersionResponse(installedVersion) {
   let installButton = document.querySelector(".install-link[data-install-format=css]");
   if (installButton == null)
     return;
 
   let version = installButton.getAttribute("data-script-version");
 
-  let installedVersion = event.data.version;
-
   handleInstallResult(installButton, installedVersion, version);
-}, false);
+}
 
 onload(function() {
   let installButtonJS = document.querySelector(".install-link[data-install-format=js]");
