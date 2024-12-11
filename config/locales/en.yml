@@ -820,10 +820,12 @@ en:
     edit_sign_in_title: "Edit sign in methods"
     # heading for the password section of the edit sign in methods page
     edit_sign_in_password: "Password"
-    edit_sign_in_2fa_enabled: You are set up with two-factor authentication (2FA).
+    edit_sign_in_2fa_enabled: You are set up with two-factor authentication (2FA). You can regenerate your 2FA code if you have lost it.
+    edit_sign_in_2fa_enabled_and_required: You are set up with two-factor authentication (2FA). 2FA is required on your account when using password-based logins. You can regenerate your 2FA code if you have lost it.
     edit_sign_in_disable_2fa: Disable 2FA
     edit_sign_in_2fa_disabled: You can enable two-factor authentication (2FA) for better security on your %{site_name} account.
     edit_sign_in_enable_2fa: Enable 2FA
+    edit_sign_in_regenerate_2fa: Regenerate 2FA
     edit_notifications: "Edit notification settings"
     view_notifications: "View notifications"
     # informational text telling the user they're not using a password
@@ -875,7 +877,6 @@ en:
     # information text indicating that the list of links below it are for addding an external sign in
     add_external_sign_in_info: "Add a sign in:"
     2fa_enabled: 2FA has been enabled.
-    2fa_enabled_already: 2FA is already enabled.
     2fa_enable_code_incorrect: 2FA code is not correct. Please try again.
     2fa_disabled: 2FA has been disabled.
     2fa_disabled_already: 2FA is already disabled.
@@ -979,6 +980,7 @@ en:
     deleted_user_with_id: "(Deleted user %{id})"
     deleted_user_without_id: "(Deleted user)"
     suggest_secure_login: As a script author, we suggest you %{edit_login_link:use a more secure sign-in method}.
+    require_secure_login: Your account is required to use a more secure sign-in method.
     secure_login_explanation_html: |
       <p>As a script author, we recommend you protect your account and users by using a secure sign-in method. You can accomplish this in one of two ways:</p>
       <ol>

@@ -43,11 +43,23 @@
   <hr>
 
   <% if current_user.otp_required_for_login %>
-    <%= form_tag(user_disable_2fa_path, method: :patch, class: 'inline-form') do |f| %>
+    <% if current_user.require_secure_login? %>
+      <p>
+        <%= t('users.edit_sign_in_2fa_enabled_and_required') %>
+      </p>
+      <%= form_tag(user_enable_2fa_path, method: :patch, class: 'inline-form') do |f| %>
+        <input type="submit" value="<%= t('users.edit_sign_in_regenerate_2fa') %>">
+      <% end %>
+    <% else %>
       <p>
         <%= t('users.edit_sign_in_2fa_enabled') %>
-        <input type="submit" value="<%= t('users.edit_sign_in_disable_2fa') %>">
       </p>
+      <%= form_tag(user_disable_2fa_path, method: :patch, class: 'inline-form') do |f| %>
+        <input type="submit" value="<%= t('users.edit_sign_in_disable_2fa') %>">
+      <% end %>
+      <%= form_tag(user_enable_2fa_path, method: :patch, class: 'inline-form') do |f| %>
+        <input type="submit" value="<%= t('users.edit_sign_in_regenerate_2fa') %>">
+      <% end %>
     <% end %>
   <% else %>
     <%= form_tag(user_enable_2fa_path, method: :patch, class: 'inline-form') do |f| %>

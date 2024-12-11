@@ -186,6 +186,13 @@ class UsersController < ApplicationController
 
     # password changed, have to sign in again
     bypass_sign_in(current_user)
+
+    if current_user.require_secure_login? && !current_user.otp_required_for_login
+      enable_2fa
+      render :enable_2fa
+      return
+    end
+
     flash[:notice] = t('users.password_updated')
     redirect_to user_path(current_user)
   end
@@ -199,7 +206,7 @@ class UsersController < ApplicationController
     current_user.encrypted_password = nil
     current_user.save!
     # password changed, have to sign in again
-    sign_in current_user, bypass: true
+    bypass_sign_in(current_user)
     flash[:notice] = t('users.password_removed')
     redirect_to user_edit_sign_in_path
   end
@@ -367,14 +374,6 @@ class UsersController < ApplicationController
   end
 
   def enable_2fa
-    if current_user.otp_required_for_login
-      flash[:alert] = t('users.2fa_enabled_already')
-      redirect_to user_path(current_user)
-      return
-    end
-
-    return if current_user.otp_secret
-
     current_user.otp_secret = User.generate_otp_secret
     current_user.save!
   end

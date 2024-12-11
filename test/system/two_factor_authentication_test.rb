@@ -20,6 +20,26 @@ class TwoFactorAuthenticationTest < ApplicationSystemTestCase
     assert user.reload.otp_required_for_login
   end
 
+  test 'regenerating 2FA' do
+    user = User.first
+    user.password = user.password_confirmation = 'password'
+    user.otp_required_for_login = true
+    user.save!
+
+    login_as(user)
+
+    visit user_path(user, locale: :en)
+    click_link 'Edit sign in methods'
+    click_button 'Regenerate 2FA'
+
+    User.any_instance.expects(:validate_and_consume_otp!).returns(true)
+    fill_in 'code', with: '123456'
+    click_button 'Verify code'
+
+    assert_content '2FA has been enabled'
+    assert user.reload.otp_required_for_login
+  end
+
   test 'failing to enable 2FA' do
     user = User.first
     user.password = user.password_confirmation = 'password'
@@ -54,6 +74,23 @@ class TwoFactorAuthenticationTest < ApplicationSystemTestCase
     assert_content '2FA has been disabled'
 
     assert_not user.reload.otp_required_for_login
+  end
+
+  test "2FA required can't disable" do
+    user = User.first
+    user.password = user.password_confirmation = 'password'
+    user.otp_secret = User.generate_otp_secret
+    user.otp_required_for_login = true
+    user.save!
+
+    User.any_instance.expects(:require_secure_login?).returns(true)
+
+    login_as(user)
+
+    visit user_path(user, locale: :en)
+    click_link 'Edit sign in methods'
+    assert_no_button 'Disable 2FA'
+    assert_content '2FA is required on your account when using password-based logins.'
   end
 
   test 'logging in with 2FA' do

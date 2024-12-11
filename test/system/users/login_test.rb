@@ -76,9 +76,16 @@ module Users
 
     test 'login does not show secure message when the user already uses secure login' do
       user = users(:one)
-      User.any_instance.expects(:uses_secure_login?).returns(true)
+      User.any_instance.expects(:uses_secure_login?).returns(true).at_least_once
       log_in(user)
       assert_no_content 'As a script author, we suggest you use a more secure sign-in method.'
+    end
+
+    test 'login redirects if secure login is required and not set' do
+      user = users(:one)
+      User.any_instance.expects(:missing_secure_login?).returns(true)
+      log_in(user)
+      assert_content 'Your account is required to use a more secure sign-in method.'
     end
   end
 end

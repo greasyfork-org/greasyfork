@@ -24,9 +24,16 @@ class SessionsController < Devise::SessionsController
       return root_path
     end
 
-    if resource.is_a?(User) && resource.suggest_secure_login?
-      flash[:html_safe] = true
-      flash[:notice] = It.it('users.suggest_secure_login', edit_login_link: user_edit_sign_in_path).html_safe
+    if resource.is_a?(User)
+      if resource.missing_secure_login?
+        flash[:notice] = t('users.require_secure_login')
+        return user_edit_sign_in_path
+      end
+
+      if resource.suggest_secure_login?
+        flash[:html_safe] = true
+        flash[:notice] = It.it('users.suggest_secure_login', edit_login_link: user_edit_sign_in_path).html_safe
+      end
     end
 
     super

@@ -476,6 +476,14 @@ class User < ApplicationRecord
     !uses_secure_login? && suggestable_secure_login?
   end
 
+  def require_secure_login?
+    moderator?
+  end
+
+  def missing_secure_login?
+    !uses_secure_login? && require_secure_login?
+  end
+
   protected
 
   def password_required?
