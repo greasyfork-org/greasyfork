@@ -90,6 +90,7 @@ class Script < ApplicationRecord
   validates :description, presence: { unless: proc { |r| r.deleted? || !r.library? } }
   validates :description, exclusion: { in: ['try to take over the world!'], message: :invalid }, on: :create
   validates :language, presence: true, inclusion: %w[js css]
+  validates :license_text, length: { maximum: 500 }, allow_nil: true
 
   validate do |script|
     next unless script.library?
