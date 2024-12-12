@@ -5,7 +5,7 @@ class ScriptLockAppeal < ApplicationRecord
   enum :resolution, { unresolved: 0, dismissed: 1, unlocked: 2 }
 
   validates :text_markup, inclusion: { in: %w[html markdown] }, presence: true
-  validates :text, presence: true
+  validates :text, presence: true, length: { maximum: 10_000 }
 
   def other_appeals_on_report
     return ScriptLockAppeal.none unless report_id

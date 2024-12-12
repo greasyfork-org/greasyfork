@@ -8,7 +8,7 @@
   <div class="form-control">
     <%= f.label :text %>
     <%= with_user_text_preview_for_form(form: f, markup_name: :text_markup) do
-      f.text_area :text, required: true
+      f.text_area :text, required: true, maxlength: 10_000
     end %>
   </div>
   <%= f.hidden_field :report_id %>
