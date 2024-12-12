@@ -182,6 +182,7 @@ it:
     listing_filter_by_site_all_sites: "(tutti i siti)"
     listing_filter_by_language_label: "Linguaggio:"
     listing_filter_by_site_more_sites: "Più..."
+    listing_filter_by_authorship_label: "Autori:"
     listing_no_scripts: "Nessuno script trovato"
     listing_created_feed: "Nuovi script"
     listing_updated_feed: "Script aggiornati"
@@ -583,7 +584,6 @@ it:
     edit_sign_in: "Modifica il metodo di accesso"
     edit_sign_in_title: "Modifica il metodo di accesso"
     edit_sign_in_password: "Password"
-    edit_sign_in_2fa_enabled: Il tuo account è impostato con l'autenticazione a due fattori (2FA).
     edit_sign_in_disable_2fa: Disabilita 2FA
     edit_sign_in_2fa_disabled: Puoi abilitare l'autenticazione a due fattori (2FA) per una maggiore sicurezza sul tuo account di %{site_name}.
     edit_sign_in_enable_2fa: Abilita 2FA
@@ -614,7 +614,6 @@ it:
     remove_external_sign_in: "Rimuovi"
     add_external_sign_in_info: "Aggiungi un'autenticazione:"
     2fa_enabled: 2FA è stata abilitata.
-    2fa_enabled_already: 2FA è già abilitata.
     2fa_enable_code_incorrect: Il codice 2FA non è corretto. Per favore riprova.
     2fa_disabled: 2FA è stata disabilitata.
     2fa_disabled_already: 2FA è già disabilitata.
@@ -882,6 +881,7 @@ it:
       excessive_updates: Gli autori degli scripts non possono aggiornare gli scripts eccessivamente con il solo scopo di mantenere alto il posizionamento dello script nell'elenco.
       non_functional_includes_html: 'Gli scripts non possono includere <code>@include</code>s o <code>@match</code>es per siti per i quali non forniscono funzionalità. '
       content_language: I nomi, le descrizioni e gli altri contenuti degli scripts devono essere marcati con la lingua appropriata.
+      listing_header: Pubblicazione
     external_scripts:
       title: "Politiche di %{site_name} per gli script esterni"
       intro_html: |
@@ -1501,7 +1501,7 @@ it:
             <p>
             La tua segnalazione riguardo a %{script_link:%{script_name}} su %{site_name} è stata segnata come risolta da un moderatore, ritenendo che l'autore abbia corretto il problema. Lo script rimarrà attivo. Puoi %{report_link:ricontrollare questa segnalazione}.
             </p>
-      reporter_outro: "Hai ricevuto questa notifica perché hai creato una segnalazioen riguardo a uno script su %{site_name}. %{notification_preferences_link:Gestisci le tue preferenze per le notifiche.}"
+      reporter_outro: "Hai ricevuto questa notifica perché hai creato una segnalazione riguardo a uno script su %{site_name}. %{notification_preferences_link:Gestisci le tue preferenze per le notifiche.}"
     consecutive_bad_ratings:
       notify:
         subject: "Il tuo script %{script_name} su %{site_name} ha ricevuto molteplici segnalazioni come \"Cattivo\"."
@@ -1514,6 +1514,7 @@ it:
     script_comment:
       subject: "Il tuo script %{script_name} su %{site_name} ha ricevuto un commento."
       intro: "Il tuo script %{script_link:%{script_name}} su %{site_name} ha ricevuto un commento dall'utente %{commenter_link:%{commenter_name}}:"
+      outro: "%{comment_link:Guarda e rispondi a questo commento.} Hai ricevuto questa notifica perché hai scelto di essere iscritto alle discussioni relative ai tuoi scripts. %{notification_preferences_link:Gestisci le tue preferenze per le notifiche.}"
     subscribed_discussion:
       subject: "La discussione %{discussion_title} su %{site_name} ha ricevuto un commento."
       intro: "La discussione %{discussion_link:%{discussion_title}} su %{site_name} ha ricevuto un commento dall'utente %{commenter_link:%{commenter_name}}:"
@@ -1521,6 +1522,7 @@ it:
     comment_mentioned:
       subject: "L'utente '%{commenter_name}' ti ha menzionato su %{site_name}."
       intro: "La discussione %{discussion_link:%{discussion_title}} su %{site_name} ha ricevuto un commento dall'utente %{commenter_link:%{commenter_name}} che ti ha menzionato:"
+      outro: "%{comment_link:Guarda e rispondi a questo commento.} Hai ricevuto questa notifica perché hai scelto di essere avvisato quando vieni menzionato. %{notification_preferences_link:Gestisci le tue preferenze per le notifiche.}"
     new_message:
       subject: "%{user} ti ha inviato un messaggio su %{site_name}"
       intro: "L'utente %{user_link:%{user_name}} ti ha inviato un messaggio su %{site_name}."
