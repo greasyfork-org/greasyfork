@@ -580,9 +580,12 @@ nl:
     edit_sign_in: "Inlogmethodes bewerken"
     edit_sign_in_title: "Inlogmethodes bewerken"
     edit_sign_in_password: "Wachtwoord"
+    edit_sign_in_2fa_enabled: Je hebt verificatie in twee stappen (2FA) ingeschakeld. De code kun je te allen tijde opnieuw genereren, mocht je die kwijt zijn geraakt.
+    edit_sign_in_2fa_enabled_and_required: Je hebt verificatie in twee stappen (2FA) ingeschakeld. 2FA is vereist als je inlogt met een wachtwoord. De code kun je te allen tijde opnieuw genereren, mocht je die kwijt zijn geraakt.
     edit_sign_in_disable_2fa: 2FA uitschakelen
     edit_sign_in_2fa_disabled: Je kunt verificatie in twee stappen (2FA) inschakelen om je %{site_name}-account beter te beveiligen.
     edit_sign_in_enable_2fa: 2FA inschakelen
+    edit_sign_in_regenerate_2fa: 2FA-code opnieuw genereren
     edit_notifications: "Meldingsinstellingen aanpassen"
     view_notifications: "Meldingen bekijken"
     no_password_set_info: "Je account is niet beveiligd met een wachtwoord."
@@ -695,6 +698,7 @@ nl:
     deleted_user_with_id: "(verwijderde gebruiker%{id})"
     deleted_user_without_id: "(verwijderde gebruiker)"
     suggest_secure_login: Aangezien je scriptmaker bent, raden we aan gebruik te maken van %{edit_login_link:een veiliger inlogmethode}.
+    require_secure_login: Een veiliger inlogmethode is vereist.
     secure_login_explanation_html: |
         <p>Aangezien je scriptmaker bent, raden we aan om je account en andere gebruikers te beveiligen door gebruik te maken van een veiliger inlogmethode. Dit kan op twee manieren:</p>
         <ol>
