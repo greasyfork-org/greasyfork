@@ -39,7 +39,7 @@ class CssToJsConverterTest < ActiveSupport::TestCase
       if (typeof GM_addStyle !== "undefined") {
         GM_addStyle(css);
       } else {
-        let styleNode = document.createElement("style");
+        const styleNode = document.createElement("style");
         styleNode.appendChild(document.createTextNode(css));
         (document.querySelector("head") || document.documentElement).appendChild(styleNode);
       }
@@ -100,7 +100,7 @@ class CssToJsConverterTest < ActiveSupport::TestCase
       if (typeof GM_addStyle !== "undefined") {
         GM_addStyle(css);
       } else {
-        let styleNode = document.createElement("style");
+        const styleNode = document.createElement("style");
         styleNode.appendChild(document.createTextNode(css));
         (document.querySelector("head") || document.documentElement).appendChild(styleNode);
       }
@@ -161,7 +161,7 @@ class CssToJsConverterTest < ActiveSupport::TestCase
       if (typeof GM_addStyle !== "undefined") {
         GM_addStyle(css);
       } else {
-        let styleNode = document.createElement("style");
+        const styleNode = document.createElement("style");
         styleNode.appendChild(document.createTextNode(css));
         (document.querySelector("head") || document.documentElement).appendChild(styleNode);
       }
@@ -208,7 +208,7 @@ class CssToJsConverterTest < ActiveSupport::TestCase
       if (typeof GM_addStyle !== "undefined") {
         GM_addStyle(css);
       } else {
-        let styleNode = document.createElement("style");
+        const styleNode = document.createElement("style");
         styleNode.appendChild(document.createTextNode(css));
         (document.querySelector("head") || document.documentElement).appendChild(styleNode);
       }
@@ -255,7 +255,7 @@ class CssToJsConverterTest < ActiveSupport::TestCase
       if (typeof GM_addStyle !== "undefined") {
         GM_addStyle(css);
       } else {
-        let styleNode = document.createElement("style");
+        const styleNode = document.createElement("style");
         styleNode.appendChild(document.createTextNode(css));
         (document.querySelector("head") || document.documentElement).appendChild(styleNode);
       }
@@ -302,7 +302,7 @@ class CssToJsConverterTest < ActiveSupport::TestCase
       if (typeof GM_addStyle !== "undefined") {
         GM_addStyle(css);
       } else {
-        let styleNode = document.createElement("style");
+        const styleNode = document.createElement("style");
         styleNode.appendChild(document.createTextNode(css));
         (document.querySelector("head") || document.documentElement).appendChild(styleNode);
       }
@@ -347,7 +347,7 @@ class CssToJsConverterTest < ActiveSupport::TestCase
       if (typeof GM_addStyle !== "undefined") {
         GM_addStyle(css);
       } else {
-        let styleNode = document.createElement("style");
+        const styleNode = document.createElement("style");
         styleNode.appendChild(document.createTextNode(css));
         (document.querySelector("head") || document.documentElement).appendChild(styleNode);
       }
@@ -408,7 +408,7 @@ class CssToJsConverterTest < ActiveSupport::TestCase
       if (typeof GM_addStyle !== "undefined") {
         GM_addStyle(css);
       } else {
-        let styleNode = document.createElement("style");
+        const styleNode = document.createElement("style");
         styleNode.appendChild(document.createTextNode(css));
         (document.querySelector("head") || document.documentElement).appendChild(styleNode);
       }
@@ -577,7 +577,7 @@ class CssToJsConverterTest < ActiveSupport::TestCase
       if (typeof GM_addStyle !== "undefined") {
         GM_addStyle(css);
       } else {
-        let styleNode = document.createElement("style");
+        const styleNode = document.createElement("style");
         styleNode.appendChild(document.createTextNode(css));
         (document.querySelector("head") || document.documentElement).appendChild(styleNode);
       }
@@ -627,7 +627,7 @@ class CssToJsConverterTest < ActiveSupport::TestCase
       if (typeof GM_addStyle !== "undefined") {
         GM_addStyle(css);
       } else {
-        let styleNode = document.createElement("style");
+        const styleNode = document.createElement("style");
         styleNode.appendChild(document.createTextNode(css));
         (document.querySelector("head") || document.documentElement).appendChild(styleNode);
       }
@@ -679,7 +679,7 @@ class CssToJsConverterTest < ActiveSupport::TestCase
       if (typeof GM_addStyle !== "undefined") {
         GM_addStyle(css);
       } else {
-        let styleNode = document.createElement("style");
+        const styleNode = document.createElement("style");
         styleNode.appendChild(document.createTextNode(css));
         (document.querySelector("head") || document.documentElement).appendChild(styleNode);
       }
@@ -724,7 +724,7 @@ class CssToJsConverterTest < ActiveSupport::TestCase
       if (typeof GM_addStyle !== "undefined") {
         GM_addStyle(css);
       } else {
-        let styleNode = document.createElement("style");
+        const styleNode = document.createElement("style");
         styleNode.appendChild(document.createTextNode(css));
         (document.querySelector("head") || document.documentElement).appendChild(styleNode);
       }
@@ -769,7 +769,7 @@ class CssToJsConverterTest < ActiveSupport::TestCase
       if (typeof GM_addStyle !== "undefined") {
         GM_addStyle(css);
       } else {
-        let styleNode = document.createElement("style");
+        const styleNode = document.createElement("style");
         styleNode.appendChild(document.createTextNode(css));
         (document.querySelector("head") || document.documentElement).appendChild(styleNode);
       }
@@ -814,7 +814,7 @@ class CssToJsConverterTest < ActiveSupport::TestCase
       if (typeof GM_addStyle !== "undefined") {
         GM_addStyle(css);
       } else {
-        let styleNode = document.createElement("style");
+        const styleNode = document.createElement("style");
         styleNode.appendChild(document.createTextNode(css));
         (document.querySelector("head") || document.documentElement).appendChild(styleNode);
       }
