@@ -27,10 +27,7 @@ class CssToJsConverterTest < ActiveSupport::TestCase
       // @license unlicense
       // @grant GM_addStyle
       // @run-at document-start
-      // @include http://example.com/*
-      // @include https://example.com/*
-      // @include http://*.example.com/*
-      // @include https://*.example.com/*
+      // @match *://*.example.com/*
       // ==/UserScript==
 
       (function() {
@@ -80,14 +77,8 @@ class CssToJsConverterTest < ActiveSupport::TestCase
       // @license unlicense
       // @grant GM_addStyle
       // @run-at document-start
-      // @include http://example.com/*
-      // @include https://example.com/*
-      // @include http://*.example.com/*
-      // @include https://*.example.com/*
-      // @include http://example.net/*
-      // @include https://example.net/*
-      // @include http://*.example.net/*
-      // @include https://*.example.net/*
+      // @match *://*.example.com/*
+      // @match *://*.example.net/*
       // ==/UserScript==
 
       (function() {
@@ -147,14 +138,8 @@ class CssToJsConverterTest < ActiveSupport::TestCase
       // @license unlicense
       // @grant GM_addStyle
       // @run-at document-start
-      // @include http://example.com/*
-      // @include https://example.com/*
-      // @include http://*.example.com/*
-      // @include https://*.example.com/*
-      // @include http://example.net/*
-      // @include https://example.net/*
-      // @include http://*.example.net/*
-      // @include https://*.example.net/*
+      // @match *://*.example.com/*
+      // @match *://*.example.net/*
       // ==/UserScript==
 
       (function() {
@@ -211,10 +196,7 @@ class CssToJsConverterTest < ActiveSupport::TestCase
       // @license unlicense
       // @grant GM_addStyle
       // @run-at document-start
-      // @include http://example.com/*
-      // @include https://example.com/*
-      // @include http://*.example.com/*
-      // @include https://*.example.com/*
+      // @match *://*.example.com/*
       // ==/UserScript==
 
       (function() {
@@ -261,10 +243,7 @@ class CssToJsConverterTest < ActiveSupport::TestCase
       // @license unlicense
       // @grant GM_addStyle
       // @run-at document-start
-      // @include http://example.com/*
-      // @include https://example.com/*
-      // @include http://*.example.com/*
-      // @include https://*.example.com/*
+      // @match *://*.example.com/*
       // ==/UserScript==
 
       (function() {
@@ -310,10 +289,7 @@ class CssToJsConverterTest < ActiveSupport::TestCase
       // @license unlicense
       // @grant GM_addStyle
       // @run-at document-start
-      // @include http://example.com/*
-      // @include https://example.com/*
-      // @include http://*.example.com/*
-      // @include https://*.example.com/*
+      // @match *://*.example.com/*
       // ==/UserScript==
 
       (function() {
@@ -446,7 +422,7 @@ class CssToJsConverterTest < ActiveSupport::TestCase
                                               CssParser::CssDocumentMatch.new('domain', 'example.com'),
                                               CssParser::CssDocumentMatch.new('url', 'http://example.com/foo'),
                                             ], nil, nil)
-    assert_equal %w[http://example.com/* https://example.com/* http://*.example.com/* https://*.example.com/*], CssToJsConverter.calculate_includes([block])
+    assert_equal %w[*://*.example.com/*], CssToJsConverter.calculate_matches_and_includes([block]).matches
   end
 
   test 'convertible default case' do
@@ -588,10 +564,7 @@ class CssToJsConverterTest < ActiveSupport::TestCase
       // @license unlicense
       // @grant GM_addStyle
       // @run-at document-start
-      // @include http://example.com/*
-      // @include https://example.com/*
-      // @include http://*.example.com/*
-      // @include https://*.example.com/*
+      // @match *://*.example.com/*
       // ==/UserScript==
 
       (function() {
@@ -640,10 +613,7 @@ class CssToJsConverterTest < ActiveSupport::TestCase
       // @license unlicense
       // @grant GM_addStyle
       // @run-at document-start
-      // @include http://example.com/*
-      // @include https://example.com/*
-      // @include http://*.example.com/*
-      // @include https://*.example.com/*
+      // @match *://*.example.com/*
       // ==/UserScript==
 
       (function() {
@@ -690,7 +660,7 @@ class CssToJsConverterTest < ActiveSupport::TestCase
       // @license unlicense
       // @grant GM_addStyle
       // @run-at document-start
-      // @include *
+      // @match *
       // ==/UserScript==
 
       (function() {

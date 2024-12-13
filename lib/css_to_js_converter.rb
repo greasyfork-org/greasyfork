@@ -5,6 +5,7 @@ class CssToJsConverter
     include ActionView::Helpers::JavaScriptHelper
 
     VERBATIM_META_LINES = %w[name version namespace description author homepageURL supportURL license].freeze
+    MATCH_RESULT = Struct.new(:matches, :includes, keyword_init: true)
 
     def convert(css)
       code_css = CssParser.get_code_blocks(css).join("\n")
@@ -35,7 +36,10 @@ class CssToJsConverter
       meta = CssParser.parse_meta(css).select { |k, _v| VERBATIM_META_LINES.include?(k) }
       meta['grant'] = ['GM_addStyle']
       meta['run-at'] = ['document-start']
-      meta['include'] = calculate_includes(doc_blocks_and_code.map(&:first))
+
+      matches_and_includes = calculate_matches_and_includes(doc_blocks_and_code.map(&:first))
+      meta['match'] = matches_and_includes.matches
+      meta['include'] = matches_and_includes.includes
 
       lines = [
         '// ==UserScript==',
@@ -86,9 +90,9 @@ class CssToJsConverter
       escape_javascript(code)
     end
 
-    def calculate_includes(doc_blocks)
+    def calculate_matches_and_includes(doc_blocks)
       # If there's any without a specific rule, it'll be global.
-      return ['*'] if doc_blocks.any? { |doc_block| doc_block.matches.empty? }
+      return MATCH_RESULT.new(matches: ['*'], includes: []) if doc_blocks.any? { |doc_block| doc_block.matches.empty? }
 
       matches = doc_blocks
                 .map(&:matches)
@@ -98,9 +102,10 @@ class CssToJsConverter
 
       %w[regexp domain url url-prefix].each { |rule_type| matches[rule_type] = [] unless matches.key?(rule_type) }
 
+      # Regex is not supported by @match rules.
       js_includes = matches['regexp'].map { |re| "/#{css_regexp_to_js(unescape_css(re))}/" }
-      js_includes += matches['domain'].map { |domain| [domain, "*.#{domain}"].map { |d| ["http://#{d}/*", "https://#{d}/*"] } }.flatten
 
+      js_matches = matches['domain'].map { |domain| "*://*.#{domain}/*" }
       # Don't include url or url-prefix if already covered by a domain rule.
       %w[url url-prefix].each do |rule_type|
         url_and_prefix_rules = matches[rule_type].select do |value|
@@ -115,7 +120,7 @@ class CssToJsConverter
         js_includes += url_and_prefix_rules.map { |value| value + ((rule_type == 'url-prefix') ? '*' : '') }
       end
 
-      js_includes.uniq
+      MATCH_RESULT.new(matches: js_matches, includes: js_includes)
     end
 
     def only_comments?(css)
