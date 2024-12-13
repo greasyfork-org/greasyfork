@@ -92,7 +92,7 @@ class CssToJsConverter
 
     def calculate_matches_and_includes(doc_blocks)
       # If there's any without a specific rule, it'll be global.
-      return MATCH_RESULT.new(matches: ['*'], includes: []) if doc_blocks.any? { |doc_block| doc_block.matches.empty? }
+      return MATCH_RESULT.new(matches: ['*://*/*'], includes: []) if doc_blocks.any? { |doc_block| doc_block.matches.empty? }
 
       matches = doc_blocks
                 .map(&:matches)

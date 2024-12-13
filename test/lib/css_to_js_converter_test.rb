@@ -660,7 +660,7 @@ class CssToJsConverterTest < ActiveSupport::TestCase
       // @license unlicense
       // @grant GM_addStyle
       // @run-at document-start
-      // @match *
+      // @match *://*/*
       // ==/UserScript==
 
       (function() {
