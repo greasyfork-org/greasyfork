@@ -687,4 +687,139 @@ class CssToJsConverterTest < ActiveSupport::TestCase
     JS
     assert_equal js, CssToJsConverter.convert(css)
   end
+
+  test 'js conversion with url-prefix' do
+    css = <<~CSS
+      /* ==UserStyle==
+      @name        Example UserCSS style
+      @namespace   github.com/openstyles/stylus
+      @version     1.0.0
+      @license     unlicense
+      ==/UserStyle== */
+
+      @-moz-document url-prefix("https://www.example.com/") {
+        a {
+          color: red;
+        }
+      }
+    CSS
+
+    js = <<~JS
+      // ==UserScript==
+      // @name Example UserCSS style
+      // @namespace github.com/openstyles/stylus
+      // @version 1.0.0
+      // @license unlicense
+      // @grant GM_addStyle
+      // @run-at document-start
+      // @match https://www.example.com/*
+      // ==/UserScript==
+
+      (function() {
+      let css = `
+        a {
+          color: red;
+        }
+      `;
+      if (typeof GM_addStyle !== "undefined") {
+        GM_addStyle(css);
+      } else {
+        let styleNode = document.createElement("style");
+        styleNode.appendChild(document.createTextNode(css));
+        (document.querySelector("head") || document.documentElement).appendChild(styleNode);
+      }
+      })();
+    JS
+    assert_equal js, CssToJsConverter.convert(css)
+  end
+
+  test 'js conversion with url-prefix at path' do
+    css = <<~CSS
+      /* ==UserStyle==
+      @name        Example UserCSS style
+      @namespace   github.com/openstyles/stylus
+      @version     1.0.0
+      @license     unlicense
+      ==/UserStyle== */
+
+      @-moz-document url-prefix("https://www.example.com/path") {
+        a {
+          color: red;
+        }
+      }
+    CSS
+
+    js = <<~JS
+      // ==UserScript==
+      // @name Example UserCSS style
+      // @namespace github.com/openstyles/stylus
+      // @version 1.0.0
+      // @license unlicense
+      // @grant GM_addStyle
+      // @run-at document-start
+      // @match https://www.example.com/path*
+      // ==/UserScript==
+
+      (function() {
+      let css = `
+        a {
+          color: red;
+        }
+      `;
+      if (typeof GM_addStyle !== "undefined") {
+        GM_addStyle(css);
+      } else {
+        let styleNode = document.createElement("style");
+        styleNode.appendChild(document.createTextNode(css));
+        (document.querySelector("head") || document.documentElement).appendChild(styleNode);
+      }
+      })();
+    JS
+    assert_equal js, CssToJsConverter.convert(css)
+  end
+
+  test 'js conversion with url-prefix missing path slash' do
+    css = <<~CSS
+      /* ==UserStyle==
+      @name        Example UserCSS style
+      @namespace   github.com/openstyles/stylus
+      @version     1.0.0
+      @license     unlicense
+      ==/UserStyle== */
+
+      @-moz-document url-prefix("https://www.example.com") {
+        a {
+          color: red;
+        }
+      }
+    CSS
+
+    js = <<~JS
+      // ==UserScript==
+      // @name Example UserCSS style
+      // @namespace github.com/openstyles/stylus
+      // @version 1.0.0
+      // @license unlicense
+      // @grant GM_addStyle
+      // @run-at document-start
+      // @match https://www.example.com/*
+      // ==/UserScript==
+
+      (function() {
+      let css = `
+        a {
+          color: red;
+        }
+      `;
+      if (typeof GM_addStyle !== "undefined") {
+        GM_addStyle(css);
+      } else {
+        let styleNode = document.createElement("style");
+        styleNode.appendChild(document.createTextNode(css));
+        (document.querySelector("head") || document.documentElement).appendChild(styleNode);
+      }
+      })();
+    JS
+    assert_equal js, CssToJsConverter.convert(css)
+  end
 end

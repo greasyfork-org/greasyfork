@@ -117,7 +117,12 @@ class CssToJsConverter
 
           next matches['domain'].exclude?(uri.host)
         end
-        js_includes += url_and_prefix_rules.map { |value| value + ((rule_type == 'url-prefix') ? '*' : '') }
+        js_matches += if rule_type == 'url-prefix'
+                        # A url-prefix that's scheme and domain without a path (not even a slash) should get a slash.
+                        url_and_prefix_rules.map { |value| (value.include?('://') && value.count('/') == 2) ? "#{value}/*" : "#{value}*" }
+                      else
+                        url_and_prefix_rules
+                      end
       end
 
       MATCH_RESULT.new(matches: js_matches, includes: js_includes)
