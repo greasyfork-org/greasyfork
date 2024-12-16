@@ -171,7 +171,7 @@ class CssParser
         return { text: css_document_match.value, domain: false, tld_extra: false }
       when 'domain'
         # Don't return it as a domain unless it looks like a valid domain.
-        return { text: MatchURI.get_tld_plus_1(css_document_match.value), domain: true, tld_extra: false } if JsParser::VALID_DOMAIN_REGEXP.match?(css_document_match.value)
+        return { text: MatchUri.get_tld_plus_1(css_document_match.value), domain: true, tld_extra: false } if JsParser::VALID_DOMAIN_REGEXP.match?(css_document_match.value)
 
         return { text: css_document_match.value, domain: false, tld_extra: false }
       else
@@ -189,7 +189,7 @@ class CssParser
             return { text: css_document_match.value + ((css_document_match.rule_type == 'url-prefix') ? '*' : ''), domain: false, tld_extra: false }
           end
 
-          return { text: MatchURI.get_tld_plus_1(uri.host), domain: true, tld_extra: false }
+          return { text: MatchUri.get_tld_plus_1(uri.host), domain: true, tld_extra: false }
         end
       end
     end

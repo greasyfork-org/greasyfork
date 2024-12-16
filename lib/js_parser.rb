@@ -180,13 +180,13 @@ class JsParser
             applies_to_names << { text: original_pattern, domain: false, tld_extra: false }
           elsif uri.host.ends_with?('.tld')
             TLD_EXPANSION.each_with_index do |tld, i|
-              applies_to_names << { text: MatchURI.get_tld_plus_1(uri.host.sub(/tld$/i, tld)), domain: true, tld_extra: i != 0 }
+              applies_to_names << { text: MatchUri.get_tld_plus_1(uri.host.sub(/tld$/i, tld)), domain: true, tld_extra: i != 0 }
             end
             # "example.com."
           elsif uri.host.ends_with?('.')
-            applies_to_names << { text: MatchURI.get_tld_plus_1(uri.host[0, uri.host.length - 1]), domain: true, tld_extra: false }
+            applies_to_names << { text: MatchUri.get_tld_plus_1(uri.host[0, uri.host.length - 1]), domain: true, tld_extra: false }
           else
-            applies_to_names << { text: MatchURI.get_tld_plus_1(uri.host), domain: true, tld_extra: false }
+            applies_to_names << { text: MatchUri.get_tld_plus_1(uri.host), domain: true, tld_extra: false }
           end
         rescue ArgumentError, URI::InvalidURIError
           Rails.logger.warn "Unrecognized pattern '#{p}'"

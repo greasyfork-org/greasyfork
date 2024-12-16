@@ -1,4 +1,4 @@
-class MatchURI
+class MatchUri
   DONT_STRIP_TLD_SITES = ['del.icio.us'].freeze
   IP_PATTERN = /^([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}):?[0-9]*$/
 
