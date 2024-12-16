@@ -109,11 +109,18 @@ class CssParser
     end
 
     def parse_doc_blocks(code, calculate_block_positions: false)
-      # XXX This should be a real parser, whether a gem or custom made. This is not properly handling
+      # XXX This should be a real parser, whether a gem or custom-made. This is not properly handling
       # comments or stuff inside other strings.
+
+      unless code.include?('@-moz-document')
+        # It's all global. Return one block with whitespace stripped.
+        stripped_code = code.strip
+        start = code.index(stripped_code)
+        return [CssDocumentBlock.new([], start, start + stripped_code.length - 1)]
+      end
+
       matches = []
       s = StringScanner.new(code)
-
       next_block_start = 0
 
       while s.skip_until(/@-moz-document/)

@@ -636,6 +636,45 @@ class CssToJsConverterTest < ActiveSupport::TestCase
     assert_equal js, CssToJsConverter.convert(css)
   end
 
+  test 'global only' do
+    css = <<~CSS
+      /* ==UserStyle==
+      @name        Example UserCSS style
+      @namespace   github.com/openstyles/stylus
+      @version     1.0.0
+      @license     unlicense
+      ==/UserStyle== */
+
+      el { color: green; }
+
+
+    CSS
+
+    js = <<~JS
+      // ==UserScript==
+      // @name Example UserCSS style
+      // @namespace github.com/openstyles/stylus
+      // @version 1.0.0
+      // @license unlicense
+      // @grant GM_addStyle
+      // @run-at document-start
+      // @match *://*/*
+      // ==/UserScript==
+
+      (function() {
+      let css = `el { color: green; }`;
+      if (typeof GM_addStyle !== "undefined") {
+        GM_addStyle(css);
+      } else {
+        const styleNode = document.createElement("style");
+        styleNode.appendChild(document.createTextNode(css));
+        (document.querySelector("head") || document.documentElement).appendChild(styleNode);
+      }
+      })();
+    JS
+    assert_equal js, CssToJsConverter.convert(css)
+  end
+
   test 'global and site-specific with comments before each' do
     css = <<~CSS
       /* ==UserStyle==
