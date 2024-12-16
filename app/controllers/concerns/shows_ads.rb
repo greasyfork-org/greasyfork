@@ -20,6 +20,8 @@ module ShowsAds
 
     return AdMethod.ga if script.adsense_approved && locale_allows_adsense? && (script.additional_info || script.newest_saved_script_version.attachments.any? || script.similar_scripts(script_subset:, locale: I18n.locale).any?)
 
+    return AdMethod.cd if request_locale.code == 'zh-CN'
+
     AdMethod.ea
   end
 
