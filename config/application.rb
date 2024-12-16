@@ -46,6 +46,8 @@ module Greasyfork
     config.exceptions_app = routes
 
     config.ip_address_tracking = true
+
+    config.active_support.to_time_preserves_timezone = :zone
   end
 end
 
