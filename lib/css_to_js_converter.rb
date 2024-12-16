@@ -117,12 +117,23 @@ class CssToJsConverter
 
           next matches['domain'].exclude?(uri.host)
         end
-        js_matches += if rule_type == 'url-prefix'
-                        # A url-prefix that's scheme and domain without a path (not even a slash) should get a slash.
-                        url_and_prefix_rules.map { |value| (value.include?('://') && value.count('/') == 2) ? "#{value}/*" : "#{value}*" }
-                      else
-                        url_and_prefix_rules
-                      end
+        if rule_type == 'url-prefix'
+          url_and_prefix_rules.each do |value|
+            if value.include?('://') && value.count('/') == 2
+              # If there's no slash to indicate where the path starts, we can't tell if they've provided us a full
+              # domain, or a domain minus the TLD, or even part of a domain part. Assume that it's a partial domain as
+              # that case will work everywhere it should, though it may include some intended domains if what they
+              # provided was a full domain (e.g. `url-prefix(https://example.com)` becomes
+              # `@include https://example.com*/*` even though that also would include https://example.company.net/. We
+              #  use `@include` instead of `@match` because `@match` doesn't support this.
+              js_includes << "#{value}*/*"
+            else
+              js_matches << "#{value}*"
+            end
+          end
+        else
+          js_matches += url_and_prefix_rules
+        end
       end
 
       MATCH_RESULT.new(matches: js_matches, includes: js_includes)

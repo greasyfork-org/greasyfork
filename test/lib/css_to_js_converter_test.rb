@@ -841,7 +841,7 @@ class CssToJsConverterTest < ActiveSupport::TestCase
       // @license unlicense
       // @grant GM_addStyle
       // @run-at document-start
-      // @match https://www.example.com/*
+      // @include https://www.example.com*/*
       // ==/UserScript==
 
       (function() {
