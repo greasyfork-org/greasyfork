@@ -44,7 +44,7 @@
     <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
   <% elsif @ad_method&.ev? %>
     <script async src="https://mcizas.com/pw/waWQiOjExNTIzODAsInNpZCI6MTE5ODY0NCwid2lkIjo1MzIxOTAsInNyYyI6Mn0=eyJ.js"></script>
-  <% elsif @ad_method&.cd? && !@placed_ads %>
+  <% elsif @ad_method&.cd? && !@placed_ads && sleazy? %>
     <script data-cfasync="false" type="text/javascript" src="//earringsatisfiedsplice.com/bultykh/ipp24/7/bazinga/2014227" async></script>
   <% elsif @ad_method&.ga? %>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2247465624637408"
