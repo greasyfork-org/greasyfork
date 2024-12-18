@@ -791,4 +791,14 @@ class Script < ApplicationRecord
       end
     end
   end
+
+  def unlock!
+    self.delete_type = nil
+    self.replaced_by_script_id = nil
+    self.delete_reason = nil
+    self.delete_report = nil
+    self.permanent_deletion_request_date = nil
+    self.locked = false
+    save!
+  end
 end
