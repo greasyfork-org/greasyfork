@@ -716,6 +716,16 @@ class Script < ApplicationRecord
     sris.map { |sri| { url: sri.subresource.url, expected_hash: "#{sri.algorithm}=#{sri.integrity_hash}", last_success_at: sri.subresource.last_success_at } }
   end
 
+  def unlock!
+    self.delete_type = nil
+    self.replaced_by_script_id = nil
+    self.delete_reason = nil
+    self.delete_report = nil
+    self.permanent_deletion_request_date = nil
+    self.locked = false
+    save!
+  end
+
   private
 
   def url_helpers
@@ -790,15 +800,5 @@ class Script < ApplicationRecord
         # Already gone
       end
     end
-  end
-
-  def unlock!
-    self.delete_type = nil
-    self.replaced_by_script_id = nil
-    self.delete_reason = nil
-    self.delete_report = nil
-    self.permanent_deletion_request_date = nil
-    self.locked = false
-    save!
   end
 end
