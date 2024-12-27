@@ -153,7 +153,32 @@ es_419:
     derivatives_similar_last_check_soon: "Empezaremos a escanear scripts parecidos a los tuyos en breve."
     derivatives_similar_last_check_again_soon_html: "La última vez que se hizo la comprobación de coincidencias fue el %{date}. Y lo volveremos a comprobar otra vez en breve."
     listing_description_for_site: "Scripts de usuario que añaden características y corrigen bugs en %{site}"
+    listing_title_generic: "Scripts de usuario"
     listing_description_generic: "Scripts de usuario que añaden características y que corrigen bugs en los sitios que usas"
+    listing_sort_label: "Ordenar por:"
+    listing_sort_relevance: "Relevancia"
+    listing_sort_daily_installs: "Instalaciones diarias"
+    listing_sort_total_installs: "Instalaciones totales"
+    listing_sort_ratings: "Calificacion"
+    listing_sort_created: "Fecha de creacion"
+    listing_sort_updated: "Fecha de actualización"
+    listing_sort_name: "Nombre"
+    listing_filter_by_site_label: "Mostrar scripts para :"
+    listing_filter_by_site_disable: "Todos"
+    listing_filter_by_site_all_sites: "( Todos los sitios )"
+    listing_filter_by_language_label: "Lenguaje"
+    listing_filter_by_site_more_sites: "Mas..."
+    listing_no_scripts: "No se han encontrado scripts"
+    listing_created_feed: "Nuevos scripts"
+    listing_updated_feed: "Scripts actualizados"
+    listing_none: "(Ninguno)"
+    listing_language_all: "Todos"
+    listing_language_js: "JavaScript"
+    listing_language_css: "CSS"
+    listing_author:
+      all: Todos los autores
+      me: Mis scripts
+    import: "importar scripts"
     deleted_marker: "(Eliminado)"
   reports:
     new_report_title:
@@ -181,6 +206,26 @@ es_419:
       other: "Otros"
     report_intro_unauthorized_html: "%{reported_script} ha sido reportado %{report_date} como copia no autorizada de %{other_script} por %{reporter}."
     unauthorized_code_original_placeholder: "URL del código original"
+  activerecord:
+    attributes:
+      script:
+        replaced_by_script_id: "Nombre"
+      script_set:
+        description: "Descripción"
+      report:
+        reason: "Motivo para reportar"
+      discussion:
+        rating: "Puntuación"
+        category: "Categoria"
+        title: Titulo
+      conversation:
+        user_input: Usuario
+      message:
+        content: Mensaje
   errors:
     messages:
       script_malformed_require: "hace referencia a un script externo mal formado: %{code}"
+      no_executable: "No contiene codigo ejecutable"
+  importing:
+    title: Importar scripts
+    submit: Importar

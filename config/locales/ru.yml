@@ -304,6 +304,7 @@ ru:
     not_adult_content_self_report_html: "Этот скрипт <strong>не</strong> содержит взрослый контент  и <strong>не</strong> предназначен для сайта с таким контентом."
     not_adult_content_self_report_explanation: "%{site_name} разрешает скрипты с взрослым контентом, но они должны иметь соответствующую пометку в целях фильтрации пользователями.\nВаш скрипт был помечен как содержащий взрослый контент. Вы можете обжаловать данное решение если оно неверно - это будет проверено модератором."
     not_adult_content_self_report_explanation_automatic: "%{site_name} разрешает размещать скрипты \"только для взрослых\", но они должны быть помечены, чтобы пользователи решали, нужны им такие скрипты или нет. Вашему скрипту была добавлена пометка \"только для взрослых\", потому что он предназначен для %{domain_list}."
+    adult_content_notice_from_sleazy: ' Поскольку вы размещаете этот скрипт на %{site_name}, предполагается, что ваш скрипт содержит материалы для взрослых или предназначен для сайта с материалами для взрослых. Если это не так, пожалуйста, вместо этого %{greasyfork_link:разместите свой скрипт на Greasy Fork}.'
     adult_content_on_greasy_logged_in_error: "Этот скрипт более недоступен на данном сайте согласно вашим %{edit_account_link:настройкам учётной записи}."
     adult_content_on_greasy_not_logged_in_error: "Этот скрипт более недоступен на данном сайте для неавторизованных пользователей. %{login_link:Войдите} и убедитесь, что настройки вашей учётной записи разрешают показывать подобные скрипты."
     non_adult_content_on_sleazy: "Этот скрипт недоступен на данном сайте."
@@ -365,9 +366,16 @@ ru:
         chrome: Чтобы установить этот скрипт, вы сначала должны установить расширение браузера, например %{tampermonkey_link:Tampermonkey} или %{violentmonkey_link:Violentmonkey}.
         opera: Чтобы установить этот скрипт, вы сначала должны установить расширение браузера, например %{tampermonkey_link:Tampermonkey} или %{violentmonkey_link:Violentmonkey}.
         safari: Чтобы установить этот скрипт, вы сначала должны установить расширение браузера, например %{tampermonkey_link:Tampermonkey} или %{userscripts_link:Userscripts}.
+        edge: Чтобы установить этот скрипт, сначала вы должны установить расширение браузера, например %{tampermonkey_link:Tampermonkey}.
         other: Чтобы установить этот скрипт, вы должны установить расширение — менеджер скриптов.
         bypass: (У меня уже есть менеджер скриптов, дайте мне установить скрипт!)
       css:
+        firefox: Чтобы установить этот стиль, сначала вы должны установить расширение браузера, например %{stylus_link:Stylus}.
+        chrome: Чтобы установить этот стиль, сначала вы должны установить расширение браузера, например %{stylus_link:Stylus}.
+        opera: Чтобы установить этот стиль, сначала вы должны установить расширение браузера, например %{stylus_link:Stylus}.
+        safari: Чтобы установить этот стиль, сначала вы должны установить расширение — менеджер стилей.
+        edge: Чтобы установить этот стиль, сначала вы должны установить расширение — менеджер стилей.
+        other: Чтобы установить этот стиль, сначала вы должны установить расширение — менеджер стилей.
         bypass: (У меня уже есть менеджер стилей, дайте мне установить скрипт!)
       close_dialog: OK
     antifeatures:
@@ -514,6 +522,17 @@ ru:
           </ul>
     android_browsers:
       title: Для Android
+      browser_list_html: |
+          <ul>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey} или %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+          <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+          <li>Kiwi: %{chrome_tampermonkey_link:Tampermonkey} или %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>%{xbrowser_link:XBrowser}</li>
+          %{locale_specific_browsers}
+          </ul>
     ios_browsers:
       title: Для iOS
       browser_list_html: |
@@ -565,9 +584,12 @@ ru:
     edit_sign_in: "Изменить способ входа"
     edit_sign_in_title: "Изменение способа входа"
     edit_sign_in_password: "Пароль"
+    edit_sign_in_2fa_enabled: Вы настроены на двухфакторную аутентификацию (2FA). Вы можете восстановить свой код 2FA, если вы его потеряли.
+    edit_sign_in_2fa_enabled_and_required: Вы настроены на двухфакторную аутентификацию (2FA). 2FA требуется в вашей учетной записи при использовании входа по паролю. Вы можете восстановить свой код 2FA, если вы его потеряли.
     edit_sign_in_disable_2fa: Отключить 2FA
     edit_sign_in_2fa_disabled: Вы можете включить двухфакторную аутентификацию (2FA) для повышения безопасности вашей учетной записи на %{site_name}.
     edit_sign_in_enable_2fa: Включить 2FA
+    edit_sign_in_regenerate_2fa: Перегенерировать 2FA
     edit_notifications: "Изменить настройки уведомлений"
     view_notifications: "Просмотр уведомлений"
     no_password_set_info: "Ваша учетная запись не использует пароль для входа."
@@ -691,6 +713,14 @@ ru:
       complete: "Ваша учётная запись была удалена."
     deleted_user_with_id: "(Удаленный пользователь %{id})"
     deleted_user_without_id: "(Удаленный пользователь)"
+    suggest_secure_login: Как автору скрипта, мы советуем вам %{edit_login_link:использовать более безопасный метод входа}.
+    require_secure_login: Для вашей учетной записи необходимо использовать более безопасный метод входа.
+    secure_login_explanation_html: |
+        <p>Как автору скриптов, мы рекомендуем вам защитить свою учетную запись и пользователей, используя безопасный метод входа. Этого можно достичь двумя путями:</p>
+        <ol>
+        <li>Добавить двухфакторную аутентификацию (2FA) к логину, основанному на пароле.</li>
+        <li>Убрать пароль и полагаться только на внешний вход (а в идеале - включить функции безопасности, которые предоставляет этот сервис).</li>
+        </ol>
     badges:
       banned:
         short: Забанен

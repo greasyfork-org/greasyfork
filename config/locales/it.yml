@@ -584,9 +584,12 @@ it:
     edit_sign_in: "Modifica il metodo di accesso"
     edit_sign_in_title: "Modifica il metodo di accesso"
     edit_sign_in_password: "Password"
+    edit_sign_in_2fa_enabled: Il tuo account è impostato con l'autenticazione a due fattori (2FA). Puoi rigenerare il tuo codice 2FA se lo hai perso.
+    edit_sign_in_2fa_enabled_and_required: Il tuo account è impostato con l'autenticazione a due fattori (2FA). 2FA è richiesto per il tuo account quando usi un'autenticazione basata sulla password. Puoi rigenerare il tuo codice 2FA se lo hai perso.
     edit_sign_in_disable_2fa: Disabilita 2FA
     edit_sign_in_2fa_disabled: Puoi abilitare l'autenticazione a due fattori (2FA) per una maggiore sicurezza sul tuo account di %{site_name}.
     edit_sign_in_enable_2fa: Abilita 2FA
+    edit_sign_in_regenerate_2fa: Rigenera 2FA
     edit_notifications: "Modifica le impostazioni per le notifiche"
     view_notifications: "Guarda le notifiche"
     no_password_set_info: "Il tuo account non è configurato con una password"
@@ -705,6 +708,7 @@ it:
     deleted_user_with_id: "(Utente eliminato %{id})"
     deleted_user_without_id: "(Utente eliminato)"
     suggest_secure_login: Come autore di scripts, ti suggeriamo di %{edit_login_link:usare un metodo di autenticazione più sicuro}.
+    require_secure_login: Per il tuo account è necessario utilizzare un metodo di autenticazione più sicuro.
     secure_login_explanation_html: |
         <p>Come autore di scripts, ti raccomandiamo di proteggere il tuo account e i tuoi utenti utilizzando un metodo di autenticazione sicuro. Puoi farlo in uno di questi due modi:</p>
         <ol>
@@ -889,6 +893,16 @@ it:
           <p>Nota che queste regole si applicano solo al codice esterno eseguibile. Il caricamento di codice non eseguibile, come ad esempio JSON o CSS, non è soggetto a limitazioni.</p>
       rationale:
         title: fondamento logico
+        content_html: |
+            <p>Gli script utente hanno la capacità tecnica di caricare ed eseguire altri scripts. Questo può essere fatto in alcuni modi differenti, inclusi:</p>
+            <ul>
+            <li>Le chiavi dei metadati %{require_doc_link:<code>@require</code>} e %{resource_doc_link:<code>@resource</code>}.</li>
+            <li><code>XmlHttpRequest</code> per scaricare lo script, poi <code>eval</code> per eseguirlo.</li>
+            <li>Aggiungendo dinamicamente il tag <code>&lt;script&gt;</code>.</li>
+            <li>L'opzione %{webpack_externals_link:<code>externals</code>} di Webpack.</li>
+            <li>Effettuando un aggiornamento dello script, sia che venga fatto automaticamente, sia inducendo l'utente a compirere un'azione.</li>
+            </ul>
+            <p>Sebbene questa sia una funzione utile, e la maggioranza degli autori di scripts la usino per scopi legittimi, può anche essere usata in modo malevolo. Uno dei principî cardine di %{site_name} iGli script esterni possono bypassare questo principio in vari modi: possono cambiare senza preavviso o cronologia, possono servire un codice diverso per persone diverse e possono essere usati per nascondere un codice dannoso nel mezzo di librerie conosciute. Anche se qualcuno dovesse controllare uno script esterno e determinare che sia legittimo, non ci sarebbe garanzia che quello script sia sempre stato o sempre sarà legittimo.</p>
       cdns:
         title: Reti di distribuzione dei contenuti (CDN)
         content_html: |
@@ -912,12 +926,42 @@ it:
             <p>Se https://example.com/script.js fosse iniettato su https://differentsite.com, ciò non sarebbe consentito.</p>
     cdns:
       title: CDN Permessi
+      content_html: |
+          <p>Questa è una lista dei CDNs riconosciuti da %{site_name}. Questi possono essere usati per caricare %{external_code_link:codice esterno} negli scripts pubblicati su %{site_name}.</p>
+          <p>Questa lista consiste in posizioni di scripts che:</p>
+          <ul>
+          <li>Sono pubbliche</li>
+          <li>Non vedono i propri contenuti cambiare frequentemente</li>
+          <li>Sono possibilmente utili a più di un autore di script</li>
+          </ul>
+          <p>Se lo script che vuoi includere è una libreria JavaScript (per esempio jQuery o YUI), prova a cercarla nei siti elencati sotto. %{cdnjs_link:cdnjs} e %{jsdelivr_link:jsDelivr} in particolare hanno un'ampia gamma di librerie disponibili. Se hai un CDN che vorresti venisse aggiunto, per favore %{github_link:richiedilo su GitHub}. Nota che ci sono %{external_code_link:altre opzioni} per il codice esterno oltre ai CDNs.</p>
+
+          %{allowed_require_list}
       test_url:
         label: Prova un URL
         result_ok: L'URL è permesso
         result_not_ok: L'URL non è permesso
     script_rewriting:
       title: "Come %{site_name} riscriverà gli script postati"
+      content_html: >
+          <p>Gli scripts caricati su %{site_name} saranno riscritti come segue:</p>
+          <ul>
+
+          <li>Le direttive <code>@updateURL</code> e <code>@downloadURL</code> saranno
+          aggiunte o aggiornate per puntare a %{site_name}. <code>@installURL </code>
+          sarà rimossa, se presente.</li>
+
+          <li>Le direttive <code>@version</code> e <code>@namespace</code> saranno
+          inserite se non presenti nello script. Tali direttive sono necessarie per
+          il corretto funzionamento degli aggiornamenti.</li>
+
+          <li><code>@description</code> sarà inserita se una versione più recente
+          dello script non la include e una versione precedente dello script la aveva.</li>
+
+          <li>Le terminazioni di riga CRLF e CR saranno convertite in terminazioni
+          di riga standard/in stile Unix.</li>
+
+          </ul>
     site_feedback_link: "Riporta un problema o invia un'idea per %{site_name}"
     credits:
       title: "Crediti"
@@ -1501,6 +1545,7 @@ it:
             <p>
             La tua segnalazione riguardo a %{script_link:%{script_name}} su %{site_name} è stata segnata come risolta da un moderatore, ritenendo che l'autore abbia corretto il problema. Lo script rimarrà attivo. Puoi %{report_link:ricontrollare questa segnalazione}.
             </p>
+      reported_outro: "Ricevi questa notifica perché riguarda una segnalazione a proposito di uno script che hai caricato su %{site_name}. %{notification_preferences_link:Gestisci le tue preferenze per le notifiche.}"
       reporter_outro: "Hai ricevuto questa notifica perché hai creato una segnalazione riguardo a uno script su %{site_name}. %{notification_preferences_link:Gestisci le tue preferenze per le notifiche.}"
     consecutive_bad_ratings:
       notify:
