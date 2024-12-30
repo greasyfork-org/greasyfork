@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'localizing_model'
 require 'css_to_js_converter'
 

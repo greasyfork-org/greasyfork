@@ -204,7 +204,6 @@ GEM
     faraday-retry (2.2.1)
       faraday (~> 2.0)
     ffi (1.17.0)
-    ffi (1.17.0-x86_64-linux-gnu)
     fugit (1.11.1)
       et-orbi (~> 1, >= 1.2.11)
       raabro (~> 1.4)
@@ -235,9 +234,6 @@ GEM
     google-protobuf (4.28.3)
       bigdecimal
       rake (>= 13)
-    google-protobuf (4.28.3-x86_64-linux)
-      bigdecimal
-      rake (>= 13)
     googleapis-common-protos (1.6.0)
       google-protobuf (>= 3.18, < 5.a)
       googleapis-common-protos-types (~> 1.7)
@@ -252,9 +248,6 @@ GEM
       os (>= 0.9, < 2.0)
       signet (>= 0.16, < 2.a)
     grpc (1.67.0)
-      google-protobuf (>= 3.25, < 5.0)
-      googleapis-common-protos-types (~> 1.0)
-    grpc (1.67.0-x86_64-linux)
       google-protobuf (>= 3.25, < 5.0)
       googleapis-common-protos-types (~> 1.0)
     hashie (5.0.0)
@@ -328,8 +321,6 @@ GEM
     nio4r (2.7.4)
     nokogiri (1.17.2)
       mini_portile2 (~> 2.8.2)
-      racc (~> 1.4)
-    nokogiri (1.17.2-x86_64-linux)
       racc (~> 1.4)
     oauth2 (2.0.9)
       faraday (>= 0.17.3, < 3.0)
@@ -432,7 +423,6 @@ GEM
     rb-fsevent (0.11.2)
     rb-inotify (0.11.1)
       ffi (~> 1.0)
-    rb-readline (0.5.5)
     rdoc (6.9.1)
       psych (>= 4.0.0)
     recaptcha (5.17.0)
@@ -626,7 +616,6 @@ DEPENDENCIES
   rails (~> 8.0.0)
   rails-i18n
   rails-observers
-  rb-readline
   recaptcha
   redcarpet
   redis
@@ -654,7 +643,7 @@ DEPENDENCIES
   will_paginate
 
 RUBY VERSION
-   ruby 3.3.6p108
+   ruby 3.4.1p0
 
 BUNDLED WITH
    2.5.18

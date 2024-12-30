@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '3.3.6'
+ruby '3.4.1'
 
 gem 'bootsnap'
 gem 'csv'
@@ -61,7 +61,6 @@ gem 'aws-sdk-s3', require: false
 gem 'image_processing'
 
 gem 'rails-observers'
-gem 'rb-readline'
 gem 'recaptcha', require: 'recaptcha/rails'
 
 group :development, :test do
