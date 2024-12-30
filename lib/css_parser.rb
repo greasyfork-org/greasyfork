@@ -125,7 +125,7 @@ class CssParser
       # XXX This should be a real parser, whether a gem or custom-made. This is not properly handling
       # comments or stuff inside other strings.
 
-      unless code.include?('@-moz-document')
+      unless code.match?('@(-moz-)?document')
         # It's all global. Return one block with whitespace stripped.
         stripped_code = code.strip
         start = code.index(stripped_code)
@@ -136,7 +136,7 @@ class CssParser
       s = StringScanner.new(code)
       next_block_start = 0
 
-      while s.skip_until(/@-moz-document/)
+      while s.skip_until(/@(-moz-)?document/)
         matches << CssDocumentBlock.new([], next_block_start, s.charpos - 15) # '@-moz-document'.length - 1
 
         block_matches = []

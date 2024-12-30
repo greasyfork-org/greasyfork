@@ -252,4 +252,13 @@ class CssParserAppliesToTest < ActiveSupport::TestCase
     CSS
     assert_equal [{ text: '/*[[yourDomain]]*/', domain: false, tld_extra: false }], get_applies_tos(css)
   end
+
+  test '@document is equivalent to @-moz-document' do
+    css = <<~CSS
+      @document domain(example.com) {
+        a { color: red; }
+      }
+    CSS
+    assert_equal [{ text: 'example.com', domain: true, tld_extra: false }], get_applies_tos(css)
+  end
 end
