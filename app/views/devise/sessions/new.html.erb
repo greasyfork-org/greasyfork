@@ -25,6 +25,12 @@
           <% end %>
         </div>
 
+        <% if sleazy? %>
+          <p>
+            <%= it('users.sign_in_github_unavailable', sign_in_url: It.link("https://#{greasyfork_host}/auth/github/?locale_id=#{request_locale.id}")) %>
+          </p>
+        <% end %>
+
         <% if devise_mapping.rememberable? %>
           <div class="remember-me"><%= check_box_tag :remember_me %><%= label_tag :remember_me, t('activerecord.attributes.user.remember_me') %></div>
         <% end %>

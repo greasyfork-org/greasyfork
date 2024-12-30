@@ -195,6 +195,10 @@ class User < ApplicationRecord
     return identities.map(&:provider).uniq
   end
 
+  def github_identity_only?
+    identity_providers_used == ['github']
+  end
+
   def favorite_script_set
     return ScriptSet.where(favorite: true).find_by(user_id: id)
   end
