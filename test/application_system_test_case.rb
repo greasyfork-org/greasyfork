@@ -45,7 +45,7 @@ Capybara.register_driver :headless_chrome do |app|
   options = Selenium::WebDriver::Options.chrome(
     args: ['verbose', 'disable-gpu', 'no-sandbox', 'disable-dev-shm-usage', 'window-size=1400,1400', (ENV['HEADED'] == '1') ? nil : 'headless=new'].compact
   )
-  options.add_preference('download.default_directory', '/dev/null')
+  options.add_preference('download.default_directory', File::NULL)
 
   Capybara::Selenium::Driver.new app,
                                  browser: :chrome,
