@@ -95,6 +95,15 @@ class ScriptVersion < ApplicationRecord
     record.errors.add(:code, :no_executable) if code_blocks.all?(&:blank?)
   end
 
+  validate on: :create do |record|
+    next unless css?
+
+    invalid_matchers = parser_class.invalid_matchers(code)
+    next unless invalid_matchers.any?
+
+    record.errors.add(:base, :invalid_matchers, message: I18n.t('scripts.invalid_matchers', matches: invalid_matchers.map { |css_document_match| "#{css_document_match.rule_type}(#{css_document_match.value})" }.join(', ')))
+  end
+
   before_save :set_locale
   def set_locale
     localized_attributes.select { |la| la.locale.nil? }.each { |la| la.locale = script.locale }

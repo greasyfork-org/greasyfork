@@ -108,6 +108,19 @@ class CssParser
         .uniq
     end
 
+    def invalid_matchers(code)
+      parse_doc_blocks(code)
+        .map(&:matches)
+        .flatten
+        .select { |css_document_match| css_document_match.rule_type == 'url' && !valid_url_match?(css_document_match.value) }
+    end
+
+    def valid_url_match?(value)
+      URI(value).scheme.present?
+    rescue URI::InvalidURIError
+      false
+    end
+
     def parse_doc_blocks(code, calculate_block_positions: false)
       # XXX This should be a real parser, whether a gem or custom-made. This is not properly handling
       # comments or stuff inside other strings.
