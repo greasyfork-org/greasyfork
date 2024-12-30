@@ -102,7 +102,7 @@ class CssParser
 
     def calculate_applies_to_names(code)
       parse_doc_blocks(code)
-        .map(&:first)
+        .map(&:matches)
         .flatten
         .map { |css_document_match| convert_for_applies_to_name(css_document_match) }
         .uniq
