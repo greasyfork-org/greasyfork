@@ -20,9 +20,9 @@ module ShowsAds
 
     return AdMethod.ga if script.adsense_approved && locale_allows_adsense? && (script.additional_info || script.newest_saved_script_version.attachments.any? || script.similar_scripts(script_subset:, locale: I18n.locale).any?)
 
-    return AdMethod.cd if request_locale.code == 'zh-CN'
+    return AdMethod.ea if valid_locale_for_ea?
 
-    AdMethod.ea
+    AdMethod.cd
   end
 
   def choose_ad_method_for_scripts(scripts)
@@ -36,11 +36,13 @@ module ShowsAds
     # #size, not #count, here because #count does things wrong with will_paginate, which is used when this is filtered
     # by a ScriptSet.
     # https://github.com/mislav/will_paginate/issues/449
-    return AdMethod.ea if scripts.size < 3
+    return AdMethod.ea if scripts.size < 3 && valid_locale_for_ea?
 
     return AdMethod.ga if scripts.all?(&:adsense_approved)
 
-    AdMethod.ea
+    return AdMethod.ea if valid_locale_for_ea?
+
+    AdMethod.cd
   end
 
   private
@@ -52,5 +54,9 @@ module ShowsAds
 
   def locale_allows_adsense?
     Rails.application.config.no_adsense_locales.exclude?(request_locale.code)
+  end
+
+  def valid_locale_for_ea?
+    request_locale.code != 'zh-CN'
   end
 end
