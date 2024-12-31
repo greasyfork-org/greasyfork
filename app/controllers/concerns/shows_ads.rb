@@ -31,11 +31,13 @@ module ShowsAds
 
     return AdMethod.cd if sleazy?
 
+    return AdMethod.no_ad(:sensitive_list) if scripts.any?(&:sensitive?)
+
     # #size, not #count, here because #count does things wrong with will_paginate, which is used when this is filtered
     # by a ScriptSet.
     # https://github.com/mislav/will_paginate/issues/449
-    return AdMethod.no_ad(:not_enough_scripts) if scripts.size < 3
-    return AdMethod.no_ad(:sensitive_list) if scripts.any?(&:sensitive?)
+    return AdMethod.ea if scripts.size < 3
+
     return AdMethod.ga if scripts.all?(&:adsense_approved)
 
     AdMethod.ea
