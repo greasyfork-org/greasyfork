@@ -53,7 +53,7 @@ module ShowsAds
 
     return AdMethod.ea if valid_locale_for_ea?
 
-    AdMethod.cd
+    nil
   end
 
   private
