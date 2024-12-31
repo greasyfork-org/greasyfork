@@ -45,6 +45,14 @@
   <p id="reported-note"><%= t('discussions.pending_moderator_review') %></p>
 <% end %>
 
+<% if @ad_method&.ea? %>
+  <div id="discussion-show-ea" class="ad flat ethical-ads" data-ea-publisher="greasyfork" data-ea-type="text"></div>
+<% elsif @ad_method&.cd? %>
+  <div id="discussion-show-cd" class="ad">
+    <script data-cfasync="false" type="text/javascript" src="//chaseherbalpasty.com/lv/esnk/2050386/code.js" async class="__clb-2050386"></script>
+  </div>
+<% end %>
+
 <% comment_scope = @discussion.comments %>
 <% comment_scope = comment_scope.not_deleted unless @discussion.soft_deleted? %>
 <% comment_scope.reject(&:new_record?).each do |comment| %>

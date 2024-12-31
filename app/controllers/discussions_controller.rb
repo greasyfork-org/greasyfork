@@ -144,6 +144,8 @@ class DiscussionsController < ApplicationController
         @subscribe = current_user&.subscribe_on_comment || current_user&.subscribed_to?(@discussion)
 
         record_view(@discussion) if current_user
+        @ad_method = choose_ad_method_for_discussion(@discussion)
+        @placed_ad = true
 
         render layout: @script ? 'scripts' : 'application'
       end

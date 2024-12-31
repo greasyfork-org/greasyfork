@@ -45,6 +45,17 @@ module ShowsAds
     AdMethod.cd
   end
 
+  def choose_ad_method_for_discussion(discussion)
+    no_ads = general_ads_setting
+    return no_ads if no_ads
+
+    return AdMethod.no_ad(:sensitive) if discussion.script&.sensitive? || sleazy?
+
+    return AdMethod.ea if valid_locale_for_ea?
+
+    AdMethod.cd
+  end
+
   private
 
   def general_ads_setting
