@@ -241,6 +241,7 @@ zh-CN:
     additional_info_add_localized: "添加一个本地化的附加信息"
     additional_info_locale_repeated: "您只能对“%{locale_code}”提供一条附加信息。"
     localized_additional_info_with_no_name: "您提交了“%{locale_code}”的附加信息，但是没有指定 <code>@name:%{locale_code}</code>。"
+    invalid_matchers: "使用了无效的匹配表达式：%{matches}"
     code_syncing_from_url_html: "脚本代码已设定为从该链接同步：%{field}"
     provide_code_syncing_from_url_html: "%{site_name} 可以导入已经托管在其他地方的脚本，例如版本控制系统（如 GitHub）、您自己的服务器或其他的用户脚本托管网站。若需对您的脚本启用脚本同步，提供安装链接即可：%{field}"
     code_syncing_from_webhook_html: "该脚本的代码设定为与 Webhook 同步。我们将根据以下 URL 将 Webhook 请求与此脚本匹配：%{field}"
@@ -359,9 +360,16 @@ zh-CN:
         chrome: 您需要先安装一个用户脚本管理器扩展，如 %{tampermonkey_link:Tampermonkey} 或 %{violentmonkey_link:Violentmonkey} 后才能安装该脚本。
         opera: 您需要先安装一个用户脚本管理器扩展，如 %{tampermonkey_link:Tampermonkey} 或 %{violentmonkey_link:Violentmonkey} 后才能安装该脚本。
         safari: 您需要先安装一个用户脚本管理器扩展，如 %{tampermonkey_link:Tampermonkey} 或 %{userscripts_link:Userscripts} 后才能安装该脚本。
+        edge: 您需要先安装一款用户脚本管理器扩展（如 %{tampermonkey_link:Tampermonkey}）后才能安装此脚本。
         other: 您需要先安装一个用户脚本管理器扩展后才能安装该脚本。
         bypass: （我已经安装了用户脚本管理器，让我安装！）
       css:
+        firefox: 您需要先安装一款用户样式管理器扩展（如 %{stylus_link:Stylus}）后才能安装此样式。
+        chrome: 您需要先安装一款用户样式管理器扩展（如 %{stylus_link:Stylus}）后才能安装此样式。
+        opera: 您需要先安装一款用户样式管理器扩展（如 %{stylus_link:Stylus}）后才能安装此样式。
+        safari: 您需要先安装一款用户样式管理器扩展后才能安装此样式。
+        edge: 您需要先安装一款用户样式管理器扩展后才能安装此样式。
+        other: 您需要先安装一款用户样式管理器扩展后才能安装此样式。
         bypass: （我已经安装了用户样式管理器，让我安装！）
       close_dialog: 确定
     antifeatures:
@@ -528,6 +536,7 @@ zh-CN:
     sign_in_email_missing: "%{site_name} 需要一个电子邮件地址来建立新账号，但您绑定的 %{provider} 账号未能提供该信息。你可以到 %{provider} 绑定邮箱，然后在本网站用该账号登录；或在 %{site_name} 上创建一个常规的使用电子邮件/密码登录的账号，之后添加 %{provider} 的账号绑定。"
     sign_in_name_used: "用户名“%{name}”已存在，换一个吧。"
     sign_in_name_used_submit: "提交"
+    sign_in_github_unavailable: "Sleazy Fork 不支持通过 GitHub 登录，但您可以%{sign_in_url:在 Greasy Fork 上通过 GitHub 登录}。"
     control_panel: "控制台"
     discussions_on_scripts: "您的脚本的相关讨论帖"
     discussions_on_scripts_feed_alt: "RSS 订阅"
@@ -651,6 +660,8 @@ zh-CN:
     banned_delete:
       intro: "删除您的账号将同时删除您所发布的任何脚本。您在论坛上所做的贡献将被保留，但您的用户名会作匿名化处理。即便删除了账号，您也不能再使用同一电子邮件地址进行注册。请在下方登录然后删除您的账号。"
       complete: "您的账号已经删除。"
+    deleted_user_with_id: "(已删除的用户 %{id})"
+    deleted_user_without_id: "(已删除的用户)"
     badges:
       banned:
         short: 已封禁
