@@ -6,6 +6,12 @@ function setupEthicalAdsFallback() {
     return
   }
   window.ethicalads.wait.then((placements) => {
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'EthicalAds placement', {
+        'ea_campaign_type': placements[0]?.response?.campaign_type || '(none)',
+      });
+    }
+
     if (placements.length > 0) {
       return
     }
