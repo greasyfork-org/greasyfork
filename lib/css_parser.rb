@@ -121,7 +121,7 @@ class CssParser
       false
     end
 
-    def parse_doc_blocks(code, calculate_block_positions: false)
+    def parse_doc_blocks(code)
       # XXX This should be a real parser, whether a gem or custom-made. This is not properly handling
       # comments or stuff inside other strings.
 
@@ -156,29 +156,28 @@ class CssParser
           s.skip(/\s*,\s*/)
         end
 
-        if calculate_block_positions
-          # At this point the @-moz-document is open to open its bracket.
-          s.skip(/\s*\{/)
-          start_pos = s.charpos
+        # At this point the @-moz-document is open to open its bracket.
+        s.skip(/\s*\{/)
+        start_pos = s.charpos
 
-          bracket_count = 1
+        bracket_count = 1
 
-          until bracket_count == 0 || s.eos?
-            # Count opening and closing brackets. Would get totally borked by comments or brackets in strings.
-            up_to_next_bracket = s.scan_until(/[{}]/)
-            break if up_to_next_bracket.nil? # Unclosed bracket, move on.
+        until bracket_count == 0 || s.eos?
+          # Count opening and closing brackets. Would get totally borked by comments or brackets in strings.
+          up_to_next_bracket = s.scan_until(/[{}]/)
+          break if up_to_next_bracket.nil? # Unclosed bracket, move on.
 
-            bracket = up_to_next_bracket[-1]
-            if bracket == '{'
-              bracket_count += 1
-            else
-              bracket_count -= 1
-            end
+          bracket = up_to_next_bracket[-1]
+          if bracket == '{'
+            bracket_count += 1
+          else
+            bracket_count -= 1
           end
-          matches << CssDocumentBlock.new(block_matches, start_pos, s.charpos - bracket.length - 1)
-        else
-          matches << CssDocumentBlock.new(block_matches, nil, nil)
         end
+
+        end_pos = s.charpos - bracket.length - 1
+        # Ignore empty blocks
+        matches << CssDocumentBlock.new(block_matches, start_pos, end_pos) if code[start_pos..end_pos].present?
 
         next_block_start = s.charpos
       end

@@ -78,7 +78,7 @@ class CssParserAppliesToTest < ActiveSupport::TestCase
     assert_equal [{ text: 'example.com', domain: true, tld_extra: false }, { text: 'example2.com', domain: true, tld_extra: false }], get_applies_tos(css)
   end
 
-  test 'parse_doc_blocks with calculate_block_positions - one block' do
+  test 'parse_doc_blocks - one block' do
     css = <<~CSS
       /* ==UserStyle==
       @name        Example UserCSS style
@@ -95,7 +95,7 @@ class CssParserAppliesToTest < ActiveSupport::TestCase
       }
     CSS
 
-    blocks = CssParser.parse_doc_blocks(css, calculate_block_positions: true)
+    blocks = CssParser.parse_doc_blocks(css)
     assert_equal 2, blocks.count
     first_block_css = <<~CSS
       /* ==UserStyle==
@@ -120,7 +120,7 @@ class CssParserAppliesToTest < ActiveSupport::TestCase
     assert_equal 1, blocks[1].matches.count
   end
 
-  test 'parse_doc_blocks with calculate_block_positions - multiple blocks' do
+  test 'parse_doc_blocks - multiple blocks' do
     css = <<~CSS
       /* ==UserStyle==
       @name        Example UserCSS style
@@ -145,7 +145,7 @@ class CssParserAppliesToTest < ActiveSupport::TestCase
       }
     CSS
 
-    blocks = CssParser.parse_doc_blocks(css, calculate_block_positions: true)
+    blocks = CssParser.parse_doc_blocks(css)
     assert_equal 4, blocks.count
     first_block_css = <<~CSS
       /* ==UserStyle==
@@ -188,7 +188,7 @@ class CssParserAppliesToTest < ActiveSupport::TestCase
     assert_equal 1, blocks[3].matches.count
   end
 
-  test 'parse_doc_blocks with calculate_block_positions - whitespace deficient' do
+  test 'parse_doc_blocks - whitespace deficient' do
     css = <<~CSS
       /* ==UserStyle==
       @name        Example UserCSS style
@@ -199,7 +199,7 @@ class CssParserAppliesToTest < ActiveSupport::TestCase
       ==/UserStyle== */@-moz-document domain("example.com"){a{color:red;}}b{color:blue;}@-moz-document domain("example.net"){s{color:yellow;}}
     CSS
 
-    blocks = CssParser.parse_doc_blocks(css, calculate_block_positions: true)
+    blocks = CssParser.parse_doc_blocks(css)
     assert_equal 4, blocks.count
     first_block_css = <<~CSS.strip
       /* ==UserStyle==
@@ -260,5 +260,15 @@ class CssParserAppliesToTest < ActiveSupport::TestCase
       }
     CSS
     assert_equal [{ text: 'example.com', domain: true, tld_extra: false }], get_applies_tos(css)
+  end
+
+  test 'empty @-moz-document' do
+    css = <<~CSS
+      @-moz-document domain(example.com) {
+
+      }
+      a { color: red; }
+    CSS
+    assert_empty get_applies_tos(css)
   end
 end

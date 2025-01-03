@@ -9,7 +9,7 @@ class CssToJsConverter
 
     def convert(css)
       code_css = CssParser.get_code_blocks(css).join("\n")
-      doc_blocks_and_code = CssParser.parse_doc_blocks(code_css, calculate_block_positions: true)
+      doc_blocks_and_code = CssParser.parse_doc_blocks(code_css)
                                      .map { |doc_block| [doc_block, code_css[doc_block.start_pos..doc_block.end_pos]] }
                                      .reject { |_doc_block, block_code| block_code.blank? }
 
