@@ -72,6 +72,7 @@ module ScriptAndVersions
     script.sensitive = current_script.sensitive
     script.language = current_script.language
     script.css_convertible_to_js = current_script.css_convertible_to_js
+    script.adsense_approved = current_script.adsense_approved
 
     current_script.localized_attributes.includes(:mentions).find_each { |la| script.build_localized_attribute(la) }
 
