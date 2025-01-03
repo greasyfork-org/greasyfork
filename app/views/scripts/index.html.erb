@@ -51,7 +51,7 @@
     <% if scripts_to_render.empty? %>
       <% if @ad_method&.ea? %>
         <div id="script-list-blank-ea" class="ad flat ethical-ads ethical-ads-text" data-ea-publisher="greasyfork" data-ea-type="text"></div>
-      <% elsif @ad_method.cd? %>
+      <% elsif @ad_method&.cd? %>
         <div id="script-list-blank-cd" class="ad">
           <script data-cfasync="false" type="text/javascript" src="//chaseherbalpasty.com/lv/esnk/2050386/code.js" async class="__clb-2050386"></script>
         </div>
