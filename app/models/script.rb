@@ -340,6 +340,7 @@ class Script < ApplicationRecord
     update_license(meta['license']&.first)
     self.namespace = meta['namespace']&.first
     self.version = script_version.version
+    self.code_size = script_version.code.bytesize
     self.not_js_convertible_override = script_version.not_js_convertible_override
 
     self.contribution_url = meta.key?('contributionURL') ? meta['contributionURL'].find { |url| URI::DEFAULT_PARSER.make_regexp(%w[http https bitcoin]) =~ url } : nil
@@ -579,6 +580,7 @@ class Script < ApplicationRecord
                description: default_localized_value_for('description'),
                url: url(sleazy:),
                code_url: code_url(sleazy:),
+               code_size:,
                license: license&.name || license_text,
                version:,
                locale: locale&.code,

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_29_152927) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_03_213743) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -613,6 +613,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_29_152927) do
     t.integer "script_type", default: 1, null: false
     t.bigint "delete_report_id"
     t.text "deletion_message"
+    t.integer "code_size", default: 0, null: false
     t.index ["delete_report_id"], name: "fk_rails_98da13b1a3"
     t.index ["delete_type"], name: "index_scripts_on_delete_type"
     t.index ["delta"], name: "index_scripts_on_delta"

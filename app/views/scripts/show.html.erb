@@ -52,6 +52,8 @@
     <dd class="script-show-created-date"><span><%= markup_date(@script.created_at) %></span></dd>
     <dt class="script-show-updated-date"><span><%= t('scripts.updated_date') %></span></dt>
     <dd class="script-show-updated-date"><span><%= markup_date(@script.code_updated_at) %></span></dd>
+    <dt class="script-show-code-size"><span><%= t('scripts.code_size') %></span></dt>
+    <dd class="script-show-code-size"><span><%= number_to_human_size(@script.code_size) %></span></dd>
     <% if !@script.library? && !@script.compatibilities.empty? %>
       <dt class="script-show-compatibility"><span><%= t('scripts.compatibility') %></span></dt>
       <dd class="script-show-compatibility"><span>
