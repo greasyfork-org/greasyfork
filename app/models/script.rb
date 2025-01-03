@@ -539,8 +539,8 @@ class Script < ApplicationRecord
 
     extension = if library?
                   '.js'
-                elsif format_override == 'meta.js'
-                  '.meta.js'
+                elsif ['meta.js', 'meta.css'].include?(format_override)
+                  ".#{format_override}"
                 elsif js? || format_override == 'js'
                   '.user.js'
                 else
