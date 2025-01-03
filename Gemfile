@@ -71,7 +71,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'capistrano', '~> 3.8'
-  gem 'capistrano3-puma', '6.0.0.beta.1' # Need 6.0b1 for puma 6 support
+  gem 'capistrano3-puma'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
