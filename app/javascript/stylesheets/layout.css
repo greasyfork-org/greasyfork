@@ -190,9 +190,6 @@ label.subselection-radio-title {
     padding-left: 1em;
     padding-right: 1em;
   }
-  .script-list li.ad-entry {
-    padding: 0;
-  }
   .discussion-list-header, .user-list-header, .library-list-header {
     padding-left: 1em;
     padding-right: 1em;
@@ -225,7 +222,7 @@ label.subselection-radio-title {
 }
 
 @media screen and (max-width: 960px) {
-  .script-list li {
+  .script-list li:not(.ad-entry) {
     padding: 1.2vw;
   }
 }
