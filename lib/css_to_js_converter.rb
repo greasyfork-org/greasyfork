@@ -106,8 +106,8 @@ class CssToJsConverter
       js_includes = matches['regexp'].map { |re| "/#{css_regexp_to_js(unescape_css(re))}/" }
 
       js_matches = matches['domain'].map { |domain| "*://*.#{domain}/*" }
-      # Don't include url or url-prefix if already covered by a domain rule.
       %w[url url-prefix].each do |rule_type|
+        # Don't include url or url-prefix if already covered by a domain rule.
         url_and_prefix_rules = matches[rule_type].select do |value|
           uri = URI(value)
         rescue ArgumentError, URI::InvalidURIError
@@ -117,22 +117,33 @@ class CssToJsConverter
 
           next matches['domain'].exclude?(uri.host)
         end
+
         if rule_type == 'url-prefix'
           url_and_prefix_rules.each do |value|
+            # If there's no slash to indicate where the path starts, we can't tell if they've provided us a full
+            # domain, or a domain minus the TLD, or even part of a domain part. Assume that it's a partial domain as
+            # that case will work everywhere it should, though it may include some intended domains if what they
+            # provided was a full domain (e.g. `url-prefix(https://example.com)` becomes
+            # `@include https://example.com*/*` even though that also would include https://example.company.net/. We
+            #  use `@include` instead of `@match` because `@match` doesn't support this.
             if value.include?('://') && value.count('/') == 2
-              # If there's no slash to indicate where the path starts, we can't tell if they've provided us a full
-              # domain, or a domain minus the TLD, or even part of a domain part. Assume that it's a partial domain as
-              # that case will work everywhere it should, though it may include some intended domains if what they
-              # provided was a full domain (e.g. `url-prefix(https://example.com)` becomes
-              # `@include https://example.com*/*` even though that also would include https://example.company.net/. We
-              #  use `@include` instead of `@match` because `@match` doesn't support this.
               js_includes << "#{value}*/*"
+            elsif url_has_port?(value)
+              # Match rules don't support URLs with ports.
+              js_includes << "#{value}*"
             else
               js_matches << "#{value}*"
             end
           end
         else
-          js_matches += url_and_prefix_rules
+          url_and_prefix_rules.each do |value|
+            # Match rules don't support URLs with ports.
+            if url_has_port?(value)
+              js_includes << value
+            else
+              js_matches << value
+            end
+          end
         end
       end
 
@@ -162,6 +173,13 @@ class CssToJsConverter
     def convertible?(css)
       meta = CssParser.parse_meta(css)
       !(meta['preprocessor']&.any? { |pp| pp != 'default' } || meta['var']&.any?)
+    end
+
+    def url_has_port?(url)
+      uri = URI(url)
+      Regexp.new("//#{Regexp.escape(uri.host)}:[0-9]+(/|\z)").match?(url)
+    rescue URI::InvalidURIError
+      false
     end
   end
 end

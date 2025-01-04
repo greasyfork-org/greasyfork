@@ -861,4 +861,49 @@ class CssToJsConverterTest < ActiveSupport::TestCase
     JS
     assert_equal js, CssToJsConverter.convert(css)
   end
+
+  test 'js conversion with url-prefix with port' do
+    css = <<~CSS
+      /* ==UserStyle==
+      @name        Example UserCSS style
+      @namespace   github.com/openstyles/stylus
+      @version     1.0.0
+      @license     unlicense
+      ==/UserStyle== */
+
+      @-moz-document url-prefix("https://www.example.com:8000/foo") {
+        a {
+          color: red;
+        }
+      }
+    CSS
+
+    js = <<~JS
+      // ==UserScript==
+      // @name Example UserCSS style
+      // @namespace github.com/openstyles/stylus
+      // @version 1.0.0
+      // @license unlicense
+      // @grant GM_addStyle
+      // @run-at document-start
+      // @include https://www.example.com:8000/foo*
+      // ==/UserScript==
+
+      (function() {
+      let css = `
+        a {
+          color: red;
+        }
+      `;
+      if (typeof GM_addStyle !== "undefined") {
+        GM_addStyle(css);
+      } else {
+        const styleNode = document.createElement("style");
+        styleNode.appendChild(document.createTextNode(css));
+        (document.querySelector("head") || document.documentElement).appendChild(styleNode);
+      }
+      })();
+    JS
+    assert_equal js, CssToJsConverter.convert(css)
+  end
 end
