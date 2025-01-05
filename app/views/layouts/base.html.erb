@@ -41,17 +41,6 @@
 
   <link rel="search" href="<%= opensearch_description_path %>" type="application/opensearchdescription+xml" title="<%= t('opensearch.short_name', site_name: site_name, default: t('opensearch.short_name', site_name: site_name, locale: 'en')) %>" hreflang="<%= I18n.locale %>">
 
-  <% if @ad_method&.ea? %>
-    <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
-  <% elsif @ad_method&.ev? %>
-    <script async src="https://mcizas.com/pw/waWQiOjExNTIzODAsInNpZCI6MTE5ODY0NCwid2lkIjo1MzIxOTAsInNyYyI6Mn0=eyJ.js"></script>
-  <% elsif @ad_method&.cd? && !@placed_ads && sleazy? %>
-    <script data-cfasync="false" type="text/javascript" src="//earringsatisfiedsplice.com/bultykh/ipp24/7/bazinga/2014227" async></script>
-  <% elsif @ad_method&.ga? %>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2247465624637408"
-            crossorigin="anonymous"></script>
-  <% end %>
-
   <% if Rails.env.production? %>
     <% gtm_id = sleazy? ? 'G-ZB1G3ZKC89' : 'G-7NMRNRYW7C' %>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -65,6 +54,17 @@
         'action': '<%= j controller_name %>/<%= j action_name %>'
       });
     </script>
+  <% end %>
+
+  <% if @ad_method&.ea? %>
+    <script async src="https://media.ethicadfdfdfdwhatlads.io/media/client/ethicalads.min.js" onerror="if (typeof gtag !== 'undefined') { gtag('event', 'EthicalAds placement', { 'ea_campaign_type': '(error)' })}"></script>
+  <% elsif @ad_method&.ev? %>
+    <script async src="https://mcizas.com/pw/waWQiOjExNTIzODAsInNpZCI6MTE5ODY0NCwid2lkIjo1MzIxOTAsInNyYyI6Mn0=eyJ.js"></script>
+  <% elsif @ad_method&.cd? && !@placed_ads && sleazy? %>
+    <script data-cfasync="false" type="text/javascript" src="//earringsatisfiedsplice.com/bultykh/ipp24/7/bazinga/2014227" async></script>
+  <% elsif @ad_method&.ga? %>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2247465624637408"
+            crossorigin="anonymous"></script>
   <% end %>
 
   <% if content_for(:head_bottom) %><%= yield(:head_bottom) %><% end %>
