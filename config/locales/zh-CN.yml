@@ -13,6 +13,7 @@ zh-CN:
   scripts:
     created_date: "创建于"
     updated_date: "更新于"
+    code_size: 大小
     total_installs: "总安装量"
     daily_installs: "日安装量"
     ratings: "评分"
@@ -299,6 +300,7 @@ zh-CN:
     not_adult_content_self_report_html: "这个脚本<strong>不包含</strong>成人内容，也<strong>不在</strong>成人网站上运行。"
     not_adult_content_self_report_explanation: "%{site_name} 允许包含成人内容的脚本，但这些脚本必须标记为成人内容，以便用户可以选择是否查看。你的脚本已被标记为包含成人内容；如果你认为此标记不准确，可以报告此情况，管理员将对此进行审核。"
     not_adult_content_self_report_explanation_automatic: "%{site_name} 允许包含成人内容的脚本，但这些脚本必须标记为成人内容，以便用户可以选择是否查看。由于您的脚本运行于 %{domain_list}，因此已被自动标记为包含成人内容。"
+    adult_content_notice_from_sleazy: 将脚本发布至 %{site_name} 即意味着该脚本包含成人内容或用于成人网站，否则请%{greasyfork_link:将脚本发布至 Greasy Fork}。
     adult_content_on_greasy_logged_in_error: "根据您当前的 %{edit_account_link:Greasy Fork 账号设置}，此脚本不再在本网站上可用。"
     adult_content_on_greasy_not_logged_in_error: "此脚本不再在本网站上匿名可用。请 %{login_link:登录} 并检查您的 Greasy Fork 账号设置。"
     non_adult_content_on_sleazy: "此脚本在本网站上不可用。"
@@ -506,6 +508,17 @@ zh-CN:
           </ul>
     android_browsers:
       title: 移动端（Android）
+      browser_list_html: |
+          <ul>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}、%{firefox_tampermonkey_link:Tampermonkey} 或 %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+          <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+          <li>Kiwi: %{chrome_tampermonkey_link:Tampermonkey} 或 %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>%{xbrowser_link:XBrowser}</li>
+          %{locale_specific_browsers}
+          </ul>
     ios_browsers:
       title: 移动端（iOS）
       browser_list_html: |
@@ -554,9 +567,12 @@ zh-CN:
     edit_sign_in: "更改登录方式"
     edit_sign_in_title: "更改登录方式"
     edit_sign_in_password: "密码"
+    edit_sign_in_2fa_enabled: 您已设置两步验证（2FA），若验证代码遗失可以重新生成。
+    edit_sign_in_2fa_enabled_and_required: 您已设置两步验证（2FA），使用密码登录时必须输入验证码。若两步验证代码遗失可以重新生成。
     edit_sign_in_disable_2fa: 禁用两步验证
     edit_sign_in_2fa_disabled: 您可以为您的 %{site_name} 账户启用两步验证（2FA），以增强安全性。
     edit_sign_in_enable_2fa: 启用两步验证
+    edit_sign_in_regenerate_2fa: 重新生成两步验证代码
     edit_notifications: "编辑通知设置"
     view_notifications: "查看通知"
     no_password_set_info: "您的账号尚未启用密码登录。"
@@ -662,6 +678,14 @@ zh-CN:
       complete: "您的账号已经删除。"
     deleted_user_with_id: "(已删除的用户 %{id})"
     deleted_user_without_id: "(已删除的用户)"
+    suggest_secure_login: 您是一位脚本作者，因此我们建议您%{edit_login_link:使用更加安全的登录方式}。
+    require_secure_login: 您的账户必须使用更加安全的登录方式。
+    secure_login_explanation_html: |
+        <p>我们建议您身为脚本作者使用更加安全的登录方式，从而防止个人账户和脚本用户遭受攻击。您可以任选一种方式增强账户安全性：</p>
+        <ol>
+        <li>在密码登录的基础上增设两步验证机制。</li>
+        <li>不再使用密码，始终通过第三方账户登录（并且最好开启该账户可用的各项安全功能）。</li>
+        </ol>
     badges:
       banned:
         short: 已封禁
@@ -1230,8 +1254,8 @@ zh-CN:
         name: 管理员
         description: 管理员之间的私密讨论
     category_display: "%{name} - %{description}"
-    new_title: 创建讨论
-    new_button: 创建讨论
+    new_title: 新讨论帖
+    new_button: 发帖
     script_notice: 如果需要对一个特定脚本开展讨论，请前往脚本的反馈页面开展讨论。
     no_discussions: 未找到讨论。
     mark_all_read: 全部标为已读
