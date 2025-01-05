@@ -28,8 +28,16 @@ function setupEthicalAdsFallback() {
     Array.from(placeholder.attributes).forEach((attr) => element.setAttributeNode(attr.cloneNode(true)))
 
     let parent = placeholder.parentNode
+
+    if (placeholder.dataset['parentId']) {
+      let createdParent = document.createElement('div')
+      createdParent.id = placeholder.dataset['parentId']
+      createdParent.appendChild(element)
+      element = createdParent
+    }
+
+    parent.insertBefore(element, placeholder)
     parent.removeChild(placeholder)
-    parent.appendChild(element)
     parent.style.display = "block"
 
     let ethicalAdsElement = document.querySelector(".ethical-ads")
