@@ -13,6 +13,7 @@ zh-TW:
   scripts:
     created_date: "建立日期"
     updated_date: "更新日期"
+    code_size: 尺寸
     total_installs: "安裝總數"
     daily_installs: "今日安裝"
     ratings: "評價"
@@ -519,6 +520,9 @@ zh-TW:
     edit_sign_in: "登入方式設定"
     edit_sign_in_title: "登入方式設定"
     edit_sign_in_password: "密碼"
+    edit_sign_in_disable_2fa: 關閉雙重認證
+    edit_sign_in_2fa_disabled: 開啟雙重認證（2FA）以提升帳戶%{site_name}的安全性。
+    edit_sign_in_enable_2fa: 開啟雙重認證
     edit_notifications: "編輯通知設定"
     view_notifications: "查看通知"
     no_password_set_info: "您的帳號沒有設定密碼。"
@@ -545,6 +549,11 @@ zh-TW:
     disable_syncing: "取消同步"
     remove_external_sign_in: "移除"
     add_external_sign_in_info: "新增登入方式："
+    2fa_enabled: 已啟用雙重認證
+    2fa_enable_code_incorrect: 雙重認證驗證碼錯誤，請再試一次
+    2fa_disabled: 已停用雙重認證
+    enable_2fa:
+      code_entry_heading: 輸入驗證碼
     set_up_webhook: "設定 Webhook"
     list_display_html:
       other: "%{user_link} - %{count} 個腳本"
