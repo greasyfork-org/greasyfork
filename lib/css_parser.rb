@@ -156,7 +156,7 @@ class CssParser
           s.skip(/\s*,\s*/)
         end
 
-        # At this point the @-moz-document is open to open its bracket.
+        # At this point the @-moz-document is about to open its bracket.
         s.skip(/\s*\{/)
         start_pos = s.charpos
 
@@ -165,6 +165,7 @@ class CssParser
         until bracket_count == 0 || s.eos?
           # Count opening and closing brackets. Would get totally borked by comments or brackets in strings.
           up_to_next_bracket = s.scan_until(/[{}]/)
+
           break if up_to_next_bracket.nil? # Unclosed bracket, move on.
 
           bracket = up_to_next_bracket[-1]
@@ -175,7 +176,7 @@ class CssParser
           end
         end
 
-        end_pos = s.charpos - bracket.length - 1
+        end_pos = bracket ? (s.charpos - bracket.length - 1) : code.length
 
         # An empty url-prefix is used to target Firefox, but it means global.
         block_matches = [] if block_matches.any? { |document_match| document_match.rule_type == 'url-prefix' && document_match.value.empty? }

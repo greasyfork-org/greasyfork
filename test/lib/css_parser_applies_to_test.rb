@@ -271,4 +271,11 @@ class CssParserAppliesToTest < ActiveSupport::TestCase
     CSS
     assert_empty get_applies_tos(css)
   end
+
+  test 'unclosed @-moz-document' do
+    css = <<~CSS
+      @-moz-document url-prefix("https://www.example.com/") {
+    CSS
+    assert_empty get_applies_tos(css)
+  end
 end
