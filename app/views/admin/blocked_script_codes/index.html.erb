@@ -7,18 +7,29 @@
 <% end %>
 
 <table class="blocked-script-codes">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Public Reason</th>
-      <th>Private Reason</th>
-      <th>Consequence</th>
-      <th>Originating Script</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
+    <% current_category = 'something' %>
     <% @blocked_script_codes.each do |blocked_script_code| %>
+      <thead>
+        <% if current_category != blocked_script_code.category %>
+          <tr>
+            <th colspan="6">
+              <h3>
+                <%= blocked_script_code.category&.capitalize || '(Uncategorized)' %>
+              </h3>
+            </th>
+          </tr>
+          <% current_category = blocked_script_code.category %>
+        <tr>
+          <th></th>
+          <th>Public Reason</th>
+          <th>Private Reason</th>
+          <th>Consequence</th>
+          <th>Originating Script</th>
+          <th></th>
+        </tr>
+      </thead>
+    <% end %>
+    <tbody>
       <tr class="pattern-row">
         <td colspan="6">
           <code><%= blocked_script_code.pattern %></code>

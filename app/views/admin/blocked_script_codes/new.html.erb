@@ -1,5 +1,10 @@
 <%= form_with(model: [:admin, @blocked_script_code]) do |f| %>
   <div class="form-control">
+    <%= f.label :category %>
+    <%= f.select :category, options_for_select(BlockedScriptCode.categories.keys), include_blank: '(none)' %>
+  </div>
+
+  <div class="form-control">
     <%= f.label :pattern %>
     <%= f.text_field :pattern, required: true %>
   </div>

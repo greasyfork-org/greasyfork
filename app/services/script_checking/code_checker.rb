@@ -6,7 +6,7 @@ module ScriptChecking
 
         results = BlockedScriptCode.all.filter_map do |bc|
           next unless bc.match?(code)
-          next unless bc.originating_script_id.nil? || (bc.originating_script.authors.map(&:user_id) & script_version.script.authors.map(&:user_id)).none?
+          next if bc.exempt_script?(script_version.script)
 
           ScriptChecking::Result.new(
             bc.serious ? ScriptChecking::Result::RESULT_CODE_BAN : ScriptChecking::Result::RESULT_CODE_BLOCK,

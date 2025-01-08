@@ -3,7 +3,7 @@ module Admin
     before_action :administrators_only, except: :index
 
     def index
-      @blocked_script_codes = BlockedScriptCode.all
+      @blocked_script_codes = BlockedScriptCode.order(:category, :public_reason)
     end
 
     def new
@@ -46,7 +46,7 @@ module Admin
     private
 
     def blocked_script_code_params
-      params.require(:blocked_script_code).permit(:pattern, :public_reason, :private_reason, :serious, :originating_script_id, :case_insensitive, :notify_admin)
+      params.require(:blocked_script_code).permit(:pattern, :public_reason, :private_reason, :serious, :originating_script_id, :case_insensitive, :notify_admin, :category)
     end
   end
 end

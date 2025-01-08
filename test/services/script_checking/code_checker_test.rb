@@ -27,6 +27,18 @@ module ScriptChecking
       assert_equal ScriptChecking::Result::RESULT_CODE_BLOCK, check_script_with_code('this.is.a.WARN = true').code
     end
 
+    test 'exemption for reposts - script is old enough' do
+      blocked_script_codes(:not_serious).update!(category: :repost)
+      script_version = ScriptVersion.new(code: 'this.is.a.warn = true', script: Script.new(created_at: 1.year.ago))
+      assert_equal ScriptChecking::Result::RESULT_CODE_OK, ScriptChecking::CodeChecker.check(script_version).code
+    end
+
+    test 'exemption for reposts - script is not old enough' do
+      blocked_script_codes(:not_serious).update!(category: :repost)
+      script_version = ScriptVersion.new(code: 'this.is.a.warn = true', script: Script.new(created_at: 1.day.ago))
+      assert_equal ScriptChecking::Result::RESULT_CODE_BLOCK, ScriptChecking::CodeChecker.check(script_version).code
+    end
+
     def check_script_with_code(code)
       script_version = ScriptVersion.new(code:)
       ScriptChecking::CodeChecker.check(script_version)
