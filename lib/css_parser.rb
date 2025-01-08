@@ -176,6 +176,10 @@ class CssParser
         end
 
         end_pos = s.charpos - bracket.length - 1
+
+        # An empty url-prefix is used to target Firefox, but it means global.
+        block_matches = [] if block_matches.any? { |document_match| document_match.rule_type == 'url-prefix' && document_match.value.empty? }
+
         # Ignore empty blocks
         matches << CssDocumentBlock.new(block_matches, start_pos, end_pos) if code[start_pos..end_pos].present?
 
