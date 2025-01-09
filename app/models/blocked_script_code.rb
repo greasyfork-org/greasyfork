@@ -8,6 +8,8 @@ class BlockedScriptCode < ApplicationRecord
   end
 
   def exempt_script?(script)
+    return false unless script
+
     return true if repost? && script.created_at <= 1.month.ago
 
     originating_script_id && (originating_script.authors.map(&:user_id) & script.authors.map(&:user_id)).any?
