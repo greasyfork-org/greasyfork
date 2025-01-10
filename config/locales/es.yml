@@ -13,6 +13,7 @@ es:
   scripts:
     created_date: "Creado"
     updated_date: "Actualizado"
+    code_size: Tamaño
     total_installs: "Instalaciones totales"
     daily_installs: "Instalaciones diarias"
     ratings: "Calificaciones"
@@ -104,6 +105,11 @@ es:
       compare_cleaned_code_unavailable: "El código limpio del script a comparación aún no está disponible."
       checkup:
         title: Revisión
+        intro: Estas son sugerencias para mejorar tu script %{site_name}. Y estas no %{rules_link:rules}; tu script no será eliminado si no las sigues.
+        license_html: Especifique una %{license_link:<code>@license</code>}. Esto permite que otros sepan si pueden compartir y modificar su código y cómo pueden hacerlo.
+        globs_html: Evita el uso de expresiones regulares en la parte de dominio de %{include_link:<code>@include</code>} y %{match_link:<code>@match</code>}. Esto dificulta a %{site_name} para clasificar tu script.
+        globs_used_html: "Inclusiones no específicas de un dominio usadas: %{globs}"
+        additional_info: Incluya información adicional - enumere sus funciones, proporcione capturas de pantalla, etc. para que los usuarios sepan exactamente qué hace su script.
     history_title: "%{script_name} - Historial de versiones"
     history_only_code_changes_info: "A continuación se muestran las versiones de este script en las que se actualizó el código."
     history_all_changes_link: "Ver todas las versiones."
@@ -160,6 +166,7 @@ es:
     listing_description_for_site: "Scripts de usuario que añaden características y corrigen errores en %{site}"
     listing_title_for_search: "Scripts de usuario que contienen '%{search_string}'"
     listing_title_for_code_search: "Scripts de usuario que contienen '%{search_string}'"
+    listing_description_for_code_search_html: "Buscar código para <code>%{search_string}</code>"
     listing_title_generic: "Scripts de usuario"
     listing_title_for_favorites: "%{set_name} de %{user_name}"
     listing_description_generic: "Scripts de usuario que añaden características y corrigen errores en los sitios que usas"
@@ -176,6 +183,7 @@ es:
     listing_filter_by_site_all_sites: "(Todos los sitios)"
     listing_filter_by_language_label: "Tipo de script:"
     listing_filter_by_site_more_sites: "Más…"
+    listing_filter_by_authorship_label: "Autoría:"
     listing_no_scripts: "No se ha encontrado ningún script que coincida con los parámetros."
     listing_created_feed: "Scripts nuevos"
     listing_updated_feed: "Scripts actualizados"
@@ -187,6 +195,8 @@ es:
     listing_language_css: "CSS"
     listing_author:
       all: Todos los autores
+      me: Mis scripts
+      user: Scripts por %{author_name}
     search_failed: Algo a salido mal cargando los resultados. Algunas funcionalidades de búsqueda pueden no funcionar. Hemos sido notificados sobre el asunto
     import: "Importar scripts"
     new: "Publica tu propio script"
@@ -233,12 +243,15 @@ es:
     warning_code_previously_posted_html: "Ya hay otra copia de este código publicada en %{script_links}. Los moderadores borrarán cualquier script duplicado que sea publicado por todo aquel que no sea el autor original."
     warning_license_missing_html: "No especificaste una <code>@license</code>. Al ponerla en %{site_name}, permites a otros usar tu código, pero una licencia también dirá a los otros cómo pueden modificar y redistribuir tu código. Por ejemplo, <code>// @license MIT</code> significa que permites a cualquiera modificar y redistribuir tu código.\n%{license_chooser_link:Más información sobre licencias disponible aquí.} Si no especificas una licencia, %{site_name} asumirá que no permites a otros hacer modificaciones o redistribuir copias. Ten en cuenta que si no eres el único autor del código que publicas, generalmente no se permite publicar a no ser que tengas permiso de todos los otros autores."
     warning_license_missing_override_html: "Guardar sin elegir una licencia"
+    warning_meta_not_at_start_html: "Su código no empieza por <code>// ==UserScript==</code>. Incluir código, comentarios o espacios en blanco puede causar problemas de compatibilidad con algunos gestores de scripts de usuario."
     additional_info_locale_prompt: "(Elige un idioma)"
     additional_info_add_localized: "Añadir información adicional en otros idiomas"
     additional_info_locale_repeated: "Proporciona una sola información adicional para el idioma '%{locale_code}'."
     localized_additional_info_with_no_name: "Has añadido información adicional para el idioma '%{locale_code}', pero sin proporcionar el @name:%{locale_code}."
+    invalid_matchers: "Coincidencias no validas usadas: %{matches}"
     code_syncing_from_url_html: "El código de este script está configurado para sincronizarse desde: %{field}"
     provide_code_syncing_from_url_html: "%{site_name} puede importar scripts alojados en otro lugar, por ejemplo, en un sistema de control de versiones (como GitHub), tu propio servidor, o en cualquier otro sitio de alojamiento de scripts de usuario. Para sincronizar tu script proporciona una dirección URL: %{field}"
+    code_syncing_from_webhook_html: "El código de este script está configurado para sincronizarse con un webhook. Haremos coincidir las solicitudes de webhook con este script basándonos en esta URL: %{field}"
     sync_type_intro: "El script se sincronizará:"
     sync_type_1:
       name: Manualmente
@@ -249,6 +262,7 @@ es:
     sync_type_3:
       name: Por «webhook»
       description: se actualizará cuando hagas cambios a este archivo en su repositorio
+    sync_webhook_info_without_sync: Después de configurar la sincronización anterior, si estás sincronizando con un repositorio de GitHub, GitLab o BitBucket, también puedes %{webhook_info_link:configurar un webhook} para actualizar automáticamente %{site_name} cuando hagas push a tu repositorio.
     sync_name_and_description: "%{name} - %{description}"
     sync_failed_info_html: "El último intento de sincronización fue el %{date}, y resultó en %{error}."
     sync_success_info_html: "La última sincronización fue el %{date}."
@@ -743,8 +757,13 @@ es:
         heading: Se permite el código externo
       libraries:
         title: "Bibliotecas en %{site_name}"
+        content_html: |
+            <p>Los scripts publicados como bibliotecas en %{site_name} están permitidas. Las bibliotecas pueden crearse eligiendo la opción al crear un nuevo script. Además, pueden sincronizarse desde una URL externa, como un repositorio de GitHub.</p>
       origin_host:
         title: Inyección de scripts bajo el dominio original
+        content_html: |
+            <p>Se permite la inyección de scripts externos en el mismo dominio del que proceden. Si un script se ejecuta en https://ejemplo.com, y descarga https://ejemplo.com/script.js, lo modifica, y lo inyecta de nuevo en https://ejemplo.com/, esto estaría permitido.</p>
+            <p>Si se inyecta https://ejemplo.com/script.js en https://sitiodiferente.com, se desautorizaría.</p>
     cdns:
       title: CDNs permitidas
       test_url:
@@ -753,6 +772,24 @@ es:
         result_not_ok: Esta dirección no está en la lista blanca
     script_rewriting:
       title: "Cómo afectará %{site_name} a los scripts publicados"
+      content_html: >
+          <p>A los scripts publicados en %{site_name} se les hará los siguientes cambios:</p>
+          <ul>
+
+          <li>Se les despojará de cualquier directiva <code>@updateURL</code>, <code>@installURL</code>,
+          y <code>@downloadURL</code>. Al no tener estas directivas se podrán actualizar
+          sólo desde %{site_name}.</li>
+
+          <li>Las directivas <code>@version</code> y <code>@namespace</code> se insertarán
+          si no están presentes. Estas directivas son necesarias para que los usuarios
+          puedan actualizar.</li>
+
+          <li>Si por error en alguna versión posterior falta <code>@description</code>
+          se insertará con la descripción del perfil.</li>
+
+          <li>Los saltos de línea se convertirán a formato Unix (\n).</li>
+
+          </ul>
     site_feedback_link: "Infórmanos de algún problema o danos ideas que tengas sobre %{site_name}"
     credits:
       title: "Créditos"
@@ -876,13 +913,16 @@ es:
   search:
     script_search:
       title: "Buscar scripts"
+      description: "Busca bibliotecas. Por concordancia con nombres, descripciones, información adicional y nombres de autor."
     library_search:
       title: "Buscar bibliotecas"
+      description: "Busca bibliotecas. Por concordancia con nombres, descripciones, información adicional y nombres de autor."
     code_search:
       title: "Buscar código"
       description: "Busca código de script. No distingue entre mayúsculas y minúsculas, exclusivamente en texto plano sin valores de reemplazo."
     user_search:
       title: "Buscar usuarios"
+      description: "Búsqueda de usuarios por nombre."
   moderator_logs:
     date_column: "Fecha"
     moderator_column: "Moderador"
@@ -894,6 +934,8 @@ es:
     item_user_html: "Usuario: %{user_link}"
     item_report: "%{report_link: Denuncia nº %{report_id}}"
     item_script_lock_appeal: "%{appeal_link:Revisión de denuncia nº %{appeal_id}}"
+    item_discussion_html: "Discusión: %{discussion_link}"
+    item_comment_html: "Comentario sobre la discusión: %{comment_link}"
   reports:
     name: "Denuncia nº %{id}"
     report_filed: "Pendiente de que lo revise un moderador. "
@@ -955,6 +997,7 @@ es:
       wrong_category: "Categoría incorrecta"
       wrong_category_with_suggestion: "Categoría incorrecta (sugerencia: %{suggested_category})"
       no_code: 'Sin código, o solo con código de ejemplo tipo «hola mundo»'
+      legal_claim: "Reclamación legal"
       other: "Otros"
     report_intro: "%{reported_item} ha sido denunciado %{report_date} como %{reason} por %{reporter}"
     report_intro_no_reporter: "%{reported_item} ha sido denunciado %{report_date} como %{reason}"
@@ -973,6 +1016,7 @@ es:
     report_message: "Incumple las normas"
     result_dismissed: "Se ha revisado tu denuncia y no parece incumplir las normas."
     result_upheld: "Se ha confirmado tu denuncia y ha sido eliminado."
+    result_upheld_reason_override: "Este informe ha sido confirmado por un moderador, pero el moderador lo marcó como %{reason}."
     result_self_upheld: "El autor ha decidido borrar su propio script tras ver tu denuncia."
     result_fixed: "Se ha cerrado está denuncia porque un moderador asevera que los problemas que has encontrado se han resuelto."
     result_pending: "Pendiente de que lo revise un moderador. "
@@ -993,6 +1037,17 @@ es:
     load_cleaned_diff: "Cargar comparación de versiones tersa"
     loading_diff: "Cargando..."
     reported_user_activity_html: "%{user} (el usuario denunciado) ha hecho:"
+    script_updated_since_report: "Este script se ha actualizado desde que se presentó el informe."
+    reporter_temporarily_blocked: "Debido a tu reciente historial de denuncias desestimadas por un moderador, se te bloquea la presentación de nuevas denuncias hasta %{date}. Por favor, revisa las %{rules_link:reglas de %{site_name}} para asegurarte de que tus futuras denuncias son correctas."
+    reported_temporarily_blocked: "Debido a que un moderador ha desestimado informes recientes sobre este tema, se bloquean más informes sobre el mismo hasta %{date}."
+    already_reported_by_reporter: "Ya has %{report_link:reportado recientemente} este artículo."
+    already_reported_same_type: "Ya existe un %{report_link:informe similar pendiente} sobre este tema."
+    report_item:
+      discussion: "Discusión %{title} por %{user}"
+      comment: "%{comment} por %{user}"
+      comment_description: "Un comentario sobre %{discussion_title}"
+      message: "Un mensaje de %{user}"
+      deleted: "Eliminado %{type} #%{id}"
   appeals:
     new:
       title: Nueva revisión para eliminar script
@@ -1004,6 +1059,7 @@ es:
     dismissed_by_moderator: Un moderador ha dado por mala tu petición de revisión.
     upheld_by_moderator: Un moderador ha revisado tu petición de revisión y la ha dado por buena, desbloqueando el script.
     submitted: Se ha recibido tu petición y la revisará un moderador.
+    already_open: Ya existe una apelación abierta para este script.
   discussions:
     title: Conversaciones
     comment_date: "Publicado: %{date}"
@@ -1065,6 +1121,10 @@ es:
     locale_filter:
       label: Idioma
       all: Todos
+    sort:
+      comment_created: Fecha
+      discussion_last_comment: Fecha del último comentario
+      discussion_created: Fecha de inicio de las discusiones
     user_activity:
       title: "Comentarios recientes"
       no_recent_activity: "Este usuario no ha comentado últimamente."
@@ -1108,6 +1168,7 @@ es:
     no_discussions: No se ha encontrado ninguna conversación que coincida con los parámetros.
     mark_all_read: Marcar todo como leído
     pending_moderator_review: Se ha bloqueado el acceso a esta conversación hasta que la revise un moderador.
+    search_placeholder: Buscar discusiones
   conversations:
     user_input_note: Introduce el nombre de usuario o la dirección URL de su perfil
     new_title: Empezar una conversación nueva
@@ -1131,6 +1192,7 @@ es:
       more: Ver todas las conversaciones
     edit_message_header: Editar mensaje
     update_message_submit: Actualizar mensaje
+    moderator_notice: Si quieres denunciar una infracción de las normas de %{site_name}, utiliza el enlace Denunciar de ese script, usuario o comentario. Los moderadores no pueden eliminar contenidos basándose en denuncias a través de mensajes directos.
   screenshots:
     requirements: "Hay un tope de subida de %{number} imágenes PNG, GIF, JPEG, o WebP; cada una de ellas puede llegar a %{size}."
   common:
@@ -1174,6 +1236,7 @@ es:
         current_password: "Contraseña actual"
         new_password: "Contraseña nueva"
         new_password_confirmation: "Confirmar la contraseña nueva"
+        otp_attempt: Código de autenticación de dos factores (2FA)
       script:
         name: "Nombre"
         description: "Descripción"
@@ -1213,12 +1276,15 @@ es:
       must_be_greasy_fork_script: "debe ser la dirección URL de un script en %{site_name}"
       script_update_not_utf8: "debe ser texto en formato UTF-8"
       script_disallowed_require: "usa un script externo no aprobado: %{code}"
+      script_disallowed_resource: "utiliza un @resource no válido: %{code}. Los recursos deben ser http, https o URL de datos"
+      script_disallowed_base_64_require: "utiliza un @require codificado en base-64"
       script_malformed_require: "hace referencia a un script externo mal formado: %{code}"
       script_rate_limit: "Has subido demasiados scripts seguidos, prueba más tarde."
       missing_include_or_match: "es necesario incluir al menos una clave de tipo @match o @include"
       invalid_meta: "tiene una directiva meta que no vale. El formato correcto es // @foo"
       no_executable: "sin código ejecutable"
       meta_too_long: "%{key}es demasiado larga (El máximo de caracteres es %{count})"
+      style_missing_meta: "le falta su bloque de metadatos. Encontrará ejemplos en https://github.com/openstyles/stylus/wiki/Writing-UserCSS"
   opensearch:
     short_name: "Buscar en %{site_name}"
     description: "Busca scripts de usuario en %{site_name}."
@@ -1248,6 +1314,10 @@ es:
     script_report:
       report_created_offender:
         subject: "Alguien ha denunciado tu script %{script_name} en %{site_name}"
+        body_html: |
+            <p>
+            Tu script %{script_link:%{script_name}} sido reportado por violar las reglas de %{site_name}. La razón específica dada: %{reason}. Los moderadores revisarán este informe y podrán eliminar tu script si consideran que infringe las normas. Usted puede %{report_link:revisar este informe} y envíar una refutación si desea aportar algún argumento o explicación.
+            </p>
       report_upheld_offender:
         subject: "Tu script %{script_name} en %{site_name} ha sido eliminado."
         body_html: |
@@ -1313,6 +1383,7 @@ es:
     script_comment:
       subject: "Alguien ha comentado en %{script_name} en %{site_name}."
       intro: "Tu script %{script_link:%{script_name}} en %{site_name} ha recibido un comentario del usuario %{commenter_link:%{commenter_name}}:"
+      outro: "%{comment_link:Ver y responder a este comentario.} Has recibido esta notificación porque has elegido que se te notifiquen los debates sobre tus scripts. %{notification_preferences_link:Gestiona tus preferencias de notificación.}"
     subscribed_discussion:
       subject: "La conversación «%{discussion_title}» en %{site_name} ha recibido un comentario."
       intro: "La conversación %{discussion_link:%{discussion_title}} en %{site_name} ha recibido un comentario del usuario %{commenter_link:%{commenter_name}}:"
@@ -1320,6 +1391,7 @@ es:
     comment_mentioned:
       subject: "El usuario '%{commenter_name}' te ha mencionado en %{site_name}."
       intro: "La conversación %{discussion_link:%{discussion_title}} en %{site_name} ha recibido un comentario del usuario %{commenter_link:%{commenter_name}} y parece que has sido mencionado:"
+      outro: "%{comment_link:Ver y responder al comentario.} Has recibido la notificación porque has establecido que se notifique cuando se te menciona directamente. %{notification_preferences_link:Administrar tus preferencias de notificaciones.}</p>"
     new_message:
       subject: "El usuario %{user} te ha enviado un mensaje en %{site_name}"
       intro: "El usuario %{user_link:%{user_name}} te ha enviado un mensaje en %{site_name}"

@@ -13,6 +13,7 @@ el:
   scripts:
     created_date: "Δημιουργήθηκε την"
     updated_date: "Ενημερώθηκε την"
+    code_size: Μέγεθος
     total_installs: "Σύνολο εγκαταστάσεων"
     daily_installs: "Ημερήσιες εγκαταστάσεις"
     ratings: "Βαθμολογίες"
@@ -43,6 +44,7 @@ el:
     deleted_notice: "Αυτός ο κώδικας έχει διαγραφεί."
     deleted_notice_with_reason: "Αυτός ο κώδικας έχει διαγραφεί λόγω %{report_link:αυτής της αναφοράς}."
     deleted_notice_with_related: "Ο κώδικας που ζητήσατε έχει διαγραφεί, αλλά υπάρχουν κάποιοι σχετικοί κώδικες."
+    deleted_notice_with_related_and_reason: "Ο κώδικας που ζητήσατε έχει διαγραφεί λόγω %{report_link:αυτής της αναφοράς}, αλλά εδώ υπάρχουν ορισμένοι σχετικοι κώδικες."
     deleted_undelete_notice_html: "Αυτός ο κώδικας έχει κλειδωθεί από κάποιον συντονιστή και δεν μπορεί να διαγραφεί. Η αιτία της ενέργειας αυτής είναι: « <i>%{delete_reason}</i>»."
     deleted_locked_author_notice_html: "Αυτός ο κώδικας έχει διαγραφεί από συντονιστή ως απάντηση σε %{report_link:αυτή την αναφορά} και δεν είναι προσβάσιμος από άλλους. Η επικαλούμενη αιτία είναι: «<i>%{delete_reason}</i>». Ανατρέξτε στους %{code_rules_link: κανόνες του %{site_name}}. Αν πιστεύετε ότι η διαγραφή είναι εσφαλμένη, μπορείτε να %{appeal_link:εφεσιβάλλετε} αυτή τη διαγραφή. Μην αναφέρετε αυτόν τον κώδικα, γιατί αν το κάνετε ίσως έχει αποτέλεσμα τον αποκλεισμό από το %{site_name}."
     self_deleted_locked_author_notice_html: "Αυτός ο κώδικας έχει διαγραφεί από εσάς σε απάντηση %{report_link:αυτής της αναφοράς} και δεν είναι προσβάσιμος από άλλους. Αν έχετε ενημερώσει τον κώδικα ώστε να ακολουθεί τους %{code_rules_link:κανόνες του %{site_name}}, μπορείτε να %{appeal_link:εφεσιβάλλετε} αυτή τη διαγραφή. Μην αναφέρετε αυτόν τον κώδικα, γιατί αν το κάνετε ίσως έχει αποτέλεσμα τον αποκλεισμό από το %{site_name}."
@@ -99,6 +101,10 @@ el:
       compare_to: "Κώδικας %{site_name} σε σύγκριση με (URL)"
       compare_button: "Σύγκριση"
       compare_must_be_local_url: "Ο κώδικας σύγκρισης πρέπει να είναι URL στο %{site_name}."
+      compare_cleaned_code_unavailable: "Ο καθαρός κώδικας σύγκρισης δεν είναι ακόμα διαθέσιμος."
+      checkup:
+        title: Έλεγχος
+        globs_used_html: "Συμπεριλήψεις χωρίς domain χρησιμοποιούν: %{globs}"
     history_title: "%{script_name} - Ιστορικό εκδόσεων"
     history_only_code_changes_info: "Αυτές είναι εκδόσεις αυτού του κώδικα όπου ο κώδικας έχει ενημερωθεί."
     history_all_changes_link: "Προβολή όλων των εκδόσεων."
@@ -155,6 +161,7 @@ el:
     listing_description_for_site: "Κώδικες χρηστών που προσθέτουν χαρακτηριστικά και απομακρύνουν σφάλματα στον ιστοχώρο %{site}"
     listing_title_for_search: "Κώδικες χρηστών με το κείμενο «%{search_string}»"
     listing_title_for_code_search: "Κώδικες χρηστών με το κείμενο «%{search_string}»"
+    listing_description_for_code_search_html: "Αναζήτηση κώδικα για <code>%{search_string}</code>"
     listing_title_generic: "Κώδικες χρηστών"
     listing_title_for_favorites: "%{set_name} του/της %{user_name}"
     listing_description_generic: "Κώδικες χρηστών που προσθέτουν χαρακτηριστικά και απομακρύνουν σφάλματα στους ιστοχώρους που χρησιμοποιείτε"
@@ -171,6 +178,7 @@ el:
     listing_filter_by_site_all_sites: "(Όλοι οι ιστοχώροι)"
     listing_filter_by_language_label: "Γλώσσα:"
     listing_filter_by_site_more_sites: "Περισσότερα…"
+    listing_filter_by_authorship_label: "Ιδιοκτησία:"
     listing_no_scripts: "Δεν βρέθηκαν κώδικες."
     listing_created_feed: "Νέοι κώδικες"
     listing_updated_feed: "Ενημερωμένοι κώδικες"
@@ -180,6 +188,10 @@ el:
     listing_language_all: "Όλες"
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
+    listing_author:
+      all: Όλοι οι δημιουργοί
+      me: Οι κώδικές μου
+      user: Κώδικες από τον δημιουργό %{author_name}
     import: "Εισαγωγή κώδικα"
     new: "Δημοσιεύστε έναν κώδικα που έχετε γράψει"
     new_css: "Δημοσιεύστε ένα στυλ που έχετε γράψει"
@@ -229,6 +241,7 @@ el:
     additional_info_add_localized: "Προσθήκη μιας πρόσθετης πληροφορίας σε άλλη γλώσσα"
     additional_info_locale_repeated: "Παρέχετε μόνο μια πρόσθετη πληροφορία για τη γλώσσα «%{locale_code}»."
     localized_additional_info_with_no_name: "Η πρόσθετη πληροφορία ορίστηκε για τη γλώσσα «%{locale_code}», αλλά καμιά ετικέτα @name:%{locale_code} δεν παρέχεται."
+    invalid_matchers: "Μη έγκυρα ταιριάσματα που χρησιμοποιήθηκαν: %{matches}"
     code_syncing_from_url_html: "Αυτός ο κώδικας έχει οριστεί να συγχρονίζεται από: %{field}"
     provide_code_syncing_from_url_html: "Το %{site_name} μπορεί να εισάγει κώδικες που φιλοξενούνται αλλού, για παράδειγμα σε ένα σύστημα ελέγχου εκδόσεων (όπως το GitHub), τον δικό σας διακομιστή ή σε άλλου χρήστη ιστοσελίδα φιλοξενίας κώδικα χρήστη. Για την ενεργοποίηση του συγχρονισμού, δώστε ένα URL: %{field}"
     sync_type_intro: "Ο κώδικας θα συγχρονίζεται:"
@@ -532,6 +545,12 @@ el:
     edit_sign_in: "Επεξεργασία μεθόδων σύνδεσης"
     edit_sign_in_title: "Επεξεργασία μεθόδων σύνδεσης"
     edit_sign_in_password: "Κωδικός πρόσβασης"
+    edit_sign_in_disable_2fa: Απενεργοποίηση Τ2Π
+    edit_sign_in_2fa_disabled: Μπορείτε να ενεργοποιήσετε την Ταυτοποίηση 2 Παραγόντων (Τ2Π) για καλύτερη ασφάλεια στον λογαριασμό σας %{site_name}.
+    edit_sign_in_enable_2fa: Ενεργοποίηση Τ2Π
+    edit_sign_in_regenerate_2fa: Επαναδημιουργία Τ2Π
+    edit_notifications: "Επεξεργασία ρυθμίσεων ειδοποίησης"
+    view_notifications: "Προβολή ειδοποιήσεων"
     no_password_set_info: "Ο λογαριασμός σας δεν έχει ρυθμιστεί με κωδικό πρόσβασης."
     set_password: "Ορισμός κωδικού πρόσβασης"
     update_password: "Ενημέρωση κωδικού πρόσβασης"
@@ -556,6 +575,24 @@ el:
     disable_syncing: "Απενεργοποίηση συγχρονισμού"
     remove_external_sign_in: "Απομάκρυνση"
     add_external_sign_in_info: "Προσθήκη μιας σύνδεσης:"
+    2fa_enabled: Η Τ2Π έχει ενεργοποιηθεί.
+    2fa_enable_code_incorrect: Ο κώδικας Τ2Π δεν είναι σωστός. Δοκιμάστε ξανά.
+    2fa_disabled: Η Τ2Π έχει απενεργοποιηθεί.
+    2fa_disabled_already: Η Τ2Π έχει απενεργοποιηθει.
+    2fa_entry:
+      intro_html: "Σύνδεση ως <b>%{email}</b>"
+    enable_2fa:
+      intro: "Προσθέστε το %{site_name}την εφαρμογή ταυτοποίησης δύο παραγόντων (Τ2Π) χρησιμοποιώντας μια από αυτές τις μεθόδους και εισάγετε τον παρακάτω κώδικα."
+      qr_heading: Μέσω κώδικα QR
+      url_heading: Μέσω συνδέσμου
+      url_info: Αν είστε στην ίδια συσκευή με την εφαρμογή ταυτοποίησης δύο παραγόντων, είναι δυνατό να την προσθέσετε με %{auth_link:αυτό τον σύνδεσμο}.
+      manual_heading: Χειροκίνητα
+      manual_entry_code_name: "Όνομα κώδικα: %{code_name}"
+      manual_entry_your_key: "Το κλειδί σας: %{key}"
+      manual_entry_type_of_key: "Τύπος κλειδιού: Με βάση το χρόνο"
+      code_entry_heading: Εισαγωγή κώδικα
+      code_entry: "Εισάγετε τον κώδικα από την εφαρμογή Τ2Π για να την ενεργοποιήσετε στον λογαριασμό σας %{site_name}:"
+      verify_code: Επιβεβαίωση κώδικα
     set_up_webhook: "Ορισμός ενός ιστοάγκιστρου"
     list_display_html:
       one: "%{user_link} - %{count} κώδικας"
@@ -564,6 +601,7 @@ el:
     listing_new_scripts: "Νέοι κώδικες"
     listing_updated_scripts: "Ενημερωμένοι κώδικες"
     listing_registration_date: "Ημερομηνία εγγραφής"
+    listing_relevance: "Συνάφεια"
     listing_title: "Χρήστες"
     listing_banned_filter:
       banned: "Αποκλεισμένοι"
@@ -620,6 +658,8 @@ el:
     banned_delete:
       intro: "Η διαγραφή του λογαριασμού σας θα διαγράψει επίσης και όλους τους κώδικες που έχετε δημοσιεύσει. Οποιαδήποτε συνεισφορά στη δημόσια συζήτηση θα παραμείνει, αλλά το όνομα χρήστη σας θα καταστεί ανώνυμο. Ακόμα και μετά τη διαγραφή, δε θα μπορείτε να εγγραφείτε ξανά με την ίδια ηλεκτρονική διεύθυνση. Συνδεθείτε παρακάτω για να διαγράψετε τον λογαριασμό σας."
       complete: "Ο λογαριασμός σας έχει διαγραφεί."
+    deleted_user_with_id: "(Διαγραμμένος χρήστης %{id})"
+    deleted_user_without_id: "(Διαγραμμένος χρήστης)"
     badges:
       banned:
         short: Αποκλεισμένος
@@ -631,18 +671,55 @@ el:
         short: Δημιουργός
         long: Δημιουργός αυτού του κώδικα
     notifications:
+      on_site: Επί τόπου
+      email: Με ηλεκτρονική αλληλογραφία
       discussion_defaults:
         title: Ειδοποιήσεις δημόσιας συζήτησης
+        discussion_subscription_defaults:
+          overall_label: Από προεπιλογή, εγγραφείτε στις συζητήσεις όταν
+          start: Ξεκινάτε τη συζήτηση
+          comment: Σχολιάζεται στη συζήτηση
+          script: Αφορά έναν από τους κώδικές σας
+        subscribed_discussion_notification: Όταν ένα σχόλιο δημοσιεύεται σε μια συζήτηση που έχετε εγγραφεί, λάβετε την ειδοποίηση
         mention: Λάβατε μια ειδοποίηση όταν αναφερθήκατε σε μια συζήτηση.
       conversation_defaults:
         title: Ειδοποιήσεις συνομιλίας
+        intro: Θα λαμβάνετε ειδοποιήσεις για συζητήσεις που έχετε εγγραφεί. Μπορείτε να εγγραφείτε ή να ακυρώσετε την εγγραφή σας για συζητήσεις οποτεδήποτε.
+        new_conversation_subscription:
+          overall_label: Από προεπιλογή, εγγραφείτε σε νέες συζητήσεις όταν
+          self: Ξεκινάτε μια συζήτηση
+          other: Κάποιος άλλος ξεκινά μια συζήτηση
+        new_conversation_notification: Όταν κάποιος ξεκινά μια συνομιλία με εσάς και εγγράφεστε με την πιο πάνω ρύθμιση, λαμβάνετε την ειδοποίηση
       report_defaults:
         title: Ειδοποιήσεις αναφοράς
+        as_reporter: Όταν μια αναφορά που δημιουργήσατε επιλύεται, λαμβάνετε μια ειδοποίηση
+      script:
+        intro: Αυτές οι ρυθμίσεις σχετίζονται με κώδικες που έχετε δημοσιεύσει.
+        title: Ειδοποιήσεις κώδικα
       save_button: Ενημέρωση ρυθμίσεων ειδοποιήσεων
       title: Ειδοποιήσεις
       save_success: Οι προτιμήσεις ειδοποιήσεων σας έχουν ενημερωθεί.
       unsubscribe_all: Ακύρωση εγγραφής από όλες τις ειδοποιήσεις
       unsubscribe_all_success: Έχετε ακυρώσει την εγγραφή σας από όλες τις ειδοποιήσεις.
+      unsubscribe_email: Ακύρωση εγγραφής από όλες τις ειδοποιήσεις ηλεκτρονικής αλληλογραφίας
+      unsubscribe_email_success: Έχετε ακυρώσει την εγγραφή σας από όλες τις ειδοποιήσεις ηλεκτρονικής αλληλογραφίας.
+      new_conversation: "Ο χρήστης %{user} ξεκίνησε μια συζήτηση με εσάς: %{text}"
+      new_message: "Ο χρήστης %{user} σας έστειλε ένα μήνυμα: %{text}"
+      new_comment: "Ο χρήστης %{user} δημοσίευσε ένα σχόλιο στη συζήτηση %{discussion}"
+      new_comment_script: "Ο χρήστης %{user} δημοσίευσε μια συζήτηση στον κώδικά σας %{script}"
+      mention: "Ο χρήστης %{user}σας ανέφερε στην συζήτηση %{discussion}"
+      report_resolved_reporter:
+        dismissed: Η αναφορά σας για το αντικείμενο %{item} δεν έγινε δεκτή από έναν συντονιστή.
+        upheld: Η αναφορά σας για το αντικείμενο %{item} βεβαιώθηκε από έναν συντονιστή.
+      report_filed_reported: Μια αναφορά συμπληρώθηκε για το αντικείμενο %{item}.
+      report_resolved_reported:
+        dismissed: Μια αναφορά για το αντικείμενο %{item} δεν έγινε δεκτή από έναν συντονιστή.
+        upheld: Μια αναφορά για το αντικείμενο %{item} βεβαιώθηκε από έναν συντονιστή.
+      list:
+        header: Ειδοποιήσεις
+        none: Καμιά ειδοποίηση ακόμα!
+        edit_settings: Διαχειριστείτε τις ρυθμίσεις ειδοποιήσεών σας.
+        mark_all_read: Σήμανση ως αναγνωσμένο
   webhooks:
     info:
       title: Ορισμός ιστοάγκιστρου
@@ -731,6 +808,7 @@ el:
       translators_credit: "To %{site_name} έχει μεταφραστεί από %{translators_link:τη Ομάδα Μετάφρασης του Greasy στο Transifex}:"
       icons_credit: "Τα εικονίδια φυλλομετρητή είναι από %{browserlogos}."
     help_with_greasymonkey: "Βοήθεια για το Greasemonkey"
+    help_with_tampermonkey: "Βοήθεια με το Tampermonkey"
     contact:
       title: "Επικοινωνήστε με κάποιον"
       content_html: >
@@ -797,6 +875,7 @@ el:
       description: "Αναζήτηση κωδικού κώδικα. Δεν γίνεται έλεγχος πεζών-κεφαλαίων, αναζήτηση απλού κειμένου χωρίς χαρακτήρες μπαλαντέρ."
     user_search:
       title: "Αναζήτηση χρήστη"
+      description: "Αναζήτηση χρηστών κατά όνομα."
   moderator_logs:
     date_column: "Ημερομηνία"
     moderator_column: "Συντονιστής"
@@ -808,6 +887,8 @@ el:
     item_user_html: "Χρήστης: %{user_link}"
     item_report: "%{report_link: Αναφορά #%{report_id}}"
     item_script_lock_appeal: "%{appeal_link:Έφεση #%{appeal_id}}"
+    item_discussion_html: "Συζήτηση: %{discussion_link}"
+    item_comment_html: "Σχόλιο σε συζήτηση: %{comment_link}"
   reports:
     name: "Αναφορά #%{id}"
     report_filed: "Η αναφορά έχει ελεγχθεί από συντονιστή."
@@ -832,6 +913,7 @@ el:
       wrong_category: "Εσφαλμένη κατηγορία"
       wrong_category_with_suggestion: "Εσφαλμένη κατηγορία (προτείνεται: %{suggested_category})"
       no_code: 'Χωρίς κώδικα / γεια σου κόσμε'
+      legal_claim: "Νόμιμη δήλωση"
       other: "Άλλος"
     report_intro: "Το %{reported_item}αναφέρθηκε την %{report_date} από %{reporter} λόγω %{reason}"
     report_intro_no_reporter: "Το %{reported_item}αναφέρθηκε %{report_date} λόγω %{reason}"
@@ -860,6 +942,14 @@ el:
     script_previous_reports:
       one: "Αυτός ο κώδικας έχε %{count} προηγούμενη ή διορθωμένη αναφορά."
       other: "Αυτός ο κώδικας έχε %{count} προηγούμενες ή διορθωμένες αναφορές."
+    already_reported_by_reporter: "Έχετε ήδη  %{report_link:αναφέρει πρόσφατα} αυτό το αντικείμενο."
+    already_reported_same_type: "Υπάρχει ήδη μια %{report_link:παρόμοια εν αναμονη αναφορά} για αυτό το αντικείμενο."
+    report_item:
+      discussion: "Συζήτηση με τίτλο %{title} από τον χρήστη %{user}"
+      comment: "Σχόλιο %{comment} από τον χρήστη %{user}"
+      comment_description: "Ένα σχόλιο στη συζήτηση %{discussion_title}"
+      message: "Ένα μήνημα από το χρήστη %{user}"
+      deleted: "Διαγραμμένη %{type} #%{id}"
   appeals:
     new:
       title: Έφεση διαγραφής νέου κώδικα
@@ -870,6 +960,7 @@ el:
     dismissed_by_moderator: Ο συντονιστής δεν έκανε δεκτή την έφεση.
     upheld_by_moderator: Ως αποτέλεσμα αυτής της έφεσης, ο συντονιστής επανέφερε αυτόν τον κώδικα.
     submitted: Η έφεσή σας έχει ληφθεί και έναν συντονιστής θα ασχοληθεί μαζί της.
+    already_open: Υπάρχει ήδη ανοιχτή έφεση για αυτόν τον κώδικα.
   discussions:
     title: Συζητήσεις
     comment_date: "Δημοσιεύτηκε: %{date}"
@@ -931,6 +1022,10 @@ el:
     locale_filter:
       label: Γλώσσα
       all: Όλες
+    sort:
+      comment_created: Ημερομηνία
+      discussion_last_comment: Ημερομηνία τελευταίου σχολίου
+      discussion_created: Ημερομηνία έναρξης συζήτησης
     user_activity:
       title: "Πρόσφατα σχόλια"
       no_recent_activity: "Αυτός ο χρήστης δεν δημοσίευσε σχόλια πρόσφατα."
@@ -1035,6 +1130,7 @@ el:
         current_password: "Τρέχων κωδικός πρόσβασης"
         new_password: "Νέος κωδικός πρόσβασης"
         new_password_confirmation: "Επιβεβαίωση νέου κωδικού πρόσβασης"
+        otp_attempt: Κωδικός Ταυτοποίησης δύο παραγόντων (Τ2Π)
       script:
         name: "Όνομα"
         description: "Περιγραφή"
@@ -1074,12 +1170,14 @@ el:
       must_be_greasy_fork_script: "Πρέπει να είναι το URL για έναν κώδικα στο %{site_name}"
       script_update_not_utf8: "ο κώδικας που στέλνετε πρέπει να είναι κείμενο UTF-8"
       script_disallowed_require: "χρησιμοποιείται ένας μη αποδεκτός εξωτερικός κώδικας: %{code}"
+      script_disallowed_base_64_require: "χρησιμοποιεί ένα @require με κωδικοποίηση base-64"
       script_malformed_require: "χρησιμοποιείται μια δύσμορφη αναφορά εξωτερικού κώδικα: %{code}"
       script_rate_limit: "Έχετε υπερβεί το όριο δημοσιεύσεων. Δοκιμάστε ξανά αργότερα."
       missing_include_or_match: "πρέπει να περιλαμβάνεται τουλάχιστον ένα @match ή @include κλειδί"
       invalid_meta: "έχει μια μη έγκυρη μετά-οδηγία. Η κατάλληλη μορφή είναι: // @foo"
       no_executable: "περιέχει μη εκτελέσιμο κώδικα"
       meta_too_long: "%{key} είναι πολύ μεγάλο (μέγιστο είναι %{count} χαρακτήρες)"
+      style_missing_meta: "απώλεσε τα μεταδεδομένα του. Δείτε το https://github.com/openstyles/stylus/wiki/Writing-UserCSS για παραδείγματα"
   opensearch:
     short_name: "Αναζήτηση %{site_name}"
     description: "Αναζήτηση για κώδικες χρηστών στο %{site_name}."
