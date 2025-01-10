@@ -177,6 +177,8 @@ class CssToJsConverter
 
     def url_has_port?(url)
       uri = URI(url)
+      return false unless uri.host
+
       Regexp.new("//#{Regexp.escape(uri.host)}:[0-9]+(/|\z)").match?(url)
     rescue URI::InvalidURIError
       false
