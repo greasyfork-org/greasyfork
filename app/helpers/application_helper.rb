@@ -36,6 +36,10 @@ module ApplicationHelper
     return url_for(safe_params(other_params))
   end
 
+  def current_api_url_with_params(other_params = {})
+    return url_for(**safe_params(other_params), subdomain: 'api')
+  end
+
   def current_path_with_params(other_params = {})
     return url_for(current_url_with_params(other_params.merge(only_path: true)))
   end

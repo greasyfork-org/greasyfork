@@ -88,7 +88,7 @@ Rails.application.configure do
 
   config.eager_load_namespaces << I18n
 
-  config.hosts = %w[greasyfork.org update.greasyfork.org sleazyfork.org update.sleazyfork.org]
+  config.hosts = %w[greasyfork.org update.greasyfork.org api.greasyfork.org sleazyfork.org update.sleazyfork.org api.sleazyfork.org]
 
   # mail server certificate is self-signed, that's OK because we're the only ones talking to it.
   config.action_mailer.smtp_settings = { openssl_verify_mode: OpenSSL::SSL::VERIFY_NONE }

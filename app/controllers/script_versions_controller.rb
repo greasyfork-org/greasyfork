@@ -46,8 +46,8 @@ class ScriptVersionsController < ApplicationController
           end
           @canonical_params = [:script_id, :version, :show_all_versions]
           @link_alternates = [
-            { url: current_path_with_params(format: :json), type: 'application/json' },
-            { url: current_path_with_params(format: :jsonp, callback: 'callback'), type: 'application/javascript' },
+            { url: current_api_url_with_params(format: :json), type: 'application/json' },
+            { url: current_api_url_with_params(format: :jsonp, callback: 'callback'), type: 'application/javascript' },
           ]
           render_to_string
         end

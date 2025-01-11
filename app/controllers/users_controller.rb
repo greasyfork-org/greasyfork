@@ -113,8 +113,8 @@ class UsersController < ApplicationController
         @bots = 'noindex,follow' if [:per_page, :set, :site, :sort, :language].any? { |name| params[name].present? }
 
         @link_alternates = [
-          { url: current_path_with_params(format: :json), type: 'application/json' },
-          { url: current_path_with_params(format: :jsonp, callback: 'callback'), type: 'application/javascript' },
+          { url: current_api_url_with_params(format: :json), type: 'application/json' },
+          { url: current_api_url_with_params(format: :jsonp, callback: 'callback'), type: 'application/javascript' },
         ]
         @canonical_params = [:id, :page, :per_page, :set, :site, :sort, :language]
 

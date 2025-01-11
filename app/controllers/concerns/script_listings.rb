@@ -189,10 +189,10 @@ module ScriptListings
         end
 
         @link_alternates = [
-          { url: current_path_with_params(format: :json), type: 'application/json' },
-          { url: current_path_with_params(format: :jsonp, callback: 'callback'), type: 'application/javascript' },
-          { url: current_path_with_params(format: :json, meta: '1'), type: 'application/json' },
-          { url: current_path_with_params(format: :jsonp, meta: '1', callback: 'callback'), type: 'application/javascript' },
+          { url: current_api_url_with_params(format: :json), type: 'application/json' },
+          { url: current_api_url_with_params(format: :jsonp, callback: 'callback'), type: 'application/javascript' },
+          { url: current_api_url_with_params(format: :json, meta: '1'), type: 'application/json' },
+          { url: current_api_url_with_params(format: :jsonp, meta: '1', callback: 'callback'), type: 'application/javascript' },
         ]
         render action: 'index'
       end
@@ -277,12 +277,12 @@ module ScriptListings
 
   def listing_link_alternatives
     [
-      { url: current_path_with_params(page: nil, sort: 'created', format: :atom), type: 'application/atom+xml', title: t('scripts.listing_created_feed') },
-      { url: current_path_with_params(page: nil, sort: 'updated', format: :atom), type: 'application/atom+xml', title: t('scripts.listing_updated_feed') },
-      { url: current_path_with_params(format: :json), type: 'application/json' },
-      { url: current_path_with_params(format: :jsonp, callback: 'callback'), type: 'application/javascript' },
-      { url: current_path_with_params(format: :json, meta: '1'), type: 'application/json' },
-      { url: current_path_with_params(format: :jsonp, meta: '1', callback: 'callback'), type: 'application/javascript' },
+      { url: current_api_url_with_params(page: nil, sort: 'created', format: :atom), type: 'application/atom+xml', title: t('scripts.listing_created_feed') },
+      { url: current_api_url_with_params(page: nil, sort: 'updated', format: :atom), type: 'application/atom+xml', title: t('scripts.listing_updated_feed') },
+      { url: current_api_url_with_params(format: :json), type: 'application/json' },
+      { url: current_api_url_with_params(format: :jsonp, callback: 'callback'), type: 'application/javascript' },
+      { url: current_api_url_with_params(format: :json, meta: '1'), type: 'application/json' },
+      { url: current_api_url_with_params(format: :jsonp, meta: '1', callback: 'callback'), type: 'application/javascript' },
     ]
   end
 

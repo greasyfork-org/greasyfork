@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
   include NotificationDisplay
   include RequestDebugging
   include BannedUser
+  include Api
 
   if Rails.env.test?
     show_announcement key: :test_announcement,
