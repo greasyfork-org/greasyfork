@@ -554,7 +554,7 @@ class Script < ApplicationRecord
     #    https://github.com/greasemonkey/greasemonkey/issues/1683
 
     # Limit to 255 bytes so that when the request comes, we can create a filename for the cache
-    filename = url_name.mb_chars.limit(255 - extension.mb_chars.length).to_s
+    filename = url_name.truncate_bytes(255 - extension.bytesize, omission: nil)
 
     filename = CGI.escapeURIComponent(filename)
 
