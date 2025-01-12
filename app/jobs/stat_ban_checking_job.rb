@@ -24,14 +24,22 @@ class StatBanCheckingJob
   end
 
   def find_discrepancies(date, limit_to_script_ids: nil)
+    install_data = combined_install_data(date, limit_to_script_ids:)
+    install_data.select { |_script_id, _gf_installs, _ga_installs, ratio| ratio && ratio > MIN_DISCREPANCY_MULTIPLIER }.map(&:first)
+  end
+
+  def combined_install_data(date, limit_to_script_ids: nil)
     return [] if limit_to_script_ids == []
 
     gf_install_data = Script.connection.select_rows("select script_id, installs from install_counts where install_date = '#{date}' AND installs > #{MIN_INSTALL_COUNT} #{"AND script_id IN (#{limit_to_script_ids.join(',')})" if limit_to_script_ids} group by script_id order by installs").to_h
+    ga_stats = ga_install_data(date)
 
-    ga_gf_install_data = GoogleAnalytics.report_installs(date)
-    ga_sf_install_data = GoogleAnalytics.report_installs(date, site: :sleazyfork)
-    ga_install_data = ga_gf_install_data.merge(ga_sf_install_data) { |_key, gf_v, sf_v| gf_v + sf_v }
+    gf_install_data.map { |script_id, installs| [script_id, installs, ga_stats[script_id], ga_stats[script_id] ? installs / ga_stats[script_id] : nil] }
+  end
 
-    gf_install_data.select { |script_id, installs| ga_install_data[script_id] && installs / ga_install_data[script_id] > MIN_DISCREPANCY_MULTIPLIER }.keys
+  def ga_install_data(date)
+    gf_install_data = GoogleAnalytics.report_installs(date)
+    sf_install_data = GoogleAnalytics.report_installs(date, site: :sleazyfork)
+    gf_install_data.merge(sf_install_data) { |_key, gf_v, sf_v| gf_v + sf_v }
   end
 end
