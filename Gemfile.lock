@@ -231,14 +231,17 @@ GEM
     google-cloud-env (2.2.1)
       faraday (>= 1.0, < 3.a)
     google-cloud-errors (1.4.0)
-    google-protobuf (4.29.2)
+    google-protobuf (4.29.3)
+      bigdecimal
+      rake (>= 13)
+    google-protobuf (4.29.3-x86_64-linux)
       bigdecimal
       rake (>= 13)
     googleapis-common-protos (1.6.0)
       google-protobuf (>= 3.18, < 5.a)
       googleapis-common-protos-types (~> 1.7)
       grpc (~> 1.41)
-    googleapis-common-protos-types (1.16.0)
+    googleapis-common-protos-types (1.18.0)
       google-protobuf (>= 3.18, < 5.a)
     googleauth (1.11.2)
       faraday (>= 1.0, < 3.a)
@@ -247,7 +250,7 @@ GEM
       multi_json (~> 1.11)
       os (>= 0.9, < 2.0)
       signet (>= 0.16, < 2.a)
-    grpc (1.68.1)
+    grpc (1.69.0)
       google-protobuf (>= 3.25, < 5.0)
       googleapis-common-protos-types (~> 1.0)
     hashie (5.0.0)
@@ -721,11 +724,12 @@ CHECKSUMS
   google-cloud-core (1.7.1) sha256=5af2818a9c140b276ae14451092f6b80135c3fc740e1f92b16165723f6f7012e
   google-cloud-env (2.2.1) sha256=3c6062aee0b5c863b83f3ce125ea7831507aadf1af7c0d384b74a116c4f649cf
   google-cloud-errors (1.4.0) sha256=0b4e2e0f563db1708732ab4037421d9f26de5cbbbc04be710f2c9cf358e2de14
-  google-protobuf (4.29.2) sha256=95cde89ad8e2d4006725430904a422462f0c2d7ddbdd4092d997441c978052f0
+  google-protobuf (4.29.3) sha256=9a5576c0059f57d7e07107bda8287ac14d0c59c71fe939b260855d3f46b9b566
+  google-protobuf (4.29.3-x86_64-linux) sha256=4ac194b06c59559457ce1d1d57d03760b50e009dbcfe5ef065a1af48ce4a2d0e
   googleapis-common-protos (1.6.0) sha256=d540114a75fd4b34fee936495d28ff7e331d546b7d7ac7898f3b4bb9f13a8d79
-  googleapis-common-protos-types (1.16.0) sha256=94655d1aeb9f3cb2da6b58affb131562851a8d89b69273fac84570f505b3d1f7
+  googleapis-common-protos-types (1.18.0) sha256=280d19dcf431f86b9ff7ed8b23994915c5f4f7a0282ad3e870a2d3595976559f
   googleauth (1.11.2) sha256=7e6bacaeed7aea3dd66dcea985266839816af6633e9f5983c3c2e0e40a44731e
-  grpc (1.68.1) sha256=edaa111b8cc0d32065049f7acbeeb7cb46d4126959a6126b34c554319343bd7c
+  grpc (1.69.0) sha256=536fbc8abcbbdb348accb62ab07aeea45318617dfb9966cfadd46d7d96d7089d
   hashie (5.0.0) sha256=9d6c4e51f2a36d4616cbc8a322d619a162d8f42815a792596039fc95595603da
   hiredis (0.6.3) sha256=7f052e320f7d24b5c2a9fdf67c6ff6facdf6e256394a703511bce34ecf445212
   i18n (1.14.6) sha256=dc229a74f5d181f09942dd60ab5d6e667f7392c4ee826f35096db36d1fe3614c
