@@ -1,0 +1,54 @@
+<p>
+  <%= t('scripts.needs_secure_login.intro') %>
+</p>
+
+<h3><%= t('scripts.needs_secure_login.secure_internal_heading', site_name:) %></h3>
+
+<ol>
+  <li>
+    <% if current_user.confirmed? %>
+      ✓ <%= t('scripts.needs_secure_login.confirm_email') %>
+    <% else %>
+      <%= t('scripts.needs_secure_login.confirm_email') %>
+      <%= form_tag({ controller: 'users', action: 'send_confirmation_email', method: :post }, class: 'inline-form') do %>
+        <input type="submit" value="<%= t('scripts.must_confirm_email_button', email: current_user.email) %>">
+      <% end %>
+    <% end %>
+  </li>
+  <li>
+    <% if current_user.uses_secure_login? %>
+      ✓ <%= t('scripts.needs_secure_login.enable_2fa') %>
+    <% else %>
+      <%= t('scripts.needs_secure_login.enable_2fa') %>
+      <%= form_tag(user_enable_2fa_path, method: :patch, class: 'inline-form') do |f| %>
+        <input type="hidden" name="return_to" value="<%= current_path_with_params %>">
+        <input type="submit" value="<%= t('users.edit_sign_in_enable_2fa') %>">
+      <% end %>
+  <% end %>
+  </li>
+</ol>
+
+<h3><%= t('scripts.needs_secure_login.add_external_heading') %></h3>
+
+<ol>
+  <li>
+    <% if current_user.identities.any? %>
+      ✓ <%= t('scripts.needs_secure_login.add_external') %>
+    <% else %>
+      <%= render partial: 'users/add_external_sign_in', locals: { return_to: request.path, message: t('scripts.needs_secure_login.add_external') } %>
+    <% end %>
+  </li>
+  <li>
+    <% if current_user.encrypted_password.nil? %>
+      ✓ <%= t('scripts.needs_secure_login.remove_password', site_name:) %>
+    <% else %>
+      <%= t('scripts.needs_secure_login.remove_password', site_name:) %>
+      <% if current_user.identities.any? %>
+        <%= form_tag(user_remove_password_path, method: :put, class: 'inline-form') do |f| %>
+          <input type="hidden" name="return_to" value="<%= current_path_with_params %>">
+          <input type="submit" value="<%= t('users.remove_password') %>"></p>
+        <% end %>
+      <% end %>
+    <% end %>
+  </li>
+</ol>

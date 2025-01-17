@@ -481,11 +481,20 @@ class User < ApplicationRecord
   end
 
   def require_secure_login?
-    moderator?
+    moderator? || (require_secure_login_for_author? && scripts.any?)
+  end
+
+  def require_secure_login_for_author?
+    # Temporary until it's actually enabled.
+    created_at >= Time.zone.now
   end
 
   def missing_secure_login?
     !uses_secure_login? && require_secure_login?
+  end
+
+  def missing_secure_login_for_author?
+    require_secure_login_for_author? && encrypted_password && (!confirmed? || !otp_required_for_login)
   end
 
   protected
@@ -494,6 +503,7 @@ class User < ApplicationRecord
     new_record? && identities.empty?
   end
 
+  # Overrides devise's method, as we do not require confirmation from all users.
   def confirmation_required?
     false
   end

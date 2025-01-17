@@ -527,6 +527,14 @@ en:
     must_confirm: "You must confirm your account before you can post scripts. You have two confirmation options - add an external sign-in or send a confirmation email."
     must_confirm_external_sign_in: ""
     must_confirm_email_button: "Send confirmation link to %{email}"
+    needs_secure_login:
+      intro: "You must set up your account with a secure login method before you can post scripts."
+      secure_internal_heading: "Option 1: secure your %{site_name} login"
+      confirm_email: "Confirm your email address"
+      enable_2fa: "Enable two-factor authentication (2FA)"
+      add_external_heading: "Option 2: use an external login only"
+      add_external: "Add an external login"
+      remove_password: "Remove your %{site_name} password"
     authors_heading: "Authors"
     error_unauthorized_copy: "This code appears to be an unauthorized copy of %{script}. Please refer to %{site_name}'s %{rules_link:rules} on posting scripts."
     invitations:

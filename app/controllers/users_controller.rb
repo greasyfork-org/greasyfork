@@ -208,7 +208,7 @@ class UsersController < ApplicationController
     # password changed, have to sign in again
     bypass_sign_in(current_user)
     flash[:notice] = t('users.password_removed')
-    redirect_to user_edit_sign_in_path
+    redirect_to clean_redirect_param(:return_to) || user_edit_sign_in_path
   end
 
   def update_identity
@@ -374,6 +374,7 @@ class UsersController < ApplicationController
   end
 
   def enable_2fa
+    @return_to = params[:return_to]
     current_user.otp_secret = User.generate_otp_secret
     current_user.save!
   end
@@ -395,6 +396,7 @@ class UsersController < ApplicationController
   def confirm_2fa
     unless current_user.validate_and_consume_otp!(params[:code])
       flash[:alert] = t('users.2fa_enable_code_incorrect')
+      @return_to = params[:return_to]
       render :enable_2fa
       return
     end
@@ -402,7 +404,7 @@ class UsersController < ApplicationController
     current_user.otp_required_for_login = true
     current_user.save!
     flash[:notice] = t('users.2fa_enabled')
-    redirect_to user_edit_sign_in_path
+    redirect_to clean_redirect_param(:return_to) || user_edit_sign_in_path
   end
 
   def self.apply_sort(finder, sort:)

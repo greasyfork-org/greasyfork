@@ -31,7 +31,7 @@ class CreateTest < ApplicationSystemTestCase
       user = User.first
       login_as(user, scope: :user)
       visit new_script_version_url(language: 'css')
-      code = <<~JS
+      code = <<~CSS
         /* ==UserStyle==
         @name        Example UserCSS style
         @description This is an example
@@ -45,7 +45,7 @@ class CreateTest < ApplicationSystemTestCase
             color: red;
           }
         }
-      JS
+      CSS
       fill_in 'Code', with: code
       click_on 'Post script'
       assert_selector 'h2', text: 'Example UserCSS style'
@@ -57,13 +57,13 @@ class CreateTest < ApplicationSystemTestCase
     user = User.first
     login_as(user, scope: :user)
     visit new_script_version_url(language: 'css')
-    code = <<~JS
+    code = <<~CSS
       @-moz-document domain("example.com") {
         a {
           color: red;
         }
       }
-    JS
+    CSS
     fill_in 'Code', with: code
     click_on 'Post script'
     assert_content 'is missing its metadata block'
@@ -180,5 +180,61 @@ class CreateTest < ApplicationSystemTestCase
     assert_selector 'h2', text: 'Un test!'
     assert_content "Test d'unit"
     assert_content 'Additional info en francais'
+  end
+
+  test 'script creation when secure requirements not met' do
+    user = User.first
+    user.update!(confirmed_at: nil)
+    User.any_instance.expects(:require_secure_login_for_author?).returns(true).at_least_once
+    login_as(user, scope: :user)
+    visit new_script_version_url
+    assert_content 'You must set up your account with a secure login method before you can post scripts.'
+    assert_no_content '✓'
+  end
+
+  test 'script creation when only confirmed email secure requirement is met' do
+    user = User.first
+    User.any_instance.expects(:require_secure_login_for_author?).returns(true).at_least_once
+    login_as(user, scope: :user)
+    visit new_script_version_url
+    assert_content '✓ Confirm your email address'
+  end
+
+  test 'script creation when only 2fa secure requirement is met' do
+    user = User.first
+    User.any_instance.expects(:require_secure_login_for_author?).returns(true).at_least_once
+    user.update!(otp_required_for_login: true, confirmed_at: nil)
+    login_as(user, scope: :user)
+    visit new_script_version_url
+    assert_content '✓ Enable two-factor authentication (2FA)'
+  end
+
+  test 'script creation when confirmed email and 2fa secure requirements are met' do
+    user = User.first
+    user.update!(confirmed_at: Time.zone.now, otp_required_for_login: true)
+    User.any_instance.expects(:require_secure_login_for_author?).returns(true).at_least_once
+    login_as(user, scope: :user)
+    visit new_script_version_url
+    assert_content 'Scripts must be properly described, cannot be obfuscated or minified, must respect copyright, and are limited in the external code used.'
+  end
+
+  test 'script creation when only external login requirement is met' do
+    user = User.first
+    User.any_instance.expects(:require_secure_login_for_author?).returns(true).at_least_once
+    user.update!(confirmed_at: nil)
+    user.identities.create!(provider: 'google', uid: '12345', syncing: false)
+    login_as(user, scope: :user)
+    visit new_script_version_url
+    assert_content '✓ Add an external login'
+  end
+
+  test 'script creation when only external login and no password requirements are met' do
+    user = User.first
+    User.any_instance.expects(:require_secure_login_for_author?).returns(true).at_least_once
+    user.update!(confirmed_at: nil, encrypted_password: nil)
+    user.identities.create!(provider: 'google', uid: '12345', syncing: false)
+    login_as(user, scope: :user)
+    visit new_script_version_url
+    assert_content 'Scripts must be properly described, cannot be obfuscated or minified, must respect copyright, and are limited in the external code used.'
   end
 end

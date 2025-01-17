@@ -95,6 +95,9 @@ class ScriptVersionsController < ApplicationController
       when UserRestrictionService::NEEDS_CONFIRMATION, UserRestrictionService::BLOCKED
         render 'must_confirm'
         return
+      when UserRestrictionService::NEEDS_SECURE_LOGIN
+        render 'needs_secure_login'
+        return
       when UserRestrictionService::RATE_LIMITED
         render 'rate_limited'
         return

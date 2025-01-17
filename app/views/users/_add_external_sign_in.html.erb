@@ -1,8 +1,10 @@
-<%# locals: (return_to: nil) %>
+<%# locals: (return_to: nil, message: nil) %>
+
+<% message ||= t('users.add_external_sign_in_info') %>
 
 <% available_providers = (available_auths.keys - current_user.identity_providers_used) %>
 <% if !available_providers.empty? %>
-  <%= t('users.add_external_sign_in_info') %>
+  <%= message %>
   <% available_providers.each do |provider| %>
     <span class="external-login-container">
       <%= form_with(url: "/auth/#{provider}", method: :post) do %>

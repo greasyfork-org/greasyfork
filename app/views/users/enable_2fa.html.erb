@@ -28,6 +28,7 @@
   <%= t('users.enable_2fa.code_entry', site_name:) %>
 
   <%= form_tag(user_confirm_2fa_path, method: :patch) do %>
+    <input type="hidden" name="return_to" value="<%= @return_to %>">
     <input name="code" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code" required>
     <input type="submit" value="<%= t('users.enable_2fa.verify_code') %>">
   <% end %>

@@ -3,6 +3,7 @@ class UserRestrictionService
   DELAYED = :delayed
   BLOCKED = :blocked
   RATE_LIMITED = :rate_limited
+  NEEDS_SECURE_LOGIN = :needs_secure_login
 
   NEW_USER_RATE_LIMITS = {
     1.hour => 3,
@@ -22,6 +23,8 @@ class UserRestrictionService
         return DELAYED if @user.in_confirmation_period?
       end
     end
+
+    return NEEDS_SECURE_LOGIN if @user.missing_secure_login_for_author?
 
     return NEEDS_CONFIRMATION unless @user.confirmed_or_identidied?
 
