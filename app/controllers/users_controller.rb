@@ -14,6 +14,7 @@ class UsersController < ApplicationController
   before_action :authorize_for_moderators_only, only: [:ban, :do_ban, :unban, :do_unban, :mark_email_as_confirmed]
   before_action :check_read_only_mode, except: [:index, :show]
   before_action :disable_browser_caching!, only: [:edit_sign_in]
+  before_action :handle_api_request, only: [:index, :show]
 
   def index
     with = {}

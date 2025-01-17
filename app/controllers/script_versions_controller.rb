@@ -9,6 +9,7 @@ class ScriptVersionsController < ApplicationController
   before_action :authorize_for_moderators_only, only: [:delete, :do_delete]
   before_action :check_read_only_mode, except: :index
   before_action :check_ip, only: :create
+  before_action :handle_api_request, only: :index
 
   layout 'scripts', only: [:index]
 

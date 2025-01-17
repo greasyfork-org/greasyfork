@@ -57,6 +57,7 @@ class ScriptsController < ApplicationController
   end
 
   before_action :check_read_only_mode, except: [:show, :show_code, :user_js, :meta_js, :user_css, :meta_css, :feedback, :stats, :diff, :derivatives, :index, :by_site]
+  before_action :handle_api_request, only: [:show, :stats, :index, :by_site, :libraries, :code_search]
 
   skip_before_action :verify_authenticity_token, only: [:install_ping, :user_js, :meta_js, :user_css, :meta_css, :show, :show_code]
 
