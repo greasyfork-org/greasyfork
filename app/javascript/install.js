@@ -119,7 +119,7 @@ async function doInstall(installLink) {
 function onInstallMouseOver(event) {
   let url = event.target.getAttribute("data-ping-url");
   let now = new Date()
-  let moValue = sha1('3' + now.getUTCFullYear().toString() + (now.getUTCMonth() + 1).toString() + now.getUTCDate().toString() + now.getUTCHours().toString())
+  let moValue = sha1('4' + now.getUTCFullYear().toString() + (now.getUTCMonth() + 1).toString() + now.getUTCDate().toString() + now.getUTCHours().toString())
   if (url && !/[&?]mo=.+$/.test(url)) {
     event.target.setAttribute("data-ping-url", url + (url.includes('?') ? '&' : '?') + "mo=" + moValue);
   }

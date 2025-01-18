@@ -1,7 +1,7 @@
 require 'user_agent_parser'
 
 module PingRequestChecking
-  PREFIX = '3'.freeze
+  PREFIX = '4'.freeze
 
   class Params
     def self.check(request)
