@@ -111,7 +111,7 @@ module LocalizedRequest
     return [] if value.nil?
 
     return value.split(',').filter_map do |r|
-      locale = r.split(';').first.strip
+      locale = r.split(';').first&.strip
       next nil unless locale
 
       # make sure the region is uppercase
