@@ -139,7 +139,7 @@ class CreateTest < ApplicationSystemTestCase
 
   test 'rate limited' do
     user = User.find(1)
-    user.update(created_at: Time.current)
+    user.update(created_at: Time.current, otp_required_for_login: true)
     login_as(user, scope: :user)
     visit new_script_version_url
     assert_content 'You have posted too many scripts recently. Please try again later.'

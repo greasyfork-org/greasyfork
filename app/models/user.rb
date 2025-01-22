@@ -485,8 +485,7 @@ class User < ApplicationRecord
   end
 
   def require_secure_login_for_author?
-    # Temporary until it's actually enabled.
-    created_at >= Time.zone.now
+    created_at >= Date.new(2025, 1, 22)
   end
 
   def missing_secure_login?
