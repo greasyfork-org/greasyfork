@@ -217,118 +217,118 @@ pt-BR:
     sets_add_inclusion: "Adicionar a %{set_name}"
     sets_add_exclusion: "Excluir de %{set_name}"
     sets_add_to_new: "Adicionar a um novo conjunto"
-    rules_summary_html: "Scripts devem ser <strong>descritos corretamente</strong>, não podem ser <strong>ofuscados</strong> ou <strong>reduzidos</strong>, devem respeitar <strong>copyright</strong>, e estão limitados no <strong>código externo</strong> utilizado. %{full_rules_link}"
-    rules_summary_link_to_full: "Leia as regras completas."
-    syncing_notice_html: "O script é %{syncing_notice_sync_type}. Qualquer atualização realizada no código aqui será sobrescrita quando sincronizada."
-    syncing_notice_sync_type_manual: "Definir para sincronizar manualmente de %{sync_identifier}"
-    syncing_notice_sync_type_automatic: "definir para sincronizar automaticamente de %{sync_identifier}"
-    upload_label: "Ou envie:"
-    enable_source_code_editor_label: "Habilitar destacador de sintaxe no editor de código"
+    rules_summary_html: "Os scripts devem estar <strong>corretamente descritos</strong>, não podem estar <strong>ofuscados</strong> ou <strong>minificados</strong>, devem respeitar os <strong>direitos autorais</strong>, e o uso de <strong>código externo</strong> é limitado. %{full_rules_link}"
+    rules_summary_link_to_full: "Leia todas as regras."
+    syncing_notice_html: "Este script está %{syncing_notice_sync_type}. As atualizações que você fizer no código aqui serão sobrescritas durante a sincronização."
+    syncing_notice_sync_type_manual: "configurado para sincronizar manualmente a partir de %{sync_identifier}"
+    syncing_notice_sync_type_automatic: "configurado para sincronização automática a partir de %{sync_identifier}"
+    upload_label: "Ou enviar:"
+    enable_source_code_editor_label: "Ativar editor de código-fonte com realce de sintaxe"
     changelog_note: "O que mudou nesta versão?"
-    additional_info_note: "Uma descrição mais detalhada, instruções, etc."
-    post_new_script: "Postar script"
-    post_updated_script: "Postar nova versão"
-    type_1_html: "Script de usuário público - um script de usuário para todos verem e usarem."
-    type_2_html: "Script de usuário não listado - um script de usuário para uso (semi-)privado. Disponível para acesso direto, mas não conectado de qualquer lugar do %{site_name}."
-    type_3_html: "Biblioteca - um script destinado a <code>@require</code>-d de outros scripts e não instalado diretamente."
+    additional_info_note: "Uma descrição detalhada, instruções, etc."
+    post_new_script: "Publicar script"
+    post_updated_script: "Publicar nova versão"
+    type_1_html: "Script de usuário público - um script para todos verem e usarem."
+    type_2_html: "Script de usuário não listado - um script para uso (semi)privado. Disponível por acesso direto, mas sem links em nenhum local do 1%{site_name}."
+    type_3_html: "Biblioteca - um script para ser utilizado com <code>@require</code> em outros scripts e não instalado diretamente."
     override_warning_checkbox_label: "Salvar mesmo assim"
-    warning_version_not_incremented_html: "Você atualizou o código mas não atualizou o número da <code>@version</code>. Aquelees que instalarm anteriormente seu script não poderão atualizar o código."
-    warning_version_missing_html: "Você não especificou uma <code>@version</code>. A <code>@version</code> é necessária para que os usuários recebam atualizações. Você pode especificar uma da seguinte forma: <code>//@version 1.0</code>."
+    warning_version_not_incremented_html: "Você atualizou o código, mas não incrementou o número em <code>@version</code>. Quem já instalou seu script pode não receber a atualização."
+    warning_version_missing_html: "Você não especificou um <code>@version</code>. O <code>@version</code> é necessário para que os usuários recebam atualizações. Você pode especificá-lo desta forma: <code>// @version 1.0</code>"
     warning_version_missing_generate_automatically_html: "Gerar <code>@version</code> automaticamente"
-    warning_namespace_missing_html: "Você não especificou uma <code>@namespace</code>. A <code>@namespace</code> ajuda a previnir conflitos caso usuários instalem mais de um script com o mesmo nome. A <code>@namespace</code> só precisa uma linha de texto única; geralmente se utiliza a URL de autor que você controla."
-    warning_namespace_missing_generate_automatically_html: "Gerar uma <code>@namespace</code> automaticamente"
-    warning_namespace_changed_html: "Seu <code>@namespace</code> foi alterado. Um <code>@namespace</code> consistente permite que usuários reinstalem seu script para atualização."
-    warning_potentially_minified_html: "Seu script parece que pode conter código reduzido (comprimido). Se você está usando uma biblioteca reduzida, por favor como alternativa <code>@require</code> de  %{allowed_requires_link}. Scripts com código reduzido estão sujeitos a remoção."
+    warning_namespace_missing_html: "Você não especificou um <code>@namespace</code>. O <code>@namespace</code> ajuda a evitar conflitos caso usuários instalem outro script com o mesmo nome. O <code>@namespace</code> só precisa ser uma string única; geralmente, uma URL que você controla é usada."
+    warning_namespace_missing_generate_automatically_html: "Gerar um <code>@namespace</code> automaticamente"
+    warning_namespace_changed_html: "Seu <code>@namespace</code> foi alterado. Um <code>@namespace</code> consistente permite que os usuários reinstalem seu script para atualizá-lo."
+    warning_potentially_minified_html: "Seu script parece conter código minificado (compactado). Se você estiver usando uma biblioteca minificada, por favor, utilize <code>@require</code> a partir de %{allowed_requires_link}. Scripts com código minificado estão sujeitos à remoção."
     warning_automatic_sensitive_html: "Seu script é para  %{sensitive_domains} e por isso será marcado como conteúdo adulto. "
-    warning_potentially_minified_allowed_requires_link: "um destes lugares"
-    warning_code_previously_posted_html: "Este código foi postado anteriormente em %{script_links}. Repostagens estão sujeitas a exclusão pelos moderadores."
-    warning_license_missing_html: "Você não especificou uma <code>@license</code>. Ao postar em %{site_name}, você autoriza outros a utilizarem seu código, mas uma licença permite especificar como outros podem modificar e redistribuir seu código. Por exemplo, <code>//@license MIT</code> significa que você permite a todos modificar e redistribuir o código que você escreveu. %{license_chooser_link:Mais informações sobre licenças disponível aqui.} Se você não especificar uma licença, %{site_name} assumirá que você não autoriza outros a fazer modificações ou redistribuir cópias. Note que se você não é o único autor do código que está postando, geralmente você não tem permissão para posta-lo a menos que tenha permissão dos demais autores."
+    warning_potentially_minified_allowed_requires_link: "um desses locais"
+    warning_code_previously_posted_html: "Este código já foi publicado em %{script_links}. Republicações estão sujeitas a remoção por moderadores."
+    warning_license_missing_html: "Você não especificou uma licença <code>@license</code>. Ao publicar no %{site_name}, você permite que outros usem seu código, mas uma licença também permitirá que você defina como eles podem modificar e redistribuir seu código. Por exemplo, <code>// @license MIT</code> significa que você permite que qualquer pessoa modifique e redistribua o código que você escreveu. %{license_chooser_link:Mais informações sobre licenças estão disponíveis aqui.} Se você não fornecer uma licença, o %{site_name} assumirá que você não permite modificações ou redistribuição do seu código. Note que, se você não for o único autor do código que está publicando, geralmente você não tem permissão para publicá-lo, a menos que tenha permissão de todos os outros autores."
     warning_license_missing_override_html: "Salvar sem uma licença"
-    warning_meta_not_at_start_html: "Seu código não começa com // ==UserScript==. Incluir código, comentários ou espaços em branco pode causar problemas de compatibilidade com alguns gerenciadores de scripts de usuário"
-    additional_info_locale_prompt: "(Selecione uma regionalização)"
-    additional_info_add_localized: "Adicionar uma informação regionalizada adicional"
-    additional_info_locale_repeated: "Informar somente uma informação adicional para a regionalização '%{locale_code}'"
-    localized_additional_info_with_no_name: "Informação adicional foi especificada para a regionalização '%{locale_code}', mas nada adicionado a @name:%{locale_code}."
+    warning_meta_not_at_start_html: "Seu código não começa com <code>// ==UserScript==</code>. Incluir código, comentários ou espaços em branco antes desse cabeçalho pode causar problemas de compatibilidade com alguns gerenciadores de scripts de usuário."
+    additional_info_locale_prompt: "(Escolha um local)"
+    additional_info_add_localized: "Adicionar informação adicional localizada"
+    additional_info_locale_repeated: "Forneça apenas uma informação adicional para o local '%{locale_code}'."
+    localized_additional_info_with_no_name: "Uma informação adicional foi especificada para o local '%{locale_code}', mas nenhum @name:%{locale_code} foi fornecido."
     invalid_matchers: "Correspondências inválidas utilizadas: %{matches}"
-    code_syncing_from_url_html: "O código de script foi configurado para sincronia de: %{field}"
-    provide_code_syncing_from_url_html: "%{site_name} pode importar scripts que já foram hospedados em outro lugar, p. ex. num sistema de controle de versão (como GitHub), seu próprio servidor, ou outro site de hospedagem de scripts de usuário. Para habilitar sincronização com seu scrpit, digite a URL: %{field}"
-    code_syncing_from_webhook_html: "O código deste script está configurado para sincronizar com um webhook. Combinaremos as solicitações de webhook para este script com base neste URL:%{field}"
+    code_syncing_from_url_html: "O código deste script está configurado para sincronizar a partir de: %{field}"
+    provide_code_syncing_from_url_html: "O %{site_name} pode importar scripts que já estão hospedados em outro lugar, por exemplo, em um sistema de controle de versão (como o GitHub), seu próprio servidor ou outro site de hospedagem de scripts de usuário. Para ativar a sincronização do seu script, forneça uma URL: %{field}"
+    code_syncing_from_webhook_html: "O código deste script está configurado para sincronizar com um webhook. As requisições de webhook serão associadas a este script com base nesta URL: %{field}"
     sync_type_intro: "O script será sincronizado:"
     sync_type_1:
       name: Manual
-      description: Será verificado se há atualizações apenas quando você acioná-lo
+      description: as atualizações só serão verificadas quando você solicitar.
     sync_type_2:
       name: Automático
-      description: será verificado periodicamente por atualizações
+      description: as atualizações serão verificadas periodicamente.
     sync_type_3:
       name: Webhook
-      description: ele será atualizado quando você enviar alterações para este arquivo em seu repositório
-    sync_webhook_info_without_sync: 'Após configurar a sincronização acima, se você estiver sincronizando com um repositório do GitHub, GitLab ou BitBucket, você também pode %{webhook_info_link: configurar um webhook} para atualizar automaticamente %{site_name} quando você fizer push para o seu repositório.'
-    sync_webhook_info_with_sync: 'Se você estiver sincronizando com um repositório do GitHub, GitLab ou BitBucket, você pode %{webhook_info_link: configurar um webhook} para atualizar automaticamente %{site_name} quando você fizer push para o seu repositório.'
+      description: será atualizado quando você enviar alterações para este arquivo em seu repositório.
+    sync_webhook_info_without_sync: Após configurar a sincronização acima, se você estiver sincronizando com um repositório GitHub, GitLab ou BitBucket, você também pode %{webhook_info_link:configurar um webhook} para atualizar o %{site_name} automaticamente quando fizer um push para seu repositório.
+    sync_webhook_info_with_sync: Se você estiver sincronizando com um repositório GitHub, GitLab ou BitBucket, você pode %{webhook_info_link:configurar um webhook} para atualizar o %{site_name} automaticamente quando fizer um push para seu repositório.
     sync_name_and_description: "%{name} - %{description}"
-    sync_failed_info_html: "Última tentativa de sincronia foi %{date}, que resultou em %{error}."
-    sync_success_info_html: "Úlitma sincronia com sucesso foi %{date}."
-    sync_never_succeeded: "Sincronia nunca completada com sucesso."
-    sync_additional_info: Você pode, opcionalmente, sincronizar as informações adicionais dos seus scripts.
-    add_synced_additional_info: Adicione uma informação adicional localizada e sincronizada
+    sync_failed_info_html: "A última tentativa de sincronização foi em %{date}, que resultou em %{error}"
+    sync_success_info_html: "A última sincronização realizada com sucesso foi em %{date}."
+    sync_never_succeeded: "A sincronização nunca foi concluída com sucesso."
+    sync_additional_info: Você pode, opcionalmente, sincronizar as informações adicionais do seu script.
+    add_synced_additional_info: Adicionar informação adicional localizada e sincronizada
     update_and_sync: "Atualizar e sincronizar agora"
     update_no_sync: "Atualizar"
-    turn_off_syncing: "Desativar sincronia deste script"
-    additional_info_default_sync_html: "Info adicional padrão (linguagem igual a <code>@name</code>)"
-    additional_info_localized_sync_html: "Para regionalização (igual a <code>@name:XX</code>)"
+    turn_off_syncing: "Desativar a sincronização para este script"
+    additional_info_default_sync_html: "Informação adicional padrão (o idioma corresponde a <code>@name</code>)"
+    additional_info_localized_sync_html: "Para o local (correspondente a <code>@name:XX</code>)"
     sync_url_placeholder: "(URL)"
     sync_successful: Script sincronizado com sucesso.
-    sync_no_changes: Script sincronizado com sucesso, mas nenhuma alteração encontrada.
-    sync_error: Falha na sincronização de script - %{error}.
+    sync_no_changes: Script sincronizado com sucesso, mas nenhuma alteração foi encontrada.
+    sync_error: Falha na sincronização do script - %{error}.
     sync_turned_off: Sincronização de script desativada.
     screenshots_add: "Adicionar"
     screenshots_remove: "Remover"
-    replacement_script_explanation: "(Opcional) Escolha outro script que substitua este script. Digite a URL do script substituto:"
-    diff_title: "%{script} - Versão diferente"
+    replacement_script_explanation: "(Opcional) Escolha outro script que substitua este. Insira o URL do script de substituição:"
+    diff_title: "%{script} - Diferença de versão"
     diff_old_version: "Antigo:"
     diff_new_version: "Novo:"
     diff_lines_of_context: "Linhas de contexto:"
-    diff_ignore_whitespace: "Ignorar mudanças de espaço em branco"
-    diff_terser: "Limpe o código antes de comparar"
+    diff_ignore_whitespace: "Ignorar alterações de espaço em branco"
+    diff_terser: "Limpar código antes de comparar"
     diff_refresh: "Atualizar"
-    diff_no_change: "Não foram encontradas diferenças."
-    good_rating_explanation: "Número de pessoas que votaram como Bom ou adicionaram aos favoritos."
-    ok_rating_explanation: "Número de pessoas que votaram como OK."
-    bad_rating_explanation: "Número de pessoas que votaram como Ruim."
+    diff_no_change: "Nenhuma diferença foi encontrada."
+    good_rating_explanation: "Número de pessoas que avaliaram como Bom ou adicionaram aos favoritos."
+    ok_rating_explanation: "Número de pessoas que avaliaram como OK."
+    bad_rating_explanation: "Número de pessoas que avaliaram como Ruim."
     write_your_own_html: "%{post_a_script_link} (ou %{learn_to_write_scripts_link})"
-    post_a_script_link_text: "Publicar um script que você escreveu"
-    learn_to_write_scripts_link_text: "aprender a escrever um"
-    feedback_or_report: "%{feedback_link:Faça uma pergunta, publique uma análise}, ou %{report_link:denuncie o script}."
-    support_feedback_or_report: "%{support_url:Visite o site do autor para obter suporte}, %{feedback_link:faça uma pergunta, publique uma análise}, ou %{report_link:denuncie o script}."
-    support_email_feedback_or_report: "%{support_url:Envie um email para o autor para obter suporte}, %{feedback_link:faça uma parte, publique uma análise}, ou %{report_link:denuncie o script}."
+    post_a_script_link_text: "Publique um script que você escreveu"
+    learn_to_write_scripts_link_text: "aprenda a escrever um"
+    feedback_or_report: "%{feedback_link:Faça uma pergunta, publique uma avaliação}, ou %{report_link:denuncie o script}."
+    support_feedback_or_report: "%{support_url:Visite o site do autor para obter suporte}, %{feedback_link:faça uma pergunta, publique uma avaliação}, ou %{report_link:denuncie o script}."
+    support_email_feedback_or_report: "%{support_url:Envie um e-mail ao autor para obter suporte}, %{feedback_link:faça uma pergunta, publique uma avaliação}, ou %{report_link:denuncie o script}."
     adult_content: "Conteúdo adulto"
-    adult_content_self_report: "Este script contém conteúdo adulto ou foi feito para um site que contém conteúdo adulto."
-    adult_content_self_report_explanation: "%{site_name} permite scripts com conteúdo adulto, mas eles devem ser marcados como tal, para que os usuários possam escolher se querem vê-los."
-    not_adult_content_self_report_html: "Este script <strong>não</strong> contém conteúdo adulto e <strong>não</strong> foi feito para um site que contém conteúdo adulto."
-    not_adult_content_self_report_explanation: "%{site_name} permite scripts com conteúdo adulto, então eles devem ser marcados como tal para os usuários poderem escolher se querem vê-los. Seu script foi marcado com contendo conteúdo adulto. Você pode relatar que ele não possui conteúdo adulto, isto será revisto por um moderador."
-    not_adult_content_self_report_explanation_automatic: "%{site_name} permite scripts com conteúdo adulto, mas eles devem estar marcados como tal para que os usuários possam escolher vê-los ou não. Seu script foi marcado como conteúdo adulto por ser feito para %{domain_list}."
+    adult_content_self_report: "Este script contém conteúdo adulto ou é para um site que contém conteúdo adulto."
+    adult_content_self_report_explanation: "O %{site_name} permite scripts com conteúdo adulto, mas eles devem ser marcados como tal para que os usuários possam escolher se desejam vê-los."
+    not_adult_content_self_report_html: "Este script <strong>não</strong> contém conteúdo adulto e <strong>não</strong> é para um site que contém conteúdo adulto."
+    not_adult_content_self_report_explanation: "O %{site_name} permite scripts com conteúdo adulto, mas eles devem ser marcados como tal para que os usuários possam escolher se desejam vê-los. Seu script foi marcado como tendo conteúdo adulto. Você pode relatar que não tem; isso será revisado por um moderador."
+    not_adult_content_self_report_explanation_automatic: "O %{site_name} permite scripts com conteúdo adulto, mas eles devem ser marcados como tal para que os usuários possam escolher se desejam vê-los. Seu script foi marcado como tendo conteúdo adulto por ser para %{domain_list}."
     adult_content_notice_from_sleazy: Como você está publicando este script no %{site_name}, assumimos que seu script contenha conteúdo adulto ou seja para um site com conteúdo adulto. Se este não for o caso, %{greasyfork_link:poste seu script no Greasy Fork}.
-    adult_content_on_greasy_logged_in_error: "Este script não está mais disponível neste site com sua %{edit_account_link:Greasy Fork account settings}."
-    adult_content_on_greasy_not_logged_in_error: "Este script não está mais disponível anonimamente neste site. %{login_link:Log in} e cheque suas preferências da sua conta no Greasy Fork."
-    non_adult_content_on_sleazy: "O script não está disponível neste site."
+    adult_content_on_greasy_logged_in_error: "Este script não está mais disponível neste site com as suas atuais %{edit_account_link:configurações de conta do Greasy Fork}."
+    adult_content_on_greasy_not_logged_in_error: "Este script não está mais disponível anonimamente neste site. %{login_link:Entre} e verifique as configurações da sua conta Greasy Fork."
+    non_adult_content_on_sleazy: "Este script não está disponível neste site."
     not_js_convertible_override_header: "Conversão para JS"
-    not_js_convertible_override_explanation: "O %{site_name} pode criar automaticamente uma %{help_link:conversão de JS de usuário} do seu CSS de usuário. Como a conversão do JS de usuário e seu CSS de usuário funcionarão de formas diferentes, recomendamos que você teste a conversão do JS de usuário. Se você achar que não está funcional, você pode torná-la indisponível marcando a caixa abaixo."
-    not_js_convertible_override_label_html: "Isso <strong>não</strong> deve ser disponibilizado no formato de JS de usuário"
+    not_js_convertible_override_explanation: "O %{site_name} pode criar automaticamente uma %{help_link:conversão para JS de usuário} do seu CSS de usuário. Como a conversão para JS de usuário e o seu CSS de usuário funcionarão de forma um pouco diferente, recomendamos que você teste a conversão para JS de usuário. Se você achar que não está funcional, você pode torná-la indisponível marcando a caixa abaixo."
+    not_js_convertible_override_label_html: "Isso <strong>não</strong> deve ser disponibilizado no formato JS de usuário"
     adult_marker: "(Adulto)"
     deleted_marker: "(Excluído)"
-    locked_marker: "(Trancado)"
+    locked_marker: "(Bloqueado)"
     unlisted_marker: "(Não listado)"
-    library_marker: "(Livraria)"
+    library_marker: "(Biblioteca)"
     libraries_title: "Bibliotecas"
-    libraries_description_html: "Existem bibliotecas postadas por usuários do %{site_name} que você pode incluir em seus scripts usando <code>@require</code>. Para saber mais sobre outros tipos de biblioteca que podem ser incluídas com <code>@require</code>, leia a %{policy_link:política de uso do <code>@require</code> no %{site_name}}."
+    libraries_description_html: "Há bibliotecas publicadas por usuários do %{site_name} que você pode utilizar com <code>@require</code> em seus scripts. Para outros tipos de bibliotecas que podem ser utilizadas com <code>@require</code>, leia %{policy_link: a política do %{site_name} sobre <code>@require</code>}."
     by_site_list_title: "Scripts de usuário no %{site_name} agrupados por site"
-    by_site_list_description: "Estes são os sites afetados pelos scripts mais populares. Maiores tamanhos de fonte significam scripts mais populares."
+    by_site_list_description: "Estes são os sites afetados pelos scripts de usuário mais populares. Quanto maior o tamanho da fonte, mais populares são os scripts de usuário."
     by_site_list_filter: "Filtrar por nome do site:"
     search_placeholder: "Pesquisar scripts"
     updated: "Script atualizado."
-    preview_additional_info: "Previsualizar"
-    must_confirm: "Você deve ativar sua conta antes de postar scripts. Você tem duas opções de ativação  - realizar um login externo ou confirmando o seu e-mail."
-    must_confirm_email_button: "Enviar link de confirmação para  %{email}"
+    preview_additional_info: "Pré-visualizar"
+    must_confirm: "Você precisa confirmar sua conta antes de publicar scripts. Há duas opções de confirmação: adicionar um login externo ou enviar um e-mail de confirmação."
+    must_confirm_email_button: "Enviar link de confirmação para %{email}"
     needs_secure_login:
       intro: "Você precisa configurar um método de login seguro em sua conta antes de poder publicar scripts."
       secure_internal_heading: "Opção 1: torne seu login do %{site_name} seguro"
@@ -338,39 +338,39 @@ pt-BR:
       add_external: "Adicionar um login externo"
       remove_password: "Remover sua senha do %{site_name}"
     authors_heading: "Autores"
-    error_unauthorized_copy: "Este código parece ser um cópia não autorizada de %{script}. Por favor cheque as %{rules_link:regras} do  %{site_name} ao postar scripts."
+    error_unauthorized_copy: "Este código parece ser uma cópia não autorizada de %{script}. Consulte as %{rules_link:regras} do 2%{site_name} para publicação de scripts."
     invitations:
-      form_title: "Convide outros autores"
-      explanation: "Você pode adicionar outros usuários do Greasy Fork como autores deste script. Eles terão os mesmos direitos neste script que você."
-      invited_user_url_label: "Usuário a ser convidado"
+      form_title: "Convidar outros autores"
+      explanation: "Você pode adicionar outros usuários do Greasy Fork como autores deste script. Eles terão os mesmos direitos que você sobre este script."
+      invited_user_url_label: "Usuário para convidar"
       invited_user_placeholder: "URL do perfil do usuário no %{site_name}"
       submit: "Enviar convite"
-      invalid_user_url: "A URL do usuário convidado é inválida."
-      already_author: "O usuário que você especificou já é um autor desde script."
-      sent: "O convite foi enviado."
+      invalid_user_url: "URL do usuário convidado não é válida."
+      already_author: "O usuário especificado já é um autor deste script."
+      sent: "Convite enviado."
       subject: "Convite para %{script_name}"
-      body: "Você foi convidado para ser um autor do script %{script_name} (%{script_url}) no %{site_name}. Para aceitar este convite, por favor acesse %{accept_url} ."
+      body: "Você foi convidado a ser um autor do script %{script_name} (%{script_url}) no %{site_name}. Para aceitar o convite, visite %{accept_url}"
       current_user_already_author: "Você já é um autor deste script."
       invitation_not_found: "Convite não encontrado."
       invitation_expired: "O convite expirou."
-      invitation_accepted: "Você agora é um autor deste script."
+      invitation_accepted: "Agora você é um autor deste script."
     remove_author:
       heading: "Remover Autores"
       success: "%{user_name} foi removido como autor."
       remove_button: "Remover"
-      remove_confirm: "Tem certeza que deseja remover %{user_name} como autor?"
+      remove_confirm: "Tem certeza de que deseja remover %{user_name} como autor?"
       failure: "Não foi possível remover o autor."
-    no_disposable_email: "Você não poderá publicar scripts caso use um endereço de email descartável."
-    rate_limited: "Você postou muitos scripts recentemente. Por favor tente novamente mais tarde."
-    delayed: "Devido a problemas com spam, novas contas não são autorizadas a postar scripts. Por favor tente novamente mais tarde."
+    no_disposable_email: "Você não pode publicar scripts se usar um endereço de e-mail descartável."
+    rate_limited: "Você publicou muitos scripts recentemente. Tente novamente mais tarde."
+    delayed: "Devido a problemas com spam, novas contas não podem publicar scripts imediatamente. Tente novamente mais tarde."
     new_script_notice:
       title: "O que você está tentando fazer?"
       install_link_html: "Eu quero <b>instalar e usar</b> um script."
-      share_link_html: "Eu <b>escrevi</b> um script e quero <b>compartilhá-lo</b> com os outros."
+      share_link_html: "<b>Escrevi</b> um script e quero <b>compartilhá-lo</b> com os outros."
     new_title:
-      js: "Postar um novo script"
-      css: "Postar um novo estilo"
-    update_title: "Postar uma nova versão do script %{script}"
+      js: "Publicar um novo script"
+      css: "Publicar um novo estilo"
+    update_title: "Publicar uma nova versão de %{script}"
     install_help_dialog:
       js:
         firefox: Você precisará instalar uma extensão como %{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} ou %{violentmonkey_link:Violentmonkey} para instalar este script.
@@ -378,8 +378,8 @@ pt-BR:
         opera: Você precisará instalar uma extensão como %{tampermonkey_link:Tampermonkey} ou %{violentmonkey_link:Violentmonkey} para instalar este script.
         safari: Você precisará instalar uma extensão como %{tampermonkey_link:Tampermonkey} ou %{userscripts_link:Userscripts} para instalar este script.
         edge: Você precisará instalar uma extensão como o %{tampermonkey_link:Tampermonkey} para instalar este script.
-        other: Para instalar este script, antes será preciso instalar uma extensão gerenciadora de scripts.
-        bypass: (Eu já tenho um gerenciador de scripts de usuário, me deixe fazer a instalação!)
+        other: Você precisará instalar um gerenciador de scripts de usuário para instalar este script.
+        bypass: (Eu já tenho um gerenciador de scripts de usuário, me deixe instalá-lo!)
       css:
         firefox: Você precisará instalar uma extensão como o %{stylus_link:Stylus} para instalar este estilo.
         chrome: Você precisará instalar uma extensão como o %{stylus_link:Stylus} para instalar este estilo.
@@ -390,29 +390,29 @@ pt-BR:
         bypass: (Eu já possuo um gerenciador de estilos de usuário, me deixar fazer a instalação!)
       close_dialog: OK
     antifeatures:
-      label: Antirrecursos
-      warning_title: Este script contém antifuncionalidades
-      intro: Antes de instalar, o %{site_name} gostaria que você soubesse que este script contém antifeatures, que são coisas que beneficiam o autor e não você.
-      author_explanation_intro: "O autor deste script script explica:"
+      label: Recursos indesejados
+      warning_title: Este script contém recursos indesejados
+      intro: ' Antes de instalar, o %{site_name} gostaria que você soubesse que este script contém recursos indesejados, que são recursos incluídos para benefício do autor do script, e não seu.'
+      author_explanation_intro: "Explicação do autor do script:"
       types:
         ads:
           title: Anúncios
-          description_html: Este script irá <b>inserir anúncios</b> nos sites que você visita.
+          description_html: Este script irá <b>inserir anúncios</b> nos sites que você visitar.
         tracking:
           title: Rastreamento
           description_html: Este script contém código que irá <b>rastrear sua navegação</b>.
         miner:
-          title: Minerador de criptomoeda
-          description_html: Este script contém um minerador de criptomoedas que irá <b>usar os recursos do seu dispositivo</b> quando ativado.
+          title: Minerador de criptomoedas
+          description_html: Este script contém um minerador de criptomoedas que irá <b>utilizar os recursos do seu dispositivo</b> quando ativo.
         referral-link:
-          title: Links de referência
-          description_html: O script <b>fornece comissão</b> para o autor, por exemplo reescrevendo links ou fornecendo códigos de cupons ou de afiliados.
+          title: Links de indicação
+          description_html: Este script <b>gera comissão</b> para o autor, por exemplo, modificando links ou fornecendo cupons que incluem um código de referência ou afiliado.
         membership:
-          title: Filiação
-          description_html: Este script só será totalmente funcional depois que você <b>fizer algum tipo de registro</b>, como entrar em um grupo, se inscrever em um canal ou dar like em uma página.
+          title: Assinatura
+          description_html: Este script só funciona completamente após você <b>se registrar em algo</b>, como entrar em um grupo, assinar um canal ou curtir uma página.
         payment:
           title: Pagamento
-          description_html: Este script só será totalmente funcional depois que você <b>realizar um pagamento</b>. %{site_name} não se envolve no pagamento, então não podemos garantir a validade da transação ou te ajudar com reembolso.
+          description_html: Este script só funciona completamente após você <b>efetuar um pagamento</b>. O %{site_name} não está envolvido no processo de pagamento e, portanto, não pode garantir que você receberá algo de valor ou que conseguirá um reembolso.
       cancel_install: Cancelar
     badges:
       js:
@@ -421,26 +421,26 @@ pt-BR:
       css:
         short: CSS
         long: Estilo de usuário
-    related_scripts: "Você também pode tentar estes scripts relacionados:"
+    related_scripts: "Você também pode experimentar estes scripts relacionados:"
     integrity_hashes:
       user_notice_html:
         one: "Você tem um código com a chave de integridade de sub recurso incorreta: %{script_links}"
-        many: "Você tem códigos com a chave de integridade de sub recursos incorretas: %{script_links}"
-        other: "Você tem códigos com a chave de integridade de sub recursos incorretas: %{script_links}"
+        many: "Você possui scripts com hashes de integridade de sub-recursos incorretos: %{script_links}"
+        other: "Você possui scripts com hashes de integridade de sub-recursos incorretos: %{script_links}"
       script_notice:
         text_html:
           one: "Esse código utiliza uma chave de integridade de sub recurso incorreta: %{detail}"
           many: "Esse código utiliza chaves de integridade de sub recursos incorretas: %{detail}"
-          other: "Esse código utiliza chaves de integridade de sub recursos incorretas: %{detail}"
-        detail: "<code>%{url}</code> deveria usar a chave hash <code>%{expected_hash}</code> (ultima checagem %{last_checked_at})"
+          other: "Este script utiliza hashes de integridade de sub-recursos incorretos: 1%{detail}"
+        detail: "<code>%{url}</code> deveria usar o hash <code>%{expected_hash}</code> (verificado pela última vez em %{last_checked_at})"
   script_sets:
-    description: "Coleções de scripts permitem a você criar uma lista personalizada de scripts dentro do Greasy Fork. Você pode adicionar scripts à sua coleção incluindo scripts individuais, coleções de outros usuários, ou coleções geradas automaticamente. Você também pode excluir scripts da sua coleção da mesma maneira."
+    description: "Os conjuntos de scripts permitem criar uma lista personalizada de scripts para navegar no Greasy Fork. Você pode adicionar scripts ao seu conjunto, incluindo scripts individuais, conjuntos de outros usuários ou conjuntos gerados automaticamente. Você também pode excluir scripts do seu conjunto usando os mesmos métodos."
     favorites_name: "Favoritos"
-    delete: "Apagar conjunto de script"
-    delete_confirmation: "Tem certeza que quer apagar o conjunto de script?"
-    site_default_sort: "(Site padrão)"
+    delete: "Excluir conjunto de scripts"
+    delete_confirmation: "Tem certeza de que deseja excluir este conjunto de scripts?"
+    site_default_sort: "(Padrão do site)"
     edit_scripts:
-      heading: "Códigos"
+      heading: "Scripts"
       description: "Incluir ou excluir scripts individuais na sua coleção de scripts."
       included: "Incluído"
       included_none: "(Nenhum)"
@@ -510,7 +510,7 @@ pt-BR:
     search_placeholder: "Pesquisar scripts de usuário"
     scripts_for_label: "Scripts para:"
     explain_user_scripts_heading: "O que são scripts de usuários?"
-    explain_user_scripts_html: "Scripts de usuários te colocam no controle da sua experiência de navegação. Uma vez instalados, eles automaticamente fazem os sites que você visita melhores, adicionando funções, deixando-os mais fáceis de usar, ou retirando aquelas partes que te incomodam. Os scripts no %{site_name} foram escritos por outros usuários e postados para serem compartilhados com o mundo. Eles são gratuitos e fáceis de usar."
+    explain_user_scripts_html: "Com os scripts de usuário, você assume o controle da sua experiência de navegação. Depois de instalados, eles melhoram automaticamente os sites que você visita, seja adicionando funcionalidades, facilitando seu uso ou removendo elementos indesejados. Os scripts de usuário no %{site_name} foram escritos por outros usuários e publicados para serem compartilhados com o mundo. Eles são gratuitos e fáceis de usar."
     installing_step1_header: "Passo 1: instalar um gerenciador de scripts de usuários"
     installing_step1_caption: "Tampermonkey para o Chrome"
     installing_step1_description_html: >
@@ -521,13 +521,13 @@ pt-BR:
       title: PC
       browser_list_html: |
           <ul>
-          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} or %{chrome_violentmonkey_link:Violentmonkey}</li>
-          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, or %{firefox_violentmonkey_link:Violentmonkey}</li>
-          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} or %{safari_userscripts_link:Userscripts}</li>
-          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} or %{edge_violentmonkey_link:Violentmonkey}</li>
-          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} or %{opera_violentmonkey_link:Violentmonkey}</li>
+          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} ou %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, ou %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} ou %{safari_userscripts_link:Userscripts}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} ou %{edge_violentmonkey_link:Violentmonkey}</li>
+          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} ou %{opera_violentmonkey_link:Violentmonkey}</li>
           <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
-          <li>%{adguard_link:AdGuard}: (Não é necessário programa adicional)</li>
+          <li>%{adguard_link:AdGuard}: (Para este, não é necessário nenhum programa adicional)</li>
           </ul>
     android_browsers:
       title: Móvel (Android)
@@ -1113,8 +1113,9 @@ pt-BR:
     item_script_html: "Script: %{script_link}"
     item_deleted_script: "O script %{id} foi removido"
     item_user_html: "Usuário: %{user_link}"
-    item_report: "%{report_link: Relatório #%{report_id}}"
-    item_script_lock_appeal: "%{appeal_link:Apelação #%{appeal_id}}"
+    item_report: " %{report_link: Denúnciar #%{report_id}}"
+    item_script_lock_appeal: "%{appeal_link: Recurso #%{appeal_id}}"
+    item_script_lock_appeal_dismissed: "%{appeal_link:Recurso #%{appeal_id}} rejeitado"
     item_discussion_html: "Discussão: 1%{discussion_link}"
     item_comment_html: "Comentário na discussão: 1%{comment_link}"
   reports:
@@ -1126,38 +1127,40 @@ pt-BR:
       message: "Reportar uma mensagem de %{user}"
       script: "Reportar %{script}"
     new_report_notes_html: >
-        <p>Antes de denunciar, saiba que:</p> <ul>
+        <p>Antes de denunciar, observe:</p> <ul>
 
-        <li>Um moderador revisará sua denúncia e tomará as medidas apropriadas.</li>
+        <li>Um moderador revisará sua denúncia e tomará as providências cabíveis.</li>
 
-        <li>Discordar com o conteúdo ou acreditar que ele não é verdadeiro não é um
-        motivo válido para fazer uma denúncia.</li>
+        <li>Discordar do conteúdo ou considerá-lo falso não é um motivo válido para
+        uma denúncia.</li>
 
-        <li>Abusar da função de denúncia pode fazer com que <i>você</i> seja banido.</li>
+        <li>O abuso deste recurso de denúncia pode resultar no <i>seu</i> banimento.</li>
 
         </ul>
     new_script_report_notes_html: >
-        <p>Antes de reportar, tenha em mente que:</p> <ul>
+        <p>Antes de denunciar, observe:</p>
 
-        <li>Scripts apenas serão removidos por violações às %{rules_link:regras do
-        %{site_name}}. Se o script estiver quebrado ou não funcional, %{feedback_link:em
-        vez disso deixe um feedback.}</li>
+        <ul>
 
-        <li>Um moderador irá analisar seu reporte e agirá de acordo.</li>
+        <li>Os scripts só serão removidos por violarem as %{rules_link:regras do %{site_name}}.
+        Se o script estiver quebrado ou não funcionar, %{feedback_link:deixe um feedback}.</li>
 
-        <li>O abuso desta ferramenta de reporte pode fazer com que <i>você</i> seja
-        banido.</li>
+        <li>Um moderador revisará sua denúncia e tomará as providências cabíveis.</li>
+
+        <li>O abuso deste recurso de denúncia pode resultar no <i>seu</i> banimento.</li>
 
         </ul>
     new_user_report_notes_html: >
-        <p>Antes de reportar, saiba que:</p> <ul>
+        <p>Antes de denunciar, observe:</p>
 
-        <li>Se estiver reportando baseado no conteúdo de um script ou de um comentário,
-        por favor, em vez disso reporte o script ou comentário específico.</li>
+        <ul>
 
-        <li>Um moderador irá analisar sua denúncia e agirá de acordo.</li>
+        <li>Se estiver denunciando com base no conteúdo de um script ou comentário,
+        denuncie o script ou comentário específico.</li>
 
-        <li>O abuso desses reportes podem levar a <i>você</i> ser banido.</li>
+        <li>Um moderador revisará sua denúncia e tomará as providências cabíveis.</li>
+
+        <li>O abuso deste recurso de denúncia pode resultar no <i>seu</i> banimento.</li>
 
         </ul>
     reason:
@@ -1171,20 +1174,20 @@ pt-BR:
       minified: "Código minificado"
       obfuscated: "Código ofuscado"
       external_code: "Código externo não permitido"
-      undisclosed_antifeature: "Não divulgado %{antifeature_link:antirecurso} (por exemplo, anúncio, rastreamento, mineiração, etc.)"
+      undisclosed_antifeature: "%{antifeature_link:Recurso Indesejado} não divulgado (por exemplo, anúncio, rastreamento, mineração, etc.)"
       no_description: "Descrição ausente, não informativa ou enganosa"
-      wrong_category: "Categoria errada"
-      wrong_category_with_suggestion: "Categoria errada (sugestão: %{suggested_category})"
-      no_code: 'Sem codigo/Olá mundo'
-      legal_claim: "Reclamação legal"
+      wrong_category: "Categoria incorreta"
+      wrong_category_with_suggestion: "Categoria incorreta (sugestão: %{suggested_category})"
+      no_code: 'Sem código/hello world'
+      legal_claim: "Reivindicação legal"
       other: "Outro"
-    report_intro: "%{reported_item} foi reportado %{report_date} por %{reporter} por %{reason}"
-    report_intro_no_reporter: "%{reported_item} foi reportado %{report_date} por %{reason}"
-    report_intro_unauthorized_html: "%{reported_script} foi reportado %{report_date} por %{reporter} como uma cópia não autorizada de %{other_script}."
-    report_intro_unauthorized_no_reporter_html: "%{reported_script} foi reportado %{report_date} como uma copia não autorizada de %{other_script}."
-    report_intro_unauthorized_license: "%{other_script}usa a licença %{license_link: %{license_name}}. Visite %{tldr_legal_link:tldrlegal.com} para obter ajuda para entender o que esta licença significa."
-    report_intro_unauthorized_license_no_url: "%{other_script} usa a licença %{license_name}. Visite %{tldr_legal_link:tldrlegal.com} para obter ajuda para entender o que esta licença significa."
-    report_intro_unauthorized_no_license: "%{other_script}não especifica uma licença, o que significa que a distribuição de cópias não é permitida, a menos que seja dada permissão explícita."
+    report_intro: "%{reported_item} foi denunciado em %{report_date} por %{reporter} pelo motivo: %{reason}"
+    report_intro_no_reporter: "%{reported_item} foi denunciado em %{report_date} pelo motivo: %{reason}"
+    report_intro_unauthorized_html: "%{reported_script} foi denunciado em %{report_date} por %{reporter} como uma cópia não autorizada de %{other_script}."
+    report_intro_unauthorized_no_reporter_html: "%{reported_script} foi denunciado em %{report_date} como uma cópia não autorizada de %{other_script}."
+    report_intro_unauthorized_license: "O script %{other_script} usa a licença %{license_link: %{license_name}}. Visite %{tldr_legal_link:tldrlegal.com} para entender melhor o que essa licença significa."
+    report_intro_unauthorized_license_no_url: "O script %{other_script} usa a licença %{license_name}. Visite %{tldr_legal_link:tldrlegal.com} para entender melhor o que essa licença significa."
+    report_intro_unauthorized_no_license: "O script %{other_script} não especifica uma licença. Isso significa que não é permitido distribuir cópias, a menos que haja permissão explícita."
     non_functional_feedback: "Por favor, reporte scripts não funcionais por meio de %{feedback_link:feedback} na página do script em vez disso."
     paid_benefits_feedback: "%{site_name} não tem registro de nenhuma transação entre autores e usuários de scripts e, portanto, não pode validar nenhuma reivindicação relacionada a eles. Se você pagou por uma funcionalidade em um script e está insatisfeito, por favor, expresse suas reclamações como %{feedback_link:avaliação} no script em vez disso."
     unauthorized_code_original_placeholder: "URL do código original"
@@ -1306,7 +1309,7 @@ pt-BR:
       all: Todas
     sort:
       comment_created: Data
-      discussion_last_comment: Data do Último Comentário
+      discussion_last_comment: Data do último comentário
       discussion_created: Data de Início da Discussão
     user_activity:
       title: "Comentários recentes"
@@ -1388,7 +1391,7 @@ pt-BR:
     user_references_html: "Você pode referenciar e linkar outros usuários do %{site_name} com o formato <code>@NomeDoUsuário</code> ou <code>@\"Nome Do Usuário\"</code> (se o nome do usuário tiver espaços)."
     not_found_text: "404 - página não encontrada."
     not_found_title: "404 - Página Não Encontrada"
-    not_found_link_home: "Ir para página principal."
+    not_found_link_home: "Ir para o início."
     suggest_locale: "O %{site_name} está disponível em %{locale_name}."
     incomplete_locale: "Tradução de %{locale_name} do %{site_name} está apenas %{percent} completo. Você pode mudar isso."
     preview_tab: Visualizar
@@ -1475,12 +1478,12 @@ pt-BR:
     attribution: "Cite a autoria original dos scripts, veja cada script individualmente para licenciamento"
   importing:
     title: Importar scripts
-    intro: "%{site_name}pode importar scripts que já estão hospedados em outro lugar, por exemplo, em um sistema de controle de versão (como GitHub), seu próprio servidor ou outro site de hospedagem de script de usuário."
+    intro: "O %{site_name} pode importar scripts que já estão hospedados em outros locais, como, por exemplo, em sistemas de controle de versão (como o GitHub), em seu próprio servidor ou em outro site que hospede scripts de usuário."
     url_entry_label: Fornece URLs para importar, separados por novas linhas. Devem ser URLs para os arquivos JS ou CSS brutos.
     sync_type_label: "Após a importação inicial, o script (ou mais) deve ser sincronizado."
     additional_info_html: |
-        <p>Para scripts do controle de origem, certifique-se de que a URL que você usa se refere a um branch e não a um commit específico, caso contrário, ele nunca será atualizado. Por exemplo, <code>https://bitbucket.org/username/reponame/raw/<b>branch-name</b>/script.user.js</code> ao invés de <code>https://bitbucket.org/username/reponame/raw/<b>commit-hash</b>/script.user.js</code>.</p>
-        <p>Os scripts importados do GitHub, Bitbucket ou GitLab também podem ser configurados para sincronizar usando um webhook. Um webhook fará com que seus scripts sejam atualizados imediatamente em%{site_name} quando você envia para o seu repositório. Se você deseja usar um webhook, mas ainda não o configurou, faça a importação primeiro e, em seguida, %{webhook_info_link:configurar o webhook depois}.</p>
+        <p>Para scripts provenientes de controle de versão, certifique-se de que a URL que você usa se refira a um branch e não a um commit específico, caso contrário, ele nunca será atualizado. Por exemplo, <code><b>branch-name</b>/script.user.js</code> em vez de <code><b>commit-hash</b>/script.user.js</code>.</p>
+        <p>Scripts importados do GitHub, Bitbucket ou GitLab também podem ser configurados para sincronizar usando um webhook. Um webhook fará com que seus scripts sejam atualizados imediatamente no %{site_name} quando você fizer um push para seu repositório. Se você quiser usar um webhook, mas ainda não o configurou, faça a importação primeiro e, depois, %{webhook_info_link:configure o webhook}.</p>
     submit: importar
     previously_imported:
       heading: Scripts importados anteriormente
