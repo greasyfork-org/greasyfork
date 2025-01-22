@@ -70,7 +70,7 @@ class ScriptsController < ApplicationController
   include ScriptListings
 
   def show
-    cachable_request = request.query_parameters.except(:version).empty? && current_user.nil? && request.format.html?
+    cachable_request = generally_cachable? && request.query_parameters.except(:version).empty?
 
     if cachable_request
       # We may not need everything. Put it off till later.
@@ -159,7 +159,7 @@ class ScriptsController < ApplicationController
   end
 
   def feedback
-    cachable_request = request.query_parameters.empty? && current_user.nil? && request.format.html?
+    cachable_request = generally_cachable? && request.query_parameters.empty?
     page_key = "script/feedback/#{params[:id]}/#{request_locale.id}" if cachable_request
 
     respond_to do |format|
@@ -610,7 +610,7 @@ class ScriptsController < ApplicationController
   end
 
   def stats
-    cachable_request = request.query_parameters.empty? && current_user.nil? && request.format.html?
+    cachable_request = generally_cachable? && request.query_parameters.empty?
     page_key = "script/stats/#{params[:id].to_i}/#{request_locale.id}" if cachable_request
 
     cache_page(page_key) do

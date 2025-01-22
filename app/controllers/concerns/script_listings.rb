@@ -24,7 +24,7 @@ module ScriptListings
 
     respond_to do |format|
       format.html do
-        should_cache_page = current_user.nil? && request.format.html? && (params.keys - %w[locale controller action site page sort]).none?
+        should_cache_page = generally_cachable? && (params.keys - %w[locale controller action site page sort]).none?
         cache_page(should_cache_page ? "script_index/#{greasy?}/#{params.values.join('/')}" : nil) do
           status = 200
 

@@ -14,7 +14,7 @@ class ScriptVersionsController < ApplicationController
   layout 'scripts', only: [:index]
 
   def index
-    cachable_request = request.query_parameters.empty? && current_user.nil? && request.format.html?
+    cachable_request = generally_cachable? && request.query_parameters.empty?
     page_key = "script/versions/#{params[:script_id]}/#{request_locale.id}" if cachable_request
 
     cache_page(page_key) do

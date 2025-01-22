@@ -25,4 +25,8 @@ module PageCache
       .gsub(IP_ADDRESS, request.remote_ip)
       .html_safe, status: status || 200
   end
+
+  def generally_cachable?
+    current_user.nil? && request.format.html? && flash.empty?
+  end
 end
