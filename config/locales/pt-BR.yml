@@ -182,7 +182,7 @@ pt-BR:
     listing_filter_by_site_label: "Mostrando scripts para:"
     listing_filter_by_site_disable: "Todos"
     listing_filter_by_site_all_sites: "(Todos sites)"
-    listing_filter_by_language_label: "Idioma:"
+    listing_filter_by_language_label: "Linguagem:"
     listing_filter_by_site_more_sites: "Mais..."
     listing_filter_by_authorship_label: "Autoria:"
     listing_no_scripts: "Nenhum script foi encontrado."
@@ -917,7 +917,7 @@ pt-BR:
       cdns:
         title: Redes de distribuição de conteúdo (CDNs)
         content_html: |
-            <p>Códigos de CDNs (Redes de distribuição de conteúdo) são permitidas. %{cdns_link:See a list of recognized CDNs.} Esse código pode estar reduzido (minified), mas não ofuscado.</p>
+            <p>Códigos de CDNs são permitidos. %{cdns_link:Veja uma lista de CDNs reconhecidos.} Esse código pode estar minimizado, mas não ofuscado.</p>
       sri:
         title: Códigos com chaves de integridade de sub recursos
         content_html: |
@@ -936,24 +936,24 @@ pt-BR:
             <p>A injeção de scripts externos do mesmo domínio é permitida. Se um script é executado em https://exemplo.com, e baixa https://exemplo.com/script.js, modifica e injeta de volta em https://exemplo.com/, isso é permitido.</p>
             <p>Se https://exemplo.com/script.js é injetado em https://sitediferente.com, isso é proibido.</p>
     cdns:
-      title: Redes de distribuição de conteúdo (CDNs) permitidos
+      title: CDNs Autorizados
       content_html: |
-          <p>Esta é uma lista de CDNs reconhecidas pelo %{site_name}. Elas podem ser usadas para carregar %{external_code_link:código externo} em scripts publicados em %{site_name} .</p>
-          <p>Esta lista consiste em locais de scripts que:</p>
+          <p>Esta é uma lista de CDNs reconhecidos pelo %{site_name}. Eles podem ser usados para carregar %{external_code_link:código externo} em scripts publicados no %{site_name}.</p>
+          <p>Esta lista consiste em locais de script que:</p>
           <ul>
           <li>São públicos</li>
-          <li>Não terão seus conteúdos modificados frequentemente</li>
-          <li>Serão provavelmente úteis a mais de um autor de script</li>
+          <li>Não terão seus conteúdos alterados frequentemente</li>
+          <li>Possivelmente serão úteis para mais de um autor de script</li>
           </ul>
-          <p>Se o script que deseja incluir for uma biblioteca JavaScript (por exemplo, jQuery ou YUI), tente encontrá-lo em um dos sites listados abaixo. %{cdnjs_link:cdnjs} e %{jsdelivr_link:jsDelivr} em particular, têm uma grande variedade de bibliotecas disponíveis. Se você tiver uma CDN que gostaria que fosse adicionada, %{github_link:solicite-a no GitHub}. Observe que há %{external_code_link:outras opções} para códigos externos que não sejam CDNs.</p>
+          <p>Se o script que você deseja incluir for uma biblioteca JavaScript (por exemplo, jQuery ou YUI), tente encontrá-la em um dos sites listados abaixo. Os CDNs %{cdnjs_link:cdnjs} e %{jsdelivr_link:jsDelivr}, em particular, têm uma ampla variedade de bibliotecas disponíveis. Se você tem um CDN que gostaria de adicionar, %{github_link:solicite no GitHub}. Observe que há %{external_code_link:outras opções} para código externo além de CDNs.</p>
 
           %{allowed_require_list}
       test_url:
         label: Testar uma URL
-        result_ok: URL é permitida
-        result_not_ok: URL não é permitida
+        result_ok: URL permitida
+        result_not_ok: URL não permitida
     script_rewriting:
-      title: "Como o %{site_name} irá sobrescrever scripts postados"
+      title: "Como o %{site_name} reescreverá scripts publicados"
       content_html: >
           <p>Os scripts publicados em %{site_name} serão reescritos das seguintes
           formas:</p> <ul>
@@ -985,125 +985,117 @@ pt-BR:
     contact:
       title: "Contacte alguém"
       content_html: >
-          <p>Existem várias formas de falar sobre o %{site_name} e das coisas contidas
-          nele.</p> <p>Você tem uma pergunta ou um comentário sobre um script específico
-          postado no site? Então inicie uma discussão a partir do link na aba Feedback
-          na página do script. Os autores do script recebem notificação em suas páginas
-          sobre qualquer discussão em seus scripts.</p> <p>Tem uma pergunta ou comentário
-          a cerca do próprio %{site_name} ou de como desenvolver scripts, ou precisa
-          de alguém para criar um script para você? %{forum_link:Postar no fórum}
-          lhe dará a audiência que você precisa para sua discussão.</p> <p>Precisa
-          reportar um bug ou uma ideia para o próprio %{site_name} (e não para um
-          script específico <em>postado no</em> %{site_name})? %{github_link:Poste
-          na página do GitHub.}</p> <p>Possui alguma questão particular ou um comentário
-          direcionado especificamente para o administrador? %{admin_email_link:Envie
-          um email.}</p>
+          <p>Há diversas maneiras de falar sobre o %{site_name} e as coisas nele.</p>
+          <p>Você tem alguma dúvida ou comentário sobre um script específico publicado
+          no site? Se sim, poste uma discussão a partir do link na aba Feedback na
+          página desse script. Os autores dos scripts recebem notificações em suas
+          contas sobre quaisquer discussões em seus scripts.</p> <p>Você tem alguma
+          dúvida ou comentário sobre o próprio %{site_name} ou sobre o desenvolvimento
+          de scripts, ou você quer que alguém faça um script para você? %{forum_link:Postar
+          no fórum} daria a você a maior audiência para sua discussão.</p> <p>Você
+          tem um relato de bug ou ideia bem formada para o próprio %{site_name} (e
+          não para um script específico <em>publicado no</em> %{site_name})? %{github_link:Publique-a
+          na página do GitHub.}</p> <p>Você tem uma pergunta ou comentário particular
+          que gostaria que apenas o administrador visse? %{admin_email_link:Envie
+          um e-mail.}</p>
     privacy_policy:
       title: "Política de privacidade"
       content_html: >
-          <p>Esta página descreve como o %{site_name} irá registrar ou rastrear usuários.
-          Caso possua alguma preocupação a respeito, %{admin_email_link:envie um email
-          para o administrador}.</p> <h2>Logs do Servidor</h2> <p>O %{site_name} registra
-          todas as requisições no estilo padrão de logs de servidores. As informações
-          registradas incluem páginas visitadas, endereços de IP, e dados do user
-          agent. Esses registros existem para mérito de depuração e análise do servidor.
-          Os dados são mantidos por uma semana. Esses dados não são compartilhados
-          ou disponibilizados publicamente.</p> <h2>Estatísticas de Scripts</h2> <p>Com
-          a finalidade de gerar estatísticas, o %{site_name} grava requisições de
-          instalação e atualização com informações do endereço de IP. Essa informação
-          é mantida por um dia e então é agregada para deixar de incluir o endereço
-          de IP. Os dados de IP não são compartilhados ou disponibilizados publicaente,
+          <p>Esta página descreve como o %{site_name} registrará ou rastreará usuários.
+          Se você tiver alguma dúvida, %{admin_email_link:envie um e-mail para o administrador}.</p>
+          <h2>Logs de Servidor</h2> <p>O %{site_name} registra todas as solicitações
+          em um formato típico de log de servidor. As informações registradas incluem
+          páginas visitadas, endereço IP e a string de agente do usuário. Esses logs
+          servem para depuração e análise do servidor. Os dados são mantidos por uma
+          semana. Esses dados não são compartilhados nem disponibilizados publicamente.</p>
+          <h2>Estatísticas de Scripts</h2> <p>Para fins de geração de estatísticas,
+          o %{site_name} registra as solicitações de instalação e atualização com
+          informações de endereço IP. Essas informações são mantidas por um dia e,
+          depois, são agregadas para não incluir mais o endereço IP. Os dados com
+          endereços IP específicos não são compartilhados nem disponibilizados publicamente,
           mas os dados agregados são.</p> <h2>Cookies (quando não estiver logado)</h2>
-          <p>O %{site_name} pode definir cookies temporários de sessão para permitir
-          acesso a algumas funções do site. Esses cookies não são definidos para persistirem
+          <p>O %{site_name} pode definir cookies de sessão temporários para ativar
+          alguns recursos do site. Esses cookies não são configurados para persistir
           e podem ser apagados quando o navegador for fechado (dependendo das configurações
-          do navegador).</p> <h2>Contas de Usuário</h2> <p>O %{site_name} requer quer
-          os usuários criem uma conta para poderem publicar scripts, participar de
-          discussões e acessar algumas outras funções do site. Ao criar uma conta,
-          algumas informações como endereço de IP, email e user agent podem ser guardadas
-          permanentemente. Algumas dessas informações podem ser visíveis aos outros
-          usuários.</p> <p>Ações feitas estando logado, como publicar scripts e comentários,
-          se tornarão visíveis a outros usuários.</p> <p>Se a opção "Lembrar-se de
-          mim" for marcada ao efetuar o login, o %{site_name} criará um cookie permanente
-          para manter o estado do login.</p> <h2>Scripts publicados no %{site_name}</h2>
-          <p>O %{site_name} possui conteúdo gerado por usuários, e scripts publicados
-          podem ser capazes de rastrear usuários que instalarem aquele script.</p>
-          <h2>Bibliotecas de terceiros</h2> <p>O %{site_name} pode incluir código
-          de terceiros para coletar estatísticas ou exibir publicidade no site. Essas
-          bibliotecas podem incluir lógicas de rastreamento.</p>
+          do navegador).</p> <h2>Contas de Usuário</h2> <p>O %{site_name} exige que
+          os usuários criem uma conta para publicar scripts, participar de discussões
+          e acessar outros recursos do site. Ao criar uma conta, informações como
+          endereço IP, endereço de e-mail e agente do usuário podem ser armazenadas
+          permanentemente. Algumas dessas informações podem ficar visíveis para outros
+          usuários.</p> <p>As ações realizadas quando estiver logado, como publicação
+          de scripts e comentários, ficarão visíveis para outros usuários.</p> <p>Se
+          a opção "Lembrar de mim" estiver marcada ao fazer login em uma conta, o
+          %{site_name} definirá um cookie persistente para manter o estado de login.</p>
+          <h2>Scripts Publicados no %{site_name}</h2> <p>O %{site_name} contém conteúdo
+          gerado pelo usuário e os scripts publicados podem rastrear os usuários que
+          instalarem esses scripts.</p> <h2>Bibliotecas de Terceiros</h2> <p>O %{site_name}
+          pode incluir código de terceiros para coletar estatísticas ou exibir anúncios
+          no site. Essas bibliotecas podem incluir lógica de rastreamento.</p>
     user_css_to_user_js:
-      title: Conversão de CSS de usuário para JS de usuário
+      title: Conversão de CSS para JS de usuário
       content_html: |
-          <p>%{site_name} pode converter CSS do usuário para o formato JS do usuário. As regras <code>@-moz-document</code> são convertidas em JavaScript <code>se</code> declarações, construindo o CSS a ser aplicado. Este CSS é anexado a <code>&lt;head&gt;</code> em uma tag <code>&lt;style&gt;</code> .</p>
+          <p>O %{site_name} pode converter CSS de usuário para o formato JS de usuário. As regras <code>@-moz-document</code> são convertidas em declarações <code>if</code> do JavaScript, construindo o CSS a ser aplicado. Este CSS é anexado a <code>&lt;head&gt;</code> em um elemento <code>&lt;style&gt;</code>.</p>
 
-          <p>A presença de alguns recursos de CSS do usuário impede a conversão para o formato JS do usuário. Quando esses recursos são detectados, a conversão de JS do usuário não será feita.</p>
+          <p>A presença de alguns recursos de CSS de usuário impede a conversão para o formato JS de usuário. Quando esses recursos são detectados, a conversão para JS de usuário não será feita.</p>
 
-          <ul>
-          <li><code>@preprocessor</code> chaves meta diferentes do <code>padrão</code></li>
-          <li><code>@var</code> chaves meta </li>
-          </ul>
+          <ul> <li>Chaves de metadados <code>@preprocessor</code> diferentes de <code>default</code></li> <li>Chaves de metadados <code>@var</code></li> </ul>
 
-          <p>%{site_name}o usuário JS do usuário pode carregar o CSS de forma um pouco diferente do que o usuário CSS faz.</p>
+          <p>O JS de usuário do %{site_name} pode carregar o CSS de forma um pouco diferente do CSS de usuário.</p>
 
-          <ul>
-          <li>No usuário JS, o CSS inserido como o último elemento de <code>&lt;head&gt;</code>.No CSS do usuário, isso pode depender da extensão usada. É recomendado usar <code>!important</code> para atenuar esse problema.</li>
-          <li>No usuário JS, o CSS será calculado e aplicado uma vez no carregamento da página. O uso da API de histórico do JavaScript pela página pode fazer com que o CSS não seja aplicado conforme o esperado.</li>
-          <li>O JS do usuário não pode aplicar o CSS a frames ou iframes.</li>
-          </ul>
+          <ul> <li>No JS de usuário, o CSS é inserido como o último elemento de <code>&lt;head&gt;</code>. No CSS de usuário, isso pode depender da extensão usada. É recomendável usar <code>!important</code> para atenuar esse problema.</li> <li>No JS de usuário, o CSS será calculado e aplicado uma vez no carregamento da página. O uso da API de histórico do JavaScript pela página pode fazer com que o CSS não seja aplicado como esperado.</li> <li>O JS de usuário pode não aplicar o CSS a quadros ou iFrames.</li> </ul>
 
-          <p>Se você descobrir que a conversão JS do usuário não funciona, escolha a opção de torná-la indisponível ao atualizar o CSS do usuário.</p>
+          <p>Se você achar que a conversão para JS de usuário não funciona, escolha a opção para torná-la indisponível ao atualizar seu CSS de usuário.</p>
     antifeatures:
-      title: Anti recursos
+      title: Recursos indesejados
       intro_html: |
-          <p>Anti-recursos são coisas adicionadas aos scripts para beneficiar os autores em vez dos usuários, como anúncios ou rastreamento. Scripts com anti recursos são permitidos de acordo com %{rules_link:%{site_name}as regras} mas eles devem ser marcados com <code>@antifeature</code> no bloco de metadados do script. Isso garantirá que o usuário esteja ciente dos anti-recursos antes da instalação.</p>
-          <p>Anti-recursos são especificados como %{meta_keys_link:script meta keys} com a descrição do tipo de formato<code>@antifeature <i></i> <i></i></code>. <i>tipo</i>é obrigatório e <i>descrição</i> é opcional.</p>
-          <p>Esta página descreve os tipos de <code>@antifeature</code> reconhecidos por %{site_name}. Outros tipos podem ser usados, mas a presença do anti-recurso não deve ser contra %{rules_link:%{site_name}as regras}.</p>
+          <p>Os recursos indesejados são elementos adicionados a scripts que beneficiam os autores em vez dos usuários, como anúncios ou rastreamento. Scripts com recursos indesejados são permitidos de acordo com %{rules_link:as regras do %{site_name}}, mas devem ser marcados com <code>@antifeature</code> no bloco de metadados do script. Fazer isso garante que o usuário esteja ciente do recurso indesejado antes da instalação.</p> <p>Os recursos indesejados são especificados como %{meta_keys_link:chaves de metadados de script} com o formato <code>@antifeature <i>tipo</i> <i>descrição</i></code>. O <i>tipo</i> é obrigatório e a <i>descrição</i> é opcional.</p> <p>Esta página descreve os tipos de <code>@antifeature</code> reconhecidos pelo %{site_name}. Outros tipos podem ser usados, mas a presença do recurso indesejado não deve violar %{rules_link:as regras do %{site_name}}.</p>
       ads_html: |
           <p>O script insere anúncios nas páginas que o usuário visita.</p>
-          <p>O seguinte <i>não</i> requer o uso de <code>@antifeature anuncios</code>:</p>
+          <p>Os seguintes casos não exigem o uso de <code>@antifeature ads</code>:</p>
           <ul>
           <li>Um script que afeta um site que contém anúncios.</li>
-          <li>Um script vincula ou direciona o usuário a um site que contém anúncios, desde que esse site forneça alguma funcionalidade quando integrado ao script.</li>
+          <li>Um script que adiciona links ou direciona o usuário a um site que contém anúncios, desde que esse site forneça alguma funcionalidade quando integrado ao script.</li>
           <li>Promoção da página inicial do autor do script, repositório de código, Discord, WeChat, etc.</li>
           </ul>
       membership_html: |
-          <p>O script requer que o usuário se inscreva em um canal, entre em um grupo, como uma página, etc. para que o script seja totalmente funcional.</p>
+          <p>O script exige que o usuário se inscreva em um canal, participe de um grupo, curta uma página, etc. para que o script seja totalmente funcional.</p>
 
-          <p>O seguinte <i>não</i> requer o uso de <code>@antifeature filiação</code>:</p>
+          <p>Os seguintes casos não exigem o uso de <code>@antifeature membership</code>:</p>
 
           <ul>
-          <li>Um script que afeta a área de login de um site, mas o script em si não requer login adicional.</li>
-          <li>Um script em que o suporte é fornecido por meio de uma plataforma que exige associação, desde que tal suporte não seja necessário para que o usuário tenha funcionalidade total.</li>
-          <li>Links para o canal do autor, grupo, página, etc. que não afetam a funcionalidade do script.</li>
+          <li>Um script que afeta a área logada de um site, mas o script em si não exige login adicional.</li>
+          <li>Um script em que o suporte é fornecido por meio de uma plataforma que exige associação, desde que esse suporte não seja necessário para que o usuário tenha funcionalidade total.</li>
+          <li>Links para o canal, grupo, página, etc. do autor que não afetam a funcionalidade do script.
+          </li>
           </ul>
       miner_html: |
-          <p>O script contém um criptominer ou outro código que usa os recursos do usuário para realizar alguma tarefa para o autor do script.</p>
+          <p>O script contém um criptominerador ou outro código que usa os recursos do usuário para realizar alguma tarefa para o autor do script.</p>
       payment_html: |
-          <p>O script exige que o usuário pague o autor do script para que ele seja totalmente funcional.</p>
+          <p>O script exige que o usuário pague ao autor do script para que o script seja totalmente funcional.</p>
 
-          <p>O seguinte <i>não</i> requer o uso de <code>@antifeature pagamento</code>:</p>
+          <p>Os seguintes casos não exigem o uso de <code>@antifeature payment</code>:</p>
 
           <ul>
           <li>Um script que afeta um site que exige pagamento, mas o script em si não exige pagamento.</li>
           <li>Um script que pede doações, desde que a doação não desbloqueie funcionalidades adicionais.</li>
           </ul>
       referral_link_html: |
-          <p>O script executa alguma ação que ganha a comissão do autor nas compras. Isso inclui o script que contém links de referência / afiliados, reescrevendo links existentes para serem links de referência / afiliados ou fornecendo códigos de cupom que ganham a comissão do autor do script.</p>
+          <p>O script executa alguma ação que gera comissão ao autor sobre as compras. Isso inclui o script conter links de indicação/afiliados, a reescrita de links existentes para que se tornem links de indicação/afiliados ou o fornecimento de códigos de cupom que geram comissão ao autor do script.</p>
       tracking_html: |
           <p>O script inclui código para rastrear a atividade do usuário. Isso inclui rastreadores como o Google Analytics ou código de rastreamento personalizado que relata a atividade do usuário ao autor do script.</p>
   search:
     script_search:
-      title: "Pesquisa de Script"
-      description: "Busca de Scripts. Pesquise por nomes de scripts, descrições, informações adicionais e nomes de autores."
+      title: "Pesquisar Scripts"
+      description: "Pesquisar scripts. Pesquisa nomes, descrições, informações adicionais e nomes de autores de scripts."
     library_search:
-      title: "Pesquisa de Biblioteca"
-      description: "Busque por bibliotecas. Busque por nomes de bibliotecas, descrições, informações adicionais e nomes de autores."
+      title: "Pesquisar Bibliotecas"
+      description: "Pesquisar bibliotecas. Pesquisa nomes, descrições, informações adicionais e nomes de autores de bibliotecas."
     code_search:
-      title: "Pesquisa de Código"
-      description: "Pesquisar código de script. Não diferencia maiúsculas e minúsculas e busca texto sem aceitar coringas."
+      title: "Pesquisar Código"
+      description: "Pesquisar código de script. Esta é uma pesquisa de texto simples, que não diferencia maiúsculas de minúsculas e sem curingas."
     user_search:
-      title: "Pesquisa de Usuário"
-      description: "Busca de usuários por nome"
+      title: "Pesquisar Usuários"
+      description: "Pesquisar usuários por nome."
   moderator_logs:
     date_column: "Data"
     moderator_column: "Moderador"
@@ -1113,61 +1105,57 @@ pt-BR:
     item_script_html: "Script: %{script_link}"
     item_deleted_script: "O script %{id} foi removido"
     item_user_html: "Usuário: %{user_link}"
-    item_report: " %{report_link: Denúnciar #%{report_id}}"
+    item_report: " %{report_link: Denunciar #%{report_id}}"
     item_script_lock_appeal: "%{appeal_link: Recurso #%{appeal_id}}"
     item_script_lock_appeal_dismissed: "%{appeal_link:Recurso #%{appeal_id}} rejeitado"
     item_discussion_html: "Discussão: 1%{discussion_link}"
     item_comment_html: "Comentário na discussão: 1%{comment_link}"
   reports:
     name: "Relatório #%{id}"
-    report_filed: "Sua denúncia será revisada por um moderador"
+    report_filed: "Sua denúncia será analisada por um moderador."
     new_report_title:
       user: "Denunciar %{user}"
-      comment: "Denunciar um comentário por %{user}"
-      message: "Reportar uma mensagem de %{user}"
-      script: "Reportar %{script}"
+      comment: "Denunciar o comentário de %{user}"
+      message: "Denunciar a mensagem de %{user}"
+      script: "Denunciar o script %{script}"
     new_report_notes_html: >
-        <p>Antes de denunciar, observe:</p> <ul>
+        <p>Antes de fazer uma denúncia, observe:</p> <ul>
 
-        <li>Um moderador revisará sua denúncia e tomará as providências cabíveis.</li>
+        <li>Um moderador analisará sua denúncia e tomará as medidas cabíveis.</li>
 
-        <li>Discordar do conteúdo ou considerá-lo falso não é um motivo válido para
-        uma denúncia.</li>
+        <li>Discordar do conteúdo ou acreditar que ele não é verdadeiro não é um motivo
+        válido para denúncia.</li>
 
-        <li>O abuso deste recurso de denúncia pode resultar no <i>seu</i> banimento.</li>
+        <li>O abuso deste recurso de denúncia pode levar ao <i>seu</i> banimento.</li>
 
         </ul>
     new_script_report_notes_html: >
-        <p>Antes de denunciar, observe:</p>
+        <p>Antes de fazer uma denúncia, observe:</p> <ul>
 
-        <ul>
+        <li>Os scripts só serão removidos se violarem %{rules_link:as regras do %{site_name}}.
+        Se o script estiver quebrado ou não funcional, %{feedback_link:deixe um feedback}.</li>
 
-        <li>Os scripts só serão removidos por violarem as %{rules_link:regras do %{site_name}}.
-        Se o script estiver quebrado ou não funcionar, %{feedback_link:deixe um feedback}.</li>
+        <li>Um moderador analisará sua denúncia e tomará as medidas cabíveis.</li>
 
-        <li>Um moderador revisará sua denúncia e tomará as providências cabíveis.</li>
-
-        <li>O abuso deste recurso de denúncia pode resultar no <i>seu</i> banimento.</li>
+        <li>O abuso deste recurso de denúncia pode levar ao <i>seu</i> banimento.</li>
 
         </ul>
     new_user_report_notes_html: >
-        <p>Antes de denunciar, observe:</p>
+        <p>Antes de fazer uma denúncia, observe:</p> <ul>
 
-        <ul>
+        <li>Se a denúncia for baseada no conteúdo de um script ou comentário, denuncie
+        o script ou comentário específico.</li>
 
-        <li>Se estiver denunciando com base no conteúdo de um script ou comentário,
-        denuncie o script ou comentário específico.</li>
+        <li>Um moderador analisará sua denúncia e tomará as medidas cabíveis.</li>
 
-        <li>Um moderador revisará sua denúncia e tomará as providências cabíveis.</li>
-
-        <li>O abuso deste recurso de denúncia pode resultar no <i>seu</i> banimento.</li>
+        <li>O abuso deste recurso de denúncia pode levar ao <i>seu</i> banimento.</li>
 
         </ul>
     reason:
-      non_functional: "O script não funciona"
-      paid_benefits: "Pagou pelos recursos, mas não recebeu o que foi comprado"
+      non_functional: "O script não está funcionando"
+      paid_benefits: "Paguei por recursos, mas não recebi o que comprei"
       spam: "Spam"
-      abuse: "Conteúdo de ódio ou abusivo"
+      abuse: "Conteúdo abusivo ou incitação ao ódio"
       illegal: "Conteúdo ilegal"
       unauthorized_code: "Cópia não autorizada"
       malware: "Malware"
@@ -1188,95 +1176,95 @@ pt-BR:
     report_intro_unauthorized_license: "O script %{other_script} usa a licença %{license_link: %{license_name}}. Visite %{tldr_legal_link:tldrlegal.com} para entender melhor o que essa licença significa."
     report_intro_unauthorized_license_no_url: "O script %{other_script} usa a licença %{license_name}. Visite %{tldr_legal_link:tldrlegal.com} para entender melhor o que essa licença significa."
     report_intro_unauthorized_no_license: "O script %{other_script} não especifica uma licença. Isso significa que não é permitido distribuir cópias, a menos que haja permissão explícita."
-    non_functional_feedback: "Por favor, reporte scripts não funcionais por meio de %{feedback_link:feedback} na página do script em vez disso."
-    paid_benefits_feedback: "%{site_name} não tem registro de nenhuma transação entre autores e usuários de scripts e, portanto, não pode validar nenhuma reivindicação relacionada a eles. Se você pagou por uma funcionalidade em um script e está insatisfeito, por favor, expresse suas reclamações como %{feedback_link:avaliação} no script em vez disso."
+    non_functional_feedback: "Por favor, relate scripts não funcionais via %{feedback_link:feedback} no próprio script."
+    paid_benefits_feedback: "O %{site_name} não possui registros de transações entre autores de scripts e usuários e, portanto, não pode validar reclamações relacionadas a elas. Se você pagou por funcionalidades em um script e não está satisfeito, por favor, registre suas reclamações via %{feedback_link:feedback} no próprio script."
     unauthorized_code_original_placeholder: "URL do código original"
     explanation_placeholder: "Forneça detalhes adicionais (opicional)"
     create_button: "Criar denúncia"
     report_user: "Denunciar usuário"
     report_comment: "Denunciar comentátio"
-    report_message: "Reportar mensagem"
-    result_dismissed: "Essa denúncia foi desconsiderada por um moderador."
-    result_upheld: "Essa denúncia foi confirmada por um moderador."
-    result_upheld_reason_override: "Esta denúncia foi confirmada por um moderador, mas o moderador a marcou como %{reason}."
-    result_self_upheld: "O autor excluiu seu próprio script como resultado dessa denúncia."
-    result_fixed: "Este relatório foi resolvido por um moderador, pois eles acreditam que o autor corrigiu o problema."
-    result_pending: "Essa denúncia está aguardando avaliação de um moderador."
+    report_message: "Denunciar mensagem"
+    result_dismissed: "Esta denúncia foi arquivada por um moderador."
+    result_upheld: "Esta denúncia foi validada por um moderador."
+    result_upheld_reason_override: "Esta denúncia foi validada por um moderador, mas o moderador a marcou como %{reason}."
+    result_self_upheld: "O autor excluiu seu próprio script devido a esta denúncia."
+    result_fixed: "Esta denúncia foi resolvida por um moderador, pois ele acredita que o autor corrigiu o problema."
+    result_pending: "Esta denúncia está aguardando ser analisada por um moderador."
     result_pending_author_html: |
         <p>Suas opções são:</p>
         <ol>
-        <li>Se você concorda com esse report, corrija o problema, em seguida, envie uma refutação explicando o que você corrigiu.</li>
-        <li>Se você não concorda com este report, envie uma refutação explicando o seu lado.</li>
-        <li>Delete o seu script.</li>
-        <li>Não faça nada e deixe um moderador decidir.</li>
+        <li>Se você concorda com a denúncia, corrija o problema e envie uma contestação explicando o que foi corrigido.</li>
+        <li>Se você não concorda com a denúncia, envie uma contestação explicando seu lado da questão.</li>
+        <li>Excluir seu script.</li>
+        <li>Não fazer nada e deixar que um moderador decida.</li>
         </ol>
-    rebuttal_placeholder: 'Explique para um moderador por que este script deve ser removido'
-    submit_rebuttal: "Enviar refutação"
-    rebuttal_submitted: Um moderador revisará este relatório e sua explicação e tomará uma decisão.
+    rebuttal_placeholder: 'Explique a um moderador por que este script não deve ser removido.'
+    submit_rebuttal: "Apresentar contestação"
+    rebuttal_submitted: Um moderador analisará esta denúncia e sua contestação e tomará uma decisão.
     delete_script: "Remover script"
-    view_discussion: "Ver discussão"
-    load_diff: "Carga diferencial"
-    load_cleaned_diff: "Carregar a diferença de código limpo"
+    view_discussion: "Acessar discussão"
+    load_diff: "Carregar comparação"
+    load_cleaned_diff: "Carregar comparação do código limpo"
     loading_diff: "Carregando..."
-    reported_user_activity_html: "%{user}(o usuário denunciado) fez:"
-    script_updated_since_report: "Este script foi atualizado desde que o relatório foi registrado."
+    reported_user_activity_html: "%{user} (o usuário denunciado) fez as seguintes alterações:"
+    script_updated_since_report: "Este script foi atualizado desde que a denúncia foi aberta."
     script_previous_reports:
       one: "Este script teve %{count} relatório anterior mantido ou corrigido."
       many: "Este script teve %{count} relatórios anteriores mantidos ou corrigidos."
-      other: "Este script teve %{count} relatórios anteriores mantidos ou corrigidos."
-    reporter_temporarily_blocked: "Devido ao seu histórico recente de denúncias que foram rejeitadas por um moderador, você está impedido de registrar novas denúncias até %{date} . Consulte as regras em %{rules_link:%{site_name}} para garantir que suas futuras denúncias sejam precisas."
-    reported_temporarily_blocked: "Devido ao fato de denúncias recentes sobre esse item terem sido rejeitadas por um moderador, outras denúncias sobre ele estarão bloqueadas até %{date} ."
-    already_reported_by_reporter: "Você já %{report_link:denunciou recentemente} esse item."
-    already_reported_same_type: "Já existe uma %{report_link:denúncia pendente semelhante} para este item."
+      other: "Este script teve %{count} denúncias anteriores validadas ou resolvidas."
+    reporter_temporarily_blocked: "Devido ao seu histórico recente de denúncias arquivadas por um moderador, você está impedido de fazer novas denúncias até %{date}. Revise %{rules_link:as regras do %{site_name}} para garantir que as futuras denúncias sejam precisas."
+    reported_temporarily_blocked: "Devido a denúncias recentes sobre este item terem sido arquivadas por um moderador, denúncias adicionais sobre ele estão bloqueadas até %{date}."
+    already_reported_by_reporter: "Você já %{report_link:denunciou este item recentemente}."
+    already_reported_same_type: "Já existe uma %{report_link:denúncia semelhante pendente} sobre este item."
     report_item:
-      discussion: "Discussão%{title}por%{user} "
-      comment: "%{comment}por%{user}"
-      comment_description: "Um comentário em %{discussion_title}"
-      message: "Uma mensagem por %{user}"
-      deleted: "Apagado %{type}%{id}"
+      discussion: "Discussão \"%{title}\" de %{user}"
+      comment: "Comentário \"%{comment}\" de %{user}"
+      comment_description: "Um comentário sobre a discussão \"%{discussion_title}\""
+      message: "Uma mensagem do usuário %{user}"
+      deleted: "%{type} #%{id} removido"
   appeals:
     new:
       title: Novo recurso de exclusão de script
-      intro_html: 'Seu código foi removido devido a %{reason}. Se você acha que isso é um erro, ou você tem informações adicionais para fornecer, ou se você atualizou seu código resolvendo o problema, você pode enviar um apelo. Se um moderador estiver satisfeito com sua atualização e as informações que você forneceu, ele irá restaurar seu acesso ao código.'
-      submit: Enviar apelo
-    deletion_reason_html: "%{script} foi deletado devido a: %{reason}."
-    author_reason: "Recurso apresentado pelo autor:"
-    pending_review: Este recurso está com revisão pendente por um moderador.
-    dismissed_by_moderator: Um moderador rejeitou este recurso.
-    upheld_by_moderator: Como resultado deste apelo, um moderador cancelou a exclusão deste script.
-    submitted: Sua apelação foi recebida e um moderador a analisará.
-    already_open: Já existe um recurso aberto para este script.
+      intro_html: 'Seu script foi removido devido a %{reason}. Se você acredita que isso foi um erro, ou se tem informações adicionais a fornecer, ou se atualizou seu script para resolver o problema, você pode enviar um recurso. Se um moderador ficar satisfeito com suas atualizações e com as informações fornecidas, ele restaurará o acesso ao seu script.'
+      submit: Enviar recurso
+    deletion_reason_html: "%{script} foi removido devido a: %{reason}."
+    author_reason: "Recurso submetido pelo autor:"
+    pending_review: Este recurso está aguardando análise por um moderador.
+    dismissed_by_moderator: Um moderador indeferiu este recurso.
+    upheld_by_moderator: Como resultado deste recurso, um moderador reverteu a exclusão deste script.
+    submitted: Seu recurso foi recebido e um moderador irá analisá-lo.
+    already_open: Já existe um recurso em aberto para este script.
   discussions:
     title: Discussões
-    comment_date: "Publicado: %{date}"
-    comment_edit_date: "Editado: %{date}"
-    posted_by_html: "%{user} %{date}"
-    last_comment: "Último: %{user} %{date}"
-    new_discussion_heading: "Publique uma análise, comentário ou questionamento"
-    new_discussion_submit: "Publicar comentário"
-    new_comment_heading: "Publicar resposta"
-    new_comment_submit: "Publicar resposta"
-    back_to_feedback: "< Feedback em %{script}"
+    comment_date: "Publicado em: %{date}"
+    comment_edit_date: "Editado em: %{date}"
+    posted_by_html: "%{user} em %{date}"
+    last_comment: "Última atividade: %{user} em %{date}"
+    new_discussion_heading: "Publique uma avaliação, um comentário ou uma pergunta"
+    new_discussion_submit: "Enviar comentário"
+    new_comment_heading: "Enviar resposta"
+    new_comment_submit: "Enviar resposta"
+    back_to_feedback: "< Feedback de %{script}"
     edit_comment_link: "Editar"
     edit_comment_header: "Editar comentário"
-    delete_comment: "Remover"
-    delete_comment_confirm: Tem certeza que deseja remover este comentário?
-    delete_discussion: "Remover"
-    delete_discussion_confirm: Tem certeza que deseja remover esta discussão?
+    delete_comment: "Excluir"
+    delete_comment_confirm: Você tem certeza de que quer excluir este comentário?
+    delete_discussion: "Excluir"
+    delete_discussion_confirm: Você tem certeza de que quer excluir esta discussão?
     update_comment_submit: "Atualizar comentário"
     cancel_update_comment: "Cancelar"
-    quote_comment: "Citação"
-    question_heading_html: "Pergunta/comentário"
+    quote_comment: "Citar"
+    question_heading_html: "Pergunta/Comentário"
     review_heading_html: "Avaliação: %{rating}"
-    update_rating_note: "(Você pode alterar sua classificação mais tarde, postando um novo comentário.)"
-    update_rating: "Atualizar sua avaliação do script %{script_name}"
+    update_rating_note: "(Você pode alterar sua avaliação mais tarde, publicando um novo comentário.)"
+    update_rating: "Atualize sua avaliação do script %{script_name}"
     ratings:
-      question: "Sem classificação - apenas uma pergunta, comentário ou solicitação de recurso"
+      question: "Sem avaliação - apenas uma pergunta, comentário ou solicitação de recurso"
       bad: "Ruim - o script não funciona"
-      ok: "OK - script funciona, mas tem bugs"
+      ok: "OK - o script funciona, mas tem bugs"
       good: "Bom - o script funciona"
     ratings_short:
-      question: "Pergunta/comentário"
+      question: "Pergunta/Comentário"
       bad: "Ruim"
       ok: "OK"
       good: "Bom"
@@ -1284,80 +1272,80 @@ pt-BR:
       deleted:
         short: Excluído
         long: Excluído
-    sign_in_to_post_discussion: "Faça o login para publicar uma análise, comentário ou pergunta."
-    sign_in_to_post_comment: "Faça o login para publicar uma resposta."
+    sign_in_to_post_discussion: "Entre para publicar uma avaliação, um comentário ou uma pergunta."
+    sign_in_to_post_comment: "Entre para publicar uma resposta."
     user_filter:
-      label: "Discussões me envolvendo"
+      label: "Discussões em que estou envolvido"
       all: "Todas as discussões"
       discussion_by_me: "Iniciadas por mim"
-      comment_by_me: "Comentário feitos por mim"
-      on_my_scripts: "Em meus scripts"
+      comment_by_me: "Meus comentários"
+      on_my_scripts: "Nos meus scripts"
       subscribed: "Inscrito"
     other_user_filter:
       all: "Todas as discussões"
-      comments_by: "Comentários feitos por %{user}"
+      comments_by: "Comentários de %{user}"
     category_filter:
       label: Categoria
       all: Todas as categorias
     read_filter:
-      label: Status lido
+      label: Status de leitura
       all: Todos
-      read: Lidos
-      unread: Não lidos
+      read: Lidas
+      unread: Não lidas
     locale_filter:
-      label: Idioma
+      label: Linguagem
       all: Todas
     sort:
       comment_created: Data
       discussion_last_comment: Data do último comentário
-      discussion_created: Data de Início da Discussão
+      discussion_created: Data de início da discussão
     user_activity:
       title: "Comentários recentes"
-      no_recent_activity: "Esse usuário não publicou nenhum comentário recentemente."
-      see_all_activity: "Ver todas as atividades do usuário."
+      no_recent_activity: "Este usuário não postou nenhum comentário recentemente."
+      see_all_activity: "Ver toda a atividade do usuário."
       script_review:
-        posted_html: "Publicou uma análise do script <i>%{script}</i>"
-        replied_html: "Respondeu uma análise do script <i>%{script}</i>"
+        posted_html: "Publicou uma avaliação sobre <i>%{script}</i>"
+        replied_html: "Respondeu a uma avaliação sobre <i>%{script}</i>"
       script_question:
-        posted_html: "Publicou uma pergunta/comentário sobre o script <i>%{script}</i>"
-        replied_html: "Respondeu uma pergunta/comentário sobre o script <i>%{script}</i>"
+        posted_html: "Publicou uma pergunta/comentário sobre <i>%{script}</i>"
+        replied_html: "Respondeu a uma pergunta/comentário sobre <i>%{script}</i>"
       discussion:
-        posted_html: "Publicou uma discussão: <i>%{title}</i>"
-        replied_html: "Respondido a uma discussão: <i>%{title}</i>"
-    review_title: "Uma avaliação no script %{script_name}"
-    question_title: "Uma pergunta sobre o script %{script_name}"
-    subscribe: Inscrever
-    unsubscribe: Desinscrever
-    notify: Me notificar sobre qualquer resposta
+        posted_html: "Iniciou uma discussão: <i>%{title}</i>"
+        replied_html: "Respondeu à discussão: <i>%{title}</i>"
+    review_title: "Uma avaliação sobre %{script_name}"
+    question_title: "Uma pergunta sobre %{script_name}"
+    subscribe: Inscrever-se
+    unsubscribe: Cancelar inscrição
+    notify: Notifique-me sobre novas respostas
     categories:
       greasyfork:
-        name: Feedback do Greasy Fork
-        description: Relato de bugs, solicitação de novas funcionalidades, e outras coisas que envolvam o Greasy Fork em si.
+        name: Feedback sobre o Greasy Fork
+        description: Relatos de bugs, solicitação de recursos e outros assuntos sobre o Greasy Fork.
       development:
         name: Desenvolvimento
-        description: Conversa técnica sobre o desenvolvimento de scripts e estilos de usuário.
+        description: Discussão técnica sobre desenvolvimento de scripts e estilos de usuário.
       requests:
-        name: Criação de Solicitações
-        description: Solicitar que alguém escreva um script ou estilo de usuário para você.
+        name: Solicitações de Criação
+        description: Solicite que alguém escreva um script ou um estilo de usuário para você.
       script-discussions:
-        name: Discussões de Script
-        description: Discussões sobre estilos e scripts de usuário existentes.
+        name: Discussões sobre Scripts
+        description: Discussões sobre scripts de usuário e estilos de usuário existentes.
       no-scripts:
-        name: Tudo menos Discussões de Scripts
+        name: Todas, exceto Discussões sobre Scripts
       moderators:
         name: Moderadores
         description: Discussão privada para moderadores.
     category_display: "%{name} - %{description}"
     new_title: Nova discussão
     new_button: Nova discussão
-    script_notice: Se você estiver procurando discutir um script específico, vá até a página de feedback do script e inicie uma discussão por lá.
-    no_discussions: Nenhuma discussão encontrada.
+    script_notice: Se você quer discutir um script específico, vá para a página de feedback do script e inicie uma discussão a partir de lá.
+    no_discussions: Nenhuma discussão foi encontrada.
     mark_all_read: Marcar tudo como lido
-    pending_moderator_review: A discussão está indisponível para outros usuários até que seja analisada por um moderador.
-    search_placeholder: Buscar discussões
+    pending_moderator_review: Esta discussão está indisponível para outros usuários até que seja revisada por um moderador.
+    search_placeholder: Pesquisar discussões
   conversations:
-    user_input_note: Digite o nome do usuário ou a URL do seu perfil.
-    new_title: Criar uma nota conversa
+    user_input_note: Digite o nome do usuário ou o URL do perfil dele.
+    new_title: Criar uma nova conversa
     new_link: Criar uma nova conversa
     new_button: Criar conversa
     title_html:
@@ -1371,35 +1359,35 @@ pt-BR:
       many: Conversa com %{users}.
       other: Conversa com %{users}.
     conversation_info_html: Última mensagem em %{date} por %{user}.
-    no_conversations: Você ainda não possui nenhuma conversa.
+    no_conversations: Você ainda não teve nenhuma conversa.
     no_recent_conversations: Você não tem nenhuma conversa recente.
     recent:
       title: Conversas recentes
       more: Ver todas as conversas
     edit_message_header: Editar mensagem
     update_message_submit: Atualizar mensagem
-    moderator_notice: Se você deseja relatar uma violação das regras do %{site_name}, use o link de Relatório naquele script, usuário ou comentário. Moderadores não podem remover conteúdo com base em relatórios por meio de mensagens diretas.
+    moderator_notice: Se você quiser denunciar uma violação das regras do %{site_name}, use o link Denunciar no script, usuário ou comentário em questão. Os moderadores não podem remover conteúdo com base em denúncias feitas por mensagens diretas.
   screenshots:
-    requirements: "Máximo de %{number} imagens PNG, GIF, JPEG, ou WebP, com menos de %{size} cada."
+    requirements: "Máximo de %{number} imagens PNG, GIF, JPEG ou WebP, com tamanho inferior a %{size} cada."
   common:
-    error_preamble: "Houve problemas com o que você postou..."
-    allowed_elements_link: "(Veja código permitido.)"
-    allowed_elements_and_attributes_title: "Permitir elementos para conteúdo HTML"
-    allowed_elements_intro: "Os seguintes elementos e atributos são permitidos. Estes se aplicam para HTML e Markdown (após converter para HTML)."
-    allowed_elements_extra_info: "Espaços em branco deverão ser convertidos em elementos p ou br. URLs serão convertidos em links automaticamente."
+    error_preamble: "Ocorreram alguns problemas com o que você publicou..."
+    allowed_elements_link: "(Consulte o código permitido.)"
+    allowed_elements_and_attributes_title: "Elementos permitidos para conteúdo HTML"
+    allowed_elements_intro: "Os seguintes elementos e atributos são permitidos. Isso se aplica a HTML e Markdown (após a conversão para HTML)."
+    allowed_elements_extra_info: "Espaços em branco serão convertidos em elementos p ou br. URLs serão automaticamente transformadas em links."
     allowed_css_intro: "As seguintes propriedades CSS são permitidas em todos os elementos."
-    user_references_html: "Você pode referenciar e linkar outros usuários do %{site_name} com o formato <code>@NomeDoUsuário</code> ou <code>@\"Nome Do Usuário\"</code> (se o nome do usuário tiver espaços)."
+    user_references_html: "Você pode referenciar e criar links para outros usuários do %{site_name} com o formato <code>@NomeDoUsuário</code> ou <code>@\"Nome do Usuário\"</code> (se o nome do usuário tiver espaços)."
     not_found_text: "404 - página não encontrada."
     not_found_title: "404 - Página Não Encontrada"
-    not_found_link_home: "Ir para o início."
-    suggest_locale: "O %{site_name} está disponível em %{locale_name}."
-    incomplete_locale: "Tradução de %{locale_name} do %{site_name} está apenas %{percent} completo. Você pode mudar isso."
-    preview_tab: Visualizar
+    not_found_link_home: "Ir para a página inicial."
+    suggest_locale: "O site %{site_name} está disponível em %{locale_name}."
+    incomplete_locale: "A tradução do site %{site_name} para %{locale_name} está apenas %{percent} completa. Você pode ajudar a melhorar isso."
+    preview_tab: Pré-visualização
     write_tab: Escrever
     listing_options_title: "Opções de Pesquisa"
     quote:
       prefix_html: "%{user} disse:"
-      anonymous_reporter_html: "O denunciante disse:"
+      anonymous_reporter_html: "O autor da denúncia disse:"
   activerecord:
     models:
       script:
@@ -1415,9 +1403,9 @@ pt-BR:
         name: "Nome"
         profile: "Perfil"
         locale: "Idioma preferido"
-        show_ads: "Mostrar anúncios"
+        show_ads: "Exibir anúncios"
         show_sensitive: "Conteúdo adulto"
-        preferred_markup: "Marcação preferencial"
+        preferred_markup: "Marcação preferida"
         filter_locale_default: "Filtrar idioma"
         current_password: "Senha atual"
         new_password: "Nova Senha"
@@ -1428,15 +1416,15 @@ pt-BR:
         description: "Descrição"
         locale: "Idioma"
         code: "Código"
-        changelog: "Log de Mudanças"
-        type: "Tipo de Script"
-        additional_info: "Informação adicional"
-        screenshots: "Capturas de Telas"
-        replaced_by_script_id: "Script substituído"
+        changelog: "Histórico de alterações"
+        type: "Tipo de script"
+        additional_info: "Informações adicionais"
+        screenshots: "Capturas de tela"
+        replaced_by_script_id: "Script de substituição"
       script_set:
         name: "Nome"
         description: "Descrição"
-        default_sort: "Ordenação padrão"
+        default_sort: "Classificação padrão"
       report:
         reason: "Motivo da denúncia"
       discussion:
@@ -1448,60 +1436,62 @@ pt-BR:
       message:
         content: Mensagem
       script_lock_appeal:
-        text: Apelo
+        text: Recurso
   errors:
     messages:
-      script_missing_name: "é requerido - especifique um com @name"
-      script_missing_description: "é requerido - especifique um com @description"
-      script_name_same_as_description: "não pode ser o mesmo que o nome"
-      script_sync_identifier_bad_protocol: "deve ser uma URL em HTTP ou HTTPS"
-      script_too_many_screenshots: "Muitas capturas de tela incluídas - o máximo é %{number}"
+      script_missing_name: "é obrigatório - especifique um com @name"
+      script_missing_description: "é obrigatório - especifique um com @description"
+      script_name_same_as_description: "não deve ser igual ao nome"
+      script_sync_identifier_bad_protocol: "deve ser uma URL HTTP ou HTTPS"
+      script_too_many_screenshots: "Capturas de tela em excesso - o máximo é %{number}"
       cannot_be_self_reference: "não pode ser o mesmo script"
-      cannot_be_deleted_reference: "não pode ser um script deletado"
+      cannot_be_deleted_reference: "não pode ser um script excluído"
       cannot_be_used_with_this_script: "não pode ser usado com este script"
-      must_be_greasy_fork_script: "deve ser uma URL para um script em %{site_name}"
-      script_update_not_utf8: "envio deve ser em texto UTF-8"
+      must_be_greasy_fork_script: "deve ser a URL de um script no %{site_name}"
+      script_update_not_utf8: "o arquivo enviado deve ser texto UTF-8"
       script_disallowed_require: "usa um script externo não aprovado: %{code}"
-      script_disallowed_resource: "usa um @resource inválido: %{code}. Os recursos devem ser URLs http, https ou data."
-      script_disallowed_base_64_require: "Use um código base-64 @require"
+      script_disallowed_resource: "usa um @resource inválido: %{code} . Recursos devem ser URLs http, https ou data"
+      script_disallowed_base_64_require: "usa um @require codificado em base-64"
       script_malformed_require: "usa uma referência de script externo malformada: %{code}"
-      script_rate_limit: "Você atingiu o limite de postagens. Tente novamente mais tarde."
+      script_rate_limit: "Você excedeu o limite de postagens. Tente novamente mais tarde."
       missing_include_or_match: "deve incluir pelo menos uma chave @match ou @include"
-      invalid_meta: "tem uma meta-diretiva inválida. O formato adequado é // @foo"
+      invalid_meta: "tem uma diretiva meta inválida. O formato correto é // @foo"
       no_executable: "não contém código executável"
-      meta_too_long: "%{key} é muito longa (o máximo são %{count} caracteres)"
-      style_missing_meta: "está faltando o seu bloco de metadados. Veja https://github.com/openstyles/stylus/wiki/Writing-UserCSS para exemplos"
+      meta_too_long: "%{key} é muito longo (o máximo é %{count} caracteres)"
+      style_missing_meta: "está sem o bloco de metadados. Veja https://github.com/openstyles/stylus/wiki/Writing-UserCSS para exemplos"
   opensearch:
-    short_name: "%{site_name} busca"
-    description: "Busca por scripts de usuário em %{site_name}."
-    long_name: "Busca de script de usuário em %{site_name}"
-    attribution: "Cite a autoria original dos scripts, veja cada script individualmente para licenciamento"
+    short_name: "pesquisa no %{site_name}"
+    description: "Pesquisar scripts de usuário no %{site_name}."
+    long_name: "pesquisa de scripts de usuário no %{site_name}"
+    attribution: "Direitos autorais pertencem aos autores dos scripts. Consulte cada script individual para obter informações de licenciamento."
   importing:
     title: Importar scripts
     intro: "O %{site_name} pode importar scripts que já estão hospedados em outros locais, como, por exemplo, em sistemas de controle de versão (como o GitHub), em seu próprio servidor ou em outro site que hospede scripts de usuário."
-    url_entry_label: Fornece URLs para importar, separados por novas linhas. Devem ser URLs para os arquivos JS ou CSS brutos.
-    sync_type_label: "Após a importação inicial, o script (ou mais) deve ser sincronizado."
+    url_entry_label: Forneça URLs para importação, separadas por linhas novas. Estas devem ser URLs para os arquivos JS ou CSS brutos.
+    sync_type_label: "Após a importação inicial, o(s) script(s) deve(m) ser sincronizado(s):"
     additional_info_html: |
-        <p>Para scripts provenientes de controle de versão, certifique-se de que a URL que você usa se refira a um branch e não a um commit específico, caso contrário, ele nunca será atualizado. Por exemplo, <code><b>branch-name</b>/script.user.js</code> em vez de <code><b>commit-hash</b>/script.user.js</code>.</p>
+        <p>Para scripts vindos de um controle de versão, certifique-se de que a URL que você usa se refira a um branch e não a um commit específico, caso contrário, ele nunca será atualizado. Por exemplo, <code><b>branch-name</b>/script.user.js</code> em vez de <code><b>commit-hash</b>/script.user.js</code>.</p>
         <p>Scripts importados do GitHub, Bitbucket ou GitLab também podem ser configurados para sincronizar usando um webhook. Um webhook fará com que seus scripts sejam atualizados imediatamente no %{site_name} quando você fizer um push para seu repositório. Se você quiser usar um webhook, mas ainda não o configurou, faça a importação primeiro e, depois, %{webhook_info_link:configure o webhook}.</p>
-    submit: importar
+    submit: Importar
     previously_imported:
       heading: Scripts importados anteriormente
-      successful_entry_html: "%{script_link} - %{sync_type} sincronizando,  última sincronização %{last_sync_date}."
+      successful_entry_html: "%{script_link} - %{sync_type} sincronizando, última sincronização em %{last_sync_date}."
       unknown_date: "(desconhecido)"
-      failed_entry_html: "%{script_link} - %{sync_type} sincronizando, última tentativa de sincronização %{last_sync_attempt_date}, %{sync_error}"
+      failed_entry_html: "%{script_link} - %{sync_type} sincronizando, última tentativa de sincronização em %{last_sync_attempt_date}, %{sync_error}"
     results:
-      title: "importar resultado"
+      title: "Resultado da importação"
       success: "Os seguintes scripts foram importados com sucesso:"
-      needs_description: "Os seguintes scripts precisam de uma descrição para ser importados:"
-      existing: "Os seguintes scripts já foram importados:"
+      needs_description: "Os seguintes scripts precisam de uma descrição para serem importados:"
+      existing: "Os seguintes scripts já haviam sido importados:"
       failure: "Os seguintes scripts não puderam ser importados:"
   mailers:
     script_report:
       report_created_offender:
-        subject: "O seu script %{script_name} no %{site_name} foi denunciado"
+        subject: "Seu script %{script_name} no site %{site_name} foi denunciado"
         body_html: |
-            <p>Seu script %{script_link:%{script_name}} foi denunciado por violar as regras de %{site_name}. O motivo específico informado foi: %{reason}. Moderadores irão revisar este relatório e podem excluir seu script se concordarem que ele está violando as regras. Você pode %{report_link:revisar este relatório} e enviar uma réplica caso queira fornecer um argumento ou explicação.
+            <p>
+            Seu script %{script_link:%{script_name}} foi denunciado por violar as regras do %{site_name}. O motivo específico fornecido foi: %{reason}. Os moderadores revisarão esta denúncia e poderão excluir seu script se concordarem que ele viola as regras. Você pode %{report_link:revisar esta denúncia} e enviar uma contestação caso queira fornecer um argumento ou explicação.
+            </p>
       report_upheld_offender:
         subject: "Seu script %{script_name} no %{site_name} foi removido"
         body_html: |
