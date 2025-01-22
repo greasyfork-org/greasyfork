@@ -3,7 +3,7 @@ module ShowsAds
     no_ads = general_ads_setting
     return no_ads if no_ads
 
-    return nil if sleazy?
+    return AdMethod.cd if sleazy?
 
     AdMethod.ga
   end
@@ -14,7 +14,7 @@ module ShowsAds
 
     return AdMethod.no_ad(:script_deleted) if script.nil? || script.deleted?
 
-    return nil if sleazy?
+    return AdMethod.cd if sleazy?
 
     return AdMethod.no_ad(:sensitive) if script&.sensitive
 
@@ -22,14 +22,14 @@ module ShowsAds
 
     return AdMethod.ea if valid_locale_for_ea?
 
-    nil
+    AdMethod.cd
   end
 
   def choose_ad_method_for_scripts(scripts)
     no_ads = general_ads_setting
     return no_ads if no_ads
 
-    return nil if sleazy?
+    return AdMethod.cd if sleazy?
 
     return AdMethod.no_ad(:sensitive_list) if scripts.any?(&:sensitive?)
 
@@ -42,7 +42,7 @@ module ShowsAds
 
     return AdMethod.ea if valid_locale_for_ea?
 
-    nil
+    AdMethod.cd
   end
 
   def choose_ad_method_for_discussion(discussion)
