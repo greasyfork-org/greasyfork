@@ -13,6 +13,7 @@ pt-BR:
   scripts:
     created_date: "Criado"
     updated_date: "Atualizado"
+    code_size: Tamanho
     total_installs: "Total de instalações"
     daily_installs: "Instalações hoje"
     ratings: "Avaliações"
@@ -60,14 +61,14 @@ pt-BR:
     stats_page: "Estatísticas"
     derivatives_page: "Derivados"
     update_page: "Atualização"
-    delete_page: "Apagar"
+    delete_page: "Excluir"
     delete_explanation: "A exclusão de um script deixa-o inacessivel para todos menos para você e para os moderadors do Greasy Fork. Você pode desfazer a exclusão a qualquer momento."
     delete_update_behaviour: "O que você gostaria que acontecesse com os usuários que instalaram seu script anteriormente?"
     delete_update_behaviours:
       keep: "Eles vão mantê-lo como está."
       blanked: "Eles serão atualizados para um script em branco. Isso é adequado quando o script tem um efeito negativo nos sites em que é executado."
       redirect: "Eles serão redirecionados e atualizados para o script que você especificar abaixo."
-    delete_permanently_heading: "Exclusão permanente"
+    delete_permanently_heading: "Excluir permanente"
     delete_permanently_explanation_html: >-
         <p>Remover seu script permanentemente irá removê-lo e todos os registros associados
         a ele, com exceção do fórum de discussão e o log de ações de moderadores.</p>
@@ -108,6 +109,7 @@ pt-BR:
         globs_html: 'Evite usar "globs" e expressões regulares na parte do domínio de  %{include_link:<code>@include</code>} e %{match_link:<code>@match}.
 
           Eles fazer difícil para %{site_name} para apropriadamente classificar seu script'
+        globs_used_html: "Includes não específicos de domínio utilizados: %{globs}"
         additional_info: Inclua informações adicionais - liste seus recursos, forneça capturas de tela, etc. para que seus usuários saibam exatamente o que seu script faz.
     history_title: "%{script_name} - Histórico da Versão"
     history_only_code_changes_info: "Estas são as versões deste script em que houve atualização do código."
@@ -118,8 +120,8 @@ pt-BR:
     list_all_script_versions: "Mostrar todas as versões do script"
     code_title: "%{script_name} - Código Fonte"
     feedback_title: "%{script_name} - Comentário"
-    feedback_no_discussions_html: "Sem discussões postadas ainda. %{start_first_discussion_link}"
-    feedback_no_discussions_on_page_form: "Nenhuma discussão foi publicada ainda"
+    feedback_no_discussions_html: "Ainda não há discussões. %{start_first_discussion_link}"
+    feedback_no_discussions_on_page_form: "Ainda não há discussões."
     feedback_report_instead: "Se você achar que esse script está quebrando as %{rules_link:regras do %{site_name}}, por favor %{report_link:reporte-o para remoção}."
     feedback_start_first_discussion_link: "Seja o primeiro a comentar sobre este script."
     feedback_discussion_or_report: "%{new_discussion_link:Comece uma nova discussão neste script} ou %{report_link:denuncie-o para que seja removido}."
@@ -146,7 +148,7 @@ pt-BR:
     derivatives_exact_copies_item_html: "%{script_link} po %{author_links} - versões: %{version_list}"
     derivatives_exact_copes_none: "Não existem outros scripts no %{site_name} quem tem o exato mesmo código que este script."
     derivatives_similar_heading: "Scripts similares"
-    derivatives_similar_info: "Periodicamente nós checamos a última versão de todos os outros scripts para encontrar aqueles que são similares aos seus. Nós também verificamos sempre que você publica uma atualização de seus scripts e também caso você nos solicite."
+    derivatives_similar_info: "Verificamos periodicamente a versão mais recente de todos os outros scripts para encontrar os mais similares ao seu. Também fazemos essa verificação sempre que você publica uma atualização do seu script e mediante sua solicitação."
     similarity_score:
       high: Muito similar
       medium: Moderadamente similar
@@ -169,7 +171,7 @@ pt-BR:
     listing_title_generic: "Scripts de usuário"
     listing_title_for_favorites: "%{user_name}'s %{set_name}"
     listing_description_generic: "Scripts que adicionam recursos e removem bugs nos sites que você usa"
-    listing_sort_label: "Ordenado por:"
+    listing_sort_label: "Classificar por:"
     listing_sort_relevance: "Relevância"
     listing_sort_daily_installs: "Instalações no dia"
     listing_sort_total_installs: "Total de instalações"
@@ -177,13 +179,13 @@ pt-BR:
     listing_sort_created: "Data de Criação"
     listing_sort_updated: "Data de Atualização"
     listing_sort_name: "Nome"
-    listing_filter_by_site_label: "Mostrando scripts de:"
+    listing_filter_by_site_label: "Mostrando scripts para:"
     listing_filter_by_site_disable: "Todos"
     listing_filter_by_site_all_sites: "(Todos sites)"
     listing_filter_by_language_label: "Idioma:"
     listing_filter_by_site_more_sites: "Mais..."
     listing_filter_by_authorship_label: "Autoria:"
-    listing_no_scripts: "Nenhum script encontrado."
+    listing_no_scripts: "Nenhum script foi encontrado."
     listing_created_feed: "Novos scripts"
     listing_updated_feed: "Scripts atualizados"
     listing_none: "(Nenhum)"
@@ -196,25 +198,25 @@ pt-BR:
       all: Todos autores
       me: Meus scripts
       user: Scripts de%{author_name}
-    search_failed: Algo deu errado ao carregar seus resultados. Algumas funcionalidades de pesquisa podem não estar funcionando. Fomos notificados do problema.
-    import: "Scripts importantes"
+    search_failed: Ocorreu um erro ao carregar os resultados. Algumas funcionalidades de pesquisa podem não estar funcionando. Já estamos cientes do problema.
+    import: "Importar scripts"
     new: "Publicar um script que você escreveu"
     new_css: "Publicar um estilo que você escreveu"
     support_site: "Visite o site de suporte do autor."
     support_email: "Envie um e-mail ao autor para suporte."
-    contribution_no_amount: "Agradeça %{author} fazendo uma doação."
-    contribution_with_amount: "Agradeça a %{author} fazendo uma doação. Doação sugerida é de %{amount}."
-    contribution_bitcoin_no_amount_html: "Agradeça a %{author} fazendo uma doação com Bitcoins para %{address}"
-    contribution_bitcoin_with_amount_html: "Agradeça a %{author} fazendo uma doação com Bitcoins para %{address}. O valor sugerido é de %{amount}."
-    locale_explanation_html: "A linguagem do <code>@name</code>, <code>@description</code> devem coincidir, e a primeira info adicional."
-    locale_auto_select: "(Deletado automaticamente)"
-    sets_label: "Nos grupos de script:"
-    sets_label_no_sets: "Grupos de scripts:"
+    contribution_no_amount: "Agradeça a %{author} fazendo uma doação."
+    contribution_with_amount: "Agradeça a %{author} fazendo uma doação. O valor sugerido é 2%{amount}."
+    contribution_bitcoin_no_amount_html: "Agradeça a %{author} fazendo uma doação em Bitcoin para %{address}."
+    contribution_bitcoin_with_amount_html: "Agradeça a %{author} fazendo uma doação em Bitcoin para %{address}. O valor sugerido é %{amount}."
+    locale_explanation_html: "Deve corresponder ao idioma de <code>@name</code>, <code>@description</code>, e da primeira informação adicional."
+    locale_auto_select: "(Detectar automaticamente)"
+    sets_label: "Em conjuntos de scripts:"
+    sets_label_no_sets: "Conjuntos de scripts:"
     sets_remove_inclusion: "Remover de %{set_name}"
     sets_remove_exclusion: "Remover exclusão de %{set_name}"
-    sets_add_inclusion: "Adicionar em %{set_name}"
+    sets_add_inclusion: "Adicionar a %{set_name}"
     sets_add_exclusion: "Excluir de %{set_name}"
-    sets_add_to_new: "Adicionar ao novo conjunto"
+    sets_add_to_new: "Adicionar a um novo conjunto"
     rules_summary_html: "Scripts devem ser <strong>descritos corretamente</strong>, não podem ser <strong>ofuscados</strong> ou <strong>reduzidos</strong>, devem respeitar <strong>copyright</strong>, e estão limitados no <strong>código externo</strong> utilizado. %{full_rules_link}"
     rules_summary_link_to_full: "Leia as regras completas."
     syncing_notice_html: "O script é %{syncing_notice_sync_type}. Qualquer atualização realizada no código aqui será sobrescrita quando sincronizada."
@@ -247,6 +249,7 @@ pt-BR:
     additional_info_add_localized: "Adicionar uma informação regionalizada adicional"
     additional_info_locale_repeated: "Informar somente uma informação adicional para a regionalização '%{locale_code}'"
     localized_additional_info_with_no_name: "Informação adicional foi especificada para a regionalização '%{locale_code}', mas nada adicionado a @name:%{locale_code}."
+    invalid_matchers: "Correspondências inválidas utilizadas: %{matches}"
     code_syncing_from_url_html: "O código de script foi configurado para sincronia de: %{field}"
     provide_code_syncing_from_url_html: "%{site_name} pode importar scripts que já foram hospedados em outro lugar, p. ex. num sistema de controle de versão (como GitHub), seu próprio servidor, ou outro site de hospedagem de scripts de usuário. Para habilitar sincronização com seu scrpit, digite a URL: %{field}"
     code_syncing_from_webhook_html: "O código deste script está configurado para sincronizar com um webhook. Combinaremos as solicitações de webhook para este script com base neste URL:%{field}"
@@ -304,6 +307,7 @@ pt-BR:
     not_adult_content_self_report_html: "Este script <strong>não</strong> contém conteúdo adulto e <strong>não</strong> foi feito para um site que contém conteúdo adulto."
     not_adult_content_self_report_explanation: "%{site_name} permite scripts com conteúdo adulto, então eles devem ser marcados como tal para os usuários poderem escolher se querem vê-los. Seu script foi marcado com contendo conteúdo adulto. Você pode relatar que ele não possui conteúdo adulto, isto será revisto por um moderador."
     not_adult_content_self_report_explanation_automatic: "%{site_name} permite scripts com conteúdo adulto, mas eles devem estar marcados como tal para que os usuários possam escolher vê-los ou não. Seu script foi marcado como conteúdo adulto por ser feito para %{domain_list}."
+    adult_content_notice_from_sleazy: Como você está publicando este script no %{site_name}, assumimos que seu script contenha conteúdo adulto ou seja para um site com conteúdo adulto. Se este não for o caso, %{greasyfork_link:poste seu script no Greasy Fork}.
     adult_content_on_greasy_logged_in_error: "Este script não está mais disponível neste site com sua %{edit_account_link:Greasy Fork account settings}."
     adult_content_on_greasy_not_logged_in_error: "Este script não está mais disponível anonimamente neste site. %{login_link:Log in} e cheque suas preferências da sua conta no Greasy Fork."
     non_adult_content_on_sleazy: "O script não está disponível neste site."
@@ -325,6 +329,14 @@ pt-BR:
     preview_additional_info: "Previsualizar"
     must_confirm: "Você deve ativar sua conta antes de postar scripts. Você tem duas opções de ativação  - realizar um login externo ou confirmando o seu e-mail."
     must_confirm_email_button: "Enviar link de confirmação para  %{email}"
+    needs_secure_login:
+      intro: "Você precisa configurar um método de login seguro em sua conta antes de poder publicar scripts."
+      secure_internal_heading: "Opção 1: torne seu login do %{site_name} seguro"
+      confirm_email: "Confirme seu e-mail"
+      enable_2fa: "Ative a autenticação de dois fatores (2FA)"
+      add_external_heading: "Opção 2: usar somente login externo"
+      add_external: "Adicionar um login externo"
+      remove_password: "Remover sua senha do %{site_name}"
     authors_heading: "Autores"
     error_unauthorized_copy: "Este código parece ser um cópia não autorizada de %{script}. Por favor cheque as %{rules_link:regras} do  %{site_name} ao postar scripts."
     invitations:
@@ -365,9 +377,16 @@ pt-BR:
         chrome: Você precisará instalar uma extensão como %{tampermonkey_link:Tampermonkey} ou %{violentmonkey_link:Violentmonkey} para instalar este script.
         opera: Você precisará instalar uma extensão como %{tampermonkey_link:Tampermonkey} ou %{violentmonkey_link:Violentmonkey} para instalar este script.
         safari: Você precisará instalar uma extensão como %{tampermonkey_link:Tampermonkey} ou %{userscripts_link:Userscripts} para instalar este script.
+        edge: Você precisará instalar uma extensão como o %{tampermonkey_link:Tampermonkey} para instalar este script.
         other: Para instalar este script, antes será preciso instalar uma extensão gerenciadora de scripts.
         bypass: (Eu já tenho um gerenciador de scripts de usuário, me deixe fazer a instalação!)
       css:
+        firefox: Você precisará instalar uma extensão como o %{stylus_link:Stylus} para instalar este estilo.
+        chrome: Você precisará instalar uma extensão como o %{stylus_link:Stylus} para instalar este estilo.
+        opera: Você precisará instalar uma extensão como o %{stylus_link:Stylus} para instalar este estilo.
+        safari: Você precisará instalar um gerenciador de estilos de usuário para instalar este estilo.
+        edge: Você precisará instalar um gerenciador de estilos de usuário para instalar este estilo.
+        other: Você precisará instalar um gerenciador de estilos de usuário para instalar este estilo.
         bypass: (Eu já possuo um gerenciador de estilos de usuário, me deixar fazer a instalação!)
       close_dialog: OK
     antifeatures:
@@ -512,6 +531,17 @@ pt-BR:
           </ul>
     android_browsers:
       title: Móvel (Android)
+      browser_list_html: |
+          <ul>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, or %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+          <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+          <li>Kiwi: %{chrome_tampermonkey_link:Tampermonkey} or %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>%{xbrowser_link:XBrowser}</li>
+          %{locale_specific_browsers}
+          </ul>
     ios_browsers:
       title: Móvel (iOS)
       browser_list_html: |
@@ -547,6 +577,7 @@ pt-BR:
     sign_in_email_missing: "%{site_name} necessita de um email para criar uma nova conta, mas %{provider} não inseriu para você. Pode-se atualizar sua conta %{provider} para ter uma, então tentar logar novamente, ou criar  uma conta normal email/senha no %{site_name}, então adicionar sua conta %{provider} nela."
     sign_in_name_used: "O nome '%{name}' já está em uso. Escolha um nome diferente."
     sign_in_name_used_submit: "Enviar"
+    sign_in_github_unavailable: "Entrar com o GitHub não está disponível no Sleazy Fork, mas você pode %{sign_in_url:entrar com o GitHub no Greasy Fork}."
     control_panel: "Painel de Controle"
     discussions_on_scripts: "Comentários nos seus scripts"
     discussions_on_scripts_feed_alt: "Feed RSS"
@@ -564,6 +595,12 @@ pt-BR:
     edit_sign_in: "Editar métodos de entrada"
     edit_sign_in_title: "Editar métodos de entrada"
     edit_sign_in_password: "Senha"
+    edit_sign_in_2fa_enabled: A autenticação de dois fatores (2FA) está ativa. Você pode gerar um novo código 2FA se tiver perdido o seu.
+    edit_sign_in_2fa_enabled_and_required: A autenticação de dois fatores (2FA) está ativa. A 2FA é obrigatória na sua conta ao usar login com senha. Você pode gerar um novo código 2FA se tiver perdido o seu.
+    edit_sign_in_disable_2fa: Desativar 2FA
+    edit_sign_in_2fa_disabled: Você pode ativar a autenticação de dois fatores (2FA) para aumentar a segurança da sua conta do %{site_name}.
+    edit_sign_in_enable_2fa: Ativar 2FA
+    edit_sign_in_regenerate_2fa: Gerar novo código 2FA
     edit_notifications: "Editar configurações de notificação"
     view_notifications: "Ver notificações"
     no_password_set_info: "Sua conta não está configurado com uma senha."
@@ -590,6 +627,24 @@ pt-BR:
     disable_syncing: "Desligar sincronização"
     remove_external_sign_in: "Remover"
     add_external_sign_in_info: "Adicionar um sinal em:"
+    2fa_enabled: A 2FA foi ativada.
+    2fa_enable_code_incorrect: O código 2FA está incorreto. Tente novamente.
+    2fa_disabled: A 2FA foi desativada.
+    2fa_disabled_already: A 2FA já está desativada.
+    2fa_entry:
+      intro_html: "Entrando como <b>%{email}</b>"
+    enable_2fa:
+      intro: "Adicione o 1%{site_name} ao seu app de autenticação de dois fatores (2FA) usando um dos métodos abaixo e, em seguida, insira o código."
+      qr_heading: Via QR code
+      url_heading: Via link
+      url_info: ' Se você estiver no mesmo dispositivo que seu aplicativo de autenticação de dois fatores, poderá adicioná-lo com %{auth_link:este link}.'
+      manual_heading: Manualmente
+      manual_entry_code_name: "Código: %{code_name}"
+      manual_entry_your_key: "Sua chave: %{key}"
+      manual_entry_type_of_key: "Tipo de chave: Baseada em tempo"
+      code_entry_heading: Digite o código
+      code_entry: "Digite o código do seu aplicativo de 2FA para ativá-lo na sua conta do %{site_name}:"
+      verify_code: Verificar código
     set_up_webhook: "Configurar um webhook"
     list_display_html:
       one: "%{user_link} - %{count} script"
@@ -661,6 +716,16 @@ pt-BR:
     banned_delete:
       intro: "Ao deletar sua conta, todos os seus scripts postados também serão removidos. Suas contribuições no forum ainda existirão, porém sem a informação do seu usuário. Mesmo após a remoção, você não poderá se registrar novamente com o mesmo endereço de email. Faça login abaixo para deletar sua conta."
       complete: "Sua conta foi apagada."
+    deleted_user_with_id: "(Usuário 1%{id} excluído)"
+    deleted_user_without_id: "(Usuário excluído)"
+    suggest_secure_login: Como autor de scripts, sugerimos que você %{edit_login_link:utilize um método de login mais seguro}.
+    require_secure_login: É necessário que sua conta utilize um método de login mais seguro.
+    secure_login_explanation_html: |
+        <p>Como autor de scripts, recomendamos que você proteja sua conta e seus usuários utilizando um método de login seguro. Isso pode ser feito de duas maneiras:</p>
+        <ol>
+        <li>Adicione a autenticação de dois fatores (2FA) ao seu login com senha.</li>
+        <li>Exclua sua senha e utilize somente login externo (e, de preferência, ative os recursos de segurança fornecidos pelo serviço).</li>
+        </ol>
     badges:
       banned:
         short: Banido
@@ -1050,6 +1115,8 @@ pt-BR:
     item_user_html: "Usuário: %{user_link}"
     item_report: "%{report_link: Relatório #%{report_id}}"
     item_script_lock_appeal: "%{appeal_link:Apelação #%{appeal_id}}"
+    item_discussion_html: "Discussão: 1%{discussion_link}"
+    item_comment_html: "Comentário na discussão: 1%{comment_link}"
   reports:
     name: "Relatório #%{id}"
     report_filed: "Sua denúncia será revisada por um moderador"
@@ -1175,6 +1242,7 @@ pt-BR:
     dismissed_by_moderator: Um moderador rejeitou este recurso.
     upheld_by_moderator: Como resultado deste apelo, um moderador cancelou a exclusão deste script.
     submitted: Sua apelação foi recebida e um moderador a analisará.
+    already_open: Já existe um recurso aberto para este script.
   discussions:
     title: Discussões
     comment_date: "Publicado: %{date}"
@@ -1351,6 +1419,7 @@ pt-BR:
         current_password: "Senha atual"
         new_password: "Nova Senha"
         new_password_confirmation: "Confirme a nova senha"
+        otp_attempt: Código de autenticação de dois fatores (2FA)
       script:
         name: "Nome"
         description: "Descrição"
