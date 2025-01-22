@@ -730,6 +730,11 @@ class Script < ApplicationRecord
     save!
   end
 
+  def report_that_deleted
+    # delete_report should be set, but there are historical ones where it isn't.
+    delete_report || reports.upheld.last
+  end
+
   private
 
   def url_helpers

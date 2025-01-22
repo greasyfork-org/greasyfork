@@ -34,7 +34,7 @@
       <% end %>
       <% if @script.deleted? %>
         <p id="deleted-note">
-          <% report = @script.delete_report || @script.reports.upheld.last %>
+          <% report = @script.report_that_deleted %>
           <% if @script.locked? && report %>
             <% if @script.self_deleted %>
               <% if same_user %>

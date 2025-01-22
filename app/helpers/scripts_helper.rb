@@ -104,7 +104,7 @@ module ScriptsHelper
   end
 
   def delete_reason(script)
-    report = script.delete_report || script.reports.upheld.last
+    report = script.report_that_deleted
     reason = ''
     reason += link_to(t('reports.name', id: report.id), report_path(report)) if report
     if script.delete_reason.present?

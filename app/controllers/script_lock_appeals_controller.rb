@@ -23,7 +23,7 @@ class ScriptLockAppealsController < ApplicationController
       return
     end
 
-    @script_lock_appeal = @script.script_lock_appeals.build
+    @script_lock_appeal = @script.script_lock_appeals.build(report_id: @script.report_that_deleted&.id)
   end
 
   def create
