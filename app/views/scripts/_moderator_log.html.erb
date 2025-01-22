@@ -3,7 +3,8 @@
 <section class="multiform-page">
   <h3><%= t('layouts.application.moderator_log') %></h3>
 
-  <% actions = ModeratorAction.where(script: @script).load %>
+  <%# Include dismissed appeals as well - they don't actually change anything but we don't link to them from anywhere else. %>
+  <% actions = (ModeratorAction.where(script: @script) + ScriptLockAppeal.where(script: @script).where(resolution: :dismissed)).sort_by(&:created_at) %>
   <% if actions.any? %>
     <table class="log-table">
       <thead>
@@ -17,20 +18,29 @@
       <% actions.each do |action| %>
         <tr>
           <td><%= markup_date action.created_at %></td>
-          <td><%= render_user action.moderator, action.moderator_id, skip_badge: true %></td>
-          <td><%= action.action %></td>
+          <td><%= render_user(action.moderator, action.moderator_id, skip_badge: true) if action.is_a?(ModeratorAction) %></td>
           <td>
-            <div class="possibly-long-text">
-              <% if action.report %>
-                <%= it('moderator_logs.item_report', report_id: action.report_id, report_link: report_path(action.report)) %>
+            <% if action.is_a?(ModeratorAction) %>
+              <%= action.action %>
+            <% else %>
+              <%= it('moderator_logs.item_script_lock_appeal_dismissed', appeal_id: action.id, appeal_link: script_script_lock_appeal_path(action.script, action.id)) %>
+            <% end %>
+          <td>
+            <% if action.is_a?(ModeratorAction) %>
+              <div class="possibly-long-text">
+                <% if action.report %>
+                  <%= it('moderator_logs.item_report', report_id: action.report_id, report_link: report_path(action.report)) %>
+                <% end %>
+                <% if !action.script_lock_appeal.nil? %>
+                  <%= it('moderator_logs.item_script_lock_appeal', appeal_id: action.script_lock_appeal_id, appeal_link: script_script_lock_appeal_path(action.script_lock_appeal.script, action.script_lock_appeal)) %>
+                <% end %>
+                <%= action.reason %>
+              </div>
+              <% if current_user&.moderator? && action.private_reason %>
+                <div class="possibly-long-text"><%= action.private_reason %></div>
               <% end %>
-              <% if !action.script_lock_appeal.nil? %>
-                <%= it('moderator_logs.item_script_lock_appeal', appeal_id: action.script_lock_appeal_id, appeal_link: script_script_lock_appeal_path(action.script_lock_appeal.script, action.script_lock_appeal)) %>
-              <% end %>
-              <%= action.reason %>
-            </div>
-            <% if current_user&.moderator? && action.private_reason %>
-              <div class="possibly-long-text"><%= action.private_reason %></div>
+            <% else %>
+              <div class="possibly-long-text"><%= action.moderator_notes %></div>
             <% end %>
           </td>
         </tr>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_08_162648) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_21_005544) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -484,6 +484,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_08_162648) do
     t.string "text_markup", limit: 10, default: "html", null: false
     t.integer "resolution", default: 0, null: false
     t.text "moderator_notes"
+    t.datetime "created_at", null: false
     t.index ["report_id"], name: "fk_rails_c92d139641"
     t.index ["script_id"], name: "fk_rails_b37644914a"
   end
