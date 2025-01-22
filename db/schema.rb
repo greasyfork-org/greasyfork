@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_21_005544) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_22_165121) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -609,7 +609,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_21_005544) do
     t.boolean "self_deleted", default: false, null: false
     t.integer "sync_attempt_count", default: 0, null: false
     t.integer "delete_type"
-    t.boolean "disable_stats", default: false, null: false
     t.boolean "pure_404", default: false, null: false
     t.boolean "missing_license_warned", default: false, null: false
     t.integer "script_type", default: 1, null: false
