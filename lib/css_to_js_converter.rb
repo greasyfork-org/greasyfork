@@ -4,7 +4,7 @@ class CssToJsConverter
   class << self
     include ActionView::Helpers::JavaScriptHelper
 
-    VERBATIM_META_LINES = %w[name version namespace description author homepageURL supportURL license].freeze
+    VERBATIM_META_LINES = %w[name namespace version description author homepageURL supportURL license].freeze
     MATCH_RESULT = Struct.new(:matches, :includes, keyword_init: true)
 
     def convert(css)
@@ -33,7 +33,7 @@ class CssToJsConverter
         end
       end
 
-      meta = CssParser.parse_meta(css).select { |k, _v| VERBATIM_META_LINES.include?(k) }
+      meta = CssParser.parse_meta(css).slice(*VERBATIM_META_LINES)
       meta['grant'] = ['GM_addStyle']
       meta['run-at'] = ['document-start']
 

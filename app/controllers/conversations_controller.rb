@@ -113,6 +113,6 @@ class ConversationsController < ApplicationController
   end
 
   def conversation_params
-    params.require(:conversation).permit(:user_input, messages_attributes: [:content, :content_markup, { attachments: [] }])
+    params.expect(conversation: [:user_input, { messages_attributes: [[:content, :content_markup, { attachments: [] }]] }])
   end
 end

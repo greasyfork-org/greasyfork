@@ -65,6 +65,6 @@ class MessagesController < ApplicationController
   end
 
   def message_params
-    params.require(:message).permit(:content, :content_markup, attachments: [])
+    params.expect(message: [:content, :content_markup, { attachments: [] }])
   end
 end

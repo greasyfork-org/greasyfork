@@ -43,7 +43,7 @@ module Admin
     private
 
     def spammy_email_domain_params
-      params.require(:spammy_email_domain).permit(:domain, :block_type)
+      params.expect(spammy_email_domain: [:domain, :block_type])
     end
   end
 end

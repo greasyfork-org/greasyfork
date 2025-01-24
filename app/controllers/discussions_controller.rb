@@ -307,11 +307,9 @@ class DiscussionsController < ApplicationController
   end
 
   def discussion_params
-    attrs = [:rating, :title, :discussion_category_id, :report_id, { comments_attributes: [:text, :text_markup, { attachments: [] }] }]
+    attrs = [:rating, :title, :discussion_category_id, { comments_attributes: [[:text, :text_markup, { attachments: [] }]] }]
     attrs += [:report_id] if current_user&.moderator?
-    params
-      .require(:discussion)
-      .permit(attrs)
+    params.expect(discussion: attrs)
   end
 
   def record_view(discussion)

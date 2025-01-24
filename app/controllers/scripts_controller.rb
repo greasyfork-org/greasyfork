@@ -405,7 +405,7 @@ class ScriptsController < ApplicationController
       return
     end
 
-    @script.assign_attributes(params.require(:script).permit(:sync_type, :sync_identifier))
+    @script.assign_attributes(params.expect(script: [:sync_type, :sync_identifier]))
     @script.sync_identifier = ScriptImporter::UrlImporter.fix_sync_id(@script.sync_identifier) if @script.sync_identifier
 
     # additional info syncs. and new ones and update existing ones to add/update sync_identifiers
@@ -780,7 +780,7 @@ class ScriptsController < ApplicationController
   end
 
   def update_locale
-    update_params = params.require(:script).permit(:locale_id)
+    update_params = params.expect(script: [:locale_id])
     if @script.update(update_params)
       unless @script.users.include?(current_user)
         ModeratorAction.create!(script: @script, moderator: current_user, action: 'Update locale', reason: "Changed to #{@script.locale.code}#{update_params[:locale_id].blank? ? ' (auto-detected)' : ''}")

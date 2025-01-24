@@ -43,7 +43,7 @@ module Admin
     private
 
     def redirect_service_domain_params
-      params.require(:redirect_service_domain).permit(:domain)
+      params.expect(redirect_service_domain: [:domain])
     end
   end
 end

@@ -77,6 +77,6 @@ class ScriptLockAppealsController < ApplicationController
   end
 
   def script_lock_appeal_params
-    params.require(:script_lock_appeal).permit(:text, :text_markup, :report_id)
+    params.expect(script_lock_appeal: [:text, :text_markup, :report_id])
   end
 end

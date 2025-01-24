@@ -43,7 +43,7 @@ module Admin
     private
 
     def blocked_script_url_params
-      params.require(:blocked_script_url).permit(:url, :public_reason, :private_reason, :prefix)
+      params.expect(blocked_script_url: [:url, :public_reason, :private_reason, :prefix])
     end
   end
 end

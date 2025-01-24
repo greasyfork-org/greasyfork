@@ -95,6 +95,6 @@ class CommentsController < ApplicationController
   end
 
   def comments_params
-    params.require(:comment).permit(:text, :text_markup, attachments: [])
+    params.expect(comment: [:text, :text_markup, { attachments: [] }])
   end
 end

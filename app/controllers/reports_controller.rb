@@ -205,7 +205,7 @@ class ReportsController < ApplicationController
   private
 
   def report_params
-    params.require(:report).permit(:reason, :explanation, :explanation_markup, :script_url, :discussion_category_id, attachments: [])
+    params.expect(report: [:reason, :explanation, :explanation_markup, :script_url, :discussion_category_id, { attachments: [] }])
   end
 
   def item

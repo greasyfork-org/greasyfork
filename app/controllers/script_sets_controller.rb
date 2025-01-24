@@ -224,7 +224,7 @@ class ScriptSetsController < ApplicationController
   end
 
   def script_set_params
-    params.require(:script_set).permit(:name, :description, :default_sort)
+    params.expect(script_set: [:name, :description, :default_sort])
   end
 
   def make_favorite_set(set)
