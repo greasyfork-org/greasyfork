@@ -326,6 +326,14 @@ bg:
     preview_additional_info: "Преглед"
     must_confirm: "Преди да публикувате скриптове, трябва да потвърдите акаунта си. Имате две възможности - да се впишете чрез външна услуга или да изпратим имейл за потвърждение."
     must_confirm_email_button: "Изпрати връзка за потвърждение до %{email}"
+    needs_secure_login:
+      intro: "За да можете да публикувате скриптове, първо трябва да настроите профила си за сигурен вход."
+      secure_internal_heading: "Възможност 1: защитете вашия %{site_name} вход"
+      confirm_email: "Потвърдете имейл адреса си"
+      enable_2fa: "Разрешете двуфакторна автентикация (2FA)"
+      add_external_heading: "Възможност2: използвайте само външен вход"
+      add_external: "Добави външен вход"
+      remove_password: "Премахнете паролата си за %{site_name} "
     authors_heading: "Автори"
     error_unauthorized_copy: "Този код изглежда е неоторизирано копие на %{script}. Моля, прочетете %{rules_link:правилата} на%{site_name}за публикуване на скриптове."
     invitations:
@@ -1089,6 +1097,7 @@ bg:
     item_user_html: "Потребител: %{user_link}"
     item_report: "%{report_link: Доклад#%{report_id}}"
     item_script_lock_appeal: "%{appeal_link:Възражение#%{appeal_id}}"
+    item_script_lock_appeal_dismissed: "%{appeal_link:Опровержение#%{appeal_id}} отхвърлено"
     item_discussion_html: "Дискусия: %{discussion_link}"
     item_comment_html: "Коментар към дискусия: %{comment_link}"
   reports:

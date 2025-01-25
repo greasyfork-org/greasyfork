@@ -328,6 +328,14 @@ it:
     preview_additional_info: "Anteprima"
     must_confirm: "Devi confermare il tuo account prima di poter pubblicare degli scripts. Hai due opzioni di conferma - aggiungi un accreditamento esterno o invia un'email di conferma."
     must_confirm_email_button: "Invia il link di conferma a %{email}"
+    needs_secure_login:
+      intro: "Devi impostare un account con un metodo di accesso sicuro prima di poter pubblicare degli scripts."
+      secure_internal_heading: "Opzione 1: rendi sicuro il tuo accesso a %{site_name}"
+      confirm_email: "Conferma il tuo indirizzo email"
+      enable_2fa: "Abilita l'autenticazione a due fattori (2FA)"
+      add_external_heading: "Opzione 2: usa solo un metodo di accesso esterno"
+      add_external: "Aggiungi un metodo di accesso esterno"
+      remove_password: "Rimuovi la tua password di %{site_name}"
     authors_heading: "Autori"
     error_unauthorized_copy: "Questo codice sembra essere una copia non autorizzata di%{script}. Fai riferimento alle %{rules_link:regole} di %{site_name} sulla pubblicazione degli script."
     invitations:
@@ -1109,6 +1117,7 @@ it:
     item_user_html: "Utente: %{user_link}"
     item_report: "%{report_link: Rapporto #%{report_id}}"
     item_script_lock_appeal: "%{appeal_link:Ricorso #%{appeal_id}}"
+    item_script_lock_appeal_dismissed: "%{appeal_link:Ricorso #%{appeal_id}} rigettato"
     item_discussion_html: "Discussione: %{discussion_link}"
     item_comment_html: "Commenta una discussione: %{comment_link}"
   reports:
