@@ -13,6 +13,7 @@ ja:
   scripts:
     created_date: "作成日"
     updated_date: "更新日"
+    code_size: 大きさ
     total_installs: "累計インストール数"
     daily_installs: "1日のインストール数"
     ratings: "評価"
@@ -100,6 +101,7 @@ ja:
         intro: '%{site_name}上のあなたのスクリプトを改善するための、単なる助言です。%{rules_link:規則}とは別物なので、従っていなくても削除はされません。'
         license_html: '%{license_link:<code>@license</code>}を指定する。他者がこのコードを共有したり修正できるかを示します。'
         globs_html: '%{include_link:<code>@include</code>} と %{match_link:<code>@match</code>} のドメイン部分でのワイルドカードや正規表現を避ける。このスクリプトがどのサイト向けなのか、%{site_name}が分類るのを難しくします。'
+        globs_used_html: "非ドメインの include が使用されている: %{globs}"
         additional_info: 追加情報を書く。機能の一覧、スクリーンショットなど。何をするスクリプトなのかを、ユーザーが十分に理解できるようにします。
     history_title: "%{script_name} のバージョン履歴"
     history_only_code_changes_info: "コードが変更されたバージョンのみを表示しています。"
@@ -296,6 +298,7 @@ ja:
     not_adult_content_self_report_html: "このスクリプトはアダルトコンテンツを<strong>含んでいません</strong>。なおかつ、アダルトコンテンツを含むサイト向けのスクリプト<strong>でもありません</strong>。"
     not_adult_content_self_report_explanation: "%{site_name} では、アダルトコンテンツに関するスクリプトも許容されますが、そうしたスクリプトだと示す必要があります。ユーザーがそのようなスクリプトを表示するかどうか選択できるようにするためです。このスクリプトは、アダルトコンテンツを含むスクリプトとして登録されました。身に覚えがない場合、報告により管理担当者が審査しなおします。"
     not_adult_content_self_report_explanation_automatic: "%{site_name} はアダルトコンテンツに関するスクリプトを許容しますが、そうしたスクリプトだと示す必要があります。ユーザーがそのようなスクリプトを表示するかどうか選択できるようにするためです。%{domain_list} 向けであるため、このスクリプトはアダルトコンテンツを含むものだと認識されています。"
+    adult_content_notice_from_sleazy: '%{site_name} にこのスクリプトを投稿しているため、スクリプトにはアダルトコンテンツが含まれるか、アダルトコンテンツのあるサイト用だと想定されます。そうでなければ、代わりに%{greasyfork_link:Greasy Forkにスクリプトを投稿}してください。'
     adult_content_on_greasy_logged_in_error: "%{edit_account_link:Greasy Fork のアカウント設定} で許可しない限り、このスクリプトを当サイトから利用することはできなくなりました。"
     adult_content_on_greasy_not_logged_in_error: "ログインしていない場合、このスクリプトを当サイトから利用することはできなくなりました。%{login_link:ログイン} 後、Greasy Fork のアカウント設定をご確認ください。"
     non_adult_content_on_sleazy: "このスクリプトを当サイトから利用することはできません。"
@@ -317,6 +320,14 @@ ja:
     preview_additional_info: "プレビュー"
     must_confirm: "スクリプトを投稿する前にアカウントの確認が必要です。確認方法は2種類あります。外部のサービスでのアカウントを追加する方法と、確認メールを送信する方法です。"
     must_confirm_email_button: "確認リンクを %{email} に送信"
+    needs_secure_login:
+      intro: "スクリプトを投稿する前に、安全なログイン方法でアカウントを設定する必要があります。"
+      secure_internal_heading: "選択肢1: %{site_name} のログインを安全にする"
+      confirm_email: "メールアドレスの確認"
+      enable_2fa: "2段階認証 (2FA) を有効にする"
+      add_external_heading: "選択肢2:外部のログインサービスのみを使う"
+      add_external: "外部のログインを追加"
+      remove_password: "あなたの %{site_name} のパスワードを削除"
     authors_heading: "共同の作者"
     error_unauthorized_copy: "このコードは %{script} の許可のないコピーのようです。投稿するスクリプトに関する %{site_name} の %{rules_link:規則} をご確認ください。"
     invitations:
@@ -357,9 +368,16 @@ ja:
         chrome: スクリプトをインストールするには、%{tampermonkey_link:Tampermonkey} や %{violentmonkey_link:Violentmonkey} のような拡張機能のインストールが必要です。
         opera: スクリプトをインストールするには、%{tampermonkey_link:Tampermonkey} や %{violentmonkey_link:Violentmonkey} のような拡張機能のインストールが必要です。
         safari: スクリプトをインストールするには、%{tampermonkey_link:Tampermonkey} や %{userscripts_link:Userscripts} のような拡張機能のインストールが必要です。
+        edge: このスクリプトをインストールするには、%{tampermonkey_link:Tampermonkey}などの拡張機能をインストールする必要があります。
         other: このスクリプトをインストールするには、ユーザースクリプト管理ツールの拡張機能をインストールする必要があります。
         bypass: (ユーザースクリプト管理ツールは設定済みなのでインストール！)
       css:
+        firefox: このスタイルをインストールするには、%{stylus_link:Stylus}などの拡張機能をインストールする必要があります。
+        chrome: このスタイルをインストールするには、%{stylus_link:Stylus} などの拡張機能をインストールする必要があります。
+        opera: このスタイルをインストールするには、%{stylus_link:Stylus} tなどの拡張機能をインストールする必要があります。
+        safari: このスタイルをインストールするには、ユーザースタイル管理用の拡張機能をインストールする必要があります。
+        edge: このスタイルをインストールするには、ユーザースタイル管理用の拡張機能をインストールする必要があります。
+        other: このスタイルをインストールするには、ユーザースタイル管理用の拡張機能をインストールする必要があります。
         bypass: (ユーザースタイル管理ツールは設定済みなのでインストール！)
       close_dialog: OK
     antifeatures:
@@ -496,6 +514,17 @@ ja:
           </ul>
     android_browsers:
       title: モバイル (Android)
+      browser_list_html: |
+          <ul>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, / %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+          <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+          <li>Kiwi: %{chrome_tampermonkey_link:Tampermonkey} / %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>%{xbrowser_link:XBrowser}</li>
+          %{locale_specific_browsers}
+          </ul>
     ios_browsers:
       title: モバイル (iOS)
       browser_list_html: |
@@ -526,6 +555,7 @@ ja:
     sign_in_email_missing: "%{site_name} にアカウントを作成するにはメールアドレスが必要ですが、%{provider} からはメールアドレスを取得できませんでした。%{provider} のアカウントにメールアドレスを追加してから、もう一度ログインしてみてください。Email と Password で %{site_name} にアカウント登録してから、%{provider} による認証を追加することもできます。"
     sign_in_name_used: "「%{name}」という名前はすでに利用されています。別の名前を入力してください。"
     sign_in_name_used_submit: "登録"
+    sign_in_github_unavailable: "Sleazy Fork では GitHub 経由のログインは利用できませんが、%{sign_in_url:Greasy Fork では GitHub でのログイン}が可能です。"
     control_panel: "設定"
     discussions_on_scripts: "あなたのスクリプトに関する議論"
     discussions_on_scripts_feed_alt: "フィード"
@@ -543,6 +573,12 @@ ja:
     edit_sign_in: "ログイン方法の設定"
     edit_sign_in_title: "ログインに利用するアカウントの設定"
     edit_sign_in_password: "パスワードの設定"
+    edit_sign_in_2fa_enabled: 2段階認証 (2FA) が設定されています。2FAのコードをなくした場合は、再生成できます。
+    edit_sign_in_2fa_enabled_and_required: 2段階認証 (2FA) が設定されています。パスワードによるログインを使用するには、アカウントに2FAが必要です。2FAのコードをなくした場合は、再生成できます。
+    edit_sign_in_disable_2fa: 2段階認証を無効にする
+    edit_sign_in_2fa_disabled: '%{site_name} のアカウントの安全性を強化するために、2段階認証 (2FA) を利用できます。'
+    edit_sign_in_enable_2fa: 2段階認証を有効にする
+    edit_sign_in_regenerate_2fa: 2段階認証を再生成する
     edit_notifications: "通知の設定を編集"
     view_notifications: "通知を表示"
     no_password_set_info: "パスワードを設定すると、メールアドレスとここで設定したパスワードでログインできるようになります。"
@@ -569,6 +605,24 @@ ja:
     disable_syncing: "同期を解除する"
     remove_external_sign_in: "連携を解除する"
     add_external_sign_in_info: "以下のアカウントでログインする:"
+    2fa_enabled: 2段階認証が有効化されました。
+    2fa_enable_code_incorrect: 2段階認証のコードが正しくないです。再度お試しください。
+    2fa_disabled: 2段階認証は無効化されました。
+    2fa_disabled_already: 2段階認証は既に無効化済みです。
+    2fa_entry:
+      intro_html: "<b>%{email}</b>でログイン"
+    enable_2fa:
+      intro: "以下の方法のいずれかで、2要素認証 (2FA) のアプリに%{site_name} を追加し、下部にコードを入力します。"
+      qr_heading: QR コードから
+      url_heading: リンクから
+      url_info: 利用中の2段階認証アプリが入った同じ端末からは、%{auth_link:このリンクから}追加できる可能性があります。
+      manual_heading: 手動
+      manual_entry_code_name: "コード名: %{code_name}"
+      manual_entry_your_key: "あなたのキー: %{key}"
+      manual_entry_type_of_key: "キーの種類: 時間ベース"
+      code_entry_heading: コードを入力
+      code_entry: "有効にするには、あなたの%{site_name}のアカウント用の、お使いの2段階認証アプリからのコードを入力:"
+      verify_code: コードを確認
     set_up_webhook: "ウェブフックを設定する"
     list_display_html:
       other: "%{user_link} – %{count}個のスクリプト"
@@ -628,6 +682,16 @@ ja:
     banned_delete:
       intro: "アカウントを削除すると、あなたが投稿したスクリプトも削除されます。掲示板への投稿は残りますが、ユーザー名は匿名となります。削除後に同じメールアドレスで再登録することはできません。アカウントを削除するには、以下からログインしてください。"
       complete: "あなたのアカウントは削除されました"
+    deleted_user_with_id: "(削除されたユーザー%{id})"
+    deleted_user_without_id: "(削除されたユーザー)"
+    suggest_secure_login: スクリプト開発者には、%{edit_login_link:より安全なログイン方法の使用}をご提案します。
+    require_secure_login: このアカウントはより安全なログイン方法が必要です。
+    secure_login_explanation_html: |
+        <p>スクリプト開発者には、安全なログイン方法を使用してこのアカウントとユーザーを保護することを推奨します。2つ方法があります:</p>
+        <ol>
+        パスワードによるログインに2段階認証 (2FA) を追加。</li>
+        <li>パスワードを削除し、外部のログインサービスのみを使う(理想的には、そのサービスが提供するセキュリティ機能を有効にする)。</li>
+        </ol>
     badges:
       banned:
         short: アクセス禁止済み
@@ -981,6 +1045,9 @@ ja:
     item_user_html: "ユーザー: %{user_link}"
     item_report: "%{report_link: 通報 #%{report_id}}"
     item_script_lock_appeal: "%{appeal_link:抗議 #%{appeal_id}}"
+    item_script_lock_appeal_dismissed: "%{appeal_link:抗議 #%{appeal_id}} 却下"
+    item_discussion_html: "議論: %{discussion_link}"
+    item_comment_html: "議論のコメント: %{comment_link}"
   reports:
     name: "通報 #%{id}"
     report_filed: "通報は管理担当者によって審査されます。"
@@ -1099,6 +1166,7 @@ ja:
     dismissed_by_moderator: この抗議は、管理担当者に却下されました。
     upheld_by_moderator: この抗議の結果、管理担当者はこのスクリプトの削除を取り消しました。
     submitted: あなたの抗議を受け取りました。管理担当者が審査します。
+    already_open: このスクリプトは既に抗議されています。
   discussions:
     title: 議論
     comment_date: "投稿日: %{date}"
@@ -1267,6 +1335,7 @@ ja:
         current_password: "現在のパスワード"
         new_password: "新しいパスワード"
         new_password_confirmation: "新しいパスワードの確認"
+        otp_attempt: 2段階認証 (2FA) コード
       script:
         name: "名称"
         description: "説明"
