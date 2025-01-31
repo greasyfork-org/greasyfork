@@ -1,0 +1,34 @@
+// ==UserScript==
+// @name         Apple of Fortune Scraper
+// @namespace    http://tampermonkey.net/
+// @version      1.0
+// @description  Collects real-time apple positions in 1xBet Apple of Fortune game
+// @match        *://*/*
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    'use strict';
+
+    function collectApplePositions() {
+        let rows = document.querySelectorAll('.fortune-apple-row');
+        let appleData = [];
+
+        rows.forEach((row, rowIndex) => {
+            let buttons = row.querySelectorAll('button');
+            let appleRow = [];
+
+            buttons.forEach((btn, colIndex) => {
+                if (btn.innerHTML.includes('apple')) { // Detect apple
+                    appleRow.push(colIndex + 1);
+                }
+            });
+
+            appleData.push({ row: rowIndex + 1, positions: appleRow });
+        });
+
+        console.log("Apple Positions:", appleData);
+    }
+
+    setInterval(collectApplePositions, 5000); // Scrape every 5 seconds
+})();
