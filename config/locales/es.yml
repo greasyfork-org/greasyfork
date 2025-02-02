@@ -263,6 +263,7 @@ es:
       name: Por «webhook»
       description: se actualizará cuando hagas cambios a este archivo en su repositorio
     sync_webhook_info_without_sync: Después de configurar la sincronización anterior, si estás sincronizando con un repositorio de GitHub, GitLab o BitBucket, también puedes %{webhook_info_link:configurar un webhook} para actualizar automáticamente %{site_name} cuando hagas push a tu repositorio.
+    sync_webhook_info_with_sync: Si estás sincronizando con un repositorio de GitHub, GitLab o BitBucket, puedes %{webhook_info_link:configurar un webhook} para actualizar automáticamente %{site_name} cuando hagas push a tu repositorio.
     sync_name_and_description: "%{name} - %{description}"
     sync_failed_info_html: "El último intento de sincronización fue el %{date}, y resultó en %{error}."
     sync_success_info_html: "La última sincronización fue el %{date}."
@@ -305,6 +306,7 @@ es:
     not_adult_content_self_report_html: "Este script <strong>no</strong> tiene contenido para adultos ni <strong>tampoco</strong> funciona en una web con este tipo de contenidos restringidos."
     not_adult_content_self_report_explanation: "%{site_name} permite scripts con contenido para adultos, pero deben estar marcados como tales para que los usuarios puedan elegir si quieren verlos o no. Tu script ha sido categorizado como de contenido restringido. Si no es así puedes informar de ello para que lo revise un moderador."
     not_adult_content_self_report_explanation_automatic: "%{site_name} permite scripts con contenido para adultos, pero deben estar marcados como tales para que los usuarios puedan elegir si quieren verlos o no. Hemos marcado tu script por contener las siguientes direcciones URL: %{domain_list}"
+    adult_content_notice_from_sleazy: Como estás publicando este script en %{site_name}, se asume que tu script tiene contenido para adultos o es para un sitio con contenido para adultos. Si no es así, por favor %{greasyfork_link:publica tu script en Greasy Fork}.
     adult_content_on_greasy_logged_in_error: "Ahora mismo no puedes ver este script por culpa de las restricciones de contenido %{edit_account_link:de tu cuenta de Greasy Fork}, pero puedes cambiarlas."
     adult_content_on_greasy_not_logged_in_error: "Este script ya no se puede ver de forma anónima en este sitio. %{login_link:Inicia sesión} y echa un vistazo a los ajustes de contenido permitido en tu cuenta de Greasy Fork."
     non_adult_content_on_sleazy: "Este script ya no está disponible en este sitio."
@@ -326,6 +328,14 @@ es:
     preview_additional_info: "Vista previa"
     must_confirm: "Para poder publicar scripts primero tienes que confirmar tu cuenta. Tienes la opción de añadir un proveedor de inicio de sesión externo o de recibir un correo electrónico de confirmación."
     must_confirm_email_button: "Enviar un enlace de confirmación a %{email}"
+    needs_secure_login:
+      intro: "Debe configurar su cuenta con un método de inicio de sesión seguro antes de poder publicar scripts."
+      secure_internal_heading: "Opción 1: asegure su %{site_name} de inicio de sesión"
+      confirm_email: "Confirme su dirección de correo electrónico"
+      enable_2fa: "Activar la autenticación de dos factores (2FA)"
+      add_external_heading: "Opción 2: utilizar sólo un inicio de sesión externo"
+      add_external: "Añadir un inicio de sesión externo"
+      remove_password: "Elimine su contraseña de %{site_name}"
     authors_heading: "Miembros del equipo"
     error_unauthorized_copy: "Parece que este script contenía una copia no autorizada de %{script}. Échale un vistazo a %{rules_link:las normas de contenido} de %{site_name} para ver lo que se puede y no puede hacer."
     invitations:
@@ -366,9 +376,16 @@ es:
         chrome: Necesitarás instalar una extensión como %{tampermonkey_link:Tampermonkey} o %{violentmonkey_link:Violentmonkey} para instalar este script.
         opera: Necesitarás instalar una extensión como %{tampermonkey_link:Tampermonkey} o %{violentmonkey_link:Violentmonkey} para instalar este script.
         safari: Necesitarás instalar una extensión como %{tampermonkey_link:Tampermonkey} o %{userscripts_link:Userscripts} para instalar este script.
+        edge: Necesitará instalar una extensión como %{tampermonkey_link:Tampermonkey} para instalar este script.
         other: Necesitarás instalar una extensión para administrar scripts de usuario si quieres instalar este script.
         bypass: (Ya tengo un administrador de scripts de usuario, déjame instalarlo)
       css:
+        firefox: Necesitará instalar una extensión como %{stylus_link:Stylus} para instalar este estilo.
+        chrome: Necesitará instalar una extensión como %{stylus_link:Stylus} para instalar este estilo.
+        opera: Necesitará instalar una extensión como %{stylus_link:Stylus} para instalar este estilo.
+        safari: Necesitará instalar una extensión del gestor de estilos de usuario para instalar este estilo.
+        edge: Necesitará instalar una extensión del gestor de estilos de usuario para instalar este estilo.
+        other: Necesitará instalar una extensión del gestor de estilos de usuario para instalar este estilo.
         bypass: (Ya tengo un administrador de estilos de usuario, déjame instalarlo)
       close_dialog: Aceptar
     antifeatures:
@@ -537,6 +554,7 @@ es:
     sign_in_email_missing: "Para crear una nueva cuenta en %{site_name} necesitamos una dirección de correo electrónico que vincular a tu usuario, pero %{provider} no nos ha proporcionado ninguno. Puedes actualizar tu cuenta de %{provider} para añadir uno, y a continuación, intentar iniciar sesión de nuevo, o crear una cuenta normal con correo/contraseña en %{site_name}, y a continuación, añadir tu cuenta de %{provider} a la misma."
     sign_in_name_used: "El nombre «%{name}» ya está en uso. Elige uno diferente."
     sign_in_name_used_submit: "Enviar"
+    sign_in_github_unavailable: "Iniciar sesión con GitHub no está disponible en Sleazy Fork, pero puedes %{sign_in_url:iniciar sesión con GitHub en Greasy Fork}."
     control_panel: "Panel de control"
     discussions_on_scripts: "Conversaciones en tus scripts"
     discussions_on_scripts_feed_alt: "Canal RSS"
@@ -554,6 +572,14 @@ es:
     edit_sign_in: "Editar métodos de inicio de sesión"
     edit_sign_in_title: "Editar métodos de inicio de sesión"
     edit_sign_in_password: "Contraseña"
+    edit_sign_in_2fa_enabled: Ha configurado la autenticación de dos factores (2FA). Puedes regenerar tu código 2FA si lo has perdido.
+    edit_sign_in_2fa_enabled_and_required: Ha configurado la autenticación de dos factores (2FA). Se requiere 2FA en su cuenta cuando se utilizan inicios de sesión basados en contraseña. Puede regenerar su código 2FA si lo ha perdido.
+    edit_sign_in_disable_2fa: Desactivar 2FA
+    edit_sign_in_2fa_disabled: Puedes activar la autenticación de dos factores (2FA) para mejorar la seguridad de tu cuenta de %{site_name}.
+    edit_sign_in_enable_2fa: Activar 2FA
+    edit_sign_in_regenerate_2fa: Regenerar 2FA
+    edit_notifications: "Editar la configuración de las notificaciones"
+    view_notifications: "Ver notificaciones"
     no_password_set_info: "Tu cuenta todavía no tiene asignada una contraseña."
     set_password: "Crear contraseña"
     update_password: "Actualizar contraseña"
@@ -578,6 +604,24 @@ es:
     disable_syncing: "Desactivar sincronización"
     remove_external_sign_in: "Eliminar"
     add_external_sign_in_info: "Añadir un inicio de sesión:"
+    2fa_enabled: 2FA ha sido activado.
+    2fa_enable_code_incorrect: El código 2FA no es correcto. Por favor, inténtelo de nuevo.
+    2fa_disabled: 2FA ha sido desactivado.
+    2fa_disabled_already: 2FA ya está desactivado.
+    2fa_entry:
+      intro_html: "Iniciar sesión como <b>%{email}</b>"
+    enable_2fa:
+      intro: "Añade %{site_name} a tu aplicación de autenticación de dos factores (2FA) mediante uno de estos métodos y, a continuación, introduce el código que aparece a continuación."
+      qr_heading: Mediante código QR
+      url_heading: Mediante enlace
+      url_info: Si estás en el mismo dispositivo que tu aplicación de autenticación de dos factores, puedes añadirla con %{auth_link:este enlace}.
+      manual_heading: Manualmente
+      manual_entry_code_name: "Nombre del código: %{code_name}"
+      manual_entry_your_key: "Su clave: %{key}"
+      manual_entry_type_of_key: "Tipo de llave: Por tiempo"
+      code_entry_heading: Introduzca el código
+      code_entry: "Introduce el código de tu aplicación 2FA para activarla en tu cuenta de %{site_name}:"
+      verify_code: Verificar código
     set_up_webhook: "Configurar un «webhook»"
     list_display_html:
       one: "%{user_link} - %{count} script"
@@ -587,6 +631,7 @@ es:
     listing_new_scripts: "Scripts nuevos"
     listing_updated_scripts: "Scripts actualizados"
     listing_registration_date: "Fecha de registro"
+    listing_relevance: "Relevancia"
     listing_title: "Usuarios"
     listing_banned_filter:
       banned: "Cuenta suspendida"
@@ -648,6 +693,10 @@ es:
     banned_delete:
       intro: "Borrar tu cuenta también borrará cualquier script que hayas creado. Las contribuciones al foro que hayas realizado se mantendrán, pero tu nombre de usuario será anonimizado. Incluso después del borrado, no te será permitido registrarte otra vez con la misma dirección de correo. Inicia sesión abajo para borrar tu cuenta."
       complete: "Tu cuenta ha sido borrada."
+    deleted_user_with_id: "(Usuario eliminado %{id})"
+    deleted_user_without_id: "(Usuario eliminado)"
+    suggest_secure_login: Como autor de scripts, le sugerimos que %{edit_login_link:utilice un método de inicio de sesión más seguro}.
+    require_secure_login: Su cuenta está obligada a utilizar un método de inicio de sesión más seguro.
     badges:
       banned:
         short: Suspendido
@@ -659,8 +708,17 @@ es:
         short: Autor
         long: Autor del script
     notifications:
+      on_site: En el sitio
+      email: Por correo electrónico
       discussion_defaults:
         title: Notificaciones del foro
+        intro: Recibirás notificaciones de los debates a los que estés suscrito. Puedes suscribirte o cancelar tu suscripción a los debates en cualquier momento.
+        discussion_subscription_defaults:
+          overall_label: Por defecto, se suscribe a los debates cuando
+          start: Tú inicias la discusión
+          comment: Usted comenta la discusión
+          script: Se trata de uno de sus scripts
+        subscribed_discussion_notification: Cuando se publique un comentario en un debate al que estés suscrito, recibe la notificación
         mention: Recibe una notificación cuando se te mencione en una conversación
       conversation_defaults:
         title: Notificaciones de conversación

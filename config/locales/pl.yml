@@ -13,6 +13,7 @@ pl:
   scripts:
     created_date: "Utworzono"
     updated_date: "Zaktualizowano"
+    code_size: Rozmiar
     total_installs: "Wszystkich instalacji"
     daily_installs: "Dziennych instalacji"
     ratings: "Oceny"
@@ -31,7 +32,7 @@ pl:
       other: "Zobacz %{count} inne skrypty dla %{site}"
     applies_to_all: "Wszystkie strony"
     install: "Zainstaluj skrypt"
-    install_css: "Zainstaluj jako styl"
+    install_css: "Zainstaluj jako styl użytkownika"
     install_help: "?"
     install_help_title: "Jak zainstalować"
     update: "Aktualizacja do wersji %{version}"
@@ -101,6 +102,14 @@ pl:
       compare_to: "Skrypt na %{site_name} do porównania (URL)"
       compare_button: "Porównaj"
       compare_must_be_local_url: "Skrypt do porównania musi mieć adres URL %{site_name}."
+      compare_cleaned_code_unavailable: " Skrypt czystej wersji kodu nie jest jeszcze dostępny."
+      checkup:
+        title: Przegląd
+        intro: To są sugestie dotyczące ulepszenia Twojego skryptu na %{site_name}. Nie są to %{rules_link:rules}; Twój skrypt nie zostanie usunięty, jeśli ich nie zastosujesz.
+        license_html: Określ %{license_link<code>@:licencję}. Pozwoli to innym dowiedzieć się, czy i w jaki sposób mogą udostępniać oraz modyfikować Twój kod.
+        globs_html: Unikaj używania symboli wieloznacznych i wyrażeń regularnych w części domenowej %{include_link:<code>@include</code>} oraz %{match_link:<code>@match</code>}. %{site_name}Utrudnia to prawidłową klasyfikację Twojego skryptu.
+        globs_used_html: "Użyte nieokreślone domeny w include:%{globs}"
+        additional_info: Dołącz dodatkowe informacje – wypisz funkcje, zamieść zrzuty ekranu itp., aby użytkownicy wiedzieli dokładnie, co robi Twój skrypt.
     history_title: "%{script_name} — historia wersji"
     history_only_code_changes_info: "To są wersje tego skryptu, gdzie kod został zaktualizowany."
     history_all_changes_link: "Pokaż wszystkie wersje."
@@ -157,6 +166,7 @@ pl:
     listing_description_for_site: "Skrypty użytkownika, które dodają funkcje i usuwają błędy dla strony %{site}"
     listing_title_for_search: "'%{search_string}' skryptów użytkownika"
     listing_title_for_code_search: "'%{search_string}' skryptów użytkownika"
+    listing_description_for_code_search_html: "Wyszukiwanie kodu dla <code>%{search_string}</code>"
     listing_title_generic: "Skrypty użytkownika"
     listing_title_for_favorites: "Kolekcja '%{set_name}' użytkownika %{user_name}"
     listing_description_generic: "Skrypty użytkownika, które dodają funkcje i usuwają błędy na stronach, które odwiedzasz."
@@ -173,6 +183,7 @@ pl:
     listing_filter_by_site_all_sites: "Wszystkich stron"
     listing_filter_by_language_label: "Język:"
     listing_filter_by_site_more_sites: "Więcej..."
+    listing_filter_by_authorship_label: "Autorstwo:"
     listing_no_scripts: "Nie znaleziono skryptów."
     listing_created_feed: "Nowe skrypty"
     listing_updated_feed: "Zaktualizowanych skryptów"
@@ -182,6 +193,11 @@ pl:
     listing_language_all: "Wszystkie"
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
+    listing_author:
+      all: Wszyscy autorzy
+      me: Moje skrypty
+      user: Skrypty autorstwa %{author_name}
+    search_failed: Coś poszło nie tak podczas ładowania wyników. Niektóre funkcje wyszukiwania mogą nie działać. Zostaliśmy powiadomieni o problemie.
     import: "Importuj skrypty"
     new: "Opublikuj swój skrypt"
     new_css: "Opublikuj swój styl"
@@ -231,6 +247,7 @@ pl:
     additional_info_add_localized: "Dodaj dodatkowe informacje w innym języku"
     additional_info_locale_repeated: "Zapewnienie tylko jedno dodatkowe informacje dla '% {locale_key} \"locale."
     localized_additional_info_with_no_name: "Dodatkowa informacja została określona dla tłumaczenia '%{locale_code}', ale linia @name:%{locale_code} nie została wprowadzona."
+    invalid_matchers: "Użyte nieprawidłowe dopasowania: %{matches}"
     code_syncing_from_url_html: "Kod tego skryptu został ustawiony, by synchronizować się z: %{field}"
     provide_code_syncing_from_url_html: "%{site_name} może importować skrypty, które są hostowane w innym miejscu, na przykład w systemie kontroli wersji (jak GitHub), twój własny serwer lub z innej strony hostującej skrypty użytkownika. Aby włączyć synchronizację skryptu, podaj adres URL: %{field}"
     sync_type_intro: "Ten skrypt będzie synchronizowany:"
@@ -308,6 +325,11 @@ pl:
     preview_additional_info: "Podgląd"
     must_confirm: "Musisz najpierw potwierdzić swoje konto, zanim zaczniesz publikować skrypty. Masz dwie opcje - dodaj logowanie zewnętrznym serwisem lub wyślij wiadomość e-mail z potwierdzeniem."
     must_confirm_email_button: "Wyślij link potwierdzający na adres %{email}"
+    needs_secure_login:
+      enable_2fa: "Włącz uwierzytelnianie dwuskładnikowe (2FA)"
+      add_external_heading: "Opcja 2: użyj tylko zewnętrznego logowania"
+      add_external: "Dodaj zewnętrzne logowanie"
+      remove_password: " Usuń swoje %{site_name} hasło"
     authors_heading: "Autorzy"
     error_unauthorized_copy: "Ten kod wydaje się być nieautoryzowaną kopią %{script}. Zapoznaj się z %{rules_link:rules} o zamieszczaniu skryptów na %{site_name}."
     invitations:
@@ -351,9 +373,13 @@ pl:
         other: Aby zainstalować ten skrypt, musisz zainstalować rozszerzenie menedżera skryptów użytkownika.
         bypass: (Mam już menedżera skryptów użytkownika, pozwól mi to zainstalować!)
       css:
+        safari: Będziesz musiał zainstalować rozszerzenie menedżera stylów użytkownika, aby zainstalować ten styl.
+        edge: Będziesz musiał zainstalować rozszerzenie menedżera stylów użytkownika, aby zainstalować ten styl.
+        other: Musisz zainstalować rozszerzenie menedżera stylów użytkownika, aby zainstalować ten styl.
         bypass: (Mam już menedżera stylów użytkownika, pozwól mi to zainstalować!)
       close_dialog: OK
     antifeatures:
+      label: Antyfunkcje
       warning_title: Ten skrypt zawiera antyfunkcjonalności
       intro: Zanim zainstalujesz, %{site_name} chce Cię poinformować, że ten skrypt zawiera pewne funkcjonalności mogące działać na pożytek autora, a nie twój. Upewnij się, czy na pewno chcesz kontynuować.
       author_explanation_intro: "Autor tego skryptu wyjaśnia:"
@@ -539,6 +565,11 @@ pl:
     edit_sign_in: "Edytuj metody logowania"
     edit_sign_in_title: "Edytuj metody logowania"
     edit_sign_in_password: "Hasło"
+    edit_sign_in_disable_2fa: Wyłącz 2FA
+    edit_sign_in_enable_2fa: Włącz 2FA
+    edit_sign_in_regenerate_2fa: Regeneruj 2FA
+    edit_notifications: "Edytuj ustawienia powiadomień"
+    view_notifications: "Zobacz powiadomienia"
     no_password_set_info: "Twoje konto nie posiada skonfigurowanego hasła."
     set_password: "Ustaw hasło"
     update_password: "Zaktualizuj hasło"
@@ -563,6 +594,14 @@ pl:
     disable_syncing: "Wyłącz synchronizację"
     remove_external_sign_in: "Usuń"
     add_external_sign_in_info: "Dodaj metodę logowania:"
+    enable_2fa:
+      qr_heading: Poprzez kod QR
+      url_heading: Poprzez link
+      manual_heading: Ręcznie
+      manual_entry_code_name: "Nazwa kodu: %{code_name}"
+      manual_entry_your_key: "Twój klucz: %{key}"
+      code_entry_heading: Wprowadź kod
+      verify_code: Zweryfikuj kod
     set_up_webhook: "Stwórz nowego webhooka"
     list_display_html:
       one: "%{user_link} — %{count} skrypt"
@@ -573,6 +612,7 @@ pl:
     listing_new_scripts: "Nowych skryptów"
     listing_updated_scripts: "Zaktualizowanych skryptów"
     listing_registration_date: "Daty rejestracji"
+    listing_relevance: "Trafność"
     listing_title: "Użytkownicy"
     listing_banned_filter:
       banned: "Zbanowani"
@@ -639,6 +679,8 @@ pl:
     banned_delete:
       intro: "Usunięcie twojego konta spowoduje również usunięcie wszystkich udostępnionych przez ciebie skryptów. Twoja aktywność na forach pozostanie dostępna, ale nazwa użytkownika zostanie zanonimizowana. Nawet po usunięciu nie będzie możliwości ponownej rejestracji konta z tym samym adresem email. Zaloguj się poniżej, aby usunąć konto."
       complete: "Twoje konto zostało usunięte."
+    deleted_user_with_id: " (Usunięty użytkownik %{id})"
+    deleted_user_without_id: "(Usunięty użytkownik)"
     badges:
       banned:
         short: Zbanowany
@@ -650,18 +692,31 @@ pl:
         short: Autor
         long: Autor tego skryptu
     notifications:
+      on_site: Na stronie
+      email: E-mailem
       discussion_defaults:
         title: Powiadomienia forum
+        discussion_subscription_defaults:
+          start: ' Ty rozpocząłeś dyskusję'
         mention: Otrzymuj powiadomienie, gdy zostaniesz wspomniany w dyskusji
       conversation_defaults:
         title: Powiadomienia o rozmowach
+        new_conversation_subscription:
+          self: Ty rozpocząłeś rozmowę
       report_defaults:
         title: Zgłoszenie powiadomienie
+      script:
+        title: Powiadomienia skryptu
       save_button: Zaktualizuj ustawienia powiadomień
       title: Powiadomienia
       save_success: Twoje ustawienia powiadomień zostały zaktualizowane
       unsubscribe_all: Wypisz się z wszystkich powiadomień
       unsubscribe_all_success: Zostałeś wypisany ze wszystkich powiadomień
+      list:
+        header: Powiadomienia
+        none: Brak powiadomień!
+        edit_settings: Zarządzaj swoimi ustawieniami powiadomień
+        mark_all_read: Oznacz wszystko jako przeczytane
   webhooks:
     info:
       title: Konfiguracja webhooka
@@ -731,10 +786,14 @@ pl:
       licensing_html: Twój skrypt musi respektować prawa autorskie innych. Dotyczy to kodu oraz wszelkich zasobów (np. grafik), których używa. Jeżeli planujesz używać czyichś zasobów, upewnij się, że robisz to zgodnie z prawami, na jakich są one udostępniane lub uzyskaj na to zgodę autora. Licencje skryptów określane są meta-znacznikiem <code>@license</code>. Odwiedź %{tldr_legal_link:tldrlegal.com}, aby dowiedzieć się więcej na temat działania licencji oprogramowania.
       reposts: Nawet jeśli prawa autorskie nie są naruszone to ponowne publikowanie skryptów, które znajdują się na %{site_name}, jest zabronione, chyba że wprowadzają usprawnienia różniące się od oryginału.
       miscellaneous_header: Inne
+      keywords: Skrypty nie mogą zawierać niezwiązanych słów kluczowych ani wspominać o niezwiązanych stronach w celu poprawy miejsca w wyszukiwaniach.
       adult_content_rule: Skrypty, które zawierają treści dla dorosłych lub są przeznaczone do stron dla dorosłych, muszą być oznaczone jako takie, aby użytkownicy mogli zdecydować czy chcą je zobaczyć.
       reposting_deleted: Nie publikuj ponownie skryptów, które zostały usunięte z powodu naruszeń zasad. Zamiast tego użyj funkcji wysyłania odwołania. Publikacja usuniętych skryptów będzie skutkowało blokadą konta.
       advertising_in_description: Autorzy skryptów nie mogą umieszczać reklam na stronach Greasy Fork, na przykład w opisie skryptu. Autopromocja w postaci linku do strony autora, repozytorium autora, społeczności Discord, WeChat itp. jest dozwolone.
       reporting: Jeśli zauważysz skrypt, który nie przestrzega wyżej wymienionych zasad, zgłoś go na stronie skryptu, przechodząc na podstronę Opinie, a następnie klikając "zgłoś ten skrypt".
+      excessive_updates: Autorzy skryptów nie mogą nadmiernie aktualizować skryptów w celu wyłącznie poprawienia pozycji na liście skryptów.
+      content_language: Nazwy skryptów, opisy i inne treści muszą być oznaczone odpowiednim językiem.
+      listing_header: Lista
     external_scripts:
       title: "Polityka %{site_name} dot. zewnętrznych skryptów"
       rationale:
@@ -766,6 +825,7 @@ pl:
       translators_credit: "%{site_name} został przetłumaczony przez %{translators_link:Zespół Greasy Tłumaczy na Transifex}:"
       icons_credit: "Ikony przeglądarek pochodzą z %{browserlogos}."
     help_with_greasymonkey: "Pomoc z Greasemonkey"
+    help_with_tampermonkey: "Pomoc z Tampermonkey"
     contact:
       title: "Skontaktuj się z kimś"
       content_html: >
@@ -862,6 +922,8 @@ pl:
     item_user_html: "Użytkownik: %{user_link}"
     item_report: "%{report_link: Zgłoszenie #%{report_id}}"
     item_script_lock_appeal: "%{appeal_link:Odwołanie #%{appeal_id}}"
+    item_script_lock_appeal_dismissed: "%{appeal_link:Appeal #%{appeal_id}} odrzucone"
+    item_discussion_html: "Dyskusja: %{discussion_link}"
   reports:
     name: "Zgłoszenie #%{id}"
     report_filed: "Twoje zgłoszenie zostanie sprawdzone przez moderatora."
@@ -920,6 +982,7 @@ pl:
       wrong_category: "Niewłaściwa kategoria"
       wrong_category_with_suggestion: "Niewłaściwa kategoria (sugestia: %{suggested_category})"
       no_code: 'Brak kodu/hello world'
+      legal_claim: "Roszczenie prawne"
       other: "Inne"
     report_intro: "%{reported_item} został zgłoszony %{report_date} przez %{reporter} , bo%{reason}"
     report_intro_no_reporter: "%{reported_item} został zgłoszony %{report_date}, bo %{reason} "
@@ -958,6 +1021,12 @@ pl:
     loading_diff: "Ładowanie..."
     reported_user_activity_html: "%{user} (zgłoszony użytkownik) zrobił:"
     script_updated_since_report: "Ten skrypt został zaktualizowany po wysłaniu zgłoszenia."
+    report_item:
+      discussion: "Dyskusja%{title} autorstwa %{user}"
+      comment: "%{comment}autorstwa%{user}"
+      comment_description: " Komentarz w %{discussion_title}"
+      message: "Wiadomość od %{user}"
+      deleted: "Usunięte  %{type} #%{id}"
   appeals:
     new:
       title: Nowe zgłoszenie usunięcia skryptu
@@ -1030,6 +1099,10 @@ pl:
     locale_filter:
       label: Język
       all: Wszystkie
+    sort:
+      comment_created: Data
+      discussion_last_comment: ' Data ostatniego komentarza'
+      discussion_created: ' Data rozpoczęcia dyskusji'
     user_activity:
       title: "Ostatnie komentarze"
       no_recent_activity: "Ten użytkownik nie opublikował ostatnio żadnych komentarzy."
@@ -1073,6 +1146,7 @@ pl:
     no_discussions: Nie znaleziono dyskusji.
     mark_all_read: Oznacz wszystkie jako przeczytane
     pending_moderator_review: Ta dyskusja jest niedostępna dla innych użytkowników, dopóki nie zostanie sprawdzona przez moderatora.
+    search_placeholder: Wyszukiwarka dyskusji
   conversations:
     user_input_note: Wprowadź nazwę użytkownika lub adres URL do jego profilu.
     new_title: Utwórz nową rozmowę
