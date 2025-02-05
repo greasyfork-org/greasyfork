@@ -38,12 +38,12 @@ if Rails.env.production?
     end
   end
 
-  Rack::Attack.throttle('limit logins attempts per email', limit: 20, period: 300) do |req|
+  Rack::Attack.throttle('limit logins attempts per email', limit: 10, period: 600) do |req|
     req.params.dig('user', 'email') if LOGIN_PATH_PATTERN.match?(req.path) && req.post? && req.params.dig('user', 'email')
   end
 
   if Rails.application.config.ip_address_tracking
-    Rack::Attack.throttle('limit logins attempts per ip', limit: 20, period: 3600) do |req|
+    Rack::Attack.throttle('limit logins attempts per ip', limit: 10, period: 3600) do |req|
       req.ip if LOGIN_PATH_PATTERN.match?(req.path) && req.post? && req.params.dig('user', 'email')
     end
   end
