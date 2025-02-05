@@ -484,10 +484,6 @@ class User < ApplicationRecord
     moderator? || (require_secure_login_for_author? && scripts.any?)
   end
 
-  def require_secure_login_for_author?
-    created_at >= Date.new(2025, 1, 22)
-  end
-
   def missing_secure_login?
     !uses_secure_login? && require_secure_login?
   end

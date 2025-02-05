@@ -8,6 +8,7 @@ one:
   disposable_email: false
   canonical_email: timmy@example.com
   created_at: <%= 2.months.ago %>
+  require_secure_login_for_author: false
 
 consumer:
   id: 2
@@ -16,6 +17,7 @@ consumer:
   canonical_email: consumer@example.com
   encrypted_password: "$2a$04$y/wlLgpbsd9DIX64InJsB.YoH2UrMcngH6UVAC48/eaYrDpMGHhZ2"
   created_at: <%= 2.months.ago %>
+  require_secure_login_for_author: false
 
 geoff:
   id: 3
@@ -25,6 +27,7 @@ geoff:
   encrypted_password: "$2a$04$y/wlLgpbsd9DIX64InJsB.YoH2UrMcngH6UVAC48/eaYrDpMGHhZ2"
   conversations: [geoff_and_junior]
   created_at: <%= 2.months.ago %>
+  require_secure_login_for_author: false
 
 junior:
   id: 4
@@ -37,6 +40,7 @@ junior:
   otp_required_for_login: true
   conversations: [geoff_and_junior]
   created_at: <%= 2.months.ago %>
+  require_secure_login_for_author: false
 
 banned:
   id: 5
@@ -46,6 +50,7 @@ banned:
   encrypted_password: "$2a$04$y/wlLgpbsd9DIX64InJsB.YoH2UrMcngH6UVAC48/eaYrDpMGHhZ2"
   banned_at: 2020-01-01
   created_at: <%= 2.months.ago %>
+  require_secure_login_for_author: false
 
 admin:
   id: 6
@@ -57,6 +62,7 @@ admin:
   disposable_email: false
   canonical_email: admin@example.com
   created_at: <%= 2.months.ago %>
+  require_secure_login_for_author: false
 
 mod:
   id: 7
@@ -68,3 +74,4 @@ mod:
   disposable_email: false
   canonical_email: mod@example.com
   created_at: <%= 2.months.ago %>
+  require_secure_login_for_author: false
