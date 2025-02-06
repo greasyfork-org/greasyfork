@@ -2,6 +2,7 @@ class BlockedScriptCode < ApplicationRecord
   belongs_to :originating_script, class_name: 'Script', optional: true
 
   enum :category, { repost: 0, obfuscation: 1, legal: 2, spam: 3 }
+  enum :result, { block: 0, ban: 1, review: 2 }
 
   def match?(code)
     Regexp.new(pattern, case_insensitive ? Regexp::IGNORECASE : nil).match?(code)

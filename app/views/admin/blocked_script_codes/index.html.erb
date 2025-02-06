@@ -1,6 +1,6 @@
 <h1>Blocked Script Codes</h1>
 
-<p>If a script's code contains any of these patterns the script save will be rejected or it will be deleted and the author banned.</p>
+<p>If a script's code contains any of these patterns the script save will be rejected, or it will be deleted and the author banned.</p>
 
 <% if current_user.administrator? %>
   <p><%= link_to 'Add new', new_admin_blocked_script_code_path %></p>
@@ -23,7 +23,7 @@
           <th></th>
           <th>Public Reason</th>
           <th>Private Reason</th>
-          <th>Consequence</th>
+          <th>Result</th>
           <th>Originating Script</th>
           <th></th>
         </tr>
@@ -42,7 +42,7 @@
         <td></td>
         <td><%= blocked_script_code.public_reason %></td>
         <td><%= blocked_script_code.private_reason %></td>
-        <td><%= blocked_script_code.serious ? 'Delete and ban' : 'Rejected' %></td>
+        <td><%= blocked_script_code.result.capitalize %></td>
         <td><%= link_to(blocked_script_code.originating_script.default_name, blocked_script_code.originating_script) if blocked_script_code.originating_script %></td>
         <td>
           <%= link_to('Edit', edit_admin_blocked_script_code_path(blocked_script_code)) if current_user.administrator? %>

@@ -46,7 +46,7 @@ module Admin
     private
 
     def blocked_script_code_params
-      params.expect(blocked_script_code: [:pattern, :public_reason, :private_reason, :serious, :originating_script_id, :case_insensitive, :notify_admin, :category])
+      params.expect(blocked_script_code: [:pattern, :public_reason, :private_reason, :result, :originating_script_id, :case_insensitive, :notify_admin, :category])
     end
   end
 end

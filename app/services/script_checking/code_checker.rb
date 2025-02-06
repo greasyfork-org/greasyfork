@@ -1,5 +1,11 @@
 module ScriptChecking
   class CodeChecker
+    BLOCKED_SCRIPT_CODE_RESULT_TO_CODE = {
+      'ban' => ScriptChecking::Result::RESULT_CODE_BAN,
+      'block' => ScriptChecking::Result::RESULT_CODE_BLOCK,
+      'review' => ScriptChecking::Result::RESULT_CODE_REVIEW,
+    }.freeze
+
     class << self
       def check(script_version)
         code = script_version.code
@@ -9,7 +15,7 @@ module ScriptChecking
           next if bc.exempt_script?(script_version.script)
 
           ScriptChecking::Result.new(
-            bc.serious ? ScriptChecking::Result::RESULT_CODE_BAN : ScriptChecking::Result::RESULT_CODE_BLOCK,
+            BLOCKED_SCRIPT_CODE_RESULT_TO_CODE[bc.result],
             bc.public_reason,
             bc.private_reason,
             bc,

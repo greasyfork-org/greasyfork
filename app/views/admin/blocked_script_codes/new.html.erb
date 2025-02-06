@@ -30,8 +30,8 @@
   </div>
 
   <div class="form-control">
-    <%= f.check_box :serious %>
-    <%= f.label :serious, 'Ban/delete', class: 'radio-label' %>
+    <%= f.label :result %>
+    <%= f.select :result, options_for_select(BlockedScriptCode.results.keys) %>
   </div>
 
   <div class="form-control">

@@ -110,4 +110,30 @@ class BlockTest < ApplicationSystemTestCase
     end
     assert_equal 'required', Script.last.review_state
   end
+
+  test 'review required for code' do
+    stub_es(Script)
+    user = User.find(4)
+    user.update!(created_at: 1.day.ago)
+    login_as(user, scope: :user)
+    visit new_script_version_url
+    click_on "I've written a script and want to share it with others."
+    code = <<~JS
+      // ==UserScript==
+      // @name A Test!
+      // @description Unit test.
+      // @version 1.1
+      // @namespace http://greasyfork.local/users/1
+      // @include https://example.com/*
+      // @license MIT
+      // ==/UserScript==
+      this.is.a.review = true
+    JS
+    fill_in 'Code', with: code
+    assert_difference -> { Script.count } => 1 do
+      click_on 'Post script'
+      assert_content 'This script is unavailable to other users until it is reviewed by a moderator.'
+    end
+    assert_equal 'required', Script.last.review_state
+  end
 end

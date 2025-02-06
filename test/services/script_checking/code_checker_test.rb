@@ -18,6 +18,10 @@ module ScriptChecking
       assert_equal ScriptChecking::Result::RESULT_CODE_BAN, check_script_with_code('this.is.a.warn = true; this.is.a.ban = true').code
     end
 
+    test 'review' do
+      assert_equal ScriptChecking::Result::RESULT_CODE_REVIEW, check_script_with_code('this.is.a.review = true').code
+    end
+
     test 'case differences with case sensitive matching' do
       assert_equal ScriptChecking::Result::RESULT_CODE_OK, check_script_with_code('this.is.a.WARN = true').code
     end
