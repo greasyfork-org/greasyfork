@@ -89,6 +89,7 @@ class CommentSpamCheckJob < ApplicationJob
       'CBD ',
       'Keto ',
       'hbyvipxnzj.buzz',
+      'https://support.google.com/admanager',
     ].any? { |s| text.include?(s) }
   end
 end
