@@ -24,7 +24,7 @@ end %>
           </span>
         <% end %>
         <span class="version-number">
-          <%= link_to "v#{sv.version}", script_path(sv.script, version: sv.id), rel: :nofollow %>
+          <%= link_to t('scripts.version_abbreviation', number: sv.version), script_path(sv.script, version: sv.id), rel: :nofollow %>
           <% if !current_user.nil? && current_user.moderator? %>
             <%= link_to 'Delete', script_script_version_delete_path(script_id: sv.script.id, script_version_id: sv.id) %>
           <% end %>

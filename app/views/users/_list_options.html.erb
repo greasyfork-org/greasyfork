@@ -18,7 +18,7 @@
         <%= user_list_link(t('users.listing_relevance'), sort: nil) %>
       <% end %>
       <%= user_list_link(t('users.listing_registration_date'), sort: params[:q].present? ? 'created' : nil) %>
-      <%= user_list_link(t('scripts.listing_sort_name'), sort: 'name') %>
+      <%= user_list_link(t('scripts.listing_sort_user_name'), sort: 'name') %>
       <%= user_list_link(t('scripts.listing_sort_daily_installs'), sort: 'daily_installs') %>
       <%= user_list_link(t('scripts.listing_sort_total_installs'), sort: 'total_installs') %>
       <%= user_list_link(t('scripts.listing_sort_ratings'), sort: 'ratings') %>

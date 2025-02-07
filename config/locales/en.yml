@@ -35,6 +35,7 @@ en:
     author_name: "Author"
     # label for version number of a script
     version_number: "Version"
+    version_abbreviation: "v#{number}"
     # label for the legal license a script is released under (e.g. GPL)
     license: "License"
     # what is shown as the license when no license is provided in a script
@@ -267,6 +268,7 @@ en:
     listing_sort_updated: "Updated date"
     # link for name sort on a script list
     listing_sort_name: "Name"
+    listing_sort_user_name: "Name"
     # label for filtering by-site links on script list page
     listing_filter_by_site_label: "Showing scripts for:"
     # link for turning off by-site filtering on script list page
@@ -630,6 +632,7 @@ en:
           other: "This script uses a incorrect subresource integrity hashes: %{detail}."
         detail: "<code>%{url}</code> should use the hash <code>%{expected_hash}</code> (last checked %{last_checked_at})"
   script_sets:
+    heading: "Script Sets"
     # description of script sets on edit page
     description: "Script sets let you create a customized list of scripts to browse Greasy Fork with. You can add scripts to your set by including individual scripts, other users' sets, or automatically generated sets. You can also exclude scripts from your set with the same methods."
     # name for the favorites set
@@ -640,6 +643,7 @@ en:
     delete_confirmation: "Are you sure you want to delete this script set?"
     # option for choosing to sort the set by the default sort the site uses
     site_default_sort: "(Site default)"
+    edit_link: "Edit"
     edit_scripts:
       heading: "Scripts"
       description: "Include or exclude individual scripts in your script set."
