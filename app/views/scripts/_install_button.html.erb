@@ -3,7 +3,7 @@
 <%
 script = script_version.script
 install_as_js = script.js? || format_override == 'js'
-code_url = script.code_url(sleazy: sleazy?, format_override:, version_id: version_param)
+code_url = script.code_url(sleazy: sleazy?, cn_greasy: cn_greasy?, format_override:, version_id: version_param)
 %>
 <%= link_to install_as_js ? t('scripts.install') : t('scripts.install_css'), code_url, {
   class: 'install-link',

@@ -26,7 +26,7 @@
     <% when 'library' %>
       <p>
         <%
-          library_url = script.code_url(sleazy: sleazy?, version_id: params[:version])
+          library_url = script.code_url(sleazy: sleazy?, cn_greasy: cn_greasy?, version_id: params[:version])
           library_code_snippet = "<code>// @require #{library_url}</code>"
         %>
         <%= t('scripts.library_instructions_html', code: library_code_snippet.html_safe) %>

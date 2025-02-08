@@ -519,8 +519,10 @@ class Script < ApplicationRecord
     ((sleazy && sensitive) ? { host: 'sleazyfork.org' } : {})
   end
 
-  def update_host(sleazy: false)
+  def update_host(sleazy: false, cn_greasy: false)
     return Rails.env.production? ? 'update.sleazyfork.org' : 'update.sleazyfork.local' if sleazy && sensitive
+
+    return Rails.env.production? ? 'update.cn-greasyfork.org' : 'update.cn-greasyfork.local' if cn_greasy
 
     Rails.env.production? ? 'update.greasyfork.org' : 'update.greasyfork.local'
   end
@@ -529,8 +531,8 @@ class Script < ApplicationRecord
     url_helpers.script_url(self, locale:, **host_arg(sleazy:))
   end
 
-  def code_url(sleazy: false, format_override: nil, version_id: nil)
-    "https://#{update_host(sleazy:)}#{code_path(format_override:, version_id:)}"
+  def code_url(sleazy: false, cn_greasy: false, format_override: nil, version_id: nil)
+    "https://#{update_host(sleazy:, cn_greasy:)}#{code_path(format_override:, version_id:)}"
   end
 
   def code_path(format_override: nil, version_id: nil)
