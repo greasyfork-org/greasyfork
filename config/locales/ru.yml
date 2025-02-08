@@ -41,7 +41,7 @@ ru:
     old_version_warning: "Это устаревшая версия скрипта. Автоматическое обновление до последней версии будет отключено. Установить?"
     promoted: "Рекомендуемый скрипт"
     author_promoted: "Рекомендуемый автором скрипт"
-    promoted_text_html: "Вам также может понравится \"%{script_link}\"."
+    promoted_text_html: "Вам также может понравится %{script_link}."
     library_instructions_html: "Этот скрипт недоступен для установки пользователем. Он является библиотекой, которая подключается к другим скриптам мета-ключом %{code}"
     deleted_notice: "Этот скрипт был удалён."
     deleted_notice_with_reason: "Этот скрипт был удалён на основании %{report_link:этой жалобы}."
@@ -53,7 +53,7 @@ ru:
     deleted_author_notice: "Этот скрипт удалён и не доступен для других. Вы можете отменить удаление на вкладке Удалить."
     version_notice_html: "Устаревшая версия за %{date}. Перейдите к %{latest_version_link}."
     version_notice_latest_version_link: "последней версии"
-    reported_notice: "На \"%{script_name}\" поступила жалоба, которая будет рассмотрена модератором."
+    reported_notice: "На «%{script_name}» поступила жалоба, которая будет рассмотрена модератором."
     reported_notice_for_author: "Этот скрипт недоступен для пользователей до проверки его модератором."
     info_page: "Информация"
     code_page: "Код"
@@ -141,7 +141,7 @@ ru:
       all: За всё время
     derivatives_title: "%{script_name} – похожие скрипты"
     derivatives_intro: "Эти скрипты могут быть основаны на вашем (или наоборот). Если код используется без вашего разрешения, сообщите об этом на вкладке скрипта «Обсуждения»."
-    derivatives_script_html: "\"%{script}\" автора %{user}, лицензия: %{license} %{diff_link:[Различия]}"
+    derivatives_script_html: "%{script} от %{user}, лицензия: %{license} %{diff_link:[Различия]}"
     derivatives_exact_copies_heading: "Точные копии"
     derivatives_exact_copies_list_intro: "У следующих скриптов точно такой же код, как и у вашего:"
     derivatives_exact_copies_item_html: "%{script_link} от %{author_links} – версии: %{version_list}"
@@ -240,18 +240,18 @@ ru:
     warning_potentially_minified_html: "Ваш скрипт, похоже, сжат (minified). Если вы подключаете сжатую библиотеку, то, пожалуйста, делайте это посредством <code>@require</code> с %{allowed_requires_link}. Скрипты со сжатым кодом будут удалены."
     warning_automatic_sensitive_html: "Ваш скрипт предназначен для %{sensitive_domains} и поэтому будет помечен как «только для взрослых»."
     warning_potentially_minified_allowed_requires_link: "разрешённых сайтов"
-    warning_code_previously_posted_html: "Этот код был ранее опубликован в \"%{script_links}\". Повторно публикуемые скрипты могут быть удалены модератором."
+    warning_code_previously_posted_html: "Этот код был ранее опубликован в %{script_links}. Повторно публикуемые скрипты могут быть удалены модератором."
     warning_license_missing_html: "Вы не указали <code>@license</code>. Размещая скрипт на %{site_name}, вы разрешаете другим использовать ваш код, а лицензия определяет, как они могут ваш код изменять и распространять. Например, <code>// @license MIT</code> позволяет любому изменять и распространять код. %{license_chooser_link:Подробнее о лицензиях читайте здесь.} Если вы не укажете лицензию, то %{site_name} будет считать, что изменение и распространение кода другими запрещено. Обратите внимание: если вы не единственный автор кода, то как правило вы можете его размещать только получив разрешение остальных авторов."
     warning_license_missing_override_html: "Сохранить без лицензии"
     warning_meta_not_at_start_html: "Ваш код не начинается с <code>// ==UserScript==</code>. Вставка кода, комментариев или пробелов может вызвать проблемы совместимости с некоторыми менеджерами пользовательских скриптов."
-    additional_info_locale_prompt: "(Выберите язык)"
+    additional_info_locale_prompt: "(выберите язык)"
     additional_info_add_localized: "Добавить дополнительную информацию на другом языке"
-    additional_info_locale_repeated: "Дополнительная информация на языке '%{locale_code}' уже существует."
-    localized_additional_info_with_no_name: "Для добавления дополнительной информации на языке '%{locale_code}' в метаданных скрипта должна быть строка @name:%{locale_code}."
+    additional_info_locale_repeated: "Дополнительная информация на языке «%{locale_code}» уже существует."
+    localized_additional_info_with_no_name: "Для добавления дополнительной информации на языке «%{locale_code}» в метаданных скрипта должна быть строка @name:%{locale_code}."
     invalid_matchers: "Используются недопустимые match: %{matches}"
     code_syncing_from_url_html: "Этот скрипт синхронизируется с %{field}"
-    provide_code_syncing_from_url_html: "%{site_name} может импортировать скрипты, размещенные в другом месте, например, в системе управления версиями (таких как GitHub), на вашем собственном сервере, или на другом сайте по распространению скриптов. Для включения синхронизации скрипта укажите URL: %{field}"
-    code_syncing_from_webhook_html: "Код этого скрипта автоматически синхронизируется, используя webhook. Этот скрипт обрабатывает запросы webhook-а с адресом %{field}"
+    provide_code_syncing_from_url_html: "%{site_name} может импортировать скрипты, размещённые в другом месте, например, в системе управления версиями (таких как GitHub), на вашем собственном сервере, или на другом сайте по распространению скриптов. Для включения синхронизации скрипта укажите URL: %{field}"
+    code_syncing_from_webhook_html: "Код этого скрипта автоматически синхронизируется, используя сетевой перехватчик. Этот скрипт обрабатывает запросы перехватчика с адресом: %{field}"
     sync_type_intro: "Способ синхронизации:"
     sync_type_1:
       name: Вручную
@@ -260,15 +260,15 @@ ru:
       name: Автоматически
       description: периодически проверять обновления
     sync_type_3:
-      name: Webhook
+      name: Сетевой перехватчик
       description: обновлять после изменения этого файла в вашем репозитории
-    sync_webhook_info_without_sync: После настройки синхронизации выше, если вы синхронизируетесь с репозиторием на GitHub, GitLab, или BitBucket, то вы можете %{webhook_info_link:настроить webhook} для автоматического обновления %{site_name} после изменений в репозитории.
-    sync_webhook_info_with_sync: Если вы синхронизируетесь с репозиторием на GitHub, GitLab, или BitBucket, то вы можете %{webhook_info_link:настроить webhook} для автоматического обновления %{site_name} после изменений в репозитории.
-    sync_name_and_description: "%{name} - %{description}"
+    sync_webhook_info_without_sync: После настройки синхронизации выше, если вы синхронизируетесь с репозиторием на GitHub, GitLab или BitBucket, то вы можете %{webhook_info_link:настроить перехватчик} для автоматического обновления %{site_name} после изменений в репозитории.
+    sync_webhook_info_with_sync: Если вы синхронизируетесь с репозиторием на GitHub, GitLab или BitBucket, то вы можете %{webhook_info_link:настроить перехватчик} для автоматического обновления %{site_name} после изменений в репозитории.
+    sync_name_and_description: "%{name} – %{description}"
     sync_failed_info_html: "Последняя попытка синхронизации была %{date}, её результат: %{error}."
     sync_success_info_html: "Последняя успешная синхронизация была %{date}."
     sync_never_succeeded: "Синхронизация ни разу не была успешно завершена."
-    sync_additional_info: Вы также можете синхронизировать дополнительную информацию о вашем скрипте
+    sync_additional_info: Вы также можете синхронизировать дополнительную информацию о вашем скрипте.
     add_synced_additional_info: Добавить синхронизируемую дополнительную информацию на любом языке
     update_and_sync: "Обновить и запустить синхронизацию"
     update_no_sync: "Обновить"
@@ -277,13 +277,13 @@ ru:
     additional_info_localized_sync_html: "На языке (соответствует <code>@name:XX</code>)"
     sync_url_placeholder: "(URL-адрес)"
     sync_successful: Скрипт успешно синхронизирован.
-    sync_no_changes: Скрипт успешно синхронизирован, изменений не найдено.
+    sync_no_changes: Скрипт успешно синхронизирован. Изменений не найдено.
     sync_error: 'Ошибка синхронизации: %{error}.'
     sync_turned_off: Синхронизация отключена.
     screenshots_add: "Добавить:"
     screenshots_remove: "Удалить"
-    replacement_script_explanation: "(Необязательно) Укажите адрес другого скрипта, который заменит этот скрипт:"
-    diff_title: "%{script} - Сравнение версий"
+    replacement_script_explanation: "(необязательно) Укажите адрес другого скрипта, который заменит этот скрипт:"
+    diff_title: "%{script} – сравнение версий"
     diff_old_version: "Старая:"
     diff_new_version: "Новая:"
     diff_lines_of_context: "Строки из контекста:"
@@ -297,27 +297,27 @@ ru:
     write_your_own_html: "%{post_a_script_link} (или %{learn_to_write_scripts_link})"
     post_a_script_link_text: "Опубликовать ваш скрипт"
     learn_to_write_scripts_link_text: "научиться писать скрипт"
-    feedback_or_report: "%{feedback_link:Задайте вопрос, напишите отзыв}, или %{report_link:пожалуйтесь на скрипт}."
-    support_feedback_or_report: "%{support_url:Посетите сайт автора для получения технической поддержки}, %{feedback_link:задайте вопрос, напишите отзыв}, или %{report_link:пожалуйтесь на скрипт}."
-    support_email_feedback_or_report: "%{support_url:Пошлите письмо автору для получения технической поддержки}, %{feedback_link:задайте вопрос, напишите отзыв}, или %{report_link:пожалуйтесь на скрипт}."
+    feedback_or_report: "%{feedback_link:Задайте вопрос, напишите отзыв} или %{report_link:пожалуйтесь на скрипт}."
+    support_feedback_or_report: "%{support_url:Зайдите на сайт автора для получения технической поддержки}, %{feedback_link:задайте вопрос, напишите отзыв} или %{report_link:пожалуйтесь на скрипт}."
+    support_email_feedback_or_report: "%{support_url:Пошлите письмо автору для получения технической поддержки}, %{feedback_link:задайте вопрос, напишите отзыв} или %{report_link:пожалуйтесь на скрипт}."
     adult_content: "Только для взрослых"
-    adult_content_self_report: "Этот скрипт содержит взрослый контент или предназначен для сайта с таким контентом."
-    adult_content_self_report_explanation: "%{site_name} разрешает скрипты с взрослым контентом, но они должны иметь соответствующую пометку в целях фильтрации пользователями."
-    not_adult_content_self_report_html: "Этот скрипт <strong>не</strong> содержит взрослый контент  и <strong>не</strong> предназначен для сайта с таким контентом."
-    not_adult_content_self_report_explanation: "%{site_name} разрешает скрипты с взрослым контентом, но они должны иметь соответствующую пометку в целях фильтрации пользователями.\nВаш скрипт был помечен как содержащий взрослый контент. Вы можете обжаловать данное решение если оно неверно - это будет проверено модератором."
-    not_adult_content_self_report_explanation_automatic: "%{site_name} разрешает размещать скрипты \"только для взрослых\", но они должны быть помечены, чтобы пользователи решали, нужны им такие скрипты или нет. Вашему скрипту была добавлена пометка \"только для взрослых\", потому что он предназначен для %{domain_list}."
-    adult_content_notice_from_sleazy: ' Поскольку вы размещаете этот скрипт на %{site_name}, предполагается, что ваш скрипт содержит материалы для взрослых или предназначен для сайта с материалами для взрослых. Если это не так, пожалуйста, вместо этого %{greasyfork_link:разместите свой скрипт на Greasy Fork}.'
+    adult_content_self_report: "Этот скрипт содержит материалы эротического характера или предназначен для сайта с таким контентом."
+    adult_content_self_report_explanation: "%{site_name} разрешает скрипты со взрослым контентом, но они должны иметь соответствующую пометку в целях фильтрации пользователями."
+    not_adult_content_self_report_html: "Этот скрипт <strong>не</strong> содержит взрослый контент и <strong>не</strong> предназначен для сайта с таким контентом."
+    not_adult_content_self_report_explanation: "%{site_name} разрешает скрипты с взрослым контентом, но они должны иметь соответствующую пометку в целях фильтрации пользователями. Ваш скрипт был помечен как содержащий взрослый контент. Вы можете обжаловать данное решение если оно неверно – это будет проверено модератором."
+    not_adult_content_self_report_explanation_automatic: "%{site_name} разрешает скрипты с взрослым контентом, но они должны иметь соответствующую пометку в целях фильтрации пользователями. Ваш скрипт был помечен как содержащий взрослый контент, потому что он предназначен для %{domain_list}."
+    adult_content_notice_from_sleazy: Поскольку вы размещаете этот скрипт на %{site_name}, предполагается, что ваш скрипт содержит материалы для взрослых или предназначен для сайта с материалами для взрослых. Если это не так, пожалуйста, вместо этого %{greasyfork_link:разместите свой скрипт на Greasy Fork}.
     adult_content_on_greasy_logged_in_error: "Этот скрипт более недоступен на данном сайте согласно вашим %{edit_account_link:настройкам учётной записи}."
     adult_content_on_greasy_not_logged_in_error: "Этот скрипт более недоступен на данном сайте для неавторизованных пользователей. %{login_link:Войдите} и убедитесь, что настройки вашей учётной записи разрешают показывать подобные скрипты."
     non_adult_content_on_sleazy: "Этот скрипт недоступен на данном сайте."
     not_js_convertible_override_header: "Преобразование в JS"
     not_js_convertible_override_explanation: "%{site_name} может автоматически создать %{help_link:преобразованный пользовательский JS} из вашего пользовательского CSS. Так как поведение преобразованного JS может отличаться от исходного CSS, мы рекомендуем проверить работу преобразованного JS. Если он не работает так как нужно, вы можете запретить создание преобразованного JS, отметив флажок ниже."
     not_js_convertible_override_label_html: "<strong>Не</strong> преобразовывать в формат пользовательского JS"
-    adult_marker: "(Для взрослых)"
-    deleted_marker: "(Удаленный)"
-    locked_marker: "(Закрепленный)"
-    unlisted_marker: "(Частный)"
-    library_marker: "(Библиотека)"
+    adult_marker: "(для взрослых)"
+    deleted_marker: "(удалённый)"
+    locked_marker: "(закреплённый)"
+    unlisted_marker: "(по ссылке)"
+    library_marker: "(библиотека)"
     libraries_title: "Библиотеки"
     libraries_description_html: "Библиотеки, размещённые пользователями на %{site_name} для включения в скрипты посредством <code>@require</code>. Вы можете включать и другие библиотеки согласно %{policy_link:правилам %{site_name}}."
     by_site_list_title: "Пользовательские скрипты на %{site_name}, сгруппированные по сайтам"
@@ -327,17 +327,17 @@ ru:
     updated: "Скрипт обновлён."
     preview_additional_info: "Предпросмотр"
     must_confirm: "Для размещения скриптов вы должны подтвердить свою учётную запись. Это можно сделать двумя способами: добавив внешний сервис для входа или послав подтверждение по электронной почте."
-    must_confirm_email_button: "Послать ссылку для подтверждения на %{email}"
+    must_confirm_email_button: "Послать ссылку подтверждения на %{email}"
     needs_secure_login:
-      intro: "Перед размещением скриптов вы должны настроить свой аккаунт для использования безопасного метода входа."
-      secure_internal_heading: "Вариант 1: защитите свой %{site_name} логин"
-      confirm_email: "Подтвердите свой адрес электронной почты"
-      enable_2fa: "Задействуйте двухфакторную аутентификацию (2FA)"
+      intro: "Перед размещением скриптов вы должны настроить свою учётную запись для использования безопасного метода входа."
+      secure_internal_heading: "Вариант 1: защитите свой логин %{site_name}"
+      confirm_email: "Подтвердить свой адрес электронной почты"
+      enable_2fa: "Задействуйте двухфакторную авторизацию (2FA)"
       add_external_heading: "Вариант 2: используйте только логин стороннего сервиса"
-      add_external: "Добавьте логин стороннего сервиса"
+      add_external: "Добавить логин стороннего сервиса"
       remove_password: "Удалите ваш пароль на %{site_name}"
     authors_heading: "Авторы"
-    error_unauthorized_copy: "Этот код является нелегальной копией %{script}. Пожалуйста, прочтите %{rules_link:правила} %{site_name}по размещению скриптов."
+    error_unauthorized_copy: "Этот код является нелегальной копией «%{script}». Пожалуйста, прочтите %{rules_link:правила} %{site_name}по размещению скриптов."
     invitations:
       form_title: "Приглашение других авторов"
       explanation: "Вы можете добавить в авторы этого скрипта других пользователей Greasy Fork. У них будут такие же права на этот скрипт, как и у вас."
@@ -351,7 +351,7 @@ ru:
       body: "Вы были приглашены стать автором %{script_name} (%{script_url}) на %{site_name}. Чтобы принять приглашение, перейдите по адресу %{accept_url}."
       current_user_already_author: "Вы уже являетесь автором этого скрипта."
       invitation_not_found: "Приглашение не найдено."
-      invitation_expired: "Срок действия приглашения истек."
+      invitation_expired: "Срок действия приглашения истёк."
       invitation_accepted: "Вы теперь являетесь автором этого скрипта."
     remove_author:
       heading: "Удалить авторов"
@@ -359,13 +359,13 @@ ru:
       remove_button: "Удалить"
       remove_confirm: "Вы уверены, что хотите удалить %{user_name} из списка авторов?"
       failure: "Не удалось удалить автора."
-    no_disposable_email: "Вы не можете размещать скрипты если используете одноразовый почтовый ящик."
+    no_disposable_email: "Вы не можете размещать скрипты, если используете одноразовый почтовый ящик."
     rate_limited: "За последнее время вы опубликовали слишком много скриптов. Отдохните немного."
     delayed: "Из-за возросшего количества спама, новые учётные записи не могут сразу размещать скрипты. Подождите немного."
     new_script_notice:
       title: "Что вы хотите сделать?"
       install_link_html: "Я хочу <b>установить</b> скрипт для его дальнейшего использования."
-      share_link_html: "Я <b>написал</b> скрипт и хочу <b>поделиться</b> им с другими."
+      share_link_html: "Мною <b>написан</b> скрипт и хочу <b>поделиться</b> им с другими."
     new_title:
       js: "Опубликовать новый скрипт"
       css: "Опубликовать новый стиль"
@@ -378,7 +378,7 @@ ru:
         safari: Чтобы установить этот скрипт, вы сначала должны установить расширение браузера, например %{tampermonkey_link:Tampermonkey} или %{userscripts_link:Userscripts}.
         edge: Чтобы установить этот скрипт, сначала вы должны установить расширение браузера, например %{tampermonkey_link:Tampermonkey}.
         other: Чтобы установить этот скрипт, вы должны установить расширение — менеджер скриптов.
-        bypass: (У меня уже есть менеджер скриптов, дайте мне установить скрипт!)
+        bypass: (у меня уже есть менеджер скриптов, дайте мне установить скрипт!)
       css:
         firefox: Чтобы установить этот стиль, сначала вы должны установить расширение браузера, например %{stylus_link:Stylus}.
         chrome: Чтобы установить этот стиль, сначала вы должны установить расширение браузера, например %{stylus_link:Stylus}.
@@ -386,10 +386,10 @@ ru:
         safari: Чтобы установить этот стиль, сначала вы должны установить расширение — менеджер стилей.
         edge: Чтобы установить этот стиль, сначала вы должны установить расширение — менеджер стилей.
         other: Чтобы установить этот стиль, сначала вы должны установить расширение — менеджер стилей.
-        bypass: (У меня уже есть менеджер стилей, дайте мне установить скрипт!)
+        bypass: (у меня уже есть менеджер стилей, дайте мне установить скрипт!)
       close_dialog: OK
     antifeatures:
-      label: Нежелательная функциональность
+      label: Антивозможности
       warning_title: Этот скрипт содержит нежелательную функциональность
       intro: Перед установкой, %{site_name} хочет предупредить вас о наличии в скрипте нежелательной функциональности — то есть функциональности, которая полезна автору скрипта, а не вам.
       author_explanation_intro: "Объяснение автора этого скрипта:"
@@ -401,11 +401,11 @@ ru:
           title: Слежка
           description_html: Этот скрипт <b>отслеживает вашу историю просмотра</b>.
         miner:
-          title: Скриптовалюта
+          title: Криптовалюта
           description_html: Этот скрипт <b>добывает криптовалюту</b> на вашем устройстве.
         referral-link:
           title: Реферальные ссылки
-          description_html: Этот скрипт <b>получает комиссию</b> для автора, например изменяя ссылки или предоставляя купоны, чтобы добавить реферальные или партнерские коды.
+          description_html: Этот скрипт <b>получает комиссию</b> для автора, например изменяя ссылки или предоставляя купоны, чтобы добавить реферальные или партнёрские коды.
         membership:
           title: Регистрация
           description_html: Для включения всех функций скрипта вы должны <b>зарегистрироваться</b>, например вступить в группу, подписаться на канал, поставить оценку.
@@ -423,96 +423,98 @@ ru:
     related_scripts: "Попробуйте также следующие похожие скрипты:"
     integrity_hashes:
       user_notice_html:
-        one: "У вас есть скрипт с неправильным subresource integrity hash: %{script_links}."
-        few: "У вас есть скрипты с неправильным subresource integrity hash: %{script_links}."
-        many: "У вас есть скрипты с неправильным subresource integrity hash: %{script_links}."
-        other: "У вас есть скрипты с неправильным subresource integrity hash: %{script_links}."
+        one: "У вас есть скрипт с неправильным хэшем Subresource Integrity: %{script_links}."
+        few: "У вас есть скрипты с неправильным хэшем Subresource Integrity: %{script_links}."
+        many: "У вас есть скрипты с неправильным хэшем Subresource Integrity: %{script_links}."
+        other: "У вас есть скрипты с неправильным хэшем Subresource Integrity: %{script_links}."
       script_notice:
         text_html:
-          one: "Этот скрипт использует неправильный subresource integrity hash: %{detail}."
-          few: "Этот скрипт использует неправильные subresource integrity hashes: %{detail}."
-          many: "Этот скрипт использует неправильные subresource integrity hashes: %{detail}."
-          other: "Этот скрипт использует неправильные subresource integrity hashes: %{detail}."
+          one: "Этот скрипт использует неправильный хэш Subresource Integrity: %{detail}."
+          few: "Этот скрипт использует неправильные хэши Subresource Integrity: %{detail}."
+          many: "Этот скрипт использует неправильные хэши Subresource Integrity: %{detail}."
+          other: "Этот скрипт использует неправильные хэши Subresource Integrity: %{detail}."
         detail: "<code>%{url}</code> должен использовать хэш <code>%{expected_hash}</code> (последняя проверка была %{last_checked_at})"
   script_sets:
-    description: "Списки скриптов позволяют вам объединять произвольные скрипты в группы для более удобного их просмотра на сайте Greasy Fork. Вы можете добавлять в списки отдельные скрипты, другие списки, или автоматически создаваемые списки."
+    heading: "Списки скриптов"
+    description: "Списки скриптов позволяют вам объединять произвольные скрипты в группы для более удобного их просмотра на сайте Greasy Fork. Вы можете добавлять в списки отдельные скрипты, другие списки или автоматически создаваемые списки. Тем же путём можно исключить скрипты из списка."
     favorites_name: "Избранное"
     delete: "Удалить список скриптов"
     delete_confirmation: "Вы уверены, что хотите удалить список?"
-    site_default_sort: "(По умолчанию)"
+    site_default_sort: "(по умолчанию)"
+    edit_link: "Изменить"
     edit_scripts:
       heading: "Скрипты"
-      description: "Включите в список или исключите из списка скрипты."
-      included: "Включено"
-      included_none: "(пусто)"
-      remove_included: "Удалить выделенное"
-      excluded: "Исключено"
-      excluded_none: "(пусто)"
-      remove_excluded: "Удалить выделенное"
-      add_label: "Добавить скрипты (адреса или числовые идентификаторы, разделенные пробелами)"
-      add_include: "Включить"
-      add_exclude: "Исключить"
-    edit_sets:
-      heading: "Списки скриптов"
-      description: "Добавьте в список или исключите из списка другие списки скриптов."
+      description: "Добавьте или исключите из списка скрипты."
       included: "Добавлено"
       included_none: "(пусто)"
       remove_included: "Удалить выделенное"
       excluded: "Исключено"
       excluded_none: "(пусто)"
       remove_excluded: "Удалить выделенное"
-      add_label: "Добавить скрипты (адреса или числовые идентификаторы, разделенные пробелами)"
-      add_include: "Включить"
+      add_label: "Добавить скрипты (адреса или числовые идентификаторы, разделённые пробелами)"
+      add_include: "Добавить"
       add_exclude: "Исключить"
-      user_label: "Показать списки скриптов, принадлежащие указанному пользователю (адрес, числовой идентификатор, или имя пользователя)"
-      user_no_sets: "(У пользователя нет ни одного списка скриптов)"
-      user_no_other_sets: "(У пользователя больше не осталось списков скриптов)"
+    edit_sets:
+      heading: "Списки скриптов"
+      description: "Добавьте или исключите из списка другие списки скриптов."
+      included: "Добавлено"
+      included_none: "(пусто)"
+      remove_included: "Удалить выделенное"
+      excluded: "Исключено"
+      excluded_none: "(пусто)"
+      remove_excluded: "Удалить выделенное"
+      add_label: "Добавить скрипты (адреса или числовые идентификаторы, разделённые пробелами)"
+      add_include: "Добавить"
+      add_exclude: "Исключить"
+      user_label: "Показать списки скриптов, принадлежащие указанному пользователю (адрес, числовой идентификатор или имя пользователя)"
+      user_no_sets: "(у пользователя нет ни одного списка скриптов)"
+      user_no_other_sets: "(у пользователя больше не осталось списков скриптов)"
     edit_auto_sets:
       heading: "Автоматически создаваемые списки"
-      description: "Добавьте в список или исключите из списка автоматически создаваемые списки скриптов."
-      included: "Включено"
+      description: "Добавьте или исключите из списка автоматически создаваемые списки скриптов."
+      included: "Добавлено"
       included_none: "(пусто)"
       remove_included: "Удалить выделенное"
       excluded: "Исключено"
       excluded_none: "(пусто)"
       all_scripts_label: "Все скрипты"
-      all_scripts_include: "Включить"
+      all_scripts_include: "Добавить"
       for_sites_label: "Скрипты для сайта (например example.com; ничего не указывайте для выбора всех сайтов)"
-      for_sites_include: "Включить"
+      for_sites_include: "Добавить"
       for_sites_exclude: "Исключить"
-      for_user_label: "Скрипты пользователя (адрес, числовой идентификатор, или имя пользователя)"
-      for_user_include: "Включить"
+      for_user_label: "Скрипты пользователя (адрес, числовой идентификатор или имя пользователя)"
+      for_user_include: "Добавить"
       for_user_exclude: "Исключить"
       for_language_label: "Скрипты на языке"
-      for_language_include: "Включить"
+      for_language_include: "Добавить"
       for_language_exclude: "Исключить"
     calculated_list: "В список попадут следующие скрипты"
     calculated_list_none: "(пусто)"
     calculated_list_more:
-      one: "Еще %{count}…"
-      few: "Еще %{count}…"
-      many: "Еще %{count}…"
-      other: "Еще %{count}…"
-    already_included: "'%{name}' уже включено."
-    could_not_parse_script: "Не могу разобрать скрипт '%{value}'"
+      one: "Ещё %{count}…"
+      few: "Ещё %{count}…"
+      many: "Ещё %{count}…"
+      other: "Ещё %{count}…"
+    already_included: "«%{name}» уже добавлен."
+    could_not_parse_script: "Не удалось обработать скрипт «%{value}»"
     save: "Сохранить"
     saved: "Список скриптов сохранён."
     auto_set_types:
       all_scripts: "Все скрипты"
       site: "Скрипты для %{site}"
-      all_sites: "Всех сайтов"
+      all_sites: "всех сайтов"
       user: "Скрипты пользователя %{user}"
-      locale: "Скрипты на языке %{locale_name}"
+      locale: "Скрипты на языке: %{locale_name}"
     new: Создать список скриптов
   home:
-    title: "%{site_name} - полезные и безопасные скрипты для браузера"
+    title: "%{site_name} – безопасные и полезные браузерные скрипты"
     welcome: "Добро пожаловать на %{site_name}, сайт для пользовательских скриптов."
-    sleazy_title: "%{site_name} - безопасные и полезные юзерскрипты для взрослых"
+    sleazy_title: "%{site_name} – безопасные и полезные браузерные скрипты для взрослых"
     sleazy_welcome: "Добро пожаловать на %{site_name}, сайт для взрослых пользовательских скриптов."
     search_placeholder: "Искать пользовательские скрипты"
     scripts_for_label: "Скрипты для:"
     explain_user_scripts_heading: "Что такое пользовательские скрипты?"
-    explain_user_scripts_html: "Пользовательские скрипты делают путешествие по Интернету более комфортным. Будучи установленными, скрипты улучшают определенные сайты, меняя их внешний вид, добавляя новые функции или скрывая нежелательные вещи. Любой человек может опубликовать написанные им скрипты на %{site_name}. Опубликованные скрипты может установить любой желающий, бесплатно и быстро."
+    explain_user_scripts_html: "Пользовательские скрипты делают путешествие по интернету более комфортным. Будучи установленными, скрипты улучшают определённые сайты, меняя их внешний вид, добавляя новые функции или скрывая нежелательные вещи. Любой человек может опубликовать написанные им скрипты на %{site_name}. Опубликованные скрипты может установить любой желающий, бесплатно и быстро."
     installing_step1_header: "Шаг 1: установить менеджер скриптов"
     installing_step1_caption: "Tampermonkey для Chrome"
     installing_step1_description_html: >
@@ -523,7 +525,7 @@ ru:
       browser_list_html: |
           <ul>
           <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} или %{chrome_violentmonkey_link:Violentmonkey}</li>
-          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, или %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey} или %{firefox_violentmonkey_link:Violentmonkey}</li>
           <li>Safari: %{safari_tampermonkey_link:Tampermonkey} или %{safari_userscripts_link:Userscripts}</li>
           <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} или %{edge_violentmonkey_link:Violentmonkey}</li>
           <li>Opera: %{opera_tampermonkey_link:Tampermonkey} или %{opera_violentmonkey_link:Violentmonkey}</li>
@@ -558,29 +560,29 @@ ru:
 
         %{highlighted_scripts_list}
 
-        <p>После того, как вы нашли нужный вам скрипт, нажмите зеленую кнопку установки
+        <p>После того, как вы нашли нужный вам скрипт, нажмите зелёную кнопку установки
         на странице скрипта, и ваш менеджер скриптов попросит вас подтвердить установку.</p>
     installing_step3_header: "Шаг 3: использовать скрипт"
     installing_step3_description_html: >
         <p>Перейдите на сайт, на который влияет скрипт. Он должен автоматически делать
-        свое дело. После опробования скрипта, вернитесь к месту установки скрипта
+        своё дело. После опробования скрипта, вернитесь к месту установки скрипта
         и оставьте отзыв о скрипте автору.</p>
   users:
-    sign_in_title: "Войти в %{site_name}"
+    sign_in_title: "Вход в %{site_name}"
     sign_in_description: "Вход в %{site_name} позволяет вам публиковать свои скрипты и обсуждать чужие. Вход не обязателен для поиска и установки скриптов."
-    sign_in_external: "Войти с OpenID"
+    sign_in_external: "Войти по OpenID"
     sign_in_with: "Войти с %{provider}"
     sign_in_password: "Войти с паролем"
-    sign_in_email_used_no_external_services_html: "'%{email}' уже используется пользователем '%{user_name}'. Если это вы, и вы хотите входить ещё и с помощью %{provider}, %{sign_in_link} сперва в вашу учётную запись, потом добавьте вход через %{provider} ."
-    sign_in_email_used_with_external_services_html: "'%{email}' уже используется пользователем '%{user_name}', который входит с помощью %{provider}.  Если это вы, и вы хотите входить ещё и с помощью %{provider}, %{sign_in_link} сперва в вашу учётную запись, потом добавьте вход через %{provider}."
+    sign_in_email_used_no_external_services_html: "«%{email}» уже используется пользователем «%{user_name}». Если это вы, и вы хотите входить ещё и с помощью %{provider}, %{sign_in_link} сперва в вашу учётную запись, потом добавьте вход через %{provider}."
+    sign_in_email_used_with_external_services_html: "«%{email}» уже используется пользователем «%{user_name}», который входит с помощью %{provider}. Если это вы, и вы хотите входить ещё и с помощью %{provider}, %{sign_in_link} сперва в вашу учётную запись, потом добавьте вход через %{provider}."
     sign_in_email_used_sign_in_link: "войдите"
-    sign_in_email_missing: "Для создания новой учетной записи %{site_name} нужен ваш почтовый адрес, но %{provider} ее не предоставляет. Вы можете либо добавить почту в свой %{provider} и попробовать ещё раз, либо создать обычную учетную запись с почтой/паролем, а потом добавить к ней ваш %{provider}. "
-    sign_in_name_used: "Имя '%{name}' уже используется. Выберите другое имя."
+    sign_in_email_missing: "Для создания новой учётной записи %{site_name} нужен ваш почтовый адрес, но %{provider} её не предоставляет. Вы можете либо добавить почту в свой %{provider} и попробовать ещё раз, либо создать обычную учётную запись с почтой или паролем, а потом добавить к ней ваш %{provider}."
+    sign_in_name_used: "Имя «%{name}» уже используется. Выберите другое имя."
     sign_in_name_used_submit: "Отправить"
     sign_in_github_unavailable: "Вход с помощью GitHub недоступен на Sleazy Fork, но вы можете %{sign_in_url:войти с помощью GitHub на Greasy Fork}."
     control_panel: "Панель управления"
     discussions_on_scripts: "Обсуждения ваших скриптов"
-    discussions_on_scripts_feed_alt: "RSS лента"
+    discussions_on_scripts_feed_alt: "RSS-канал"
     discussions_on_scripts_none: "Тут ещё ничего нет!"
     discussions_on_scripts_more: "Больше..."
     script_list: "Скрипты"
@@ -588,69 +590,70 @@ ru:
     script_list_none_for_filter: "Нет скриптов под заданными фильтрами."
     script_list_none_same_user_html: "Вы не написали ни одного скрипта. %{script_list_none_same_user_info_link}"
     script_list_none_same_user_info_link_text: "Хотели бы вы научиться?"
+    listing_sort_name: "Имя"
     deleted_script_list: "Удалённые скрипты"
-    unlisted_script_list: "Частные скрипты"
+    unlisted_script_list: "Скрипты по ссылке"
     sign_out: "Выход"
-    edit: "Изменить учетную запись"
+    edit: "Изменить учётную запись"
     edit_sign_in: "Изменить способ входа"
     edit_sign_in_title: "Изменение способа входа"
     edit_sign_in_password: "Пароль"
-    edit_sign_in_2fa_enabled: Вы настроены на двухфакторную аутентификацию (2FA). Вы можете восстановить свой код 2FA, если вы его потеряли.
-    edit_sign_in_2fa_enabled_and_required: Вы настроены на двухфакторную аутентификацию (2FA). 2FA требуется в вашей учетной записи при использовании входа по паролю. Вы можете восстановить свой код 2FA, если вы его потеряли.
-    edit_sign_in_disable_2fa: Отключить 2FA
-    edit_sign_in_2fa_disabled: Вы можете включить двухфакторную аутентификацию (2FA) для повышения безопасности вашей учетной записи на %{site_name}.
-    edit_sign_in_enable_2fa: Включить 2FA
-    edit_sign_in_regenerate_2fa: Перегенерировать 2FA
+    edit_sign_in_2fa_enabled: Вы настроены на двухфакторную авторизацию (2FA). Вы можете восстановить свой двухфакторный код, если вы его потеряли.
+    edit_sign_in_2fa_enabled_and_required: Вы настроены на двухфакторную авторизацию (2FA). Она требуется в вашей учётной записи при использовании входа по паролю. Вы можете восстановить свой двухфакторный код, если вы его потеряли.
+    edit_sign_in_disable_2fa: Отключить двухфакторную авторизацию
+    edit_sign_in_2fa_disabled: Вы можете включить двухфакторную авторизацию (2FA) для повышения безопасности вашей учётной записи на %{site_name}.
+    edit_sign_in_enable_2fa: Включить двухфакторную авторизацию
+    edit_sign_in_regenerate_2fa: Пересоздать двухфакторную авторизацию
     edit_notifications: "Изменить настройки уведомлений"
     view_notifications: "Просмотр уведомлений"
-    no_password_set_info: "Ваша учетная запись не использует пароль для входа."
-    set_password: "Установить пароль."
+    no_password_set_info: "Ваша учётная запись не использует пароль для входа."
+    set_password: "Задать пароль"
     update_password: "Изменить пароль"
     update_password_no_match: "Пароли не совпадают."
     password_updated: "Пароль изменён."
     remove_password_info: "Вы можете убрать пароль и входить исключительно при помощи внешних сервисов."
     remove_password: "Убрать пароль"
-    cant_remove_password: "Нельзя убрать пароль - у вас тогда не останется способа войти!"
-    cant_remove_sign_in: "Нельзя убрать вход с %{provider} - у вас тогда не останется способа войти!"
+    cant_remove_password: "Нельзя убрать пароль – у вас тогда не останется способа войти!"
+    cant_remove_sign_in: "Нельзя убрать вход с %{provider} – у вас тогда не останется способа войти!"
     password_removed: "Пароль убран."
     edit_sign_in_external: "Внешние сервисы для входа"
-    external_sign_in_info_no_sign_ins: "Вы можете использовать свои учетные записи с других сайтов чтобы входить на %{site_name}."
-    external_sign_in_info_with_sign_ins: "Ниже перечислены используемые вами внешние сервисы для входа. Знак «синхронизация» означает, что ваша информация на %{site_name} (имя и почта) будет автоматически синхронизирована из учетной записи сервиса для входа."
-    external_sign_in_added: "вход с %{provider} добавлен."
-    external_sign_in_updated: "вход с %{provider} изменён."
-    external_sign_in_removed: "вход с %{provider} убран."
-    external_sign_in_failed: "вход через %{provider} не удался: %{error}."
-    external_sign_in_already_used: "Ошибка добавления учетной записи %{provider}: она уже используется пользователем '%{user_name}'."
-    external_sign_in_confirmation: "На основе данных %{provider} была создана учетная запись для сайта %{site_name} с именем %{username}."
+    external_sign_in_info_no_sign_ins: "Вы можете использовать свои учётные записи с других сайтов, чтобы входить на %{site_name}."
+    external_sign_in_info_with_sign_ins: "Ниже перечислены используемые вами внешние сервисы для входа. Знак «синхронизация» означает, что ваша информация на %{site_name} (имя и почта) будет автоматически синхронизирована из учётной записи сервиса для входа."
+    external_sign_in_added: "Вход с %{provider} добавлен."
+    external_sign_in_updated: "Вход с %{provider} изменён."
+    external_sign_in_removed: "Вход с %{provider} убран."
+    external_sign_in_failed: "Вход с %{provider} не удался: %{error}."
+    external_sign_in_already_used: "Ошибка добавления учётной записи %{provider}: она уже используется пользователем «%{user_name}»."
+    external_sign_in_confirmation: "На основе данных %{provider} была создана учётная запись для сайта %{site_name} с именем «%{username}»."
     syncing_indicator: "(синхронизация)"
     enable_syncing: "Включить синхронизацию"
-    disable_syncing: "Выключить синхронизацию"
+    disable_syncing: "Отключить синхронизацию"
     remove_external_sign_in: "Убрать"
-    add_external_sign_in_info: "Добавить учетную запись для входа:"
-    2fa_enabled: 2FA включена.
-    2fa_enable_code_incorrect: Код 2FA не верен. Пожалуйста, попробуйте еще раз.
-    2fa_disabled: 2FA отключена.
-    2fa_disabled_already: 2FA уже отключена.
+    add_external_sign_in_info: "Добавить учётную запись для входа:"
+    2fa_enabled: Двухфакторная авторизация включена.
+    2fa_enable_code_incorrect: Код двухфакторной авторизации неверен. Пожалуйста, попробуйте ещё раз.
+    2fa_disabled: Двухфакторная авторизация отключена.
+    2fa_disabled_already: Двухфакторная авторизация уже отключена.
     2fa_entry:
       intro_html: "Вход на сайт как <b>%{email}</b>"
     enable_2fa:
-      intro: "Добавьте %{site_name} в приложение двухфакторной аутентификации (2FA) одним из следующих способов, а затем введите код ниже."
+      intro: "Добавьте %{site_name} в приложение двухфакторной авторизации (2FA) одним из следующих способов, а затем введите код ниже."
       qr_heading: По QR-коду
       url_heading: По ссылке
-      url_info: Если вы находитесь на том же устройстве, что и ваше приложение для двухфакторной аутентификации, вы можете воспользоваться %{auth_link:этой ссылкой}.
+      url_info: Если вы находитесь на том же устройстве, что и ваше приложение для двухфакторной авторизации, вы можете воспользоваться %{auth_link:этой ссылкой}.
       manual_heading: Вручную
       manual_entry_code_name: "Кодовое имя: %{code_name}"
       manual_entry_your_key: "Ваш ключ: %{key}"
-      manual_entry_type_of_key: "Тип ключа: По времени"
+      manual_entry_type_of_key: "Тип ключа: по времени"
       code_entry_heading: Введите код
-      code_entry: "Чтобы активировать 2FA для вашей учетной записи на %{site_name} введите код из вашего 2FA приложения:"
+      code_entry: "Чтобы активировать двухфакторную авторизацию для вашей учётной записи на %{site_name}, введите код из вашего приложения по авторизации:"
       verify_code: Проверочный код
-    set_up_webhook: "Настроить webhook"
+    set_up_webhook: "Настроить сетевой перехватчик"
     list_display_html:
-      one: "%{user_link} - %{count} скрипт"
-      few: "%{user_link} - %{count} скрипта"
-      many: "%{user_link} - %{count} скриптов"
-      other: "%{user_link} - %{count} скриптов"
+      one: "%{user_link} – %{count} скрипт"
+      few: "%{user_link} – %{count} скрипта"
+      many: "%{user_link} – %{count} скриптов"
+      other: "%{user_link} – %{count} скриптов"
     listing_number_of_scripts: "Количество скриптов"
     listing_new_scripts: "Дата создания скрипта"
     listing_updated_scripts: "Дата обновления скрипта"
@@ -658,32 +661,32 @@ ru:
     listing_relevance: "Соответствие"
     listing_title: "Пользователи"
     listing_banned_filter:
-      banned: "Забаненные"
-      not_banned: "Не забаненные"
+      banned: "Заблокированные"
+      not_banned: "Не заблокированные"
       all: "Все"
     listing_author_filter:
       script_author: "Авторы скриптов"
       not_script_author: "Не авторы скриптов"
       all: "Все"
-    search_placeholder: "Что искать"
-    locale_prompt: "(Выберите язык)"
-    show_ads_description: "Поддержать %{site_name}, разрешив показывать рекламу на сайте."
-    show_sensitive_description: "Показывать скрипты с взрослым контентом"
-    preferred_markup_description: "Будет использована для новых скриптов и постов."
+    search_placeholder: "Кого искать"
+    locale_prompt: "(выберите язык)"
+    show_ads_description: "Поддержать %{site_name}, разрешив показывать рекламу на сайте"
+    show_sensitive_description: "Показывать скрипты с материалами эротического характера"
+    preferred_markup_description: "Будет использована для новых скриптов и публикаций."
     filter_locale_default_description: "Показывать содержимое только на моём языке"
     greasy_fork_scripts_link:
-      one: "У %{user_name} также имеется %{count} пользовательских скриптов на Greasy Fork."
-      few: "У %{user_name} также имеется %{count} пользовательских скриптов на Greasy Fork."
+      one: "У %{user_name} также имеется %{count} пользовательский скрипт на Greasy Fork."
+      few: "У %{user_name} также имеется %{count} пользовательских скрипта на Greasy Fork."
       many: "У %{user_name} также имеется %{count} пользовательских скриптов на Greasy Fork."
       other: "У %{user_name} также имеется %{count} пользовательских скриптов на Greasy Fork."
     update_sync_warning:
-      one: "Во время авторизации, имя учетной записи и почта будут синхронизироваться с %{providers}. %{edit_sign_in_link:Вы можете отключить эту синхронизацию} чтобы выбрать произвольные имя и почту."
-      few: "Во время авторизации, имя учетной записи и почта будут синхронизироваться с %{providers}. %{edit_sign_in_link:Вы можете отключить эту синхронизацию} чтобы выбрать произвольные имя и почту."
-      many: "Во время авторизации, имя учетной записи и почта будут синхронизироваться с %{providers}. %{edit_sign_in_link:Вы можете отключить эту синхронизацию} чтобы выбрать произвольные имя и почту."
-      other: "Во время авторизации, имя учетной записи и почта будут синхронизироваться с %{providers}. %{edit_sign_in_link:Вы можете отключить эту синхронизацию} чтобы выбрать произвольные имя и почту."
+      one: "Во время авторизации, имя учётной записи и почта будут синхронизироваться с %{providers}. %{edit_sign_in_link:Вы можете отключить эту синхронизацию}, чтобы выбрать произвольные имя и почту."
+      few: "Во время авторизации, имя учётной записи и почта будут синхронизироваться с %{providers}. %{edit_sign_in_link:Вы можете отключить эту синхронизацию}, чтобы выбрать произвольные имя и почту."
+      many: "Во время авторизации, имя учётной записи и почта будут синхронизироваться с %{providers}. %{edit_sign_in_link:Вы можете отключить эту синхронизацию}, чтобы выбрать произвольные имя и почту."
+      other: "Во время авторизации, имя учётной записи и почта будут синхронизироваться с %{providers}. %{edit_sign_in_link:Вы можете отключить эту синхронизацию}, чтобы выбрать произвольные имя и почту."
     delete_link: "Удалить учётную запись"
     delete:
-      intro: "Удаление вашей учётной записи %{site_name} '%{user_name}' приведёт к следующему:"
+      intro: "Удаление вашей учётной записи %{site_name} «%{user_name}» приведёт к следующему:"
       password_effect: "Вы больше не сможете войти, используя свой пароль."
       identities_effect:
         one: "Войдя через %{identities}, вы получите новую учётную запись."
@@ -700,42 +703,42 @@ ru:
         few: "Будут удалены %{count} ваших списка скриптов."
         many: "Будут удалены %{count} ваших списков скриптов."
         other: "Будут удалены %{count} ваших списков скриптов."
-      forum_effect: "Ваши сообщения на форуме будут сохранены, но их автор будет переименован в \"%{user_name}\"."
+      forum_effect: "Ваши сообщения на форуме будут сохранены, но их автор будет переименован в «%{user_name}»."
       email_confirmation: "Перед удалением вашей учётной записи, %{site_name} отправит по адресу %{email} запрос на подтверждение."
       submit: "Удалить учётную запись"
       confirmation_email_sent: "По электронной почте был отправлен запрос на подтверждение удаления."
       confirmation_email:
         subject: "Подтверждение удаления учётной записи %{site_name}."
-        body: "Был сделан запрос на удаление учётной записи %{site_name} '%{user_name}'. Чтобы подтвердить запрос и удалить учётную запись, перейдите по адресу %{url}. Вы должны это сделать в течении 24 часов, иначе запрос будет отменён."
+        body: "Был сделан запрос на удаление учётной записи %{site_name} «%{user_name}». Чтобы подтвердить запрос и удалить учётную запись, перейдите по адресу %{url}. Вы должны это сделать в течении 24 часов, иначе запрос будет отменён."
       confirmation:
-        intro: "Вы собираетесь удалить учётную запись '%{user_name}'. Удалённую учётную запись будет невозможно восстановить."
-        confirm: "Удалить '%{user_name}'"
+        intro: "Вы собираетесь удалить учётную запись «%{user_name}». Удалённую учётную запись будет невозможно восстановить."
+        confirm: "Удалить «%{user_name}»"
         cancel: "Не удалять"
-        key_mismatch: "Не могу удалить пользователя - ключи не совпадают."
-        request_expired: "Не могу удалить пользователя - истекло время запроса."
+        key_mismatch: "Не удалось удалить пользователя – ключи не совпадают."
+        request_expired: "Не удалось удалить пользователя – истекло время запроса."
         cancelled: "Удаление отменено."
         completed: "Ваша учётная запись была удалена."
     banned_notice:
-      no_report_no_reason: "Ваша учётная запись была забанена. Вы можете %{delete_link:удалить свою учётную запись}, если хотите."
-      with_report: "Ваша учётная запись была забанена на основании %{report_link:этой жалобы}. Вы можете %{delete_link:удалить свою учётную запись}, если хотите."
-      with_reason: "Ваша учётная запись была забанена. Модератор указал следующую причину: \"%{reason}\". Вы можете %{delete_link:удалить свою учётную запись}, если хотите."
+      no_report_no_reason: "Ваша учётная запись была заблокирована. Вы можете %{delete_link:удалить свою учётную запись}, если хотите."
+      with_report: "Ваша учётная запись была заблокирована на основании %{report_link:этой жалобы}. Вы можете %{delete_link:удалить свою учётную запись}, если хотите."
+      with_reason: "Ваша учётная запись была заблокирована. Модератор указал следующую причину: «%{reason}». Вы можете %{delete_link:удалить свою учётную запись}, если хотите."
     banned_delete:
       intro: "Вместе с вашей учётной записью будут удалены все ваши опубликованные скрипты. Сообщения на форуме останутся, но не от вашего имени, а от анонимного пользователя. После удаления вы не сможете создать учётную запись с тем же адресом электронной почты. Войдите ниже, чтобы удалить свою учётную запись."
       complete: "Ваша учётная запись была удалена."
-    deleted_user_with_id: "(Удаленный пользователь %{id})"
-    deleted_user_without_id: "(Удаленный пользователь)"
+    deleted_user_with_id: "(удалённый пользователь %{id})"
+    deleted_user_without_id: "(удалённый пользователь)"
     suggest_secure_login: Как автору скрипта, мы советуем вам %{edit_login_link:использовать более безопасный метод входа}.
-    require_secure_login: Для вашей учетной записи необходимо использовать более безопасный метод входа.
+    require_secure_login: Для вашей учётной записи необходимо использовать более безопасный метод входа.
     secure_login_explanation_html: |
-        <p>Как автору скриптов, мы рекомендуем вам защитить свою учетную запись и пользователей, используя безопасный метод входа. Этого можно достичь двумя путями:</p>
+        <p>Как автору скриптов, мы рекомендуем вам защитить свою учётную запись и пользователей, используя безопасный метод входа. Этого можно достичь двумя путями:</p>
         <ol>
-        <li>Добавить двухфакторную аутентификацию (2FA) к логину, основанному на пароле.</li>
-        <li>Убрать пароль и полагаться только на внешний вход (а в идеале - включить функции безопасности, которые предоставляет этот сервис).</li>
+        <li>Добавить двухфакторную авторизацию (2FA) к входу по паролю.</li>
+        <li>Убрать пароль и полагаться только на внешний вход (а в идеале – включить функции безопасности, которые предоставляет этот сервис).</li>
         </ol>
     badges:
       banned:
-        short: Забанен
-        long: Забанен
+        short: Блокировка
+        long: Заблокирован
       moderator:
         short: Мод
         long: Модератор
@@ -753,7 +756,7 @@ ru:
           start: Вы начинаете обсуждение
           comment: Вы отвечаете в обсуждении
           script: Оно касается одного из ваших скриптов
-        subscribed_discussion_notification: При размещении нового комментария в обсуждении, на которое вы подписаны, получить уведомление
+        subscribed_discussion_notification: Получить уведомление при размещении нового комментария в обсуждении, на которое вы подписаны
         mention: Получать уведомления при упоминании вас в обсуждении
       conversation_defaults:
         title: Уведомления о разговорах
@@ -762,18 +765,18 @@ ru:
           overall_label: Подписываться на новые разговоры когда
           self: Вы начинаете разговор
           other: Кто-то другой начинает разговор
-        new_conversation_notification: Когда кто-нибудь начинает с вами разговор и вы подписываетесь на него в соответствии с настройками выше, получить уведомление
-        new_message_notification: При получении нового сообщения в существующем разговоре, на который вы подписаны, получить уведомление
+        new_conversation_notification: Получить уведомление когда кто-нибудь начинает с вами разговор и вы подписываетесь на него в соответствии с настройками выше
+        new_message_notification: Получить уведомление при получении нового сообщения в существующем разговоре, на который вы подписаны
       report_defaults:
-        intro: Жалобы пользователей на противоречащий правилам %{site_name} контент. Модераторы рассмотрят жалобу и при необходимости удалят контент.
+        intro: Жалобы пользователей на противоречащий правилам %{site_name} контент. Модераторы рассмотрят жалобу и при необходимости удалят содержимое.
         title: Уведомления о жалобах
-        as_reporter: Получать уведомление когда ваша жалоба рассмотрена
-        as_reported_filed: Получать уведомление когда на размещенный вами контент подается жалоба
-        as_reported_resolved: Получать уведомление после рассмотрения жалобы на размещенный вами контент
+        as_reporter: Получить уведомление когда ваша жалоба рассмотрена
+        as_reported_filed: Получить уведомление когда на размещённый вами контент подаётся жалоба
+        as_reported_resolved: Получить уведомление после рассмотрения жалобы на размещённый вами контент
       script:
         intro: Эти настройки относятся к опубликованным вами скриптам.
         title: Уведомления о скриптах
-        consecutive_bad_ratings: Когда вашему скрипту грозит удаление из-за плохих отзывов, получить уведомление
+        consecutive_bad_ratings: Получить уведомление когда вашему скрипту грозит удаление из-за плохих отзывов
       save_button: Обновить настройки уведомлений
       title: Уведомления
       current_discussion_subscriptions:
@@ -786,20 +789,20 @@ ru:
         few: Отписаться от %{count} разговоров, на которые вы уже подписаны
         many: Отписаться от %{count} разговоров, на которые вы уже подписаны
         other: Отписаться от %{count} разговоров, на которые вы уже подписаны
-      intro: "%{site_name} может отправлять вам уведомления по электронной почте или с помощью виджета уведомлений на сайте. Большинство из этих уведомлений можно получить только после того, как вы совершите какое-либо действие, например, начнете обсуждение или опубликуете скрипт. Эти настройки уведомлений не влияют на служебные письма, такие как запрос на сброс пароля."
+      intro: "%{site_name} может отправлять вам уведомления по электронной почте или с помощью виджета уведомлений на сайте. Большинство из этих уведомлений можно получить только после того, как вы совершите какое-либо действие, например, начнёте обсуждение или опубликуете скрипт. Эти настройки уведомлений не влияют на служебные письма, такие как запрос на сброс пароля."
       save_success: Ваши настройки уведомления были обновлены.
       unsubscribe_all: Отписаться от всех уведомлений
       unsubscribe_all_success: Вы отписаны от всех уведомлений.
       unsubscribe_email: Отписаться от всех почтовых уведомлений
-      unsubscribe_email_success: Вы отписаны от всех почтовых уведомлений
-      new_conversation: "%{user} начал с вами разговор: %{text}"
-      new_message: "%{user} отправил вам сообщение: %{text}"
-      new_comment: "%{user} разместил(а) комментарий в %{discussion}"
-      new_comment_script: "%{user} начал обсуждение вашего скрипта %{script}"
-      mention: "%{user} упомянул(а) вас в %{discussion}"
+      unsubscribe_email_success: Вы отписаны от всех почтовых уведомлений.
+      new_conversation: "%{user} начинает с вами разговор: %{text}"
+      new_message: "%{user} отправляет вам сообщение: %{text}"
+      new_comment: "%{user} оставляет комментарий в: %{discussion}"
+      new_comment_script: "%{user} начинает обсуждение вашего скрипта: %{script}"
+      mention: "%{user} упоминает вас в: %{discussion}"
       report_resolved_reporter:
         dismissed: Ваша жалоба на %{item} отклонена модератором.
-        fixed: Ваша жалоба на %{item} привела к некоторым исправлениям, и модератор отметил проблему как решенную.
+        fixed: Ваша жалоба на %{item} привела к некоторым исправлениям, и модератор отметил проблему как решённую.
         upheld: Ваша жалоба на %{item} поддержана модератором.
         rebutted: Получен ответ от пользователя на вашу жалобу на %{item}.  Модератор рассмотрит вашу жалобу и этот ответ.
       report_filed_reported: На %{item} была подана жалоба.
@@ -807,7 +810,7 @@ ru:
         dismissed: Поданная на вас жалоба %{item} отклонена модератором.
         fixed: Жалоба на %{item} привела к некоторым исправлениям, и модератор отметил проблему как решённую.
         upheld: 'Жалоба на %{item} поддержана модератором. '
-      consecutive_bad_ratings: "%{script} получил плохие отзывы и может быть удален. Исправьте свой скрипт или ответьте на отзывы, чтобы он оставался активным."
+      consecutive_bad_ratings: "%{script} получил плохие отзывы и может быть удалён. Исправьте свой скрипт или ответьте на отзывы, чтобы он остался на сайте."
       list:
         header: Уведомления
         none: Уведомлений пока нет!
@@ -815,13 +818,13 @@ ru:
         mark_all_read: Пометить всё как прочтённое
   webhooks:
     info:
-      title: Настройка webhook
+      title: Настройка сетевого перехватчика
       intro_html: |
-          <p>Webhook позволяет автоматически обновлять %{site_name} по событиям в вашем репозитории. %{site_name} поддерживает "push" webhooks для GitHub, GitLab и Bitbucket, и "release" webhooks для GitHub и GitLab.</p>
-          <p>Для использования webhook, ваши скрипты на %{site_name} должны быть настроены для синхронизации по URL с вашим репозиторием. Вы можете добавить новые скрипты %{import_link: импортировав их на %{site_name}}, или включив синхронизацию в уже размещённых скриптах на вкладке "Управление" на странице скрипта.</p>
-          <p>Ваши скрипты будут показывать тип синхронизации "Вручную" или "Автоматически" до первого события webhook.</p>
+          <p>Сетевой перехватчик позволяет автоматически обновлять %{site_name} по событиям в вашем репозитории. %{site_name} поддерживает перехватчики отправки (push) для GitHub, GitLab и Bitbucket, и перехватчики выпуска (release) для GitHub и GitLab.</p>
+          <p>Для использования перехватчика, ваши скрипты на %{site_name} должны быть настроены для синхронизации по URL с вашим репозиторием. Вы можете добавить новые скрипты, %{import_link:импортировав их на %{site_name}}, или включив синхронизацию в уже размещённых скриптах на вкладке «Управление» на странице скрипта.</p>
+          <p>Ваши скрипты будут показывать тип синхронизации «Автоматически» или «Вручную» до первого события перехватчика.</p>
       already_syncing_list: "Скрипты, настроенные на синхронизацию с поддерживаемым провайдером:"
-      synced_item_html: "%{script_name} - %{sync_type} синхронизируется с %{sync_url}"
+      synced_item_html: "%{script_name} – %{sync_type} синхронизируется с %{sync_url}"
       language_note: Так как интерфейс GitHub, GitLab и Bitbucket на английском, инструкции ниже также на английском.
   help:
     sections:
@@ -835,57 +838,51 @@ ru:
       title: 'Как установить пользовательские стили'
       content_html: |
           <p>Некоторые скрипты на %{site_name} могут быть установлены как пользовательские стили.</p>
-          <p>Пользовательские стили могут быть установлены с помощью расширений %{stylus_firefox_link:Stylus для Firefox}, %{stylus_chrome_link:Stylus для Chrome} и %{stylus_opera_link:Stylus дляr Opera}.</p>
+          <p>Пользовательские стили могут быть установлены с помощью расширений %{stylus_firefox_link:Stylus для Firefox}, %{stylus_chrome_link:Stylus для Chrome} и %{stylus_opera_link:Stylus для Opera}.</p>
           <p>%{styles_link:Посмотреть все доступные пользовательские стили.}</p>
     meta_keys:
       title: "Мета-ключи для %{site_name}"
       intro_html: "Список <a href=\"http://wiki.greasespot.net/Metadata_Block\">мета-ключей в скрипте</a>, анализируемых %{site_name}. Кроме перечисленных, можно использовать любые другие ключи, они сохранятся в неизменном виде при установке скрипта, но не возымеют эффекта на интерфейс %{site_name}."
-      name: "Название скрипты, используется в заголовках и ссылках. Необходимо."
-      name_localized_html: "Имя скрипта на указанном языке XX, это <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">двухбуквенный код ISO 639-1</a>, а YY это необязательный <a href=\"https://www.iso.org/obp/ui/#search\">код страны по ISO 3166</a>. Используется вместо <code>@name</code> для показа пользователям, просматривающим сайт на данном языке."
+      name: "Название скрипта, используется в заголовках и ссылках. Обязательно."
+      name_localized_html: "Название скрипта на указанном языке XX, это <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">двухбуквенный код ISO 639-1</a>, а YY это необязательный <a href=\"https://www.iso.org/obp/ui/#search\">код страны по ISO 3166</a>. Используется вместо <code>@name</code> для показа пользователям, просматривающим сайт на данном языке."
       description: "Описание что делает скрипт. Показывается под текстом ниже названия скрипта. Обязательно."
       description_localized_html: "Описание скрипта на указанном языке XX, это <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">двухбуквенный код ISO 639-1</a>, а YY это необязательный <a href=\"https://www.iso.org/obp/ui/#search\">код страны по ISO 3166</a>. Используется вместо <code>@description</code> для показа пользователям, просматривающим сайт на данном языке."
-      namespace_html: "С помощью совокупности <code>@namespace</code> и <code>@name</code> скрипт-менеджеры проверяют, установлен ли уже скрипт. %{site_name} требует наличия этого тега и выдает предупреждение, если вы его изменили при обновлении."
+      namespace_html: "С помощью совокупности <code>@namespace</code> и <code>@name</code> скрипт-менеджеры проверяют, установлен ли уже скрипт. %{site_name} требует наличия этого тега и выдаёт предупреждение, если вы его изменили при обновлении."
       version: "Номер версии скрипта в формате %{version_format_link:версий Mozilla}. Версия отображается на странице описания скрипта. %{site_name} требует наличия этого мета-ключа. Во время обновления будет выдано предупреждение, если версия уменьшилась, или не увеличилась после изменения исходного кода скрипта."
-      include_html: "Укажите адреса сайтов, на которых работает скрипт. Эти адреса будут показаны на странице описания скрипта, а также будут использованы для классификации скриптов. Каждый скрипт должен иметь не менее одной директивы <code>@match</code> или <code>@include</code>. <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">Подробнее об этих директивах.</a>"
-      require_html: "Включает в скрипт внешний JavaScript. См. %{external_script_link:правила для включения внешних скриптов}. Если вы используете subresource integrity hashes (см. %{tm_subresource_link:здесь} и %{mdn_subresource_link:здесь}), то %{site_name} предупредит вас, если хэши не совпадут."
-      resource_html: "Включает в скрипт внешние ресурсы (JavaScript, CSS, изображения, и т.д.). См. %{external_script_link:правила для включения внешних скриптов}. Если вы используете subresource integrity hashes (см. %{tm_subresource_link:здесь} и %{mdn_subresource_link:здесь}), то %{site_name} предупредит вас, если хэши не совпадут."
-      updateURL: "Опишите как менеджеры скриптов должны получать обновления. %{site_name} удалит эти ключи, что заставит любой скрипт установленный с %{site_name}  обновляться только с %{site_name}."
+      include_html: "Укажите адреса сайтов, на которых работает скрипт. Эти адреса будут показаны на странице описания скрипта, а также будут использованы для классификации скриптов. Каждый скрипт должен иметь не менее одного ключа <code>@match</code> или <code>@include</code>. <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">Подробнее об этих ключах.</a>"
+      require_html: "Включает в скрипт внешний JavaScript. См. %{external_script_link:правила для включения внешних скриптов}. Если вы используете хэши Subresource Integrity (см. подробности %{tm_subresource_link:здесь} и %{mdn_subresource_link:здесь}), то %{site_name} предупредит вас, если хэши не совпадут в используемом адресе."
+      resource_html: "Включает в скрипт внешние ресурсы (JavaScript, CSS, изображения, и т.д.). См. %{external_script_link:правила для включения внешних скриптов}. Если вы используете хэши Subresource Integrity (см. подробности %{tm_subresource_link:здесь} и %{mdn_subresource_link:здесь}), то %{site_name} предупредит вас, если хэши не совпадут в используемом адресе."
+      updateURL: "Опишите как менеджеры скриптов должны получать обновления. %{site_name} удалит эти ключи, что заставит любой скрипт, установленный с %{site_name}, обновляться только с %{site_name}."
       license_html: |
-          Размещая на %{site_name} скрипт, вы разрешаете другим устанавливать и использовать его. Лицензия определяет, можно ли его изменять и распространять. Лицензия будет отображаться на странице описания скрипта. <code>@license</code> может быть:
+          Размещая скрипт на %{site_name}, вы разрешаете другим устанавливать и использовать его. Лицензия определяет, можно ли его изменять и распространять. Лицензия будет отображаться на странице описания скрипта. <code>@license</code> может быть:
           <ul>
-          <li>Имя лицензии (например, <code>@license GPL3</code>). Рекомендуется использовать "Full name" или "Identifier" из %{spdx_link:списка лицензий SPDX}.</li>
-          <li>Условия, при которых вы разрешаете использование (например, <code>@license Допускаются изменения при условии, что вы  упомяните меня в списке авторов</code>), хотя рекомендуется использовать существующую лицензию.</li>
+          <li>Название лицензии (например, <code>@license GPL3</code>). Рекомендуется использовать полное название (Full name) или идентификатор (Identifier) из %{spdx_link:списка лицензий SPDX}.</li>
+          <li>Условия, при которых вы разрешаете использование (например, <code>@license Допускаются изменения при условии, что вы упомяните меня в списке авторов</code>), хотя рекомендуется использовать существующую лицензию.</li>
           <li>Заявление об авторских правах (например, <code>@license Copyright МоёИмя</code>), если вы не хотите распространять под лицензией.</li>
           <li>Не указывать <code>@license</code>, что аналогично заявлению об авторских правах, но менее понятно для пользователей.</li>
           </ul>
           Обратите внимание, что если ваш скрипт основан на чужом коде, вы можете быть ограничены в выборе лицензии.
-      supportURL: "Адрес страницы технической поддержки скрипта (например, багтрекер, форум, электронный адрес). Отображается на странице описания скрипта."
-      contributionURL_html: "Адрес страницы для денежных пожертвований автору скрипта. Отображается на странице отзывов для скрипта. Тип адреса - http, https или Bitcoin. Для указания PayPal используйте адрес следующего вида: <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a>, заменив your.email.here@example.com на ваш электронный адрес."
+      supportURL: "Адрес страницы технической поддержки скрипта (например, отслеживатель ошибок, форум, электронный адрес). Отображается на странице отзывов для скрипта."
+      contributionURL_html: "Адрес страницы для денежных пожертвований автору скрипта. Отображается на странице отзывов для скрипта. Тип адреса – http, https или Bitcoin. Для указания PayPal используйте адрес следующего вида: <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ваше.мыло.здесь@гуглян.ком&item_name=Greasy+Fork+donation</a>, заменив ваше.мыло.здесь@гуглян.ком на ваш электронный адрес."
       contributionAmount_html: "Предлагаемая сумма пожертвования, используется вместе с <code>@contributionURL</code>."
-      compatible_html: "Отмечает этот скрипт как совместимый с указанным браузером. Информация о совместимости будет показана на странице скрипта. Может включать комментарий. Пример: <code>@compatible firefox комментарий</code>. Названия браузеров: %{browsers}."
-      incompatible_html: "Указывает на несовместимость скрипта с данным браузером. Эта информация отображается на странице описания скрипта. Можно указывать комментарий в формате <code>@incompatible firefox Не работает с Firefox 23 и новее</code>. Список распознаваемых браузеров: %{browsers}."
+      compatible_html: "Отмечает этот скрипт как совместимый с указанным браузером. Информация о совместимости будет показана на странице скрипта. Может включать комментарий. Пример: <code>@compatible firefox Необходимо отключить блокировщик всплывающих окон</code>. Список распознаваемых браузеров: %{browsers}."
+      incompatible_html: "Указывает на несовместимость скрипта с данным браузером. Эта информация отображается на странице описания скрипта. Необязательно может включать комментарий. Пример: <code>@incompatible firefox Не работает с Firefox 23 и новее</code>. Список распознаваемых браузеров: %{browsers}."
       antifeature_html: |
-          Перечисляет функциональность скрипта, которая полезна автору скрипта, а не пользователю. Формат: <code>@antifeature тип описание</code>. <i>тип</i> указывать обязательно, <i>описание</i> — нет. %{antifeatures_link:Здесь} перечислены все <i>типы</i>, которые поддерживает %{site_name}.
+          Перечисляет функциональность скрипта, которая полезна автору скрипта, а не пользователю. Пример: <code>@antifeature тип описание</code>. <i>тип</i> указывать обязательно, <i>описание</i> — нет. %{antifeatures_link:Здесь} перечислены все <i>типы</i>, которые поддерживает %{site_name}.
       antifeature_localized_html: "<code>@antifeature</code> на указанном языке. XX - <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">двухбуквенный код языка ISO 639-1</a>. YY - необязательный <a href=\"https://www.iso.org/obp/ui/#search\">код страны ISO 3166</a>. Переопределяет <code>@antifeature</code> с тем же типом, когда указанный язык совпадает с языком пользователя."
     writing_user_scripts:
       title: "Как написать пользовательские скрипты"
-      content_html: "<p>Написание пользовательского скрипта требует знания JavaScript. <a href=\"http://wiki.greasespot.net/Tutorials\">Руководства в GreaseSpot Wiki</a> дадут вам начальные знания по языку JavaScript  и его применению в пользовательских скриптах. Может быть полезно изучать пользовательские скрипты других авторов. Вам также могут пригодиться %{code_rules_link} и %{meta_keys_link}. Если вам нужна помощь в разработке скрипта, вы можете %{ask_in_forum_link}.</p><p>Чтобы писать на %{site_name}, вам нужно будет создать учётную запись. С вашей %{user_page_link} перейдите по ссылке %{post_new_script_link}.</p>"
+      content_html: "<p>Написание пользовательского скрипта требует знания JavaScript. <a href=\"http://wiki.greasespot.net/Tutorials\">Руководства в GreaseSpot Wiki</a> дадут вам начальные знания по языку JavaScript и его применению в пользовательских скриптах. Может быть полезно изучать пользовательские скрипты других авторов. Вам также могут пригодиться %{code_rules_link} и %{meta_keys_link}. Если вам нужна помощь в разработке скрипта, вы можете %{ask_in_forum_link}.</p><p>Чтобы писать на %{site_name}, вам нужно будет создать учётную запись. С вашей %{user_page_link} перейдите по ссылке %{post_new_script_link}.</p>"
       ask_in_forum_link_text: 'спросить на форуме'
-      user_page_link_text: 'пользовательская страница'
-      post_new_script_link_text: 'опубликовать новый скрипт'
+      user_page_link_text: 'пользовательской страницы'
+      post_new_script_link_text: '«Опубликовать новый скрипт»'
     code_rules:
-      title: "Правила %{site_name} для опубликования скриптов"
-      preamble: 'К скриптам, размещённым на %{site_name}, предъявляются следующие требования.
-
-        Они предназначены для того, чтобы %{site_name} был безопасным и полезным
-
-        хранилищем пользовательских скриптов. Любой скрипт, выходящий за рамки этих
-
-        требований, может быть удален модераторами %{site_name}.'
+      title: "Правила %{site_name} для публикации скриптов"
+      preamble: К скриптам, размещённым на %{site_name}, предъявляются следующие требования. Они предназначены для того, чтобы %{site_name} был безопасным и полезным хранилищем пользовательских скриптов. Любой скрипт, выходящий за рамки этих требований, может быть удалён модераторами %{site_name}.
       functionality_header: Функциональность
       description: Скрипты должны содержать описание того, что они делают, и не должны преднамеренно делать что-то иное. Пользователи должны знать перед установкой, что будет делать скрипт.
-      reason: Скрипты должны иметь причину, чтобы быть скриптами. Например скрипт, который лишь направляет пользователя на сайт, не нужен. Он может быть заменён ссылкой. Скрипты, которые используют интернет-сервисы для выполнения действий на текущей странице (например, для преобразования этой страницы), разрешены.
-      monetization_html: Скрипты с функциональностью, которая полезна <em>автору</em> скрипта, а не пользователю (слежка, показ рекламы, добыча криптовалюты, и т.д.), разрешены, но вся подобная функциональность должна быть перечислена в %{antifeature_link:<code>@antifeature</code>}. В скрипты нельзя добавлять <code>@include</code> и <code>@match</code> исключительно для вышеописанной нежелательной функциональности.
+      reason: Скрипты должны иметь причину, чтобы быть скриптами. Например скрипт, который лишь направляет пользователя на сайт, не нужен. Он может быть заменён ссылкой. Скрипты, которые используют интернет-сервисы для выполнения действий на текущей странице (например, для преобразования этой страницы) – разрешены.
+      monetization_html: Скрипты с функциональностью, которая полезна <em>автору</em> скрипта, а не пользователю (слежка, показ рекламы, добыча криптовалюты, и т.д.) – разрешены, но вся подобная функциональность должна быть перечислена в %{antifeature_link:<code>@antifeature</code>}. В скрипты нельзя добавлять <code>@include</code> и <code>@match</code> исключительно для вышеописанной нежелательной функциональности.
       code_header: Исходный код
       obfuscation: Исходный код, размещённый на %{site_name}, не должен быть зашифрован (obfuscated) или сжат (minified). У пользователей должна быть возможность осмотреть исходный код, и понять работу скрипта перед его установкой. Можно использовать системы сборки, например webpack, если результат их работы не сжат, а также сохранены пробелы и имена идентификаторов.
       size_html: |
@@ -894,7 +891,7 @@ ru:
           <li>Вынос из скрипта текста, не являющегося исходным кодом, такого как JSON или data:адреса.</li>
           <li>Загрузка библиотек с помощью <code>@require</code> или %{webpack_externals_link:<code>externals</code> в webpack}.</li>
           </ul>
-      libraries_html: Библиотеки, используемые в скриптах, должны быть указаны в <code>@require</code>, если только есть веские технические причины этого не делать. Если исходный код библиотеки включён в код скрипта, то также должна быть добавлена информация об источнике библиотеки (например, комментарий с URL и/или названием и версией).
+      libraries_html: Библиотеки, используемые в скриптах, должны быть указаны в <code>@require</code>, если только есть веские технические причины этого не делать. Если исходный код библиотеки включён в код скрипта, то также должна быть добавлена информация об источнике библиотеки (например, комментарий с адресом и/или названием и версией).
       updates: Скрипты не должны проверять наличие обновлений чаще одного раза в день. Обратите внимание, что большинство менеджеров скриптов обновляют скрипты автоматически, поэтому делать это в скрипте не нужно. Также скрипты не должны динамически вставлять на страницу другие скрипты, размещённые на %{site_name}, потому что такие скрипты не кэшируются менеджерами скриптов.
       hosting: Код, содержащий основную функциональность скрипта, должен находиться на %{site_name}. На %{site_name} запрещены скрипты, которые лишь загружают скрипты из других мест. Запрещены альтернативные адреса загрузки, целью которых является предоставить пользователю альтернативный источник версии скрипта, размещённой на %{site_name}.
       external_js: "%{external_scripts_link:Использование внешнего кода JavaScript ограничено.}"
@@ -904,12 +901,12 @@ ru:
       miscellaneous_header: Разное
       keywords: Скрипты не должны включать ключевые слова, не имеющие отношение к скрипту, для поднятия в результатах поиска.
       adult_content_rule: Скрипты, включающие материал для взрослых или работающие на таких сайтах, должны иметь соответствующую отметку об этом, чтобы пользователи могли скрыть подобные скрипты.
-      reposting_deleted: Не размещайте повторно скрипты, которые были удалены из-за нарушения правил. Вместо этого подайте апелляцию. Повторное размещение удалённых скриптов может привести к бану.
-      advertising_in_description: Авторам скриптов запрещается размещать рекламу на страницах Greasy Fork, например в описании скрипта. Разрешается рекламировать ресурсы автора, такие как домашняя страница, репозиторий исходного кода, Discord, WeChat, и т.д.
-      reporting: Если вы заметили скрипт, который нарушает вышеперечисленные правила, то сообщите об этом, перейдя по ссылке "пожалуйтесь на скрипт" на странице скрипта.
+      reposting_deleted: Не размещайте повторно скрипты, которые были удалены из-за нарушения правил. Вместо этого подайте апелляцию. Повторное размещение удалённых скриптов может привести к блокировке.
+      advertising_in_description: Авторам скриптов запрещается размещать рекламу на страницах Greasy Fork, например в описании скрипта. Разрешается рекламировать ресурсы автора, такие как главная страница, репозиторий исходного кода, Discord, Telegram, и т.д.
+      reporting: Если вы заметили скрипт, который нарушает вышеперечисленные правила, то сообщите об этом, перейдя по ссылке «пожалуйтесь на скрипт» на странице скрипта.
       excessive_updates: Авторы скриптов не должны слишком часто обновлять скрипты исключительно с целью их поднятия в списке скриптов.
       non_functional_includes_html: Скрипты не должны содержать <code>@include</code> или <code>@match</code> для сайтов, на которых скрипты не выполняют свои главные функции.
-      content_language: Должен быть указан правильный язык для имен, описания и другого текста скриптов.
+      content_language: Должен быть указан правильный язык для названий, описания и другого текста скриптов.
       listing_header: Список скриптов
     external_scripts:
       title: "Правила %{site_name} для внешних скриптов"
@@ -927,15 +924,15 @@ ru:
             <li>%{webpack_externals_link:<code>externals</code>} в Webpack.</li>
             <li>Обновление скрипта: автоматически, или пользователем по указаниям скрипта.</li>
             </ul>
-            <p>Хотя эту полезную функцию большинство авторов скриптов используют в законных целях, она также может быть использована злонамеренно. Одним из основных принципов %{site_name} является то, что пользователь должен иметь возможность проверить код скрипта. Внешние скрипты могут обойти этот принцип несколькими способами: их исходный код может меняться без предупреждения и сохранения в истории, они могут отдавать разный исходный код разным людям, вредоносный код может скрываться в середине кода известных библиотек. Даже если кто-то проверит внешний скрипт и определит его как законный, то нет гарантии, что этот скрипт всегда был и будет таковым.</p>
+            <p>Хотя эту полезную функцию большинство авторов скриптов используют в законных целях, она также может быть использована злонамеренно. Одним из основных принципов %{site_name} является то, что пользователь должен иметь возможность проверить код скрипта. Внешние скрипты могут обойти этот принцип несколькими способами: их исходный код может меняться без предупреждения и сохранения в истории, они могут отдавать разный исходный код разным людям, вредоносный код может скрываться в середине кода известных библиотек. Даже если кто-то проверит внешний скрипт и определит его как правильный, то нет гарантии, что этот скрипт всегда был и будет таковым.</p>
       cdns:
         title: Сети доставки содержимого (CDN)
         content_html: |
             <p>Код с CDN разрешён. %{cdns_link:См. список распознаваемых CDN.} Этот код может быть сжат (minified), но не зашифрован (obfuscated).</p>
       sri:
-        title: Скрипты с subresource integrity hashes
+        title: Скрипты с хэшами переназначения целостности (Subresource Integrity)
         content_html: |
-            <p>Разрешены <code>@require</code> и <code>@resource</code> с URL с %{mdn_sri_link:subresource integrity} в %{tm_sri_link:формате Tampermonkey}.</p>
+            <p>Разрешены <code>@require</code> и <code>@resource</code> с URL с %{mdn_sri_link:Subresource Integrity} в %{tm_sri_link:формате Tampermonkey}.</p>
       allowed_external_codes:
         heading: Разрешённые внешние скрипты
         content_html: |
@@ -943,12 +940,12 @@ ru:
       libraries:
         title: "Библиотеки %{site_name}"
         content_html: |
-            <p>Разрешены скрипты, размещённые на %{site_name} как библиотеки. Библиотеку можно создать, выбрав соответствующую опцию при создании скрипта. Для библиотек можно настроить синхронизацию с внешним URL, например с репозиторием GitHub.</p>
+            <p>Разрешены скрипты, размещённые на %{site_name} как библиотеки. Библиотеку можно создать, выбрав соответствующий параметр при создании скрипта. Для библиотек можно настроить синхронизацию с внешним URL, например с репозиторием GitHub.</p>
       origin_host:
         title: Вставка на сайт скриптов, находящихся на этом же сайте
         content_html: |
-            <p>Разрешена вставка внешних скриптов на сайт, если эти скрипты находятся на том же домене, что и этот сайт. Например, если скрипт, запущенный по адресу https://example.com, загружает скрипт https://example.com/script.js, меняет его и вставляет на страницу https://example.com/, то такое действие разрешено.</p>
-            <p>Если скрипт https://example.com/script.js вставляется на страницу https://differentsite.com/, то такое действие запрещено.</p>
+            <p>Разрешена вставка внешних скриптов на сайт, если эти скрипты находятся на том же домене, что и этот сайт. Например, если скрипт, запущенный по адресу https://пример.ком, загружает скрипт https://пример.ком/скрипт.js, меняет его и вставляет на страницу https://пример.ком/, то такое действие разрешено.</p>
+            <p>Если скрипт https://пример.ком/скрипт.js вставляется на страницу https://другойсайт.ком/, то такое действие запрещено.</p>
     cdns:
       title: Разрешённые CDN
       content_html: |
@@ -969,78 +966,78 @@ ru:
     script_rewriting:
       title: "Как %{site_name} будет переписывать опубликованные скрипты"
       content_html: >
-          <p>Скрипты, размещенные на сайте , будут изменены в следующих случаях:</p>
-          <ul>
+          <p>Скрипты, размещённые на сайте %{site_name}, будут изменены в следующих
+          случаях:</p> <ul>
 
-          <li>Директивы <code>@updateURL</code> и <code>@downloadURL</code> будут
-          добавлены или обновлены, и станут указывать на %{site_name}. Директива <code>@installURL</code>
-          будет удалена.</li>
+          <li>Ключи <code>@updateURL</code> и <code>@downloadURL</code> будут добавлены
+          или обновлены, и станут указывать на %{site_name}. Ключ <code>@installURL</code>
+          будет удалён.</li>
 
-          <li>Будут добавлены отсутствующие директивы <code>@version</code> и <code>@namespace</code>.
-          Эти директивы необходимы для работы обновления.</li>
+          <li>Будут добавлены отсутствующие ключи <code>@version</code> и <code>@namespace</code>.
+          Эти ключи необходимы для работы обновления.</li>
 
-          <li>Отсутствующая директива <code>@description</code> будет скопирована
-          из предыдущей версии скрипта (если есть).</li>
+          <li>Отсутствующий ключ <code>@description</code> будет скопирован из предыдущей
+          версии скрипта (если есть).</li>
 
           <li>Переводы строк CRLF и CR будут заменены на LF (так называемый Unix-вариант).</li>
 
           </ul>
-    site_feedback_link: "Отправить отчет об ошибке или пожелание для самого %{site_name} "
+    site_feedback_link: "Отправить сообщение об ошибке или пожелание для самого %{site_name}"
     credits:
       title: "Благодарности"
-      authors_credit: "Проект %{site_name} не существовал бы без авторов, которые создают скрипты"
+      authors_credit: "Проект %{site_name} не существовал бы без авторов, которые создают скрипты."
       developers_credit: "Сайт %{site_name} был создан %{developers_link:этими людьми} при участии всех тех, кто сообщал об ошибках и предлагал улучшения."
       translators_credit: "Перевод %{site_name} выполнен командой %{translators_link:Greasy Translation Force на Transifex}:"
       icons_credit: "Значки браузера взяты с %{browserlogos}."
-    help_with_greasymonkey: "Помощь Greasemonkey"
-    help_with_tampermonkey: "Помощь Tampermonkey"
+    help_with_greasymonkey: "Справка Greasemonkey (англ.)"
+    help_with_tampermonkey: "Справка Tampermonkey (англ.)"
     contact:
       title: "Выйти на контакт с кем-нибудь"
       content_html: >
-          <p>Есть несколько способов поговорить о %{site_name} и о вещах на нем.</p>
+          <p>Есть несколько способов поговорить о %{site_name} и о вещах на нём.</p>
           <p>У вас есть вопрос или комментарий о конкретном скрипте, опубликованном
-          на сайте? Если да, опубликуйте обсуждение по ссылке на вкладке «Обсуждение»
+          на сайте? Если да, опубликуйте обсуждение по ссылке на вкладке «Обсуждения»
           на странице этого скрипта. Авторы скриптов получают уведомление на странице
-          своей учетной записи о любых обсуждениях их скриптов.</p> <p>У вас есть
+          своей учётной записи о любых обсуждениях их скриптов.</p> <p>У вас есть
           вопрос или комментарий по самому %{site_name} или по разработке скриптов,
           или вы хотите, чтобы кто-то сделал вам скрипт? %{forum_link:Размещение на
           форуме} даст вам самую широкую аудиторию для обсуждения.</p> <p>У вас есть
-          отчет об ошибке или полностью сформированная идея для самого %{site_name}
-          (а не для определенного скрипта, <em>опубликованного на</em> %{site_name})?
-          %{github_link:Опубликуйте это на странице GitHub.}</p> <p>У вас есть частный
+          отчёт об ошибке или полностью сформированная идея для самого %{site_name}
+          (а не для определённого скрипта, <em>опубликованного на</em> %{site_name})?
+          %{github_link:Опубликуйте это на странице GitHub.}</p> <p>У вас есть личный
           вопрос или комментарий, который вы бы хотели показать только администратору?
           %{admin_email_link:Отправьте по электронной почте.}</p>
     privacy_policy:
-      title: "Политика приватности"
+      title: "Политика конфиденциальности"
       content_html: >
           <p>На этой странице описано, как %{site_name} будет записывать или отслеживать
-          пользователей. Если у вас есть какие-либо проблемы, %{admin_email_link:электронная
-          почта администратора}.</p> <h2></h2>Сервер регистрирует <p>%{site_name}
-          всех запросов типичным образом журнала сервера. Регистрируемая информация
-          включает посещенные страницы, IP-адрес и строку агента пользователя. Эти
-          запросы используются для отладки и анализа сервера. Данные хранятся в течение
-          одной недели. Эти данные не являются общими и не публикуются в общедоступном
-          виде.</p> <h2></h2>Статистика скриптов <p>В целях генерации статистики,
-          %{site_name} записей устанавливают и обновляют запросы с информацией о IP-адресе.
-          Эта информация хранится в течение одного дня и затем агрегируется, чтобы
-          больше не включать IP-адрес. Данные, специфичные для IP-адреса, не распространяются
-          или становятся общедоступными, но данные агрегированны.</p> <h2>Файлы cookie
-          (если не вошли в систему)</h2> <p>%{site_name} могут устанавливать временные
-          файлы cookie, чтобы разрешить некоторые возможности сайта. Эти файлы cookie
-          не настроены на сохранение и могут быть удалены, когда браузер закрыт (в
-          зависимости от настроек браузера).</p> <h2></h2>Учетные записи пользователей
-          <p>%{site_name} требует от пользователей создать учетную запись для публикации
+          пользователей. Если у вас возникли какие-либо проблемы – %{admin_email_link:электронная
+          почта администратора}.</p> <h2>Действия сервера</h2> <p>Сервер регистрирует
+          все запросы %{site_name} типичным образом журнала сервера. Регистрируемая
+          информация включает посещённые страницы, IP-адрес и строку браузера пользователя.
+          Эти запросы используются для отладки и анализа сервера. Данные хранятся
+          в течение одной недели. Эти данные не являются общими и не публикуются в
+          общедоступном виде.</p> <h2>Статистика скриптов</h2> <p>В целях генерации
+          статистики, записи %{site_name} устанавливают и обновляют запросы с информацией
+          о IP-адресе. Эта информация хранится в течение одного дня и затем агрегируется,
+          чтобы больше не включать IP-адрес. Данные, специфичные для IP-адреса, не
+          распространяются или становятся общедоступными, но данные агрегированны.</p>
+          <h2>Файлы «куки» (если не вошли в систему)</h2> <p>%{site_name} может устанавливать
+          временные файлы «куки», чтобы разрешить некоторые возможности сайта. Эти
+          файлы «куки» не настроены на сохранение и могут быть удалены, когда браузер
+          закрыт (в зависимости от настроек браузера).</p> <h2>Учётные записи пользователей</h2>
+          <p>%{site_name} требует от пользователей создать учётную запись для публикации
           скриптов, принятия участия в обсуждениях и получении доступа к некоторым
-          другим функциям сайта. При создании учетной записи информация, такая как
-          IP-адрес, адрес электронной почты и пользовательский агент, может быть сохранена
-          навсегда. Некоторая информация может быть видна другим пользователям.</p>
-          <p></p>Действия, выполняемые при входе в систему, например, отправка скриптов
-          и комментариев, будут доступны для просмотра другим пользователям. <p>Если
-          опция «Запомнить меня» отмечена при входе в учетную запись, %{site_name}
-          установит постоянный файл cookie для сохранения состояния входа в систему.</p>
-          <h2>Скрипты размещенные на %{site_name}</h2> <p>%{site_name} содержит пользовательский
+          другим функциям сайта. При создании учётной записи информация, такая как
+          IP-адрес, адрес электронной почты и пользовательский браузер, может быть
+          сохранена навсегда. Некоторая информация может быть видна другим пользователям.</p>
+          <p>Действия, выполняемые при входе в систему, например, отправка скриптов
+          и комментариев, будут доступны для просмотра другим пользователям.</p> <p>Если
+          параметр «Запомнить меня» отмечен при входе в учётную запись, %{site_name}
+          установит постоянный файл «куки» для сохранения состояния входа в систему.</p>
+          <h2>Размещённые скрипты на %{site_name}</h2> <p>%{site_name} содержит пользовательский
           контент, а опубликованные скрипты могут отслеживать пользователей, если
-          они устанавливают этот скрипт.</p> <h2></h2>Сторонние библиотеки <p>%{site_name}
+          они устанавливают этот скрипт.</p> <h2>Сторонние библиотеки</h2> <p>%{site_name}
           может включать сторонний код для сбора статистики или отображения рекламы
           на сайте. Эти библиотеки могут включать логику отслеживания.</p>
     user_css_to_user_js:
@@ -1048,10 +1045,11 @@ ru:
       content_html: |
           <p>%{site_name} может преобразовать пользовательский CSS в пользовательский JS. Правила <code>@-moz-document</code> заменяются на инструкции JavaScript <code>if</code>, создающие CSS перед его применением. Этот CSS помещается в элемент <code>&lt;style&gt;</code>, который в свою очередь добавляется в элемент <code>&lt;head&gt;</code>.</p>
 
-          <p>Некоторые возможности пользовательского CSS не совместимы с преобразованием в пользовательский JS. Если такие возможности будут обнаружены, преобразование выполнено не будет.</p>
+          <p>Некоторые возможности пользовательского CSS несовместимы с преобразованием в пользовательский JS. Если такие возможности будут обнаружены, преобразование выполнено не будет.</p>
 
           <ul>
           <li>Мета-ключи <code>@preprocessor</code>, кроме <code>default</code></li>
+
           <li>Мета-ключи <code>@var</code></li>
           </ul>
 
@@ -1059,15 +1057,15 @@ ru:
 
           <ul>
           <li>В пользовательском JS, CSS вставляется в конец <code>&lt;head&gt;</code>. В пользовательском CSS, местонахождение зависит от используемого расширения. Чтобы обойти эти расхождения, рекомендуется использовать <code>!important</code>.</li>
-          <li>В пользовательском JS, CSS создается и вставляется только один раз, во время загрузки страницы. Если страница использует JavaScript History API, то CSS может применяться не так, как задумано.</li>
+          <li>В пользовательском JS, CSS создаётся и вставляется только один раз, во время загрузки страницы. Если страница использует JavaScript History API, то CSS может применяться не так, как задумано.</li>
           <li>Пользовательский JS может не применять CSS к frame и iframe.</li>
           </ul>
 
           <p>Если созданный пользовательский JS не работает, то во время обновления CSS вы должны запретить преобразование.</p>
     antifeatures:
-      title: Нежелательная функциональность
+      title: Антивозможности
       intro_html: |
-          <p>Нежелательная функциональность — это функциональность скрипта, которая полезна автору скрипта, а не пользователю, например, показ рекламы или слежка за пользователем. Скрипты с нежелательными возможностями разрешены %{rules_link:правилами %{site_name}}, но вся подобная функциональность должна быть перечислена в <code>@antifeature</code> в метаданных скрипта. Это необходимо, чтобы пользователь мог узнать о нежелательной функциональности перед установкой скрипта.</p>
+          <p>Антивозможности — это функциональность скрипта, которая полезна автору скрипта, а не пользователю, например, показ рекламы или слежка за пользователем. Скрипты с нежелательными возможностями разрешены %{rules_link:правилами %{site_name}}, но вся подобная функциональность должна быть перечислена в <code>@antifeature</code> в метаданных скрипта. Это необходимо, чтобы пользователь мог узнать о нежелательной функциональности перед установкой скрипта.</p>
           <p>Нежелательная функциональность указывается в %{meta_keys_link:мета-ключе} <code>@antifeature <i>тип</i> <i>описание</i></code>. <i>тип</i> указывать обязательно, <i>описание</i> — нет.</p>
           <p>На этой странице перечислены все типы <code>@antifeature</code>, которые поддерживает %{site_name}. Вы можете использовать и другие типы, которые не противоречат %{rules_link:правилам %{site_name}}.</p>
       ads_html: |
@@ -1076,7 +1074,7 @@ ru:
           <ul>
           <li>Скрипт взаимодействует с сайтом, содержащим рекламу.</li>
           <li>Скрипт предоставляет ссылки или иным образом перенаправляет пользователя на содержащий рекламу сайт, при условии, что этот сайт необходим для работы функции скрипта.</li>
-          <li>Продвижение домашней страницы автора скрипта, репозитория кода, Discord, WeChat, и т.д.</li>
+          <li>Продвижение главной страницы автора скрипта, репозитория кода, Discord, Telegram, и т.д.</li>
           </ul>
       membership_html: |
           <p>Для включения всех функций скрипта пользователю нужно подписаться на канал, вступить в группу, поставить оценку, и т.д.</p>
@@ -1100,9 +1098,9 @@ ru:
           <li>Скрипт просит сделать пожертвование, при условии, что пожертвования не нужны для включения всех функций скрипта.</li>
           </ul>
       referral_link_html: |
-          <p>Скрипт выполняет действия, позволяющие автору скрипта получать комиссию с покупок пользователя. Скрипт может содержать реферальные/партнерские ссылки, преобразовывать ссылки в реферальные/партнерские, или предоставлять купоны с кодами, которые приносят комиссию автору скрипта.</p>
+          <p>Скрипт выполняет действия, позволяющие автору скрипта получать комиссию с покупок пользователя. Скрипт может содержать реферальные или партнёрские ссылки, преобразовывать ссылки в реферальные или партнёрские, или предоставлять купоны с кодами, которые приносят комиссию автору скрипта.</p>
       tracking_html: |
-          <p>В скрипте есть код, следящий за пользователем, например Google Analytics или самописный код, которые отсылают автору скрипта данные о действиях пользователя.</p>
+          <p>В скрипте есть код, следящий за пользователем, например Google Analytics или самописный код, который отсылает автору скрипта данные о действиях пользователя.</p>
   search:
     script_search:
       title: "Поиск скрипта"
@@ -1119,25 +1117,25 @@ ru:
   moderator_logs:
     date_column: "Дата"
     moderator_column: "Модератор"
-    item_column: "Предмет"
+    item_column: "Элемент"
     action_column: "Действие"
     reason_column: "Причина"
     item_script_html: "Скрипт: %{script_link}"
-    item_deleted_script: "Удалённый скрипт %{id}"
+    item_deleted_script: "Удаляет скрипт %{id}"
     item_user_html: "Пользователь: %{user_link}"
     item_report: "%{report_link: Жалоба №%{report_id}}"
     item_script_lock_appeal: "%{appeal_link:Апелляция №%{appeal_id}}"
-    item_script_lock_appeal_dismissed: "%{appeal_link:Апелляция #%{appeal_id}} отклонена"
+    item_script_lock_appeal_dismissed: "%{appeal_link:Апелляция №%{appeal_id}} отклонена"
     item_discussion_html: "Обсуждение: %{discussion_link}"
     item_comment_html: "Комментарий к обсуждению: %{comment_link}"
   reports:
-    name: "Жалоба #%{id}"
+    name: "Жалоба №%{id}"
     report_filed: "Ваша жалоба будет рассмотрена модератором."
     new_report_title:
-      user: "Пожаловаться на %{user}"
-      comment: "Пожаловаться на комментарий %{user}"
-      message: "Пожаловаться на сообщение пользователя %{user}"
-      script: "Пожаловаться на %{script}"
+      user: "Жалоба на %{user}"
+      comment: "Жалоба на комментарий %{user}"
+      message: "Жалоба на сообщение пользователя %{user}"
+      script: "Жалоба на %{script}"
     new_report_notes_html: >
         <p>Обратите внимание:</p> <ul>
 
@@ -1146,18 +1144,18 @@ ru:
         <li>Несогласие с чужой точкой зрения, даже ложной, не является основанием
         для жалобы.</li>
 
-        <li>За злоупотребление жалобами забанить могут <i>вас</i>.</li>
+        <li>За злоупотребление жалобами заблокировать могут <i>вас</i>.</li>
 
         </ul>
     new_script_report_notes_html: >
         <p>Обратите внимание:</p> <ul>
 
-        <li>Скрипт будет удален только если он нарушает %{rules_link:правила %{site_name}}.
+        <li>Скрипт будет удалён только если он нарушает %{rules_link:правила %{site_name}}.
         Если скрипт не работает, то сообщите об этом %{feedback_link:здесь}.</li>
 
         <li>Модератор рассмотрит вашу жалобу и примет соответствующие меры.</li>
 
-        <li>За злоупотребление жалобами забанить могут <i>вас</i>.</li>
+        <li>За злоупотребление жалобами заблокировать могут <i>вас</i>.</li>
 
         </ul>
     new_user_report_notes_html: >
@@ -1168,7 +1166,7 @@ ru:
 
         <li>Модератор рассмотрит вашу жалобу и примет соответствующие меры.</li>
 
-        <li>За злоупотребление жалобами забанить могут <i>вас</i>.</li>
+        <li>За злоупотребление жалобами заблокировать могут <i>вас</i>.</li>
 
         </ul>
     reason:
@@ -1179,37 +1177,37 @@ ru:
       illegal: "Нелегальное содержимое"
       unauthorized_code: "Нелегальная копия"
       malware: "Вредоносный код"
-      minified: "Зашифрованный или сжатый (minified) код"
+      minified: "Сжатый (minified) код"
       obfuscated: "Зашифрованный (obfuscated) код"
       external_code: "Запрещённый исходный код из внешнего источника"
       undisclosed_antifeature: "Сокрытие %{antifeature_link:нежелательной функциональности}, такой как реклама, слежка, добыча криптовалюты."
       no_description: "Отсутствующее, неинформативное или вводящее в заблуждение описание"
       wrong_category: "Неправильная категория"
       wrong_category_with_suggestion: "Неправильная категория (похожая: %{suggested_category})"
-      no_code: 'Нет кода/бесполезный код'
+      no_code: 'Нет кода или бесполезный код'
       legal_claim: "Юридическая претензия"
       other: "Другое"
-    report_intro: "%{report_date} на %{reported_item} поступила жалоба от %{reporter} по причине %{reason}"
-    report_intro_no_reporter: "%{report_date} на %{reported_item} поступила жалоба по причине %{reason}"
-    report_intro_unauthorized_html: "На %{reported_script} поступила жалоба %{report_date} от %{reporter} о том, что скрипт является нелегальной копией %{other_script}."
+    report_intro: "%{report_date} на %{reported_item} поступила жалоба от %{reporter} по причине: %{reason}"
+    report_intro_no_reporter: "%{report_date} на %{reported_item} поступила жалоба по причине: %{reason}"
+    report_intro_unauthorized_html: "%{report_date} на %{reported_script} поступила жалоба от %{reporter} о том, что скрипт является нелегальной копией скрипта %{other_script}."
     report_intro_unauthorized_no_reporter_html: "%{report_date} на %{reported_script} поступила жалоба, что он является нелегальной копией скрипта %{other_script}."
-    report_intro_unauthorized_license: "%{other_script} использует лицензию %{license_link: %{license_name}}. Посетите %{tldr_legal_link:tldrlegal.com}, чтобы ознакомиться с этой лицензией."
-    report_intro_unauthorized_license_no_url: "%{other_script} использует лицензию %{license_name}. Посетите %{tldr_legal_link:tldrlegal.com}, чтобы ознакомиться с этой лицензией."
+    report_intro_unauthorized_license: "%{other_script} использует лицензию %{license_link: %{license_name}}. Откройте сайт %{tldr_legal_link:tldrlegal.com}, чтобы ознакомиться с этой лицензией."
+    report_intro_unauthorized_license_no_url: "%{other_script} использует лицензию %{license_name}. Откройте сайт %{tldr_legal_link:tldrlegal.com}, чтобы ознакомиться с этой лицензией."
     report_intro_unauthorized_no_license: "Для %{other_script} не указана лицензия, поэтому распространение копий без явного разрешения запрещено."
     non_functional_feedback: "Пожалуйста, сообщите о неработоспособном скрипте %{feedback_link:здесь}."
     paid_benefits_feedback: "%{site_name} ничего не знает о сделках между авторами скриптов и пользователями, и поэтому не может проверить связанные с ними претензии. Если вы недовольны купленной функциональностью скрипта, пожалуйста напишите об этом в %{feedback_link:отзыве} на скрипт."
-    unauthorized_code_original_placeholder: "URL оригинального кода"
-    explanation_placeholder: "Сообщите дополнительные подробности (не обязательно)"
+    unauthorized_code_original_placeholder: "URL изначального кода"
+    explanation_placeholder: "Сообщите дополнительные подробности (необязательно)"
     create_button: "Создать жалобу"
     report_user: "Пожаловаться на пользователя"
     report_comment: "Пожаловаться на комментарий"
     report_message: "Пожаловаться на сообщение"
-    result_dismissed: "Это жалоба была отклонена модератором."
-    result_upheld: "Это жалоба была удовлетворена модератором."
-    result_upheld_reason_override: "Это жалоба была удовлетворена модератором, но модератор добавил следующую пометку: %{reason}."
+    result_dismissed: "Эта жалоба была отклонена модератором."
+    result_upheld: "Эта жалоба была удовлетворена модератором."
+    result_upheld_reason_override: "Эта жалоба была удовлетворена модератором, но модератор добавил следующую пометку: %{reason}."
     result_self_upheld: "Автор удалил свой скрипт в результате этой жалобы."
     result_fixed: "Эта жалоба была помечена модератором как решённая, потому что, по его мнению, автор устранил проблему."
-    result_pending: "Это жалоба ожидает рассмотрения модератором."
+    result_pending: "Эта жалоба ожидает рассмотрения модератором."
     result_pending_author_html: |
         <p>Ваши возможные действия:</p>
         <ol>
@@ -1218,16 +1216,16 @@ ru:
         <li>Удалите свой скрипт.</li>
         <li>Ничего не делайте, полагаясь на решение модератора.</li>
         </ol>
-    rebuttal_placeholder: 'Объясните модератору, почему этот скрипт не должен быть удален.'
+    rebuttal_placeholder: 'Объясните модератору, почему этот скрипт не должен быть удалён.'
     submit_rebuttal: "Отправить опровержение"
     rebuttal_submitted: Модератор рассмотрит эту жалобу и ваше объяснение, и примет решение.
     delete_script: "Удалить скрипт"
     view_discussion: "Просмотр обсуждения"
-    load_diff: "Загрузить различия (diff)"
-    load_cleaned_diff: "Загрузить различия (diff) очищенного кода"
+    load_diff: "Загрузить различия"
+    load_cleaned_diff: "Загрузить различия очищенного кода"
     loading_diff: "Загрузка…"
     reported_user_activity_html: "Действия %{user}, на которого поступила жалоба:"
-    script_updated_since_report: "Этот скрипт был обновлен с момента заполнения жалобы."
+    script_updated_since_report: "Этот скрипт был обновлён с момента заполнения жалобы."
     script_previous_reports:
       one: "У этого скрипта была %{count} удовлетворённая или решённая жалоба."
       few: "У этого скрипта были %{count} удовлетворённые или решённые жалобы."
@@ -1238,11 +1236,11 @@ ru:
     already_reported_by_reporter: "Вы недавно уже на это %{report_link:жаловались}."
     already_reported_same_type: "У этого элемента уже есть %{report_link:несколько ожидающих рассмотрения жалоб}."
     report_item:
-      discussion: "Обсуждение %{title} от %{user}"
+      discussion: "обсуждение «%{title}» от %{user}"
       comment: "%{comment} от %{user}"
-      comment_description: "Комментарий в %{discussion_title}"
+      comment_description: "Комментарий в «%{discussion_title}»"
       message: "Сообщение от %{user}"
-      deleted: "Удален %{type} #%{id}"
+      deleted: "Удалено: %{type} №%{id}"
   appeals:
     new:
       title: Новая апелляция на удаление скрипта
@@ -1261,23 +1259,23 @@ ru:
     comment_edit_date: "Изменено: %{date}"
     posted_by_html: "%{user} %{date}"
     last_comment: "Последний: %{user} %{date}"
-    new_discussion_heading: "Напишите отзыв, комментарий, или задайте вопрос"
+    new_discussion_heading: "Напишите отзыв, комментарий или задайте вопрос"
     new_discussion_submit: "Добавить комментарий"
     new_comment_heading: "Ответить"
     new_comment_submit: "Ответить"
-    back_to_feedback: "< Обсуждения %{script}"
+    back_to_feedback: "< Обсуждения: %{script}"
     edit_comment_link: "Изменить"
-    edit_comment_header: "Редактировать комментарий"
+    edit_comment_header: "Изменить комментарий"
     delete_comment: "Удалить"
     delete_comment_confirm: Вы действительно хотите удалить этот комментарий?
     delete_discussion: "Удалить"
     delete_discussion_confirm: Вы действительно хотите удалить это обсуждение?
     update_comment_submit: "Обновить комментарий"
     cancel_update_comment: "Отменить"
-    quote_comment: "Цитата"
-    question_heading_html: "Вопрос/комментарий"
+    quote_comment: "Цитировать"
+    question_heading_html: "Вопрос или комментарий"
     review_heading_html: "Отзыв: %{rating}"
-    update_rating_note: "(Вы можете изменить оценку позже, добавив комментарий.)"
+    update_rating_note: "(вы можете изменить оценку позже, добавив комментарий)."
     update_rating: "Обновить вашу оценку %{script_name}"
     ratings:
       question: "Без оценки — задать вопрос, оставить комментарий, предложить улучшение"
@@ -1285,7 +1283,7 @@ ru:
       ok: "Нормальный — скрипт работает, но имеет существенные недостатки"
       good: "Хороший — скрипт работает как нужно"
     ratings_short:
-      question: "Вопрос/комментарий"
+      question: "Вопрос или комментарий"
       bad: "Плохой"
       ok: "Нормальный"
       good: "Хороший"
@@ -1293,7 +1291,7 @@ ru:
       deleted:
         short: Удалено
         long: Удалено
-    sign_in_to_post_discussion: "Войдите, чтобы написать отзыв, комментарий, или задать вопрос."
+    sign_in_to_post_discussion: "Войдите, чтобы написать отзыв, комментарий или задать вопрос."
     sign_in_to_post_comment: "Войдите, чтобы ответить."
     user_filter:
       label: "Фильтр обсуждений"
@@ -1325,14 +1323,14 @@ ru:
       no_recent_activity: "Этот пользователь уже давно не оставлял комментариев."
       see_all_activity: "Показать всю активность пользователя."
       script_review:
-        posted_html: "Разместил отзыв о <i>%{script}</i>"
-        replied_html: "Ответил на отзыв о <i>%{script}</i>"
+        posted_html: "Размещает отзыв о <i>%{script}</i>"
+        replied_html: "Отвечает на отзыв о <i>%{script}</i>"
       script_question:
-        posted_html: "Разместил вопрос/комментарий о <i>%{script}</i>"
-        replied_html: "Ответил на вопрос/комментарий о <i>%{script}</i>"
+        posted_html: "Размещает вопрос или комментарий о <i>%{script}</i>"
+        replied_html: "Отвечает на вопрос или комментарий о <i>%{script}</i>"
       discussion:
-        posted_html: "Создано обсуждение: <i>%{title}</i>"
-        replied_html: "Ответил в обсуждении <i>%{title}</i>"
+        posted_html: "Создаёт обсуждение <i>%{title}</i>"
+        replied_html: "Отвечает в обсуждении <i>%{title}</i>"
     review_title: "Отзыв на %{script_name}"
     question_title: "Вопрос о %{script_name}"
     subscribe: Подписаться
@@ -1352,14 +1350,14 @@ ru:
         name: Обсуждения скриптов
         description: Обсуждение существующих скриптов и стилей.
       no-scripts:
-        name: Все кроме обсуждения скриптов
+        name: Всё кроме обсуждения скриптов
       moderators:
         name: Модераторы
-        description: Частные обсуждения для модераторов.
-    category_display: "%{name} - %{description}"
+        description: Закрытые обсуждения для модераторов.
+    category_display: "%{name} – %{description}"
     new_title: Новое обсуждение
     new_button: Новое обсуждение
-    script_notice: Если вы хотите обсудить какой-то скрипт, зайдите в секцию "Обсуждения" на странице этого скрипта и там создайте новое обсуждение.
+    script_notice: Если вы хотите обсудить какой-то скрипт, зайдите в секцию «Обсуждения» на странице этого скрипта и там создайте новое обсуждение.
     no_discussions: Обсуждений не найдено.
     mark_all_read: Пометить всё как прочтённое
     pending_moderator_review: Это обсуждение недоступно для других пользователей до проверки модератором.
@@ -1389,13 +1387,13 @@ ru:
       more: Показать все разговоры
     edit_message_header: Редактирование сообщения
     update_message_submit: Обновить сообщение
-    moderator_notice: Если вы хотите сообщить о нарушении правил сайта %{site_name}, то нажмите ссылку Пожаловаться на скрипт, пользователя или комментарий. Модераторы не могут удалять содержимое сайта на основе обычных сообщений.
+    moderator_notice: Если вы хотите сообщить о нарушении правил сайта %{site_name}, то нажмите ссылку «Пожаловаться» на странице скрипта, пользователя или комментария. Модераторы не могут удалять содержимое сайта на основе обычных сообщений.
   screenshots:
     requirements: "Не более %{number} изображений PNG, GIF, JPEG, or WebP, размер каждого меньше %{size}."
   common:
     error_preamble: "Обнаружены проблемы в том, что вы отправили..."
-    allowed_elements_link: "(См. разрешенные теги)"
-    allowed_elements_and_attributes_title: "Разрешенные теги HTML"
+    allowed_elements_link: "(см. разрешённые теги)"
+    allowed_elements_and_attributes_title: "Разрешённые теги HTML"
     allowed_elements_intro: "Следующие элементы и атрибуты разрешены для HTML и для Markdown (после преобразования в HTML)."
     allowed_elements_extra_info: "Пустые строки будут автоматически преобразованы в элементы P или BR. Адреса — в элемент A."
     allowed_css_intro: "Следующие свойства CSS разрешены для всех элементов."
@@ -1403,26 +1401,26 @@ ru:
     not_found_text: "Ошибка 404: по этому адресу ничего нет."
     not_found_title: "Ошибка 404: по этому адресу ничего нет"
     not_found_link_home: "Перейти на главную страницу."
-    suggest_locale: "%{site_name} переведен на %{locale_name}."
-    incomplete_locale: "К сожалению, %{site_name} переведен на русский язык всего на %{percent} процентов. Вы можете помочь завершить перевод."
+    suggest_locale: "%{site_name} переведён на язык: %{locale_name}."
+    incomplete_locale: "К сожалению, %{site_name} переведён на язык [%{locale_name}] всего на %{percent}%. Вы можете помочь завершить перевод."
     preview_tab: Предпросмотр
     write_tab: Написать
     listing_options_title: "Настройки поиска"
     quote:
-      prefix_html: "%{user} сказал:"
-      anonymous_reporter_html: "Отправитель жалобы сказал:"
+      prefix_html: "%{user} написал:"
+      anonymous_reporter_html: "Отправитель жалобы написал:"
   activerecord:
     models:
       script:
         one: "%{count} скрипт"
         few: "%{count} скрипта"
         many: "%{count} скриптов"
-        other: "%{count} скрипта"
+        other: "%{count} скриптов"
       comment:
         one: "%{count} комментарий"
         few: "%{count} комментария"
         many: "%{count} комментариев"
-        other: "%{count} комментария"
+        other: "%{count} комментариев"
     attributes:
       user:
         name: "Имя"
@@ -1435,7 +1433,7 @@ ru:
         current_password: "Текущий пароль"
         new_password: "Новый пароль"
         new_password_confirmation: "Повторите новый пароль"
-        otp_attempt: Код двухфакторной аутентификации (2FA)
+        otp_attempt: Код двухфакторной авторизации (2FA)
       script:
         name: "Название"
         description: "Описание"
@@ -1444,7 +1442,7 @@ ru:
         changelog: "Список изменений"
         type: "Тип скрипта"
         additional_info: "Дополнительная информация"
-        screenshots: "Скриншоты"
+        screenshots: "Снимки экрана"
         replaced_by_script_id: "Скрипт на замену"
       script_set:
         name: "Имя"
@@ -1464,11 +1462,11 @@ ru:
         text: Апелляция
   errors:
     messages:
-      script_missing_name: "требуется - укажите @name"
-      script_missing_description: "требуется - укажите @description"
+      script_missing_name: "требуется – укажите @name"
+      script_missing_description: "требуется – укажите @description"
       script_name_same_as_description: "должно отличаться от названия скрипта"
-      script_sync_identifier_bad_protocol: "должен быть или HTTP или HTTPS адрес"
-      script_too_many_screenshots: "Слишком много скриншотов - можно максимум %{number}"
+      script_sync_identifier_bad_protocol: "должен быть или адрес HTTP или HTTPS"
+      script_too_many_screenshots: "Слишком много снимков экрана – можно максимум %{number}"
       cannot_be_self_reference: "не может быть тот же скрипт"
       cannot_be_deleted_reference: "не может быть удалённый скрипт"
       cannot_be_used_with_this_script: "не может быть использован с этим скриптом"
@@ -1476,10 +1474,10 @@ ru:
       script_update_not_utf8: "загружаемый текст должен быть в UTF-8 кодировке"
       script_disallowed_require: "использует непроверенный внешний скрипт: %{code}"
       script_disallowed_resource: "использует ошибочный @resource: %{code}. Допускаются протоколы http, https и data"
-      script_disallowed_base_64_require: "использует закодированный с помощью base-64 @require"
+      script_disallowed_base_64_require: "использует зашифрованный с помощью base-64 @require"
       script_malformed_require: "использует неправильную ссылку на внешний скрипт: %{code}"
       script_rate_limit: "Вы превысили количество сообщений. Попробуйте позже."
-      missing_include_or_match: "должен иметь хотя бы одну директиву @match или @include"
+      missing_include_or_match: "должен иметь хотя бы один ключ @match или @include"
       invalid_meta: "содержит ошибочный мета-ключ. Правильный формат: // @foo"
       no_executable: "не содержит исполняемого кода"
       meta_too_long: "Превышена длина %{key} (максимальная длина %{count} символов)"
@@ -1488,21 +1486,21 @@ ru:
     short_name: "Поиск %{site_name}"
     description: "Поиск пользовательских скриптов на %{site_name}."
     long_name: "Поиск пользовательских скриптов на %{site_name}."
-    attribution: "Авторские лицензии скриптов - указана на странице информации каждого скрипта."
+    attribution: "Авторские лицензии скриптов – указаны на странице информации каждого скрипта."
   importing:
     title: Импорт скриптов
     intro: "%{site_name} может импортировать скрипты, размещённые в другом месте, например, в системе управления версиями (вроде GitHub), на вашем собственном сервере, или на другом сайте по распространению скриптов."
     url_entry_label: Введите адреса импортируемых файлов. Каждый адрес должен находиться на отдельной строке. Адреса должны указывать на обычные JS и CSS файлы.
     sync_type_label: "После импорта, скрипты нужно синхронизировать:"
     additional_info_html: |
-        <p>Для систем управления версиями, убедитесь, что URL указывает на ветку, а не на конкретный коммит, иначе обновление не будет работать. Например, <code>https://bitbucket.org/username/reponame/raw/<b>имя-ветки</b>/script.user.js</code>, но не <code>https://bitbucket.org/username/reponame/raw/<b>хэш-коммита</b>/script.user.js</code>.</p>
-        <p>Скрипты, импортированные из GitHub, Bitbucket, и GitLab, могут синхронизироваться с помощью webhook. Webhook позволяет обновить ваш скрипт на %{site_name} сразу после изменения его в репозитории. Вы можете %{webhook_info_link:настроить webhook} после завершения импорта.</p>
+        <p>Для систем управления версиями, убедитесь, что URL указывает на ветку, а не на конкретный коммит, иначе обновление не будет работать. Например, <code>https://bitbucket.org/имяпользователя/названиерепозитория/raw/<b>имя-ветки</b>/script.user.js</code>, но не <code>https://bitbucket.org/имяпользователя/названиерепозитория/raw/<b>хэш-коммита</b>/script.user.js</code>.</p>
+        <p>Скрипты, импортированные из GitHub, Bitbucket, и GitLab, могут синхронизироваться с помощью сетевого перехватчика. Он позволяет обновить ваш скрипт на %{site_name} сразу после изменения его в репозитории. Вы можете %{webhook_info_link:настроить перехватчик} после завершения импорта.</p>
     submit: Импортировать
     previously_imported:
       heading: Ранее импортированные скрипты
-      successful_entry_html: "%{script_link} - тип синхронизации: %{sync_type}, последняя синхронизация: %{last_sync_date}."
+      successful_entry_html: "%{script_link} – тип синхронизации: %{sync_type}, последняя синхронизация: %{last_sync_date}."
       unknown_date: "(не известна)"
-      failed_entry_html: "%{script_link} - тип синхронизации: %{sync_type}, последняя попытка синхронизации: %{last_sync_attempt_date}, %{sync_error}"
+      failed_entry_html: "%{script_link} – тип синхронизации: %{sync_type}, последняя попытка синхронизации: %{last_sync_attempt_date}, %{sync_error}"
     results:
       title: "Результат импорта"
       success: "Следующие скрипты были успешно импортированы:"
