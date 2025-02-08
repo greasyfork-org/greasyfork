@@ -3,7 +3,7 @@ module LoginHelper
     auths = Rails.application.config.available_auths
 
     # GitHub does not support multiple allowed callback URLs.
-    return auths.except('github') if sleazy?
+    return auths.except('github') unless greasy?
 
     auths
   end
