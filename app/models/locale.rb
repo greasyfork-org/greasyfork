@@ -8,6 +8,10 @@ class Locale < ApplicationRecord
     Locale.find_by!(code: 'en')
   end
 
+  def self.simplified_chinese
+    Locale.find_by!(code: 'zh-CN')
+  end
+
   def display_text
     "#{best_name} (#{code})"
   end
@@ -17,7 +21,7 @@ class Locale < ApplicationRecord
   end
 
   # Returns the matching locales for the passed locale code, with locales with UI available first.
-  def self.matching_locales(locale_code)
+  def self.matching_locales(locale_code, chinese_only: false)
     locale_codes_to_look_up = [locale_code]
     if locale_code.include?('-')
       language_part_only = locale_code.split('-').first
@@ -26,14 +30,17 @@ class Locale < ApplicationRecord
       language_part_only = locale_code
     end
 
+    locale_scope = all
+    locale_scope = locale_scope.where("code LIKE 'zh%'") if chinese_only
+
     # The dashed one is last alphabetically but first in our hearts.
-    locales = where(code: locale_codes_to_look_up).order(ui_available: :asc, code: :desc).load
+    locales = locale_scope.where(code: locale_codes_to_look_up).order(ui_available: :asc, code: :desc).load
     return locales if locales.any?
 
     # Special case for Chinese locales that are more similar to zh-TW than zh-CN.
-    return where(code: 'zh-TW') if %w[zh-HK zh-MO].include?(locale_code)
+    return locale_scope.where(code: 'zh-TW') if %w[zh-HK zh-MO].include?(locale_code)
 
-    return where('code like ?', "#{language_part_only}-%").order(:ui_available, :code)
+    return locale_scope.where('code like ?', "#{language_part_only}-%").order(:ui_available, :code)
   end
 
   def scripts?(script_subset)

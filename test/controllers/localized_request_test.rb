@@ -31,4 +31,10 @@ class LocalizedRequestTest < ActionDispatch::IntegrationTest
     get '/invalidlocale/scripts/1/code/Name.user.js'
     assert_response :moved_permanently
   end
+
+  private
+
+  def cn_greasy?
+    false
+  end
 end

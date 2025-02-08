@@ -30,6 +30,11 @@ module LocalizedRequest
       return
     end
 
+    if cn_greasy? && params[:locale] && available_locales_for_domain.exclude?(params[:locale])
+      redirect_to current_path_with_params(locale: nil, locale_override: nil), status: :found
+      return
+    end
+
     # Redirect a logged-in user to their preferred locale, if it's available
     if current_user&.locale_id && current_user.locale.ui_available && params[:locale] != current_user.locale.code && (!overriding_locale? || params[:locale].nil?)
       redirect_to current_path_with_params(locale: current_user.locale.code, locale_override: nil), status: :found
@@ -87,7 +92,7 @@ module LocalizedRequest
     top_undisplayable_locale = current_user&.locale
 
     parse_accept_language(accept_language).each do |locale_code|
-      locales = Locale.matching_locales(locale_code)
+      locales = Locale.matching_locales(locale_code, chinese_only: cn_greasy?)
       locales.each do |l|
         if l.ui_available
           top_displayable_locale = l
@@ -98,7 +103,7 @@ module LocalizedRequest
       break unless top_displayable_locale.nil?
     end
 
-    top_displayable_locale = Locale.english if top_displayable_locale.nil?
+    top_displayable_locale = (cn_greasy? ? Locale.simplified_chinese : Locale.english) if top_displayable_locale.nil?
     return [top_displayable_locale, top_undisplayable_locale]
   end
 

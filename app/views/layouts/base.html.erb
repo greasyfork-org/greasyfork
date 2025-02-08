@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<%= params[:locale] %>" data-allowed-hosts="<%= Rails.application.config.hosts.map(&:to_s).select{|host| /\A[a-z]+\.[a-z]+\z/.match?(host)}.join(' ') %>">
+<html lang="<%= params[:locale] %>" data-allowed-hosts="<%= Rails.application.config.hosts.map(&:to_s).select{|host| /\A[a-z\-]+\.[a-z]+\z/.match?(host)}.join(' ') %>">
 <head>
   <title><%= content_for?(:title) ? content_for(:title) : site_name %></title>
   <% if content_for?(:description) %><meta name="description" value="<%= content_for(:description) %>"><% end %>
@@ -28,7 +28,7 @@
     # https://support.google.com/webmasters/answer/189077
     alternate_url_without_locale = current_path_with_params(locale: 'XX').sub(/\A\/XX/, '') %>
     <link rel="alternate" hreflang="x-default" href="<%= current_path_with_params(locale: nil) %>">
-    <% Rails.configuration.available_locales.each do |code, name| %>
+    <% available_locales_for_domain.each do |code, name| %>
       <link rel="alternate" hreflang="<%= code %>" href="/<%= code %><%= alternate_url_without_locale %>">
     <% end
   end %>
@@ -101,7 +101,7 @@
               locale_with_override_param = user_with_locale ? '1' : nil
               switch_url_without_locale = current_path_with_params(locale: 'XX', locale_override: locale_with_override_param).delete_prefix('/XX') if valid_request_for_locale_switch %>
               <select class="language-selector-locale" name="locale" data-translate-url="<%= Rails.configuration.help_translate_url %>">
-                <% Rails.configuration.available_locales.each do |code, name|
+                <% available_locales_for_domain.each do |code, name|
                   if valid_request_for_locale_switch %>
                     <option data-language-url="/<%= code %><%= switch_url_without_locale %>" value="<%= code %>"<% if params[:locale] == code %> selected<% end %>>
                       <%= name %> (<%= code %>)
@@ -123,7 +123,9 @@
         </div>
         <nav>
           <li class="scripts-index-link"><%= link_to(t('layouts.application.script_list'), scripts_path) %></li>
-          <li class="forum-link"><%= link_to(t('layouts.application.forum'), discussions_path) %></li>
+          <% unless cn_greasy? %>
+            <li class="forum-link"><%= link_to(t('layouts.application.forum'), discussions_path) %></li>
+          <% end %>
           <li class="help-link"><%= link_to(t('layouts.application.help'), help_path) %></li>
           <li class="with-submenu">
             <a href="#" onclick="return false"><%= t('layouts.application.submenu') %></a>

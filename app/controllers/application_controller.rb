@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
   include RequestDebugging
   include BannedUser
   include Api
+  include SiteSwitches
 
   if Rails.env.test?
     show_announcement key: :test_announcement,
@@ -159,41 +160,7 @@ class ApplicationController < ActionController::Base
     self.class.cache_with_log(key, options, &)
   end
 
-  def greasy?
-    !sleazy?
-  end
-
-  def sleazy?
-    ['sleazyfork.org', 'sleazyfork.local', 'www.sleazyfork.org', 'update.sleazyfork.org'].include?(request.domain)
-  end
-
-  def site_name
-    sleazy? ? 'Sleazy Fork' : 'Greasy Fork'
-  end
-
-  def greasyfork_host
-    return 'greasyfork.org' if Rails.env.production?
-
-    'greasyfork.local'
-  end
-
-  def script_subset
-    return :sleazyfork if sleazy?
-    return :greasyfork unless user_signed_in?
-
-    return current_user.show_sensitive ? :all : :greasyfork
-  end
-  helper_method :script_subset
-
-  def greasy_only
-    render_404 unless greasy?
-  end
-
-  def update_host?
-    request.subdomain == 'update' || (Rails.env.test? && request.domain == 'localhost')
-  end
-
-  helper_method :cache_with_log, :greasy?, :sleazy?, :script_subset, :site_name, :greasyfork_host
+  helper_method :cache_with_log
 
   def get_script_from_input(value, allow_deleted: false, verify_existence: true)
     allowed_hosts = ['https://greasyfork.org', 'https://sleazyfork.org']
