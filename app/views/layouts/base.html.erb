@@ -42,7 +42,13 @@
   <link rel="search" href="<%= opensearch_description_path %>" type="application/opensearchdescription+xml" title="<%= t('opensearch.short_name', site_name: site_name, default: t('opensearch.short_name', site_name: site_name, locale: 'en')) %>" hreflang="<%= I18n.locale %>">
 
   <% if Rails.env.production? %>
-    <% gtm_id = sleazy? ? 'G-ZB1G3ZKC89' : 'G-7NMRNRYW7C' %>
+    <% gtm_id = if sleazy?
+                  'G-ZB1G3ZKC89'
+                elsif cn_greasy?
+                  'G-49Z8J2WT6B'
+                else
+                  'G-7NMRNRYW7C'
+                end %>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=<%= gtm_id %>"></script>
     <script>
