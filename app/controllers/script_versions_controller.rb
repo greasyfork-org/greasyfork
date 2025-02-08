@@ -15,7 +15,7 @@ class ScriptVersionsController < ApplicationController
 
   def index
     cachable_request = generally_cachable? && request.query_parameters.empty?
-    page_key = "script/versions/#{params[:script_id]}/#{request_locale.id}" if cachable_request
+    page_key = "#{site_cache_key}/script/versions/#{params[:script_id]}/#{request_locale.id}" if cachable_request
 
     cache_page(page_key) do
       @script, @script_version = versionned_script(params[:script_id], params[:version])

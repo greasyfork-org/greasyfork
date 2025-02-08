@@ -51,4 +51,10 @@ module SiteSwitches
   def cn_greasy_404!
     render_404('404') if cn_greasy?
   end
+
+  def site_cache_key
+    return 'greasy' if greasy?
+    return 'cn-greasy' if cn_greasy?
+    return 'sleazy' if sleazy?
+  end
 end

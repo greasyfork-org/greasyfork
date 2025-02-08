@@ -89,7 +89,7 @@ class ScriptsController < ApplicationController
       format.html do
         provision_session_install_key(@script)
 
-        page_key = "#{script_subset}/script/show/#{@script.id}/#{@script.updated_at&.to_i}/#{params[:version].to_i}/#{request_locale.id}" if cachable_request
+        page_key = "#{site_cache_key}/#{script_subset}/script/show/#{@script.id}/#{@script.updated_at&.to_i}/#{params[:version].to_i}/#{request_locale.id}" if cachable_request
         cache_page(page_key) do
           @script, @script_version = versionned_script(params[:id], params[:version]) if cachable_request
 
@@ -160,7 +160,7 @@ class ScriptsController < ApplicationController
 
   def feedback
     cachable_request = generally_cachable? && request.query_parameters.empty?
-    page_key = "script/feedback/#{params[:id]}/#{request_locale.id}" if cachable_request
+    page_key = "#{site_cache_key}/script/feedback/#{params[:id]}/#{request_locale.id}" if cachable_request
 
     respond_to do |format|
       format.html do
@@ -611,7 +611,7 @@ class ScriptsController < ApplicationController
 
   def stats
     cachable_request = generally_cachable? && request.query_parameters.empty?
-    page_key = "script/stats/#{params[:id].to_i}/#{request_locale.id}" if cachable_request
+    page_key = "#{site_cache_key}/script/stats/#{params[:id].to_i}/#{request_locale.id}" if cachable_request
 
     cache_page(page_key) do
       @script, @script_version = versionned_script(params[:id], params[:version])
