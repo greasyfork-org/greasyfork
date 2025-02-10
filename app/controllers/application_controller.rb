@@ -163,8 +163,8 @@ class ApplicationController < ActionController::Base
   helper_method :cache_with_log
 
   def get_script_from_input(value, allow_deleted: false, verify_existence: true)
-    allowed_hosts = ['https://greasyfork.org', 'https://sleazyfork.org']
-    allowed_hosts += ['https://greasyfork.local', 'https://sleazyfork.local'] unless Rails.env.production?
+    allowed_hosts = ['https://greasyfork.org', 'https://sleazyfork.org', 'https://cn-greasyfork.org']
+    allowed_hosts += ['https://greasyfork.local', 'https://sleazyfork.local', 'https://cn-greasyfork.local'] unless Rails.env.production?
 
     return nil if value.blank?
 
