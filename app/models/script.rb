@@ -802,7 +802,7 @@ class Script < ApplicationRecord
   end
 
   def clear_latest_cached_code
-    %w[greasyfork sleazyfork].each do |site_name|
+    %w[greasyfork sleazyfork cn-greasyfork].each do |site_name|
       Dir.glob(Rails.application.config.cached_code_path.join(site_name, 'latest', 'scripts', "#{id}.*")).each do |path|
         File.delete(path)
       rescue Errno::ENOENT

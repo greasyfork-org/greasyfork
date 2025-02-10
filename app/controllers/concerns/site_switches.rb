@@ -57,4 +57,12 @@ module SiteSwitches
     return 'cn-greasy' if cn_greasy?
     return 'sleazy' if sleazy?
   end
+
+  def site_code_cache_key
+    case request.domain
+    when 'greasyfork.org', 'greasyfork.local' then 'greasyfork'
+    when 'cn-greasyfork.org', 'cn-greasyfork.local' then 'cn-greasyfork'
+    when 'sleazyfork.org', 'sleazyfork.local' then 'sleazyfork'
+    end
+  end
 end
