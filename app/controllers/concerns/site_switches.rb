@@ -6,15 +6,15 @@ module SiteSwitches
   end
 
   def greasy?
-    !sleazy?
+    site_code_cache_key == 'greasyfork'
   end
 
   def sleazy?
-    ['sleazyfork.org', 'sleazyfork.local', 'www.sleazyfork.org', 'update.sleazyfork.org'].include?(request.domain)
+    site_code_cache_key == 'sleazyfork'
   end
 
   def cn_greasy?
-    ['cn-greasyfork.org', 'cn-greasyfork.local', 'www.cn-greasyfork.org', 'update.cn-greasyfork.org'].include?(request.domain)
+    site_code_cache_key == 'cn-greasyfork'
   end
 
   def site_name
@@ -59,6 +59,8 @@ module SiteSwitches
   end
 
   def site_code_cache_key
+    return 'greasyfork' if Rails.env.test? && request.host == '127.0.0.1'
+
     case request.domain
     when 'greasyfork.org', 'greasyfork.local' then 'greasyfork'
     when 'cn-greasyfork.org', 'cn-greasyfork.local' then 'cn-greasyfork'
