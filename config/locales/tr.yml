@@ -181,6 +181,9 @@ tr:
     listing_language_all: "Tümü"
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
+    listing_author:
+      me: Benim betiklerim
+      user: '%{author_name} kullanıcısının betikleri'
     search_failed: Sonuçlarınız yüklenirken bir sorun oluştu. Bazı arama işlevleri çalışmıyor olabilir. Sorun hakkında bilgilendirildik.
     import: "Scriptleri içe aktar"
     new: "Yazdığınız bir komut dosyasını yayınlayın"
@@ -305,6 +308,9 @@ tr:
     preview_additional_info: "Önizle"
     must_confirm: "Script paylaşabilmek için hesabınızı onaylamanız gerekmektedir. İki onaylama seçeneği bulunmakta - harici bir giriş yöntemi ekleyin veya bir onay epostası gönderin"
     must_confirm_email_button: "%{email} adresine doğrulama e-postası yolla"
+    needs_secure_login:
+      confirm_email: "E-posta adresinizi doğrulayın"
+      enable_2fa: "2 faktörlü doğrulamayı etkinleştir"
     authors_heading: "Yazarlar"
     error_unauthorized_copy: "Bu kod parçası görünüşe göre %{script} betiğinin izinsiz olarak kullanılmış bir kopyası. Lütfen %{site_name}'un betik yayınlamak hakkında ki %{rules_link:kurallarına} bakınız."
     invitations:
@@ -519,6 +525,7 @@ tr:
     script_list_none_for_filter: "Mevcut filitreler için script yok."
     script_list_none_same_user_html: "Sen herhangi bir script yazmamışsın. %{script_list_none_same_user_info_link}"
     script_list_none_same_user_info_link_text: "Nasıl olduğunu öğrenmek ister misin?"
+    listing_sort_name: "İsim"
     deleted_script_list: "Silinmiş scriptler"
     unlisted_script_list: "Listelenmeyen scriptler"
     sign_out: "Oturumu kapat"
@@ -526,6 +533,10 @@ tr:
     edit_sign_in: "Oturum metodlarını düzelt"
     edit_sign_in_title: "Oturum metodlarını düzelt"
     edit_sign_in_password: "Şifre"
+    edit_sign_in_disable_2fa: 2 faktörlü doğrulamayı devre dışı bırak
+    edit_sign_in_enable_2fa: 2 faktörlü doğrulamayı etkinleştir
+    edit_notifications: "Bildirim seçeneklerini düzenle"
+    view_notifications: "Bildirimleri görüntüle"
     no_password_set_info: "Hesabın bir şifre ile yapılandırılmamış."
     set_password: "Şifre oluştur"
     update_password: "Şifre güncelle"
@@ -550,6 +561,19 @@ tr:
     disable_syncing: "Senkronizeyi kapat"
     remove_external_sign_in: "Kaldır"
     add_external_sign_in_info: "Bir oturum ekle:"
+    2fa_enabled: 2 faktörlü doğrulama etkinleştirildi.
+    2fa_enable_code_incorrect: 2 faktörlü doğrulama kodu geçerli değil. Lütfen tekrar deneyin.
+    2fa_disabled: 2 faktörlü doğrulama devre dışı bırakıldı.
+    2fa_disabled_already: 2 faktörlü doğrulama zaten devre dışı.
+    2fa_entry:
+      intro_html: "<b>%{email}</b> olarak oturum açılıyor"
+    enable_2fa:
+      qr_heading: QR kodu ile
+      url_heading: Bağlantı ile
+      manual_heading: Elle
+      manual_entry_code_name: "Kod adı: %{code_name}"
+      manual_entry_your_key: "Anahtarınız: %{key}"
+      code_entry_heading: Kodu girin
     set_up_webhook: "Webhook kur"
     list_display_html:
       one: "%{user_link} - %{count} script"
