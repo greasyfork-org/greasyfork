@@ -74,4 +74,65 @@ class ScriptAdminTest < ApplicationSystemTestCase
     assert_content 'Script successfully synced.'
     assert_equal 'https://github.com/adamlui/autoclear-chatgpt-history/raw/main/greasemonkey/autoclear-chatgpt-history.user.js', script.reload.sync_identifier
   end
+
+  test 'setting synced, localized additional infos' do
+    ScriptImporter::TestImporter.expects(:download).with('https://example.com/code').returns(<<~JS).at_least_once
+      // ==UserScript==
+      // @name		A Test!
+      // @name:fr French name
+      // @name:es Spanish name
+      // @name:pt Portuguese name
+      // @description		Unit test.
+      // @description:fr French description
+      // @description:es Spanish description
+      // @description:pt Portuguese description
+      // @version 1.1
+      // @namespace http://greasyfork.local/users/1
+      // @include *
+      // ==/UserScript==
+      let foo = 'bar'
+    JS
+    ScriptImporter::TestImporter.expects(:download).with('https://example.com/en').returns('English add').at_least_once
+    ScriptImporter::TestImporter.expects(:download).with('https://example.com/fr').returns('French add').at_least_once
+    ScriptImporter::TestImporter.expects(:download).with('https://example.com/es').returns('Spanish add').at_least_once
+    ScriptImporter::TestImporter.expects(:download).with('https://example.com/pt').returns('Portuguese add').at_least_once
+
+    script = Script.find(1)
+    login_as(script.users.first, scope: :user)
+    visit admin_script_url(script, locale: :en)
+
+    fill_in 'script[sync_identifier]', with: 'https://example.com/code'
+    choose 'Manual - it will be checked for updates only when you trigger it'
+
+    fill_in 'Default additional info', with: 'https://example.com/en'
+    click_on 'Add a localized, synced additional info'
+    fill_in 'For locale (matches @name:XX)', with: 'https://example.com/fr'
+    select 'Français (fr)', from: 'additional_info_sync[1][locale]', match: :first
+    click_on 'Add a localized, synced additional info'
+    fill_in 'additional_info_sync[2][sync_identifier]', with: 'https://example.com/es'
+    select 'Español (es)', from: 'additional_info_sync[2][locale]', match: :first
+    click_on 'Update and sync now'
+    assert_content 'Script successfully synced.'
+
+    script.reload
+
+    assert_equal 'English add', script.additional_info(:en)
+    assert_equal 'French add', script.additional_info(:fr)
+    assert_equal 'Spanish add', script.additional_info(:es)
+
+    visit admin_script_url(script, locale: :en)
+
+    click_on 'Add a localized, synced additional info'
+    fill_in 'additional_info_sync[3][sync_identifier]', with: 'https://example.com/pt'
+    select 'Português (pt)', from: 'additional_info_sync[3][locale]', match: :first
+    click_on 'Update and sync now'
+    assert_content 'Script successfully synced.'
+
+    script.reload
+
+    assert_equal 'English add', script.additional_info(:en)
+    assert_equal 'French add', script.additional_info(:fr)
+    assert_equal 'Spanish add', script.additional_info(:es)
+    assert_equal 'Portuguese add', script.additional_info(:pt)
+  end
 end

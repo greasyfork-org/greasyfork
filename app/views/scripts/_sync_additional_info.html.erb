@@ -11,9 +11,9 @@
 <div class="form-control">
   <input type="hidden" name="additional_info_sync[<%= index %>][attribute_default]" value="<%= la.attribute_default %>">
   <% if la.attribute_default %>
-    <%= t('scripts.additional_info_default_sync_html') %>
+    <label for="script-version-additional-info-<%= index %>"><%= t('scripts.additional_info_default_sync_html') %></label>
   <% else %>
-    <%= t('scripts.additional_info_localized_sync_html') %>
+    <label for="script-version-additional-info-<%= index %>"><%= t('scripts.additional_info_localized_sync_html') %></label>
     <select name="additional_info_sync[<%= index %>][locale]">
       <option value="" <% if la.locale_id.nil? %> selected<% end %>><%= t('scripts.additional_info_locale_prompt') %></option>
       <% Locale.where(ui_available: true).each do |locale| %>
