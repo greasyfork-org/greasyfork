@@ -13,7 +13,7 @@ function hookUpAddLocalizedAdditionalInfo() {
 
     let xhr = new XMLHttpRequest();
     xhr.overrideMimeType("text/html");
-    xhr.open("get", button.getAttribute("data-form-path") + "?index=" + index);
+    xhr.open("get", buttonUrlWithIndex(button, index));
     xhr.onload = function() {
       let frag = document.createElement("div");
       frag.innerHTML = this.responseText;
@@ -41,7 +41,7 @@ function hookUpAddSyncedLocalizedAdditionalInfo() {
 
     let xhr = new XMLHttpRequest();
     xhr.overrideMimeType("text/html");
-    xhr.open("get", button.getAttribute("data-form-path") + "?index=" + index);
+    xhr.open("get", buttonUrlWithIndex(button, index));
     xhr.onload = function() {
       let frag = document.createElement("div");
       frag.innerHTML = this.responseText;
@@ -50,6 +50,10 @@ function hookUpAddSyncedLocalizedAdditionalInfo() {
     xhr.send();
     event.preventDefault();
   });
+}
+
+const buttonUrlWithIndex = function(button, index) {
+  return `${button.dataset.formPath}${button.dataset.formPath.includes("?") ? "&" : "?"}index=${index}`
 }
 
 onload(hookUpAddLocalizedAdditionalInfo);
