@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<%= params[:locale] %>" data-allowed-hosts="<%= Rails.application.config.hosts.map(&:to_s).select{|host| /\A[a-z\-]+\.[a-z]+\z/.match?(host)}.join(' ') %>">
+<html lang="<%= params[:locale] %>">
 <head>
   <title><%= content_for?(:title) ? content_for(:title) : site_name %></title>
   <% if content_for?(:description) %><meta name="description" value="<%= content_for(:description) %>"><% end %>

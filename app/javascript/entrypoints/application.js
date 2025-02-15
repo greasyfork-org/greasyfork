@@ -22,7 +22,6 @@ import "../locale-switcher"
 import "../attachments"
 import "../reports"
 import "../home"
-import "../host-check"
 import '../source-editor'
 import '../stats'
 import '../login'
