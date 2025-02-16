@@ -29,7 +29,7 @@ module ReportHelper
     when Message
       t('reports.report_item.message', user: render_user(report.item.poster, report.item.poster_id, skip_badge: true, skip_link: true))
     when Script
-      t('reports.report_item.script', script: render_script(report.item), skip_link: true).html_safe
+      t('reports.report_item.script', script: render_script(report.item, skip_link: true)).html_safe
     when nil
       t('reports.report_item.deleted', type: report.item_type, id: report.item_id)
     else
