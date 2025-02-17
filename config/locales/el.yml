@@ -19,6 +19,7 @@ el:
     ratings: "Βαθμολογίες"
     author_name: "Δημιουργός"
     version_number: "Έκδοση"
+    version_abbreviation: "v%{number}"
     license: "Άδεια"
     no_license: "Μη διαθέσιμη"
     compatibility: "Συμβατότητα"
@@ -317,6 +318,13 @@ el:
     preview_additional_info: "Προεπισκόπηση"
     must_confirm: "Πρέπει να επιβεβαιώσετε τον λογαριασμό σας πριν μπορέσετε να δημοσιεύσετε κώδικα. Έχετε δύο επιλογές επιβεβαίωσης - προσθήκη μιας εξωτερικής σύνδεσης ή  αποστολή ηλεκτρονικής επιστολής επιβεβαίωσης."
     must_confirm_email_button: "Αποστολή συνδέσμου επιβεβαίωσης στο %{email}"
+    needs_secure_login:
+      secure_internal_heading: "Επιλογή 1: ασφαλίστε τη σύνδεσή σας στο %{site_name}"
+      confirm_email: "Επιβεβαιώστε την ηλεκτρονική σας διεύθυνση"
+      enable_2fa: "Ενεργοποίηση πιστοποίησης δύο παραγόντων (2FA)"
+      add_external_heading: "Επιλογή 2: χρήση μόνο εξωτερικής σύνδεσης"
+      add_external: "Προσθήκη εξωτερικής σύνδεσης"
+      remove_password: "Απομακρύνετε τον κωδικό πρόσβασης του %{site_name}"
     authors_heading: "Δημιουργοί"
     error_unauthorized_copy: "Αυτός ο κώδικας εμφανίζεται να είναι μη εξουσιοδοτημένο αντίγραφο του %{script}. Ανατρέξτε στους %{rules_link:κανόνες} του %{site_name} σχετικά με τη δημοσίευση κώδικα."
     invitations:
@@ -405,11 +413,13 @@ el:
           other: "Αυτός ο κώδικας χρησιμοποιεί εσφαλμένα hashes ακεραιότητας υποπροέλευσης: %{detail}"
         detail: "To <code>%{url}</code> πρέπει να χρησιμοποιεί το hash <code>%{expected_hash}</code> (τελευταίος έλεγχος %{last_checked_at})"
   script_sets:
+    heading: "Σύνολα Κώδικα"
     description: "Τα σύνολα κώδικα σας επιτρέπουν να δημιουργήσετε μια προσαρμοσμένη λίστα για πλοήγηση στο Greasy Fork. Μπορείτε να προσθέσετε κώδικες στο σύνολό σας περιλαμβάνοντας μεμονωμένους κώδικες, σύνολα άλλων χρηστών ή αυτόματα δημιουργούμενα σύνολα. Μπορείτε, επίσης, να αποκλείσετε κώδικες από το σύνολό σας με τις ίδιες μεθόδους."
     favorites_name: "Αγαπημένα"
     delete: "Διαγραφή συνόλου κώδικα"
     delete_confirmation: "Θέλετε σίγουρα να διαγράψετε αυτό το σύνολο κώδικα;"
     site_default_sort: "(Προεπιλογή ιστοχώρου)"
+    edit_link: "Επεξεργασία"
     edit_scripts:
       heading: "Κώδικες"
       description: "Συμπεριλαμβάνει ή αποκλείει συγκεκριμένους κώδικες από το σύνολο κωδικών σας."
@@ -538,6 +548,7 @@ el:
     script_list_none_for_filter: "Κανένας κώδικας για τα τρέχοντα φίλτρα."
     script_list_none_same_user_html: "Δεν έχετε γράψει κανένα κώδικα. %{script_list_none_same_user_info_link}"
     script_list_none_same_user_info_link_text: "Θα θέλατε να μάθετε πως;"
+    listing_sort_name: "Όνομα"
     deleted_script_list: "Διαγραμμένοι κώδικες"
     unlisted_script_list: "Κώδικες εκτός λίστας"
     sign_out: "Αποσύνδεση"
@@ -950,6 +961,7 @@ el:
       comment_description: "Ένα σχόλιο στη συζήτηση %{discussion_title}"
       message: "Ένα μήνημα από το χρήστη %{user}"
       deleted: "Διαγραμμένη %{type} #%{id}"
+      script: "%{script}"
   appeals:
     new:
       title: Έφεση διαγραφής νέου κώδικα
