@@ -100,9 +100,9 @@ module UserTextHelper
     mentions
   end
 
-  private
-
   MENTIONLESS_ELEMENTS = %w[a pre code].freeze
+
+  private
 
   def add_mention_transformer(config, mentions)
     linkify_mentions = lambda do |env|
