@@ -253,7 +253,10 @@ GEM
       multi_json (~> 1.11)
       os (>= 0.9, < 2.0)
       signet (>= 0.16, < 2.a)
-    grpc (1.69.0)
+    grpc (1.70.1)
+      google-protobuf (>= 3.25, < 5.0)
+      googleapis-common-protos-types (~> 1.0)
+    grpc (1.70.1-x86_64-linux)
       google-protobuf (>= 3.25, < 5.0)
       googleapis-common-protos-types (~> 1.0)
     hashie (5.0.0)
@@ -746,7 +749,8 @@ CHECKSUMS
   googleapis-common-protos (1.6.0) sha256=d540114a75fd4b34fee936495d28ff7e331d546b7d7ac7898f3b4bb9f13a8d79
   googleapis-common-protos-types (1.18.0) sha256=280d19dcf431f86b9ff7ed8b23994915c5f4f7a0282ad3e870a2d3595976559f
   googleauth (1.11.2) sha256=7e6bacaeed7aea3dd66dcea985266839816af6633e9f5983c3c2e0e40a44731e
-  grpc (1.69.0) sha256=536fbc8abcbbdb348accb62ab07aeea45318617dfb9966cfadd46d7d96d7089d
+  grpc (1.70.1) sha256=174594605c96df3caed44a83221665aa6e11f554e56028f89bef82c07ffb83cb
+  grpc (1.70.1-x86_64-linux) sha256=ed12eea749127119c9761a58ba17ce92aadbc35b0b4fa27e4bd8ec84047d63be
   hashie (5.0.0) sha256=9d6c4e51f2a36d4616cbc8a322d619a162d8f42815a792596039fc95595603da
   hiredis (0.6.3) sha256=7f052e320f7d24b5c2a9fdf67c6ff6facdf6e256394a703511bce34ecf445212
   i18n (1.14.7) sha256=ceba573f8138ff2c0915427f1fc5bdf4aa3ab8ae88c8ce255eb3ecf0a11a5d0f
