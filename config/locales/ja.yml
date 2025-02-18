@@ -423,6 +423,7 @@ ja:
           other: "このスクリプトのサブリソース整合用のハッシュが正しくありません: %{detail}。"
         detail: "<code>%{url}</code> はこのハッシュ <code>%{expected_hash}</code> を使用すべきです (最終確認%{last_checked_at})"
   script_sets:
+    heading: "スクリプトのセット"
     description: "「スクリプトセット」とは、Greasy Fork に投稿されているスクリプトのマイリストです。個々のスクリプトの追加だけでなく、他のスクリプトセットをリストに登録して一つのスクリプトセットとして表示することもでき、サイトやユーザーを指定した自動生成も可能です。また、同じようにして除外リストへの登録も行えます。"
     favorites_name: "お気に入り"
     delete: "スクリプトセットを削除"
@@ -569,6 +570,7 @@ ja:
     script_list_none_for_filter: "指定した条件に一致するスクリプトなし。"
     script_list_none_same_user_html: "まだスクリプトを書いていません。%{script_list_none_same_user_info_link}"
     script_list_none_same_user_info_link_text: "スクリプトの書き方を見てみますか？"
+    listing_sort_name: "名前"
     deleted_script_list: "削除したスクリプト"
     unlisted_script_list: "限定公開スクリプト"
     sign_out: "ログアウト"
@@ -1158,6 +1160,7 @@ ja:
       comment_description: "コメントあり: %{discussion_title} "
       message: "%{user}からメッセージ"
       deleted: "削除されました %{type} #%{id}"
+      script: "%{script}"
   appeals:
     new:
       title: スクリプト削除への新しい抗議
