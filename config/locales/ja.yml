@@ -19,6 +19,7 @@ ja:
     ratings: "評価"
     author_name: "作者"
     version_number: "バージョン"
+    version_abbreviation: "v%{number}"
     license: "ライセンス"
     no_license: "不明"
     compatibility: "互換性"
@@ -427,6 +428,7 @@ ja:
     delete: "スクリプトセットを削除"
     delete_confirmation: "このスクリプトセットを削除してもよろしいですか？"
     site_default_sort: "(サイトの既定)"
+    edit_link: "編集"
     edit_scripts:
       heading: "スクリプト"
       description: "このスクリプトセットに追加、または除外するスクリプト。"
@@ -685,12 +687,12 @@ ja:
       complete: "あなたのアカウントは削除されました"
     deleted_user_with_id: "(削除されたユーザー%{id})"
     deleted_user_without_id: "(削除されたユーザー)"
-    suggest_secure_login: スクリプト開発者には、%{edit_login_link:より安全なログイン方法の使用}をご提案します。
+    suggest_secure_login: スクリプトを開発されている方には、%{edit_login_link:より安全なログイン方法の使用}を提案します。
     require_secure_login: このアカウントはより安全なログイン方法が必要です。
     secure_login_explanation_html: |
-        <p>スクリプト開発者には、安全なログイン方法を使用してこのアカウントとユーザーを保護することを推奨します。2つ方法があります:</p>
+        <p>スクリプトを開発されている方は、安全なログイン方法によるアカウントとユーザーの保護を推奨します。方法は2種類です:</p>
         <ol>
-        パスワードによるログインに2段階認証 (2FA) を追加。</li>
+        <li>パスワードによるログインに2段階認証 (2FA) を追加。</li>
         <li>パスワードを削除し、外部のログインサービスのみを使う(理想的には、そのサービスが提供するセキュリティ機能を有効にする)。</li>
         </ol>
     badges:
