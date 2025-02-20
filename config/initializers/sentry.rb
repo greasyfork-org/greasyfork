@@ -5,4 +5,10 @@ Sentry.init do |config|
   config.traces_sample_rate = 0.001
   config.profiles_sample_rate = 0.001
   config.metrics.enabled = true
+
+  config.before_send = lambda do |event, hint|
+    return nil if hint[:exception].message.include?('invalid byte sequence in UTF-8')
+
+    event
+  end
 end
