@@ -154,7 +154,7 @@
     <% if current_user&.moderator? %>
       <% if @user.comments.any? %>
         <p>
-          <%= link_to t('discussions.user_activity.see_all_activity'), discussions_path(user: @user.id, visibility: 'private') %>
+          <%= link_to t('discussions.user_activity.see_all_activity'), discussions_path(user: @user.id, visibility: 'all') %>
         </p>
       <% end %>
     <% elsif @user.comments.not_deleted.any? %>
