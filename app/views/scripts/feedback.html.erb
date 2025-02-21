@@ -58,19 +58,23 @@
     <%= it('scripts.feedback_report_instead', site_name: site_name, rules_link: It.link(help_code_rules_path), report_link: It.link(new_report_path(item_class: 'script', item_id: @script.id), rel: :nofollow)) %>
   </p>
   <% if current_user %>
-    <%= form_with(model: @discussion, url: script_discussions_path(@script), method: :POST, id: 'new-script-discussion') do |f| %>
-      <%= f.fields_for(:comments) do |cf| %>
-        <%= render partial: 'discussions/comment_entry', locals: { f: cf } %>
-      <% end %>
-      <%= render partial: 'discussions/rating_entry', locals: { f: f } %>
-      <%= render partial: 'discussions/subscribe', locals: { subscribe: @subscribe} %>
-      <p>
-        <% if current_user.needs_to_recaptcha? %>
-          <%= invisible_recaptcha_tags callback: 'submitInvisibleRecaptchaScriptDiscussionForm', text: t('discussions.new_discussion_submit') %>
-        <% else %>
-          <%= f.submit t('discussions.new_discussion_submit') %>
+    <% if UserRestrictionService.new(current_user).discussion_restriction %>
+      <p><%= t('discussions.blocked_pending_review') %></p>
+    <% else %>
+      <%= form_with(model: @discussion, url: script_discussions_path(@script), method: :POST, id: 'new-script-discussion') do |f| %>
+        <%= f.fields_for(:comments) do |cf| %>
+          <%= render partial: 'discussions/comment_entry', locals: { f: cf } %>
         <% end %>
-      </p>
+        <%= render partial: 'discussions/rating_entry', locals: { f: f } %>
+        <%= render partial: 'discussions/subscribe', locals: { subscribe: @subscribe} %>
+        <p>
+          <% if current_user.needs_to_recaptcha? %>
+            <%= invisible_recaptcha_tags callback: 'submitInvisibleRecaptchaScriptDiscussionForm', text: t('discussions.new_discussion_submit') %>
+          <% else %>
+            <%= f.submit t('discussions.new_discussion_submit') %>
+          <% end %>
+        </p>
+      <% end %>
     <% end %>
   <% else %>
     <p>

@@ -3,6 +3,7 @@ class DiscussionsController < ApplicationController
   include ScriptAndVersions
   include UserTextHelper
   include PageCache
+  include DiscussionRestrictions
 
   FILTER_RESULT = Struct.new(:category, :by_user, :related_to_me, :read_status, :locale, :result, :visibility)
 
@@ -13,6 +14,7 @@ class DiscussionsController < ApplicationController
   before_action :load_discussion, only: :show
   before_action :mark_notifications_read, only: :show
   before_action :cn_greasy_404!, only: :index
+  before_action :check_user_restrictions, only: [:new, :create]
   skip_before_action :set_locale, only: [:old_redirect]
 
   layout 'discussions', only: :index
@@ -183,11 +185,6 @@ class DiscussionsController < ApplicationController
   end
 
   def create
-    if current_user.email&.ends_with?('163.com') && current_user.created_at > 7.days.ago && current_user.discussions.where(created_at: 1.hour.ago..).any?
-      render plain: 'Please try again later.'
-      return
-    end
-
     @discussion = discussion_scope.new(discussion_params)
     @discussion.poster = @discussion.comments.first.poster = current_user
     if @script

@@ -1,11 +1,14 @@
 class CommentsController < ApplicationController
   include DiscussionHelper
   include UserTextHelper
+  include DiscussionRestrictions
 
   before_action :check_read_only_mode, except: :old_redirect
   before_action :authenticate_user!, except: :old_redirect
   before_action :load_discussion, except: :old_redirect
   before_action :check_ip, only: :create
+  before_action :check_user_restrictions, only: [:new, :create]
+
   skip_before_action :set_locale, only: [:old_redirect]
 
   def create

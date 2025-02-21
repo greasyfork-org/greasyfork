@@ -135,15 +135,19 @@
 <% unless @discussion.soft_deleted? %>
   <div id="post-reply" class="post-reply">
     <h3><%= t('discussions.new_comment_heading') %></h3>
-    <% if current_user && @comment %>
+    <% if current_user %>
+      <% if UserRestrictionService.new(current_user).discussion_restriction %>
+        <p><%= t('discussions.blocked_pending_review') %></p>
+      <% elsif @comment %>
 
-      <%= render partial: 'shared/errors', locals: { resource: @comment } %>
+        <%= render partial: 'shared/errors', locals: { resource: @comment } %>
 
-      <%# Use an anchor so that on failure (with no redirect, we scroll down here) %>
-      <%= form_with(model: @comment, url: scoped_comment_create_path(@discussion, anchor: 'post-reply'), method: :POST) do |f| %>
-        <%= render partial: 'discussions/comment_entry', locals: { f: f } %>
-        <%= render partial: 'discussions/subscribe', locals: { subscribe: @subscribe} %>
-        <%= f.submit t('discussions.new_comment_submit') %>
+        <%# Use an anchor so that on failure (with no redirect, we scroll down here) %>
+        <%= form_with(model: @comment, url: scoped_comment_create_path(@discussion, anchor: 'post-reply'), method: :POST) do |f| %>
+          <%= render partial: 'discussions/comment_entry', locals: { f: f } %>
+          <%= render partial: 'discussions/subscribe', locals: { subscribe: @subscribe} %>
+          <%= f.submit t('discussions.new_comment_submit') %>
+        <% end %>
       <% end %>
     <% else %>
       <p>

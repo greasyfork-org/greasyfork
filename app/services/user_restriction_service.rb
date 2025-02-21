@@ -44,4 +44,12 @@ class UserRestrictionService
   def allow_posting_profile?
     @user.confirmed_or_identidied? && (@user.scripts.not_deleted.any? || @user.comments.any?)
   end
+
+  def discussion_restriction
+    return nil unless @user.created_at >= 1.day.ago
+
+    return BLOCKED if Report.unresolved.where(item: @user.discussions + @user.comments).any?
+
+    nil
+  end
 end
