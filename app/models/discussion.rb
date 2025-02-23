@@ -38,7 +38,7 @@ class Discussion < ApplicationRecord
                                  # polymoprhism.
                                  not_deleted
                                    .where('discussions.review_reason IS NULL OR discussions.poster_id = ?', user.id)
-                                   .left_joins(script: :authors).where('scripts.delete_type IS NULL OR authors.user_id = ?', user.id)
+                                   .left_joins(:script).where('scripts.delete_type IS NULL OR scripts.id IN (?)', user.script_ids)
                                else
                                  visible
                                end
