@@ -1,0 +1,750 @@
+mr:
+  layouts:
+    application:
+      script_list: "स्क्रिप्ट"
+      forum: "फोरम"
+      help: "मदत"
+      sign_in: "साइन इन करा"
+      submenu: "अधिक"
+      advanced_search: "प्रगत शोध"
+      user_list: "प्रयोक्यांची यादी"
+      libraries: "संग्रह"
+  scripts:
+    created_date: "बनवली"
+    updated_date: "अपडेट केली"
+    code_size: आकार
+    total_installs: "एकूण इंस्टॉल"
+    daily_installs: "दैनिक इंस्टॉल"
+    ratings: "रेटिंग"
+    author_name: "लेखक"
+    version_number: "आवृत्ती"
+    version_abbreviation: "v%{number}"
+    no_license: "नाही"
+    compatibility: "संगतता"
+    compatible_with_browser: "%{browser} शी संगत"
+    incompatible_with_browser: "%{browser} शी असंगत"
+    applies_to: "यांवर लागू होते:"
+    applies_to_link_title:
+      one: "%{site} साठीची %{count} इतर स्क्रिप्ट पाहा"
+      other: "%{site} साठीच्या %{count} इतर स्क्रिप्ट पाहा"
+    applies_to_all: "सर्व संकेतस्थळे"
+    install: "ही स्क्रिप्ट इंस्टॉल करा"
+    install_css: "युझरस्टाईलच्या रूपात इंस्टॉल करा"
+    install_help: "?"
+    install_help_title: "इंस्टॉल कसे करायचे"
+    update: "या आवृत्तीला अपडेट करा: %{version}"
+    downgrade: "या आवृत्तीला डाउनग्रेड करा: %{version}"
+    reinstall: "ही आवृत्ती पुन्हा इंस्टॉल करा: %{version}"
+    old_version_warning: "ही या स्क्रिप्टची सर्वात नवीन आवृत्ती नाही. ही इंस्टॉल केली तर ती सर्वात नवीन आवृत्तीला कधीच अपडेट केली जाणार नाही. तरीही इंस्टॉल करायची का?"
+    author_promoted: "लेखकाने सुचवलेली स्क्रिप्ट"
+    promoted_text_html: "तुम्हाला कदाचित ही स्क्रिप्टदेखील आवडेल: %{script_link}."
+    deleted_notice: "ही स्क्रिप्ट डिलीट केली गेली आहे."
+    deleted_notice_with_reason: "ही स्क्रिप्ट %{report_link:या अहवालामुळे} डिलीट करण्यात आली आहे."
+    deleted_notice_with_related: "तुम्ही ज्या स्क्रिप्टची विनंती केली आहे ती डिलीट करण्यात आली आहे, पण त्यासंबंधी काही इतर स्क्रिप्ट आम्ही प्रस्तुत करत आहोत."
+    deleted_notice_with_related_and_reason: "तुम्ही ज्या स्क्रिप्टची विनंती केली आहे ती %{report_link:या अहवालामुळे}, डिलीट करण्यात आली आहे, पण त्यासंबंधी काही इतर स्क्रिप्ट आम्ही प्रस्तुत करत आहोत."
+    version_notice_html: "%{date} या दिनांकाला. %{latest_version_link} पाहा."
+    version_notice_latest_version_link: "सर्वात नवीन आवृत्ती"
+    info_page: "माहिती"
+    code_page: "कोड"
+    history_page: "इतिहास"
+    feedback_page: "प्रतिक्रिया (%{count})"
+    stats_page: "आकडेवारी"
+    update_page: "अपडेट करा"
+    delete_page: "डिलीट करा"
+    delete_permanently_heading: "कायमचे डिलीट करणे"
+    delete_permanently_submit: "कायमची डिलीट करण्याची विनंती करा"
+    delete_permanently_immediate_submit: "कायमची डिलीट करा"
+    delete_permanently_already_requested: "तुम्ही %{datetime} ला कायमची डिलीट करण्याची विनंती केली."
+    delete_permanently_notice_immediate: "स्क्रिप्ट कायमची डिलीट केली गेली."
+    cancel_delete_permanently_submit: "कायमची डिलीट करण्याची विनंती रद्द करा"
+    cancel_delete_permanently_notice: "कायमची डिलीट करण्याची विनंती रद्द केली गेली आहे. तुमची स्क्रिप्ट अजूनही इतरांना दिसून येत नाही."
+    delete_permanently_rejected_locked: "ही स्क्रिप्ट लॉक केली आहे व ती कायमची डिलीट केली जाऊ शकत नाही"
+    admin_page: "प्रबंधक"
+    admin:
+      title: "%{script_name} - प्रबंधक"
+      compare_title: "दुसर्‍या स्क्रिप्टशी तुलना करा"
+      compare_to: "%{site_name} वरील स्क्रिप्ट ज्याची याशी तुलना केली जाईल: (URL)"
+      compare_button: "तुलना करा"
+      compare_must_be_local_url: "तुलनेची स्क्रिप्ट ही %{site_name} वरील एक URL असायला हवा."
+      checkup:
+        title: तपासणी
+    history_all_changes_link: "सर्व आवृत्त्या दाखवा."
+    history_all_changes_info: "या सर्व या स्क्रिप्टच्या आवृत्त्या आहेत."
+    history_only_code_changes_link: "फक्त अश्या आवृत्त्या दाखवा ज्यात कोड बदलले गेले."
+    list_all_script_versions: "स्क्रिप्टच्या सर्व आवृत्त्या दाखवा"
+    code_title: "%{script_name} - सोर्स कोड"
+    feedback_title: "%{script_name} - प्रतिक्रिया"
+    feedback_no_discussions_html: "अजूनपर्यंत कोणत्याही चर्चा पोस्ट केल्या नाहीत. %{start_first_discussion_link}"
+    feedback_no_discussions_on_page_form: "अजूनपर्यंत कोणत्याही चर्चा पोस्ट केल्या नाहीत."
+    feedback_start_first_discussion_link: "या स्क्रिप्टविषयी चर्चा करणारे पहिले प्रयोक्ता बना."
+    stats_title: "%{script_name} - आकडेवारी"
+    stats_daily_installs_heading: "दैनिक इंस्टॉल"
+    stats_weekly_installs_heading: "साप्ताहिक इंस्टॉल"
+    stats_daily_update_checks_heading: "दैनिक अपडेट तपासणी"
+    stats_daily_installs_date_column_heading: "दिनांक"
+    stats_daily_installs_install_count_column_heading: "इंस्टॉल"
+    stats_daily_installs_update_check_count_column_heading: "अपडेट तपासणी"
+    stats_download_raw_data_html: "सर्व डेटा या स्वरूपात डाउनलोड करा: %{links}"
+    stats_no_data: "उपलब्ध नाही"
+    stats_filters: "गाळा: %{filter_options}"
+    stats_filter_options:
+      month: गेल्या 30 दिवसांत
+      year: गेल्या 365 दिवसांत
+      all: सुरुवातीपासून
+    derivatives_exact_copies_heading: "तंतोतंत प्रती"
+    derivatives_exact_copies_item_html: "%{script_link}, लेखक: %{author_links} - आवृत्त्या: %{version_list}"
+    derivatives_exact_copes_none: "%{site_name} वर अजून अशा कोणत्याही स्क्रिप्ट नाहीत ज्यांचे कोड या स्क्रिप्टशी तंतोतंत जळते."
+    derivatives_similar_heading: "यासारख्या स्क्रिप्ट"
+    derivatives_similar_check_now: "आता पुन्हा तपासा"
+    listing_title_all_sites: "सर्व संकेतस्थळांसाठीच्या युझर स्क्रिप्ट"
+    listing_title_for_site: "%{site} साठीच्या युझर स्क्रिप्ट"
+    listing_title_for_search: "'%{search_string}' युझर स्क्रिप्ट"
+    listing_title_for_code_search: "'%{search_string}' युझर स्क्रिप्ट"
+    listing_title_generic: "युझर स्क्रिप्ट"
+    listing_title_for_favorites: "%{user_name} यांचे %{set_name}"
+    listing_sort_relevance: "संबद्धता"
+    listing_sort_daily_installs: "दैनिक इंस्टॉल"
+    listing_sort_total_installs: "एकूण इंस्टॉल"
+    listing_sort_ratings: "रेटिंग"
+    listing_sort_created: "बनवण्याचा दिनांक"
+    listing_sort_updated: "अपडेट केल्याचा दिनांक"
+    listing_sort_name: "नाव"
+    listing_filter_by_site_label: "यासाठीच्या स्क्रिप्ट दाखवत आहे:"
+    listing_filter_by_site_disable: "सर्व"
+    listing_filter_by_site_all_sites: "(सर्व संकेतस्थळे)"
+    listing_filter_by_language_label: "भाषा:"
+    listing_filter_by_site_more_sites: "अधिक..."
+    listing_no_scripts: "कोणत्याही स्क्रिप्ट सापडल्या नाहीत."
+    listing_created_feed: "नवीन स्क्रिप्ट"
+    listing_updated_feed: "अपडेट केलेल्या स्क्रिप्ट"
+    listing_none: "(काहीच नाही)"
+    listing_set_locale_filter: "सर्व भाषांचे निकाल दाखवत आहे. %{set_filter_link:केवळ %{language} मधील निकाल दाखवा.}"
+    listing_remove_locale_filter: "केवळ %{language} निकाल दाखवत आहे. %{remove_filter_link:सर्व भाषांचे निकाल दाखवा.}"
+    listing_language_all: "सर्व"
+    listing_language_js: "JavaScript"
+    listing_language_css: "CSS"
+    listing_author:
+      all: सर्व लेखक
+      me: माझ्या स्क्रिप्ट
+      user: '%{author_name} यांच्या स्क्रिप्ट'
+    import: "स्क्रिप्ट आयात करा"
+    new: "तुम्ही लिहिलेली स्क्रिप्ट प्रकाशित करा"
+    new_css: "तुम्ही लिहिलेली स्टाईल प्रकाशित करा"
+    contribution_no_amount: "%{author} यांचे आभार मानण्यास देणगी द्या."
+    contribution_with_amount: "%{author} यांचे आभार मानण्यास देणगी द्या. सुचवलेली देणगी: %{amount}."
+    contribution_bitcoin_no_amount_html: "%{author} यांचे आभार मानण्यास %{address} या पत्त्यावर बिटकॉइन देणगी द्या."
+    contribution_bitcoin_with_amount_html: "%{author} यांचे आभार मानण्यास %{address} या पत्त्यावर बिटकॉइन देणगी द्या. सुचवलेली देणगी: %{amount}."
+    locale_auto_select: "(आपोआप शोधून काढा)"
+    sets_label: "या स्क्रिप्ट संचांमध्ये:"
+    sets_label_no_sets: "स्क्रिप्ट संच:"
+    sets_remove_inclusion: "%{set_name} मधून काढून टाका"
+    sets_add_inclusion: "%{set_name} मध्ये जोडा"
+    sets_add_exclusion: "%{set_name} मधून वगळा"
+    sets_add_to_new: "नवीन संचात जोडा"
+    rules_summary_link_to_full: "पूर्ण नियम वाचा."
+    upload_label: "किंवा अपलोड करा:"
+    changelog_note: "काय आवृत्तीत कोणते बदल केले गेले आहेत?"
+    additional_info_note: "अधिक तपशीलवार वर्णन, सूचना, वगैरे. "
+    post_new_script: "स्क्रिप्ट पोस्ट करा"
+    post_updated_script: "नवीन आवृत्ती पोस्ट करा"
+    override_warning_checkbox_label: "तरीही सेव्ह करा"
+    warning_version_not_incremented_html: "तुम्ही कोड अपडेट केले पण <code>@version</code> संख्या वाढवली नाही. तुमची स्क्रिप्ट याआधी ज्यांनी इंस्टॉल केली आहे त्यांना अपडेट केलेले कोड कदाचित मिळणार नाही."
+    warning_version_missing_html: "तुम्ही <code>@version</code> विनिर्दिष्ट केले नाही. प्रयोक्त्यांना अपडेट मिळण्यासाठी <code>@version</code> ची गरज असते. तुम्ही ती याप्रकारे विनिर्दिष्ट करू शकता: <code>// @version 1.0</code>."
+    warning_version_missing_generate_automatically_html: "<code>@version</code> आपोआप उत्पन्न करा"
+    warning_namespace_missing_generate_automatically_html: "<code>@namespace</code> आपोआप उत्पन्न करा"
+    sync_type_intro: "स्क्रिप्ट सिंक केली जाईल:"
+    sync_type_2:
+      name: आपोआप
+      description: अपडेट असल्याचा वेळोवेळी तपास केला जाईल
+    sync_type_3:
+      name: वेबहूक
+    sync_name_and_description: "%{name} - %{description}"
+    sync_failed_info_html: "याआधी सिंक करायचा प्रयत्न %{date} ला झाला, ज्याचा निकाल होता: %{error}."
+    update_and_sync: "अपडेट करून सिंक करा"
+    update_no_sync: "अपडेट करा"
+    turn_off_syncing: "या स्क्रिप्टसाठी सिंक करणे बंद करा"
+    sync_url_placeholder: "(URL)"
+    sync_successful: स्क्रिप्ट यशस्वीरित्या सिंक केली.
+    sync_no_changes: स्क्रिप्ट यशस्वीरित्या सिंक केली, पण कोणतेही बदल सापडले नाहीत.
+    sync_error: स्क्रिप्ट सिंक अपयशी - %{error}.
+    sync_turned_off: स्क्रिप्ट सिंक बंद केले.
+    screenshots_add: "जोडा:"
+    screenshots_remove: "काढून टाका"
+    diff_old_version: "जुनी:"
+    diff_new_version: "नवीन:"
+    diff_terser: "तुलना करण्याअगोदर कोड स्वच्छ करा"
+    diff_refresh: "रिफ्रेश करा"
+    diff_no_change: "कोणतेही फरक सापडले नाहीत."
+    write_your_own_html: "%{post_a_script_link} (किंवा %{learn_to_write_scripts_link})"
+    post_a_script_link_text: "तुम्ही लिहिलेली स्क्रिप्ट प्रकाशित करा"
+    learn_to_write_scripts_link_text: "कशी लिहायची ते शिका"
+    non_adult_content_on_sleazy: "ही स्क्रिप्ट या संकेतस्थळावर उपलब्ध नाही."
+    deleted_marker: "(डिलीट केलेली)"
+    locked_marker: "(लॉक केलेली)"
+    library_marker: "(संग्रह)"
+    libraries_title: "संग्रह"
+    by_site_list_filter: "संकेतस्थळाच्या नावानुसार गाळा:"
+    search_placeholder: "स्क्रिप्ट शोधा"
+    updated: "स्क्रिप्ट अपडेट केली."
+    must_confirm_email_button: "%{email} ला खातरीची लिंक पाठवा"
+    needs_secure_login:
+      secure_internal_heading: "पर्याय 1: तुमचे %{site_name} लॉगइन सुरक्षित करा"
+      confirm_email: "ईमेल पत्त्याची खातरी करा"
+      add_external_heading: "पर्याय 2: केवळ बाह्य लॉगइन वापरा"
+      add_external: "बाह्य लॉगइन जोडा"
+      remove_password: "तुमचा %{site_name} पासवर्ड काढून टाका"
+    authors_heading: "लेखक"
+    invitations:
+      form_title: "इतर लेखकांना आमंत्रित करा"
+      invited_user_url_label: "आमंत्रित करायचा प्रयोक्ता"
+      invited_user_placeholder: "%{site_name} वर प्रयोक्त्याच्या प्रोफाईलचा URL"
+      submit: "आमंत्रण पाठवा"
+      invalid_user_url: "आमंत्रित केलेल्या प्रयोकत्याचे URL वैध नाही."
+      already_author: "तुम्ही जो प्रयोक्ता विनिर्दिष्ट केला आहे तो आधीपासूनच या स्क्रिप्टचा एक लेखक आहे."
+      sent: "आमंत्रण पाठवले आहे."
+      subject: "%{script_name} साठी आमंत्रण"
+      current_user_already_author: "तुम्ही आधीपासूनच या स्क्रिप्टचे एक लेखक आहात."
+      invitation_not_found: "आमंत्रण सापडले नाही."
+      invitation_expired: "आमंत्रणाची मुदत संपली आहे."
+      invitation_accepted: "तुम्ही आता या स्क्रिप्टचे एक लेखक आहात."
+    remove_author:
+      heading: "लेखक काढून टाका"
+      success: "%{user_name} यांना लेखक म्हणून काढून टाकण्यात आले आहे."
+      remove_button: "काढून टाका"
+      remove_confirm: "तुम्हाला नक्की %{user_name} यांना लेखक म्हणून काढून टाकायचे आहे का?"
+      failure: "लेखक काढून टाकता आला नाही."
+    rate_limited: "तुम्ही अलीकडे खूपच जास्त स्क्रिप्ट पोस्ट केल्या आहेत. कृपया थोड्या वेळानंतर पुन्हा प्रयत्न करा."
+    new_script_notice:
+      title: "तुम्ही काय करायचा प्रयत्न करत आहात?"
+      install_link_html: "मला स्क्रिप्ट <b>इंस्टॉल करून वापरायची</b> आहे."
+    new_title:
+      js: "नवीन स्क्रिप्ट पोस्ट करा"
+      css: "नवीन स्टाईल पोस्ट करा"
+    update_title: "%{script} ची नवीन आवृत्ती पोस्ट करा"
+    install_help_dialog:
+      close_dialog: ठीक आहे
+    antifeatures:
+      author_explanation_intro: "या स्क्रिप्टचा लेखक समजावतो:"
+      types:
+        ads:
+          title: जाहिराती
+        tracking:
+          title: ट्रॅकिंग
+        miner:
+          title: क्रिप्टोमाईनर
+        membership:
+          title: सदस्यता
+        payment:
+          title: पैसे भरणे
+      cancel_install: रद्द करा
+    badges:
+      js:
+        short: JS
+        long: युझर स्क्रिप्ट
+      css:
+        short: CSS
+        long: युझर स्टाईल
+    related_scripts: "तुम्ही या संबंधित स्क्रिप्टदेखील वापरून पाहू शकता:"
+  script_sets:
+    heading: "स्क्रिप्ट संच"
+    favorites_name: "आवडीच्या"
+    delete: "स्क्रिप्ट संच डिलीट करा"
+    delete_confirmation: "तुम्हाला हा स्क्रिप्ट संच नक्की डिलीट करायचा आहे का?"
+    site_default_sort: "(संकेतस्थळाचे डिफॉल्ट)"
+    edit_link: "संपादित करा"
+    edit_scripts:
+      heading: "स्क्रिप्ट"
+      included: "सामील केले"
+      included_none: "(कोणत्याही नाही)"
+      remove_included: "निवडलेल्या काढून टाका"
+      excluded: "वगळले"
+      excluded_none: "(कोणत्याही नाही)"
+      remove_excluded: "निवडलेल्या काढून टाका"
+      add_include: "सामील करा"
+      add_exclude: "वगळा"
+    edit_sets:
+      heading: "स्क्रिप्ट संच"
+      description: "तुमच्या स्क्रिप्ट संचात इतर स्क्रिप्ट संच सामील करा किंवा वगळा."
+      included: "सामील केले"
+      included_none: "(काहीच नाही)"
+      remove_included: "निवडलेल्या काढून टाका"
+      excluded: "वगळले"
+      excluded_none: "(काहीच नाही)"
+      remove_excluded: "निवडलेल्या काढून टाका"
+      add_include: "सामील करा"
+      add_exclude: "वगळा"
+      user_no_sets: "(प्रयोक्ताकडे कोणतेही संच नाहीत)"
+      user_no_other_sets: "(प्रयोक्ताकडे इतर कोणतेही संच नाहीत)"
+    edit_auto_sets:
+      heading: "स्वयंचलित स्क्रिप्ट संच"
+      included: "सामील केले"
+      included_none: "(काहीच नाही)"
+      remove_included: "निवडलेल्या काढून टाका"
+      excluded: "वगळले"
+      excluded_none: "(काहीच नाही)"
+      all_scripts_label: "सर्व स्क्रिप्ट"
+      all_scripts_include: "सामील करा"
+      for_sites_label: "संकेतस्थळासाठी स्क्रिप्ट (उदाहरणार्थ example.com, \"सर्व संकेतस्थळ\" पर्यायासाठी रिकामे ठेवा)"
+      for_sites_include: "सामील करा"
+      for_sites_exclude: "वगळा"
+      for_user_label: "प्रयोक्तानुसार स्क्रिप्ट (URL, ID, किंवा नाव)"
+      for_user_include: "सामील करा"
+      for_user_exclude: "वगळा"
+      for_language_label: "या भाषेतील स्क्रिप्ट"
+      for_language_include: "सामील करा"
+      for_language_exclude: "वगळा"
+    calculated_list: "गणित केलेली स्क्रिप्ट्सची यादी"
+    calculated_list_none: "(काहीच नाही)"
+    calculated_list_more:
+      one: "अजून %{count} जोडा..."
+      other: "अजून %{count} जोडा..."
+    already_included: "'%{name}' आधीच सामील आहे."
+    could_not_parse_script: "'%{value}' ही स्क्रिप्ट पार्स करता आली नाही"
+    save: "सेव्ह करा"
+    saved: "स्क्रिप्ट संच सेव्ह केला."
+    auto_set_types:
+      all_scripts: "सर्व स्क्रिप्ट"
+      site: "%{site} साठीच्या स्क्रिप्ट "
+      all_sites: "सर्व संकेतस्थळे"
+      locale: "%{locale_name} मधील स्क्रिप्ट"
+    new: नवीन स्क्रिप्ट संच
+  home:
+    title: "%{site_name} - सुरक्षित आणि उपयोगी युझर स्क्रिप्ट"
+    welcome: "युझर स्क्रिप्ट्ससाठीचे संकेतस्थळ %{site_name} येथे तुमचे स्वागत आहे."
+    search_placeholder: "युझर स्क्रिप्ट शोधा"
+    scripts_for_label: "यासाठीच्या स्क्रिप्ट:"
+    explain_user_scripts_heading: "युझर स्क्रिप्ट काय असतात?"
+    installing_step1_caption: "Chrome मध्ये Tampermonkey"
+    desktop_browsers:
+      title: डेस्कटॉप
+    android_browsers:
+      title: मोबाइल (अँड्रॉइड)
+    ios_browsers:
+      title: मोबाइल (iOS)
+    installing_step2_caption: "युझर स्क्रिप्टचे इंस्टॉल बटण"
+  users:
+    sign_in_title: "%{site_name} मध्ये साइन इन करा"
+    sign_in_external: "बाह्य सेवेद्वारे साइन इन करा"
+    sign_in_with: "%{provider} द्वारे साइन इन करा"
+    sign_in_password: "पासवर्ड प्रविष्ट करून साइन इन करा"
+    sign_in_email_used_sign_in_link: "साइन इन करा"
+    sign_in_name_used: "'%{name}' हे नाव आधीपासूनच वापरात आहे. दुसरे नाव निवडा."
+    sign_in_name_used_submit: "सादर करा"
+    control_panel: "नियंत्रण फलक"
+    discussions_on_scripts: "तुमच्या स्क्रिप्टवरच्या चर्चा"
+    discussions_on_scripts_feed_alt: "RSS फीड"
+    discussions_on_scripts_none: "अजूनपर्यंत कोणत्याही चर्चा नाहीत!"
+    discussions_on_scripts_more: "अधिक चर्चा..."
+    script_list: "स्क्रिप्ट"
+    script_list_none: "कोणत्याही स्क्रिप्ट पोस्ट केल्या नाहीत."
+    script_list_none_for_filter: "वर्तमान गाळण्यांसाठी कोणत्याही स्क्रिप्ट सापडल्या नाहीत."
+    script_list_none_same_user_html: "तुम्ही कोणत्याही स्क्रिप्ट लिहिल्या नाहीत. %{script_list_none_same_user_info_link}"
+    script_list_none_same_user_info_link_text: "असे कसे करायचे हे तुम्ही शिकू इच्छिता का?"
+    listing_sort_name: "नाव"
+    deleted_script_list: "डिलीट केलेल्या स्क्रिप्ट"
+    sign_out: "साइन आउट करा"
+    edit: "खाते संपादित करा"
+    edit_sign_in: "साइन इन पद्धती संपादित करा"
+    edit_sign_in_title: "साइन इन पद्धती संपादित करा"
+    edit_sign_in_password: "पासवर्ड"
+    edit_notifications: "अधिसूचना सेटिंग्स संपादित करा"
+    view_notifications: "अधिसूचना पाहा"
+    no_password_set_info: "तुमच्या खात्याला पासवर्ड सेट केला गेला नाही."
+    set_password: "पासवर्ड सेट करा"
+    update_password: "पासवर्ड अपडेट करा"
+    update_password_no_match: "पासवर्ड जुळत नाहीत."
+    password_updated: "पासवर्ड अपडेट केले."
+    remove_password_info: "तुम्ही तुमचा पासवर्ड काढून टाकू शकता, ज्याने तुम्ही केवळ बाह्य साइन इनवर अवलंबून राहाल."
+    remove_password: "पासवर्ड काढून टाका"
+    cant_remove_password: "पासवर्ड काढून टाकू शकत नाही - तुम्हाला साइन इन करायचा कोणताही मार्ग उरणार नाही!"
+    cant_remove_sign_in: "%{provider} साइन इन काढून टाकू शकत नाही - तुम्हाला साइन इन करायचा कोणताही मार्ग उरणार नाही!"
+    password_removed: "पासवर्ड काढून टाकले."
+    edit_sign_in_external: "बाह्य साइन इन"
+    external_sign_in_info_no_sign_ins: "तुम्ही %{site_name} वर साइन इन करण्यास इतर संकेतस्थळांवरचे खाते वापरू शकता."
+    external_sign_in_added: "%{provider} साइन इन जोडले."
+    external_sign_in_updated: "%{provider} साइन इन अपडेट केले."
+    external_sign_in_removed: "%{provider} साइन इन काढून टाकले."
+    external_sign_in_failed: "%{provider} साइन इन अपयशी: %{error}."
+    external_sign_in_already_used: "%{provider} साइन इन जोडणे अपयशी: तो साइन इन आधीपासूनच हा प्रयोक्ता वापरत आहे: '%{user_name}'."
+    syncing_indicator: "(सिंक करत आहे)"
+    enable_syncing: "सिंक करणे चालू करा"
+    disable_syncing: "सिंक करणे बंद करा"
+    remove_external_sign_in: "काढून टाका"
+    add_external_sign_in_info: "साइन इन जोडा:"
+    2fa_entry:
+      intro_html: "या ईमेलच्या रूपात लॉग इन करत आहे: <b>%{email}</b>"
+    enable_2fa:
+      qr_heading: QR कोडद्वारे
+      url_heading: लिंकद्वारे
+      code_entry_heading: कोड प्रविष्ट करा
+    list_display_html:
+      one: "%{user_link} - %{count} स्क्रिप्ट"
+      other: "%{user_link} - %{count} स्क्रिप्ट"
+    listing_number_of_scripts: "स्क्रिप्ट्सची संख्या"
+    listing_new_scripts: "नवीन स्क्रिप्ट"
+    listing_updated_scripts: "अपडेट केलेल्या स्क्रिप्ट"
+    listing_registration_date: "नोंदणी दिनांक"
+    listing_relevance: "संबद्धता"
+    listing_title: "प्रयोक्ता"
+    listing_banned_filter:
+      banned: "प्रतिबंधित"
+      not_banned: "प्रतिबंधित नाही"
+      all: "सर्व"
+    listing_author_filter:
+      script_author: "स्क्रिप्ट लेखक"
+      not_script_author: "स्क्रिप्ट लेखक नाही"
+      all: "सर्व"
+    search_placeholder: "प्रयोक्ता शोधा"
+    show_ads_description: "जाहिराती दाखवण्याची अनुमती देऊन %{site_name} चे समर्थन करा"
+    preferred_markup_description: "नवीन स्क्रिप्ट आणि पोस्टसाठी  वापरले जाईल."
+    greasy_fork_scripts_link:
+      one: "%{user_name} यांच्याकडे Greasy Fork वरदेखील %{count} स्क्रिप्ट आहे."
+      other: "%{user_name} यांच्याकडे Greasy Fork वर %{count} स्क्रिप्ट आहेत."
+    delete_link: "खाते डिलीट करा"
+    delete:
+      intro: "%{site_name} वरील तुमचे खाते '%{user_name}' डिलीट केल्याने खालील परिणाम घडतील:"
+      password_effect: "तुम्ही आता तुमच्या पासवर्डने साइन इन करू शकणार नाहीत."
+      identities_effect:
+        one: "%{identities} द्वारे साइन इन केल्याने नवीन खाते बनवले जाईल."
+        other: "%{identities} द्वारे साइन इन केल्याने नवीन खाते बनवले जाईल."
+      scripts_effect:
+        one: "तुमची %{count} स्क्रिप्ट डिलीट केली जाईल."
+        other: "तुमच्या %{count} स्क्रिप्ट डिलीट केल्या जातील."
+      script_sets_effect:
+        one: "तुमचा %{count} स्क्रिप्ट संच डिलीट केला जाईल."
+        other: "तुमचे %{count} स्क्रिप्ट संच डिलीट केले जातील."
+      forum_effect: "तुम्ही फोरममध्ये केलेले योगदान कायम राहतील, पण संबंधित प्रयोकत्याचे नाव बदलून \"%{user_name}\" असे ठेवले जाईल."
+      email_confirmation: "खाते डिलीट करण्याअगोदर %{site_name} तुम्हाला %{email} येथे एक ईमेल पाठवेल, ज्याने तुमच्या विनंतीची खातरी केली जाऊ शकते."
+      submit: "खाते डिलीट करा"
+      confirmation_email_sent: "डिलीट करायच्या खातरीचा ईमेल पाठवण्यात आला आहे."
+      confirmation_email:
+        subject: "%{site_name} खाते डिलीट करायची खातरी"
+        body: "%{site_name} वर तुमचे खाते '%{user_name}' डिलीट करण्यास विनंती केली गेली आहे. या विनंतीची खातरी करून तुमचे खाते डिलीट करण्यास येथे जा: %{url}. ही क्रिया पुढील 24 तासांमध्ये पूर्ण करायला हवी, नाही तर ही विनंती रद्द केली जाईल."
+      confirmation:
+        intro: "तुम्ही '%{user_name}' हे खाते डिलीट करणार आहात. ही क्रिया मागे घेता येऊ शकत नाही."
+        confirm: "'%{user_name}' डिलीट करा"
+        cancel: "डिलीट करणे रद्द करा"
+        key_mismatch: "प्रयोक्ता डिलीट करू शकत नाही - चाव्या जुळत नाहीत."
+        request_expired: "प्रयोक्ता डिलीट करता आला नाही - विनंतीची मुदत संपली."
+        cancelled: "डिलीट करणे रद्द केले."
+        completed: "तुमचे खाते डिलीट केले गेले आहे."
+    banned_notice:
+      no_report_no_reason: "तुमचे खाते प्रतिबंधित केले गेले आहे. तुमची इच्छा असल्यास तुम्ही %{delete_link:तुमचे खाते डिलीट करू} शकता."
+    banned_delete:
+      complete: "तुमचे खाते डिलीट केले गेले आहे."
+    deleted_user_with_id: "(डिलीट केलेला प्रयोक्ता %{id})"
+    deleted_user_without_id: "(डिलीट केलेला प्रयोक्ता)"
+    badges:
+      banned:
+        short: प्रतिबंधित
+        long: प्रतिबंधित
+      author:
+        short: लेखक
+        long: या स्क्रिप्टचा लेखक
+    notifications:
+      on_site: संकेतस्थळावर
+      email: ईमेलद्वारे
+      discussion_defaults:
+        title: फोरम अधिसूचना
+        intro: तुम्ही ज्या चर्चांना सबस्क्राईब केले आहे त्यांच्या तुम्हाला अधिसूचना मिळतील. तुम्ही चर्चांना कधीही सबस्क्राईब किंवा अनसबस्क्राईब करू शकता.
+        discussion_subscription_defaults:
+          overall_label: 'डिफॉल्टने चर्चांना सबस्क्राईब करा जेव्हा:'
+          start: तुम्ही चर्चा सुरू करता
+          comment: तुम्ही चर्चेत टिप्पणी लिहिता
+          script: तुमच्या एका स्क्रिप्टविषयी असो
+        subscribed_discussion_notification: तुम्ही सबस्क्राईब केलेल्या चर्चेत नवीन टिप्पणी पोस्ट केली गेल्यावर अधिसूचना मिळवा
+        mention: चर्चेत तुमचा उल्लेख केला गेल्यावर अधिसूचना मिळवा
+      conversation_defaults:
+        title: संवाद अधिसूचना
+        intro: तुम्ही ज्या संवादांना सबस्क्राईब केले आहे त्यांच्या तुम्हाला अधिसूचना मिळतील. तुम्ही संवादांना कधीही सबस्क्राईब किंवा अनसबस्क्राईब करू शकता.
+        new_conversation_subscription:
+          overall_label: 'डिफॉल्टने संवादांना सबस्क्राईब करा जेव्हा:'
+          self: तुम्ही संवाद सुरू करता
+          other: इतर कोणीतरी संवाद करतो
+      report_defaults:
+        title: अहवाल अधिसूचना
+      script:
+        title: स्क्रिप्ट अधिसूचना
+      save_button: अधिसूचना सेटिंग्स अपडेट करा
+      title: अधिसूचना
+      save_success: तुमच्या अधिसूचना पसंती अपडेट केल्या गेल्या आहेत.
+      unsubscribe_all: सर्व अधिसूचनांना अनसबस्क्राईब करा
+      unsubscribe_all_success: तुम्ही सर्व अधिसूचनांना अनसबस्क्राईब केले आहे.
+      new_conversation: "%{user} यांनी तुमच्याशी संवाद सुरू केला: %{text}"
+      new_message: "%{user} यांनी तुम्हाला निरोप पाठवा: %{text}"
+      new_comment: "%{user} यांनी %{discussion} मध्ये एक टिप्पणी पोस्ट केली"
+      mention: "%{user} यांनी %{discussion} मध्ये तुमचा उल्लेख केला"
+      list:
+        header: अधिसूचना
+        none: अजूनपर्यंत कोणत्याही अधिसूचना नाहीत!
+        edit_settings: अधिसूचना सेटिंग्स व्यवस्थापित करा.
+        mark_all_read: सर्वांना वाचले असे चिन्हित करा
+  help:
+    sections:
+      usage: वापर
+      development: विकास
+      miscellaneous: संकीर्ण
+    installing_user_scripts:
+      title: 'युझर स्क्रिप्ट कशा इंस्टॉल करायच्या'
+    installing_user_styles:
+      title: 'युझर स्टाईल कशा इंस्टॉल करायच्या'
+    meta_keys:
+      description: "ही स्क्रिप्ट काय करते याचे वर्णन. स्क्रिप्टच्या नावाखाली मजकुराच्या रूपात दाखवले जाईल. आवश्यक."
+    writing_user_scripts:
+      title: "युझर स्क्रिप्ट कशा लिहायच्या"
+      ask_in_forum_link_text: 'फोरममध्ये विचारा'
+      user_page_link_text: 'प्रयोक्ता पान'
+      post_new_script_link_text: 'नवीन स्क्रिप्ट पोस्ट करा'
+    code_rules:
+      title: "%{site_name} यावर पोस्ट केलेल्या स्क्रिप्टचे नियम"
+      code_header: कोड
+      copyright_header: कॉपीराइट
+      miscellaneous_header: संकीर्ण
+    external_scripts:
+      title: "%{site_name} याचे बाह्य स्क्रिप्टविषयी धोरण"
+      libraries:
+        title: "%{site_name} संग्रह"
+    credits:
+      title: "श्रेयनिर्देश"
+    help_with_greasymonkey: "Greasemonkey विषयी मदत"
+    help_with_tampermonkey: "Tampermonkey विषयी मदत"
+    contact:
+      title: "कोणाशी संपर्क साधा"
+  search:
+    script_search:
+      title: "स्क्रिप्ट शोध"
+    library_search:
+      title: "संग्रह शोध"
+    code_search:
+      title: "कोड शोध"
+    user_search:
+      title: "प्रयोक्ता शोध"
+      description: "नावानुसार प्रयोक्ता शोधा."
+  moderator_logs:
+    date_column: "दिनांक"
+    item_column: "वस्तू"
+    action_column: "क्रिया"
+    reason_column: "कारण"
+    item_script_html: "स्क्रिप्ट: %{script_link}"
+    item_deleted_script: "स्क्रिप्ट %{id} डिलीट केली"
+    item_user_html: "प्रयोक्ता: %{user_link}"
+    item_discussion_html: "चर्चा: %{discussion_link}"
+  reports:
+    name: "अहवाल #%{id}"
+    new_report_title:
+      user: "%{user} यांचा अहवाल द्या"
+      comment: "%{user} यांच्या टिप्पणीचा अहवाल द्या"
+      message: "%{user} यांच्या निरोपाचा अहवाल द्या"
+      script: "%{script} चा अहवाल द्या"
+    reason:
+      non_functional: "स्क्रिप्ट चालत नाही"
+      spam: "स्पॅम"
+      illegal: "बेकायदेशीर काँटेंट"
+      malware: "मॅलवेअर"
+      wrong_category: "चुकीचा वर्ग"
+      no_code: 'कोड नाही/हेलो वर्ल्ड'
+      other: "इतर"
+    unauthorized_code_original_placeholder: "मूळ कोडचा URL"
+    explanation_placeholder: "अधिक तपशील पुरवा (वैकल्पिक)"
+    create_button: "अहवाल बनवा"
+    report_user: "प्रयोक्त्याचा अहवाल द्या"
+    report_comment: "टिप्पणीचा अहवाल द्या"
+    report_message: "निरोपाचा अहवाल द्या"
+    delete_script: "स्क्रिप्ट डिलीट करा"
+    view_discussion: "चर्चा पाहा"
+    loading_diff: "लोड करत आहे..."
+    report_item:
+      discussion: "चर्चा: %{title}, प्रयोक्ता: %{user}"
+      comment: "%{user} यांची टिप्पणी %{comment}"
+      comment_description: "%{discussion_title} वरील टिप्पणी"
+      message: "%{user} यांचा निरोप"
+      deleted: "%{type} #%{id} डिलीट केले"
+      script: "%{script}"
+  discussions:
+    title: चर्चा
+    comment_date: "पोस्ट केले: %{date}"
+    comment_edit_date: "संपादित केले: %{date}"
+    posted_by_html: "%{user} %{date}"
+    last_comment: "सर्वात अलीकडील: %{user} %{date}"
+    new_discussion_submit: "टिप्पणी पोस्ट करा"
+    new_comment_heading: "उत्तर पोस्ट करा"
+    new_comment_submit: "उत्तर पोस्ट करा"
+    edit_comment_link: "संपादित करा"
+    edit_comment_header: "टिप्पणी संपादित करा"
+    delete_comment: "डिलीट करा"
+    delete_comment_confirm: तुम्हाला ही टिप्पणी नक्की डिलीट करायची आहे का?
+    delete_discussion: "डिलीट करा"
+    delete_discussion_confirm: तुम्हाला ही चर्चा नक्की डिलीट करायची आहे का?
+    update_comment_submit: "टिप्पणी अपडेट करा"
+    cancel_update_comment: "रद्द करा"
+    quote_comment: "क्वोट"
+    question_heading_html: "प्रश्न/टिप्पणी"
+    ratings_short:
+      question: "प्रश्न/टिप्पणी"
+    badges:
+      deleted:
+        short: डिलीट केलेली
+        long: डिलीट केलेली
+    sign_in_to_post_comment: "उत्तर पोस्ट करण्यासाठी साइन इन करा."
+    user_filter:
+      label: "माझा समावेश असलेल्या चर्चा"
+      all: "सर्व चर्चा"
+      discussion_by_me: "मी सुरू केलेल्या"
+      comment_by_me: "मी केलेल्या टिप्पण्या"
+      on_my_scripts: "माझ्या स्क्रिप्टवर"
+      subscribed: "सबस्क्राईब केले"
+    other_user_filter:
+      all: "सर्व चर्चा"
+      comments_by: "%{user} यांच्या टिप्पण्या"
+    category_filter:
+      label: वर्ग
+      all: सर्व वर्ग
+    read_filter:
+      label: वाचल्याची स्थिती
+      all: सर्व
+      read: वाचलेले
+      unread: न वाचलेले
+    locale_filter:
+      label: भाषा
+      all: सर्व
+    sort:
+      comment_created: दिनांक
+      discussion_last_comment: सर्वात नवीन टिप्पणीचा दिनांक
+      discussion_created: चर्चा सुरू व्हायचा दिनांक
+    user_activity:
+      title: "अलीकडील टिप्पण्या"
+      no_recent_activity: "या प्रयोक्त्याने अलीकडे कोणत्याही टिप्पण्या पोस्ट केल्या नाहीत."
+      see_all_activity: "प्रयोक्त्याच्या सर्व क्रिया पाहा."
+      script_question:
+        posted_html: "<i>%{script}</i> विषयी प्रश्न/टिप्पणी पोस्ट केली"
+        replied_html: "<i>%{script}</i> विषयी प्रश्न/टिप्पणीचे उत्तर दिले"
+      discussion:
+        posted_html: "चर्चा पोस्ट केली: <i>%{title}</i>"
+        replied_html: "चर्चेत उत्तर दिले: <i>%{title}</i>"
+    question_title: "%{script_name} विषयी प्रश्न"
+    subscribe: सबस्क्राईब करा
+    unsubscribe: अनसबस्क्राईब करा
+    categories:
+      development:
+        name: विकास
+      requests:
+        name: बनवण्याच्या विनंत्या
+      script-discussions:
+        name: स्क्रिप्ट चर्चा
+        description: अस्तित्वातील युझर स्क्रिप्ट आणि युझर स्टाईल यांवरच्या चर्चा
+      no-scripts:
+        name: स्क्रिप्ट चर्चा सोडून सर्वकाही
+    category_display: "%{name} - %{description}"
+    new_title: नवीन चर्चा
+    new_button: नवीन चर्चा
+    no_discussions: कोणत्याही चर्चा सापडल्या नाहीत.
+    mark_all_read: सर्वांना वाचले असे चिन्हित करा
+    search_placeholder: चर्चांमध्ये शोधा
+  conversations:
+    user_input_note: प्रयोक्त्याचे नाव किंवा त्यांच्या प्रोफाईलचा URL प्रविष्ट करा.
+    new_title: नवीन संवाद सुरू करा
+    new_link: नवीन संवाद सुरू करा
+    new_button: संवाद सुरू करा
+    title_html:
+      one: '%{users} यांच्या बरोबरचा संवाद'
+      other: '%{users} यांच्या बरोबरचा संवाद'
+    send_message: निरोप पाठवा
+    conversation_list_title: संवाद
+    conversation_link_html:
+      one: '%{users} यांच्या बरोबरचा संवाद.'
+      other: '%{users} यांच्या बरोबरचा संवाद.'
+    conversation_info_html: 'शेवटचा निरोप %{date} दिनांकाला %{user} यांनी पाठवला. '
+    recent:
+      title: अलीकडील संवाद
+      more: सर्व संवाद पाहा
+    edit_message_header: निरोप संपादित करा
+    update_message_submit: निरोप अपडेट करा
+  common:
+    error_preamble: "तुम्ही जे पोस्ट केले त्यात काही समस्या आढळल्या..."
+    not_found_text: "404 - पान सापडले नाही."
+    not_found_title: "404 - पान सापडले नाही"
+    not_found_link_home: "मुखपृष्ठाला जा."
+    suggest_locale: "%{site_name} हे %{locale_name} मध्ये उपलब्ध आहे."
+    incomplete_locale: "%{site_name} याचा %{locale_name} अनुवाद केवळ %{percent} पूर्ण झाला आहे. यात तुम्ही बदल घडवू शकता."
+    write_tab: लिहा
+    listing_options_title: "शोध पर्याय"
+    quote:
+      prefix_html: "%{user} म्हणाले:"
+      anonymous_reporter_html: "अहवाल देणारे म्हणाले:"
+  activerecord:
+    models:
+      script:
+        one: "%{count} स्क्रिप्ट"
+        other: "%{count} स्क्रिप्ट"
+      comment:
+        one: "%{count} टिप्पणी"
+        other: "%{count} टिप्पण्या"
+    attributes:
+      user:
+        name: "नाव"
+        profile: "प्रोफाईल"
+        show_ads: "जाहिराती दाखवा"
+        preferred_markup: "पसंतीचे मार्कअप"
+        current_password: "सध्याचा पासवर्ड"
+        new_password: "नवीन पासवर्ड"
+        new_password_confirmation: "नवीन पासवर्डची खातरी करा"
+      script:
+        name: "नाव"
+        description: "वर्णन"
+        code: "कोड"
+        changelog: "बदलांची नोंदवही"
+        type: "स्क्रिप्ट प्रकार"
+        additional_info: "अधिक माहिती"
+        screenshots: "स्क्रीनशॉट"
+        replaced_by_script_id: "बदलीची स्क्रिप्ट"
+      script_set:
+        name: "नाव"
+        description: "वर्णन"
+      report:
+        reason: "अहवाल द्यायचे कारण"
+      discussion:
+        rating: "रेटिंग"
+        category: "वर्ग"
+        title: शीर्षक
+      conversation:
+        user_input: प्रयोक्ता
+      message:
+        content: निरोप
+  errors:
+    messages:
+      script_sync_identifier_bad_protocol: "HTTP किंवा HTTPS URL असायला हवे"
+      script_too_many_screenshots: "खूपच जास्त स्क्रीनशॉट सामील केले - कमाल संख्या %{number} आहे"
+      cannot_be_self_reference: "तीच स्क्रिप्ट असू शकत नाही"
+      cannot_be_deleted_reference: "डिलीट केलेली स्क्रिप्ट असू शकत नाही"
+      cannot_be_used_with_this_script: "या स्क्रिप्टसह वापरले जाऊ शकत नाही"
+      script_update_not_utf8: "अपलोड केलेले मजकूर UTF-8 मजकूर असायला हवे"
+      script_disallowed_base_64_require: "base-64 एनकोड केलेला @require वापरते"
+      script_rate_limit: "तुम्ही पोस्ट करायच्या मर्यादेच्या बाहेर गेला आहात. नंतर पुन्हा प्रयत्न करा."
+      missing_include_or_match: "किमान एक @match किंवा @include की सामील असायला हवी"
+  opensearch:
+    short_name: "%{site_name} शोध"
+    description: "%{site_name} वर युझर स्क्रिप्ट शोधा."
+    long_name: "%{site_name} युझर स्क्रिप्ट शोध"
+  importing:
+    title: स्क्रिप्ट आयात करा
+    submit: आयात करा
+    previously_imported:
+      heading: याआधी आयात केलेल्या स्क्रिप्ट
+      successful_entry_html: "%{script_link} - %{sync_type} सिंक करत आहे, याआधी सिंक केले: %{last_sync_date}."
+      unknown_date: "(अज्ञात)"
+    results:
+      title: "निकाल आयात करा"
+      success: "खालील स्क्रिप्ट यशस्वीरित्या आयात केल्या गेल्या:"
+      needs_description: "खालील स्क्रिप्ट आयात करण्यासाठी त्यांचे वर्णन असायला हवे:"
+      existing: "खालील स्क्रिप्ट आधीच आयात केल्या गेल्या होत्या:"
+      failure: "खालील स्क्रिप्ट आयात करता आल्या नाहीत:"
+  mailers:
+    script_report:
+      report_upheld_offender:
+        subject: "%{site_name} वरील %{script_name} ही तुमची स्क्रिप्ट डिलीट करण्यात आली आहे"
+    comment_mentioned:
+      subject: "'%{commenter_name}' या प्रयोक्त्याने %{site_name} वर तुमचा उल्लेख केला."
+    new_message:
+      subject: "%{user} यांनी तुम्हाला %{site_name} वर निरोप पाठवला"
+      intro: "%{user_link:%{user_name}} या प्रयोक्त्याने %{site_name} वर तुम्हाला निरोप पाठवला आहे."
+      outro: "%{conversation_link:हा निरोप पाहा व त्याला उत्तर द्या.} तुम्हाला ही अधिसूचना मिळाली आहे कारण तुम्ही या संवादाला सबस्क्राईब्ड आहात. %{notification_preferences_link:अधिसूचना पसंती व्यवस्थापित करा.}"
