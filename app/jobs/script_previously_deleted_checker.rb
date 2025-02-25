@@ -25,6 +25,9 @@ class ScriptPreviouslyDeletedChecker < ApplicationJob
     # Use the most common non-'other' reason.
     reason = other_reports.map(&:upheld_reason).reject { |r| r == Report::REASON_OTHER }.tally.max_by(&:last)&.first || Report::REASON_OTHER
 
+    # If it's happened a lot, we'll be more strict on it. "No code" has a lot of false positives, so exempt that.
+    blatant = scripts_and_reports.count >= 10 && reason != Report::REASON_NO_CODE
+
     reference_script = scripts_and_reports.map(&:last).flatten.find { |report| report.reason == reason && report.reference_script }&.reference_script if reason == Report::REASON_UNAUTHORIZED_CODE
 
     Report.create!(
@@ -32,7 +35,7 @@ class ScriptPreviouslyDeletedChecker < ApplicationJob
       reference_script:,
       auto_reporter: 'hardy',
       reason:,
-      blatant: scripts_and_reports.count >= 10,
+      blatant:,
       explanation_markup: 'markdown',
       explanation: <<~TEXT)
         Script is similar to previously deleted scripts:
