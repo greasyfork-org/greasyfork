@@ -1,0 +1,2 @@
+class BlockedUser < ApplicationRecord
+end

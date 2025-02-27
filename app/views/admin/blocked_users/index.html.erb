@@ -1,0 +1,29 @@
+<h1>Blocked Users</h1>
+
+<p>If a username contains any of this text, the user will be banned on creation.</p>
+
+<% if current_user.administrator? %>
+  <p><%= link_to 'Add new', new_admin_blocked_user_path %></p>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Text</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @blocked_users.each do |blocked_user| %>
+      <tr>
+        <td><%= blocked_user.id %></td>
+        <td><%= blocked_user.pattern %></td>
+        <td>
+          <%= link_to('Edit', edit_admin_blocked_user_path(blocked_user)) if current_user.administrator? %>
+          <%= link_to('Delete', admin_blocked_user_path(blocked_user), method: :delete) if current_user.administrator? %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

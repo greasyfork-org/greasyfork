@@ -1,0 +1,8 @@
+<%= form_with(model: [:admin, @blocked_user]) do |f| %>
+  <div class="form-control">
+    <%= f.label :pattern %>
+    <%= f.text_field :pattern, required: true %>
+  </div>
+
+  <%= f.submit %>
+<% end %>
