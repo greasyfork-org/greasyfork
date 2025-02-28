@@ -13,6 +13,7 @@ de:
   scripts:
     created_date: "Erstellt am"
     updated_date: "Letzte Aktualisierung"
+    code_size: Größe
     total_installs: "Installationen gesamt"
     daily_installs: "Installationen heute"
     ratings: "Bewertungen"
@@ -181,6 +182,8 @@ de:
     listing_language_all: "Alle"
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
+    listing_author:
+      me: Meine Skripte
     search_failed: Beim Laden Ihrer Ergebnisse ist ein Fehler aufgetreten. Einige Suchfunktionen funktionieren möglicherweise nicht. Wir wurden auf das Problem aufmerksam gemacht.
     import: "Skripte importieren"
     new: "Veröffentliche ein Skript, welches Du geschrieben hast"
@@ -378,6 +381,7 @@ de:
     delete: "Skriptsammlung löschen"
     delete_confirmation: "Sind Sie sicher, dass Sie diese Skriptsammlung löschen möchten?"
     site_default_sort: "(Seiteneinstellung)"
+    edit_link: "bearbeiten"
     edit_scripts:
       heading: "Skripte"
       description: "Einzelne Skripte Ihrer Skriptsammlung hinzufügen oder entfernen."
@@ -497,6 +501,7 @@ de:
     script_list_none_for_filter: "Keine Skripte für die aktuellen Filtereinstellungen."
     script_list_none_same_user_html: "Sie haben bisher keine Skripte geschrieben. %{script_list_none_same_user_info_link}"
     script_list_none_same_user_info_link_text: "Möchten Sie lernen, wie das geht?"
+    listing_sort_name: "Name"
     deleted_script_list: "Gelöschte Skripte"
     unlisted_script_list: "Ungelistete Skripte"
     sign_out: "Abmelden"
@@ -504,6 +509,7 @@ de:
     edit_sign_in: "Anmeldeverfahren bearbeiten"
     edit_sign_in_title: "Anmeldeverfahren bearbeiten"
     edit_sign_in_password: "Passwort"
+    view_notifications: "Benachrichtigungen Ansehen"
     no_password_set_info: "Ihr Konto ist nicht mit einem Passwort konfiguriert."
     set_password: "Passwort einstellen"
     update_password: "Passwort ändern"
@@ -528,6 +534,8 @@ de:
     disable_syncing: "Synchronisieren deaktivieren"
     remove_external_sign_in: "Entfernen"
     add_external_sign_in_info: "Anmeldeinformation hinzufügen:"
+    enable_2fa:
+      manual_heading: Manuell
     set_up_webhook: "Web-Hook einrichten"
     list_display_html:
       one: "%{user_link} - %{count} Skript"
@@ -536,6 +544,7 @@ de:
     listing_new_scripts: "Neue Skripte"
     listing_updated_scripts: "Aktualisierte Skripte"
     listing_registration_date: "Datum der Registrierung"
+    listing_relevance: "Relevanz"
     listing_title: "Benutzer"
     listing_banned_filter:
       banned: "Gesperrt"
@@ -615,6 +624,8 @@ de:
       save_success: Ihre Benachrichtigungseinstellungen wurden aktualisiert.
       unsubscribe_all: Von allen Benachrichtungen abmelden
       unsubscribe_all_success: Sie sind von allen Benachrichtungenen abgemeldet worden.
+      list:
+        header: Benachrichtigungen
   webhooks:
     info:
       title: Webhook einrichten
@@ -914,6 +925,8 @@ de:
     locale_filter:
       label: Sprache
       all: Alle
+    sort:
+      comment_created: Datum
     user_activity:
       title: "Neueste Kommentare"
       no_recent_activity: "Dieser Benutzer hat in letzter Zeit keine Kommentare veröffentlicht."
