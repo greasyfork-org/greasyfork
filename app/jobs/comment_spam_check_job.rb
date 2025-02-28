@@ -6,7 +6,10 @@ class CommentSpamCheckJob < ApplicationJob
 
     return if pattern_check(comment)
 
-    return if repeat_check(comment)
+    if (report = repeat_check(comment))
+      report.uphold!(moderator: User.administrators.first, moderator_notes: 'Blatant comment spam', ban_user: true, delete_comments: true, delete_scripts: true) if report.blatant
+      return
+    end
 
     check_with_akismet(comment, ip, user_agent, referrer)
   end
@@ -21,16 +24,18 @@ class CommentSpamCheckJob < ApplicationJob
     previous_comment = self.class.find_previous_comment(comment)
     if previous_comment
       previous_report = previous_comment.reports.upheld.take
-      return Report.create!(item: comment, auto_reporter: 'rainman', reason: previous_report&.reason || Report::REASON_SPAM, explanation: "Repost of#{' deleted' if previous_comment.soft_deleted?} comment: #{previous_comment.url}. #{"Previous report: #{previous_report.url}" if previous_report}")
+      recent_deleted_comment_count = self.class.find_recently_deleted_comment_count_with_link(comment)
+      blatant = recent_deleted_comment_count.present? && recent_deleted_comment_count >= 2
+      return Report.create!(item: comment, auto_reporter: 'rainman', reason: previous_report&.reason || Report::REASON_SPAM, blatant:, explanation: "Repost of#{' deleted' if previous_comment.soft_deleted?} comment: #{previous_comment.url}. #{"Previous report: #{previous_report.url}" if previous_report}")
     end
 
     previous_comment = self.class.find_previous_comment_with_link(comment)
-    if previous_comment
-      previous_report = previous_comment.reports.upheld.take
-      return Report.create!(item: comment, auto_reporter: 'rainman', reason: previous_report&.reason || Report::REASON_SPAM, explanation: "Repost of#{' deleted' if previous_comment.soft_deleted?} comment with same link: #{previous_comment.url}. #{"Previous report: #{previous_report.url}" if previous_report}")
-    end
+    return unless previous_comment
 
-    nil
+    previous_report = previous_comment.reports.upheld.take
+    recent_deleted_comment_count = self.class.find_recently_deleted_comment_count_with_link(comment)
+    blatant = recent_deleted_comment_count.present? && recent_deleted_comment_count >= 2
+    return Report.create!(item: comment, auto_reporter: 'rainman', reason: previous_report&.reason || Report::REASON_SPAM, blatant:, explanation: "Repost of#{' deleted' if previous_comment.soft_deleted?} comment with same link: #{previous_comment.url}. #{"Previous report: #{previous_report.url}" if previous_report}")
   end
 
   def self.find_previous_comment(comment)
@@ -51,9 +56,6 @@ class CommentSpamCheckJob < ApplicationJob
   end
 
   def self.find_recently_deleted_comment_count_with_link(comment)
-    # OK if the commenter has been registered over a week
-    return nil unless comment.poster.created_at > (comment.created_at - 1.week)
-
     links = extract_possibly_spammy_links(comment)
     return unless links.any?
 

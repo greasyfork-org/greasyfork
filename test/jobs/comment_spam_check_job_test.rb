@@ -171,4 +171,30 @@ class CommentSpamCheckJobTest < ActiveSupport::TestCase
       CommentSpamCheckJob.perform_now(second_comment, '1.1.1.1', 'User agent', nil)
     end
   end
+
+  test 'when it is a link repost by a new user of a multiple recently deleted comments, the report is auto-upheld' do
+    comment = comments(:script_comment)
+    comment.update!(text: 'totally unique content with a link: https://example.com')
+    second_comment = comment.dup
+    second_comment.save!
+
+    comment_to_check = comment.dup
+    comment_to_check.text = 'some other content with the same link: https://example.com'
+    comment_to_check.poster = users(:one)
+    comment_to_check.poster.update!(created_at: 1.day.ago)
+    comment_to_check.save!
+
+    comment.update(deleted_at: 1.day.ago)
+    second_comment.update(deleted_at: 1.day.ago)
+
+    Akismet.stubs(:api_key).returns('123')
+    Akismet.stubs(:check).returns([false, false])
+
+    assert_difference -> { Report.count } => 1 do
+      CommentSpamCheckJob.perform_now(comment_to_check, '1.1.1.1', 'User agent', nil)
+    end
+
+    assert Report.last.upheld?
+    assert comment_to_check.poster.banned?
+  end
 end
