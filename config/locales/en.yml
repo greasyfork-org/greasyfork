@@ -92,6 +92,7 @@ en:
     info_page: "Info"
     # link to the script's code page
     code_page: "Code"
+    wrap_lines: "Wrap lines"
     # link to the script's history page, listing all versions of the code
     history_page: "History"
     # link to the script's feedback page, listing discussions on the script. count is the number of discussions
@@ -1143,7 +1144,7 @@ en:
       contributionURL_html: "URL for a page where users can donate to the author of a script. Contribution URL is displayed on a script's feedback page. URLs can be http, https, or Bitcoin protocols. To link to a PayPal donation page, use a URL in the format <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a>, replacing the sample e-mail address with your own."
       # description of @contributionAmount. Do not translate content inside <code>.
       contributionAmount_html: "Suggested donation amount, used in conjunction with <code>@contributionURL</code>."
-      # description of @compatible. %{browsers} is a comma-separated list of browser codes. You can translate "Must disable pop-up blocker", but do not translate "@compatible firefox". 
+      # description of @compatible. %{browsers} is a comma-separated list of browser codes. You can translate "Must disable pop-up blocker", but do not translate "@compatible firefox".
       compatible_html: "Flags this script as compatible with a browser. Compatibility information will be shown on a script's page. Comments on compatibility can be included in the format <code>@compatible firefox Must disable pop-up blocker</code>. Recognized browsers are: %{browsers}."
       # description of @incompatible. %{browsers} is a comma-separated list of browser codes. You can translate "Broken since Firefox 23", but do not translate "@compatible firefox".
       incompatible_html: "Flags this script as incompatible with a browser. Compatibility information will be shown on a script's page. Optional comments on compatibility can be included in the format <code>@incompatible firefox Broken since Firefox 23</code>. Recognized browsers are: %{browsers}."

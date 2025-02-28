@@ -13,9 +13,12 @@
 
 <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?lang=css"></script>
 
+<div>
+  <input type="checkbox" id="wrap-lines" checked value="1"><label for="wrap-lines" class="checkbox-label"><%= t('scripts.wrap_lines') %></label>
+</div>
 <div class="code-container">
   <%= tag.pre(class: if @code.length <= Rails.configuration.syntax_highlighting_limit
-  ['prettyprint', 'linenums', @script.css? ? 'lang-css' : 'lang-js']
+  ['prettyprint', 'linenums', 'wrap', @script.css? ? 'lang-css' : 'lang-js']
 else
   ['uglyprint']
 end ) { @code } %>

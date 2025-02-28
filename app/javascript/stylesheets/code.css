@@ -13,8 +13,14 @@ pre {
   padding: 1em;
 }
 .prettyprint {
-  width: max-content;
   min-width: calc(100% - 6px);
+}
+.prettyprint.wrap {
+  white-space: pre-wrap;
+  line-break: anywhere;
+}
+.prettyprint:not(.wrap) {
+  width: max-content;
 }
 .code-container {
   /* Ensure when page is scrolled to bottom, the element is entirely in view. */
