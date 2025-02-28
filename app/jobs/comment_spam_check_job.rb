@@ -42,12 +42,28 @@ class CommentSpamCheckJob < ApplicationJob
   def self.find_previous_comment_with_link(comment)
     return nil unless comment.poster.created_at > 7.days.ago
 
-    links = Nokogiri::HTML(ApplicationController.helpers.format_user_text(comment.text, comment.text_markup)).css('a[href]').pluck('href').uniq.reject { |href| href.starts_with?('https://greasyfork.org/') || href.starts_with?('https://sleazyfork.org/') }
+    links = extract_possibly_spammy_links(comment)
     return unless links.any?
 
     text_condition = links.map { |_link| 'text LIKE ?' }.join(' OR ')
     condition_params = links.map { |link| "%#{Comment.sanitize_sql_like(link)}%" }
     comment.poster.comments.where(id: ...comment.id).find_by(text_condition, *condition_params) || Comment.where(id: ...comment.id).where(text_condition, *condition_params).find_by(deleted_at: 1.month.ago..)
+  end
+
+  def self.find_recently_deleted_comment_count_with_link(comment)
+    # OK if the commenter has been registered over a week
+    return nil unless comment.poster.created_at > (comment.created_at - 1.week)
+
+    links = extract_possibly_spammy_links(comment)
+    return unless links.any?
+
+    text_condition = links.map { |_link| 'text LIKE ?' }.join(' OR ')
+    condition_params = links.map { |link| "%#{Comment.sanitize_sql_like(link)}%" }
+    Comment.where(text_condition, *condition_params).where(deleted_at: (comment.created_at - 1.month)...comment.created_at).count
+  end
+
+  def self.extract_possibly_spammy_links(comment)
+    Nokogiri::HTML(ApplicationController.helpers.format_user_text(comment.text, comment.text_markup)).css('a[href]').pluck('href').uniq.reject { |href| href.starts_with?('https://greasyfork.org/') || href.starts_with?('https://sleazyfork.org/') }
   end
 
   def check_with_akismet(comment, ip, user_agent, referrer)
