@@ -1,6 +1,8 @@
 require 'application_system_test_case'
 
 class RegistrationTest < ApplicationSystemTestCase
+  include ActiveJob::TestHelper
+
   test 'password registration' do
     EmailAddress.stubs(:valid?).returns(true)
     visit root_url
@@ -67,5 +69,21 @@ class RegistrationTest < ApplicationSystemTestCase
     fill_in 'Password confirmation', with: '12345678'
     click_on 'Sign up'
     assert_selector '#error_explanation', text: 'Email is invalid'
+  end
+
+  test 'user name blocked from registration' do
+    EmailAddress.stubs(:valid?).returns(true)
+    BlockedUser.create!(pattern: 'Test')
+    visit root_url
+    click_on 'Sign in'
+    click_on 'Sign up'
+    fill_in 'Name', with: 'Test Guy'
+    fill_in 'Email', with: 'test@example.com'
+    fill_in 'Password', with: '12345678'
+    fill_in 'Password confirmation', with: '12345678'
+    click_on 'Sign up'
+    assert_selector '.notice', text: 'Welcome! You have signed up successfully.'
+    perform_enqueued_jobs
+    assert User.last.banned?
   end
 end
