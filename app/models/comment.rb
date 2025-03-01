@@ -117,4 +117,8 @@ class Comment < ApplicationRecord
 
     editable_by?(user)
   end
+
+  def reportable_item
+    first_comment? ? discussion : self
+  end
 end

@@ -229,7 +229,7 @@ class DiscussionsController < ApplicationController
     notification_job = notification_job.set(wait: Comment::EDITABLE_PERIOD) unless Rails.env.local?
     notification_job.perform_later(@discussion.comments.first)
 
-    DiscussionSpamCheckJob.perform_later(@discussion, request.ip, request.user_agent, request.referer) unless current_user.discussions.count > 3
+    CommentSpamCheckJob.perform_later(@discussion.comments.first, request.ip, request.user_agent, request.referer) unless current_user.discussions.count > 3
 
     redirect_to @discussion.path(locale: request_locale.code)
   end

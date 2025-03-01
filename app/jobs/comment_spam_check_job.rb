@@ -4,44 +4,47 @@ class CommentSpamCheckJob < ApplicationJob
   def perform(comment, ip, user_agent, referrer)
     return if comment.soft_deleted?
 
-    return if pattern_check(comment)
-
-    if (report = repeat_check(comment))
-      report.uphold!(moderator: User.administrators.first, moderator_notes: 'Blatant comment spam', ban_user: true, delete_comments: true, delete_scripts: true) if report.blatant
+    if (report = pattern_check(comment) || repeat_check(comment))
+      if report.blatant
+        report.uphold!(moderator: User.administrators.first, moderator_notes: 'Blatant comment spam', ban_user: true, delete_comments: true, delete_scripts: true)
+      elsif report.item.is_a?(Discussion)
+        report.item.update!(review_reason: Discussion::REVIEW_REASON_RAINMAN)
+      end
       return
     end
 
-    check_with_akismet(comment, ip, user_agent, referrer)
+    if (report = check_with_akismet(comment, ip, user_agent, referrer)) && report.item.is_a?(Discussion)
+      report.item.update!(review_reason: Discussion::REVIEW_REASON_AKISMET)
+    end
   end
 
   def pattern_check(comment)
-    return unless self.class.text_is_spammy?(comment.text)
-
-    Report.create!(item: comment, auto_reporter: 'rainman', reason: Report::REASON_SPAM)
+    return Report.create!(item: comment.reportable_item, auto_reporter: 'rainman', reason: Report::REASON_SPAM) if self.class.text_is_spammy?(comment.text)
+    return Report.create!(item: comment.reportable_item, auto_reporter: 'rainman', reason: Report::REASON_SPAM, blatant: self.class.blatant?(comment)) if !self.class.partially_exempt_comment?(comment) && self.class.extract_possibly_spammy_links(comment).count >= 5
   end
 
   def repeat_check(comment)
     previous_comment = self.class.find_previous_comment(comment)
     if previous_comment
       previous_report = previous_comment.reports.upheld.take
-      return Report.create!(item: comment, auto_reporter: 'rainman', reason: previous_report&.reason || Report::REASON_SPAM, blatant: self.class.blatant?(comment), explanation: "Repost of#{' deleted' if previous_comment.soft_deleted?} comment: #{previous_comment.url}. #{"Previous report: #{previous_report.url}" if previous_report}")
+      return Report.create!(item: comment.reportable_item, auto_reporter: 'rainman', reason: previous_report&.reason || Report::REASON_SPAM, blatant: self.class.blatant?(comment), explanation: "Repost of#{' deleted' if previous_comment.soft_deleted?} comment: #{previous_comment.url}. #{"Previous report: #{previous_report.url}" if previous_report}")
     end
 
     previous_comment = self.class.find_previous_comment_with_link(comment)
     return unless previous_comment
 
     previous_report = previous_comment.reports.upheld.take
-    return Report.create!(item: comment, auto_reporter: 'rainman', reason: previous_report&.reason || Report::REASON_SPAM, blatant: self.class.blatant?(comment), explanation: "Repost of#{' deleted' if previous_comment.soft_deleted?} comment with same link: #{previous_comment.url}. #{"Previous report: #{previous_report.url}" if previous_report}")
+    return Report.create!(item: comment.reportable_item, auto_reporter: 'rainman', reason: previous_report&.reason || Report::REASON_SPAM, blatant: self.class.blatant?(comment), explanation: "Repost of#{' deleted' if previous_comment.soft_deleted?} comment with same link: #{previous_comment.url}. #{"Previous report: #{previous_report.url}" if previous_report}")
   end
 
   def self.find_previous_comment(comment)
-    return nil unless comment.poster.created_at > 7.days.ago
+    return nil if partially_exempt_comment?(comment)
 
     comment.poster.comments.where(id: ...comment.id).find_by(text: comment.text) || Comment.where(id: ...comment.id).where(text: comment.text).find_by(deleted_at: 1.month.ago..)
   end
 
   def self.find_previous_comment_with_link(comment)
-    return nil unless comment.poster.created_at > 7.days.ago
+    return nil if partially_exempt_comment?(comment)
 
     links = extract_possibly_spammy_links(comment)
     return unless links.any?
@@ -98,12 +101,11 @@ class CommentSpamCheckJob < ApplicationJob
 
     is_spam, is_blatant = Akismet.check(*akismet_params)
 
-    AkismetSubmission.create!(item: comment, akismet_params:, result_spam: is_spam, result_blatant: is_blatant)
+    AkismetSubmission.create!(item: comment.reportable_item, akismet_params:, result_spam: is_spam, result_blatant: is_blatant)
 
     return unless is_spam
 
-    Report.create!(item: comment, auto_reporter: 'akismet', reason: Report::REASON_SPAM)
-    comment.update(review_reason: Discussion::REVIEW_REASON_AKISMET)
+    Report.create!(item: comment.reportable_item, auto_reporter: 'akismet', reason: Report::REASON_SPAM)
   end
 
   def self.text_is_spammy?(text)
@@ -115,7 +117,10 @@ class CommentSpamCheckJob < ApplicationJob
       'CBD ',
       'Keto ',
       'hbyvipxnzj.buzz',
-      'https://support.google.com/',
     ].any? { |s| text.include?(s) }
+  end
+
+  def self.partially_exempt_comment?(comment)
+    comment.poster.created_at < 7.days.ago
   end
 end

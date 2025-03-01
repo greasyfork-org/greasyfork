@@ -10,6 +10,8 @@ class CommentSpamCheckJobTest < ActiveSupport::TestCase
     assert_difference -> { Report.count } => 0, -> { AkismetSubmission.count } => 1 do
       CommentSpamCheckJob.perform_now(comment, '1.1.1.1', 'User agent', nil)
     end
+
+    assert_nil comment.reportable_item.reload.review_reason
   end
 
   test 'when it is akismet spam' do
@@ -22,7 +24,7 @@ class CommentSpamCheckJobTest < ActiveSupport::TestCase
       CommentSpamCheckJob.perform_now(comment, '1.1.1.1', 'User agent', nil)
     end
 
-    assert_equal Discussion::REVIEW_REASON_AKISMET, comment.reload.review_reason
+    assert_equal Discussion::REVIEW_REASON_AKISMET, comment.reportable_item.reload.review_reason
   end
 
   test 'when it is repeated comment spam from new users' do
@@ -179,6 +181,7 @@ class CommentSpamCheckJobTest < ActiveSupport::TestCase
     second_comment.save!
 
     comment_to_check = comment.dup
+    comment_to_check.first_comment = false
     comment_to_check.text = 'some other content with the same link: https://example.com'
     comment_to_check.poster = users(:one)
     comment_to_check.poster.update!(created_at: 1.day.ago)
@@ -195,13 +198,14 @@ class CommentSpamCheckJobTest < ActiveSupport::TestCase
     end
 
     assert Report.last.upheld?
-    assert comment_to_check.poster.banned?
+    assert comment_to_check.reload.poster.banned?
   end
 
   test 'when it is a link repost by a new user of a recently deleted comment, and the comment contains a lot of links' do
     comment = comments(:script_comment)
     comment.update!(text: 'totally unique content with a link: https://example.com')
     second_comment = comment.dup
+    second_comment.first_comment = false
     second_comment.text = 'some other content with the same link: https://example.com https://example.com/1 https://example.com/2 https://example.com/3 https://example.com/4 https://example.com/5'
     second_comment.poster = users(:one)
     second_comment.poster.update!(created_at: 1.day.ago)
