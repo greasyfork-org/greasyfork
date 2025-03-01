@@ -24,18 +24,14 @@ class CommentSpamCheckJob < ApplicationJob
     previous_comment = self.class.find_previous_comment(comment)
     if previous_comment
       previous_report = previous_comment.reports.upheld.take
-      recent_deleted_comment_count = self.class.find_recently_deleted_comment_count_with_link(comment)
-      blatant = recent_deleted_comment_count.present? && recent_deleted_comment_count >= 2
-      return Report.create!(item: comment, auto_reporter: 'rainman', reason: previous_report&.reason || Report::REASON_SPAM, blatant:, explanation: "Repost of#{' deleted' if previous_comment.soft_deleted?} comment: #{previous_comment.url}. #{"Previous report: #{previous_report.url}" if previous_report}")
+      return Report.create!(item: comment, auto_reporter: 'rainman', reason: previous_report&.reason || Report::REASON_SPAM, blatant: self.class.blatant?(comment), explanation: "Repost of#{' deleted' if previous_comment.soft_deleted?} comment: #{previous_comment.url}. #{"Previous report: #{previous_report.url}" if previous_report}")
     end
 
     previous_comment = self.class.find_previous_comment_with_link(comment)
     return unless previous_comment
 
     previous_report = previous_comment.reports.upheld.take
-    recent_deleted_comment_count = self.class.find_recently_deleted_comment_count_with_link(comment)
-    blatant = recent_deleted_comment_count.present? && recent_deleted_comment_count >= 2
-    return Report.create!(item: comment, auto_reporter: 'rainman', reason: previous_report&.reason || Report::REASON_SPAM, blatant:, explanation: "Repost of#{' deleted' if previous_comment.soft_deleted?} comment with same link: #{previous_comment.url}. #{"Previous report: #{previous_report.url}" if previous_report}")
+    return Report.create!(item: comment, auto_reporter: 'rainman', reason: previous_report&.reason || Report::REASON_SPAM, blatant: self.class.blatant?(comment), explanation: "Repost of#{' deleted' if previous_comment.soft_deleted?} comment with same link: #{previous_comment.url}. #{"Previous report: #{previous_report.url}" if previous_report}")
   end
 
   def self.find_previous_comment(comment)
@@ -50,6 +46,8 @@ class CommentSpamCheckJob < ApplicationJob
     links = extract_possibly_spammy_links(comment)
     return unless links.any?
 
+    links.uniq!
+
     text_condition = links.map { |_link| 'text LIKE ?' }.join(' OR ')
     condition_params = links.map { |link| "%#{Comment.sanitize_sql_like(link)}%" }
     comment.poster.comments.where(id: ...comment.id).find_by(text_condition, *condition_params) || Comment.where(id: ...comment.id).where(text_condition, *condition_params).find_by(deleted_at: 1.month.ago..)
@@ -57,7 +55,7 @@ class CommentSpamCheckJob < ApplicationJob
 
   def self.find_recently_deleted_comment_count_with_link(comment)
     links = extract_possibly_spammy_links(comment)
-    return unless links.any?
+    return 0 unless links.any?
 
     text_condition = links.map { |_link| 'text LIKE ?' }.join(' OR ')
     condition_params = links.map { |link| "%#{Comment.sanitize_sql_like(link)}%" }
@@ -65,7 +63,17 @@ class CommentSpamCheckJob < ApplicationJob
   end
 
   def self.extract_possibly_spammy_links(comment)
-    Nokogiri::HTML(ApplicationController.helpers.format_user_text(comment.text, comment.text_markup)).css('a[href]').pluck('href').uniq.reject { |href| href.starts_with?('https://greasyfork.org/') || href.starts_with?('https://sleazyfork.org/') }
+    Nokogiri::HTML(ApplicationController.helpers.format_user_text(comment.text, comment.text_markup)).css('a[href]').pluck('href').reject { |href| href.starts_with?('https://greasyfork.org/') || href.starts_with?('https://sleazyfork.org/') }
+  end
+
+  # Given that we've determined something is spam, is it also blatant?
+  def self.blatant?(comment)
+    # If there are multiple recently deleted comments with any of the same links.
+    recent_deleted_comment_count = find_recently_deleted_comment_count_with_link(comment)
+    return true if recent_deleted_comment_count >= 2
+
+    # If there are more than 5 links in the post
+    extract_possibly_spammy_links(comment).count >= 5
   end
 
   def check_with_akismet(comment, ip, user_agent, referrer)
