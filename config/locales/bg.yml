@@ -56,6 +56,7 @@ bg:
     reported_notice_for_author: "Този скрипт е недостъпен за другите потребители докато не бъде прегледан от модератор."
     info_page: "Информация"
     code_page: "Код"
+    wrap_lines: "Пренася редовете"
     history_page: "История"
     feedback_page: "Отзиви (%{count})"
     stats_page: "Статистика"
@@ -1216,6 +1217,7 @@ bg:
       comment_description: "Коментар към %{discussion_title}"
       message: "Съобщение от %{user}"
       deleted: "Изтрит %{type} #%{id}"
+      script: "%{script}"
   appeals:
     new:
       title: Ново възражение срещу изтриване на скрипт
@@ -1336,6 +1338,7 @@ bg:
     no_discussions: Няма намерени дискусии.
     mark_all_read: Маркирай като прочетени
     pending_moderator_review: Дискусията е недостъпна за другите потребители докато не бъде прегледана от модератор.
+    blocked_pending_review: Коментарите са блокирани, докато модераторът прегледа вашите предишни приноси. Опитайте отново по-късно.
     search_placeholder: Търси в дискусиите
   conversations:
     user_input_note: Въведете името на потребителя или връзка към профила му.
@@ -1449,6 +1452,7 @@ bg:
       no_executable: "не съдържа изпълним код"
       meta_too_long: "%{key} е прекалено дълъг (максимумът е %{count} символа)"
       style_missing_meta: "не съдържа блок с метаданни. Виж https://github.com/openstyles/stylus/wiki/Writing-UserCSS за примери"
+      invalid_unicode: "съдържа невалиден Unicode"
   opensearch:
     short_name: "%{site_name} търсене"
     description: "Търсене на потребителски скриптове в %{site_name}."
