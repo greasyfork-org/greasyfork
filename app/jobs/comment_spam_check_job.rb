@@ -20,7 +20,7 @@ class CommentSpamCheckJob < ApplicationJob
 
   def pattern_check(comment)
     return Report.create!(item: comment.reportable_item, auto_reporter: 'rainman', reason: Report::REASON_SPAM) if self.class.text_is_spammy?(comment.text)
-    return Report.create!(item: comment.reportable_item, auto_reporter: 'rainman', reason: Report::REASON_SPAM, blatant: self.class.blatant?(comment)) if !self.class.partially_exempt_comment?(comment) && self.class.extract_possibly_spammy_links(comment).count >= 5
+    return Report.create!(item: comment.reportable_item, auto_reporter: 'rainman', reason: Report::REASON_SPAM, blatant: self.class.several_recently_deleted_comments_with_same_link?(comment)) if !self.class.partially_exempt_comment?(comment) && self.class.extract_possibly_spammy_links(comment).count >= 5
   end
 
   def repeat_check(comment)
@@ -69,14 +69,14 @@ class CommentSpamCheckJob < ApplicationJob
     Nokogiri::HTML(ApplicationController.helpers.format_user_text(comment.text, comment.text_markup)).css('a[href]').pluck('href').reject { |href| href.starts_with?('https://greasyfork.org/') || href.starts_with?('https://sleazyfork.org/') }
   end
 
+  def self.several_recently_deleted_comments_with_same_link?(comment)
+    recent_deleted_comment_count = find_recently_deleted_comment_count_with_link(comment)
+    recent_deleted_comment_count >= 2
+  end
+
   # Given that we've determined something is spam, is it also blatant?
   def self.blatant?(comment)
-    # If there are multiple recently deleted comments with any of the same links.
-    recent_deleted_comment_count = find_recently_deleted_comment_count_with_link(comment)
-    return true if recent_deleted_comment_count >= 2
-
-    # If there are more than 5 links in the post
-    extract_possibly_spammy_links(comment).count >= 5
+    several_recently_deleted_comments_with_same_link?(comment) || extract_possibly_spammy_links(comment).count >= 5
   end
 
   def check_with_akismet(comment, ip, user_agent, referrer)

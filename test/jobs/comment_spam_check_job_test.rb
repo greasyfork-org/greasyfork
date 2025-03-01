@@ -203,23 +203,35 @@ class CommentSpamCheckJobTest < ActiveSupport::TestCase
 
   test 'when it is a link repost by a new user of a recently deleted comment, and the comment contains a lot of links' do
     comment = comments(:script_comment)
-    comment.update!(text: 'totally unique content with a link: https://example.com')
+    comment.update!(text: 'totally unique content with a link: https://example.com', created_at: 1.day.ago, deleted_at: 10.minutes.ago)
+
     second_comment = comment.dup
-    second_comment.first_comment = false
-    second_comment.text = 'some other content with the same link: https://example.com https://example.com/1 https://example.com/2 https://example.com/3 https://example.com/4 https://example.com/5'
-    second_comment.poster = users(:one)
-    second_comment.poster.update!(created_at: 1.day.ago)
+    second_comment.created_at = 1.day.ago
     second_comment.save!
-    comment.update(deleted_at: Time.zone.now)
+
+    comment_to_check = Comment.create!(discussion: comment.discussion, text: 'some other content with the same link: https://example.com https://example.com/1 https://example.com/2 https://example.com/3 https://example.com/4 https://example.com/5', poster: users(:one))
+    comment_to_check.poster.update!(created_at: 1.day.ago)
 
     Akismet.stubs(:api_key).returns('123')
     Akismet.stubs(:check).returns([false, false])
 
     assert_difference -> { Report.count } => 1 do
-      CommentSpamCheckJob.perform_now(second_comment, '1.1.1.1', 'User agent', nil)
+      CommentSpamCheckJob.perform_now(comment_to_check, '1.1.1.1', 'User agent', nil)
     end
 
     assert Report.last.upheld?
-    assert second_comment.poster.banned?
+    assert comment_to_check.poster.banned?
+  end
+
+  test 'when it is a non-repost by a new user with a lot of links, report' do
+    comment_to_check = Comment.create!(discussion: Discussion.last, text: 'https://example.com https://example.com/1 https://example.com/2 https://example.com/3 https://example.com/4 https://example.com/5', poster: users(:one))
+    comment_to_check.poster.update!(created_at: 1.day.ago)
+
+    assert_difference -> { Report.count } => 1 do
+      CommentSpamCheckJob.perform_now(comment_to_check, '1.1.1.1', 'User agent', nil)
+    end
+
+    assert_not Report.last.upheld?
+    assert_not comment_to_check.poster.banned?
   end
 end
