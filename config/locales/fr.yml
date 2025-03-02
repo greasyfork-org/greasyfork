@@ -13,11 +13,13 @@ fr:
   scripts:
     created_date: "Créé"
     updated_date: "Mis à jour"
+    code_size: Taille
     total_installs: "Installations (total)"
     daily_installs: "Installations quotidiennes"
     ratings: "Notes"
     author_name: "Auteur"
     version_number: "Version"
+    version_abbreviation: "v%{number}"
     license: "Licence"
     no_license: "N/A"
     compatibility: "Compatibilité"
@@ -55,6 +57,7 @@ fr:
     reported_notice_for_author: "Ce script n'est pas disponible pour les autres utilisateurs jusqu'à ce qu'il soit examiné par un modérateur."
     info_page: "Info"
     code_page: "Code"
+    wrap_lines: "Enveloppe les lignes"
     history_page: "Historique"
     feedback_page: "Commentaires (%{count})"
     stats_page: "Stats"
@@ -107,6 +110,7 @@ fr:
         intro: Ce sont des suggestions pour améliorer votre script sur %{site_name}. Ce ne sont pas %{rules_link:régles} ; votre script ne sera pas supprimé si vous ne les suivez plus.
         license_html: Spécifiez une %{license_link:<code>@license</code>}. Cela permet aux autres de savoir si et comment ils peuvent partager et/ou modifier votre code.
         globs_html: Évitez d'utiliser des expressions globales et régulières dans la partie domaine de %{include_link:<code>@include</code>} et %{match_link:<code>@match</code>}. Cela rend difficile pour %{site_name} d'être suggérée correctement votre script.
+        globs_used_html: "non-domaine spécifique utilisé comprend: %{globs}"
         additional_info: Inclurent des informations supplémentaires, répertoriez vos fonctionnalités, fournissez des captures d'écran, etc. afin que vos utilisateurs sachent exactement ce que fait votre script.
     history_title: "%{script_name} - Historique des versions"
     history_only_code_changes_info: "Voici les versions de ce script où le code a été modifié."
@@ -246,6 +250,7 @@ fr:
     additional_info_add_localized: "Ajouter une information additionnelle dans une autre langue"
     additional_info_locale_repeated: "Ne spécifiez qu'une information additionnelle pour la région '%{locale_code}'."
     localized_additional_info_with_no_name: "Une information additionnelle a été spécifiée pour la région '%{locale_code}', mais pas de @name:%{locale_code} n'est présent dans le script."
+    invalid_matchers: "Matchs invalides utilisés: %{matches}"
     code_syncing_from_url_html: "Le code de ce script est configuré pour se synchroniser depuis : %{field}"
     provide_code_syncing_from_url_html: "%{site_name} peut importer des scripts déjà hébergés autre part, par exemple depuis un gestionnaire de version (comme Github), votre propre serveur, ou un autre site d'hébergement de scripts utilisateur. Pour activer la synchronisation de votre script, spécifiez une URL : %{field}"
     code_syncing_from_webhook_html: "Le code de ce script est configuré pour se synchroniser avec un webhook. Nous ferons correspondre les requêtes du webhook à ce script en fonction de cette URL :%{field}"
@@ -303,6 +308,7 @@ fr:
     not_adult_content_self_report_html: "Ce script ne contient <strong>pas</strong> de contenu adulte et n'est <strong>pas</strong> pour un site qui contient du contient du contenu adulte."
     not_adult_content_self_report_explanation: "%{site_name} permet les scripts à contenu adulte, mais doivent être indiqué comme tels afin que les utilisateurs peuvent choisir de les voir. Votre script a été marqué comme ayant du contenu adulte. Vous pouvez signaler que votre script n'en contient pas; Il sera vérifié par un modérateur."
     not_adult_content_self_report_explanation_automatic: "%{site_name} autorise les scripts avec du contenu adulte, mais ceux-ci doivent être marqués comme tels afin que les utilisateurs puissent choisir de les voir ou non. Votre script a été marqué comme ayant du contenu adulte car étant pour %{domain_list}."
+    adult_content_notice_from_sleazy: Au fur et à mesure que vous publiez ce script, on suppose que votre script contient du contenu pour adultes ou est pour un site avec du contenu pour adultes. Si ce n'est pas le cas, veuillez %{greasyfork_link:publiez votre script sur Greasy Fork} à la place.
     adult_content_on_greasy_logged_in_error: "Ce script n'est plus disponible sur ce site avec vos %{edit_account_link:paramètres de compte Greasy Fork} actuels."
     adult_content_on_greasy_not_logged_in_error: "Ce script n'est plus disponible anonymement sur ce site. %{login_link:Connectez-vous} et vérifiez vos paramètres de compte Greasy Fork."
     non_adult_content_on_sleazy: "Ce script n'est pas disponible sur ce site."
@@ -324,6 +330,14 @@ fr:
     preview_additional_info: "Prévisualisation"
     must_confirm: "Vous devez confirmer votre compte avant de pouvoir publier des scripts. Vous avez deux options de confirmation: ajouter une connexion externe ou envoyer un e-mail de confirmation."
     must_confirm_email_button: "Envoyer le lien de confirmation à %{email}"
+    needs_secure_login:
+      intro: "Vous devez configurer votre compte avec une méthode de connexion sécurisée avant de pouvoir publier des scripts."
+      secure_internal_heading: "Option 1: sécurisez votre connexion %{site_name}"
+      confirm_email: "Confirmez votre adresse e-mail"
+      enable_2fa: "Activer la double authentification (2FA)"
+      add_external_heading: "Option 2: Utilisez une connexion externe uniquement"
+      add_external: "Ajouter une connexion externe"
+      remove_password: "Supprimer votre mot de passe"
     authors_heading: "Auteurs"
     error_unauthorized_copy: "Ce code source a l'air d'être une reproduction interdite de %{script}. Veuillez vous référer aux %{rules_link:règles} de %{site_name} sur la soumission de scripts."
     invitations:
@@ -414,11 +428,13 @@ fr:
           other: "Ce script utilise des hachages d'intégrité de sous-ressource incorrects : %{detail}"
         detail: "<code>%{url}</code> devrait utiliser le hachage <code>%{expected_hash}</code> (dernière vérification le %{last_checked_at})"
   script_sets:
+    heading: "Ensembles de scripts"
     description: "Les jeux de scripts vous permettent de créer une liste personnalisée de scripts pour naviguer avec sur Greasy Fork. Vous pouvez ajouter des scripts à votre jeu en incluant des scripts individuels, des jeux d'autres utilisateurs ou des jeux générés automatiquement. Vous pouvez également exclure les scripts de votre jeu avec les mêmes méthodes."
     favorites_name: "Favoris"
     delete: "Supprimer ce jeu de scripts"
     delete_confirmation: "Êtes-vous sûr de vouloir supprimer ce jeu de scripts ?"
     site_default_sort: "(Par défaut)"
+    edit_link: "Edit"
     edit_scripts:
       heading: "Scripts"
       description: "Inclure ou exclure les jeux de script individuels dans votre jeu de script."
@@ -557,6 +573,7 @@ fr:
     script_list_none_for_filter: "Aucun script pour les filtres actuels."
     script_list_none_same_user_html: "Vous n'avez créé aucun script. %{script_list_none_same_user_info_link}"
     script_list_none_same_user_info_link_text: "Voudriez-vous apprendre à le faire ?"
+    listing_sort_name: "Nom"
     deleted_script_list: "Scripts supprimés"
     unlisted_script_list: "Scripts non listé"
     sign_out: "Se déconnecter"
@@ -564,6 +581,10 @@ fr:
     edit_sign_in: "Modifier mes méthodes d'identification"
     edit_sign_in_title: "Modifier mes méthodes d'identification"
     edit_sign_in_password: "Mot de passe"
+    edit_sign_in_disable_2fa: Désactiver 2FA
+    edit_sign_in_2fa_disabled: Vous pouvez activer la double authentification (2FA) pour une meilleure sécurité votre compte sur %{site_name}.
+    edit_sign_in_enable_2fa: Activer 2FA
+    edit_sign_in_regenerate_2fa: Régénérer 2FA
     edit_notifications: "Modifier les paramètres de notification"
     view_notifications: "Afficher les notifications"
     no_password_set_info: "Votre compte n'est pas configuré avec un mot de passe."
@@ -590,6 +611,21 @@ fr:
     disable_syncing: "Désactiver la synchronisation"
     remove_external_sign_in: "Supprimer"
     add_external_sign_in_info: "Ajouter une identification externe :"
+    2fa_enabled: 2FA a été activé.
+    2fa_enable_code_incorrect: Le code 2FA n'est pas correct. Veuillez réessayer.
+    2fa_disabled: 2FA a été désactivé.
+    2fa_disabled_already: 2FA est déjà désactivé.
+    2fa_entry:
+      intro_html: "Se connecter comme <b>%{email}</b>"
+    enable_2fa:
+      qr_heading: Via le code QR
+      url_heading: Via le lien
+      manual_heading: 'Manuellement '
+      manual_entry_code_name: "Nom de code: %{code_name}"
+      manual_entry_your_key: "Votre clé: %{key}"
+      manual_entry_type_of_key: "Type de clé: basé sur le temps"
+      code_entry_heading: Entrer le code
+      verify_code: Vérifier le code
     set_up_webhook: "Mettre en place un Webhook"
     list_display_html:
       one: "%{user_link} - %{count} script"
@@ -661,6 +697,8 @@ fr:
     banned_delete:
       intro: "La suppression de votre compte supprimera également tous les scripts que vous avez posté. Toutes les contributions que vous avez apportées au forum resteront et votre nom d'utilisateur sera anonymisé. Même après la suppression, vous ne pourrez plus vous enregistrer avec la même adresse email. Connectez-vous ci-dessous pour supprimer votre compte."
       complete: "Votre compte a été supprimé."
+    deleted_user_with_id: "(Utilisateur %{id} supprimé)"
+    deleted_user_without_id: "(Utilisateur supprimé)"
     badges:
       banned:
         short: Banni
@@ -1053,6 +1091,8 @@ fr:
     item_user_html: "Utilisateur: %{user_link}"
     item_report: "%{report_link: signalent #%{report_id}}"
     item_script_lock_appeal: "%{appeal_link:Faire appel #%{appeal_id}}"
+    item_discussion_html: "Discussion: %{discussion_link}"
+    item_comment_html: "Commentaire sur la discussion: %{comment_link}"
   reports:
     name: "Signaler #%{id}"
     report_filed: "Votre rapport sera examiné par un modérateur."
@@ -1167,6 +1207,7 @@ fr:
       comment_description: "Un commentaire sur %{discussion_title}"
       message: "Un message de %{user}"
       deleted: "Supprimé %{type} #%{id}"
+      script: "%{script}"
   appeals:
     new:
       title: Appel de suppression de nouveau script
@@ -1178,6 +1219,7 @@ fr:
     dismissed_by_moderator: Un modérateur a rejeté cet appel.
     upheld_by_moderator: À la suite de cet appel, un modérateur a rétabli ce script.
     submitted: Votre appel a été reçu et un modérateur l'examinera.
+    already_open: Il y a déjà un appel ouvert pour ce script.
   discussions:
     title: Discussions
     comment_date: "Posté le: %{date}"
@@ -1286,6 +1328,7 @@ fr:
     no_discussions: Aucune discussion trouvée.
     mark_all_read: Tout marquer lu
     pending_moderator_review: Cette discussion n'est pas accessible à d'autres utilisateurs tant qu'un modérateur ne l'a pas autorisé.
+    blocked_pending_review: Les commentaires sont bloqués en attendant qu'un modérateur examine vos contributions précédentes. Réessayez plus tard.
     search_placeholder: Rechercher des discussions
   conversations:
     user_input_note: Saisissez le nom de l'utilisateur ou l'URL de son profil.
@@ -1354,6 +1397,7 @@ fr:
         current_password: "Mot de passe actuel"
         new_password: "Nouveau mot de passe"
         new_password_confirmation: "Confirmer le nouveau mot de passe"
+        otp_attempt: Code à double authentification (2FA)
       script:
         name: "Nom"
         description: "Description"
@@ -1402,6 +1446,7 @@ fr:
       no_executable: "ne contient aucun code exécutable"
       meta_too_long: "%{key} est trop long (le maximum est de %{count} caractères)"
       style_missing_meta: "il manque une partie des métadonnées. Voir https://github.com/openstyles/stylus/wiki/Writing-UserCSS pour des exemples"
+      invalid_unicode: "Unicode est invalide"
   opensearch:
     short_name: "%{site_name} recherche"
     description: "Recherche de scripts utilisateur sur %{site_name}."
