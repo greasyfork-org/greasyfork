@@ -310,6 +310,12 @@ zh-TW:
     preview_additional_info: "預覽"
     must_confirm: "必須先確認帳號才可以張貼腳本。您可以用兩種方式進行確認：加上外部登入資訊，或是發一封確認郵件。"
     must_confirm_email_button: "發送驗證郵件到%{email}"
+    needs_secure_login:
+      confirm_email: "請確認您的電子郵件"
+      enable_2fa: "啟用二階段認證"
+      add_external_heading: "選項2：僅使用外部的登入方式"
+      add_external: "添加外部登入方式"
+      remove_password: "移除您的 %{site_name} 密碼 "
     authors_heading: "作者列表"
     error_unauthorized_copy: "這份代碼中包含了 %{script} 的未授權代碼。請參考  %{site_name} 的 %{rules_link:腳本規範}。"
     invitations:
@@ -400,6 +406,7 @@ zh-TW:
     delete: "刪除腳本收藏集"
     delete_confirmation: "您確定要刪除這個腳本收藏集嗎？"
     site_default_sort: "(預設值)"
+    edit_link: "編輯"
     edit_scripts:
       heading: "腳本"
       description: "在收藏集中包含或排除腳本"
@@ -513,6 +520,7 @@ zh-TW:
     script_list_none_for_filter: "不存在適用於目前篩選條件的腳本。"
     script_list_none_same_user_html: "你還沒撰寫任何腳本。%{script_list_none_same_user_info_link}"
     script_list_none_same_user_info_link_text: "想要現在學習嗎？"
+    listing_sort_name: "名稱"
     deleted_script_list: "已刪除的腳本"
     unlisted_script_list: "不公開的腳本"
     sign_out: "登出"
@@ -520,9 +528,11 @@ zh-TW:
     edit_sign_in: "登入方式設定"
     edit_sign_in_title: "登入方式設定"
     edit_sign_in_password: "密碼"
+    edit_sign_in_2fa_enabled: 您已設置雙重認證（2FA），若驗證代碼遺失可以重新生成。
     edit_sign_in_disable_2fa: 關閉雙重認證
     edit_sign_in_2fa_disabled: 開啟雙重認證（2FA）以提升帳戶%{site_name}的安全性。
     edit_sign_in_enable_2fa: 開啟雙重認證
+    edit_sign_in_regenerate_2fa: 重新產生雙重認證代碼（2FA）
     edit_notifications: "編輯通知設定"
     view_notifications: "查看通知"
     no_password_set_info: "您的帳號沒有設定密碼。"
@@ -552,8 +562,12 @@ zh-TW:
     2fa_enabled: 已啟用雙重認證
     2fa_enable_code_incorrect: 雙重認證驗證碼錯誤，請再試一次
     2fa_disabled: 已停用雙重認證
+    2fa_disabled_already: 已停用雙重認證（2FA）。
     enable_2fa:
+      qr_heading: 以QR碼
+      manual_heading: 手動
       code_entry_heading: 輸入驗證碼
+      verify_code: 驗證代碼
     set_up_webhook: "設定 Webhook"
     list_display_html:
       other: "%{user_link} - %{count} 個腳本"
@@ -613,6 +627,9 @@ zh-TW:
     banned_delete:
       intro: "刪除您的帳戶將一併刪除您曾經上傳的腳本。您在論壇上的貢獻不會被刪除，但您的使用者名稱會被遮蔽。即使刪除帳戶，該帳戶的電子郵件將不能被用於重新註冊。若確定要刪除帳戶，請在下方登入。"
       complete: "你的帳號已被刪除。"
+    deleted_user_with_id: "(已刪除的使用者 %{id} )"
+    deleted_user_without_id: "(已刪除的使用者)"
+    require_secure_login: 您的帳號必須使用更加安全的登入方式。
     badges:
       banned:
         short: 已封鎖
@@ -624,6 +641,7 @@ zh-TW:
         short: 作者
         long: 脚本作者
     notifications:
+      email: 以電子郵件
       discussion_defaults:
         title: 論壇通知
         intro: 您訂閱的討論有更新時將通知您，您可以隨時取消訂閱討論。
@@ -662,6 +680,10 @@ zh-TW:
       new_comment: "%{user}在%{discussion}中發佈一則評論"
       new_comment_script: "%{user}在您的%{script}腳本發佈一則新討論"
       mention: "%{user} 在 %{discussion} 中提到了您。"
+      report_filed_reported: 已舉報 %{item}。
+      report_resolved_reported:
+        dismissed: 您對 %{item} 的舉報已被管理員駁回。
+        upheld: 您對 %{item} 的舉報已被管理員通過。
       list:
         header: 通知
         none: 暫無通知
@@ -741,6 +763,7 @@ zh-TW:
       translators_credit: "%{site_name} 的翻譯來自 %{translators_link:Greasy Translation Force @ Transifex}︰"
       icons_credit: "瀏覽器圖示是來自 %{browserlogos}。"
     help_with_greasymonkey: "Greasemonkey 疑難排解"
+    help_with_tampermonkey: "Tampermonkey的相關幫助"
     contact:
       title: "聯繫某人"
       content_html: >
@@ -802,6 +825,7 @@ zh-TW:
       description: "搜尋腳本代碼。區分大小寫的純文字搜尋，不支持萬用字元。"
     user_search:
       title: "使用者搜尋"
+      description: "按名稱搜尋使用者"
   moderator_logs:
     date_column: "日期"
     moderator_column: "管理員"
@@ -811,6 +835,7 @@ zh-TW:
     item_script_html: "腳本：%{script_link}"
     item_deleted_script: "刪除腳本%{id}"
     item_user_html: "使用者：%{user_link}"
+    item_discussion_html: "討論： %{discussion_link}"
   reports:
     name: "檢舉#%{id}"
     report_filed: "您的檢舉將由管理員審核。"
@@ -830,6 +855,7 @@ zh-TW:
       external_code: "未允許的外部代碼"
       wrong_category: "分類錯誤"
       no_code: '沒有程式碼/hello world'
+      legal_claim: "法律聲明"
       other: "其他"
     report_intro: "%{reporter}在%{report_date}檢舉了%{reported_item}，因為：%{reason}"
     report_intro_no_reporter: "%{reported_item}在%{report_date}被檢舉，因為：%{reason}"
@@ -855,6 +881,7 @@ zh-TW:
     loading_diff: "正在載入…"
     script_updated_since_report: "自檢舉提交以來，腳本已被修改過。"
     report_item:
+      discussion: "來自 %{user}的討論：%{title}"
       comment: "%{user}的評論%{comment}"
       comment_description: "一則%{discussion_title}的評論"
       message: "來自%{user}的訊息"
@@ -896,6 +923,7 @@ zh-TW:
     ratings:
       question: "不評價 - 僅提問、評論或功能請求"
       bad: "負評 - 腳本失效或無法使用"
+      ok: "普通 - 腳本能使用，但有一些問題"
       good: "正評 - 腳本一切正常"
     ratings_short:
       question: "提問/評論"
@@ -1034,6 +1062,7 @@ zh-TW:
         current_password: "現在的密碼"
         new_password: "新密碼"
         new_password_confirmation: "確認新密碼"
+        otp_attempt: 雙重認證（2FA）代碼
       script:
         name: "名稱"
         description: "描述"
