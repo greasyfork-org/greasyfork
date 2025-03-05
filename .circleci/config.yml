@@ -16,6 +16,7 @@ jobs:
           MYSQL_ROOT_PASSWORD: rootpw
           MYSQL_DATABASE: greasyfork_test
           RAILS_ENV: test
+          PARALLEL_WORKERS: 2
       - image: cimg/mariadb:10.6
         environment:
           MYSQL_ROOT_PASSWORD: rootpw
