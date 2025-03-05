@@ -13,6 +13,7 @@ jobs:
           MYSQL_PORT: 3306
           MYSQL_USER: user
           MYSQL_PASSWORD: passw0rd
+          MYSQL_ROOT_PASSWORD: rootpw
           MYSQL_DATABASE: greasyfork_test
           RAILS_ENV: test
       - image: cimg/mariadb:10.6
@@ -40,6 +41,8 @@ jobs:
             cp .circleci/application.yml .circleci/database.yml config/
       - run: bundle exec rake db:create
       - run: bin/rails db:schema:load
+        # Needed for setting up parallel test DBs.
+      - run: echo "GRANT ALL PRIVILEGES ON *.* TO user@'%';FLUSH PRIVILEGES" | mysql -uroot -p$MYSQL_ROOT_PASSWORD
       - restore_cache:
           keys:
             - yarn-cache-{{ checksum "yarn.lock" }}
