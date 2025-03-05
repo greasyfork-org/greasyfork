@@ -41,8 +41,9 @@ jobs:
             cp .circleci/application.yml .circleci/database.yml config/
       - run: bundle exec rake db:create
       - run: bin/rails db:schema:load
-        # Needed for setting up parallel test DBs.
-      - run: echo "GRANT ALL PRIVILEGES ON *.* TO user@'%';FLUSH PRIVILEGES" | mysql -uroot -p$MYSQL_ROOT_PASSWORD
+      - run:
+          name: Grant privileges to create parallel test DBs
+          command: echo "GRANT ALL PRIVILEGES ON *.* TO user@'%';FLUSH PRIVILEGES" | mysql -uroot -p$MYSQL_ROOT_PASSWORD
       - restore_cache:
           keys:
             - yarn-cache-{{ checksum "yarn.lock" }}
