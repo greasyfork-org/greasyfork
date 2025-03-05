@@ -22,6 +22,10 @@ module ScriptListings
       @bots = 'noindex'
     end
 
+    # Make sure the site param is something valid otherwise the listing option links will break because the param
+    # won't match the route's definition. This regexp matches the one defined by the route, except with \A and \z.
+    params.delete(:site) if params[:site] && !/\A[a-z0-9\-.*]*?\z/i.match?(params[:site])
+
     respond_to do |format|
       format.html do
         should_cache_page = generally_cachable? && (params.keys - %w[locale controller action site page sort]).none?
