@@ -39,7 +39,6 @@ jobs:
           command: |
             cp .circleci/application.yml .circleci/database.yml config/
       - run: bundle exec rake db:create
-      - run: bundle exec rake parallel:create
       - run: bin/rails db:schema:load
       - restore_cache:
           keys:
