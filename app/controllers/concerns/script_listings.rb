@@ -317,14 +317,18 @@ module ScriptListings
         with[:_not] = { site_application_id: { exists: true } }
       else
         site = SiteApplication.find_by(domain_text: params[:site])
+
         if site.nil?
           @scripts = Script.none.paginate(page: 1)
-        elsif site.blocked
+          return false
+        end
+
+        if site.blocked
           render_404(site.blocked_message)
           return true
-        else
-          with[:site_application_id] = site.id
         end
+
+        with[:site_application_id] = site.id
       end
     end
 
