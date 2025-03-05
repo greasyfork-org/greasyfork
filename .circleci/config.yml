@@ -28,7 +28,7 @@ jobs:
       - ruby/install-deps
       - browser-tools/install-chrome
       - run: sudo apt update
-      - run: sudo apt install mariadb-client libvips
+      - run: sudo apt install mariadb-client libvips brotli
       - run:
           name: Which bundler?
           command: bundle -v
