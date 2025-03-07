@@ -10,6 +10,7 @@ class CommentCheckingServiceTest < ActiveSupport::TestCase
     end
 
     assert_not comment.reload.soft_deleted?
+    assert_nil comment.discussion.review_reason
   end
 
   test 'when one matches' do
@@ -22,6 +23,7 @@ class CommentCheckingServiceTest < ActiveSupport::TestCase
       CommentCheckingService.check(comment, ip: '127.0.0.1', referrer: nil, user_agent: 'Bot')
     end
     assert Report.last.pending?
+    assert_equal Discussion::REVIEW_REASON_RAINMAN, comment.discussion.review_reason
   end
 
   test 'when multiple match for an existing user' do
@@ -37,6 +39,7 @@ class CommentCheckingServiceTest < ActiveSupport::TestCase
     end
     assert_not comment.reload.soft_deleted?
     assert Report.last.pending?
+    assert_equal Discussion::REVIEW_REASON_RAINMAN, comment.discussion.review_reason
   end
 
   test 'when multiple match for a new user' do
@@ -53,5 +56,6 @@ class CommentCheckingServiceTest < ActiveSupport::TestCase
     assert Report.last.upheld?
     assert comment.reload.soft_deleted?
     assert comment.poster.reload.banned?
+    assert_nil comment.discussion.review_reason
   end
 end
