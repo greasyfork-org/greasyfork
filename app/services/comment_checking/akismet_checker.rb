@@ -3,13 +3,13 @@ require 'akismet'
 module CommentChecking
   class AkismetChecker
     def self.check(comment, ip:, user_agent:, referrer:)
-      return CommentChecking::Result.new(false, text: 'No Akismet key defined') unless Akismet.api_key
+      return CommentChecking::Result.new(false, text: 'No Akismet key defined.') unless Akismet.api_key
 
       akismet_submission = AkismetSubmission.find_by(item: comment) || submit_to_akismet(comment, ip:, user_agent:, referrer:)
 
       return CommentChecking::Result.not_spam unless akismet_submission.result_spam
 
-      CommentChecking::Result.new(true, text: akismet_submission.result_blatant ? 'Akismet result is blatant spam' : 'Akismet result is spam')
+      CommentChecking::Result.new(true, text: akismet_submission.result_blatant ? 'Akismet result is blatant spam.' : 'Akismet result is spam.')
     end
 
     def self.submit_to_akismet(comment, ip:, user_agent:, referrer:)
