@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_28_220422) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_07_155204) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -446,6 +446,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_28_220422) do
     t.boolean "self_upheld", default: false
     t.string "moderator_reason_override", limit: 25
     t.boolean "blatant", default: false, null: false
+    t.text "private_explanation"
     t.index ["item_type", "item_id"], name: "index_reports_on_item_type_and_item_id"
     t.index ["reporter_id"], name: "index_reports_on_reporter_id"
     t.index ["result"], name: "index_reports_on_result"

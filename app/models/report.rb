@@ -171,6 +171,10 @@ class Report < ApplicationRecord
     reason_text(upheld_reason)
   end
 
+  def pending?
+    result.nil?
+  end
+
   def resolved?
     result.present?
   end

@@ -121,4 +121,15 @@ class Comment < ApplicationRecord
   def reportable_item
     first_comment? ? discussion : self
   end
+
+  def external_links
+    Nokogiri::HTML(ApplicationController.helpers.format_user_text(text, text_markup))
+            .css('a[href]')
+            .pluck('href')
+            .reject { |href| href.starts_with?('https://greasyfork.org/') || href.starts_with?('https://sleazyfork.org/') }
+  end
+
+  def prior_deleted_comments(age)
+    Comment.soft_deleted.where(created_at: (created_at - age)...created_at)
+  end
 end

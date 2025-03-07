@@ -88,6 +88,16 @@
   </blockquote>
 <% end %>
 
+<% if report.private_explanation.present? && current_user&.moderator? %>
+  <div>Automated checks report:</div>
+  <blockquote>
+    <div class="user-content">
+      <%= format_user_text(report.private_explanation, 'markdown') %>
+    </div>
+  </blockquote>
+<% end %>
+
+
 <% if report.rebuttal.present? %>
   <div><%= t('common.quote.prefix_html', user: render_user(report.rebuttal_by_user, report.rebuttal_by_user_id)) %></div>
   <blockquote>
