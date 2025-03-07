@@ -55,6 +55,7 @@ ja:
     reported_notice_for_author: "管理担当者による審査が行われるまで、他のユーザーはこのスクリプトを使用できません。"
     info_page: "情報"
     code_page: "コード"
+    wrap_lines: "右端で折り返す"
     history_page: "履歴"
     feedback_page: "フィードバック (%{count})"
     stats_page: "統計"
@@ -1281,6 +1282,7 @@ ja:
     no_discussions: 議論はありません。
     mark_all_read: すべて既読にする
     pending_moderator_review: この議論は、管理担当者により審査されるまで他のユーザーに表示されません。
+    blocked_pending_review: 保守管理者があなたの過去の貢献を審査するまでコメントはブロックされます。時間をおいて再度お試しください。
     search_placeholder: 議論を検索
   conversations:
     user_input_note: ユーザー名、またはプロフィールのURLを入力
@@ -1390,6 +1392,7 @@ ja:
       no_executable: "実行可能なコードを含んでいません。"
       meta_too_long: "%{key} が長すぎます (最大%{count}文字)"
       style_missing_meta: "がメタデータ内にありません。例をご覧くださいhttps://github.com/openstyles/stylus/wiki/Writing-UserCSS "
+      invalid_unicode: "正しくないユニコードあり"
   opensearch:
     short_name: "%{site_name} 検索"
     description: "%{site_name} 上のユーザースクリプトを検索します。"
