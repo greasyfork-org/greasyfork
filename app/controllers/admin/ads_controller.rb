@@ -1,6 +1,13 @@
 module Admin
   class AdsController < BaseController
-    DISALLOWED_KEYWORDS = %w[hack crack 破解 youtube google].freeze
+    DISALLOWED_KEYWORDS = [
+      'hack',
+      'crack',
+      '破解', # "Cracking"
+      '去广告', # "Remove advertising"
+      'youtube',
+      'google',
+    ].freeze
 
     before_action :administrators_only
 
