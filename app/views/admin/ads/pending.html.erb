@@ -1,5 +1,6 @@
 <ol class="script-list">
   <% @scripts.each do |script| %>
+    <% disallowed_keywords = ads_disallowed_keywords_used(script) %>
     <li>
       <article>
         <h2>
@@ -12,9 +13,14 @@
         <p>
           <%= script.site_applications.map { |s| s.domain? ? link_to(s.text, "http://#{s.text}") : s.text}.join(', ').html_safe %>
         </p>
-        <p style="padding: 0.5em 0">
+        <% if disallowed_keywords.any? %>
+          <p style="margin: 0.5em 0">
+            <b>Disallowed keywords: <%= disallowed_keywords.join(', ') %></b>
+          </p>
+        <% end %>
+        <p style="margin: 0.5em 0">
           <%= form_with(model: script, url: approve_admin_ad_path(script), method: :patch, html: { style: 'display: inline;' }) do %>
-            <button <% if contains_disallowed_keyword?(script) %>disabled<% end %>>Approve</button>
+            <button <% if !@allow_override && disallowed_keywords.any? %>disabled<% end %>>Approve</button>
           <% end %>
           <%= form_with(model: script, url: reject_admin_ad_path(script), method: :patch, html: { style: 'display: inline;' }) do %>
             <button>Reject</button>

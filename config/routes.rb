@@ -253,6 +253,7 @@ Rails.application.routes.draw do
         end
         collection do
           get :pending
+          get :rejected
         end
       end
       resources :allowed_requires, only: [:new, :create, :edit, :update, :destroy]

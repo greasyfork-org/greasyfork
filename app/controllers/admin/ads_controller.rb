@@ -1,7 +1,6 @@
 module Admin
   class AdsController < BaseController
-    DISALLOWED_INCLUDES = %w[youtube google].freeze
-    DISALLOWED_KEYWORDS = (%w[hack crack 破解] + DISALLOWED_INCLUDES).freeze
+    DISALLOWED_KEYWORDS = %w[hack crack 破解 youtube google].freeze
 
     before_action :administrators_only
 
@@ -16,6 +15,17 @@ module Admin
                  .limit(25)
     end
 
+    def rejected
+      @scripts = Script
+                 .active(:greasyfork)
+                 .includes(:site_applications, :localized_attributes)
+                 .where(adsense_approved: false)
+                 .order(page_views: :desc)
+                 .limit(25)
+      @allow_override = true
+      render 'pending'
+    end
+
     def approve
       Script.find(params[:id]).update(adsense_approved: true)
       redirect_to pending_admin_ads_path
@@ -28,13 +38,16 @@ module Admin
 
     private
 
-    def disallowed_keyword_regexp
-      @disallowed_keyword_regexp ||= Regexp.new(DISALLOWED_KEYWORDS.map { |keyword| Regexp.escape(keyword) }.join('|'), true)
+    def ads_disallowed_keywords_used(script)
+      used = Set.new
+      script.localized_attributes.each do |la|
+        text = ApplicationController.helpers.format_user_text_as_plain(la.attribute_value, la.value_markup)
+        used |= DISALLOWED_KEYWORDS.select do |keyword|
+          text.include?(keyword)
+        end
+      end
+      used
     end
-
-    def contains_disallowed_keyword?(script)
-      script.localized_attributes.any? { |la| disallowed_keyword_regexp.match?(ApplicationController.helpers.format_user_text_as_plain(la.attribute_value, la.value_markup)) }
-    end
-    helper_method :contains_disallowed_keyword?
+    helper_method :ads_disallowed_keywords_used
   end
 end
