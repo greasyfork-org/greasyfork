@@ -5,6 +5,9 @@ module Admin
       'crack',
       '破解', # "Cracking"
       '去广告', # "Remove advertising"
+      '无广告', # "No ads"
+      '广告跳过', # "Advertisement skipped"
+      '屏蔽广告', # "Block ads"
       'youtube',
       'google',
     ].freeze
@@ -28,7 +31,7 @@ module Admin
                  .includes(:site_applications, :localized_attributes)
                  .where(adsense_approved: false)
                  .order(page_views: :desc)
-                 .limit(25)
+                 .limit(100)
       @allow_override = true
       @return_to = rejected_admin_ads_path
       render 'pending'
