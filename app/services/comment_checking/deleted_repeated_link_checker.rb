@@ -18,7 +18,7 @@ module CommentChecking
 
       text_condition = links.map { |_link| 'text LIKE ?' }.join(' OR ')
       condition_params = links.map { |link| "%#{Comment.sanitize_sql_like(link)}%" }
-      comment.prior_deleted_comments(1.month).where(text_condition, *condition_params)
+      comment.prior_deleted_comments(1.month).where(text_condition, *condition_params).reject(&:poster_deleted?)
     end
   end
 end

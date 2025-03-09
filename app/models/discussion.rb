@@ -191,4 +191,8 @@ class Discussion < ApplicationRecord
   def calculate_publicly_visible
     self.publicly_visible = !soft_deleted? && review_reason.nil? && report_id.nil? && (script.nil? || !script.deleted?)
   end
+
+  def poster_deleted?
+    poster_id && poster_id == deleted_by_user_id
+  end
 end

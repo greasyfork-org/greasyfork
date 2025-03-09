@@ -132,4 +132,8 @@ class Comment < ApplicationRecord
   def prior_deleted_comments(age)
     Comment.soft_deleted.where(created_at: (created_at - age)...created_at)
   end
+
+  def poster_deleted?
+    poster_id && poster_id == deleted_by_user_id
+  end
 end
