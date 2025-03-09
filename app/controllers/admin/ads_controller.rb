@@ -23,12 +23,13 @@ module Admin
                  .order(page_views: :desc)
                  .limit(25)
       @allow_override = true
+      @return_to = rejected_admin_ads_path
       render 'pending'
     end
 
     def approve
       Script.find(params[:id]).update(adsense_approved: true)
-      redirect_to pending_admin_ads_path
+      redirect_to params[:return_to] || pending_admin_ads_path
     end
 
     def reject

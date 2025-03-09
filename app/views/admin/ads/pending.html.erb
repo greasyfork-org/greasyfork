@@ -19,11 +19,13 @@
           </p>
         <% end %>
         <p style="margin: 0.5em 0">
-          <%= form_with(model: script, url: approve_admin_ad_path(script), method: :patch, html: { style: 'display: inline;' }) do %>
+          <%= form_with(model: script, url: approve_admin_ad_path(script, return_to: @return_to), method: :patch, html: { style: 'display: inline;' }) do %>
             <button <% if !@allow_override && disallowed_keywords.any? %>disabled<% end %>>Approve</button>
           <% end %>
-          <%= form_with(model: script, url: reject_admin_ad_path(script), method: :patch, html: { style: 'display: inline;' }) do %>
-            <button>Reject</button>
+          <% unless script.adsense_approved == false %>
+            <%= form_with(model: script, url: reject_admin_ad_path(script, return_to: @return_to), method: :patch, html: { style: 'display: inline;' }) do %>
+              <button>Reject</button>
+            <% end %>
           <% end %>
         </p>
         <%= render partial: 'screenshots/show', locals: { attachable: script.newest_saved_script_version } %>
