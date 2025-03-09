@@ -242,7 +242,7 @@ class DiscussionsController < ApplicationController
       return
     end
 
-    discussion.soft_destroy!
+    discussion.soft_destroy!(by_user: current_user)
     ModeratorAction.create!(moderator: current_user, discussion:, action: 'Delete') unless normally_deletable
 
     if discussion.script
