@@ -41,7 +41,7 @@ module Admin
     def ads_disallowed_keywords_used(script)
       used = Set.new
       script.localized_attributes.each do |la|
-        text = ApplicationController.helpers.format_user_text_as_plain(la.attribute_value, la.value_markup)
+        text = ApplicationController.helpers.format_user_text_as_plain(la.attribute_value, la.value_markup).downcase
         used |= DISALLOWED_KEYWORDS.select do |keyword|
           text.include?(keyword)
         end
