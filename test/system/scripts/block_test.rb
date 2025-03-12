@@ -63,6 +63,7 @@ class BlockTest < ApplicationSystemTestCase
     fill_in 'Code', with: code
     assert_difference -> { ScriptVersion.count } => 1 do
       click_on 'Post script'
+      assert_on_script_tab('Info')
     end
   end
 
@@ -84,6 +85,7 @@ class BlockTest < ApplicationSystemTestCase
     fill_in 'Code', with: code
     assert_difference -> { ScriptVersion.count } => 1 do
       click_on 'Post new version'
+      assert_on_script_tab('Info')
     end
   end
 
