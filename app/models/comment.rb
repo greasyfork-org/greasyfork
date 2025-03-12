@@ -122,11 +122,17 @@ class Comment < ApplicationRecord
     first_comment? ? discussion : self
   end
 
-  def external_links
+  INTERNAL_LINK_PREFIXES = ['https://greasyfork.org/', 'https://sleazyfork.org/'].freeze
+
+  def text_as_doc
     Nokogiri::HTML(ApplicationController.helpers.format_user_text(text, text_markup))
-            .css('a[href]')
-            .pluck('href')
-            .reject { |href| href.starts_with?('https://greasyfork.org/') || href.starts_with?('https://sleazyfork.org/') }
+  end
+
+  def external_links
+    text_as_doc
+      .css('a[href]')
+      .pluck('href')
+      .reject { |href| INTERNAL_LINK_PREFIXES.any? { |prefix| href.starts_with?(prefix) } }
   end
 
   def prior_deleted_comments(age)

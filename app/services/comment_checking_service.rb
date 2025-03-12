@@ -6,6 +6,7 @@ class CommentCheckingService
     CommentChecking::RepeatedTextChecker,
     CommentChecking::DeletedRepeatedTextChecker,
     CommentChecking::DeletedRepeatedLinkChecker,
+    CommentChecking::OnlyLinkChecker,
   ].freeze
 
   def self.check(comment, ip:, user_agent:, referrer:)
