@@ -236,6 +236,8 @@
       <% else %>
         This report has been upheld by <%= render_user(report.resolver, report.resolver_id) %>.
       <% end %>
+    <% elsif current_user&.moderator? && report.automod_resolved %>
+      This report has been upheld automatically.
     <% else %>
       <% if report.moderator_reason_override %>
         <%= t('reports.result_upheld_reason_override', reason: report.upheld_reason_text) %>

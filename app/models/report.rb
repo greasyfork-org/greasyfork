@@ -104,22 +104,24 @@ class Report < ApplicationRecord
     reporter&.update_trusted_report!
   end
 
-  def uphold!(moderator:, moderator_notes: nil, moderator_reason_override: nil, ban_user: false, delete_comments: false, delete_scripts: false, redirect: false, self_upheld: false)
+  def uphold!(moderator: nil, moderator_notes: nil, moderator_reason_override: nil, ban_user: false, delete_comments: false, delete_scripts: false, redirect: false, self_upheld: false, automod: false)
+    raise 'Must specify a moderator' unless moderator || automod || self_upheld
+
     Report.transaction do
       case item
       when User, Message
-        reported_users.each { |user| user.ban!(moderator:, delete_comments:, delete_scripts:, ban_related: true, report: self) }
+        reported_users.each { |user| user.ban!(moderator:, automod:, delete_comments:, delete_scripts:, ban_related: true, report: self) }
       when Comment
-        reported_users.each { |user| user.ban!(moderator:, delete_comments:, delete_scripts:, ban_related: true, report: self) } if ban_user
+        reported_users.each { |user| user.ban!(moderator:, automod:, delete_comments:, delete_scripts:, ban_related: true, report: self) } if ban_user
         item.soft_destroy!(by_user: moderator) unless item.soft_deleted?
-        ModeratorAction.create!(moderator:, comment: item, action: 'Delete', report: self, private_reason: moderator_notes) unless item.soft_deleted? || ban_user
+        ModeratorAction.create!(moderator:, automod:, comment: item, action: 'Delete', report: self, private_reason: moderator_notes) unless item.soft_deleted? || ban_user
       when Discussion
         if reason == REASON_WRONG_CATEGORY
           item.update!(discussion_category_id:, script_id: nil, rating: nil, title: item.first_comment.plain_text.truncate(200))
         else
-          reported_users.each { |user| user.ban!(moderator:, delete_comments:, delete_scripts:, ban_related: true, report: self) } if ban_user
+          reported_users.each { |user| user.ban!(moderator:, automod:, delete_comments:, delete_scripts:, ban_related: true, report: self) } if ban_user
           item.soft_destroy!(by_user: moderator) unless item.soft_deleted?
-          ModeratorAction.create!(moderator:, discussion: item, action: 'Delete', report: self, private_reason: moderator_notes) unless item.soft_deleted? || ban_user
+          ModeratorAction.create!(moderator:, automod:, discussion: item, action: 'Delete', report: self, private_reason: moderator_notes) unless item.soft_deleted? || ban_user
         end
       when Script
         if unauthorized_code? && reference_script
@@ -129,9 +131,9 @@ class Report < ApplicationRecord
         end
         item.save(validate: false)
         if ban_user
-          reported_users.each { |user| user.ban!(moderator:, delete_comments:, delete_scripts:, ban_related: true, report: self) }
+          reported_users.each { |user| user.ban!(moderator:, automod:, delete_comments:, delete_scripts:, ban_related: true, report: self) }
         elsif moderator
-          ModeratorAction.create!(moderator:, script: item, action: 'Delete and lock', report: self, private_reason: moderator_notes)
+          ModeratorAction.create!(moderator:, automod:, script: item, action: 'Delete and lock', report: self, private_reason: moderator_notes)
         end
       when NilClass
         # Do nothing, it's gone already.
@@ -139,7 +141,7 @@ class Report < ApplicationRecord
         raise "Unknown report item #{item}"
       end
 
-      update_columns(result: RESULT_UPHELD, resolver_id: moderator&.id, moderator_notes:, self_upheld:, moderator_reason_override: (moderator_reason_override if moderator_reason_override != reason))
+      update_columns(result: RESULT_UPHELD, resolver_id: moderator&.id, automod_resolved: automod, moderator_notes:, self_upheld:, moderator_reason_override: (moderator_reason_override if moderator_reason_override != reason))
       reporter&.update_trusted_report!
     end
 

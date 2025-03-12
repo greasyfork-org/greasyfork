@@ -228,13 +228,15 @@ class User < ApplicationRecord
     return scripts.not_locked
   end
 
-  def lock_all_scripts!(moderator:, delete_type:, reason: nil, report: nil)
+  def lock_all_scripts!(delete_type:, moderator: nil, automod: false, reason: nil, report: nil)
+    raise 'Must specify a moderator' unless moderator || automod
+
     non_locked_scripts.each do |s|
       s.delete_reason = reason
       s.locked = true
       s.delete_type = delete_type
       s.save(validate: false)
-      ModeratorAction.create!(moderator:, script: s, action: 'Delete and lock', reason:, report:)
+      ModeratorAction.create!(moderator:, automod:, script: s, action: 'Delete and lock', reason:, report:)
     end
   end
 
@@ -275,7 +277,9 @@ class User < ApplicationRecord
     save!
   end
 
-  def ban!(moderator:, reason: nil, report: nil, delete_comments: false, delete_scripts: false, private_reason: nil, ban_related: true)
+  def ban!(moderator: nil, automod: false, reason: nil, report: nil, delete_comments: false, delete_scripts: false, private_reason: nil, ban_related: true)
+    raise 'Must specify a moderator' unless moderator || automod
+
     return if banned?
 
     raise "Can't ban this user." unless bannable?
@@ -283,6 +287,7 @@ class User < ApplicationRecord
     User.transaction do
       ModeratorAction.create!(
         moderator:,
+        automod:,
         user: self,
         action: 'Ban',
         reason:,
@@ -295,12 +300,12 @@ class User < ApplicationRecord
 
     if ban_related
       User.not_banned.where(canonical_email:).find_each do |user|
-        user.ban!(moderator:, reason:, delete_comments: delete_scripts, delete_scripts:, private_reason:, ban_related: false, report:)
+        user.ban!(moderator:, automod:, reason:, delete_comments: delete_scripts, delete_scripts:, private_reason:, ban_related: false, report:)
       end
     end
 
-    delete_all_comments!(by_user: moderator) if delete_comments
-    lock_all_scripts!(reason:, report:, moderator:, delete_type: 'blanked') if delete_scripts
+    delete_all_comments!(by_user: moderator, automod:) if delete_comments
+    lock_all_scripts!(reason:, report:, moderator:, automod:, delete_type: 'blanked') if delete_scripts
 
     Report.unresolved.where(item: self).find_each do |other_report|
       other_report.uphold!(moderator:)
@@ -366,10 +371,10 @@ class User < ApplicationRecord
     c.first
   end
 
-  def delete_all_comments!(by_user: nil)
+  def delete_all_comments!(by_user: nil, automod: false)
     discussions.not_deleted.each { |discussion| discussion.soft_destroy!(by_user:) }
     comments.not_deleted.each { |comment| comment.soft_destroy!(by_user:) }
-    Report.unresolved.where(item: discussions + comments).find_each { |report| report.uphold!(moderator: by_user) }
+    Report.unresolved.where(item: discussions + comments).find_each { |report| report.uphold!(moderator: by_user, automod:) }
   end
 
   def banned?

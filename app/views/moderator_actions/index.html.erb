@@ -14,7 +14,13 @@
   <% @actions.each do |action| %>
     <tr>
       <td><%= markup_date action.created_at %></td>
-      <td><%= render_user action.moderator, action.moderator_id, skip_badge: true %></td>
+      <td>
+        <% if action.automod && !current_user&.moderator? %>
+          (Auto)
+        <% else %>
+          <%= render_user User.administrators.first, User.administrators.first.id, skip_badge: true %>
+        <% end %>
+      </td>
       <td>
         <% if action.script %>
           <%= t('moderator_logs.item_script_html', script_link: link_to(action.script.name(request_locale), action.script)) %>

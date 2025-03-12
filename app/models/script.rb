@@ -604,10 +604,12 @@ class Script < ApplicationRecord
     return parts.join("\n")
   end
 
-  def ban_all_authors!(moderator:, reason:, private_reason: nil)
+  def ban_all_authors!(reason:, moderator: nil, automod: false, private_reason: nil)
+    raise 'Must specify a moderator' unless moderator || automod
+
     users.each do |user|
-      user.ban!(moderator:, reason:, private_reason:)
-      user.lock_all_scripts!(reason:, moderator:, delete_type: 'blanked')
+      user.ban!(moderator:, automod:, reason:, private_reason:)
+      user.lock_all_scripts!(reason:, moderator:, automod:, delete_type: 'blanked')
       user.scripts.each { |script| Report.uphold_pending_reports_for(script) }
     end
   end

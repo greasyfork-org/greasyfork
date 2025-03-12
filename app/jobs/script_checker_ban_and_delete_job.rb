@@ -12,7 +12,6 @@ class ScriptCheckerBanAndDeleteJob < ApplicationJob
 
     script_check_results = JSON.parse(script_check_results)
 
-    moderator = User.administrators.first
     reason = script_check_results.first['public_reason']
     private_reason = ''
     related_object_id = script_check_results.first['related_object_id']
@@ -27,7 +26,7 @@ class ScriptCheckerBanAndDeleteJob < ApplicationJob
     script.save(validate: false)
 
     ModeratorAction.create!(
-      moderator:,
+      automod: true,
       script:,
       action: 'Delete and lock',
       reason:,
@@ -35,7 +34,7 @@ class ScriptCheckerBanAndDeleteJob < ApplicationJob
     )
 
     # Spare mods and established users from being banned.
-    script.ban_all_authors!(moderator:, reason:, private_reason:) unless script.users.any?(&:moderator?) || script.users.any? { |u| u.created_at < 1.month.ago }
+    script.ban_all_authors!(automod: true, reason:, private_reason:) unless script.users.any?(&:moderator?) || script.users.any? { |u| u.created_at < 1.month.ago }
 
     Report.uphold_pending_reports_for(script)
 

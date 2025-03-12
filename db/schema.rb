@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_07_155204) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_12_212656) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -391,7 +391,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_07_155204) do
   create_table "moderator_actions", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.datetime "created_at", precision: nil, null: false
     t.bigint "script_id"
-    t.bigint "moderator_id", null: false
+    t.bigint "moderator_id"
     t.text "action", null: false
     t.string "reason"
     t.bigint "user_id"
@@ -401,6 +401,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_07_155204) do
     t.bigint "script_lock_appeal_id"
     t.bigint "discussion_id"
     t.bigint "comment_id"
+    t.boolean "automod", default: false, null: false
     t.index ["comment_id"], name: "index_moderator_actions_on_comment_id"
     t.index ["discussion_id"], name: "index_moderator_actions_on_discussion_id"
     t.index ["report_id"], name: "fk_rails_982b48b755"
@@ -447,6 +448,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_07_155204) do
     t.string "moderator_reason_override", limit: 25
     t.boolean "blatant", default: false, null: false
     t.text "private_explanation"
+    t.boolean "automod_resolved", default: false, null: false
     t.index ["item_type", "item_id"], name: "index_reports_on_item_type_and_item_id"
     t.index ["reporter_id"], name: "index_reports_on_reporter_id"
     t.index ["result"], name: "index_reports_on_result"

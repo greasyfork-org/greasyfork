@@ -10,9 +10,7 @@ class UserBanAndDeleteJob < ApplicationJob
 
     return if user.banned?
 
-    moderator = User.administrators.first
-
-    user.ban!(moderator:, reason: public_reason, private_reason:, ban_related: true)
+    user.ban!(automod: true, reason: public_reason, private_reason:, ban_related: true)
     AdminMailer.delete_confirm(user, private_reason).deliver_later
   end
 end

@@ -4,7 +4,7 @@ class UserCheckingJob < ApplicationJob
   discard_on ActiveJob::DeserializationError
 
   def perform(user)
-    user.ban!(moderator: User.administrators.first, reason: 'Spam', delete_comments: true, delete_scripts: true) if bannable?(user)
+    user.ban!(automod: true, reason: 'Spam', delete_comments: true, delete_scripts: true) if bannable?(user)
   end
 
   def bannable?(user)
