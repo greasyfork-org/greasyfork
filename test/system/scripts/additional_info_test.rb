@@ -22,7 +22,7 @@ class AdditionalInfoTest < ApplicationSystemTestCase
     fill_in 'Code', with: code
     fill_in 'Additional info', with: 'Hey @Geoffrey this is for you!'
     click_on 'Post script'
-    assert_selector 'h2', text: 'A Test!'
+    assert_on_script_tab('Info')
     script = Script.last
 
     assert_link '@Geoffrey', href: user_path(mentioned_user1, locale: :en)
@@ -30,7 +30,7 @@ class AdditionalInfoTest < ApplicationSystemTestCase
     visit new_script_script_version_url(script_id: script.id)
     fill_in 'Additional info', with: 'Hey @"Gordon J. Canada" this is for you!'
     click_on 'Post new version'
-    assert_selector 'h2', text: 'A Test!'
+    assert_on_script_tab('Info')
     assert_link '@Gordon J. Canada', href: user_path(mentioned_user2, locale: :en)
 
     visit script_path(script, version: script.script_versions.first.id, locale: :en)
@@ -59,7 +59,7 @@ class AdditionalInfoTest < ApplicationSystemTestCase
     fill_in 'Code', with: code
     fill_in 'Additional info', with: 'Hey @Geoffrey this is for you!'
     click_on 'Post script'
-    assert_selector 'h2', text: 'A Test!'
+    assert_on_script_tab('Info')
     script = Script.last
     script_version = script.script_versions.last
     [script, script_version].each do |o|
@@ -70,7 +70,7 @@ class AdditionalInfoTest < ApplicationSystemTestCase
     # No update
     visit new_script_script_version_url(script_id: script.id)
     click_on 'Post new version'
-    assert_selector 'h2', text: 'A Test!'
+    assert_on_script_tab('Info')
     script.reload
     script_version = script.script_versions.last
     [script, script_version].each do |o|
@@ -82,7 +82,7 @@ class AdditionalInfoTest < ApplicationSystemTestCase
     visit new_script_script_version_url(script_id: script.id)
     fill_in 'Additional info', with: 'Hey @Geoffrey this is for you!!!!!!'
     click_on 'Post new version'
-    assert_selector 'h2', text: 'A Test!'
+    assert_on_script_tab('Info')
     script.reload
     script_version = script.script_versions.last
     [script, script_version].each do |o|
@@ -94,7 +94,7 @@ class AdditionalInfoTest < ApplicationSystemTestCase
     visit new_script_script_version_url(script_id: script.id)
     fill_in 'Additional info', with: 'Hey @"Gordon J. Canada" this is for you!'
     click_on 'Post new version'
-    assert_selector 'h2', text: 'A Test!'
+    assert_on_script_tab('Info')
     script.reload
     script_version = script.script_versions.last
     [script, script_version].each do |o|
@@ -106,7 +106,7 @@ class AdditionalInfoTest < ApplicationSystemTestCase
     visit new_script_script_version_url(script_id: script.id)
     fill_in 'Additional info', with: 'This is for no one'
     click_on 'Post new version'
-    assert_selector 'h2', text: 'A Test!'
+    assert_on_script_tab('Info')
     script.reload
     script_version = script.script_versions.last
     [script, script_version].each do |o|

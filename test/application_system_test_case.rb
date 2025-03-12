@@ -26,6 +26,10 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     end
   end
 
+  def assert_on_script_tab(label)
+    assert_selector '#script-links .current', text: label
+  end
+
   teardown do
     messages = page.driver.browser.logs.get(:browser)
                    .map(&:message)
