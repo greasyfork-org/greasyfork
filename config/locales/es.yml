@@ -19,6 +19,7 @@ es:
     ratings: "Calificaciones"
     author_name: "Autor"
     version_number: "Versión"
+    version_abbreviation: "v%{number}"
     license: "Licencia"
     no_license: "Desconocida"
     compatibility: "Compatibilidad"
@@ -56,6 +57,7 @@ es:
     reported_notice_for_author: "Se ha bloqueado el acceso a este script hasta que lo revise un moderador."
     info_page: "Info"
     code_page: "Código"
+    wrap_lines: "Juntar líneas"
     history_page: "Historial"
     feedback_page: "Opiniones (%{count})"
     stats_page: "Estadísticas"
@@ -433,11 +435,13 @@ es:
           other: "Este script tiene una suma de comprobación de subrecurso que no concuerda: %{detail}."
         detail: "<code>%{url}</code> debería tener la suma de comprobación <code>%{expected_hash}</code> (comprobado por última vez %{last_checked_at})"
   script_sets:
+    heading: "Grupos de scripts"
     description: "Los grupos permiten crear un listado personal de scripts con los que explorar Greasy Fork. Puedes agruparlos añadiendo scripts individuales, incluyendo grupos de otros usuarios, o incluso grupos generados automáticamente. También puedes excluir scripts de la misma forma."
     favorites_name: "Favoritos"
     delete: "Borrar grupo de scripts"
     delete_confirmation: "¿Seguro que quieres borrar este grupo de scripts?"
     site_default_sort: "(opción predeterminada del sitio)"
+    edit_link: "Editar"
     edit_scripts:
       heading: "Scripts"
       description: "Incluir o excluir scripts individuales en este grupo."
@@ -565,6 +569,7 @@ es:
     script_list_none_for_filter: "No hay scripts que coincidan con los filtros actuales."
     script_list_none_same_user_html: "Todavía no has escrito ningún script. %{script_list_none_same_user_info_link}"
     script_list_none_same_user_info_link_text: "¿Te gustaría aprender a hacerlos?"
+    listing_sort_name: "Nombre"
     deleted_script_list: "Scripts borrados"
     unlisted_script_list: "Scripts ocultos"
     sign_out: "Cerrar sesión"
@@ -722,6 +727,12 @@ es:
         mention: Recibe una notificación cuando se te mencione en una conversación
       conversation_defaults:
         title: Notificaciones de conversación
+        intro: Recibirás notificaciones de las conversaciones a las que estés suscrito. Puedes suscribirte o cancelar tu suscripción a conversaciones en cualquier momento.
+        new_conversation_subscription:
+          overall_label: Por defecto, suscribirme a nuevas conversaciones cuando
+          self: Tú empiezas la discusión
+          other: Otra persona empieza la conversación
+        new_conversation_notification: Cuando se publique un comentario en una conversación a la que estés suscrito, recibe la notificación
       report_defaults:
         title: Informar notificaciones
       save_button: Actualizar ajustes de notificaciones
