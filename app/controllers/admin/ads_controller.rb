@@ -32,7 +32,6 @@ module Admin
                  .where(adsense_approved: false)
                  .order(page_views: :desc)
                  .limit(100)
-      @allow_override = true
       @return_to = rejected_admin_ads_path
       render 'pending'
     end

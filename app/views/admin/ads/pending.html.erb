@@ -19,8 +19,8 @@
           </p>
         <% end %>
         <p style="margin: 0.5em 0">
-          <%= form_with(model: script, url: approve_admin_ad_path(script, return_to: @return_to), method: :patch, html: { style: 'display: inline;' }) do %>
-            <button <% if !@allow_override && disallowed_keywords.any? %>disabled<% end %>>Approve</button>
+          <%= form_with(model: script, url: approve_admin_ad_path(script, return_to: @return_to), method: :patch, html: { style: 'display: inline;' }, data: disallowed_keywords.any? ? { turbo: true, turbo_confirm: 'Approve despite keywords?' } : {}) do %>
+            <button>Approve</button>
           <% end %>
           <% unless script.adsense_approved == false %>
             <%= form_with(model: script, url: reject_admin_ad_path(script, return_to: @return_to), method: :patch, html: { style: 'display: inline;' }) do %>
