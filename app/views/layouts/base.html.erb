@@ -56,7 +56,7 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', '<%= gtm_id %>', {
-        'ad_method': '<%= @ad_method&.tracking_key || ("_status_#{response.code}") if response.code != '200' %>',
+        'ad_method': '<%= @ad_method&.tracking_key || ("_status_#{response.code}" if response.code != '200') %>',
         'action': '<%= j controller_name %>/<%= j action_name %>'
       });
     </script>
