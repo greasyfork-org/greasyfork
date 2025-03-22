@@ -25,6 +25,7 @@ class ScriptWarningsTest < ApplicationSystemTestCase
     check 'Save anyway'
     assert_reindexes do
       click_on 'Post new version'
+      assert_on_script_tab('Info')
       assert_selector 'h2', text: 'A Test Update!'
     end
     assert_selector 'dd', text: '1.3'
