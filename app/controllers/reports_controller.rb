@@ -41,7 +41,10 @@ class ReportsController < ApplicationController
   end
 
   def new
-    @report = Report.new(item:, reporter: current_user, explanation_markup: current_user&.preferred_markup)
+    reported_item = item
+    return unless reported_item
+
+    @report = Report.new(item: reported_item, reporter: current_user, explanation_markup: current_user&.preferred_markup)
     previous_report = Report.unresolved.where(item:, reporter: current_user).first
     if previous_report
       redirect_to report_path(previous_report)
@@ -55,6 +58,8 @@ class ReportsController < ApplicationController
     @report = Report.new(report_params)
     @report.reporter = current_user
     @report.item = item
+
+    return unless @report.item
 
     return if check_for_blocked_report(@report)
 
@@ -222,7 +227,8 @@ class ReportsController < ApplicationController
     when 'script'
       Script.find(params[:item_id])
     else
-      render_404
+      render_404('Invalid parameters')
+      nil
     end
   end
 
