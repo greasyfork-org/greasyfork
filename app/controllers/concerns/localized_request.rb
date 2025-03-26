@@ -42,7 +42,7 @@ module LocalizedRequest
     end
 
     # Redirect if locale is a request param and not part of the url
-    unless request.GET[:locale].nil?
+    if request.GET[:locale].present?
       redirect_to current_path_with_params, status: :moved_permanently
       return
     end
