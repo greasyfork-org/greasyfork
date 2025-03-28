@@ -1,5 +1,9 @@
 <%- title t('common.not_found_title') %>
 
+<% if @ad_method&.ea? %>
+  <div id="error-show-ea" class="ad flat ethical-ads text-content-top-ad ethical-ads-text" data-ea-publisher="greasyfork" data-ea-type="text"></div>
+<% end %>
+
 <p><%= t('common.not_found_text') %></p>
 
 <p><%= link_to(t('common.not_found_link_home'), root_path) %></p>

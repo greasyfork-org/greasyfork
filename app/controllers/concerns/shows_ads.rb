@@ -56,6 +56,15 @@ module ShowsAds
     nil
   end
 
+  def choose_ad_method_for_error_page
+    no_ads = general_ads_setting
+    return no_ads if no_ads
+
+    return AdMethod.cd if sleazy?
+
+    AdMethod.ea
+  end
+
   private
 
   def general_ads_setting

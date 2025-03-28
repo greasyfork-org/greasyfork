@@ -22,6 +22,7 @@ class ApplicationController < ActionController::Base
   def routing_error
     respond_to do |format|
       format.html do
+        @ad_method = choose_ad_method_for_error_page
         @routing_error = true
         render 'home/routing_error', status: :not_found, layout: 'application'
       end
@@ -70,6 +71,7 @@ class ApplicationController < ActionController::Base
   end
 
   def render_404(message = 'Script does not exist.')
+    @ad_method = choose_ad_method_for_error_page
     render_error(404, message)
   end
 
