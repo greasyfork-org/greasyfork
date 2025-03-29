@@ -50,6 +50,7 @@ class ScriptVersionsController < ApplicationController
             { url: current_api_url_with_params(format: :json), type: 'application/json' },
             { url: current_api_url_with_params(format: :jsonp, callback: 'callback'), type: 'application/javascript' },
           ]
+          @ad_method = choose_ad_method_for_script(@script)
           render_to_string
         end
         format.json do
