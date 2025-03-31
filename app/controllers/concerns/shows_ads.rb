@@ -47,6 +47,7 @@ module ShowsAds
 
   def choose_ad_method_for_discussion(discussion)
     no_ads = general_ads_setting
+
     return no_ads if no_ads
 
     return AdMethod.no_ad(:sensitive) if discussion.script&.sensitive? || sleazy?
@@ -62,7 +63,20 @@ module ShowsAds
 
     return AdMethod.cd if sleazy?
 
-    AdMethod.ea
+    AdMethod.ea if valid_locale_for_ea?
+  end
+
+  def choose_ad_method_for_user(user)
+    no_ads = general_ads_setting
+    return no_ads if no_ads
+
+    return AdMethod.cd if sleazy?
+
+    return AdMethod.no_ad(:sensitive_list) if user.scripts.any?(&:sensitive?)
+
+    return AdMethod.ga if user.scripts.all?(&:adsense_approved)
+
+    return AdMethod.ea if valid_locale_for_ea?
   end
 
   private

@@ -129,6 +129,8 @@ class UsersController < ApplicationController
 
         @show_profile = !@user.banned? && UserRestrictionService.new(@user).allow_posting_profile?
 
+        @ad_method = choose_ad_method_for_user(@user)
+
         render layout: 'base'
       end
       format.json { render json: @user.api_as_json(with_private_scripts: @same_user) }

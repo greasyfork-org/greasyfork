@@ -6,6 +6,8 @@
 
   <h2><%= render_user(@user, @user.id, skip_link: true) %></h2>
 
+  <%= render partial: 'shared/in_page_ad', locals: { ad_method: @ad_method, div_id: 'user-show-ad', adsense_slot: '4899539664', ea_div_id: 'user-show-ea-image'} %>
+
   <% if @user.profile.present? && (current_user&.moderator? || @show_profile) %>
     <section id="user-profile" class="user-content">
       <%= format_user_text(@user.profile, @user.profile_markup, mentions: @user.mentions) %>

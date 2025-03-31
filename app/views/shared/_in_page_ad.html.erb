@@ -1,0 +1,28 @@
+<%# locals: (ad_method:, div_id:, adsense_slot:, ea_div_id:) %>
+
+<% if ad_method&.show_ads? %>
+  <div class="ad <%= ad_method.css_class %>" id="<%= div_id %>">
+    <div class="ad-content">
+      <% if ad_method.ga? %>
+        <ins class="adsbygoogle"
+             style="display:block; text-align:center;"
+             data-ad-layout="in-article"
+             data-ad-format="fluid"
+             data-ad-client="ca-pub-2247465624637408"
+             data-ad-slot="<%= adsense_slot %>"></ins>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      <% elsif ad_method&.ea? %>
+        <div id="<%= ea_div_id %>" class="flat ethical-ads" data-ea-publisher="greasyfork" data-ea-type="image"></div>
+        <div data-element-name="script" data-cfasync="false" type="text/javascript" src="//endowmentoverhangutmost.com/lv/esnk/2017767/code.js" async class="__clb-2017767 ea-fallback"></div>
+      <% elsif ad_method&.cd? %>
+        <% if sleazy? %>
+          <script data-cfasync="false" type="text/javascript" src="//endowmentoverhangutmost.com/lv/esnk/2014213/code.js" async class="__clb-2014213"></script>
+        <% else %>
+          <script data-cfasync="false" type="text/javascript" src="//chaseherbalpasty.com/lv/esnk/2017767/code.js" async class="__clb-2017767"></script>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
