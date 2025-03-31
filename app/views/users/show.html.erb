@@ -2,11 +2,15 @@
 <%- description "Greasy Fork profile for #{@user.name}" %>
 
 <section id="about-user" class="text-content reportable">
+  <% if @ad_method&.ea? %>
+    <div id="user-show-ea" class="flat ethical-ads ethical-ads-text" data-ea-publisher="greasyfork" data-ea-type="text"></div>
+  <% end %>
+
   <%= link_to(t('reports.report_user'), new_report_path(item_class: 'user', item_id: @user.id), class: 'report-link report-link-abs') unless @user.banned? %>
 
   <h2><%= render_user(@user, @user.id, skip_link: true) %></h2>
 
-  <%= render partial: 'shared/in_page_ad', locals: { ad_method: @ad_method, div_id: 'user-show-ad', adsense_slot: '4899539664', ea_div_id: 'user-show-ea-image'} %>
+  <%= render partial: 'shared/in_page_ad', locals: { ad_method: @ad_method, div_id: 'user-show-ad', adsense_slot: '4899539664', skip_ea: true} %>
 
   <% if @user.profile.present? && (current_user&.moderator? || @show_profile) %>
     <section id="user-profile" class="user-content">

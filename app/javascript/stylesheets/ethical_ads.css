@@ -4,3 +4,19 @@
 .ea-callout {
   margin: 0 !important;
 }
+#about-user .ethical-ads {
+  margin: 0 calc(-1em - 5px);
+}
+@media screen and (max-width: 960px) {
+  #about-user .ethical-ads {
+    margin: 0 -1.2vw;
+  }
+}
+@media screen and (max-width: 400px) {
+  #about-user .ethical-ads {
+    margin: 0 -1em;
+  }
+}
+#user-show-ea + .report-link {
+  top: 65px;
+}
