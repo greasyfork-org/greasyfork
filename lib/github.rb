@@ -13,7 +13,7 @@ class Github
     def info_from_push_event(params)
       return {} if params[:commits].nil?
 
-      repo_url = params[:repository][:url]
+      repo_url = params[:repository][:html_url]
       ref = params[:ref].delete_prefix('refs/heads/')
 
       # Get a list of changed files and the commit info that goes with them.
