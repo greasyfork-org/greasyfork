@@ -140,6 +140,6 @@ class Comment < ApplicationRecord
   end
 
   def poster_deleted?
-    poster_id && poster_id == deleted_by_user_id
+    (poster_id && poster_id == deleted_by_user_id) || (first_comment? && discussion.poster_deleted?)
   end
 end
