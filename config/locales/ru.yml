@@ -342,6 +342,7 @@ ru:
     error_unauthorized_copy: "Этот код является нелегальной копией «%{script}». Пожалуйста, прочтите %{rules_link:правила} %{site_name}по размещению скриптов."
     invitations:
       form_title: "Приглашение других авторов"
+      explanation: "Вы можете добавить в авторы этого скрипта других пользователей Greasy Fork. У них будут такие же права на этот скрипт, как и у вас, включая право добавлять или удалять других авторов (даже вас)."
       invited_user_url_label: "Пригласить пользователя"
       invited_user_placeholder: "URL профиля пользователя на %{site_name}"
       submit: "Послать приглашение"
@@ -535,6 +536,16 @@ ru:
           </ul>
     android_browsers:
       title: Для Android
+      browser_list_html: |
+          <ul>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, or %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+          <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+          <li>%{xbrowser_link:XBrowser}</li>
+          %{locale_specific_browsers}
+          </ul>
     ios_browsers:
       title: Для iOS
       browser_list_html: |
@@ -583,7 +594,7 @@ ru:
     listing_sort_name: "Имя"
     deleted_script_list: "Удалённые скрипты"
     unlisted_script_list: "Скрипты по ссылке"
-    sign_out: "Выход"
+    sign_out: "Выйти"
     edit: "Изменить учётную запись"
     edit_sign_in: "Изменить способ входа"
     edit_sign_in_title: "Изменение способа входа"
@@ -595,7 +606,7 @@ ru:
     edit_sign_in_enable_2fa: Включить двухфакторную авторизацию
     edit_sign_in_regenerate_2fa: Пересоздать двухфакторную авторизацию
     edit_notifications: "Изменить настройки уведомлений"
-    view_notifications: "Просмотр уведомлений"
+    view_notifications: "Просмотреть уведомления"
     no_password_set_info: "Ваша учётная запись не использует пароль для входа."
     set_password: "Задать пароль"
     update_password: "Изменить пароль"
@@ -1111,7 +1122,7 @@ ru:
     action_column: "Действие"
     reason_column: "Причина"
     item_script_html: "Скрипт: %{script_link}"
-    item_deleted_script: "Удаляет скрипт %{id}"
+    item_deleted_script: "Удалённый скрипт %{id}"
     item_user_html: "Пользователь: %{user_link}"
     item_report: "%{report_link: Жалоба №%{report_id}}"
     item_script_lock_appeal: "%{appeal_link:Апелляция №%{appeal_id}}"
@@ -1179,11 +1190,11 @@ ru:
       other: "Другое"
     report_intro: "%{report_date} на %{reported_item} поступила жалоба от %{reporter} по причине: %{reason}"
     report_intro_no_reporter: "%{report_date} на %{reported_item} поступила жалоба по причине: %{reason}"
-    report_intro_unauthorized_html: "%{report_date} на %{reported_script} поступила жалоба от %{reporter} о том, что скрипт является нелегальной копией скрипта %{other_script}."
-    report_intro_unauthorized_no_reporter_html: "%{report_date} на %{reported_script} поступила жалоба, что он является нелегальной копией скрипта %{other_script}."
-    report_intro_unauthorized_license: "%{other_script} использует лицензию %{license_link: %{license_name}}. Откройте сайт %{tldr_legal_link:tldrlegal.com}, чтобы ознакомиться с этой лицензией."
-    report_intro_unauthorized_license_no_url: "%{other_script} использует лицензию %{license_name}. Откройте сайт %{tldr_legal_link:tldrlegal.com}, чтобы ознакомиться с этой лицензией."
-    report_intro_unauthorized_no_license: "Для %{other_script} не указана лицензия, поэтому распространение копий без явного разрешения запрещено."
+    report_intro_unauthorized_html: "%{report_date} на «%{reported_script}» поступила жалоба от %{reporter} о том, что скрипт является нелегальной копией скрипта «%{other_script}»."
+    report_intro_unauthorized_no_reporter_html: "%{report_date} на «%{reported_script}» поступила жалоба, что он является нелегальной копией скрипта «%{other_script}»."
+    report_intro_unauthorized_license: "«%{other_script}» использует лицензию %{license_link: %{license_name}}. Откройте сайт %{tldr_legal_link:tldrlegal.com}, чтобы ознакомиться с этой лицензией."
+    report_intro_unauthorized_license_no_url: "«%{other_script}» использует лицензию %{license_name}. Откройте сайт %{tldr_legal_link:tldrlegal.com}, чтобы ознакомиться с этой лицензией."
+    report_intro_unauthorized_no_license: "Для «%{other_script}» не указана лицензия, поэтому распространение копий без явного разрешения запрещено."
     non_functional_feedback: "Пожалуйста, сообщите о неработоспособном скрипте %{feedback_link:здесь}."
     paid_benefits_feedback: "%{site_name} ничего не знает о сделках между авторами скриптов и пользователями, и поэтому не может проверить связанные с ними претензии. Если вы недовольны купленной функциональностью скрипта, пожалуйста напишите об этом в %{feedback_link:отзыве} на скрипт."
     unauthorized_code_original_placeholder: "URL изначального кода"
@@ -1228,7 +1239,7 @@ ru:
     report_item:
       discussion: "обсуждение «%{title}» от %{user}"
       comment: "%{comment} от %{user}"
-      comment_description: "Комментарий в «%{discussion_title}»"
+      comment_description: "комментарий в «%{discussion_title}»"
       message: "Сообщение от %{user}"
       deleted: "Удалено: %{type} №%{id}"
       script: "«%{script}»"
@@ -1237,7 +1248,7 @@ ru:
       title: Новая апелляция на удаление скрипта
       intro_html: 'Ваш скрипт был удалён по следующей причине: %{reason}. Если вы уверены, что это ошибка, или у вас есть дополнительная информация, или вы обновили свой скрипт для устранения проблемы, то подайте апелляцию. Если обновление скрипта и предоставленная дополнительная информация удовлетворят модератора, то доступ к вашему скрипту будет восстановлен.'
       submit: Отправить апелляцию
-    deletion_reason_html: "%{script} был удалён за: %{reason}."
+    deletion_reason_html: "«%{script}» был удалён по: %{reason}."
     author_reason: "Отправленная автором апелляция:"
     pending_review: Это апелляция ожидает рассмотрения модератором.
     dismissed_by_moderator: Модератор отклонил апелляцию.
@@ -1323,7 +1334,7 @@ ru:
         posted_html: "Создаёт обсуждение <i>%{title}</i>"
         replied_html: "Отвечает в обсуждении <i>%{title}</i>"
     review_title: "Отзыв на %{script_name}"
-    question_title: "Вопрос о %{script_name}"
+    question_title: "Вопрос о «%{script_name}»"
     subscribe: Подписаться
     unsubscribe: Отписаться
     notify: Уведомлять меня об ответах
