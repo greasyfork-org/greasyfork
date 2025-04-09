@@ -1217,6 +1217,18 @@ bg:
       message: "Съобщение от %{user}"
       deleted: "Изтрит %{type} #%{id}"
       script: "%{script}"
+    other_appeals:
+      heading: "Други апели за този доклад:"
+      item: "%{item_link} - %{result}"
+      item_link: "Апел #%{id}"
+      resolutions:
+        unresolved: "неразрешен"
+        dismissed: "отхвърлен"
+        unlocked: "отключен"
+    unauthorized_code:
+      script_header: Скрипт
+      reported_script: Докладван
+      original_script: Оригинал
   appeals:
     new:
       title: Ново възражение срещу изтриване на скрипт
@@ -1382,6 +1394,7 @@ bg:
     quote:
       prefix_html: "%{user} каза:"
       anonymous_reporter_html: "Докладващият каза:"
+    access_denied: "Отказан достъп."
   activerecord:
     models:
       script:

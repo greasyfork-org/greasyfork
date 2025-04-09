@@ -56,6 +56,7 @@ el:
     reported_notice_for_author: "Αυτός ο κώδικας δεν είναι διαθέσιμος σε άλλους χρήστες μέχρι να ελεγχθεί από συντονιστή."
     info_page: "Πληροφορίες"
     code_page: "Κώδικας"
+    wrap_lines: "Αναδίπλωση γραμμών"
     history_page: "Ιστορικό"
     feedback_page: "Συζήτηση (%{count})"
     stats_page: "Στατιστικά"
@@ -961,6 +962,18 @@ el:
       message: "Ένα μήνημα από το χρήστη %{user}"
       deleted: "Διαγραμμένη %{type} #%{id}"
       script: "%{script}"
+    other_appeals:
+      heading: "Άλλες εφέσεις για αυτή την αναφορά:"
+      item: "%{item_link} - %{result}"
+      item_link: "Έφεση #%{id}"
+      resolutions:
+        unresolved: "ανεπίλυτη"
+        dismissed: "απορριφθείσα"
+        unlocked: "κλειδωμένη"
+    unauthorized_code:
+      script_header: Κώδικας
+      reported_script: Αναφερμένος
+      original_script: Αρχικός
   appeals:
     new:
       title: Έφεση διαγραφής νέου κώδικα
@@ -1121,6 +1134,7 @@ el:
     quote:
       prefix_html: "Ο χρήστης %{user}είπε:"
       anonymous_reporter_html: "Ο αναφέρων είπε:"
+    access_denied: "Η πρόσβαση απαγορεύεται."
   activerecord:
     models:
       script:
@@ -1189,6 +1203,7 @@ el:
       no_executable: "περιέχει μη εκτελέσιμο κώδικα"
       meta_too_long: "%{key} είναι πολύ μεγάλο (μέγιστο είναι %{count} χαρακτήρες)"
       style_missing_meta: "απώλεσε τα μεταδεδομένα του. Δείτε το https://github.com/openstyles/stylus/wiki/Writing-UserCSS για παραδείγματα"
+      invalid_unicode: "έχει μη έγκυρο Unicode"
   opensearch:
     short_name: "Αναζήτηση %{site_name}"
     description: "Αναζήτηση για κώδικες χρηστών στο %{site_name}."

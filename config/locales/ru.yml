@@ -96,7 +96,7 @@ ru:
       promoted_submit: "Установить рекомендуемый скрипт"
       sync_heading: "Синхронизация"
       locale_heading: "Язык по умолчанию"
-      locale_example_html: "Язык этого текста: <i>%{text}</i>"
+      locale_example_html: "Язык этого текста [<i>%{text}</i>]"
       locale_multiple_note: "Обратите внимание: в скрипт можно добавить %{meta_keys_link:несколько языков}."
       update_locale: "Обновить язык"
       no_moderator_logs: "Модераторы ничего не делали с этим скриптом."
@@ -190,8 +190,8 @@ ru:
     listing_created_feed: "Новые скрипты"
     listing_updated_feed: "Обновлённые скрипты"
     listing_none: "(нет)"
-    listing_set_locale_filter: "Показаны с любыми языками. %{set_filter_link:Показать только имеющие язык: %{language}.}"
-    listing_remove_locale_filter: "Показаны только имеющие язык: %{language}. %{remove_filter_link:Показать с любыми языками.}"
+    listing_set_locale_filter: "Показаны с любыми языками. %{set_filter_link:Показать только имеющие язык [%{language}].}"
+    listing_remove_locale_filter: "Показаны только имеющие язык [%{language}]. %{remove_filter_link:Показать с любыми языками.}"
     listing_language_all: "Любой"
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
@@ -506,7 +506,7 @@ ru:
       site: "Скрипты для %{site}"
       all_sites: "всех сайтов"
       user: "Скрипты пользователя %{user}"
-      locale: "Скрипты на языке: %{locale_name}"
+      locale: "Скрипты на языке [%{locale_name}]"
     new: Создать список скриптов
   home:
     title: "%{site_name} – безопасные и полезные браузерные скрипты"
@@ -538,7 +538,7 @@ ru:
       title: Для Android
       browser_list_html: |
           <ul>
-          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, or %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey} или %{firefox_violentmonkey_link:Violentmonkey}</li>
           <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
           <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
           <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
@@ -1191,7 +1191,7 @@ ru:
     report_intro: "%{report_date} на %{reported_item} поступила жалоба от %{reporter} по причине: %{reason}"
     report_intro_no_reporter: "%{report_date} на %{reported_item} поступила жалоба по причине: %{reason}"
     report_intro_unauthorized_html: "%{report_date} на «%{reported_script}» поступила жалоба от %{reporter} о том, что скрипт является нелегальной копией скрипта «%{other_script}»."
-    report_intro_unauthorized_no_reporter_html: "%{report_date} на «%{reported_script}» поступила жалоба, что он является нелегальной копией скрипта «%{other_script}»."
+    report_intro_unauthorized_no_reporter_html: "%{report_date} на %{reported_script} поступила жалоба, что он является нелегальной копией скрипта «%{other_script}»."
     report_intro_unauthorized_license: "«%{other_script}» использует лицензию %{license_link: %{license_name}}. Откройте сайт %{tldr_legal_link:tldrlegal.com}, чтобы ознакомиться с этой лицензией."
     report_intro_unauthorized_license_no_url: "«%{other_script}» использует лицензию %{license_name}. Откройте сайт %{tldr_legal_link:tldrlegal.com}, чтобы ознакомиться с этой лицензией."
     report_intro_unauthorized_no_license: "Для «%{other_script}» не указана лицензия, поэтому распространение копий без явного разрешения запрещено."
@@ -1243,6 +1243,18 @@ ru:
       message: "Сообщение от %{user}"
       deleted: "Удалено: %{type} №%{id}"
       script: "«%{script}»"
+    other_appeals:
+      heading: "Другие апелляции по этой жалобе:"
+      item: "%{item_link} – %{result}"
+      item_link: "Апелляция №%{id}"
+      resolutions:
+        unresolved: "не решена"
+        dismissed: "отклонена"
+        unlocked: "откреплена"
+    unauthorized_code:
+      script_header: Скрипт
+      reported_script: Обвиняемый
+      original_script: Изначальный
   appeals:
     new:
       title: Новая апелляция на удаление скрипта
@@ -1404,7 +1416,7 @@ ru:
     not_found_text: "Ошибка 404: по этому адресу ничего нет."
     not_found_title: "Ошибка 404: по этому адресу ничего нет"
     not_found_link_home: "Перейти на главную страницу."
-    suggest_locale: "%{site_name} переведён на язык: %{locale_name}."
+    suggest_locale: "%{site_name} переведён на ваш язык [%{locale_name}]."
     incomplete_locale: "К сожалению, %{site_name} переведён на язык [%{locale_name}] всего на %{percent}%. Вы можете помочь завершить перевод."
     preview_tab: Предпросмотр
     write_tab: Написать
@@ -1412,6 +1424,7 @@ ru:
     quote:
       prefix_html: "%{user} написал:"
       anonymous_reporter_html: "Отправитель жалобы написал:"
+    access_denied: "Доступ запрещён."
   activerecord:
     models:
       script:

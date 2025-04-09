@@ -1219,6 +1219,18 @@ nl:
       message: "Een bericht van %{user}"
       deleted: "%{type} #%{id} verwijderd"
       script: "%{script}"
+    other_appeals:
+      heading: "Andere bezwaren op deze melding:"
+      item: "%{item_link} - %{result}"
+      item_link: "Bezwaar #%{id}"
+      resolutions:
+        unresolved: "onopgelost"
+        dismissed: "verworpen"
+        unlocked: "ontgrendeld"
+    unauthorized_code:
+      script_header: Script
+      reported_script: Gemeld
+      original_script: Origineel
   appeals:
     new:
       title: Bezwaar ingediend tegen scriptverwijdering
@@ -1384,6 +1396,7 @@ nl:
     quote:
       prefix_html: "%{user} zei:"
       anonymous_reporter_html: "De melder zei:"
+    access_denied: "Toegang geweigerd."
   activerecord:
     models:
       script:
