@@ -2,25 +2,20 @@ require 'application_system_test_case'
 
 module Users
   class LoginTest < ::ApplicationSystemTestCase
-    def log_in(user)
+    def log_in(user, assert_success: true)
       user.update!(password: 'password')
       visit root_url
       click_on 'Sign in'
       fill_in 'Email', with: user.email
       fill_in 'Password', with: 'password'
       click_on 'Log in'
-    end
-
-    test 'can log in' do
-      user = users(:one)
-      log_in(user)
-      assert_link "Timmy O'Toole"
+      assert_content 'Signed in successfully.' if assert_success
     end
 
     test "can't log in when banned" do
       user = users(:one)
       user.update!(banned_at: Time.zone.now)
-      log_in(user)
+      log_in(user, assert_success: false)
       assert_content 'Your account has been banned.'
     end
 
@@ -28,7 +23,7 @@ module Users
       user = users(:one)
       user.update!(banned_at: Time.zone.now)
       ModeratorAction.create!(user:, reason: 'You suck', action: 'ban', moderator: users(:admin))
-      log_in(user)
+      log_in(user, assert_success: false)
       assert_content 'Your account has been banned. A moderator gave the following reason: "You suck".'
     end
 
@@ -37,14 +32,14 @@ module Users
       user.update!(banned_at: Time.zone.now)
       report = Report.create!(reporter: users(:admin), item: user, reason: Report::REASON_ABUSE)
       ModeratorAction.create!(user:, reason: 'You suck', action: 'ban', moderator: users(:admin), report:)
-      log_in(user)
+      log_in(user, assert_success: false)
       assert_content 'Your account has been banned in response to this report.'
     end
 
     test 'can delete account when banned' do
       user = users(:one)
       user.update!(banned_at: Time.zone.now)
-      log_in(user)
+      log_in(user, assert_success: false)
       assert_content 'Your account has been banned.'
       click_on 'delete your account'
       fill_in 'Email', with: user.email
@@ -63,7 +58,7 @@ module Users
     test 'login shows secure message when the user has scripts' do
       user = users(:one)
       assert user.scripts.any?
-      log_in(user)
+      log_in(user, assert_success: false)
       assert_content 'As a script author, we suggest you use a more secure sign-in method.'
     end
 
@@ -84,7 +79,7 @@ module Users
     test 'login redirects if secure login is required and not set' do
       user = users(:one)
       User.any_instance.expects(:missing_secure_login?).returns(true)
-      log_in(user)
+      log_in(user, assert_success: false)
       assert_content 'Your account is required to use a more secure sign-in method.'
     end
   end
