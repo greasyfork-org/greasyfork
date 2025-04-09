@@ -147,13 +147,17 @@ class ApplicationController < ActionController::Base
   end
 
   def per_page(default: 50)
+    return default unless params[:per_page].is_a?(String)
+
     pp = default
-    pp = [params[:per_page].to_i, 200].min if !params[:per_page].nil? && params[:per_page].to_i > 0
+    pp = [params[:per_page].to_i, 200].min if params[:per_page].to_i > 0
     return pp
   end
 
   def page_number
-    page = params[:page]&.to_i
+    return nil unless params[:page].is_a?(String)
+
+    page = params[:page].to_i
     page = 1 if page.nil? || page < 1
     page
   end
