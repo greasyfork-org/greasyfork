@@ -1495,6 +1495,18 @@ en:
       message: "A message by %{user}"
       deleted: "Deleted %{type} #%{id}"
       script: "%{script}"
+    other_appeals:
+      heading: "Other appeals for this report:"
+      item: "%{item_link} - %{result}"
+      item_link: "Appeal #%{id}"
+      resolutions:
+        unresolved: "unresolved"
+        dismissed: "dismissed"
+        unlocked: "unlocked"
+    unauthorized_code:
+      script_header: Script
+      reported_script: Reported
+      original_script: Original
   appeals:
     new:
       title: New script delete appeal
@@ -1669,6 +1681,7 @@ en:
     quote:
       prefix_html: "%{user} said:"
       anonymous_reporter_html: "The reporter said:"
+    access_denied: "Access denied."
   activerecord:
     models:
       script:

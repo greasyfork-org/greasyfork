@@ -112,30 +112,30 @@
     <thead>
     <tr>
       <th></th>
-      <th>Script</th>
-      <th>Author</th>
-      <th>License</th>
-      <th>Created</th>
-      <th>Updated</th>
+      <th><%= t('reports.unauthorized_code.script_header') %></th>
+      <th><%= t('scripts.author_name') %></th>
+      <th><%= t('scripts.license') %></th>
+      <th><%= t('scripts.created_date') %></th>
+      <th><%= t('scripts.updated_date') %></th>
     </tr>
     </thead>
     <tbody>
     <tr>
-      <td>Reported</td>
+      <td><%= t('reports.unauthorized_code.reported_script') %></td>
       <td><%= render_script(report.item) %></td>
       <td><%= report.item.users.map { |u| link_to(u.name, u) }.to_sentence.html_safe %></td>
       <td><%= license_display(report.item) %></td>
-      <td><%= report.item.created_at %></td>
-      <td><%= report.item.code_updated_at %></td>
+      <td><%= markup_date(report.item.created_at) %></td>
+      <td><%= markup_date(report.item.code_updated_at) %></td>
     </tr>
     <tr>
-      <td>Original</td>
+      <td><%= t('reports.unauthorized_code.original_script') %></td>
       <% if report.reference_script %>
         <td><%= render_script(report.reference_script) %></td>
         <td><%= report.reference_script.users.map { |u| link_to(u.name, u) }.to_sentence.html_safe %></td>
         <td><%= license_display(report.reference_script) %></td>
-        <td><%= report.reference_script.created_at %></td>
-        <td><%= report.reference_script.code_updated_at %></td>
+        <td><%= markup_date(report.reference_script.created_at) %></td>
+        <td><%= markup_date(report.reference_script.code_updated_at) %></td>
       <% else %>
         <td><%= link_to report.script_url %></td>
       <% end %>

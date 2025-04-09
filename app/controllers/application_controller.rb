@@ -93,7 +93,7 @@ class ApplicationController < ActionController::Base
   end
 
   def render_access_denied
-    @text = 'Access denied.'
+    @text = t('common.access_denied')
     render 'home/error', status: :forbidden, layout: 'application'
   end
 

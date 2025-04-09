@@ -11,11 +11,13 @@
 <% other_appeals = script_lock_appeal.other_appeals_on_report %>
 <% if other_appeals.load.any? %>
   <p>
-    Other appeals for this report:
+    <%= t('reports.other_appeals.heading') %>
   </p>
   <ul>
     <% other_appeals.each do |other_appeal| %>
-      <li><%= link_to("Appeal ##{other_appeal.id}", script_script_lock_appeal_path(script_lock_appeal.script, other_appeal)) %> - <%= other_appeal.resolution %></li>
+      <li>
+        <%= t('reports.other_appeals.item', item_link: link_to(t('reports.other_appears.item_link', id: other_appeal.id), script_script_lock_appeal_path(script_lock_appeal.script, other_appeal)), result: t("reports.other_appeals.resolutions.#{other_appeal.resolution}")) %>
+      </li>
     <% end %>
   </ul>
 <% end %>
