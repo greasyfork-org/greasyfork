@@ -585,11 +585,11 @@ class ScriptsController < ApplicationController
     when 'adult'
       @script.sensitive = true
       @script.marked_adult_by_user = current_user
-      ma.action_taken = :mark_as_adult
+      ma.action_taken = :mark_adult
     when 'not_adult'
       @script.sensitive = false
       @script.not_adult_content_self_report_date = nil
-      ma.action_taken = :mark_as_not_adult
+      ma.action_taken = :mark_not_adult
     when 'clear_not_adult'
       @script.not_adult_content_self_report_date = nil
     else
