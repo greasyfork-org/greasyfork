@@ -292,7 +292,8 @@ class ScriptVersionsController < ApplicationController
     ma = ModeratorAction.new
     ma.moderator = current_user
     ma.script = @script
-    ma.action = "Delete version #{@script_version.version}, ID #{@script_version.id}"
+    ma.action_taken = :delete_version
+    ma.action_details = { version: @script_version.version, id: @script_version.id }
     ma.reason = params[:reason]
     ma.save!
 

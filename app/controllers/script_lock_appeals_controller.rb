@@ -48,7 +48,7 @@ class ScriptLockAppealsController < ApplicationController
     ma.moderator = current_user
     ma.script = @script
     ma.script_lock_appeal = @script_lock_appeal
-    ma.action = 'Undelete'
+    ma.action_taken = :undelete
     ma.save!
 
     @script.unlock!

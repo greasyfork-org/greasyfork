@@ -28,7 +28,7 @@ class ScriptCheckerBanAndDeleteJob < ApplicationJob
     ModeratorAction.create!(
       automod: true,
       script:,
-      action: 'Delete and lock',
+      action_taken: :delete_and_lock,
       reason:,
       private_reason:
     )

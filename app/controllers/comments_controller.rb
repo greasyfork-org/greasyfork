@@ -82,7 +82,7 @@ class CommentsController < ApplicationController
       return
     end
     comment.soft_destroy!(by_user: current_user)
-    ModeratorAction.create!(moderator: current_user, comment:, action: 'Delete') unless normally_deletable
+    ModeratorAction.create!(moderator: current_user, comment:, action_taken: :delete) unless normally_deletable
 
     redirect_to @discussion.path(locale: request_locale.code)
   end

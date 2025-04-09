@@ -22,7 +22,7 @@ module Users
     test 'can see banned reason' do
       user = users(:one)
       user.update!(banned_at: Time.zone.now)
-      ModeratorAction.create!(user:, reason: 'You suck', action: 'ban', moderator: users(:admin))
+      ModeratorAction.create!(user:, reason: 'You suck', action_taken: :ban, moderator: users(:admin))
       log_in(user, assert_success: false)
       assert_content 'Your account has been banned. A moderator gave the following reason: "You suck".'
     end
@@ -31,7 +31,7 @@ module Users
       user = users(:one)
       user.update!(banned_at: Time.zone.now)
       report = Report.create!(reporter: users(:admin), item: user, reason: Report::REASON_ABUSE)
-      ModeratorAction.create!(user:, reason: 'You suck', action: 'ban', moderator: users(:admin), report:)
+      ModeratorAction.create!(user:, reason: 'You suck', action_taken: :ban, moderator: users(:admin), report:)
       log_in(user, assert_success: false)
       assert_content 'Your account has been banned in response to this report.'
     end

@@ -243,7 +243,7 @@ class DiscussionsController < ApplicationController
     end
 
     discussion.soft_destroy!(by_user: current_user)
-    ModeratorAction.create!(moderator: current_user, discussion:, action: 'Delete') unless normally_deletable
+    ModeratorAction.create!(moderator: current_user, discussion:, action_taken: :delete) unless normally_deletable
 
     if discussion.script
       redirect_to script_path(discussion.script)

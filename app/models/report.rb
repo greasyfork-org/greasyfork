@@ -114,14 +114,14 @@ class Report < ApplicationRecord
       when Comment
         reported_users.each { |user| user.ban!(moderator:, automod:, delete_comments:, delete_scripts:, ban_related: true, report: self) } if ban_user
         item.soft_destroy!(by_user: moderator) unless item.soft_deleted?
-        ModeratorAction.create!(moderator:, automod:, comment: item, action: 'Delete', report: self, private_reason: moderator_notes) unless item.soft_deleted? || ban_user
+        ModeratorAction.create!(moderator:, automod:, comment: item, action_taken: :delete, report: self, private_reason: moderator_notes) unless item.soft_deleted? || ban_user
       when Discussion
         if reason == REASON_WRONG_CATEGORY
           item.update!(discussion_category_id:, script_id: nil, rating: nil, title: item.first_comment.plain_text.truncate(200))
         else
           reported_users.each { |user| user.ban!(moderator:, automod:, delete_comments:, delete_scripts:, ban_related: true, report: self) } if ban_user
           item.soft_destroy!(by_user: moderator) unless item.soft_deleted?
-          ModeratorAction.create!(moderator:, automod:, discussion: item, action: 'Delete', report: self, private_reason: moderator_notes) unless item.soft_deleted? || ban_user
+          ModeratorAction.create!(moderator:, automod:, discussion: item, action_taken: :delete, report: self, private_reason: moderator_notes) unless item.soft_deleted? || ban_user
         end
       when Script
         if unauthorized_code? && reference_script
@@ -133,7 +133,7 @@ class Report < ApplicationRecord
         if ban_user
           reported_users.each { |user| user.ban!(moderator:, automod:, delete_comments:, delete_scripts:, ban_related: true, report: self) }
         elsif moderator
-          ModeratorAction.create!(moderator:, automod:, script: item, action: 'Delete and lock', report: self, private_reason: moderator_notes)
+          ModeratorAction.create!(moderator:, automod:, script: item, action_taken: :delete_and_lock, report: self, private_reason: moderator_notes)
         end
       when NilClass
         # Do nothing, it's gone already.

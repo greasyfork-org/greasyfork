@@ -236,7 +236,7 @@ class User < ApplicationRecord
       s.locked = true
       s.delete_type = delete_type
       s.save(validate: false)
-      ModeratorAction.create!(moderator:, automod:, script: s, action: 'Delete and lock', reason:, report:)
+      ModeratorAction.create!(moderator:, automod:, script: s, action_taken: :delete_and_lock, reason:, report:)
     end
   end
 
@@ -246,7 +246,7 @@ class User < ApplicationRecord
       s.locked = false
       s.delete_type = nil
       s.save(validate: false)
-      ModeratorAction.create!(moderator:, script: s, action: 'Undelete and unlock', reason:)
+      ModeratorAction.create!(moderator:, script: s, action_taken: :undelete_and_unlock, reason:)
     end
   end
 
@@ -289,7 +289,7 @@ class User < ApplicationRecord
         moderator:,
         automod:,
         user: self,
-        action: 'Ban',
+        action_taken: :ban,
         reason:,
         private_reason:,
         report:
@@ -326,7 +326,7 @@ class User < ApplicationRecord
       ModeratorAction.create!(
         moderator:,
         user: self,
-        action: 'Unban',
+        action_taken: :unban,
         reason:
       )
       update_columns(banned_at: nil)

@@ -38,7 +38,7 @@
           <%= t('moderator_logs.item_comment_html', comment_link: (action.comment.discussion.soft_deleted? && !current_user&.moderator?) ? action.comment.discussion.display_title(locale: request_locale) : link_to(action.comment.discussion.display_title(locale: request_locale), action.comment.path)) %>
         <% end %>
       </td>
-      <td><%= action.action %></td>
+      <td><%= action.action_taken_display(locale: I18n.locale) %></td>
       <td>
         <div class="possibly-long-text">
           <% if action.report %>

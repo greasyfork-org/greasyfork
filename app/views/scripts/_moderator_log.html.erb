@@ -21,7 +21,7 @@
           <td><%= render_user(action.moderator, action.moderator_id, skip_badge: true) if action.is_a?(ModeratorAction) %></td>
           <td>
             <% if action.is_a?(ModeratorAction) %>
-              <%= action.action %>
+              <%= action.action_taken_display(locale: I18n.locale) %>
             <% else %>
               <%= it('moderator_logs.item_script_lock_appeal_dismissed', appeal_id: action.id, appeal_link: script_script_lock_appeal_path(action.script, action.id)) %>
             <% end %>

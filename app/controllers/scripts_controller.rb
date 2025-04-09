@@ -508,7 +508,7 @@ class ScriptsController < ApplicationController
       ma = ModeratorAction.new
       ma.moderator = current_user
       ma.script = @script
-      ma.action = @script.locked ? 'Delete and lock' : 'Delete'
+      ma.action_taken = @script.locked ? :delete_and_lock : :delete
       ma.reason = params[:reason]
       @script.delete_reason = params[:reason]
       ma.save!
@@ -530,7 +530,7 @@ class ScriptsController < ApplicationController
       ma = ModeratorAction.new
       ma.moderator = current_user
       ma.script = @script
-      ma.action = 'Undelete'
+      ma.action_taken = :undelete
       ma.reason = params[:reason]
       ma.save!
       @script.locked = false
@@ -539,7 +539,7 @@ class ScriptsController < ApplicationController
           ma_ban = ModeratorAction.new
           ma_ban.moderator = current_user
           ma_ban.user = user
-          ma_ban.action = 'Unban'
+          ma_ban.action_taken = :unban
           ma_ban.reason = params[:reason]
           ma_ban.save!
           user.banned_at = nil
@@ -585,11 +585,11 @@ class ScriptsController < ApplicationController
     when 'adult'
       @script.sensitive = true
       @script.marked_adult_by_user = current_user
-      ma.action = 'Mark as adult content'
+      ma.action_taken = :mark_as_adult
     when 'not_adult'
       @script.sensitive = false
       @script.not_adult_content_self_report_date = nil
-      ma.action = 'Mark as not adult content'
+      ma.action_taken = :mark_as_not_adult
     when 'clear_not_adult'
       @script.not_adult_content_self_report_date = nil
     else
@@ -598,7 +598,7 @@ class ScriptsController < ApplicationController
       return
     end
 
-    ma.save! unless ma.action.nil?
+    ma.save! unless ma.action_taken.nil?
 
     @script.save!
     flash[:notice] = 'Script updated.' # rubocop:disable Rails/I18nLocaleTexts
@@ -779,7 +779,7 @@ class ScriptsController < ApplicationController
     update_params = params.expect(script: [:locale_id])
     if @script.update(update_params)
       unless @script.users.include?(current_user)
-        ModeratorAction.create!(script: @script, moderator: current_user, action: 'Update locale', reason: "Changed to #{@script.locale.code}#{update_params[:locale_id].blank? ? ' (auto-detected)' : ''}")
+        ModeratorAction.create!(script: @script, moderator: current_user, action_taken: :update_locale, reason: "Changed to #{@script.locale.code}#{update_params[:locale_id].blank? ? ' (auto-detected)' : ''}")
       end
       flash.now[:notice] = I18n.t('scripts.updated')
       redirect_to admin_script_path(@script)
