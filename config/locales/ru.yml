@@ -1405,6 +1405,20 @@ ru:
     moderator_notice: Если вы хотите сообщить о нарушении правил сайта %{site_name}, то нажмите ссылку «Пожаловаться» на странице скрипта, пользователя или комментария. Модераторы не могут удалять содержимое сайта на основе обычных сообщений.
   screenshots:
     requirements: "Не более %{number} изображений PNG, GIF, JPEG, or WebP, размер каждого меньше %{size}."
+  moderator_actions:
+    action_taken:
+      ban: 'Блокировка'
+      delete: 'Удалено'
+      delete_and_lock: 'Удалено и закреплено'
+      delete_version: 'Удалена версия %{version}, ID %{id}'
+      mark_adult: 'Добавлена пометка «только для взрослых»'
+      mark_not_adult: 'Убрана пометка «только для взрослых»'
+      permanent_deletion: 'Удалено навсегда'
+      permanent_deletion_denied: 'Удаление навсегда отклонено'
+      unban: 'Снята блокировка'
+      undelete: 'Удаление отменено'
+      undelete_and_unlock: 'Удаление отменено и откреплено'
+      update_locale: 'Обновление языка'
   common:
     error_preamble: "Обнаружены проблемы в том, что вы отправили..."
     allowed_elements_link: "(см. разрешённые теги)"
