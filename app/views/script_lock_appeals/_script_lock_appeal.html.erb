@@ -16,7 +16,7 @@
   <ul>
     <% other_appeals.each do |other_appeal| %>
       <li>
-        <%= t('reports.other_appeals.item', item_link: link_to(t('reports.other_appears.item_link', id: other_appeal.id), script_script_lock_appeal_path(script_lock_appeal.script, other_appeal)), result: t("reports.other_appeals.resolutions.#{other_appeal.resolution}")) %>
+        <%= t('reports.other_appeals.item_html', item_link: link_to(t('reports.other_appeals.item_link', id: other_appeal.id), script_script_lock_appeal_path(script_lock_appeal.script, other_appeal)), result: t("reports.other_appeals.resolutions.#{other_appeal.resolution}")) %>
       </li>
     <% end %>
   </ul>
