@@ -177,7 +177,7 @@
             <ul>
               <% other_report.script_lock_appeals.each do |sla| %>
                 <li>
-                  <%= link_to "Appeal ##{sla.id}", script_script_lock_appeal_path(report.item, sla) %> - <%= sla.resolution %>
+                  <%= t('reports.other_appeals.item', item_link: link_to(t('reports.other_appears.item_link', id: sla.id), script_script_lock_appeal_path(sla.script, sla)), result: t("reports.other_appeals.resolutions.#{sla.resolution}")) %>
                 </li>
               <% end %>
             </ul>
