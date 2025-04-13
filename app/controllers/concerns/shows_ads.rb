@@ -22,7 +22,8 @@ module ShowsAds
 
     return AdMethod.ea if valid_locale_for_ea?
 
-    AdMethod.cd
+    # Very poor results with this
+    # AdMethod.cd
   end
 
   def choose_ad_method_for_scripts(scripts)
@@ -42,7 +43,8 @@ module ShowsAds
 
     return AdMethod.ea if valid_locale_for_ea?
 
-    AdMethod.cd
+    # Very poor results with this
+    # AdMethod.cd
   end
 
   def choose_ad_method_for_discussion(discussion)
@@ -74,7 +76,8 @@ module ShowsAds
 
     return AdMethod.no_ad(:sensitive_list) if user.scripts.any?(&:sensitive?)
 
-    return AdMethod.ga if user.scripts.all?(&:adsense_approved)
+    # EA performs better here
+    # return AdMethod.ga if user.scripts.all?(&:adsense_approved)
 
     return AdMethod.ea if valid_locale_for_ea?
   end
