@@ -1375,6 +1375,20 @@ bg:
     moderator_notice: Ако желаете да докладвате нарушаване на правилата на %{site_name}, използвайте връзката Доклад на съответния скрипт, потребител или коментар. Модераторите не могат да премахват съдържание, изпратено в лични съобщения.
   screenshots:
     requirements: "Не повече от %{number} PNG, GIF, JPEG, или WebP изображения, по-малки от %{size} всяко."
+  moderator_actions:
+    action_taken:
+      ban: 'Блокирай'
+      delete: 'Изтрий'
+      delete_and_lock: 'Изтрий и заключи'
+      delete_version: 'Изтрий версия %{version}, ID %{id}'
+      mark_adult: 'Отбележи като съдържание за възрастни'
+      mark_not_adult: 'Отбележи като не съдържание за възрастни'
+      permanent_deletion: 'Окончателно изтриване'
+      permanent_deletion_denied: 'Окончателно изтриване отказано'
+      unban: 'Отблокиране'
+      undelete: 'Възстановяване'
+      undelete_and_unlock: 'Възстановяване и отключване'
+      update_locale: 'Обновяване на локализацията'
   common:
     error_preamble: "Възникнаха проблеми с това, което публикувахте..."
     allowed_elements_link: "(Вижте разрешения код.)"
