@@ -17,6 +17,8 @@ class ScriptCodeSearch
     end
 
     def index_all
+      ensure_directory
+
       Rails.logger.info('Determining latest script version IDs')
       latest_script_version_ids = Script.connection.select_rows('SELECT MAX(id) FROM script_versions GROUP BY script_id')
       code_to_script = Script.connection.select_rows("SELECT rewritten_script_code_id, script_id FROM script_versions WHERE id IN (#{latest_script_version_ids.join(',')})").to_h
@@ -29,7 +31,7 @@ class ScriptCodeSearch
       end
 
       Rails.logger.info('Removing stale files')
-      (Set.new(Dir.children(BASE_PATH)) - code_to_script.values.to_set(&:to_s)).each do |f|
+      (Set.new(Dir.children(BASE_PATH)) - code_to_script.values.to_set(&:to_s).map { |script_id| filename_for(script_id) }).each do |f|
         File.delete(File.join(BASE_PATH, f))
       end
     end
@@ -57,7 +59,11 @@ class ScriptCodeSearch
     end
 
     def path_for(script_id)
-      File.join(BASE_PATH, script_id.to_s)
+      File.join(BASE_PATH, filename_for(script_id))
+    end
+
+    def filename_for(script_id)
+      script_id.to_s
     end
   end
 end
