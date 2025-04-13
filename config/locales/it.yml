@@ -1241,6 +1241,17 @@ it:
       message: "Un messaggio di %{user}"
       deleted: "Eliminato %{type}#%{id}"
       script: "%{script}"
+    other_appeals:
+      heading: "Altri ricorsi per questa segnalazione:"
+      item_link: "Ricorso #%{id}"
+      resolutions:
+        unresolved: "non risolto"
+        dismissed: "rigettato"
+        unlocked: "sbloccato"
+    unauthorized_code:
+      script_header: Script
+      reported_script: Segnalato
+      original_script: Originale
   appeals:
     new:
       title: Nuovo ricorso all'eliminazione di uno script
@@ -1389,6 +1400,20 @@ it:
     moderator_notice: Se vuoi segnalare un'infrazione delle regole di %{site_name}, usa il collegamento Segnalazione su quello script, utente o commento. I moderatori non possono eliminare contenuti basandosi su segnalazioni inviate via messaggio diretto.
   screenshots:
     requirements: "Massimo %{number} immagini PNG, GIF, JPEG o WebP, più piccole di %{size} ciascuna."
+  moderator_actions:
+    action_taken:
+      ban: 'Ban'
+      delete: 'Elimina'
+      delete_and_lock: 'Elimina e blocca'
+      delete_version: 'Elimina la versione %{version}, ID %{id}'
+      mark_adult: 'Segna come contenuto per adulti'
+      mark_not_adult: 'Segna come privo di contenuti per adulti'
+      permanent_deletion: 'Eliminazione permanente'
+      permanent_deletion_denied: 'Eliminazione permanente negata'
+      unban: 'Rimuovi ban'
+      undelete: 'Ripristina'
+      undelete_and_unlock: 'Ripristina e sblocca'
+      update_locale: 'Aggiorna lingua'
   common:
     error_preamble: "Ci sono stati dei problemi con ciò che hai pubblicato..."
     allowed_elements_link: "(Controlla codice permesso.)"
@@ -1408,6 +1433,7 @@ it:
     quote:
       prefix_html: "%{user} ha detto:"
       anonymous_reporter_html: "Chi ha segnalato ha detto:"
+    access_denied: "Accesso negato."
   activerecord:
     models:
       script:
