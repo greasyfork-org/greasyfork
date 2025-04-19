@@ -4,6 +4,12 @@
   padding: 0.5em 1em;
   overflow-x: auto;
 }
+@media (prefers-color-scheme: dark) {
+  .user-content {
+    background: linear-gradient(to right, #2e1111, #000 1em);
+    border-left-color: #461414;
+  }
+}
 
 .user-content > p:first-child {
   margin-top: 0;

@@ -14,6 +14,14 @@
   border-radius: 5px;
   background-color: white;
 }
+@media (prefers-color-scheme: dark) {
+  .list-option-group ul {
+    background-color: black;
+    box-shadow: 0 0 5px #888;
+    border-color: #666;
+  }
+}
+
 .list-option-group a {
   padding: .35em 1em;
   display: block;
@@ -29,6 +37,11 @@
   margin: 0 0 0 -4px;
   padding: .4em 1em .4em calc(1em - 3px);
   background: linear-gradient(white, #EEEEEE);
+}
+@media (prefers-color-scheme: dark) {
+  .list-option-group .list-current {
+    background: linear-gradient(#111, #222222);
+  }
 }
 
 @media screen and (min-width: 440px) and (max-width: 960px) {

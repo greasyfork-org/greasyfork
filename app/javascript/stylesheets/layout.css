@@ -7,6 +7,12 @@ body {
   margin: 0;
   background-color: #F6F6F6;
 }
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #0A0A0A;
+    color: white;
+  }
+}
 body, select, input {
   font-family: "Open Sans", sans-serif, "Segoe UI Emoji";
 }
@@ -29,6 +35,15 @@ a {
 a:visited {
   color: #A42121;
 }
+@media (prefers-color-scheme: dark) {
+  a {
+    color: #A42121;
+  }
+  a:visited {
+    color: #b35757;
+  } 
+}
+
 input[type="checkbox"], input[type="radio"] {
   vertical-align: middle;
 }
@@ -159,6 +174,13 @@ label.subselection-radio-title {
   box-sizing: border-box;
   margin: 14px 0;
 }
+@media (prefers-color-scheme: dark) {
+  .script-list, .user-list, .text-content, .discussion-list, .notification-list {
+    background-color: black;
+    box-shadow: 0 0 5px #888;
+    border-color: #666;
+  }
+}
 .text-content:last-child {
   margin-bottom: 0;
 }
@@ -215,6 +237,11 @@ label.subselection-radio-title {
 .script-list li:not(.ad-entry) {
   border-bottom: 1px solid #DDDDDD;
   padding: 1em;
+}
+@media (prefers-color-scheme: dark) {
+  .script-list li:not(.ad-entry) {
+    border-bottom-color: #333;
+  }
 }
 
 .script-list .cf-wrapper {

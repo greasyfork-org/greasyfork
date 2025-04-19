@@ -23,8 +23,13 @@
   background: rgba(0, 0, 0, 0.03);
   box-shadow: inset 1px 0 rgba(0, 0, 0, 0.1), inset -1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px rgba(0, 0, 0, 0.1);
 }
+@media (prefers-color-scheme: dark) {
+  .tabs .current, .tabs > *:not(.current) a:hover, .tabs > *:not(.current) a:focus {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: inset 1px 0 rgba(255, 255, 255, 0.1), inset -1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px rgba(255, 255, 255, 0.1);
+  }  
+}  
 .tabs .current {
-  box-shadow: inset 1px 0 rgba(0, 0, 0, 0.1), inset -1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px rgba(0, 0, 0, 0.1);
   border-top: 7px solid #990000;
 }
 .tabs > *:not(.current) a {

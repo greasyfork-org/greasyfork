@@ -84,6 +84,14 @@
 .script-discussion-list .discussion-list-item:last-child {
   border-bottom: 1px solid #CCC;
 }
+@media (prefers-color-scheme: dark) {
+  .discussion-list-logged-in .discussion-read, .notification-read {
+    background-color: #333;
+  }
+  .script-discussion-list .discussion-list-item:last-child {
+    border-bottom-color: #333;
+  }
+}
 a.discussion-title, .notification-list-item a {
   display: block;
   text-decoration: none;
@@ -98,6 +106,14 @@ a.discussion-title, .notification-list-item a {
 }
 .discussion-title:hover, .notification-list-item a {
   color: #333;
+}
+@media (prefers-color-scheme: dark) {
+  a.discussion-title, .notification-list-item a {
+    color: white;
+  }
+  a.discussion-title:hover, .notification-list-item a {
+    color: #DDD;
+  }
 }
 .rating-icon, .badge-deleted {
   border: 2px solid black;
