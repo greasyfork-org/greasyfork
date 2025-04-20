@@ -69,33 +69,25 @@
 }
 .discussion-list-item, .notification-list-item {
   padding-top: 10px;
-  border-top: 1px solid #CCC;
+  border-top: 1px solid var(--content-separator-color);
 }
 .discussion-list-container:first-child .discussion-list-item {
   border-top: 0;
 }
 .discussion-list-logged-in .discussion-read, .notification-read {
-  background-color: #F5F5F5;
+  background-color: var(--inactive-item-background-color);
   margin-left: -16px;
   margin-right: -16px;
   padding-left: 16px;
   padding-right: 16px;
 }
 .script-discussion-list .discussion-list-item:last-child {
-  border-bottom: 1px solid #CCC;
-}
-@media (prefers-color-scheme: dark) {
-  .discussion-list-logged-in .discussion-read, .notification-read {
-    background-color: #333;
-  }
-  .script-discussion-list .discussion-list-item:last-child {
-    border-bottom-color: #333;
-  }
+  border-bottom: 1px solid var(--content-separator-color);
 }
 a.discussion-title, .notification-list-item a {
   display: block;
   text-decoration: none;
-  color: black;
+  color: var(--overall-text-color);
   padding: 4px 0 14px 0;
   white-space: nowrap;
   overflow: hidden;
@@ -105,15 +97,7 @@ a.discussion-title, .notification-list-item a {
   vertical-align: middle;
 }
 .discussion-title:hover, .notification-list-item a {
-  color: #333;
-}
-@media (prefers-color-scheme: dark) {
-  a.discussion-title, .notification-list-item a {
-    color: white;
-  }
-  a.discussion-title:hover, .notification-list-item a {
-    color: #DDD;
-  }
+  color: var(--texty-link-visited-color);
 }
 .rating-icon, .badge-deleted {
   border: 2px solid black;

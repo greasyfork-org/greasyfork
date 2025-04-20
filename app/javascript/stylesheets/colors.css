@@ -1,0 +1,58 @@
+:root {
+  --overall-background-color: #F6F6F6;
+  --overall-text-color: black;
+
+  --link-color: #670000;
+  --link-visited-color: #A42121;
+  --texty-link-visited-color: #333;
+
+  --content-background-color: white;
+  --content-border-color: #BBBBBB;
+  --content-box-shadow-color: #DDDDDD;
+  --content-separator-color: #DDDDDD;
+
+  --tab-active-background-color: rgba(0, 0, 0, 0.03);
+  --tab-active-box-shadow-color: rgba(0, 0, 0, 0.1);
+  --tab-active-top-border-color: #990000;
+
+  --inactive-item-background-color: #F5F5F5;
+
+  --code-background-color: #F2E5E5;
+
+  --user-content-background-color-gradient-1: #fcf1f1;
+  --user-content-background-color-gradient-2: #FFF;
+  --user-content-border-left-color: #F2E5E5;
+
+  --list-option-background-color-gradient-1: white;
+  --list-option-background-color-gradient-2: #EEEEEE;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --overall-background-color: #0A0A0A;
+    --overall-text-color: white;
+
+    --link-color: #A42121;
+    --link-visited-color: #b35757;
+    --texty-link-visited-color: #DDD;
+
+    --content-background-color: black;
+    --content-border-color: #666;
+    --content-box-shadow-color: #888;
+    --content-separator-color: #333;
+
+    --tab-active-background-color: rgba(255, 255, 255, 0.1);
+    --tab-active-box-shadow-color: rgba(255, 255, 255, 0.1);
+
+    --inactive-item-background-color: #333;
+
+    --code-background-color: black;
+
+    --user-content-background-color-gradient-1: #2e1111;
+    --user-content-background-color-gradient-2: #000;
+    --user-content-border-left-color: #461414;
+
+    --list-option-background-color-gradient-1: #111;
+    --list-option-background-color-gradient-2: #222222;
+  }    
+}

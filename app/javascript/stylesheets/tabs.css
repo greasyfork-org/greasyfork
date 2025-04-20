@@ -20,17 +20,11 @@
   cursor: pointer;
 }
 .tabs .current, .tabs > *:not(.current) a:hover, .tabs > *:not(.current) a:focus {
-  background: rgba(0, 0, 0, 0.03);
-  box-shadow: inset 1px 0 rgba(0, 0, 0, 0.1), inset -1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px rgba(0, 0, 0, 0.1);
+  background: var(--tab-active-background-color);
+  box-shadow: inset 1px 0 var(--tab-active-box-shadow-color), inset -1px 0 var(--tab-active-box-shadow-color), inset 0 -1px var(--tab-active-box-shadow-color);
 }
-@media (prefers-color-scheme: dark) {
-  .tabs .current, .tabs > *:not(.current) a:hover, .tabs > *:not(.current) a:focus {
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: inset 1px 0 rgba(255, 255, 255, 0.1), inset -1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px rgba(255, 255, 255, 0.1);
-  }  
-}  
 .tabs .current {
-  border-top: 7px solid #990000;
+  border-top: 7px solid var(--tab-active-top-border-color);
 }
 .tabs > *:not(.current) a {
   margin-top: 3.5px;

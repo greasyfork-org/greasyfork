@@ -1,17 +1,10 @@
 #script-info {
-  border: 1px solid #BBBBBB;
+  border: 1px solid var(--content-border-color);
   border-radius: 5px;
   clear: left;
-  background-color: white;
+  background-color: var(--content-background-color);
   margin: 1em 0 0 0;
-  box-shadow: 0 0 5px #DDDDDD;
-}
-@media (prefers-color-scheme: dark) {
-  #script-info {
-    background-color: black;
-    box-shadow: 0 0 5px #888;
-    border-color: #666;
-  }
+  box-shadow: 0 0 5px var(--content-box-shadow-color);
 }
 #script-content {
   margin-top: 1.5em;

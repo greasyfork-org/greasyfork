@@ -1,14 +1,8 @@
 .user-content {
-  background: linear-gradient(to right, #fcf1f1, #FFF 1em);
-  border-left: 2px solid #F2E5E5;
+  background: linear-gradient(to right, var(--user-content-background-color-gradient-1), var(--user-content-background-color-gradient-2) 1em);
+  border-left: 2px solid var(--user-content-border-left-color);
   padding: 0.5em 1em;
   overflow-x: auto;
-}
-@media (prefers-color-scheme: dark) {
-  .user-content {
-    background: linear-gradient(to right, #2e1111, #000 1em);
-    border-left-color: #461414;
-  }
 }
 
 .user-content > p:first-child {
