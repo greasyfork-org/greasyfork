@@ -377,22 +377,20 @@ label.subselection-radio-title {
 
 .alert {
   font-style: italic;
-  background-color: #FFFFCC;
+  background-color: var(--alert-background-color);
   border: none;
-  border-left: 6px solid #FFEB3B;
+  border-left: 6px solid var(--alert-border-color);
   padding: 0.5em;
+  color: var(--alert-text-color);
 }
-.notice {
-  background-color: #D9EDF7;
+.notice, .validation-errors {
+  background-color: var(--notice-background-color);
   border: none;
-  border-left: 6px solid #31708F;
+  border-left: 6px solid var(--notice-border-color);
   padding: 0.5em;
+  color: var(--notice-text-color);
 }
 .validation-errors {
-  background-color: #FFFFCC;
-  border: none;
-  border-left: 6px solid #FFEB3B;
-  padding: 0.5em;
   margin: 0.5em 0;
 }
 .validation-errors > p:first-child {
