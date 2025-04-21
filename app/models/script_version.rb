@@ -472,7 +472,7 @@ class ScriptVersion < ApplicationRecord
         next
       end
 
-      next if /\A[^#]+#(md5|sha1|sha256|sha384|sha512)=/.match?(script_url)
+      next if /\A[^#]+#(md5|sha1|sha256|sha384|sha512)[=-]/.match?(script_url)
 
       uri = URI(script_url).normalize.to_s
       non_allowlisted_requires << script_url if allowed_requires.none? { |ar| uri =~ Regexp.new(ar.pattern) }

@@ -138,6 +138,29 @@ class ScriptSubresourceTest < ActiveSupport::TestCase
     assert_equal '123', script.subresource_usages.first.integrity_hash
   end
 
+  test 'saving with subresource integrity for normally disallowed domain, hyphen format' do
+    script = get_script_with_code(<<~JS)
+      // ==UserScript==
+      // @name		Subresource test
+      // @description		description
+      // @version 1.0
+      // @namespace http://greasyfork.local/users/1
+      // @include *
+      // @license MIT
+      // @require https://example.com/test.js#md5-123
+      // ==/UserScript==
+      foo.baz();
+    JS
+    assert_difference -> { Subresource.count } => 1 do
+      script.save!
+    end
+    assert_equal(1, script.subresource_usages.count)
+    assert_equal(1, script.subresources.count)
+    assert_equal 'https://example.com/test.js', script.subresources.first.url
+    assert_equal 'md5', script.subresource_usages.first.algorithm
+    assert_equal '123', script.subresource_usages.first.integrity_hash
+  end
+
   test 'saving subresources that was previously used by another' do
     script = get_script_with_code(<<~JS)
       // ==UserScript==
