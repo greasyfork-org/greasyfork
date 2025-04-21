@@ -22,7 +22,8 @@ module ShowsAds
 
     return AdMethod.ea if valid_locale_for_ea?
 
-    AdMethod.cd
+    # Very poor results with this
+    # AdMethod.cd
   end
 
   def choose_ad_method_for_scripts(scripts)
@@ -42,7 +43,8 @@ module ShowsAds
 
     return AdMethod.ea if valid_locale_for_ea?
 
-    AdMethod.cd
+    # Very poor results with this
+    # AdMethod.cd
   end
 
   def choose_ad_method_for_discussion(discussion)
