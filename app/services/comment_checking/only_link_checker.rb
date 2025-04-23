@@ -6,7 +6,7 @@ module CommentChecking
       doc = comment.text_as_doc
       return CommentChecking::Result.not_spam if doc.text.squish.empty?
 
-      doc.search('a').each { |a| a.remove unless Comment::INTERNAL_LINK_PREFIXES.any? { |prefix| a.attr(:href).starts_with?(prefix) } }
+      doc.search('a[href]').each { |a| a.remove unless Comment::INTERNAL_LINK_PREFIXES.any? { |prefix| a.attr(:href).starts_with?(prefix) } }
       linkless_doc = doc.text.squish
 
       return CommentChecking::Result.not_spam if linkless_doc.present?

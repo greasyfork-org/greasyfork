@@ -40,4 +40,12 @@ class OnlyLinkCheckerCheckerTest < ActiveSupport::TestCase
 
     assert_not CommentChecking::OnlyLinkChecker.check(comment, ip: '127.0.0.1', referrer: nil, user_agent: 'Bot').spam?
   end
+
+  test 'when it is a href-less <a>' do
+    comment = comments(:script_comment)
+    comment.update!(text: '<a>test</a>', text_markup: 'html')
+    comment.poster.update!(created_at: 1.day.ago)
+
+    assert_not CommentChecking::OnlyLinkChecker.check(comment, ip: '127.0.0.1', referrer: nil, user_agent: 'Bot').spam?
+  end
 end
