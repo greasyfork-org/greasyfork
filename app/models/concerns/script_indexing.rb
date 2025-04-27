@@ -122,7 +122,7 @@ module ScriptIndexing
     else
       values.map!(&:attribute_value)
     end
-    values.join(' ')
+    values.join(' ').truncate_bytes(32_766, omission: nil)
   end
 
   def should_index?
