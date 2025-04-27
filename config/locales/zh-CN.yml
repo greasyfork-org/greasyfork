@@ -55,6 +55,7 @@ zh-CN:
     reported_notice_for_author: "在管理员完成审核前，其他用户不能访问此脚本。"
     info_page: "信息"
     code_page: "代码"
+    wrap_lines: "换行"
     history_page: "历史"
     feedback_page: "反馈 (%{count})"
     stats_page: "统计"
@@ -335,6 +336,7 @@ zh-CN:
     error_unauthorized_copy: "这段代码似乎是对 %{script} 的未经授权复制。请参阅 %{site_name} %{rules_link:规则} 以了解发布脚本的相关规定。"
     invitations:
       form_title: "邀请其他作者"
+      explanation: "您可以添加其他 Greasy Fork 用户作为此脚本的作者。他们将在此脚本上拥有与您相同的权利，包括添加或移除其他作者（甚至包括您自己）。"
       invited_user_url_label: "邀请用户"
       invited_user_placeholder: "在 %{site_name} 的用户资料链接"
       submit: "发送邀请"
@@ -518,6 +520,16 @@ zh-CN:
           </ul>
     android_browsers:
       title: 移动端（Android）
+      browser_list_html: |
+          <ul>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, or %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+          <li>傲游浏览器: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+          <li>UC 浏览器: %{uc_tampermonkey_link:Tampermonkey}</li>
+          <li>%{xbrowser_link:XBrowser}</li>
+          %{locale_specific_browsers}
+          </ul>
     ios_browsers:
       title: 移动端（iOS）
       browser_list_html: |
@@ -1142,6 +1154,18 @@ zh-CN:
       message: "%{user} 的评论"
       deleted: "删除 %{type} #%{id}"
       script: "%{script}"
+    other_appeals:
+      heading: "此举报的其它上诉："
+      item_html: "%{item_link} - %{result}"
+      item_link: "申诉 #%{id}"
+      resolutions:
+        unresolved: "未解决"
+        dismissed: "驳回"
+        unlocked: "已解锁"
+    unauthorized_code:
+      script_header: 脚本
+      reported_script: 被告
+      original_script: 原始
   appeals:
     new:
       title: 新建删除脚本申诉
@@ -1286,6 +1310,20 @@ zh-CN:
     moderator_notice: 如果您想报告违反 %{site_name} 规则的行为，请使用该脚本、用户或评论上的举报链接。管理员无法根据直接消息中的报告删除内容。
   screenshots:
     requirements: "最多上传 %{number} 张 PNG、GIF、JPEG 或 WebP 图片，且每张图片大小不得超过 %{size}。"
+  moderator_actions:
+    action_taken:
+      ban: '封禁'
+      delete: '软删除'
+      delete_and_lock: '软删除并锁定'
+      delete_version: '删除版本 %{version}, ID %{id}'
+      mark_adult: '标记为成人内容'
+      mark_not_adult: '标记为非成人内容'
+      permanent_deletion: '永久删除'
+      permanent_deletion_denied: '拒绝永久删除'
+      unban: '解封'
+      undelete: '解除软删除'
+      undelete_and_unlock: '解除软删除和锁定'
+      update_locale: '更新语言'
   common:
     error_preamble: "很抱歉，您提交的内容有点问题…"
     allowed_elements_link: "(查看允许使用的代码)"
@@ -1305,6 +1343,7 @@ zh-CN:
     quote:
       prefix_html: "%{user} 说："
       anonymous_reporter_html: "举报者说："
+    access_denied: "拒绝访问。"
   activerecord:
     models:
       script:
