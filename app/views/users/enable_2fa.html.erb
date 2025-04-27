@@ -6,7 +6,7 @@
 
 <h3><%= t('users.enable_2fa.qr_heading') %></h3>
 
-<%= image_tag(qr_path(url: opt_url, format: :svg), style: 'max-width: 400px;') %>
+<%= image_tag(qr_path(url: opt_url, format: :svg), class: 'qr-code') %>
 
 <h3><%= t('users.enable_2fa.url_heading') %></h3>
 

@@ -336,10 +336,6 @@ label.subselection-radio-title {
   display: none;
 }
 
-.diff {
-  border: 2px solid black;
-}
-
 #help-allowed-elements, #help-allowed-styles {
   column-width: 20em;
 }
@@ -481,8 +477,8 @@ form.external-login-form {
   display: table;
   margin: 0 auto;
   padding: 1em;
-  background-color: #fff;
-  border: 1px solid #d8dee2;
+  background-color: var(--content-background-color);
+  border: 1px solid var(--content-border-color);
   border-radius: 5px;
   text-align: center;
 }
@@ -494,8 +490,8 @@ form.new_user {
   width: 340px;
   margin: 0 auto;
   padding: 1em;
-  background-color: #fff;
-  border: 1px solid #d8dee2;
+  background-color: var(--content-background-color);
+  border: 1px solid content(--content-border-color);
   border-radius: 5px;
   text-align: start;
 }
@@ -527,8 +523,6 @@ form.new_user input[type="password"] {
   font-size: 14px;
   line-height: 20px;
   vertical-align: middle;
-  color: #333;
-  background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 3px;
   outline: none;
@@ -588,6 +582,11 @@ form.new_user + a {
   display: block;
   margin: 0 auto;
 }
+.qr-code {
+  max-width: 400px;
+  background-color: white;
+}
+
 .sidebar-search, .home-search {
   position: relative;
   vertical-align: middle;
