@@ -1,0 +1,7 @@
+<% (0..48).each do |h| %>
+  <%= h %> hours ago - 
+  <% time = h.hours.ago %>
+  <%= time %> -
+  relative time: <b><%= tag.relative_time(datetime: time.to_datetime.rfc3339, prefix: '') { I18n.l(time.to_date) } %></b>
+  <br>
+<% end %>
