@@ -87,7 +87,6 @@ Rails.application.routes.draw do
       post '/users/send_confirmation_email' => 'users#send_confirmation_email'
     end
 
-
     get 'relative_date_test', to: 'home#relative_date_test'
     root to: 'home#index'
 
