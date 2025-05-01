@@ -22,8 +22,9 @@
 }
 #version-note, #reported-note, #deleted-note {
   font-style: italic;
-  background-color: #FFFF99;
-  border: 2px dotted #CC9999;
+  background-color: var(--alert-background-color);
+  border: 2px dotted var(--alert-border-color);
+  color: var(--alert-text-color);
   padding: 0.5em;
 }
 #script-feedback-suggestion {
