@@ -91,6 +91,26 @@ class GithubWebhookTest < ActionDispatch::IntegrationTest
     assert_equal({ 'updated_scripts' => ['https://greasyfork.org/en/scripts/1-a-test'], 'updated_failed' => [] }, response.parsed_body)
   end
 
+  def test_webhook_push_github_refs_heads_format_sync_identifier
+    script = Script.find_by(sync_identifier: 'https://github.com/JasonBarnabe/webhooktest/raw/master/test.user.js')
+    script.update!(sync_identifier: 'https://github.com/JasonBarnabe/webhooktest/raw/refs/heads/master/test.user.js')
+    Git.expects(:get_contents).with('https://github.com/JasonBarnabe/webhooktest.git', { 'test.user.js' => '7e1817e12430e179c0103c658018168f081336af' }).yields('test.user.js', 'abc123', script.newest_saved_script_version.rewritten_code)
+    user = User.find(1)
+    push_webhook_request(user)
+    assert_equal '200', response.code
+    assert_equal({ 'updated_scripts' => ['https://greasyfork.org/en/scripts/18-mb-funkey-illustrated-records-15'], 'updated_failed' => [] }, response.parsed_body)
+  end
+
+  def test_webhook_push_github_user_content_refs_heads_format_sync_identifier
+    script = Script.find_by(sync_identifier: 'https://github.com/JasonBarnabe/webhooktest/raw/master/test.user.js')
+    script.update!(sync_identifier: 'https://raw.githubusercontent.com/JasonBarnabe/webhooktest/refs/heads/master/test.user.js')
+    Git.expects(:get_contents).with('https://github.com/JasonBarnabe/webhooktest.git', { 'test.user.js' => '7e1817e12430e179c0103c658018168f081336af' }).yields('test.user.js', 'abc123', script.newest_saved_script_version.rewritten_code)
+    user = User.find(1)
+    push_webhook_request(user)
+    assert_equal '200', response.code
+    assert_equal({ 'updated_scripts' => ['https://greasyfork.org/en/scripts/18-mb-funkey-illustrated-records-15'], 'updated_failed' => [] }, response.parsed_body)
+  end
+
   def test_webhook_release
     script = Script.find_by(sync_identifier: 'https://github.com/JasonBarnabe/webhooktest/raw/master/test.user.js')
     Git.expects(:get_contents).with('https://github.com/JasonBarnabe/webhooktest.git', { 'test.user.js' => 'v0.0.1' }).yields('test.user.js', 'abc123', script.newest_saved_script_version.rewritten_code)

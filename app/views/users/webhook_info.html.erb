@@ -20,11 +20,13 @@
 
 <h3>GitHub</h3>
 
-<p>The sync URL you supply to <%= site_name %> must be one of the following formats:</p>
+<p>The sync URL should be the URL GitHub provides for the "Raw" version of a file. <%= site_name %> will look for the following formats:</p>
 
 <ul>
-  <li>https://raw.githubusercontent.com/<b>YourRepoName</b>/<b>YourProjectName</b>/<b>main</b>/<b>path/to/script.user.js</b></li>
-  <li>https://github.com/<b>YourRepoName</b>/<b>YourProjectName</b>/raw/<b>main</b>/<b>path/to/script.user.js</b></li>
+  <li>https://raw.githubusercontent.com/<b>YourRepoName</b>/<b>YourProjectName</b>/<b>YourBranchName</b>/<b>path/to/script.user.js</b></li>
+  <li>https://raw.githubusercontent.com/<b>YourRepoName</b>/<b>YourProjectName</b>/refs/heads/<b>YourBranchName</b>/<b>path/to/script.user.js</b></li>
+  <li>https://github.com/<b>YourRepoName</b>/<b>YourProjectName</b>/raw/<b>YourBranchName</b>/<b>path/to/script.user.js</b></li>
+  <li>https://github.com/<b>YourRepoName</b>/<b>YourProjectName</b>/raw/refs/heads/<b>YourBranchName</b>/<b>path/to/script.user.js</b></li>
   <li>https://github.com/<b>YourRepoName</b>/<b>YourProjectName</b>/releases/latest/download/<b>script.user.js</b> (only for release events, where <b>script.user.js</b> is added to the release as an asset)</li>
 </ul>
 

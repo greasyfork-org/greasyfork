@@ -49,7 +49,10 @@ class Github
       urls = possible_sync_urls_for_repo_url(repo_url, release:).map do |url|
         next ["#{url}#{file.tr(' ', '+')}", "#{url}#{CGI.escape(file).tr(' ', '+').gsub('%2F', '/')}"] if url.ends_with?('latest/download/')
 
-        ["#{url}#{ref}/#{file.tr(' ', '+')}", "#{url}#{ref}/#{CGI.escape(file).tr(' ', '+').gsub('%2F', '/')}"]
+        [
+          "#{url}#{ref}/#{file.tr(' ', '+')}",
+          "#{url}#{ref}/#{CGI.escape(file).tr(' ', '+').gsub('%2F', '/')}",
+        ]
       end
       urls = urls.flatten
       (urls + urls.map { |url| url.gsub('+', '%20') }).uniq
@@ -58,12 +61,16 @@ class Github
     def possible_sync_urls_for_repo_url(repo_url, release: false)
       # Raw URLs are in the format:
       # - (repository url)/raw/(branch)/(path)
+      # - (repository url)/raw/refs/heads/(branch)/(path)
       # - https://raw.githubusercontent.com/(user)/(repo)/(branch)/(path)
+      # - https://raw.githubusercontent.com/(user)/(repo)/refs/heads/(branch)/(path)
       # - (repository url)/releases/latest/download/(path)
       org_and_project = repo_url.split('/')[3..4].join('/')
       [
         "#{repo_url}/raw/",
+        "#{repo_url}/raw/refs/heads/",
         "https://raw.githubusercontent.com/#{org_and_project}/",
+        "https://raw.githubusercontent.com/#{org_and_project}/refs/heads/",
         ("https://github.com/#{org_and_project}/releases/latest/download/" if release),
       ].compact
     end
