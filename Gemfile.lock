@@ -154,7 +154,7 @@ GEM
       xpath (~> 3.2)
     chunky_png (1.4.0)
     concurrent-ruby (1.3.5)
-    connection_pool (2.5.3)
+    connection_pool (2.5.0)
     crass (1.0.6)
     csv (3.3.3)
     daemons (1.4.1)
@@ -181,10 +181,10 @@ GEM
     elastic-transport (8.4.0)
       faraday (< 3)
       multi_json
-    elasticsearch (9.0.2)
+    elasticsearch (8.17.1)
       elastic-transport (~> 8.3)
-      elasticsearch-api (= 9.0.2)
-    elasticsearch-api (9.0.2)
+      elasticsearch-api (= 8.17.1)
+    elasticsearch-api (8.17.1)
       multi_json
     email_address (0.2.5)
       base64
@@ -513,8 +513,8 @@ GEM
     sanitize (7.0.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.16.8)
-    searchkick (5.5.1)
-      activemodel (>= 7.1)
+    searchkick (5.4.0)
+      activemodel (>= 6.1)
       hashie
     securerandom (0.4.1)
     selenium-webdriver (4.31.0)
@@ -722,7 +722,7 @@ CHECKSUMS
   capybara (3.40.0) sha256=42dba720578ea1ca65fd7a41d163dd368502c191804558f6e0f71b391054aeef
   chunky_png (1.4.0) sha256=89d5b31b55c0cf4da3cf89a2b4ebc3178d8abe8cbaf116a1dba95668502fdcfe
   concurrent-ruby (1.3.5) sha256=813b3e37aca6df2a21a3b9f1d497f8cbab24a2b94cab325bffe65ee0f6cbebc6
-  connection_pool (2.5.3) sha256=cfd74a82b9b094d1ce30c4f1a346da23ee19dc8a062a16a85f58eab1ced4305b
+  connection_pool (2.5.0) sha256=233b92f8d38e038c1349ccea65dd3772727d669d6d2e71f9897c8bf5cd53ebfc
   crass (1.0.6) sha256=dc516022a56e7b3b156099abc81b6d2b08ea1ed12676ac7a5657617f012bd45d
   csv (3.3.3) sha256=7e2966befb7bdaf7d5e9b36e1de73e6a5e7a72f584f180a1726aec88a1b0a900
   daemons (1.4.1) sha256=8fc76d76faec669feb5e455d72f35bd4c46dc6735e28c420afb822fac1fa9a1d
@@ -736,8 +736,8 @@ CHECKSUMS
   drb (2.2.1) sha256=e9d472bf785f558b96b25358bae115646da0dbfd45107ad858b0bc0d935cb340
   dry-cli (1.2.0) sha256=8c97df3b290ee6354ee2025a5f0a67226b381627de32741d06f35ea0887cd95b
   elastic-transport (8.4.0) sha256=b5e9e406c98a867dc73a9c7c2f29faf619de3ade94aa1b7f5a8dcf45ffc0e577
-  elasticsearch (9.0.2) sha256=96c85216518391893ca55403d6510d3182a7a38a333e5fbf111bb461d36edce8
-  elasticsearch-api (9.0.2) sha256=c1ab0da25f61efb6e504b3b6223cdf25b4aa0254d01e85fbf965dac300260af0
+  elasticsearch (8.17.1) sha256=697d80b1f6bbffdf59877334efd91e7444aaf7e77509cd7084c0005d5c687cd9
+  elasticsearch-api (8.17.1) sha256=c6841275847e5b37506c72fef696cc67cc59a4176494eda0b7038c163b3894c7
   email_address (0.2.5) sha256=873ab0175806d5807a40a05d37452b07370525ea87525273a587d8110220289c
   erb_lint (0.9.0) sha256=dfb5e40ad839e8d1f0d56ca85ec9a7ac4c9cd966ec281138282f35b323ca7c31
   erubi (1.13.1) sha256=a082103b0885dbc5ecf1172fede897f9ebdb745a4b97a5e8dc63953db1ee4ad9
@@ -872,7 +872,7 @@ CHECKSUMS
   rubyzip (2.4.1) sha256=8577c88edc1fde8935eb91064c5cb1aef9ad5494b940cf19c775ee833e075615
   rufus-scheduler (3.9.2) sha256=55fa9e4db0ff69d7f38c804f17baba0c9bce5cba39984ae3c5cf6c039d1323b9
   sanitize (7.0.0) sha256=269d1b9d7326e69307723af5643ec032ff86ad616e72a3b36d301ac75a273984
-  searchkick (5.5.1) sha256=cc1df998cb89f36187c31047c4248cb226862c526fe43b3c2db7371488cee9e1
+  searchkick (5.4.0) sha256=75d7256d3ec2af2dc11c2ba8160c86d80451f3f86447aae2ace1f79553de0bf3
   securerandom (0.4.1) sha256=cc5193d414a4341b6e225f0cb4446aceca8e50d5e1888743fac16987638ea0b1
   selenium-webdriver (4.31.0) sha256=ddb2d88eee23cddb5d6a9dadd909427a9e5163718338e11a91eef2fbead100e9
   sentry-rails (5.23.0) sha256=8d2cbc3c85e343c1e882d7c8595d410e0c3afa3b005f51430225b938e128dec4
