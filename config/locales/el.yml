@@ -590,8 +590,6 @@ el:
     2fa_enable_code_incorrect: Ο κώδικας Τ2Π δεν είναι σωστός. Δοκιμάστε ξανά.
     2fa_disabled: Η Τ2Π έχει απενεργοποιηθεί.
     2fa_disabled_already: Η Τ2Π έχει απενεργοποιηθει.
-    2fa_entry:
-      intro_html: "Σύνδεση ως <b>%{email}</b>"
     enable_2fa:
       intro: "Προσθέστε το %{site_name}την εφαρμογή ταυτοποίησης δύο παραγόντων (Τ2Π) χρησιμοποιώντας μια από αυτές τις μεθόδους και εισάγετε τον παρακάτω κώδικα."
       qr_heading: Μέσω κώδικα QR
@@ -964,6 +962,7 @@ el:
       script: "%{script}"
     other_appeals:
       heading: "Άλλες εφέσεις για αυτή την αναφορά:"
+      item_html: "%{item_link} - %{result}"
       item_link: "Έφεση #%{id}"
       resolutions:
         unresolved: "ανεπίλυτη"
@@ -1115,6 +1114,20 @@ el:
     update_message_submit: Αναβάθμιση μηνύματος
   screenshots:
     requirements: "Μέγιστο μέγεθος από %{number} PNG, GIF, JPEG, ή WebP εικόνες, μικρότερες από %{size} η καθεμιά."
+  moderator_actions:
+    action_taken:
+      ban: 'Αποκλεισμός'
+      delete: 'Διαγραφή'
+      delete_and_lock: 'Διαγραφή και κλείδωμα'
+      delete_version: 'Διαγραφή έκδοσης %{version}, ταυτότητα %{id}'
+      mark_adult: 'Σήμανση ως περιεχόμενο για ενήλικες'
+      mark_not_adult: 'Σήμανση ως περιεχόμενο για μη ενήλικες'
+      permanent_deletion: 'Μόνιμη διαγραφή'
+      permanent_deletion_denied: 'Η μόνιμη διαγραφή απορρίφθηκε'
+      unban: 'Άρση αποκλεισμού'
+      undelete: 'Αναίρεση διαγραφής'
+      undelete_and_unlock: 'Αναίρεση διαγραφής και ξεκλείδωμα'
+      update_locale: 'Ενημέρωση γλώσσας'
   common:
     error_preamble: "Υπήρξαν κάποια προβλήματα με αυτό που δημοσιεύσατε..."
     allowed_elements_link: "(Δείτε τον επιτρεπτόμενο κώδικα.)"
