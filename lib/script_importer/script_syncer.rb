@@ -69,7 +69,7 @@ module ScriptImporter
     def self.handle_failed_sync(script, error)
       script.reload
       script.last_attempted_sync_date = DateTime.now
-      script.sync_error = error
+      script.sync_error = error[0, 1000]
       script.save(validate: false)
     end
 
