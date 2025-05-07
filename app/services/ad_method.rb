@@ -10,6 +10,10 @@ class AdMethod
     @ad_method.present?
   end
 
+  def no_ads?
+    !show_ads?
+  end
+
   def css_class
     "ad-#{@ad_method}" if @ad_method
   end

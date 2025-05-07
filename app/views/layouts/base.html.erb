@@ -203,7 +203,7 @@
     <%= content_for?(:content) ? yield(:content) : yield %>
   </div>
 
-  <% if @ad_method&.show_ads? %>
+  <% unless general_ads_setting&.no_ads? %>
     <script>
       (function (d) {
       window.rum = {key: '29razx6j'};

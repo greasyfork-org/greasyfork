@@ -1,4 +1,6 @@
 module ShowsAds
+  extend ActiveSupport::Concern
+
   def choose_ad_method
     no_ads = general_ads_setting
     return no_ads if no_ads
@@ -95,5 +97,9 @@ module ShowsAds
 
   def valid_locale_for_ea?
     request_locale.code != 'zh-CN'
+  end
+
+  included do
+    helper_method :general_ads_setting
   end
 end
