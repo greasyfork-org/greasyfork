@@ -202,5 +202,19 @@
 
     <%= content_for?(:content) ? yield(:content) : yield %>
   </div>
+
+  <% if @ad_method&.show_ads? %>
+    <script>
+      (function (d) {
+      window.rum = {key: '29razx6j'};
+      var script = d.createElement('script');
+      script.src = 'https://cdn.perfops.net/rom3/rom3.min.js';
+      script.type = 'text/javascript';
+      script.defer = true;
+      script.async = true;
+      d.getElementsByTagName('head')[0].appendChild(script);
+      })(document);
+    </script>
+  <% end %>
 </body>
 </html>
