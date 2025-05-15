@@ -21,99 +21,103 @@ class DiscussionsController < ApplicationController
   layout 'application', only: [:new, :create]
 
   def index
-    should_cache_page = current_user.nil? && request.format.html? && (params.keys - %w[locale controller action site page]).none?
-    cache_page(should_cache_page ? "#{site_cache_key}/discussion/index/#{params.values.join('/')}" : nil, ttl: 5.minutes) do
-      if params[:q].presence
-        with = { discussion_category_id: discussion_category_filter.pluck(:id) }
+    respond_to do |format|
+      format.html do
+        should_cache_page = current_user.nil? && request.format.html? && (params.keys - %w[locale controller action site page]).none?
+        cache_page(should_cache_page ? "#{site_cache_key}/discussion/index/#{params.values.join('/')}" : nil, ttl: 5.minutes) do
+          if params[:q].presence
+            with = { discussion_category_id: discussion_category_filter.pluck(:id) }
 
-        if current_user
-          case params[:me]
-          when 'started'
-            with[:discussion_starter_id] = current_user.id
-          when 'comment'
-            with[:poster_id] = current_user.id
-          when 'script'
-            with[:script_id] = current_user.script_ids
-          when 'subscribed'
-            with[:discussion_id] = current_user.discussion_subscriptions.pluck(:discussion_id)
+            if current_user
+              case params[:me]
+              when 'started'
+                with[:discussion_starter_id] = current_user.id
+              when 'comment'
+                with[:poster_id] = current_user.id
+              when 'script'
+                with[:script_id] = current_user.script_ids
+              when 'subscribed'
+                with[:discussion_id] = current_user.discussion_subscriptions.pluck(:discussion_id)
+              else
+                params[:me] = nil
+              end
+            end
+
+            if params[:show_locale]
+              locale = Locale.find_by(code: params[:show_locale])
+              with[:locale_id] = locale.id if locale
+            end
+
+            case script_subset
+            when :sleazyfork
+              with[:sensitive] = true
+            when :greasyfork
+              with[:sensitive] = false
+            when :all
+              # No restrictions
+            else
+              raise "Unknown subset #{script_subset}"
+            end
+
+            param_to_search_option = {
+              'comment_created' => { created: :desc },
+              'discussion_created' => { discussion_created: :desc },
+              'last_comment' => { discussion_last_reply: :desc },
+            }
+            order = param_to_search_option[params[:sort]]
+
+            @comments = Comment.search(
+              params[:q].presence || '*',
+              fields: ['discussion_title^2', 'text'],
+              where: with,
+              order:,
+              page: page_number,
+              per_page: per_page(default: 25)
+            )
+            @comments_to_discussions = @comments.map { |c| [c, c.discussion] }
+            @discussions = @comments_to_discussions.map(&:last)
+            @filter_result = FILTER_RESULT.new(category: params[:category], related_to_me: params[:me], locale:)
+            @bots = 'noindex'
+
           else
-            params[:me] = nil
+
+            order = case params[:sort]
+                    when 'discussion_created' then { id: :desc }
+                    else { stat_last_reply_date: :desc }
+                    end
+
+            @discussions = Discussion
+                           .includes(:poster, :script, :discussion_category, :stat_first_comment, :stat_last_replier)
+                           .order(order)
+
+            case script_subset
+            when :sleazyfork
+              @discussions = @discussions.where(scripts: { sensitive: true })
+            when :greasyfork
+              @discussions = @discussions.where(scripts: { sensitive: [nil, false] })
+            when :all
+              # No restrictions
+            else
+              raise "Unknown subset #{script_subset}"
+            end
+
+            @filter_result = apply_filters(@discussions)
+            if @filter_result.is_a?(String)
+              render_404(@filter_result)
+              return
+            end
+
+            @discussions = @filter_result.result
+            @discussions = @discussions.paginate(page: page_number, per_page: per_page(default: 25))
+            @bots = 'noindex' unless page_number == 1
           end
+
+          @discussion_ids_read = DiscussionRead.read_ids_for(@discussions, current_user) if current_user
+          @possible_locales = Locale.with_discussions.order(:code)
+
+          render_to_string
         end
-
-        if params[:show_locale]
-          locale = Locale.find_by(code: params[:show_locale])
-          with[:locale_id] = locale.id if locale
-        end
-
-        case script_subset
-        when :sleazyfork
-          with[:sensitive] = true
-        when :greasyfork
-          with[:sensitive] = false
-        when :all
-          # No restrictions
-        else
-          raise "Unknown subset #{script_subset}"
-        end
-
-        param_to_search_option = {
-          'comment_created' => { created: :desc },
-          'discussion_created' => { discussion_created: :desc },
-          'last_comment' => { discussion_last_reply: :desc },
-        }
-        order = param_to_search_option[params[:sort]]
-
-        @comments = Comment.search(
-          params[:q].presence || '*',
-          fields: ['discussion_title^2', 'text'],
-          where: with,
-          order:,
-          page: page_number,
-          per_page: per_page(default: 25)
-        )
-        @comments_to_discussions = @comments.map { |c| [c, c.discussion] }
-        @discussions = @comments_to_discussions.map(&:last)
-        @filter_result = FILTER_RESULT.new(category: params[:category], related_to_me: params[:me], locale:)
-        @bots = 'noindex'
-
-      else
-
-        order = case params[:sort]
-                when 'discussion_created' then { id: :desc }
-                else { stat_last_reply_date: :desc }
-                end
-
-        @discussions = Discussion
-                       .includes(:poster, :script, :discussion_category, :stat_first_comment, :stat_last_replier)
-                       .order(order)
-
-        case script_subset
-        when :sleazyfork
-          @discussions = @discussions.where(scripts: { sensitive: true })
-        when :greasyfork
-          @discussions = @discussions.where(scripts: { sensitive: [nil, false] })
-        when :all
-          # No restrictions
-        else
-          raise "Unknown subset #{script_subset}"
-        end
-
-        @filter_result = apply_filters(@discussions)
-        if @filter_result.is_a?(String)
-          render_404(@filter_result)
-          return
-        end
-
-        @discussions = @filter_result.result
-        @discussions = @discussions.paginate(page: page_number, per_page: per_page(default: 25))
-        @bots = 'noindex' unless page_number == 1
       end
-
-      @discussion_ids_read = DiscussionRead.read_ids_for(@discussions, current_user) if current_user
-      @possible_locales = Locale.with_discussions.order(:code)
-
-      render_to_string
     end
   end
 
