@@ -261,4 +261,31 @@ class ApplicationController < ActionController::Base
   def set_active_storage_url_options
     ActiveStorage::Current.url_options = { host: request.host, port: request.port }
   end
+
+  # Modified params to ensure the passed param names are Integers or nil.
+  def ensure_integer_params(*param_names)
+    param_names.each do |param_name|
+      pv = params[param_name]
+      next if pv.nil?
+
+      unless pv.is_a?(String) && pv.present?
+        params[param_name] = nil
+        next
+      end
+
+      # to_i below will give 0 for non-numbery things, but we still want to allow a 0.
+      if pv == '0'
+        params[param_name] = 0
+        next
+      end
+
+      pv = pv.to_i
+      if pv == 0
+        params[param_name] = nil
+        next
+      end
+
+      params[param_name] = pv
+    end
+  end
 end

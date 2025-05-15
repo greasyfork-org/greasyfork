@@ -13,6 +13,8 @@ module ScriptListings
   end
 
   def index
+    ensure_integer_params(:set)
+
     if [:set, :filter_locale, :per_page].any? { |name| params[name].present? }
       # Yandex doesn't seem to listen to noindex
       if request.user_agent&.include?('YandexBot')
