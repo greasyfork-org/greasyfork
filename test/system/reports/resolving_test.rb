@@ -120,7 +120,7 @@ class ReportsResolvingTest < ApplicationSystemTestCase
         assert_difference -> { Notification.count } => 1 do
           click_on 'Submit rebuttal'
           assert_content 'A moderator will review this report and your explanation and make a decision.'
-          assert_content "#{user.name} said:\nNo it is not!"
+          assert_content "#{user.name}AUTHOR said:\nNo it is not!"
         end
       end
     end

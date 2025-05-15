@@ -99,7 +99,7 @@
 
 
 <% if report.rebuttal.present? %>
-  <div><%= t('common.quote.prefix_html', user: render_user(report.rebuttal_by_user, report.rebuttal_by_user_id)) %></div>
+  <div><%= t('common.quote.prefix_html', user: render_user(report.rebuttal_by_user, report.rebuttal_by_user_id, script: (report.item&.is_a?(Script) ? report.item : nil))) %></div>
   <blockquote>
     <div class="user-content">
       <%= format_user_text(report.rebuttal, 'text') %>
