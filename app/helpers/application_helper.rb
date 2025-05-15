@@ -91,7 +91,11 @@ module ApplicationHelper
                        .to_h do |k, v|
       next [k, v] if v.is_a?(Array)
 
-      canonical_param_names.include?(k.to_sym) ? [k, v&.encode('UTF-8', invalid: :replace, undef: :replace, replace: '')] : [k, nil]
+      if canonical_param_names.include?(k.to_sym)
+        [k, v.is_a?(String) ? v.encode('UTF-8', invalid: :replace, undef: :replace, replace: '') : v]
+      else
+        [k, nil]
+      end
     end
 
     begin
