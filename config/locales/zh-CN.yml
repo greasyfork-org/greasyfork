@@ -579,12 +579,12 @@ zh-CN:
     edit_sign_in: "更改登录方式"
     edit_sign_in_title: "更改登录方式"
     edit_sign_in_password: "密码"
-    edit_sign_in_2fa_enabled: 您已设置两步验证（2FA），若验证代码遗失可以重新生成。
-    edit_sign_in_2fa_enabled_and_required: 您已设置两步验证（2FA），使用密码登录时必须输入验证码。若两步验证代码遗失可以重新生成。
-    edit_sign_in_disable_2fa: 禁用两步验证
-    edit_sign_in_2fa_disabled: 您可以为您的 %{site_name} 账户启用两步验证（2FA），以增强安全性。
-    edit_sign_in_enable_2fa: 启用两步验证
-    edit_sign_in_regenerate_2fa: 重新生成两步验证代码
+    edit_sign_in_2fa_enabled: 您已设定双重身份验证（2FA）。如果您遗失了 2FA 代码，您可以选择重新生成。
+    edit_sign_in_2fa_enabled_and_required: 您已设定了双重身份验证（2FA）。在使用基于密码的登录方式时，您的账户必须启用 2FA。如果您遗失了 2FA 代码，可以选择重新生成。
+    edit_sign_in_disable_2fa: 禁用 2FA
+    edit_sign_in_2fa_disabled: 您可以为您的 %{site_name} 账户启用双重身份验证（2FA），以提升账户安全性。
+    edit_sign_in_enable_2fa: 启用 2FA
+    edit_sign_in_regenerate_2fa: 重新生成 2FA
     edit_notifications: "编辑通知设置"
     view_notifications: "查看通知"
     no_password_set_info: "您的账号尚未启用密码登录。"
@@ -611,12 +611,14 @@ zh-CN:
     disable_syncing: "关闭同步"
     remove_external_sign_in: "移除"
     add_external_sign_in_info: "添加第三方登录："
-    2fa_enabled: 两步验证已被启用。
-    2fa_enable_code_incorrect: 两步验证代码不正确。请再试一次。
-    2fa_disabled: 两步验证已被禁用。
-    2fa_disabled_already: 两步验证已禁用。
+    2fa_enabled: 2FA 已启用。
+    2fa_enable_code_incorrect: 2FA 代码不正确。请重试。
+    2fa_disabled: 2FA 已禁用。
+    2fa_disabled_already: 2FA 已被禁用。
+    2fa_entry:
+      intro_html: "登录为 <b>%{email}</b>。请输入你的双重身份验证（2FA）应用程序提供的代码。"
     enable_2fa:
-      intro: "使用以下其中一种方法将 %{site_name} 添加到您的两步验证（2FA）应用中，然后在下面输入代码。"
+      intro: "使用以下其中一种方法将 %{site_name} 添加到您的双重身份验证（2FA）应用中，然后在下面输入代码。"
       qr_heading: 通过二维码
       url_heading: 通过链接
       url_info: 如果您与您的两步验证应用在同一设备上，您可以通过 %{auth_link:此链接} 添加它。
@@ -625,7 +627,7 @@ zh-CN:
       manual_entry_your_key: "您的密钥：%{key}"
       manual_entry_type_of_key: "密钥类型：基于时间"
       code_entry_heading: 输入代码
-      code_entry: "请输入来自您的两步验证应用的代码，以启用 %{site_name} 账户上的两步验证："
+      code_entry: "请输入来自您的 2FA 应用的代码，以启用 %{site_name} 账户上的双重身份验证："
       verify_code: 检查代码
     set_up_webhook: "设置 webhook"
     list_display_html:
@@ -691,10 +693,10 @@ zh-CN:
     suggest_secure_login: 您是一位脚本作者，因此我们建议您%{edit_login_link:使用更加安全的登录方式}。
     require_secure_login: 您的账户必须使用更加安全的登录方式。
     secure_login_explanation_html: |
-        <p>我们建议您身为脚本作者使用更加安全的登录方式，从而防止个人账户和脚本用户遭受攻击。您可以任选一种方式增强账户安全性：</p>
+        <p>作为一名脚本作者，我们建议您通过使用更为安全的登录方式来保护你的账户和用户。您可以通过以下两种方式之一来实现这一点：</p>
         <ol>
-        <li>在密码登录的基础上增设两步验证机制。</li>
-        <li>不再使用密码，始终通过第三方账户登录（并且最好开启该账户可用的各项安全功能）。</li>
+        <li>在基于密码登录基础上，添加双重身份验证（2FA）。</li>
+        <li>删除你的密码，仅依赖外部登录方式（并最好启用该服务提供的安全功能）。</li>
         </ol>
     badges:
       banned:
@@ -1311,7 +1313,7 @@ zh-CN:
   moderator_actions:
     action_taken:
       ban: '封禁'
-      delete: '软删除'
+      delete: '删除'
       delete_and_lock: '软删除并锁定'
       delete_version: '删除版本 %{version}, ID %{id}'
       mark_adult: '标记为成人内容'
@@ -1360,7 +1362,7 @@ zh-CN:
         current_password: "当前密码"
         new_password: "新的密码"
         new_password_confirmation: "确认新密码"
-        otp_attempt: 两步验证（2FA）代码
+        otp_attempt: 双重身份验证（2FA）代码
       script:
         name: "名称"
         description: "描述"
