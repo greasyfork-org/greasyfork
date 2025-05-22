@@ -36,23 +36,23 @@ zh-CN:
     update: "更新到 %{version} 版本"
     downgrade: "降级到 %{version} 版本"
     reinstall: "重新安装 %{version} 版本"
-    old_version_warning: "这不是此脚本的最新版本。如果您选择安装，您将永远不会收到新版本的更新。仍要安装吗？"
+    old_version_warning: "这不是此脚本的最新版本，如果你选择安装，你将永远不会收到新版本的更新。仍要安装吗？"
     promoted: "推荐脚本"
     author_promoted: "作者推荐脚本"
-    promoted_text_html: "您可能也喜欢%{script_link}。"
-    library_instructions_html: "此脚本不应直接安装，它是一个供其他脚本使用的外部库。如果您需要使用该库，请在脚本元属性加入：%{code}"
-    deleted_notice: "此脚本已被删除。"
-    deleted_notice_with_reason: "此脚本已因%{report_link:此举报}被删除。"
-    deleted_notice_with_related: "您请求的脚本已被删除。不过，这里有一些相关的脚本。"
-    deleted_notice_with_related_and_reason: "您请求的脚本已因%{report_link:此举报}被删除。不过，这里有一些相关的脚本。"
+    promoted_text_html: "你可能也喜欢 %{script_link}"
+    library_instructions_html: "此脚本不应直接安装，它是供其他脚本使用的外部库。如果你需要使用该库，请在脚本元属性加入：%{code}"
+    deleted_notice: "此脚本已被删除"
+    deleted_notice_with_reason: "此脚本已因%{report_link:此举报}被删除"
+    deleted_notice_with_related: "你请求的脚本已被删除，但这里有一些相关的脚本。"
+    deleted_notice_with_related_and_reason: "你请求的脚本已因%{report_link:此举报}被删除，但这里有一些相关的脚本。"
     deleted_undelete_notice_html: "此脚本已被管理员锁定并删除且无法撤销。原因为：“<i>%{delete_reason}</i>”。"
-    deleted_locked_author_notice_html: "此脚本因为 %{report_link:此举报}  被一位管理员删除，并且不再对其他人可见。原因为 “<i>%{delete_reason}</i>”。请查阅 %{code_rules_link:%{site_name} 规则}。如果您认为删除有误，您可以对此删除 %{appeal_link:提出申诉}。请勿重新发布此脚本；否则您可能会被 %{site_name} 封禁。"
-    self_deleted_locked_author_notice_html: "此脚本因为 %{report_link:此举报}  被你自己删除，并且不再对其他人可见。如果你已经根据 %{code_rules_link:%{site_name} 规则} 对脚本做出修改，您可以对此删除 %{appeal_link:提出申诉}。请勿重新发布此脚本；否则您可能会被%{site_name}封禁。"
-    deleted_author_notice: "此脚本已经被删除，并且不再对其他人可见。你可以在 “删除”标签页 中取消删除。"
-    version_notice_html: "目前为 %{date} 提交的版本。查看 %{latest_version_link}。"
+    deleted_locked_author_notice_html: "此脚本因为 %{report_link:此举报}  被一位管理员删除，并且不再对其他人可见，原因为 “<i>%{delete_reason}</i>”。请查阅 %{code_rules_link:%{site_name} 规则}。如果你认为删除有误，你可以对此删除 %{appeal_link:提出申诉}。请勿重新发布此脚本，否则你可能会被 %{site_name} 封禁。"
+    self_deleted_locked_author_notice_html: "此脚本因为 %{report_link:此举报}  被你自行删除，并且不再对其他人可见。如果你已根据 %{code_rules_link:%{site_name} 规则} 对脚本做出修改，你可以对此删除%{appeal_link:提出申诉}。请勿重新发布此脚本；否则你可能会被 %{site_name} 封禁。"
+    deleted_author_notice: "此脚本已被删除，并且不再对其他人可见。你可以在 “删除”标签页 中取消删除。"
+    version_notice_html: "目前为 %{date} 提交的版本，查看 %{latest_version_link}。"
     version_notice_latest_version_link: "最新版本"
-    reported_notice: "“%{script_name}”已被举报并等待管理员审核。"
-    reported_notice_for_author: "在管理员完成审核前，其他用户不能访问此脚本。"
+    reported_notice: "“%{script_name}”已被举报并等待管理员审核"
+    reported_notice_for_author: "在管理员完成审核前，其他用户不能访问此脚本"
     info_page: "信息"
     code_page: "代码"
     wrap_lines: "换行"
@@ -62,64 +62,64 @@ zh-CN:
     derivatives_page: "相似"
     update_page: "更新"
     delete_page: "删除"
-    delete_explanation: "软删除您的脚本会使其对除了您和 Greasy Fork 管理员之外的任何人都不可见。您随时可以撤销这个删除。"
+    delete_explanation: "删除你的脚本将使其对你和 Greasy Fork 管理员之外的人不可见，但你随时可以撤销此删除操作"
     delete_update_behaviour: "你希望对之前安装了你的脚本的用户采取什么措施？"
     delete_update_behaviours:
-      keep: "维持原状。"
-      blanked: "脚本通过自动更新功能变成一个无代码的空白脚本。适用于当脚本对其运行的网站产生负面影响的时候。"
-      redirect: "脚本将被重定向更新为你在以下所指定的另一个脚本。"
+      keep: "维持原状"
+      blanked: "脚本会通过自动更新功能变成无代码的空白脚本（适用于当脚本对其运行的网站产生负面影响时）"
+      redirect: "脚本将被重定向至你所指定的另一个脚本"
     delete_permanently_heading: "永久删除"
     delete_permanently_explanation_html: >-
-        <p>永久删除您的脚本将删除“管理员操作记录”与“论坛讨论帖”以外的所有数据。</p> <p>您的脚本会在 7 日后永久删除，如果反悔，您可以在此期间内撤销删除；反之，若是在
-        7 日内没有撤销操作，那么脚本将会被永久删除，即使是管理员也不能还原您的脚本。</p>
-    delete_permanently_confirm: "您确定要永久删除您的脚本？"
+        <p>永久删除你的脚本将会删除“管理员操作记录”与“论坛讨论帖”以外的所有数据。</p> <p>你的脚本会在 7 日后永久删除，如果反悔，你可以在此期间内撤销删除；反之，若是在
+        7 日内没有撤销操作，那么脚本将会被永久删除，即使是管理员也不能还原你的脚本。</p>
+    delete_permanently_confirm: "你确定要永久删除你的脚本？"
     delete_permanently_submit: "请求永久删除"
     delete_permanently_immediate_submit: "永久删除"
-    delete_permanently_notice: "已记录您的永久删除请求。您的脚本将在 7 天后永久删除。"
-    delete_permanently_already_requested: "您已于 %{datetime} 请求永久删除。"
-    delete_permanently_notice_immediate: "该脚本已永久删除。"
+    delete_permanently_notice: "已记录你的永久删除请求，你的脚本将在 7 天后永久删除"
+    delete_permanently_already_requested: "你已于 %{datetime} 请求永久删除"
+    delete_permanently_notice_immediate: "该脚本已永久删除"
     cancel_delete_permanently_submit: "取消永久删除的请求"
-    cancel_delete_permanently_notice: "您的永久删除请求已取消。您的脚本仍对其他人不可见。"
+    cancel_delete_permanently_notice: "你的永久删除请求已取消，你的脚本仍对其他人不可见"
     delete_permanently_rejected_locked: "此脚本已被锁定并且不能永久删除"
     admin_page: "管理"
     admin:
       title: "%{script_name} - 管理"
       promoted_heading: "推荐脚本"
-      promoted_explanation: "%{site_name} 可以在用户安装此脚本后向用户推荐您所选择的脚本。"
+      promoted_explanation: "%{site_name} 可以在用户安装此脚本后向用户推荐你所选择的脚本"
       promoted_script_label: "要推荐的脚本的网址"
       promoted_submit: "设置推荐脚本"
       sync_heading: "源代码同步"
       locale_heading: "默认语言"
       locale_example_html: "这段文本的语言：<i>%{text}</i>"
-      locale_multiple_note: "注意%{meta_keys_link:您可以为此脚本定义多个语言}."
+      locale_multiple_note: "注意%{meta_keys_link:你可以为此脚本定义多个语言}."
       update_locale: "更新语言"
-      no_moderator_logs: "管理员没有对此脚本采取任何操作。"
+      no_moderator_logs: "管理员未对此脚本采取任何操作"
       compare_title: "与另一脚本比较"
       compare_to: "要比较的站点 %{site_name} 上的脚本（网址）"
       compare_button: "比较"
-      compare_must_be_local_url: "比较脚本必须是一个位于 %{site_name} 的网址。"
-      compare_cleaned_code_unavailable: "比较脚本的干净代码尚不可用。"
+      compare_must_be_local_url: "比较脚本必须是位于 %{site_name} 的网址"
+      compare_cleaned_code_unavailable: "比较脚本的纯净代码尚不可用"
       checkup:
         title: 检查
-        intro: 这些是在 %{site_name} 上提高您脚本质量的建议。这些并不是 %{rules_link:规则}；如果您不遵循这些建议，您的脚本也不会被删除。
-        license_html: 指定 %{license_link:@license}，以让其他人知道他们是否可以以及如何分享、修改您的代码。
-        globs_html: 避免在 %{include_link:<code>@include</code>} 和 %{match_link:<code>@match</code>} 中使用通配符和正则表达式。这会使 %{site_name} 难以正确分类您的脚本。
+        intro: 这些是在 %{site_name} 上提高你脚本质量的建议。这些不是 %{rules_link:规则}；尽管你不遵循这些建议，你的脚本也并不会被删除。
+        license_html: 指定 %{license_link:@license}，以让其他人知道他们是否可以以及如何分享、修改你的代码
+        globs_html: 避免在 %{include_link:<code>@include</code>} 和 %{match_link:<code>@match</code>} 中使用通配符和正则表达式，这将导致 %{site_name} 难以正确分类你的脚本。
         globs_used_html: "使用的非特定域包含：%{globs}"
-        additional_info: 添加附加信息 - 列出您的功能，提供截图等，以便用户清楚您脚本的具体作用。
+        additional_info: 添加附加信息 - 列出你的功能，提供截图等，以便用户清楚你脚本的具体作用。
     history_title: "%{script_name} - 版本历史"
-    history_only_code_changes_info: "这些是代码更新过的版本。"
+    history_only_code_changes_info: "这些是代码更新过的版本"
     history_all_changes_link: "显示所有版本"
-    history_all_changes_info: "这是此脚本的所有版本。"
+    history_all_changes_info: "这是此脚本的所有版本"
     history_only_code_changes_link: "只显示代码更新过的版本"
     diff_button: "对比选中版本差异"
     list_all_script_versions: "显示脚本的所有版本"
     code_title: "%{script_name} - 源代码"
     feedback_title: "%{script_name} - 反馈"
-    feedback_no_discussions_html: "暂无相关讨论帖。%{start_first_discussion_link}"
-    feedback_no_discussions_on_page_form: "暂无相关讨论帖。"
-    feedback_report_instead: "如果您觉得这个脚本违反了 %{rules_link:%{site_name} 规则}，请 %{report_link:举报这个脚本}。"
-    feedback_start_first_discussion_link: "成为第一个发起讨论的人吧。"
-    feedback_discussion_or_report: "%{new_discussion_link:针对此脚本发起一个新的讨论} 或者%{report_link:举报这个脚本}。"
+    feedback_no_discussions_html: "暂无相关讨论帖，%{start_first_discussion_link}"
+    feedback_no_discussions_on_page_form: "暂无相关讨论帖"
+    feedback_report_instead: "如果你觉得此脚本违反了 %{rules_link:%{site_name} 规则}，请 %{report_link:举报此脚本}"
+    feedback_start_first_discussion_link: "成为第一个发起讨论的人吧！"
+    feedback_discussion_or_report: "%{new_discussion_link:发起关于此脚本的讨论} 或 %{report_link:举报此脚本}"
     stats_title: "%{script_name} - 统计"
     stats_daily_installs_heading: "日安装量"
     stats_weekly_installs_heading: "本周安装"
@@ -136,26 +136,26 @@ zh-CN:
       year: 最近 365 日
       all: 所有时间
     derivatives_title: "%{script_name} - 相似"
-    derivatives_intro: "这些脚本与您的脚本相似（或你的与他们的脚本相似）。如果您发现有人未经授权使用了您的代码，请从那个脚本的反馈选项卡进行举报。"
+    derivatives_intro: "这些脚本与你的脚本相似。如果你发现有人未经授权使用了你的代码，请从其脚本的反馈选项卡进行举报。"
     derivatives_script_html: "%{script}，作者 %{user}，许可证：%{license} %{diff_link:[Diff]}"
-    derivatives_exact_copies_heading: "完全一样"
-    derivatives_exact_copies_list_intro: "以下脚本代码与您的脚本代码完全相同："
+    derivatives_exact_copies_heading: "完全相同"
+    derivatives_exact_copies_list_intro: "以下脚本代码与你的脚本代码完全相同："
     derivatives_exact_copies_item_html: "%{author_links}发布的%{script_link}，版本：%{version_list}"
-    derivatives_exact_copes_none: "%{site_name} 上没有其他脚本与这个脚本的代码完全相同。"
+    derivatives_exact_copes_none: "%{site_name} 上没有其他脚本与此脚本的代码完全相同"
     derivatives_similar_heading: "相似脚本"
-    derivatives_similar_info: "我们会定期检查所有其他脚本的最新版本，以找出与您的脚本最相似的脚本。每当您发布脚本更新时，我们也会进行检查，此外，您也可以在需要时请求检查。"
+    derivatives_similar_info: "我们会定期检查所有其他脚本的最新版本，以找出与你的脚本最相似的脚本。每当你发布脚本更新时，我们也会进行检查，此外，你也可以在需要时请求检查。"
     similarity_score:
       high: 非常相似
       medium: 比较相似
       low: 稍微有点相似
       none: 相似度不高
-    derivatives_similar_none: "没有与您的脚本相似的脚本。"
+    derivatives_similar_none: "没有与你的脚本相似的脚本"
     derivatives_similar_item: "%{score}: %{diff_link:[查看差别]} %{script}"
-    derivatives_similar_last_check_html: "上一次对您的脚本查重的时间为 %{date}。"
-    derivatives_similar_last_check_soon: "我们将会稍后查询与您的脚本相似的脚本。"
-    derivatives_similar_last_check_again_soon_html: "我们在%{date}查询了与您的脚本相似的脚本。我们稍后会再次检查。"
+    derivatives_similar_last_check_html: "上一次对你的脚本查重的时间为 %{date}"
+    derivatives_similar_last_check_soon: "我们将查询与你的脚本相似的脚本。"
+    derivatives_similar_last_check_again_soon_html: "我们在%{date}查询了与你的脚本相似的脚本，稍后我们会再次检查。"
     derivatives_similar_check_now: "再检查一次"
-    derivatives_similiar_queued: 类似脚本检查将在几分钟内完成。
+    derivatives_similiar_queued: 类似脚本检查将在几分钟内完成
     listing_title_all_sites: "适用于所有网站的用户脚本"
     listing_description_all_sites: "针对所有网站添加功能或解决问题的用户脚本"
     listing_title_for_site: "适用于 %{site} 的用户脚本"
@@ -165,7 +165,7 @@ zh-CN:
     listing_description_for_code_search_html: "关于 <code>%{search_string}</code> 的代码搜索"
     listing_title_generic: "用户脚本"
     listing_title_for_favorites: "%{user_name} 的 %{set_name}"
-    listing_description_generic: "针对您所访问的网站添加功能或解决问题的用户脚本。"
+    listing_description_generic: "针对你所访问的网站添加功能或解决问题的用户脚本"
     listing_sort_label: "脚本排序："
     listing_sort_relevance: "相关程度"
     listing_sort_daily_installs: "日安装量"
@@ -180,12 +180,12 @@ zh-CN:
     listing_filter_by_language_label: "语言："
     listing_filter_by_site_more_sites: "更多..."
     listing_filter_by_authorship_label: "作者："
-    listing_no_scripts: "找不到相关脚本。"
+    listing_no_scripts: "找不到相关脚本"
     listing_created_feed: "最近创建脚本"
     listing_updated_feed: "最近更新脚本"
     listing_none: "(无)"
-    listing_set_locale_filter: "现在显示所有语言的结果。%{set_filter_link:只显示 %{language} 的结果}"
-    listing_remove_locale_filter: "现在只显示 %{language} 的结果。%{remove_filter_link:显示所有语言的结果。}"
+    listing_set_locale_filter: "正在显示所有语言的结果。%{set_filter_link:只显示 %{language} 的结果}"
+    listing_remove_locale_filter: "现在只显示 %{language} 的结果。%{remove_filter_link:显示所有语言的结果}"
     listing_language_all: "所有"
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
@@ -193,16 +193,16 @@ zh-CN:
       all: 所有作者
       me: 我的脚本
       user: '%{author_name} 的脚本'
-    search_failed: 加载结果时出现问题。部分搜索功能可能无法正常正常工作。我们已收到有关此问题的通知。
+    search_failed: 加载结果时出现了问题。部分搜索功能可能无法正常正常工作，我们已收到有关此问题的通知。
     import: "导入脚本"
     new: "发布你编写的脚本"
     new_css: "发布你编写的样式"
-    support_site: "访问作者的支持站点。"
-    support_email: "向作者发邮件以寻求帮助。"
-    contribution_no_amount: "捐赠以感谢 %{author}。"
-    contribution_with_amount: "您可以通过捐赠感谢 %{author}，建议的捐赠数额为 %{amount}。"
-    contribution_bitcoin_no_amount_html: "通过捐赠比特币到 %{address} 感谢 %{author}。"
-    contribution_bitcoin_with_amount_html: "通过捐赠比特币到 %{address} 感谢 %{author}，建议的捐赠数额为 %{amount}。"
+    support_site: "访问作者的支持站点"
+    support_email: "向作者发邮件以寻求帮助"
+    contribution_no_amount: "捐赠以感谢 %{author}"
+    contribution_with_amount: "你可以通过捐赠感谢 %{author}，建议的捐赠数额为 %{amount}"
+    contribution_bitcoin_no_amount_html: "通过捐赠比特币到 %{address} 感谢 %{author}"
+    contribution_bitcoin_with_amount_html: "通过捐赠比特币到 %{address} 感谢 %{author}，建议的捐赠数额为 %{amount}"
     locale_explanation_html: "应当匹配 <code>@name</code>、<code>@description</code> 和第一个附加信息的语言。"
     locale_auto_select: "(自动检测)"
     sets_label: "位于脚本集："
@@ -213,72 +213,72 @@ zh-CN:
     sets_add_exclusion: "添加到 %{set_name} 的排除列表"
     sets_add_to_new: "添加到新脚本集"
     rules_summary_html: "提交的脚本必须<strong>准确描述其功能</strong>，不得<strong>混淆</strong>或<strong>压缩（最小化）</strong>，尊重<strong>版权</strong>，并有限制的使用 <strong>外部代码</strong>。详情请参考：%{full_rules_link}"
-    rules_summary_link_to_full: "参阅完整规则。"
-    syncing_notice_html: "该脚本的同步设定为 %{syncing_notice_sync_type}。您对代码所做的任何更改都会在同步时被覆盖掉。"
+    rules_summary_link_to_full: "参阅完整规则"
+    syncing_notice_html: "该脚本的同步设定为 %{syncing_notice_sync_type}，你对代码所做的任何更改都会在同步时被覆盖掉。"
     syncing_notice_sync_type_manual: "设置从 %{sync_identifier} 手动同步"
     syncing_notice_sync_type_automatic: "设置从 %{sync_identifier} 自动同步"
     upload_label: "或本地上传："
     enable_source_code_editor_label: "对编辑器启用语法高亮"
-    changelog_note: "这个版本更新了什么？"
-    additional_info_note: "更详细的描述，或者操作说明等"
+    changelog_note: "此版本更新了什么？"
+    additional_info_note: "更详细的描述，操作说明等"
     post_new_script: "发布脚本"
     post_updated_script: "发布新版本"
-    type_1_html: "公开的用户脚本 - 任何人都可以查看和使用。"
-    type_2_html: "未上架的脚本 - 用于（半）私人用途的用户脚本。仅能通过链接访问，但该链接不会出现在 %{site_name} 上的任何地方。"
-    type_3_html: "库 - 用于被其他脚本以 <code>@require</code> 调用而非直接安装的脚本。"
+    type_1_html: "公开的用户脚本 - 任何人都可以查看和使用"
+    type_2_html: "未上架的脚本 - 用于（半）私人用途的用户脚本。仅能通过链接访问，但该链接不会出现在 %{site_name} 上的任何地方"
+    type_3_html: "库 - 用于被其他脚本以 <code>@require</code> 调用而非直接安装的脚本"
     override_warning_checkbox_label: "仍要保存"
-    warning_version_not_incremented_html: "您更新了脚本代码但是没有增加 <code>@version</code> 版本号。之前安装了您的脚本的用户可能不会自动更新到更新后的代码。"
-    warning_version_missing_html: "你没有指定 <code>@version</code>。<code>@version</code> 是用户接收更新所必需的。您可以像这样指定：<code>// @version 1.0</code>.。"
+    warning_version_not_incremented_html: "你更新了脚本代码但是没有增加 <code>@version</code> 版本号，之前安装了你的脚本的用户可能不会自动更新到更新后的代码。"
+    warning_version_missing_html: "你没有指定用户接收更新所必需的 <code>@version</code>。你可以像这样指定：<code>// @version 1.0</code>.。"
     warning_version_missing_generate_automatically_html: "自动生成 <code>@version</code> 属性"
-    warning_namespace_missing_html: "您未指明 <code>@namespace</code>。<code>@namespace</code> 可帮助避免在用户安装另一个同名脚本时产生冲突。<code>@namespace</code> 只需要是一个独特的字符串；通常使用你控制的 URL。"
+    warning_namespace_missing_html: "你还没有指明可帮助避免在用户安装另一个同名脚本时产生冲突的 <code>@namespace</code>。<code>@namespace</code> 只需要是一个独特的字符串；通常使用你控制的 URL。"
     warning_namespace_missing_generate_automatically_html: "自动生成 <code>@namespace</code> 属性"
-    warning_namespace_changed_html: "您的命名空间 <code>@namespace</code> 发生了改变。改变 <code>@namespace</code> 后脚本管理器会将更新作为新脚本安装。"
-    warning_potentially_minified_html: "您的脚本看上去像最小化（压缩后）的版本。如果您使用了最小化后的库，请使用 <code>@require</code> 引用 %{allowed_requires_link} 里面的相应库。压缩后的脚本不被本站允许且会被管理员移除。"
-    warning_automatic_sensitive_html: "您的脚本适用于%{sensitive_domains}，因此会被标注为成人内容。"
+    warning_namespace_changed_html: "你的命名空间 <code>@namespace</code> 发生了改变。改变 <code>@namespace</code> 后脚本管理器会将更新作为新脚本安装。"
+    warning_potentially_minified_html: "你的脚本似乎是最小化（压缩后）的版本。如果你使用了最小化后的库，请使用 <code>@require</code> 引用 %{allowed_requires_link} 里面的相应库。压缩后的脚本不被本站允许且会被管理员移除。"
+    warning_automatic_sensitive_html: "你的脚本适用于%{sensitive_domains}，因此会被标注为成人内容。"
     warning_potentially_minified_allowed_requires_link: "在这些地方"
-    warning_code_previously_posted_html: "此代码已在 %{script_links} 发布。重新发布此脚本可能被管理员移除。"
-    warning_license_missing_html: "您未声明<code>@license</code>。通过在 %{site_name} 上发布代码，意味着您允许其他人使用你的代码，但许可证还可以让您告知其他人可以如何修改并分发您的代码。例如，<code>// @license MIT</code>表示你允许任何人修改和重新分发你编写的代码。%{license_chooser_link:这里有更多关于许可证的信息。} 如果你没有提供许可证，%{site_name} 将假设您不允许他人修改或重新分发代码。请注意，如果你不是发布代码的唯一作者，通常您不能发布代码，除非你获得了所有其他作者的许可。"
+    warning_code_previously_posted_html: "此代码已在 %{script_links} 发布，重新发布此脚本可能被管理员移除。"
+    warning_license_missing_html: "你还没有声明<code>@license</code>。通过在 %{site_name} 上发布代码，意味着你允许其他人使用你的代码，但许可证还可以让你告知其他人可以如何修改并分发你的代码，例如，<code>// @license MIT</code>表示你允许任何人修改和重新分发你编写的代码。%{license_chooser_link:这里有更多关于许可证的信息。} 如果你没有提供许可证，%{site_name} 将假设你不允许他人修改或重新分发代码。注意：如果你不是发布代码的唯一作者，通常你不能发布代码，除非你获得了所有其他作者的许可。"
     warning_license_missing_override_html: "不要求许可就保存"
-    warning_meta_not_at_start_html: "您的代码没有以 <code>// ==UserScript==</code> 开头。包括代码、注释或空白可能会导致与某些用户脚本管理器的兼容性问题。"
+    warning_meta_not_at_start_html: "你的代码没有以 <code>// ==UserScript==</code> 开头。包括代码、注释或空白可能会导致与某些用户脚本管理器的兼容性问题。"
     additional_info_locale_prompt: "(选择语言)"
-    additional_info_add_localized: "添加一个本地化的附加信息"
-    additional_info_locale_repeated: "您只能对“%{locale_code}”提供一条附加信息。"
-    localized_additional_info_with_no_name: "您提交了“%{locale_code}”的附加信息，但是没有指定 <code>@name:%{locale_code}</code>。"
+    additional_info_add_localized: "添加本地化的附加信息"
+    additional_info_locale_repeated: "你只能对“%{locale_code}”提供一条附加信息"
+    localized_additional_info_with_no_name: "你提交了“%{locale_code}”的附加信息，但是没有指定 <code>@name:%{locale_code}</code>。"
     invalid_matchers: "使用了无效的匹配表达式：%{matches}"
     code_syncing_from_url_html: "脚本代码已设定为从该链接同步：%{field}"
-    provide_code_syncing_from_url_html: "%{site_name} 可以导入已经托管在其他地方的脚本，例如版本控制系统（如 GitHub）、您自己的服务器或其他的用户脚本托管网站。若需对您的脚本启用脚本同步，提供安装链接即可：%{field}"
-    code_syncing_from_webhook_html: "该脚本的代码设定为与 Webhook 同步。我们将根据以下 URL 将 Webhook 请求与此脚本匹配：%{field}"
+    provide_code_syncing_from_url_html: "%{site_name} 可以导入已经托管在其他地方的脚本，例如版本控制系统（如 GitHub）、你自己的服务器或其他的用户脚本托管网站。若需对你的脚本启用脚本同步，提供安装链接即可：%{field}"
+    code_syncing_from_webhook_html: "该脚本的代码设定为与 Webhook 同步，我们将根据以下 URL 将 Webhook 请求与此脚本匹配：%{field}"
     sync_type_intro: "该脚本的同步方式："
     sync_type_1:
       name: 手动
-      description: 仅在您手动检查更新时同步
+      description: 仅在你手动检查更新时同步
     sync_type_2:
       name: 自动
       description: 将定期检查更新并进行同步
     sync_type_3:
       name: Webhook
-      description: 将在您推送更改到存储库中的此文件时更新
-    sync_webhook_info_without_sync: 在您设定好同步后，如果您正同步到的是 GitHub、GitLab 或 BitBucket 仓库，您还可以 %{webhook_info_link:设定一个 Webhook}，以便在您推送更新到仓库时自动在 %{site_name} 更新。
-    sync_webhook_info_with_sync: 如果您同步到的是 GitHub、GitLab 或 BitBucket 仓库，您还可以 %{webhook_info_link:设定一个 Webhook}，以便在您推送到仓库时自动在 %{site_name} 更新。
+      description: 将在你推送更改到存储库中的此文件时更新
+    sync_webhook_info_without_sync: 在你设定好同步后，如果你正同步到的是 GitHub、GitLab 或 BitBucket 仓库，你还可以 %{webhook_info_link:设定 Webhook}，以便在你推送更新到仓库时自动在 %{site_name} 更新。
+    sync_webhook_info_with_sync: 如果你同步到的是 GitHub、GitLab 或 BitBucket 仓库，你还可以 %{webhook_info_link:设定 Webhook}，以便在你推送到仓库时自动在 %{site_name} 更新。
     sync_name_and_description: "%{name} - %{description}"
-    sync_failed_info_html: "最后同步于 %{date}，发生了错误：%{error}。"
-    sync_success_info_html: "最后一次成功同步于 %{date}。"
-    sync_never_succeeded: "脚本从未成功同步。"
-    sync_additional_info: 您可以选择同步脚本的其他信息。
-    add_synced_additional_info: 添加一个本地化的、同步的附加信息
+    sync_failed_info_html: "最后同步于 %{date}，发生了错误：%{error}"
+    sync_success_info_html: "最后一次成功同步于 %{date}"
+    sync_never_succeeded: "脚本从未成功同步"
+    sync_additional_info: 你可以选择同步脚本的其他信息
+    add_synced_additional_info: 添加本地化的、同步的附加信息
     update_and_sync: "更新设置并立即同步"
     update_no_sync: "更新设置"
     turn_off_syncing: "关闭对此脚本的同步"
     additional_info_default_sync_html: "默认附加信息 (匹配 <code>@name</code> 的语言)"
     additional_info_localized_sync_html: "本地化的附加信息 (匹配 <code>@name:XX</code> 的语言)"
     sync_url_placeholder: "(链接)"
-    sync_successful: 脚本已同步完成。
-    sync_no_changes: 脚本已同步，但未发现更新。
-    sync_error: 脚本同步失败 - %{error}。
-    sync_turned_off: 脚本同步已关闭。
+    sync_successful: 脚本已同步完成
+    sync_no_changes: 脚本已同步，但未发现更新
+    sync_error: 脚本同步失败 - %{error}
+    sync_turned_off: 脚本同步已关闭
     screenshots_add: "添加："
     screenshots_remove: "移除"
-    replacement_script_explanation: "（可选）选择另一个可替代此脚本的脚本。用户将被更新并重定向到此脚本。请输入替代脚本的网址："
+    replacement_script_explanation: "（可选）选择另一个替代的脚本。用户将被更新并重定向至此脚本。请输入替代脚本的网址："
     diff_title: "%{script} - 版本差异"
     diff_old_version: "旧版："
     diff_new_version: "新版："
@@ -286,28 +286,28 @@ zh-CN:
     diff_ignore_whitespace: "忽略空白字符更改"
     diff_terser: "比较前清洁代码"
     diff_refresh: "刷新"
-    diff_no_change: "二者没有区别。"
-    good_rating_explanation: "评级为好评或已加入到收藏的人数。"
-    ok_rating_explanation: "评级为一般的人数。"
-    bad_rating_explanation: "评级为差评的人数。"
+    diff_no_change: "二者没有区别"
+    good_rating_explanation: "评级为好评或已加入到收藏的人数"
+    ok_rating_explanation: "评级为一般的人数"
+    bad_rating_explanation: "评级为差评的人数"
     write_your_own_html: "%{post_a_script_link}(或 %{learn_to_write_scripts_link})"
     post_a_script_link_text: "发布你编写的脚本"
     learn_to_write_scripts_link_text: "了解如何编写脚本"
-    feedback_or_report: "%{feedback_link:提问、发表评价}，或者 %{report_link:举报这个脚本}。"
-    support_feedback_or_report: "%{support_url:访问作者的支持站点}，%{feedback_link:提问、发表评价}，或者 %{report_link:举报此脚本}。"
-    support_email_feedback_or_report: "%{support_url:给作者发送电子邮件来获取支持}，%{feedback_link:提问、发表评价}，或者 %{report_link:举报此脚本}。"
+    feedback_or_report: "%{feedback_link:提供反馈或发布评价}，或 %{report_link:举报此脚本}"
+    support_feedback_or_report: "%{support_url:访问作者的支持站点}，%{feedback_link:提供反馈或发布评价}，或 %{report_link:举报此脚本}"
+    support_email_feedback_or_report: "%{support_url:给作者发送电子邮件以获取支持}，%{feedback_link:提供反馈或发布评价}，或 %{report_link:举报此脚本}"
     adult_content: "成人内容"
-    adult_content_self_report: "此脚本包含成人内容，或者适用于一个含有成人内容的网站。"
+    adult_content_self_report: "此脚本包含成人内容或适用于含有成人内容的网站"
     adult_content_self_report_explanation: "%{site_name} 允许包含成人内容的脚本，但这些脚本必须标记为成人内容，以便用户可以选择是否查看。"
-    not_adult_content_self_report_html: "这个脚本<strong>不包含</strong>成人内容，也<strong>不在</strong>成人网站上运行。"
-    not_adult_content_self_report_explanation: "%{site_name} 允许包含成人内容的脚本，但这些脚本必须标记为成人内容，以便用户可以选择是否查看。你的脚本已被标记为包含成人内容；如果你认为此标记不准确，可以报告此情况，管理员将对此进行审核。"
-    not_adult_content_self_report_explanation_automatic: "%{site_name} 允许包含成人内容的脚本，但这些脚本必须标记为成人内容，以便用户可以选择是否查看。由于您的脚本运行于 %{domain_list}，因此已被自动标记为包含成人内容。"
-    adult_content_notice_from_sleazy: 当您在 %{site_name} 上发布此脚本时，将假定您的脚本包含成人内容或作用于包含成人内容的网站。如果情况并非如此，请%{greasyfork_link:在 Greasy Fork 上发布你的脚本}。
-    adult_content_on_greasy_logged_in_error: "根据您当前的 %{edit_account_link:Greasy Fork 账号设置}，此脚本不再在本网站上可用。"
-    adult_content_on_greasy_not_logged_in_error: "此脚本不再在本网站上匿名可用。请 %{login_link:登录} 并检查您的 Greasy Fork 账号设置。"
-    non_adult_content_on_sleazy: "此脚本在本网站上不可用。"
+    not_adult_content_self_report_html: "此脚本<strong>不包含</strong>成人内容，也<strong>不在</strong>成人网站上运行。"
+    not_adult_content_self_report_explanation: "%{site_name} 允许包含成人内容的脚本，但这些脚本必须标记为成人内容，以便用户可以选择是否查看。你的脚本已被标记为包含成人内容，如果你认为此标记不准确，可以报告此情况，管理员将对此进行审核。"
+    not_adult_content_self_report_explanation_automatic: "%{site_name} 允许包含成人内容的脚本，但这些脚本必须标记为成人内容，以便用户可以选择是否查看。由于你的脚本运行于 %{domain_list}，因此已被自动标记为包含成人内容。"
+    adult_content_notice_from_sleazy: 当你在 %{site_name} 上发布此脚本时，将假定你的脚本包含成人内容或作用于包含成人内容的网站。如果情况并非如此，请%{greasyfork_link:在 Greasy Fork 上发布你的脚本}。
+    adult_content_on_greasy_logged_in_error: "根据你当前的 %{edit_account_link:Greasy Fork 账号设置}，此脚本不再在本网站可见。"
+    adult_content_on_greasy_not_logged_in_error: "此脚本不再在本网站上对游客用户开放，请 %{login_link:登录} 并检查你的 Greasy Fork 账号设置。"
+    non_adult_content_on_sleazy: "此脚本在本网站上不可见"
     not_js_convertible_override_header: "转换为 JS"
-    not_js_convertible_override_explanation: "%{site_name} 可以自动转换您的用户样式为 %{help_link:用户脚本} 。由于转换后的用户脚本和您的用户样式的工作方式有所不同，我们建议您测试转换后的用户脚本。如果发现其无法正常适用，您可以勾选下面的框将其设置为不可用。"
+    not_js_convertible_override_explanation: "%{site_name} 可以自动转换你的用户样式为 %{help_link:用户脚本} 。由于转换后的用户脚本和你的用户样式的工作方式有所不同，我们建议你测试转换后的用户脚本。如果发现其无法正常适用，你可以勾选下面的框将其设置为不可用。"
     not_js_convertible_override_label_html: "<strong>不要为</strong>此样式提供用户脚本版本"
     adult_marker: "(成人)"
     deleted_marker: "(已删除)"
@@ -315,90 +315,90 @@ zh-CN:
     unlisted_marker: "(未上架)"
     library_marker: "(库)"
     libraries_title: "库"
-    libraries_description_html: "这些是 %{site_name} 用户发布的库，您可以在您的脚本中 <code>@require</code> 它们。对于其他可以 <code>@require</code> 的库，请参见 %{policy_link:%{site_name} 对 <code>@require</code> 的政策}。"
+    libraries_description_html: "这些是 %{site_name} 用户发布的库，你可以在你的脚本中 <code>@require</code> 它们。对于其他可以 <code>@require</code> 的库，请参见 %{policy_link:%{site_name} 对 <code>@require</code> 的政策}。"
     by_site_list_title: "%{site_name} 上按站点分组的用户脚本"
-    by_site_list_description: "这些是具有最受欢迎的用户脚本的站点。字体越大表示站点拥有越受到欢迎的用户脚本。"
+    by_site_list_description: "这些是具有热门用户脚本的站点，字体越大表示站点拥有越多热门脚本。"
     by_site_list_filter: "按网站域名过滤："
     search_placeholder: "搜索脚本"
-    updated: "脚本已更新。"
+    updated: "脚本已更新"
     preview_additional_info: "预览"
     must_confirm: "你必须在确定你的账号后才能发布脚本。你可以通过下述两种方法确认账号：绑定第三方登录或点击确认电子邮件里的链接。"
     must_confirm_email_button: "发送确认链接至 %{email}"
     needs_secure_login:
-      intro: "您必须先使用安全的登录方法设定您的账户，然后才能发布脚本。"
-      secure_internal_heading: "选项 1：保护您的 %{site_name} 登录"
-      confirm_email: "确认您的电子邮件地址"
+      intro: "你必须先使用安全的登录方法设定你的账户，然后才能发布脚本。"
+      secure_internal_heading: "选项 1：保护你的 %{site_name} 登录"
+      confirm_email: "确认你的电子邮件地址"
       enable_2fa: "启用双重身份验证（2FA）"
       add_external_heading: "选项 2：仅使用外部登录"
       add_external: "添加外部登录"
-      remove_password: "移除您的 %{site_name} 密码"
+      remove_password: "移除你的 %{site_name} 密码"
     authors_heading: "作者"
-    error_unauthorized_copy: "这段代码似乎是对 %{script} 的未经授权复制。请参阅 %{site_name} %{rules_link:规则} 以了解发布脚本的相关规定。"
+    error_unauthorized_copy: "这段代码似乎是对 %{script} 的未经授权复制，请参阅 %{site_name} %{rules_link:规则} 以了解发布脚本的相关规定。"
     invitations:
       form_title: "邀请其他作者"
-      explanation: "您可以添加其他 Greasy Fork 用户作为此脚本的作者。他们将在此脚本上拥有与您相同的权利，包括添加或移除其他作者（甚至包括您自己）。"
+      explanation: "你可以添加其他 Greasy Fork 用户作为此脚本的作者。他们将在此脚本上拥有与你相同的权利，包括添加或移除其他作者（甚至包括你自己）。"
       invited_user_url_label: "邀请用户"
       invited_user_placeholder: "在 %{site_name} 的用户资料链接"
       submit: "发送邀请"
       invalid_user_url: "邀请的用户链接无效"
-      already_author: "您指定的用户已经是此脚本的作者"
+      already_author: "你指定的用户已是此脚本的作者"
       sent: "邀请已发送"
       subject: "%{script_name}的邀请"
-      body: "您已经被邀请加入成为 %{site_name} 中 %{script_name}（%{script_url}）的作者。要接受此邀请，请访问 %{accept_url}。"
-      current_user_already_author: "您已经是此脚本的作者。"
-      invitation_not_found: "未找到邀请。"
-      invitation_expired: "邀请已过期。"
-      invitation_accepted: "您现在是此脚本的作者。"
+      body: "你已被邀请加入成为 %{site_name} 中 %{script_name}（%{script_url}）的作者。要接受此邀请，请访问 %{accept_url}。"
+      current_user_already_author: "你已是此脚本的作者"
+      invitation_not_found: "未找到邀请"
+      invitation_expired: "邀请已过期"
+      invitation_accepted: "你现在是此脚本的作者"
     remove_author:
       heading: "移除作者"
-      success: "已将 %{user_name} 从作者列表中移除。"
+      success: "已将 %{user_name} 从作者列表中移除"
       remove_button: "移除"
       remove_confirm: "确定要将 %{user_name} 从作者列表中移除吗？"
-      failure: "无法移除该作者。"
-    no_disposable_email: "如果您使用一次性电子邮件地址，则您可能无法发布脚本。"
-    rate_limited: "您近期提交了太多脚本。请稍后再试。"
-    delayed: "由于垃圾信息问题，新用户不能立即发布脚本。请稍后再试。"
+      failure: "无法移除该作者"
+    no_disposable_email: "如果你使用一次性电子邮件地址，则你可能无法发布脚本。"
+    rate_limited: "你近期提交了太多脚本，请稍后再试。"
+    delayed: "由于垃圾信息问题，新用户不能立即发布脚本，请稍后再试。"
     new_script_notice:
       title: "想要做什么？"
-      install_link_html: "我想<b>安装并使用</b>一个脚本。"
-      share_link_html: "我<b>编写了</b>一个脚本并想<b>分享</b>给其他人。"
+      install_link_html: "我想<b>安装并使用</b>某个脚本"
+      share_link_html: "我<b>编写了</b>某个脚本并想<b>分享</b>给其他人"
     new_title:
       js: "发布新脚本"
       css: "发布新样式"
     update_title: "发布 %{script} 的新版本 "
     install_help_dialog:
       js:
-        firefox: 您需要先安装一个用户脚本管理器扩展，如 %{tampermonkey_link:Tampermonkey}、%{greasemonkey_link:Greasemonkey} 或 %{violentmonkey_link:Violentmonkey} 后才能安装该脚本。
-        chrome: 您需要先安装一个用户脚本管理器扩展，如 %{tampermonkey_link:Tampermonkey} 或 %{violentmonkey_link:Violentmonkey} 后才能安装该脚本。
-        opera: 您需要先安装一个用户脚本管理器扩展，如 %{tampermonkey_link:Tampermonkey} 或 %{violentmonkey_link:Violentmonkey} 后才能安装该脚本。
-        safari: 您需要先安装一个用户脚本管理器扩展，如 %{tampermonkey_link:Tampermonkey} 或 %{userscripts_link:Userscripts} 后才能安装该脚本。
-        edge: 您需要先安装一款用户脚本管理器扩展（如 %{tampermonkey_link:Tampermonkey}）后才能安装此脚本。
-        other: 您需要先安装一个用户脚本管理器扩展后才能安装该脚本。
-        bypass: （我已经安装了用户脚本管理器，让我安装！）
+        firefox: 你需要先安装用户脚本管理器扩展，如 %{tampermonkey_link:Tampermonkey}、%{greasemonkey_link:Greasemonkey} 或 %{violentmonkey_link:Violentmonkey} 后才能安装该脚本。
+        chrome: 你需要先安装用户脚本管理器扩展，如 %{tampermonkey_link:Tampermonkey} 或 %{violentmonkey_link:Violentmonkey} 后才能安装该脚本。
+        opera: 你需要先安装用户脚本管理器扩展，如 %{tampermonkey_link:Tampermonkey} 或 %{violentmonkey_link:Violentmonkey} 后才能安装该脚本。
+        safari: 你需要先安装用户脚本管理器扩展，如 %{tampermonkey_link:Tampermonkey} 或 %{userscripts_link:Userscripts} 后才能安装该脚本。
+        edge: 你需要先安装一款用户脚本管理器扩展（如 %{tampermonkey_link:Tampermonkey}）后才能安装此脚本。
+        other: 你需要先安装用户脚本管理器扩展后才能安装该脚本。
+        bypass: （我已安装用户脚本管理器，立即安装用户脚本！）
       css:
-        firefox: 您需要先安装一款用户样式管理器扩展（如 %{stylus_link:Stylus}）后才能安装此样式。
-        chrome: 您需要先安装一款用户样式管理器扩展（如 %{stylus_link:Stylus}）后才能安装此样式。
-        opera: 您需要先安装一款用户样式管理器扩展（如 %{stylus_link:Stylus}）后才能安装此样式。
-        safari: 您需要先安装一款用户样式管理器扩展后才能安装此样式。
-        edge: 您需要先安装一款用户样式管理器扩展后才能安装此样式。
-        other: 您需要先安装一款用户样式管理器扩展后才能安装此样式。
-        bypass: （我已经安装了用户样式管理器，让我安装！）
+        firefox: 你需要先安装一款用户样式管理器扩展（如 %{stylus_link:Stylus}）后才能安装此样式。
+        chrome: 你需要先安装一款用户样式管理器扩展（如 %{stylus_link:Stylus}）后才能安装此样式。
+        opera: 你需要先安装一款用户样式管理器扩展（如 %{stylus_link:Stylus}）后才能安装此样式。
+        safari: 你需要先安装一款用户样式管理器扩展后才能安装此样式。
+        edge: 你需要先安装一款用户样式管理器扩展后才能安装此样式。
+        other: 你需要先安装一款用户样式管理器扩展后才能安装此样式。
+        bypass: （我已安装用户样式管理器，立即安装用户样式！）
       close_dialog: 确定
     antifeatures:
       label: 可能不受欢迎的功能
-      warning_title: 这个脚本含有可能不受欢迎的功能
-      intro: 在您安装前，%{site_name} 希望您知道此脚本包含可能不受欢迎的功能，也许会帮助脚本作者获利，而不能给你带来任何收益。
+      warning_title: 此脚本含有可能不受欢迎的功能
+      intro: 在你安装前，%{site_name} 希望你知道此脚本包含可能不受欢迎的功能，也许会帮助脚本作者获利，而不能给你带来任何收益。
       author_explanation_intro: "脚本作者的说明："
       types:
         ads:
           title: 广告
-          description_html: 这个脚本会在你访问的网站<b>插入广告</b>。
+          description_html: 此脚本会在你访问的网站<b>插入广告</b>。
         tracking:
           title: 追踪
-          description_html: 这个脚本含有<b>追踪您的操作</b>的代码。
+          description_html: 此脚本含有<b>追踪你的操作</b>的代码。
         miner:
           title: 挖矿
-          description_html: 这个脚本含有挖矿代码，启动时将<b>占用您的设备资源</b>。
+          description_html: 此脚本含有挖矿代码，启动时将<b>占用你的设备资源</b>。
         referral-link:
           title: 引荐链接
           description_html: 作者从这份脚本<b>获得佣金</b>，例如透过改写链接或提供优惠券代码以包含推荐或附属代码。
@@ -407,7 +407,7 @@ zh-CN:
           description_html: 你只有在<b>参与某些事</b>后才能使用脚本的全部功能，如加入某群组、订阅某频道或在某页点赞等。
         payment:
           title: 付费内容
-          description_html: 你只有在<b>付费</b>后才能使用脚本的全部功能。%{site_name} 未参与到支付的流程，因此无法验证您是否获得了有价值的东西，亦无法帮助您申请退款。
+          description_html: 你只有在<b>付费</b>后才能使用脚本的全部功能。%{site_name} 未参与到支付的流程，因此无法验证你是否获得了有价值的东西，亦无法帮助你申请退款。
       cancel_install: 取消
     badges:
       js:
@@ -419,22 +419,22 @@ zh-CN:
     related_scripts: "你也可以试试这些相关的脚本："
     integrity_hashes:
       user_notice_html:
-        other: "您上传的脚本指定了不匹配的哈希校验值：%{script_links}。"
+        other: "你上传的脚本指定了不匹配的哈希校验值：%{script_links}"
       script_notice:
         text_html:
-          other: "该脚本制定了不匹配的哈希校验值：%{detail}。"
+          other: "该脚本制定了不匹配的哈希校验值：%{detail}"
         detail: "<code>%{url}</code> 应设定其哈希校验值为 <code>%{expected_hash}</code>（检查于 %{last_checked_at}）"
   script_sets:
     heading: "脚本集"
-    description: "脚本集可以让你可以创建一个自定义的脚本列表来浏览 Greasy Fork。您可以从包含单个脚本、其他用户的脚本集或者自动生成的脚本集来将脚本添加到你的脚本集中。你也可以使用相同的方法来从集中排除脚本。"
+    description: "脚本集可以让你可以创建一个自定义的脚本列表来浏览 Greasy Fork，你可以从包含单个脚本、其他用户的脚本集或自动生成的脚本集来将脚本添加到你的脚本集中，你也可以使用相同的方法来从集中排除脚本。"
     favorites_name: "收藏"
     delete: "删除脚本集"
-    delete_confirmation: "您确定您想要删除这个脚本集吗？"
+    delete_confirmation: "你确定你想要删除这个脚本集吗？"
     site_default_sort: "（网站默认）"
     edit_link: "编辑"
     edit_scripts:
       heading: "脚本"
-      description: "在您的脚本集中包含或排除单个脚本。"
+      description: "在你的脚本集中包含或排除单个脚本"
       included: "包含"
       included_none: "（无）"
       remove_included: "移除选中的条目"
@@ -446,7 +446,7 @@ zh-CN:
       add_exclude: "排除"
     edit_sets:
       heading: "脚本集"
-      description: "在您的脚本集中包含或排除其他脚本集。"
+      description: "在你的脚本集中包含或排除其他脚本集"
       included: "包含"
       included_none: "（无）"
       remove_included: "移除选中"
@@ -461,7 +461,7 @@ zh-CN:
       user_no_other_sets: "（用户没有其他脚本集）"
     edit_auto_sets:
       heading: "自动脚本集"
-      description: "在您的脚本集中包含或排除自动生成的脚本列表。"
+      description: "在你的脚本集中包含或排除自动生成的脚本列表"
       included: "已包含"
       included_none: "（无）"
       remove_included: "移除选中的条目"
@@ -469,7 +469,7 @@ zh-CN:
       excluded_none: "（无）"
       all_scripts_label: "所有脚本"
       all_scripts_include: "包含"
-      for_sites_label: "脚本适用的网站（例如 example.com；留空则为“所有网站”）"
+      for_sites_label: "脚本适用的网站（例如 example.com，留空则为“所有网站”）"
       for_sites_include: "包含"
       for_sites_exclude: "排除"
       for_user_label: "用户的脚本（网址、ID 或名称）"
@@ -482,10 +482,10 @@ zh-CN:
     calculated_list_none: "（无）"
     calculated_list_more:
       other: "以及 %{count} 条未显示的结果…"
-    already_included: "“%{name}”已经包含。"
+    already_included: "“%{name}”已包含"
     could_not_parse_script: "无法解析“%{value}”脚本"
     save: "保存"
-    saved: "脚本集保存成功。"
+    saved: "脚本集保存成功"
     auto_set_types:
       all_scripts: "所有脚本"
       site: "适用于 %{site} 网站的脚本"
@@ -495,17 +495,17 @@ zh-CN:
     new: 新建脚本集
   home:
     title: "%{site_name} - 安全且实用的用户脚本站"
-    welcome: "欢迎来到 %{site_name}，一个专注于用户脚本的网站。"
+    welcome: "欢迎来到 %{site_name}，一个专注于用户脚本的网站"
     sleazy_title: "%{site_name} - 安全且实用的成人用户脚本站"
-    sleazy_welcome: "欢迎来到 %{site_name}，一个专注于成人用户脚本的网站。"
+    sleazy_welcome: "欢迎来到 %{site_name}，一个专注于成人用户脚本的网站"
     search_placeholder: "搜索用户脚本"
     scripts_for_label: "脚本适用于："
     explain_user_scripts_heading: "用户脚本是什么？"
-    explain_user_scripts_html: "用户脚本让您掌控网页浏览体验。安装后，它们能自动改善您访问网站的使用体验，有些能为网站添加新功能，有些能使网站更易于使用，有些能让网站隐藏烦人内容。%{site_name} 上的用户脚本都是由用户编写并向全世界发布，您能免费安装它们，并且轻松使用。"
+    explain_user_scripts_html: "用户脚本可以让你掌控网页浏览体验，在安装后，它们能自动改善你访问网站的使用体验，有的能为网站添加新功能，有些能使网站更易于使用，有些能让网站隐藏烦人内容。%{site_name} 上的用户脚本都是由用户编写并向全世界发布，你能免费安装它们，并且轻松使用。"
     installing_step1_header: "第 1 步：安装一个用户脚本管理器"
     installing_step1_caption: "Chrome 上的 Tampermonkey"
     installing_step1_description_html: >
-        <p>要使用用户脚本，您首先需要安装一个用户脚本管理器。您可以根据当前使用的浏览器来选择一个用户脚本管理器。</p>
+        <p>要使用用户脚本，你首先需要安装用户脚本管理器。你可以根据当前使用的浏览器来选择一个用户脚本管理器。</p>
     desktop_browsers:
       title: 桌面端
       browser_list_html: |
@@ -540,36 +540,36 @@ zh-CN:
     installing_step2_header: "第 2 步：安装一个用户脚本"
     installing_step2_caption: "用户脚本的安装按钮"
     installing_step2_description_html: >
-        <p>%{browse_link:浏览本网站}，找到您想尝试的用户脚本。以下是一些最受欢迎的脚本例子：</p>
+        <p>%{browse_link:浏览本网站}，找到你想尝试的用户脚本。以下是一些热门的脚本例子：</p>
 
         %{highlighted_scripts_list}
 
-        <p>在您找到想要的用户脚本后，点击用户脚本页面上绿色的安装按钮，您的用户脚本管理器将向您确认是否安装。</p>
+        <p>在你找到想要的用户脚本后，点击用户脚本页面上绿色的安装按钮，你的用户脚本管理器将向你确认是否安装。</p>
     installing_step3_header: "第 3 步：使用用户脚本"
     installing_step3_description_html: >
-        <p>现在您可以访问这个用户脚本所针对的网站，脚本应该已经自动启动和生效。在试用一段时间之后，您可以回到用户脚本发表的页面，给用户脚本的作者留下反馈。</p>
+        <p>现在你可以访问此用户脚本所针对的网站，脚本应该已经自动启动和生效。在试用一段时间之后，你可以回到用户脚本发表的页面，给用户脚本的作者留下反馈。</p>
   users:
     sign_in_title: "登录 %{site_name}"
-    sign_in_description: "登录 %{site_name} 后，您可以发布脚本并对他人的脚本提供反馈。您无需登录即可浏览或安装脚本。"
+    sign_in_description: "登录 %{site_name} 后，你可以发布脚本并对他人的脚本提供反馈。你无需登录即可浏览或安装脚本。"
     sign_in_external: "使用第三方账户登录"
     sign_in_with: "使用 %{provider} 登录"
     sign_in_password: "使用密码登录"
-    sign_in_email_used_no_external_services_html: "“%{email}”已被“%{user_name}”注册。如果这是你并希望连接该账号至 %{provider}，请先 %{sign_in_link} 然后添加 %{provider} 至您的第三方登录。"
-    sign_in_email_used_with_external_services_html: "“%{email}”已被“%{user_name}”绑定至第三方登录服务 %{existing_providers}。如果这是你并希望连接账号至 %{provider}，请先 %{sign_in_link} 然后添加 %{provider} 至您的第三方登录。"
+    sign_in_email_used_no_external_services_html: "“%{email}”已被“%{user_name}”注册。如果这是你的账号并希望连接该账号至 %{provider}，请先 %{sign_in_link} 然后添加 %{provider} 至你的第三方登录。"
+    sign_in_email_used_with_external_services_html: "“%{email}”已被“%{user_name}”绑定至第三方登录服务 %{existing_providers}。如果这是你并希望连接账号至 %{provider}，请先 %{sign_in_link} 然后添加 %{provider} 至你的第三方登录。"
     sign_in_email_used_sign_in_link: "登录"
-    sign_in_email_missing: "%{site_name} 需要一个电子邮件地址来建立新账号，但您绑定的 %{provider} 账号未能提供该信息。你可以到 %{provider} 绑定邮箱，然后在本网站用该账号登录；或在 %{site_name} 上创建一个常规的使用电子邮件/密码登录的账号，之后添加 %{provider} 的账号绑定。"
-    sign_in_name_used: "用户名“%{name}”已存在，换一个吧。"
+    sign_in_email_missing: "%{site_name} 需要一个电子邮件地址来建立新账号，但你绑定的 %{provider} 账号未能提供该信息。你可以到 %{provider} 绑定邮箱，然后在本网站用该账号登录，或在 %{site_name} 上创建一个常规的使用电子邮件/密码登录的账号，之后添加 %{provider} 的账号绑定。"
+    sign_in_name_used: "用户名“%{name}”已存在，换一个吧"
     sign_in_name_used_submit: "提交"
-    sign_in_github_unavailable: "Sleazy Fork 不支持通过 GitHub 登录，但您可以%{sign_in_url:在 Greasy Fork 上通过 GitHub 登录}。"
+    sign_in_github_unavailable: "Sleazy Fork 不支持通过 GitHub 登录，但你可以%{sign_in_url:在 Greasy Fork 上通过 GitHub 登录}。"
     control_panel: "控制台"
-    discussions_on_scripts: "您的脚本的相关讨论帖"
+    discussions_on_scripts: "你的脚本的相关讨论帖"
     discussions_on_scripts_feed_alt: "RSS 订阅"
     discussions_on_scripts_none: "还没有呢！"
     discussions_on_scripts_more: "更多讨论…"
     script_list: "脚本"
-    script_list_none: "暂无发布的脚本。"
-    script_list_none_for_filter: "没有匹配当前搜索条件的脚本。"
-    script_list_none_same_user_html: "您还没有编写过用户脚本，%{script_list_none_same_user_info_link}"
+    script_list_none: "暂无发布的脚本"
+    script_list_none_for_filter: "没有匹配当前搜索条件的脚本"
+    script_list_none_same_user_html: "你还没有编写过用户脚本，%{script_list_none_same_user_info_link}"
     script_list_none_same_user_info_link_text: "想要学习如何编写吗?"
     listing_sort_name: "名称"
     deleted_script_list: "已删除脚本"
@@ -579,55 +579,55 @@ zh-CN:
     edit_sign_in: "更改登录方式"
     edit_sign_in_title: "更改登录方式"
     edit_sign_in_password: "密码"
-    edit_sign_in_2fa_enabled: 您已设定双重身份验证（2FA）。如果您遗失了 2FA 代码，您可以选择重新生成。
-    edit_sign_in_2fa_enabled_and_required: 您已设定了双重身份验证（2FA）。在使用基于密码的登录方式时，您的账户必须启用 2FA。如果您遗失了 2FA 代码，可以选择重新生成。
+    edit_sign_in_2fa_enabled: 你已设定双重身份验证（2FA）。如果你遗失了 2FA 代码，你可以选择重新生成。
+    edit_sign_in_2fa_enabled_and_required: 你已设定了双重身份验证（2FA）。在使用基于密码的登录方式时，你的账户必须启用 2FA。如果你遗失了 2FA 代码，可以选择重新生成。
     edit_sign_in_disable_2fa: 禁用 2FA
-    edit_sign_in_2fa_disabled: 您可以为您的 %{site_name} 账户启用双重身份验证（2FA），以提升账户安全性。
+    edit_sign_in_2fa_disabled: 你可以为你的 %{site_name} 账户启用双重身份验证（2FA），以提升账户安全性。
     edit_sign_in_enable_2fa: 启用 2FA
     edit_sign_in_regenerate_2fa: 重新生成 2FA
     edit_notifications: "编辑通知设置"
     view_notifications: "查看通知"
-    no_password_set_info: "您的账号尚未启用密码登录。"
+    no_password_set_info: "你的账号尚未启用密码登录"
     set_password: "设置密码"
     update_password: "更新密码"
-    update_password_no_match: "密码不匹配。"
-    password_updated: "密码已更新。"
-    remove_password_info: "您可以移除登录密码，但这样的话您只能使用第三方登录。"
+    update_password_no_match: "密码不匹配"
+    password_updated: "密码已更新"
+    remove_password_info: "你可以移除登录密码，但这样的话你只能使用第三方登录。"
     remove_password: "移除登录密码"
-    cant_remove_password: "不能删除密码：这是您唯一的登录方式！"
-    cant_remove_sign_in: "无法移除第三方登录 %{provider}：这是您唯一的登录方式！"
-    password_removed: "密码已移除。"
+    cant_remove_password: "不能删除密码：这是你唯一的登录方式！"
+    cant_remove_sign_in: "无法移除第三方登录 %{provider}：这是你唯一的登录方式！"
+    password_removed: "密码已移除"
     edit_sign_in_external: "第三方用户登录"
-    external_sign_in_info_no_sign_ins: "您可以使用第三方网站账号登录 %{site_name}。"
-    external_sign_in_info_with_sign_ins: "您目前可以使用下列第三方登录系统登录。“同步中” 标志表示您的 %{site_name} 信息（如：用户名、电子邮件）将在您下次登录时自动更新。"
-    external_sign_in_added: "成功连接 %{provider}。"
-    external_sign_in_updated: "成功从 %{provider} 更新登录信息。"
-    external_sign_in_removed: "已移除 %{provider} 账户绑定。"
-    external_sign_in_failed: "%{provider} 登录失败：%{error}。"
-    external_sign_in_already_used: "增加 %{provider} 账户失败：该登录信息已被用户“%{user_name}”使用。"
-    external_sign_in_confirmation: "%{site_name} 已根据您在 %{provider} 提供账号信息建立了一个新的账号。您的公开用户名是 %{username}。"
+    external_sign_in_info_no_sign_ins: "你可以使用第三方网站账号登录 %{site_name}"
+    external_sign_in_info_with_sign_ins: "你目前可以使用下列第三方登录系统登录。“同步中” 标志表示你的 %{site_name} 信息（如：用户名、电子邮件）将在你下次登录时自动更新。"
+    external_sign_in_added: "成功连接 %{provider}"
+    external_sign_in_updated: "成功从 %{provider} 更新登录信息"
+    external_sign_in_removed: "已移除 %{provider} 账户绑定"
+    external_sign_in_failed: "%{provider} 登录失败：%{error}"
+    external_sign_in_already_used: "增加 %{provider} 账户失败：该登录信息已被用户“%{user_name}”使用"
+    external_sign_in_confirmation: "%{site_name} 已根据你在 %{provider} 提供账号信息建立了一个新的账号。你的公开用户名是 %{username}。"
     syncing_indicator: "(同步中)"
     enable_syncing: "开启同步"
     disable_syncing: "关闭同步"
     remove_external_sign_in: "移除"
     add_external_sign_in_info: "添加第三方登录："
-    2fa_enabled: 2FA 已启用。
-    2fa_enable_code_incorrect: 2FA 代码不正确。请重试。
-    2fa_disabled: 2FA 已禁用。
-    2fa_disabled_already: 2FA 已被禁用。
+    2fa_enabled: 2FA 已启用
+    2fa_enable_code_incorrect: 2FA 代码不正确，请重试
+    2fa_disabled: 2FA 已禁用
+    2fa_disabled_already: 2FA 已被禁用
     2fa_entry:
-      intro_html: "登录为 <b>%{email}</b>。请输入你的双重身份验证（2FA）应用程序提供的代码。"
+      intro_html: "正在以 <b>%{email}</b> 身份登录。请输入你的双重身份验证（2FA）应用程序提供的代码。"
     enable_2fa:
-      intro: "使用以下其中一种方法将 %{site_name} 添加到您的双重身份验证（2FA）应用中，然后在下面输入代码。"
+      intro: "可使用以下方法将 %{site_name} 添加到你的双重身份验证（2FA）应用中，然后在下面输入代码。"
       qr_heading: 通过二维码
       url_heading: 通过链接
-      url_info: 如果您与您的两步验证应用在同一设备上，您可以通过 %{auth_link:此链接} 添加它。
+      url_info: 如果你与你的两步验证应用在同一设备上，你可以通过%{auth_link:此链接}添加。
       manual_heading: 手动
       manual_entry_code_name: "代号：%{code_name}"
-      manual_entry_your_key: "您的密钥：%{key}"
+      manual_entry_your_key: "你的密钥：%{key}"
       manual_entry_type_of_key: "密钥类型：基于时间"
       code_entry_heading: 输入代码
-      code_entry: "请输入来自您的 2FA 应用的代码，以启用 %{site_name} 账户上的双重身份验证："
+      code_entry: "请输入来自你的 2FA 应用的代码，以启用 %{site_name} 账户上的双重身份验证："
       verify_code: 检查代码
     set_up_webhook: "设置 webhook"
     list_display_html:
@@ -648,52 +648,52 @@ zh-CN:
       all: "全部"
     search_placeholder: "搜索用户"
     locale_prompt: "(选择一种语言)"
-    show_ads_description: "允许显示广告来支持 %{site_name}"
+    show_ads_description: "显示广告来支持 %{site_name}"
     show_sensitive_description: "显示带有成人内容的脚本"
-    preferred_markup_description: "将用于新的脚本和讨论帖。"
+    preferred_markup_description: "将用于新的脚本和讨论帖"
     filter_locale_default_description: "默认情况下只会显示当前语系的内容"
     greasy_fork_scripts_link:
       other: "%{user_name} 还在 Greasy Fork 上发布了另外 %{count} 个脚本。"
     update_sync_warning:
-      other: "您的用户名和电子邮件地址将在您用 %{providers} 登录时与该账户保持同步。如果您想永久设置自定义用户名或电子邮件地址，%{edit_sign_in_link:编辑您的登录方法以去除同步}。"
+      other: "你的用户名和电子邮件地址将在你用 %{providers} 登录时与该账户保持同步。如果你想永久设置自定义用户名或电子邮件地址，%{edit_sign_in_link:编辑你的登录方法以去除同步}。"
     delete_link: "删除账号"
     delete:
-      intro: "删除您的 %{site_name} 账号「%{user_name}」将造成下述后果："
-      password_effect: "您将不再能用您的密码登录。"
+      intro: "删除你的 %{site_name} 账号「%{user_name}」将造成下述后果："
+      password_effect: "你将不再能用你的密码登录"
       identities_effect:
-        other: "通过 %{identities} 登录将建立一个新的账号。"
+        other: "通过 %{identities} 登录将建立一个新的账号"
       scripts_effect:
-        other: "您的 %{count} 个脚本将被删除。"
+        other: "你的 %{count} 个脚本将被删除"
       script_sets_effect:
-        other: "您的 %{count} 个脚本集将被删除。"
-      forum_effect: "您在论坛上的发言不会删除，但关联的用户将被更名为“%{user_name}”。"
-      email_confirmation: "在删除您的账号前，%{site_name} 将发送一封电子邮件至 %{email} 来确认您的请求。"
+        other: "你的 %{count} 个脚本集将被删除"
+      forum_effect: "你在论坛上的发言不会删除，但关联的用户将被更名为“%{user_name}”"
+      email_confirmation: "在删除你的账号前，%{site_name} 将发送一封电子邮件至 %{email} 来确认你的请求。"
       submit: "删除账号"
-      confirmation_email_sent: "确认删除邮件已发送。"
+      confirmation_email_sent: "确认删除邮件已发送"
       confirmation_email:
         subject: "%{site_name} 账号的删除确认"
-        body: "%{site_name} 收到了一个关于删除您的账号 “%{user_name}” 的请求。若要确认请求并删除您的账号，请访问 %{url}。此操作必须于在 24 小时内确认，否则请求将被取消。"
+        body: "%{site_name} 收到了一条关于删除你的账号 “%{user_name}” 的请求。若要确认请求并删除你的账号，请访问 %{url}。此操作必须于在 24 小时内确认，否则请求将被取消。"
       confirmation:
-        intro: "您即将删除账号 “%{user_name}”。该操作无法撤销。"
+        intro: "你即将删除账号 “%{user_name}”，该操作无法撤销。"
         confirm: "删除 “%{user_name}”"
         cancel: "取消操作"
-        key_mismatch: "无法删除用户 - 键值不匹配。"
-        request_expired: "无法删除用户 - 请求已过期。"
-        cancelled: "删除已取消。"
-        completed: "您的账号已删除。"
+        key_mismatch: "无法删除用户 - 键值不匹配"
+        request_expired: "无法删除用户 - 请求已过期"
+        cancelled: "删除已取消"
+        completed: "你的账号已删除"
     banned_notice:
-      no_report_no_reason: "您的账号已被封禁。如果需要，您可以%{delete_link:删除此账号}。"
-      with_report: "您的账号已因%{report_link:此举报}而被封禁。如果需要，您可以%{delete_link:删除此账号}。"
-      with_reason: "您的账号已被封禁。管理员给出的原因是：“%{reason}”。如果需要，您可以%{delete_link:删除此账号}。"
+      no_report_no_reason: "你的账号已被封禁。如果需要，你可以%{delete_link:删除此账号}。"
+      with_report: "你的账号已因%{report_link:此举报}而被封禁。如果需要，你可以%{delete_link:删除此账号}。"
+      with_reason: "你的账号已被封禁。管理员给出的原因是：“%{reason}”。如果需要，你可以%{delete_link:删除此账号}。"
     banned_delete:
-      intro: "删除您的账号将同时删除您所发布的任何脚本。您在论坛上所做的贡献将被保留，但您的用户名会作匿名化处理。即便删除了账号，您也不能再使用同一电子邮件地址进行注册。请在下方登录然后删除您的账号。"
-      complete: "您的账号已经删除。"
+      intro: "删除你的账号将同时删除你所发布的任何脚本。你在论坛上所做的贡献将被保留，但你的用户名会作匿名化处理。即便删除了账号，你也不能再使用同一电子邮件地址进行注册。请在下方登录然后删除你的账号。"
+      complete: "你的账号已删除"
     deleted_user_with_id: "(已删除的用户 %{id})"
     deleted_user_without_id: "(已删除的用户)"
-    suggest_secure_login: 您是一位脚本作者，因此我们建议您%{edit_login_link:使用更加安全的登录方式}。
-    require_secure_login: 您的账户必须使用更加安全的登录方式。
+    suggest_secure_login: 你是一位脚本作者，因此我们建议你%{edit_login_link:使用更加安全的登录方式}。
+    require_secure_login: 你的账户必须使用更加安全的登录方式。
     secure_login_explanation_html: |
-        <p>作为一名脚本作者，我们建议您通过使用更为安全的登录方式来保护你的账户和用户。您可以通过以下两种方式之一来实现这一点：</p>
+        <p>作为一名脚本作者，我们建议你通过使用更为安全的登录方式来保护你的账户和用户。你可以通过以下两种方式之一来实现这一点：</p>
         <ol>
         <li>在基于密码登录基础上，添加双重身份验证（2FA）。</li>
         <li>删除你的密码，仅依赖外部登录方式（并最好启用该服务提供的安全功能）。</li>
@@ -713,82 +713,82 @@ zh-CN:
       email: 邮件收取
       discussion_defaults:
         title: 论坛通知
-        intro: 您订阅的讨论有更新时将通知您，您可以随时取消订阅讨论
+        intro: 你订阅的讨论有更新时将通知你，你可以随时取消订阅讨论
         discussion_subscription_defaults:
           overall_label: 默认情况下，当发生以下情况时自动订阅讨论
-          start: 您发起的讨论
-          comment: 您参与的讨论
-          script: 有关您脚本的讨论
-        subscribed_discussion_notification: 在您订阅的讨论中有新评论发布时，收取通知
+          start: 你发起的讨论
+          comment: 你参与的讨论
+          script: 有关你脚本的讨论
+        subscribed_discussion_notification: 在你订阅的讨论中有新评论发布时，收取通知
         mention: 当我在讨论帖中被提到时发送通知
       conversation_defaults:
         title: 私信通知
-        intro: 您将收到您订阅的私信通知。您可以随时订阅或取消订阅私信。
+        intro: 你将收到你订阅的私信通知，你可以随时订阅或取消订阅私信。
         new_conversation_subscription:
           overall_label: 默认情况下，当有新私信时自动订阅
-          self: 您发起的私信
+          self: 你发起的私信
           other: 其他人发起的私信
-        new_conversation_notification: 在有人向您发起私信，并且您根据上述设置自动订阅时，收取通知
-        new_message_notification: 在您订阅的现有私信收到新消息时，收取通知
+        new_conversation_notification: 在有人向你发起私信，并且你根据上述设置自动订阅时，收取通知
+        new_message_notification: 在你订阅的现有私信收到新消息时，收取通知
       report_defaults:
         intro: 用户创建举报是为了标记违反 %{site_name} 规则的内容。管理员将查阅举报，并在必要时删除相关内容。
         title: 举报通知
-        as_reporter: 在您创建的举报被处理时，收取通知
-        as_reported_filed: 在针对您发布的项目提出举报时，收取通知
-        as_reported_resolved: 在针对您发布的项目的举报被处理时，收取通知
+        as_reporter: 在你创建的举报被处理时，收取通知
+        as_reported_filed: 在针对你发布的项目提出举报时，收取通知
+        as_reported_resolved: 在针对你发布的项目的举报被处理时，收取通知
       script:
-        intro: 这些设置与您发布的脚本相关。
+        intro: 这些设置与你发布的脚本相关
         title: 脚本通知
-        consecutive_bad_ratings: 当您的脚本因差评而面临被删除的风险时，收取通知
+        consecutive_bad_ratings: 当你的脚本因差评而面临被删除的风险时，收取通知
       save_button: 更新通知设置
       title: 通知
       current_discussion_subscriptions:
-        other: 取消订阅您已订阅的 %{discussions_link:%{count} 条讨论}
+        other: 取消订阅你已订阅的 %{discussions_link:%{count} 条讨论}
       current_conversation_subscriptions:
-        other: 取消订阅您已订阅的 %{count} 条私信。
-      intro: "%{site_name} 可以通过邮件或网站上的通知小组件向您发送通知。大多数通知只有在您执行某些操作后才会发送，例如发起了一条讨论或发布了一个脚本。这些通知设置不会影响事务性的邮件，例如密码重置请求。"
-      save_success: 您的通知设定已更新。
+        other: 取消订阅你已订阅的 %{count} 条私信
+      intro: "%{site_name} 可以通过邮件或网站上的通知小组件向你发送通知。大多数通知只有在你执行某些操作后才会发送，例如发起了一条讨论或发布了某个脚本。这些通知设置不会影响事务性的邮件，例如密码重置请求。"
+      save_success: 你的通知设定已更新
       unsubscribe_all: 取消订阅所有通知
-      unsubscribe_all_success: 您已取消订阅所有通知。
+      unsubscribe_all_success: 你已取消订阅所有通知
       unsubscribe_email: 取消订阅所有邮件通知
-      unsubscribe_email_success: 您已取消订阅所有电子邮件通知。
-      new_conversation: "%{user} 向您发起了一条私信：%{text}。"
+      unsubscribe_email_success: 你已取消订阅所有电子邮件通知
+      new_conversation: "%{user} 向你发起了一条私信：%{text}"
       new_message: "%{user} 给你发送了一则信息：%{text}"
-      new_comment: "%{user} 在 %{discussion} 中发布了一条帖子。"
-      new_comment_script: "%{user} 在您的脚本 %{script} 上发布了一条讨论。"
-      mention: "%{user} 在 %{discussion} 中提到了您。"
+      new_comment: "%{user} 在 %{discussion} 中发布了一条帖子"
+      new_comment_script: "%{user} 在你的脚本 %{script} 上发布了一条讨论"
+      mention: "%{user} 在 %{discussion} 中提到了你"
       report_resolved_reporter:
-        dismissed: 您对 %{item} 的举报已被管理员驳回。
-        fixed: 您针对 %{item} 的举报导致了一些更改，管理员已将该问题标记为已解决。
-        upheld: 您对 %{item} 的举报已被管理员通过。
-        rebutted: 您对 %{item} 的举报已收到被举报用户的回复。管理员将查阅您的举报以及该回复。
+        dismissed: 你对 %{item} 的举报已被管理员决定不予受理
+        fixed: 你针对 %{item} 的举报促成了一些更改，管理员已将该问题标记为已解决。
+        upheld: 你对 %{item} 的举报已被管理员通过
+        rebutted: 你对 %{item} 的举报已收到被举报用户的回复。管理员将查阅你的举报以及该回复。
       report_filed_reported: 已举报 %{item}.
       report_resolved_reported:
-        dismissed: 关于%{item}的举报已被管理员驳回
-        fixed: 针对 %{item} 的举报导致了一些更改，管理员已将该问题标记为已解决。
-        upheld: 对 %{item}的举报已被管理员通过。
-      consecutive_bad_ratings: "%{script} 已收到差评，并面临被删除的风险。请修复您的脚本或回应这些评论，以确保其保持有效。"
+        dismissed: 关于 %{item} 的举报已被管理员决定不予受理
+        fixed: 针对 %{item} 的举报促成了一些更改，故管理员已将该问题标记为已解决。
+        upheld: 对 %{item}的举报已被管理员通过
+      consecutive_bad_ratings: "%{script} 已收到差评，并面临被删除的风险。请尽快修复你的脚本或回应这些评论，以确保其保持有效。"
       list:
         header: 通知
         none: 暂无通知
-        edit_settings: 管理您的通知设置
+        edit_settings: 管理通知设置
         mark_all_read: 全部标为已读
   webhooks:
     info:
       title: 设置 webhook
       intro_html: |
-          <p>连接到  %{site_name} 的 Webhook 可以使您根据仓库中的事件自动更新 %{site_name} 上对应的脚本。%{site_name} 支持 GitHub、GitLab 与 Bitbucket 的 “push” Webhook 以及 GitHub 与 GitLab 的 “release” Webhook。</p>
-          <p>要使用此功能，您必须在 %{site_name} 上设定脚本通过 URL 与您的仓库同步。您可以通过 %{import_link: 将新脚本导入到  %{site_name}} 来添加新脚本，或从已提交脚本的 “管理” 页面来设定同步。</p>
-          <p>在您的脚本第一次 Webhook 触发之前，脚本的同步类型还是会显示为 “自动” 或 “手动” 。</p>
-      already_syncing_list: "以下是您已经设定为从支持的提供商同步的脚本："
+          <p>连接到  %{site_name} 的 Webhook 可以使你根据仓库中的事件自动更新 %{site_name} 上对应的脚本。%{site_name} 支持 GitHub、GitLab 与 Bitbucket 的 “push” Webhook 以及 GitHub 与 GitLab 的 “release” Webhook。</p>
+          <p>要使用此功能，你必须在 %{site_name} 上设定脚本通过 URL 与你的仓库同步。你可以通过 %{import_link: 将新脚本导入到  %{site_name}} 来添加新脚本，或从已提交脚本的 “管理” 页面来设定同步。</p>
+          <p>在你的脚本第一次 Webhook 触发之前，脚本的同步类型还是会显示为 “自动” 或 “手动” 。</p>
+      already_syncing_list: "以下是你已经设定为从支持的提供商同步的脚本："
       synced_item_html: "%{script_name} - %{sync_type} 同步，从 %{sync_url}"
-      language_note: 因为 GitHub、GitLab 和 Bitbucket 是英语界面，下列操作说明也以英语提供。
+      language_note: 因为 GitHub、GitLab 和 Bitbucket 是英语界面，故下列操作说明也以英语提供。
   help:
     sections:
       usage: 使用
       development: 开发
       miscellaneous: 其他
-    open_source: "%{site_name} 是开源的（采用 GPLv3）。可以%{github_link:在 GitHub 上查看其源代码}。"
+    open_source: "%{site_name} 是开源的（采用 GPLv3），你可以%{github_link:在 GitHub 上查看其源代码}。"
     installing_user_scripts:
       title: '如何安装用户脚本'
     installing_user_styles:
@@ -796,40 +796,40 @@ zh-CN:
       content_html: |
           <p>%{site_name} 上的某些脚本可以安装为用户样式。</p>
           <p>用户样式可以通过 %{stylus_firefox_link:适用于 Firefox 的 Stylus}、%{stylus_chrome_link:适用于 Chrome 的 Stylus}，以及 %{stylus_opera_link:适用于 Opera 的 Stylus} 来安装。</p>
-          <p>%{styles_link:浏览所有可用的用户样式。}</p>
+          <p>%{styles_link:浏览所有可用的用户样式}</p>
     meta_keys:
       title: "%{site_name} 要读取的脚本元属性值"
-      intro_html: "这是 %{site_name} 将读取的 <a href=\"http://wiki.greasespot.net/Metadata_Block\">用户脚本属性值</a> 的一个列表。不在此列表的属性也可以写在脚本中，那些不在此列表的属性值也会包含在用户安装的脚本中，但是并不会对 %{site_name} 上的脚本页面做任何变动。"
+      intro_html: "这是 %{site_name} 将读取的 <a href=\"http://wiki.greasespot.net/Metadata_Block\">用户脚本属性值</a> 的列表。不在此列表的属性也可以写在脚本中，那些不在此列表的属性值也会包含在用户安装的脚本中，但是并不会对 %{site_name} 上的脚本页面做任何变动。"
       name: "脚本的名称。该项将显示在页面的标题以及链接内容，必填项。"
       name_localized_html: "脚本在特定语言区域的标题。XX 指 <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 国家代码</a> 以及 YY 指可选的 <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 地区代码</a>。该选项用于提供多语言的<code>@name</code> 脚本名称。"
       description: "脚本功能的描述，显示在脚本标题下面，必填项。"
-      description_localized_html: "用某门语言写成的脚本描述。XX 指 <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 国家代码</a> 以及 YY 指可选的 <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 地区代码</a>。该选项用于提供多语言的<code>@description</code> 脚本介绍。"
-      namespace_html: "<code>@namespace</code> 与 <code>@name</code> 这两个属性被作为脚本的唯一标识符，用户脚本管理器根据它们来判断一个脚本是否已安装。%{site_name} 也需要这些属性，若用户在更新脚本时改变了两者中的任意一项，将发出警告。"
+      description_localized_html: "用某语言写成的脚本描述。XX 指 <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 国家代码</a> 以及 YY 指可选的 <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 地区代码</a>。该选项用于提供多语言的<code>@description</code> 脚本介绍。"
+      namespace_html: "<code>@namespace</code> 与 <code>@name</code> 这两个属性被作为脚本的唯一标识符，用户脚本管理器根据它们来判断某个脚本是否已安装。%{site_name} 也需要这些属性，若用户在更新脚本时改变了两者中的任意一项，将发出警告。"
       version: "脚本特定版本的标识符，请以 %{version_format_link:Mozilla 版本格式} 为准，版本号会显示在脚本的信息页面上。%{site_name} 要求填写该属性，并会在版本号减少或脚本代码更改时未增加版本号时发出警告。"
       include_html: "描述脚本会在哪些网站上运行。该列表会被解析和展示到脚本的简介页面，并用于脚本的分类。每个脚本须有至少一个 <code>@match</code> 或 <code>@include</code>。<a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">了解格式细则</a>。"
-      require_html: "引入外部脚本到用户脚本。查看关于%{external_script_link:引入外部脚本到代码的规则}。如果你使用 SRI（Sub-Resource Integrity） 来记录外部脚本哈希（更多信息请参阅 %{tm_subresource_link:TamerMonkey 文档} 与 %{mdn_subresource_link:MDN 文档})，当 SRI 与文件的实际哈希不一致时将会在 %{site_name} 进行警告。"
-      resource_html: "引入外部资源（如 JavaScript、CSS、图像等）到脚本。查看关于%{external_script_link:引入外部脚本到代码的规则}。如果你使用 SRI（Sub-Resource Integrity） 来记录外部脚本哈希（更多信息请参阅 %{tm_subresource_link:TamerMonkey 文档} 与 %{mdn_subresource_link:MDN 文档})，当 SRI 与文件的实际哈希不一致时将会在 %{site_name} 进行警告。"
+      require_html: "引入外部脚本到用户脚本。查看关于%{external_script_link:引入外部脚本到代码的规则}。如果你使用 SRI（Sub-Resource Integrity） 来记录外部脚本哈希（更多信息请参阅 %{tm_subresource_link:TamerMonkey 文档} 与 %{mdn_subresource_link:MDN 文档})，当 SRI 与文件的实际哈希不一致时将在 %{site_name} 进行警告。"
+      resource_html: "引入外部资源（如 JavaScript、CSS、图像等）到脚本。查看关于%{external_script_link:引入外部脚本到代码的规则}。如果你使用 SRI（Sub-Resource Integrity） 来记录外部脚本哈希（更多信息请参阅 %{tm_subresource_link:TamerMonkey 文档} 与 %{mdn_subresource_link:MDN 文档})，当 SRI 与文件的实际哈希不一致时将在 %{site_name} 进行警告。"
       updateURL: "告知用户脚本管理器应该在哪个地址获取脚本更新。%{site_name} 将自动修改该属性使其永远通过 %{site_name} 进行更新。"
       license_html: |
-          通过在 %{site_name}, 上发布您的脚本，您允许其他人安装和使用它。许可证描述了人们是否以及如何被允许修改和分发您的脚本。许可证展示在脚本的信息页面上。<code>@license</code> 可以是:
+          通过在 %{site_name}, 上发布你的脚本，你允许其他人安装和使用它。许可证描述了人们是否以及如何被允许修改和分发你的脚本。许可证展示在脚本的信息页面上。<code>@license</code> 可以是:
           <ul>
           <li>许可证的名称（例如，<code>@license GPL3</code>）。建议使用来自 %{spdx_link:the SPDX 许可证列表} 的 “全名” 或 “标识符”。</li>
-          <li>您允许使用的条件（例如 <code>@license 只要您给我署名就可以修改</code>，虽然建议使用已有的许可证</li>
-          <li>版权声明 (例如 <code>@license Copyright 我的名字</code>）如果您不想在有许可证下发布。</li>
+          <li>你允许使用的条件（例如 <code>@license 只要你给我署名就可以修改</code>，虽然建议使用已有的许可证</li>
+          <li>版权声明 (例如 <code>@license Copyright 我的名字</code>）如果你不想在有许可证下发布。</li>
           <li>完全省略，这与具有版权声明相同，但对用户来说不够清晰。</li>
           </ul>
-          请注意，如果您的脚本基于其他人编写的代码，则您可能会受到您选择的许可证的限制。
-      supportURL: "用户获得脚本支持的链接（例如，一个错误跟踪器、论坛或电子邮件地址），该支持链接将显示于脚本的反馈页面。"
-      contributionURL_html: "用户用于捐赠脚本作者的链接，该捐赠链接将显示在脚本的反馈页面。网址可以为 http、https 或比特币协议的网址。如果您需要链接到 PayPal 捐赠页面，请使用例如 <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a> 这样的格式，替换其中的示例邮箱地址为您自己的邮箱地址即可。"
+          注意：如果你的脚本基于其他人编写的代码，则你可能会受到你选择的许可证的限制。
+      supportURL: "用户获得脚本支持的链接（例如错误跟踪器、论坛或电子邮件地址），该支持链接将显示于脚本的反馈页面。"
+      contributionURL_html: "用户用于捐赠脚本作者的链接，该捐赠链接将显示在脚本的反馈页面。网址可以为 http、https 或比特币协议的网址。如果你需要链接到 PayPal 捐赠页面，请使用例如 <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a> 这样的格式，替换其中的示例邮箱地址为你自己的邮箱地址即可。"
       contributionAmount_html: "建议捐赠金额，请配合 <code>@contributionURL</code> 使用。"
-      compatible_html: "标记此脚本与某个浏览器兼容，兼容性信息将显示在脚本的简介页面上。您也可以添加额外的兼容说明，如 <code>@compatible firefox 火狐上必须关闭广告过滤器</code> 这样的格式。目前能被网站识别的浏览器名称有：%{browsers}。"
-      incompatible_html: "标记此脚本与某个浏览器不兼容，兼容性信息将显示在脚本的简介页面上。您也可以添加额外的兼容说明，如 <code>@incompatible firefox 自火狐 23 开始不兼容</code> 这样的写法。目前能被网站识别的浏览器名称有：%{browsers}。"
+      compatible_html: "标记此脚本与某个浏览器兼容，兼容性信息将显示在脚本的简介页面上。你也可以添加更多的兼容说明，如 <code>@compatible firefox 火狐上必须关闭广告过滤器</code> 这样的格式。目前能被网站识别的浏览器名称有：%{browsers}。"
+      incompatible_html: "标记此脚本与某个浏览器不兼容，兼容性信息将显示在脚本的简介页面上。你也可以添加更多的兼容说明，如 <code>@incompatible firefox 自火狐 23 开始不兼容</code> 这样的写法。目前能被网站识别的浏览器名称有：%{browsers}。"
       antifeature_html: |
           披露会为脚本作者而非用户带来额外收益的功能。你可以通过在脚本的元数据中添加 <code>@antifeature 类型 描述</code> 值的方法披露。其中<i>类型</i>是必须填写的内容，而 <i>描述</i>则可以留空。%{antifeatures_link:点击此处了解} %{site_name} 读取的 <i>类型</i>的相关信息。
       antifeature_localized_html: "你可以使用多种语言声明 <code>@antifeature</code> 属性，其中 XX 为 <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 中定义的两个字符的代码</a>，而 YY 则是一个可选的 <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 中定义的国家代码</a>。在<code>@antifeature</code>中制定的每一个类型都可以自定义其本地化的说明。"
     writing_user_scripts:
       title: "如何编写用户脚本"
-      content_html: "<p>编写用户脚本需要了解 JavaScript。你可以造访 <a href=\"http://wiki.greasespot.net/Tutorials\">GreaseSpot 百科上的教程</a>来了解如何编写一个 JavaScript 脚本或用户脚本。观摩、阅读他人的脚本可能对您有所启发。您可能会对%{code_rules_link}与%{meta_keys_link}也感兴趣。如果你希望得到帮助，你也可以%{ask_in_forum_link}。</p>\n<p>您需要在 %{site_name} 建立一个账号才能提交脚本。您可以访问 %{user_page_link}并选择 %{post_new_script_link} 来发表新的脚本。</p>"
+      content_html: "<p>编写用户脚本需要了解 JavaScript。你可以造访 <a href=\"http://wiki.greasespot.net/Tutorials\">GreaseSpot 百科上的教程</a>来了解如何编写一个 JavaScript 脚本或用户脚本。观摩、阅读他人的脚本可能对你有所启发。你可能会对%{code_rules_link}与%{meta_keys_link}也感兴趣。如果你希望得到帮助，你也可以%{ask_in_forum_link}。</p>\n<p>你需要在 %{site_name} 建立一个账号才能提交脚本。你可以访问 %{user_page_link}并选择 %{post_new_script_link} 来发表新的脚本。</p>"
       ask_in_forum_link_text: '在论坛中请求'
       user_page_link_text: '用户页面'
       post_new_script_link_text: '发布新脚本'
@@ -837,13 +837,13 @@ zh-CN:
       title: "%{site_name} 有关发布脚本的规则"
       preamble: 以下则是提交脚本到 %{site_name} 的要求。这些要求是让 %{site_name} 成为一个提供安全且有用的用户脚本的网站。任何违反了这些要求的脚本将被 %{site_name} 的管理员移除。
       functionality_header: 功能性
-      description: 脚本必须提供描述来说明这个脚本会做什么，而脚本也不应实现超过其描述的功能。用户必须提前知晓脚本会干的事情。
-      reason: 脚本必须有一个成为脚本的理由。例如，一个只是跳转到某个网页的脚本可以只是一个超链接而非脚本；使用第三方接口来为当前页面提供服务的脚本（如转换数据）是允许的。
-      monetization_html: 脚本含为 <em>作者</em> 而非用户获益的功能（如追踪、广告、挖矿等）非绝对禁止，但是其必须通过 %{antifeature_link:<code>@antifeature</code>  元属性} 公开披露。脚本不得仅为了添加可能不受欢迎的功能而添加 <code>@include</code>s 或 <code>@match</code>es。
+      description: 脚本必须提供描述来说明此脚本会做什么，而脚本也不应实现超过其描述的功能。用户必须提前知晓脚本会干的事情。
+      reason: 脚本必须有一个成为脚本的理由。例如，一个只是跳转到某个网页的脚本可以只是一个超链接而非脚本，使用第三方接口来为当前页面提供服务的脚本（如转换数据）是允许的。
+      monetization_html: 脚本包含为 <em>作者</em> 而非用户获益的功能（如追踪、广告、挖矿等）并非绝对禁止，但是必须通过 %{antifeature_link:<code>@antifeature</code>  元属性} 公开披露。脚本不得仅为了添加可能不受欢迎的功能而添加 <code>@include</code>s 或 <code>@match</code>es。
       code_header: 代码
-      obfuscation: 提交到 %{site_name} 的代码不得混淆或最小化。用户必须有可能在安装前审视并理解脚本的内容。如果脚本使用了 WebPack 之类的工具打包，则必须以非最小化的形式输出，保留空白和变量名。
+      obfuscation: 提交到 %{site_name} 的代码不得混淆或压缩。用户必须有可能在安装前审视并理解脚本的内容。如果脚本使用了 WebPack 之类的工具打包，则必须以非压缩的形式输出，保留空白和变量名。
       size_html: |
-          脚本大小不能超过 %{max_code_size}。如果您的脚本接近此限制，可能需考虑：
+          脚本大小不能超过 %{max_code_size}。如果你的脚本接近此限制，可能需考虑：
           <ul>
           <li>将 URI、JSON 等非代码数据移出脚本。</li>
           <li>使用 <code>@require</code> 或 %{webpack_externals_link:webpack 的 <code>externals</code> 选项}加载库。</li>
@@ -853,23 +853,23 @@ zh-CN:
       hosting: 脚本的主要功能必须在 %{site_name} 上的代码中实现。在 %{site_name} 上发布的脚本，如果只是从其他地方加载大部分脚本内容，是不允许的。发布备用下载链接，意图让用户使用这些备用资源而不是 %{site_name} 上发布的版本，也是不允许的。
       external_js: "%{external_scripts_link:能引用其他网站上托管的 JavaScript 脚本是有限制的}。"
       copyright_header: 版权
-      licensing_html: 您的脚本必须遵守他人的版权，这包括代码本身以及所引用的资源（例如图像）。如果你希望使用他人的内容，请遵守其授权规则或获得使用授权。你可以使用 <code>@license</code> 元信息名称来指定脚本使用的授权协议，并通过 %{tldr_legal_link:tldrlegal.com} 获得更多关于该授权协议的限制。
-      reposts: 即便没有违反版权商的规则，重复提交已经存在于 %{site_name} 的脚本也是不允许的，除非有做出改进。
-      miscellaneous_header: 其它
+      licensing_html: 你的脚本必须遵守他人的版权，这包括代码本身以及所引用的资源（例如图像）。如果你希望使用他人的内容，请遵守其授权规则或获得使用授权。你可以使用 <code>@license</code> 元信息名称来指定脚本使用的授权协议，并通过 %{tldr_legal_link:tldrlegal.com} 获得更多关于该授权协议的限制。
+      reposts: 即便没有违反版权商的规则，重复提交已存在于 %{site_name} 的脚本也是不允许的，除非有做出改进。
+      miscellaneous_header: 其他
       keywords: 脚本不得包含不相关的关键字或提及不相关的网站以尝试改善搜索排名.
       adult_content_rule: 含有成人内容或在成人网站上运行的脚本必须做出相应标记，来让其他用户选择是否在网站上看到它们。
-      reposting_deleted: 不要重新发布因违反规则而被删除的脚本；请使用申诉功能。重新发布已删除的脚本可能会导致被封禁。
-      advertising_in_description: 脚本作者不得在 Greasy Fork 的页面，如脚本描述页面，放置广告。用于推广脚本作者的首页、代码仓库、Discord 交流群、微信等内容是允许的。
+      reposting_deleted: 不要重新发布因违反规则而被删除的脚本，请使用申诉功能。重新发布已删除的脚本可能会导致被封禁。
+      advertising_in_description: 脚本作者不得在 Greasy Fork 的页面，如脚本描述页面，放置广告。推广脚本作者的个人主页、代码仓库、Discord、微信等内容是允许的。
       reporting: 如果你发现有脚本未能遵守上述规则，请访问脚本的反馈页面并选择“举报脚本”来举报。
-      excessive_updates: 脚本作者不得过度更新脚本，其唯一目的是为了在脚本列表中排名更高。
+      excessive_updates: 脚本作者不得过度更新脚本以在脚本列表中恶意竞争排名。
       non_functional_includes_html: 脚本不得包含用于它们不提供功能的网站的 <code>@include</code>s 或 <code>@match</code>es 。
-      content_language: 脚本的名称、描述和其他内容必须标有正确的语言。
+      content_language: 脚本的名称、描述和其他内容必须标好相应的语言。
       listing_header: 清单
     external_scripts:
       title: "%{site_name} 对外部脚本的政策"
       intro_html: |
-          <p>%{site_name} 允许在特定情况下使用外部代码。任何脚本发现使用超出允许范围的外部代码都将会被删除。如果您发现有脚本违反了这些规则，请举报它。</p>
-          <p>请注意，这些规则仅适用于外部可执行代码。那些加载但不可执行代码不受限制，例如JSON或CSS。</p>
+          <p>%{site_name} 允许在特定情况下使用外部代码。任何脚本发现使用超出允许范围的外部代码都将被删除。如果你发现脚本违反了这些规则，请举报。</p>
+          <p>注意：这些规则仅适用于外部可执行代码。加载但非可执行代码不受限制，例如JSON或CSS。</p>
       rationale:
         title: 运作机理
         content_html: |
@@ -881,11 +881,11 @@ zh-CN:
             <li>使用 Webpack 的 %{webpack_externals_link:<code>externals</code>} 选项。</li>
             <li>执行脚本的更新，无论是自动执行还是引导用户执行操作。</li>
             </ul>
-            <p>虽然这是一个有用的功能，大多数脚本作者都是出于合法目的使用它的，但它也可能被恶意使用。%{site_name} 的核心原则之一是用户必须能够检查脚本中的代码。外部脚本可以通过多种方式绕过这一原则：它们可能会在没有警告或历史记录的情况下发生更改，它们可以为不同的人提供不同的代码，它们还可以用于在已知库的中间隐藏恶意代码。即使有人检查了外部脚本并确定其是合法的，也不能保证该脚本一直是合法的或将来会一直是合法的。</p>
+            <p>虽然这是一个实用功能，并且大多数脚本作者都是出于合法目的使用，但它也可能被恶意利用。%{site_name} 的核心原则之一是用户必须能够检查脚本中的代码。外部脚本可以通过多种方式绕过这一原则：它们可能会在没有警告或历史记录的情况下发生更改，它们可以为不同的人提供不同的代码，它们还可以用于在已知库的中间隐藏恶意代码。即使有人检查了外部脚本并确定其是合法的，也不能保证该脚本一直是合法的或将来会一直是合法的。</p>
       cdns:
         title: 内容交付网络（CDN）
         content_html: |
-            <p>允许使用源自 CDN 的代码。详见%{cdns_link:获准 CDN 名单}。代码可以缩小，但不能混淆。</p>
+            <p>允许使用源自 CDN 的代码。详见%{cdns_link:获准 CDN 名单}。代码可以缩制，但不能进行加密和混淆。</p>
       sri:
         title: 附有子资源完整性散列的脚本
         content_html: |
@@ -901,19 +901,19 @@ zh-CN:
       origin_host:
         title: 来自原始主机的脚本注入
         content_html: |
-            <p>允许对与其来源相同域的外部脚本进行注入。如果一个脚本在 https://example.com 上运行，并下载 https://example.com/script.js，对其进行修改，然后注入回 https://example.com/，这是允许的。</p>
+            <p>允许对与其来源相同域的外部脚本进行注入。如果某个脚本在 https://example.com 上运行，并下载 https://example.com/script.js，对其进行修改，然后注入回 https://example.com/，这是被允许的。</p>
             <p>如果 https://example.com/script.js 被注入到 https://不同网站.com 上，这将被禁止。</p>
     cdns:
       title: 允许的 CDN
       content_html: |
-          <p>这是 %{site_name} 允许的 CDN 列表。这些 CDN 可以用于加载 %{external_code_link:外部代码} 在 %{site_name}上发布的脚本内。</p>
+          <p>这是 %{site_name} 允许的 CDN 列表。这些 CDN 可以用于加载 %{external_code_link:外部代码} 在 %{site_name} 上发布的脚本内。</p>
           <p>该列表包含以下脚本定位:</p>
           <ul>
           <li>公开的</li>
-          <li>不会经常更改内容的</li>
+          <li>不会频繁更改内容的</li>
           <li>可能对多个脚本作者有用的</li>
           </ul>
-          <p>如果您希望包含的脚本是一个 JavaScript 库（例如 jQuery 或 YUI），请尝试在下面列出的站点中找到它。特别是 %{cdnjs_link:cdnjs} 和 %{jsdelivr_link:jsDelivr} 上有大量的库可用。如果您有希望添加的 CDN，请在 GitHub 上 %{github_link:请求添加}。请注意，除了 CDN 外，还有 %{external_code_link:其他选项} 用于外部代码。</p>
+          <p>如果你希望包含的脚本是一个 JavaScript 库（例如 jQuery 或 YUI），请尝试在下面列出的站点中找到它。特别是 %{cdnjs_link:cdnjs} 和 %{jsdelivr_link:jsDelivr} 上有大量的库可用。如果你有希望添加的 CDN，请在 GitHub 上 %{github_link:请求添加}。注意：除了 CDN 外，还有 %{external_code_link:其他选项} 用于外部代码。</p>
 
           %{allowed_require_list}
       test_url:
@@ -921,9 +921,9 @@ zh-CN:
         result_ok: 允许此网址
         result_not_ok: 不允许此网址
     script_rewriting:
-      title: "%{site_name} 将如何改写已发布的脚本"
+      title: "%{site_name} 将如何对已发布的脚本进行改写"
       content_html: >
-          <p>发布到 %{site_name} 的脚本将会通过以下方式重写：</p> <ul>
+          <p>发布到 %{site_name} 的脚本将被通过以下方式改写：</p> <ul>
 
           <li><code>@updateURL</code> 和 <code>@downloadURL</code> 的数据会被添加或更新以指向  %{site_name}。<code>@installURL</code>
           如有提供，则会被删除。</li>
@@ -935,26 +935,26 @@ zh-CN:
           <li>CRLF 和 CR 换行将被转换为标准的 Unix 风格换行符。</li>
 
           </ul>
-    site_feedback_link: "报告问题或发帖吐槽 %{site_name} 这个网站"
+    site_feedback_link: "对 %{site_name} 发布问题报告或反馈和建议"
     credits:
-      title: "致谢名单"
-      authors_credit: "%{site_name} 这个网站的成功离不开各位脚本作者。"
+      title: "贡献者"
+      authors_credit: "没有脚本作者的无私贡献，就没有 %{site_name} 的成功！"
       developers_credit: "%{site_name} 由这些%{developers_link: 开发人员}以及诸位所提交的错误报告与修改建议共同开发而成。"
-      translators_credit: "%{site_name} 的翻译由 %{translators_link: Transifex 上的「Greasy 翻译小队」制作}，参与翻译的人员名单如下："
-      icons_credit: "浏览器图标来自 %{browserlogos}。"
+      translators_credit: "%{site_name} 的翻译由 %{translators_link: Transifex 上的「Greasy Translation Force」倾情制作}，参与翻译的人员名单如下："
+      icons_credit: "浏览器图标来源于 %{browserlogos}。"
     help_with_greasymonkey: "Greasemonkey 的相关帮助"
     help_with_tampermonkey: "篡改猴的相关帮助"
     contact:
-      title: "联系某人"
+      title: "与某个人取得联系"
       content_html: >
-          <p>你有多种方式来对 %{site_name} 本身以及它的内容进行讨论。</p> <p>对发布在本站上的某个脚本有问题或者意见？使用脚本页的反馈选项卡进行反馈，脚本作者会在他们的账号页面收到其脚本相关讨论的通知；</p>
+          <p>你有多种方式来对 %{site_name} 本身以及它的内容进行讨论。</p> <p>对发布在本站上的某个脚本有问题或意见？使用脚本页的反馈选项卡进行反馈，脚本作者会在他们的账号页面收到其脚本相关讨论的通知；</p>
           <p>对 %{site_name} 本身、需要寻求脚本开发的帮助或意见、或是希望有人能做出你想要的脚本？你可以%{forum_link:在论坛发帖}来吸引更多人参与讨论；</p>
-          <p>对 %{site_name} 本身（而不是<em>发布</em>在 %{site_name} 上的某个脚本）的错误报告或者一些想法？%{github_link:通过
+          <p>对 %{site_name} 本身（而不是<em>发布</em>在 %{site_name} 上的某个脚本）的错误报告或一些想法？%{github_link:通过
           GitHub 提交反馈}。</p> <p>有一个只希望管理员能看到的私人问题或意见？%{admin_email_link:你可以发送电子邮件}。</p>
     privacy_policy:
       title: "隐私政策"
       content_html: >
-          <p>本页面描述了 %{site_name} 如何记录和跟踪用户。如果您有任何顾虑，请通过 %{admin_email_link:电子邮件联系管理员}。</p>
+          <p>本页面描述了 %{site_name} 如何记录和跟踪用户。如果你有任何顾虑，请通过 %{admin_email_link:电子邮件联系管理员}。</p>
           <h2>服务器日志</h2> <p>%{site_name} 以典型的服务器日志方式记录所有请求。记录的信息包括访问的页面、IP 地址和用户代理字符串。这些日志用于调试和服务器分析。数据仅保留一周，不会被共享或公开。</p>
           <h2>脚本统计数据</h2> <p>为了生成统计数据，%{site_name} 会记录安装和更新请求的 IP 地址信息。这些信息将保留一天，然后会被聚合为不包含
           IP 地址的数据。IP 地址相关的具体数据不会被共享或公开，但聚合的数据可能会被公开。</p> <h2>Cookie（未登录时）</h2> <p>%{site_name}
@@ -967,7 +967,7 @@ zh-CN:
     user_css_to_user_js:
       title: 将用户样式（user CSS）转换为用户脚本（user JS）
       content_html: |
-          <p>%{site_name} 可以将 UserCSS 转换为 UserJS 格式。<code>@-moz-document</code> 规则将会转换到 JavaScript 的 <code>if</code> 语句，并构建最终的 CSS。这段 CSS 内容然后会被插入到 <code>&lt;head&gt;</code> 下的一个 <code>&lt;style&gt;</code> 元素内。</p>
+          <p>%{site_name} 可以将 UserCSS 转换为 UserJS 格式。<code>@-moz-document</code> 规则将转换到 JavaScript 的 <code>if</code> 语句，并构建最终的 CSS。这段 CSS 内容然后会被插入到 <code>&lt;head&gt;</code> 下的一个 <code>&lt;style&gt;</code> 元素内。</p>
           <p>有些 UserCSS 特性不支持转换到 UserJS。当检测到这些特性的时候，则不会换转到 UserJS 格式。</p>
 
           <ul>
@@ -978,7 +978,7 @@ zh-CN:
           <p>%{site_name} 的 UserJS 的行为可能与 UserCSS 有所差异。</p>
 
           <ul>
-          <li>当使用转换的 UserJS 格式时，CSS 是插入到 <code>&lt;head&gt;</code> 元素的尾部。根据使用的 UserCSS 插件不同，这个行为可能造成预期外的后果。建议使用 <code>!important</code> 来绕过可能的问题。</li>
+          <li>当使用转换的 UserJS 格式时，CSS 是插入到 <code>&lt;head&gt;</code> 元素的尾部。根据使用的 UserCSS 插件不同，此行为可能造成预期外的后果。建议使用 <code>!important</code> 来绕过可能的问题。</li>
           <li>当使用 UserJS 时，CSS 的生成与插入只会执行一次。当页面使用 History API 时，添加的 CSS 规则可能会消失。</li>
           <li>转换的 UserJS 不会应用 CSS 规则到框架或 iframe 内。</li>
           </ul>
@@ -989,13 +989,13 @@ zh-CN:
       intro_html: |
           <p>脚本作者可以添加可能不受欢迎的功能来让作者而非使用者获得收益，例如广告或追踪行为。脚本作者可以在遵守 %{rules_link:%{site_name} 脚本准则} 的前提下提交含有可能不受欢迎的功能的脚本，但必须在脚本元信息内使用 <code>@antifeature</code> 来明确标记。这样是为了让用户在安装之前知晓该脚本所含有的可能不受欢迎的功能。</p>
           <p>可能不受欢迎的功能使用%{meta_keys_link:脚本的元信息名称}指定，其格式为 <code>@antifeature <i>类型</i> <i>描述</i></code>。其中 <i>类型</i> 是必须填写的，而 <i>描述</i> 则可以留空。</p>
-          <p>这个页面描述了能被 %{site_name} 所识别的 <code>@antifeature</code> 类型。你也可以使用其他类型，但你所使用的类型必须遵守 %{rules_link:%{site_name} 脚本准则}。</p>
+          <p>此页面描述了能被 %{site_name} 所识别的 <code>@antifeature</code> 类型。你也可以使用其他类型，但你所使用的类型必须遵守 %{rules_link:%{site_name} 脚本准则}。</p>
       ads_html: |
-          <p>这个脚本在用户访问的页面插入广告。</p>
+          <p>此脚本在用户访问的页面插入广告。</p>
           <p>请注意下述情况 <i>不需要</i>  声明 <code>@antifeature ads</code>：</p>
           <ul>
-          <li>脚本运作的网站本身含有广告的情况；</li>
-          <li>脚本链接或跳转到含有广告的第三方网站，前提是这个网站为脚本提供某种功能上的集成或服务。</li>
+          <li>脚本运作的网站本身含有广告的情况。</li>
+          <li>脚本链接或跳转到含有广告的第三方网站，前提是此网站为脚本提供某种功能上的集成或服务。</li>
           <li>宣传脚本作者的主页、代码仓库、Discord 语音群、微信等信息。</li>
           </ul>
       membership_html: |
@@ -1006,12 +1006,12 @@ zh-CN:
           <ul>
           <li>脚本运行于需要会员登录的网站，但是脚本自身不需要额外登录。</li>
           <li>脚本在不影响用户使用全部功能的情况下提供付费的技术支持，即用户可以在不付费支持的情况下使用脚本的完整功能。</li>
-          <li>在不影响脚本功能的情况下添加作者频道、群组或者页面等链接。</li>
+          <li>在不影响脚本功能的情况下添加作者频道、群组或页面等链接。</li>
           </ul>
       miner_html: |
-          <p>这个脚本含有挖矿软件或其他能够使用用户资源来为作者执行某些任务代码的脚本。</p>
+          <p>此脚本含有挖矿软件或其他能够使用用户资源来为作者执行某些任务代码的脚本。</p>
       payment_html: |
-          <p>这个脚本需要用户向脚本作者付费后才能使用脚本的全部功能。</p>
+          <p>此脚本需要用户向脚本作者付费后才能使用脚本的全部功能。</p>
 
           <p>请注意下述情况<i>不需要</i>声明 <code>@antifeature payment</code>：</p>
 
@@ -1020,19 +1020,19 @@ zh-CN:
           <li>在捐赠不会解锁脚本更多功能的前提下，脚本请求用户捐赠。</li>
           </ul>
       referral_link_html: |
-          <p>这个脚本的部分行为会让作者在用户购买时获得佣金抽成。这包括内置推荐或联盟链接、重写现有链接到推荐或联盟链接、或能为脚本作者提供佣金抽成的优惠券代码的脚本。</p>
+          <p>此脚本的部分行为会让作者在用户购买时获得佣金抽成。这包括内置推荐或联盟链接、重写现有链接到推荐或联盟链接、或能为脚本作者提供佣金抽成的优惠券代码的脚本。</p>
       tracking_html: |
-          <p>这个脚本含有追踪用户信息的代码。这包括 Google Analytics 在内的服务商与其它使用自定义代码来报告用户信息给脚本作者的代码。</p>
+          <p>此脚本含有追踪用户信息的代码。这包括 Google Analytics 在内的服务商与其他使用自定义代码来报告用户信息给脚本作者的代码。</p>
   search:
     script_search:
       title: "脚本搜索"
-      description: "搜索脚本。搜索脚本名称、描述、额外说明和作者名称。"
+      description: "搜索脚本。搜索脚本名称、描述、额外说明和作者名称"
     library_search:
       title: "库搜索"
-      description: "搜索库。搜索库名称、描述、额外说明和作者名称。"
+      description: "搜索库。搜索库名称、描述、额外说明和作者名称"
     code_search:
       title: "代码搜索"
-      description: "搜索脚本代码。此功能不区分大小写，不支持通配符，搜索纯文本。"
+      description: "搜索脚本代码。此功能不区分大小写，不支持通配符，搜索纯文本"
     user_search:
       title: "用户搜索"
       description: "按名称搜索用户"
@@ -1047,12 +1047,12 @@ zh-CN:
     item_user_html: "用户：%{user_link}"
     item_report: "%{report_link:举报 #%{report_id}}"
     item_script_lock_appeal: "%{appeal_link:针对 #%{appeal_id} 提交申诉}"
-    item_script_lock_appeal_dismissed: "%{appeal_link:申诉 #%{appeal_id}} 已驳回"
+    item_script_lock_appeal_dismissed: "%{appeal_link:申诉 #%{appeal_id}} 不予受理"
     item_discussion_html: "讨论：%{discussion_link}"
     item_comment_html: "讨论帖子：%{comment_link}"
   reports:
     name: "举报 #%{id}"
-    report_filed: "您提交的举报将由管理员审核。"
+    report_filed: "你提交的举报将由管理员审核"
     new_report_title:
       user: "举报 %{user}"
       comment: "举报 %{user} 的评论"
@@ -1061,11 +1061,11 @@ zh-CN:
     new_report_notes_html: >
         <p>举报之前请注意：</p>
 
-        <ul><li>管理员将审阅您的举报并进行相应处理。</li>
+        <ul><li>管理员将审阅你的举报并进行相应处理。</li>
 
         <li>反对内容或认为内容不真实不能作为举报的合理理由。</li>
 
-        <li>滥用举报功能可能会导致<i>您</i>被封号。</li></ul>
+        <li>滥用举报功能可能会导致<i>你</i>被封号。</li></ul>
     new_script_report_notes_html: >
         <p>举报之前，请注意：</p> <ul>
 
@@ -1079,29 +1079,29 @@ zh-CN:
     new_user_report_notes_html: >
         <p>举报之前请注意：</p>
 
-        <ul><li>如果是举报一个脚本或者评论，请到对应的脚本或者评论处举报。</li>
+        <ul><li>如果是举报某个脚本或评论，请到对应的脚本或评论处举报。</li>
 
-        <li>管理员将审阅您的举报并进行相应处理。</li>
+        <li>管理员将审阅你的举报并进行相应处理。</li>
 
-        <li>滥用举报功能可能会导致<i>您</i>被封号</li></ul>。
+        <li>滥用举报功能可能会导致<i>你</i>被封号</li></ul>。
     reason:
-      non_functional: "脚本用不了"
+      non_functional: "脚本无法使用"
       paid_benefits: "已支付了功能费用，但没有收到购买的内容"
-      spam: "灌水"
-      abuse: "滥用或反感内容"
-      illegal: "违法内容"
-      unauthorized_code: "未授权的副本"
-      malware: "恶意软件或代码"
-      minified: "代码经过最小化处理"
-      obfuscated: "经过混淆的代码"
-      external_code: "未允许的外部代码引用"
-      undisclosed_antifeature: "未声明的 %{antifeature_link:可能不受欢迎的功能}（包括但不限于广告、用户追踪、挖矿等功能）"
+      spam: "灌水或垃圾内容"
+      abuse: "滥用或令人反感内容"
+      illegal: "违反法律法规的内容"
+      unauthorized_code: "未授权的代码副本"
+      malware: "恶意钓鱼软件或代码"
+      minified: "代码经过最小化压缩处理"
+      obfuscated: "经过混淆或加密的代码"
+      external_code: "未经过允许的外部代码引用"
+      undisclosed_antifeature: "未经声明的 %{antifeature_link:可能不受欢迎的功能}（包括但不限于广告、用户追踪、挖矿等功能）"
       no_description: "脚本介绍未填写、未包含足够信息或含有误导性内容"
       wrong_category: "分类错误"
       wrong_category_with_suggestion: "分类错误（推荐: %{suggested_category}）"
-      no_code: '无代码/世界你好'
+      no_code: '没有代码或仅包含「世界你好」'
       legal_claim: "法律声明"
-      other: "其它"
+      other: "其他"
     report_intro: "%{reporter} 在 %{report_date} 举报了 %{reported_item}，原因是：%{reason}"
     report_intro_no_reporter: "%{reported_item} %{report_date} 被举报，原因是：%{reason}"
     report_intro_unauthorized_html: "%{reporter} 在 %{report_date}举报 %{reported_script} 含有未授权的副本，原脚本为 %{other_script}。"
@@ -1110,43 +1110,43 @@ zh-CN:
     report_intro_unauthorized_license_no_url: "%{other_script} 使用 %{license_name} 许可证。访问 %{tldr_legal_link:tldrlegal.com} 以帮助理解该许可证的含义。"
     report_intro_unauthorized_no_license: "%{other_script} 未明确指定所使用的授权协议，即只有在明确表示获得授权的情况下才允许分发副本。"
     non_functional_feedback: "请在脚本%{feedback_link:反馈区}举报失效的脚本。"
-    paid_benefits_feedback: "%{site_name} 没有办法记录任何脚本作者和用户之间的交易，因此无法验证与之相关的任何声明。如果您在脚本中支付了功能费用并感到不满意，请在脚本上以%{feedback_link:反馈}来提出您的投诉。"
+    paid_benefits_feedback: "%{site_name} 没有办法记录任何脚本作者和用户之间的交易，因此无法验证与之相关的任何声明。如果你在脚本中支付了功能费用并感到不满意，请在脚本上以%{feedback_link:反馈}来提出你的投诉。"
     unauthorized_code_original_placeholder: "原始代码的地址"
-    explanation_placeholder: "提供额外信息（可选）"
+    explanation_placeholder: "提供更多信息（可选）"
     create_button: "创建举报"
     report_user: "举报用户"
     report_comment: "举报评论"
     report_message: "举报消息"
-    result_dismissed: "该举报已被管理员忽略。"
-    result_upheld: "管理员已通过该举报。"
+    result_dismissed: "管理员对该举报不予受理"
+    result_upheld: "管理员已受理该举报"
     result_upheld_reason_override: "此举报已被管理员确认，但管理员标记的原因是 %{reason}。"
-    result_self_upheld: "作者因此举报删除了自己的脚本。"
-    result_fixed: "管理员已经关闭了该则举报，因为管理员认为作者已经修正了报告的问题。"
-    result_pending: "该举报尚待管理员查看。"
+    result_self_upheld: "因为该举报，作者删除了自己的脚本。"
+    result_fixed: "管理员结束了该举报，并认为作者已修正了报告的问题。"
+    result_pending: "该举报尚待管理员查看"
     result_pending_author_html: |
         <p>你可以选择：</p>
         <ol>
-        <li>如果你认同这个举报的内容，请根据举报的内容修正问题，然后提交申诉阐述你所做的更改。</li>
+        <li>如果你认同此举报的内容，请根据举报的内容修正问题，然后提交申诉阐述你所做的更改。</li>
         <li>如果你不认同该则举报的内容，请提交申诉阐述你的理由。</li>
-        <li>删除这个脚本。</li>
+        <li>删除此脚本。</li>
         <li>什么都不做，等待管理员决定。</li>
         </ol>
-    rebuttal_placeholder: '向管理员解释为什么这个脚本不应被删除。'
+    rebuttal_placeholder: '向管理员解释为什么此脚本不应被删除'
     submit_rebuttal: "申诉"
-    rebuttal_submitted: 一名管理员将审查该则举报与您提供的解释来作出决定。
+    rebuttal_submitted: 将有管理员审核该则举报与你提供的解释来作出决定
     delete_script: "删除脚本"
     view_discussion: "查看讨论"
     load_diff: "查看对比（diff 格式）"
     load_cleaned_diff: "加载洁净的代码差异"
     loading_diff: "加载中…"
-    reported_user_activity_html: "%{user}（被举报用户）已经有："
-    script_updated_since_report: "自此举报提交以来，此脚本已经更新。"
+    reported_user_activity_html: "%{user}（被举报用户）已有："
+    script_updated_since_report: "此次举报提交后，此脚本已被更新。"
     script_previous_reports:
-      other: "此脚本已经有 %{count} 个之前被确认或修复的报告。"
-    reporter_temporarily_blocked: "由于您最近的一系列举报被管理员驳回，您被阻止提交新的举报，直到 %{date}为止。请查阅 %{rules_link:%{site_name} 规则} 以确保未来的报告准确无误。"
-    reported_temporarily_blocked: "由于最近对此项目的举报被管理员驳回，进一步对其的举报将被阻止，直到 %{date}为止。"
-    already_reported_by_reporter: "您已在%{report_link:最近举报过}此项目。"
-    already_reported_same_type: "此项目上已经有一个 %{report_link:类似的待处理举报}。"
+      other: "此脚本已有 %{count} 个之前被确认或修复的报告。"
+    reporter_temporarily_blocked: "由于你最近的一系列举报被管理员决定不予受理，你被阻止提交新的举报，直到 %{date}为止。请查阅 %{rules_link:%{site_name} 规则} 以确保未来的报告准确无误。"
+    reported_temporarily_blocked: "由于最近对此项目的举报被管理员决定不予受理，进一步对其的举报将被阻止，直到 %{date}为止。"
+    already_reported_by_reporter: "你已在%{report_link:最近举报过}此项目。"
+    already_reported_same_type: "此项目上已有 %{report_link:类似的待处理举报}。"
     report_item:
       discussion: "来自%{user}的讨论：%{title}"
       comment: "%{user} 的评论：%{comment}"
@@ -1155,12 +1155,12 @@ zh-CN:
       deleted: "删除 %{type} #%{id}"
       script: "%{script}"
     other_appeals:
-      heading: "此举报的其它上诉："
+      heading: "此举报的其他上诉："
       item_html: "%{item_link} - %{result}"
       item_link: "申诉 #%{id}"
       resolutions:
         unresolved: "未解决"
-        dismissed: "驳回"
+        dismissed: "不予受理"
         unlocked: "已解锁"
     unauthorized_code:
       script_header: 脚本
@@ -1169,15 +1169,15 @@ zh-CN:
   appeals:
     new:
       title: 新建删除脚本申诉
-      intro_html: '您的脚本已因 %{reason} 而被删除。如果您认为此操作有误，或者您有额外的信息提供，再或者您已更新您的脚本以解决此问题，您可以提交申诉。如果管理员看到您提供的更新或信息已满足相关标准，他们将恢复对您脚本的访问权限。'
+      intro_html: '你的脚本已因 %{reason} 而被删除，如果你认为此操作有误，或你有更多的信息提供，或你已更新你的脚本以解决此问题，你可以提交申诉。如果管理员看到你提供的更新或信息已满足相关标准，他们将恢复对你脚本的访问权限。'
       submit: 提交申诉
     deletion_reason_html: "%{script} 已被删除，原因是：%{reason}。"
     author_reason: "由作者提交的申诉："
-    pending_review: 该申诉正等待管理员的审核。
-    dismissed_by_moderator: 管理员驳回了该申诉。
+    pending_review: 该申诉正等待管理员的审核
+    dismissed_by_moderator: 管理员对该申诉不予受理
     upheld_by_moderator: 一位管理员通过了此申诉，并解除了该则脚本的删除状态。
-    submitted: 已收到您提交的申诉，请等待管理员审核。
-    already_open: 此脚本已有一个未决的申诉。
+    submitted: 已收到你提交的申诉，请等待管理员审核。
+    already_open: 此脚本尚有一则未决的申诉
   discussions:
     title: 讨论
     comment_date: "发表于：%{date}"
@@ -1194,16 +1194,16 @@ zh-CN:
     delete_comment: "删除"
     delete_comment_confirm: 确定要删除这条评论吗？
     delete_discussion: "删除"
-    delete_discussion_confirm: 确定要删除这个讨论吗？
+    delete_discussion_confirm: 确定要删除这项讨论吗？
     update_comment_submit: "更新评论"
     cancel_update_comment: "取消"
     quote_comment: "引用"
     question_heading_html: "提问/评论"
     review_heading_html: "评价：%{rating}"
     update_rating_note: "（你可以通过发表新回复来更改评分）"
-    update_rating: "更新您对 %{script_name} 的评分"
+    update_rating: "更新你对 %{script_name} 的评分"
     ratings:
-      question: "不评分 - 只是一个提问、评论或功能请求"
+      question: "不评分 - 只是提问、评论或功能请求"
       bad: "差评 - 脚本失效或无法使用"
       ok: "一般 - 脚本能用，但还有一些问题"
       good: "好评 - 脚本运行良好"
@@ -1216,8 +1216,8 @@ zh-CN:
       deleted:
         short: 已删除
         long: 已删除
-    sign_in_to_post_discussion: "登录以发表评价、评论或提问。"
-    sign_in_to_post_comment: "登录以发表回复。"
+    sign_in_to_post_discussion: "登录以发表评价、评论或提问"
+    sign_in_to_post_comment: "登录以发表回复"
     user_filter:
       label: "我参与的讨论"
       all: "所有讨论"
@@ -1264,16 +1264,16 @@ zh-CN:
     categories:
       greasyfork:
         name: Greasy Fork 反馈
-        description: 有关 Greasy Fork 本身的故障报告、功能请求等事务。
+        description: 有关 Greasy Fork 本身的故障报告、功能请求等事务
       development:
         name: 开发
-        description: 有关用户脚本和用户样式开发的技术讨论。
+        description: 有关用户脚本和用户样式开发的技术讨论
       requests:
         name: 创建请求
-        description: 请求开发新的用户脚本或用户样式。
+        description: 请求开发新的用户脚本或用户样式
       script-discussions:
         name: 脚本讨论帖
-        description: 现有的用户脚本和用户样式的相关讨论。
+        description: 现有的用户脚本和用户样式的相关讨论
       no-scripts:
         name: 除脚本讨论帖外的其他讨论帖
       moderators:
@@ -1283,13 +1283,13 @@ zh-CN:
     new_title: 新讨论话题
     new_button: 创建话题
     script_notice: 如果需要对一个特定脚本开展讨论，请前往脚本的反馈页面开展讨论。
-    no_discussions: 未找到讨论。
+    no_discussions: 未找到讨论
     mark_all_read: 全部标为已读
-    pending_moderator_review: 这条讨论帖暂时不可用，请等候管理员审核通过。
-    blocked_pending_review: 评论已被阻止，等待管理员查阅您之前的贡献。请稍后再试。
+    pending_moderator_review: 此条讨论帖暂不可用，请等候管理员审核通过
+    blocked_pending_review: 评论已被阻止，正等待管理员查阅你之前的贡献内容，请稍后再试。
     search_placeholder: 搜索讨论
   conversations:
-    user_input_note: 输入用户名或者用户页面的 URL。
+    user_input_note: 输入用户名或用户页面的 URL。
     new_title: 发送一条新的信息
     new_link: 发送一条新的信息
     new_button: 发送信息
@@ -1298,52 +1298,52 @@ zh-CN:
     send_message: 发送消息
     conversation_list_title: 私信
     conversation_link_html:
-      other: 与 %{users} 的私信交流。
+      other: 与 %{users} 的私信交流
     conversation_info_html: 最新消息：%{user} 发送于 %{date}
-    no_conversations: 暂时没有收到或发送信息。
-    no_recent_conversations: 您最近没有对话。
+    no_conversations: 尚未收到或发送信息
+    no_recent_conversations: 你最近没有对话
     recent:
       title: 近期私信
       more: 查阅所有私信
     edit_message_header: 编辑消息
     update_message_submit: 更新消息
-    moderator_notice: 如果您想报告违反 %{site_name} 规则的行为，请使用该脚本、用户或评论上的举报链接。管理员无法根据直接消息中的报告删除内容。
+    moderator_notice: 如果你想报告违反 %{site_name} 规则的行为，请使用该脚本、用户或评论上的举报链接。管理员无法根据直接消息中的报告删除内容。
   screenshots:
     requirements: "最多上传 %{number} 张 PNG、GIF、JPEG 或 WebP 图片，且每张图片大小不得超过 %{size}。"
   moderator_actions:
     action_taken:
       ban: '封禁'
       delete: '删除'
-      delete_and_lock: '软删除并锁定'
+      delete_and_lock: '删除、锁定'
       delete_version: '删除版本 %{version}, ID %{id}'
       mark_adult: '标记为成人内容'
       mark_not_adult: '标记为非成人内容'
       permanent_deletion: '永久删除'
       permanent_deletion_denied: '拒绝永久删除'
       unban: '解封'
-      undelete: '解除软删除'
-      undelete_and_unlock: '解除软删除和锁定'
-      update_locale: '更新语言'
+      undelete: '撤销删除'
+      undelete_and_unlock: '撤销删除、撤销锁定'
+      update_locale: '更新语言区域'
   common:
-    error_preamble: "很抱歉，您提交的内容有点问题…"
+    error_preamble: "很抱歉，你提交的内容有点问题…"
     allowed_elements_link: "(查看允许使用的代码)"
     allowed_elements_and_attributes_title: "HTML 内容中允许的元素"
     allowed_elements_intro: "可以使用下列元素和属性。此规则应用于 HTML 以及 Markdown (转换到 HTML 后的代码)。"
     allowed_elements_extra_info: "空行将会自动转化为 p 或 br 元素，链接文本会自动转换为可点击链接。"
-    allowed_css_intro: "下列CSS属性允许在所有元素使用。"
+    allowed_css_intro: "下列CSS属性允许在所有元素使用"
     user_references_html: "你可以使用 <code>@用户名</code> 或 <code>@\"用 户 名\"</code>（如果用户名含有空格）提及和链接其他 %{site_name} 用户。"
-    not_found_text: "404 - 页面未找到"
+    not_found_text: "这里什么都没有。"
     not_found_title: "404 - 页面未找到"
     not_found_link_home: "返回首页"
     suggest_locale: "%{site_name} 支持%{locale_name}。"
-    incomplete_locale: "%{site_name} 的 %{locale_name} 翻译完成度只有 %{percent}。您可以帮助改变现状。"
+    incomplete_locale: "%{site_name} 的 %{locale_name} 翻译完成度只有 %{percent}，你可以帮助改变现状。"
     preview_tab: 预览
     write_tab: 撰写
     listing_options_title: "搜索选项"
     quote:
       prefix_html: "%{user} 说："
       anonymous_reporter_html: "举报者说："
-    access_denied: "拒绝访问。"
+    access_denied: "拒绝访问"
   activerecord:
     models:
       script:
@@ -1396,35 +1396,35 @@ zh-CN:
       script_name_same_as_description: "描述不能与名称相同"
       script_sync_identifier_bad_protocol: "必须为 HTTP 或 HTTPS 网址"
       script_too_many_screenshots: "包含过多截图 - 最多 %{number} 个"
-      cannot_be_self_reference: "不能是同一个脚本"
+      cannot_be_self_reference: "不能是相同脚本"
       cannot_be_deleted_reference: "不能是已删除的脚本"
       cannot_be_used_with_this_script: "不能用于此脚本"
-      must_be_greasy_fork_script: "网址必须是 %{site_name} 上的一个脚本"
+      must_be_greasy_fork_script: "网址必须是 %{site_name} 上的某个脚本"
       script_update_not_utf8: "上传的文本必须为 UTF-8 编码"
       script_disallowed_require: "使用了一个未经批准的外部脚本：%{code}"
       script_disallowed_resource: "使用了无效的 @resource：%{code}。资源必须是 http、https 或 data URL。"
       script_disallowed_base_64_require: "使用 base-64 编码的 @require"
       script_malformed_require: "使用了异样的外部脚本引用：%{code}"
-      script_rate_limit: "您已超出脚本发布数量的限制。请稍后再试。"
+      script_rate_limit: "你已超出脚本发布的数量限制，请稍后再试。"
       missing_include_or_match: "必须包含至少一个 @match 或 @include 规则"
       invalid_meta: "含有无效的元信息声明。正确的格式是 // @foo"
       no_executable: "未包含可执行代码"
       meta_too_long: "%{key} 过长（最多允许 %{count} 个字符）"
-      style_missing_meta: "缺少元数据块。请参阅 https://github.com/openstyles/stylus/wiki/Writing-UserCSS 查看示例。"
+      style_missing_meta: "缺少元数据块，请参阅 https://github.com/openstyles/stylus/wiki/Writing-UserCSS 以查看示例。"
       invalid_unicode: "包含无效的 Unicode"
   opensearch:
     short_name: "%{site_name} 搜索"
-    description: "搜索 %{site_name} 上的用户脚本。"
+    description: "搜索 %{site_name} 上的用户脚本"
     long_name: "%{site_name} 用户脚本搜索"
     attribution: "版权归脚本的作者所有，具体许可信息请查看每个脚本的相关说明。"
   importing:
     title: 导入脚本
-    intro: "%{site_name} 可以从其他网站导入脚本，比如代码版本控制系统 (例：GitHub)、您自己的服务器或其它的用户脚本网站。"
+    intro: "%{site_name} 可以从其他网站导入脚本，比如代码版本控制系统 (例：GitHub)、你自己的服务器或其他的用户脚本网站。"
     url_entry_label: 提供要导入的 URL，每行一个。这应该是原始 JS 或 CSS 文件的网址。
     sync_type_label: "初次导入后，脚本应进行同步："
     additional_info_html: |
-        <p>对于来自源代码管理的脚本，请确保您使用的 URL 指向一个分支，而不是特定的提交，否则脚本将永远不会更新。例如，使用 <code>https://bitbucket.org/username/reponame/raw/<b>branch-name</b>/script.user.js</code>，而不是 <code>https://bitbucket.org/username/reponame/raw/<b>commit-hash</b>/script.user.js</code>。</p>
-        <p>从 GitHub、Bitbucket 或 GitLab 导入的脚本也可以通过 Webhook 设定同步。通过 Webhook，您的脚本在您推送到仓库时会立即在 %{site_name} 上更新。如果您想使用 Webhook 但尚未设定，请先完成导入，然后在 %{webhook_info_link:设定 Webhook} 之后再进行设定。</p>
+        <p>对于来自源代码管理的脚本，请确保你使用的 URL 指向一个分支，而不是特定的提交，否则脚本将永远不会更新。例如，使用 <code>https://bitbucket.org/username/reponame/raw/<b>branch-name</b>/script.user.js</code>，而不是 <code>https://bitbucket.org/username/reponame/raw/<b>commit-hash</b>/script.user.js</code>。</p>
+        <p>从 GitHub、Bitbucket 或 GitLab 导入的脚本也可以通过 Webhook 设定同步。通过 Webhook，你的脚本在你推送到仓库时会立即在 %{site_name} 上更新。如果你想使用 Webhook 但尚未设定，请先完成导入，然后在 %{webhook_info_link:设定 Webhook} 之后再进行设定。</p>
     submit: 导入
     previously_imported:
       heading: 以前导入的脚本
@@ -1433,103 +1433,103 @@ zh-CN:
       failed_entry_html: "%{script_link} - %{sync_type} 同步中 ，上次同步尝试于 %{last_sync_attempt_date}，%{sync_error}"
     results:
       title: "导入结果："
-      success: "以下脚本已经成功导入："
+      success: "以下脚本已成功导入："
       needs_description: "以下脚本需要说明段落才能导入："
-      existing: "以下脚本已经导入："
+      existing: "以下脚本已导入："
       failure: "以下脚本无法导入："
   mailers:
     script_report:
       report_created_offender:
-        subject: "您的脚本 %{script_name} 在 %{site_name} 上被举报"
+        subject: "你的脚本 %{script_name} 在 %{site_name} 上被举报"
         body_html: |
             <p>
-            您的脚本 %{script_link:%{script_name}} 被举报违反了 %{site_name} 的规则。给出的理由为：%{reason}。管理员将会查阅此举报，并且如果他们认为脚本确实违反了规则，可能会删除该脚本。如果您希望提供反驳或解释，您可以 %{report_link:查阅此举报} 并提交反驳。
+            你的脚本 %{script_link:%{script_name}} 被举报违反了 %{site_name} 的规则。给出的理由为：%{reason}。管理员将查阅此举报，并且如果他们认为脚本确实违反了规则，可能会删除该脚本。如果你希望提供申诉或解释，你可以 %{report_link:查阅此举报} 并提交申诉。
             </p>
       report_upheld_offender:
-        subject: "您的脚本 %{script_name} 在 %{site_name} 上已被删除"
+        subject: "你的脚本 %{script_name} 在 %{site_name} 上已被删除"
         body_html: |
             <p>
-            您在%{site_name}上的脚本%{script_link:%{script_name}} 已被审核员移除且不可被公开访问。您可以%{report_link:审核举报}并%{code_rules_link:审核 %{site_name}的规则}。
+            你在 %{site_name} 上的脚本%{script_link:%{script_name}} 已被审核员移除且不可被公开访问。你可以%{report_link:审核举报}并%{code_rules_link:审核 %{site_name}的规则}。
             </p>
             <p>
-            若您认为这是错误，或您已更新了此脚本以修复此问题，您可以%{appeal_link:提交上诉}，一位审查员将审核它。请勿重新发布此脚本；这样做可能导致您被%{site_name}封锁账号。
+            若你认为这是错误，或你已更新了此脚本以修复此问题，你可以%{appeal_link:提交上诉}，将有管理员将审核它。请勿重新发布此脚本，这样做可能导致你被%{site_name}封锁账号。
             </p>
       report_dismissed_offender:
-        subject: "%{site_name} 上的一则针对您的 %{script_name} 脚本的举报已被驳回"
+        subject: "%{site_name} 上的一则针对你的 %{script_name} 脚本的举报，管理员决定不予受理。"
         body_html: |
             <p>
-            一个关于您在%{site_name}上的脚本%{script_link:%{script_name}} 的举报已经被审查员拒绝。您的脚本将保持活跃。您可以%{report_link:审核此举报}。
+            一则关于你在 %{site_name} 上的脚本%{script_link:%{script_name}} 的举报已被管理员决定不予受理。你的脚本将保持活跃。你可以%{report_link:审核此举报}。
             </p>
       report_fixed_offender:
-        subject: "一则针对你在 %{site_name} 发布的脚本 %{script_name} 的举报已关闭"
+        subject: "一则针对你在 %{site_name} 发布的脚本 %{script_name} 的举报已结束"
         body_html: |
             <p>
-            一名管理员已将一则对您在 %{site_name} 上传的脚本 %{script_link:%{script_name}} 的举报标记为已解决，因为他们认为你解决了该则举报提及的问题。你的脚本将保持可用状态。你可以%{report_link:在此处查看该举报}。
+            有管理员已将一则对你在 %{site_name} 上传的脚本 %{script_link:%{script_name}} 的举报标记为已解决，因为他们认为你解决了该则举报提及的问题，你的脚本将保持可见状态。你可以%{report_link:在此处查看该举报}。
             </p>
       report_rebutted_reporter:
-        subject: "您在%{site_name}上对于%{script_name}脚本的举报收到了一条回复"
+        subject: "你在 %{site_name} 上对于%{script_name}脚本的举报收到了一条回复"
         body_html: |
             <p>
-            您在 %{site_name} 举报的脚本 %{script_link:%{script_name}} 收到了一则回应。你可以%{report_link:在此查阅该回应}。一名管理员将审阅您的举报与该则回应，并作出裁决。
+            你在 %{site_name} 举报的脚本 %{script_link:%{script_name}} 收到了一则回应。你可以%{report_link:在此查阅该回应}。管理员将审阅你的举报与该则回应，并作出处理。
             </p>
       report_upheld_reporter:
-        subject: "您在%{site_name}上对于%{script_name}脚本的举报已被核实"
+        subject: "你在 %{site_name} 上对于%{script_name}脚本的举报已被核实"
         body_html: |
             <p>
-            一名管理员已将您在 %{site_name} 举报的脚本 %{script_link:%{script_name}} 的结果标记为举报成功，脚本已被删除。你可以%{report_link:在此处查看该举报}。
+            有管理员已将你在 %{site_name} 举报的脚本 %{script_link:%{script_name}} 的结果标记为举报成功，脚本已被删除。你可以%{report_link:在此处查看该举报}。
             </p>
       report_script_deleted_reporter:
-        subject: "您在%{site_name}举报的脚本%{script_name}已做出裁决。"
+        subject: "你在 %{site_name} 举报的脚本%{script_name}已做出处理"
         body_html: |
             <p>
-            您在 %{site_name} 上对脚本 %{script_link:%{script_name}} 进行的举报已被关闭，作者选择删除脚本。你可以%{report_link:查看该举报}。
+            你在 %{site_name} 上对脚本 %{script_link:%{script_name}} 进行的举报已被关闭，作者选择删除脚本。你可以%{report_link:查看该举报}。
             </p>
       report_dismissed_reporter:
-        subject: "您在%{site_name}上对于%{script_name}脚本的举报被驳回"
+        subject: "你在 %{site_name} 上对于%{script_name}脚本的举报不予受理"
         body_html: |
             <p>
-            您在 %{site_name} 对脚本 %{script_link:%{script_name}} 的举报已被管理员忽略，该脚本仍将可用。你可以%{report_link:查看该举报}。
+            你在 %{site_name} 对脚本 %{script_link:%{script_name}} 的举报已被管理员决定不予受理，该脚本将被保留。你可以%{report_link:查看该举报}。
             </p>
       report_fixed_reporter:
-        subject: "你在 %{site_name} 针对 %{script_name} 提交的一则举报已关闭"
+        subject: "你在 %{site_name} 针对 %{script_name} 提交的一则举报已结束"
         body_html: |
             <p>
-            您在 %{site_name} 对脚本 %{script_link:%{script_name}} 的举报已被管理员标记为已解决，因为管理员认为脚本作者已经修正了举报提及的问题。该脚本仍将可用。你可以%{report_link:查看该举报}。
+            你在 %{site_name} 对脚本 %{script_link:%{script_name}} 的举报已被管理员标记为已解决，因为管理员认为脚本作者已修正了举报提及的问题，该脚本将被保留。你可以%{report_link:查看该举报}。
             </p>
-      reported_outro: "你收到了该则通知，因为你提交到 %{site_name} 的一个脚本收到了一则举报。%{notification_preferences_link:你可以管理该通知选项}。"
-      reporter_outro: "你收到了该则通知，因为你对提交到 %{site_name} 的一个脚本发送了一则举报。%{notification_preferences_link:你可以管理该通知选项}。"
+      reported_outro: "你收到了该则通知，因为你提交到 %{site_name} 的某个脚本收到了一则举报。%{notification_preferences_link:你可以管理该通知选项}。"
+      reporter_outro: "你收到了该则通知，因为你对提交到 %{site_name} 的某个脚本发送了一则举报。%{notification_preferences_link:你可以管理该通知选项}。"
     consecutive_bad_ratings:
       notify:
-        subject: "您在 %{site_name}发布的脚本 %{script_name} 收到了多条差评。"
+        subject: "你在 %{site_name} 发布的脚本 %{script_name} 收到了多条差评"
         text: |
-            您的脚本 ‘%{script_name}’ 在  %{site_name}（%{script_url}）收到了一连串的 “差评” 反馈。
+            你的脚本 ‘%{script_name}’ 在  %{site_name}（%{script_url}）收到了一连串的 “差评” 反馈。
 
-            您在 %{feedback_url} 收到的反馈表明您的脚本可能存在问题、临时故障，或是目标网站发生了变化。请查阅反馈，修正错误，并回应相关问题。
-            %{site_name} 力求维护一个高质量的脚本列表给用户。为了处理出现问题或被废弃的脚本，那些连续收到多条 “差评” 且没有及时回应的脚本将被隐藏。为了避免您的脚本被隐藏，请在 %{delete_date} 之前发布新版本或回应讨论。如果您未采取任何行动，您仍可以在该日期之后选择将其重新公开。
+            你在 %{feedback_url} 收到的反馈表明你的脚本可能存在问题、临时故障，或是目标网站发生了变化。请查阅反馈，修正错误，并回应相关问题。
+            %{site_name} 力求维护一个高质量的脚本列表给用户。为了处理出现问题或被废弃的脚本，那些连续收到多条 “差评” 且没有及时回应的脚本将被隐藏。为了避免你的脚本被隐藏，请在 %{delete_date} 之前发布新版本或回应讨论。如果你还没有采取任何行动，你仍可以在该日期之后选择将其重新公开。
     script_comment:
-      subject: "您对于站点%{site_name}的脚本%{script_name}收到了一条评论。"
-      intro: "您在 %{site_name}  上的脚本 %{script_link:%{script_name}} 收到了用户 %{commenter_link:%{commenter_name}} 的评论："
-      outro: "%{comment_link:查看并回复此评论。}您收到此通知是因为您订阅了有关您脚本的讨论。%{notification_preferences_link:管理您的通知偏好设置。}"
+      subject: "你对于站点 %{site_name} 的脚本%{script_name}收到了一条评论"
+      intro: "你在 %{site_name}  上的脚本 %{script_link:%{script_name}} 收到了用户 %{commenter_link:%{commenter_name}} 的评论："
+      outro: "%{comment_link:查看并回复此评论}你收到此通知是因为你订阅了有关你脚本的讨论。%{notification_preferences_link:管理你的通知偏好设置}"
     subscribed_discussion:
-      subject: "站点%{site_name}的讨论%{discussion_title}收到了一条评论。"
+      subject: "站点 %{site_name} 的讨论%{discussion_title}收到了一条评论"
       intro: "%{site_name} 上的讨论 %{discussion_link:%{discussion_title}} 收到了一条来自 %{commenter_link:%{commenter_name}} 的评论："
-      outro: "%{comment_link:查看和回复此评论}。您收到此通知是因为您订阅了讨论 %{discussion_link:%{discussion_title}}。%{notification_preferences_link:管理您的通知设置}。"
+      outro: "%{comment_link:查看和回复此评论}。你收到此通知是因为你订阅了讨论 %{discussion_link:%{discussion_title}}。%{notification_preferences_link:管理你的通知设置}。"
     comment_mentioned:
-      subject: "%{site_name} 的用户“%{commenter_name}” 提到了你。"
-      intro: "%{site_name} 上的讨论 %{discussion_link:%{discussion_title}} 收到了一条来自 %{commenter_link:%{commenter_name}} 的提到您的评论："
-      outro: "%{comment_link:查看并回复此评论。}  您收到此通知是因为选择了在提及时接收通知。 %{notification_preferences_link:管理您的通知偏好设置。}"
+      subject: "%{site_name} 的用户“%{commenter_name}” 提到了你"
+      intro: "%{site_name} 上的讨论 %{discussion_link:%{discussion_title}} 收到了一条来自 %{commenter_link:%{commenter_name}} 的提到你的评论："
+      outro: "%{comment_link:查看并回复此评论。}  你收到此通知是因为选择了在提及时接收通知。 %{notification_preferences_link:管理你的通知偏好设置。}"
     new_message:
       subject: "%{user} 在 %{site_name} 给你发送了一则信息"
       intro: "%{user_link:%{user_name}} 在 %{site_name}  给你发送了一则信息。"
-      outro: "%{conversation_link:查看和回复此评论}。您收到此通知是因为您订阅了此对话。%{notification_preferences_link:管理您的通知设置}。"
+      outro: "%{conversation_link:查看和回复此评论}。你收到此通知是因为你订阅了此对话。%{notification_preferences_link:管理你的通知设置}。"
     script_lock_appeal:
       dismiss:
-        subject: 您对 %{site_name} 的脚本删除申诉已被驳回
-        intro_html: 您对删除 %{script} 的申诉已被管理员驳回。 该脚本将保持删除状态。
+        subject: 你对 %{site_name} 的脚本删除申诉不予受理
+        intro_html: 你对删除 %{script} 的申诉已被管理员决定不予受理。该脚本将保持删除状态。
         moderator_notes: "管理员的说明："
         outro: 如果你仍然希望解除该脚本的删除状态，请查阅 %{report_link:原始举报} 以及 %{rules_link:%{site_name} 规则}。
       unlock:
-        subject: 您对 %{site_name} 的脚本删除申诉已通过
+        subject: 你对 %{site_name} 的脚本删除申诉已通过
         intro_html: 管理员通过了你对删除 %{script} 的申诉。该脚本现已取消删除并可再次公开访问。
         moderator_notes: "管理员的说明："
-        outro: 请查阅 %{rules_link:%{site_name} 的规则}来避免日后被再次删除。
+        outro: 请查阅 %{rules_link:%{site_name} 的规则}以免再次被删除。
