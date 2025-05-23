@@ -17,7 +17,7 @@ class CommentCheckingService
     spam_results = results.select(&:spam?)
     return if spam_results.empty?
 
-    report = Report.create!(item: comment.reportable_item, auto_reporter: 'rainman', reason: Report::REASON_SPAM, private_explanation: spam_results.map(&:text).map { |t| "- #{t}" }.join("\n"))
+    report = Report.create!(item: comment.reportable_item, auto_reporter: 'rainman', reason: Report::REASON_SPAM, private_explanation: spam_results.map(&:text).map { |t| "- #{t}" }.join("\n").truncate_bytes(65_535))
 
     if spam_results.count >= 2 && strict_results?(comment)
       report.uphold!(moderator_notes: 'Blatant comment spam', ban_user: true, delete_comments: true, delete_scripts: true, automod: true)

@@ -79,6 +79,7 @@ class Report < ApplicationRecord
   validates :explanation, presence: true, if: -> { reason == REASON_UNAUTHORIZED_CODE && script_url.nil? }, on: :create
   validates :explanation_markup, inclusion: { in: %w[html markdown text] }, presence: true
   validates :discussion_category, presence: true, if: -> { reason == REASON_WRONG_CATEGORY }
+  validates :private_explanation, length: { maximum: 65_535 }
 
   def dismiss!(moderator:, moderator_notes:)
     update!(result: RESULT_DISMISSED, moderator_notes:, resolver: moderator)
