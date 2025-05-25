@@ -19,6 +19,7 @@ zh-TW:
     ratings: "評價"
     author_name: "作者"
     version_number: "版本"
+    version_abbreviation: "v%{number}"
     license: "授權條款"
     no_license: "未知"
     compatibility: "相容性"
@@ -41,19 +42,20 @@ zh-TW:
     promoted_text_html: "您可能也會喜歡 %{script_link}"
     library_instructions_html: "此腳本不應該直接安裝，它是一個供其他腳本使用的函式庫。欲使用本函式庫，請在腳本 metadata 寫上： %{code}"
     deleted_notice: "此腳本已被刪除。"
-    deleted_notice_with_reason: "此腳本已因%{report_link:此舉報}被刪除"
+    deleted_notice_with_reason: "此腳本已因%{report_link:此檢舉}被刪除"
     deleted_notice_with_related: "您請求的腳本已被刪除，但是這裡有一些相關的腳本。"
-    deleted_notice_with_related_and_reason: "您請求的腳本因{report_link:此舉報}已被刪除，但是這裡有一些相關的腳本。"
+    deleted_notice_with_related_and_reason: "您請求的腳本因{report_link:此檢舉}已被刪除，但是這裡有一些相關的腳本。"
     deleted_undelete_notice_html: "此腳本已被管理員鎖定，無法復原。原因：「<i>%{delete_reason}</i>」。"
-    deleted_locked_author_notice_html: "此腳本因 %{report_link:此舉報}已被管理員從資料庫中刪除，且無法被其他人存取。原因為「<i>%{delete_reason}</i>」。請查看 %{code_rules_link:%{site_name}的規定}。如果您認為這不應該被刪除，您可以對此 %{appeal_link:提出申訴} 。請不要重新發佈這個腳本，否則您將可能會被%{site_name}封鎖。"
-    self_deleted_locked_author_notice_html: "此腳本因%{report_link:此舉報}已在存儲庫中被刪除 ，並且不再對其他人可見，如果你已經根據%{code_rules_link:%{site_name}的規定}進行更改腳本， 您可以對本次刪除 %{appeal_link:提出申訴} 。請不要重新發佈這個腳本，否則您將可能會被%{site_name}封禁。"
+    deleted_locked_author_notice_html: "此腳本因 %{report_link:此檢舉}已被管理員從資料庫中刪除，且無法被其他人存取。原因為「<i>%{delete_reason}</i>」。請查看 %{code_rules_link:%{site_name}的規定}。如果您認為這不應該被刪除，您可以對此 %{appeal_link:提出申訴} 。請不要重新發佈這個腳本，否則您將可能會被%{site_name}封鎖。"
+    self_deleted_locked_author_notice_html: "此腳本因%{report_link:此檢舉}已在存儲庫中被刪除 ，並且不再對其他人可見，如果你已經根據%{code_rules_link:%{site_name}的規定}進行更改腳本， 您可以對本次刪除 %{appeal_link:提出申訴} 。請不要重新發佈這個腳本，否則您將可能會被%{site_name}封禁。"
     deleted_author_notice: "此腳本已被刪除，其他人無法訪問。您可以從「刪除」分頁將其復原。"
     version_notice_html: "目前為 %{date} 提交的版本，檢視 %{latest_version_link}。"
     version_notice_latest_version_link: "最新版本"
-    reported_notice: "「%{script_name}」已被檢舉，正待管理員審查。"
+    reported_notice: "「%{script_name}」已被l檢舉，正待管理員審查。"
     reported_notice_for_author: "此腳本須經管理員審查才能提供給其他使用者。"
     info_page: "資訊"
     code_page: "代碼"
+    wrap_lines: "換行"
     history_page: "歷史"
     feedback_page: "反饋 (%{count})"
     stats_page: "統計"
@@ -95,9 +97,14 @@ zh-TW:
       compare_to: "與 %{site_name} 上的腳本比較（網址）"
       compare_button: "比較"
       compare_must_be_local_url: "欲比較的腳本須為 %{site_name} 上的網址。"
+      compare_cleaned_code_unavailable: "比較腳本的純淨腳本代碼尚不可用"
       checkup:
+        title: 檢查
         intro: 這些是您在%{site_name}上腳本的改善建議。這些不是 %{rules_link:規則}; 就算您不遵循這些建議，您的腳本也不會被刪除。
         license_html: 指定一個 %{license_link:<code>@license</code>}，讓其他人知道他們能否以及如何分享、修改您的程式碼。
+        globs_html: 避免在 %{include_link:<code>@include</code>} 和 %{match_link:<code>@match</code>} 中使用通配符和正則表達式，以免導致 %{site_name} 難以正確分類你的腳本
+        globs_used_html: "使用的非特定域包含：%{globs}"
+        additional_info: 添加附加信息 - 列出你的功能，提供截圖等，以便使用者清楚你腳本的具體作用<br>
     history_title: "%{script_name} - 版本歷史"
     history_only_code_changes_info: "這裡只顯示彼此間有代碼差異的版本。"
     history_all_changes_link: "顯示所有版本。"
@@ -154,6 +161,7 @@ zh-TW:
     listing_description_for_site: "對 %{site} 新增功能或解決 bug 的使用者腳本"
     listing_title_for_search: "「%{search_string}」相關腳本的搜尋結果"
     listing_title_for_code_search: "「%{search_string}」相關腳本的搜尋結果"
+    listing_description_for_code_search_html: "關於 <code>%{search_string}</code> 的程式碼搜尋"
     listing_title_generic: "使用者腳本"
     listing_title_for_favorites: "%{user_name} 的 %{set_name}"
     listing_description_generic: "對您所使用的網站新增功能或解決 bug 的使用者腳本"
@@ -183,7 +191,7 @@ zh-TW:
     listing_author:
       all: 所有作者
       me: 我的腳本清單
-      user: '%{author_name} 的脚本'
+      user: '%{author_name} 的腳本'
     search_failed: 載入結果時出現問題，部分搜尋功能可能無法正常運作，我們已收到此問題。
     import: "匯入腳本"
     new: "發佈您撰寫的腳本"
@@ -219,7 +227,7 @@ zh-TW:
     type_3_html: "函式庫 - 使用者不應直接安裝此類腳本。開發者可在其他腳本使用 <code>@require</code> 來引用函式庫。"
     override_warning_checkbox_label: "仍要儲存"
     warning_version_not_incremented_html: "您更新了腳本代碼但未增加 <code>@version</code> 版本號。之前安裝了您的腳本的使用者可能無法自動更新至最新版。"
-    warning_version_missing_html: "您沒有指定<code>@version</code>。用戶需要通過<code>@version</code>接受更新。您可以通過這個方法指明：<code>// @version 1.0</code>"
+    warning_version_missing_html: "您沒有指定<code>@version</code>。使用者需要透過<code>@version</code>接受更新。您可以透過這個方法指明：<code>// @version 1.0</code>"
     warning_version_missing_generate_automatically_html: "自動產生 <code>@version</code>"
     warning_namespace_missing_html: "您未指明<code>@namespace</code>。<code>@namespace</code>可幫助避免在使用者安裝另一個同名腳本時產生衝突。<code>@namespace</code>只需要是一個獨特的字串；通常使用你控制的 URL。"
     warning_namespace_missing_generate_automatically_html: "自動生成<code>@namespace</code>屬性"
@@ -230,12 +238,15 @@ zh-TW:
     warning_code_previously_posted_html: "此程式碼已在%{script_links}發布。重新發布此腳本可能被管理員移除。"
     warning_license_missing_html: "您未宣告<code>@license</code>。透過在%{site_name}發布，您在允許他人使用您的程式碼，但許可將同時允許您告知他人他們可以如何修改並分發您的程式碼。例如，<code>// @license MIT</code>意味著您允許任何人修改並分發您撰寫的程式碼。%{license_chooser_link:更多關於許可的訊息見此。}如果您不提供一個許可，%{site_name}會假定您不允許他人修改或分發複製。請注意如果您不是您發布的程式碼的唯一作者，通常您不被允許發布它，除非您獲得了所有作者的許可。"
     warning_license_missing_override_html: "不詢問直接儲存"
+    warning_meta_not_at_start_html: "你的代碼沒有以 1// ==UserScript==1 開頭。包括代碼、注釋或空白可能會導致與某些使用者腳本管理器的兼容性問題。"
     additional_info_locale_prompt: "(語言選擇)"
     additional_info_add_localized: "新增別的語言的「其他資訊」欄位"
     additional_info_locale_repeated: "對於 '%{locale_code}' 語言，請勿提供多個其他資訊。"
     localized_additional_info_with_no_name: "您為 '%{locale_code}' 提供了其他資訊，但是腳本沒有指定 <code>@name:%{locale_code}</code>。"
+    invalid_matchers: "使用了無效的匹配表達式：%{matches}"
     code_syncing_from_url_html: "此腳本代碼已設定同步自：%{field}"
     provide_code_syncing_from_url_html: "%{site_name} 可以匯入您在其他網站託管的腳本，例如版本控制系統 (如 GitHub)、您自己的伺服器、或其他使用者腳本託管網站。要使用該功能，請提供一個網址：%{field}"
+    code_syncing_from_webhook_html: "該腳本的代碼設定為與 Webhook 同步，我們將根據以下連結將 Webhook 請求與此腳本匹配：%{field}"
     sync_type_intro: "此腳本將會被同步："
     sync_type_1:
       name: 手動
@@ -247,6 +258,7 @@ zh-TW:
       name: Webhook
       description: 當您推送更新到數據庫的這個檔案時將會更新
     sync_webhook_info_without_sync: 在您設定同步後，如果您正同步到的是GitHub、GitLab或BitBucket數據庫，您也可以 %{webhook_info_link:設定webhook}以在您推送更新到數據庫時自動更新 %{site_name}。
+    sync_webhook_info_with_sync: 如果你同步到的是 GitHub、GitLab 或 BitBucket 倉庫，你還可以 %{webhook_info_link:設定 Webhook}，以便在你推送到倉庫時自動在 %{site_name} 更新
     sync_name_and_description: "%{name} - %{description}"
     sync_failed_info_html: "上次嘗試同步於 %{date}，發生了錯誤：%{error}。"
     sync_success_info_html: "上次成功同步於 %{date}。"
@@ -265,7 +277,7 @@ zh-TW:
     sync_turned_off: 腳本同步已關閉
     screenshots_add: "新增："
     screenshots_remove: "移除"
-    replacement_script_explanation: "(可選)選擇另一個可替代此腳本的腳本。用戶將被更新並生成到此腳本。請輸入替代腳本的網址："
+    replacement_script_explanation: "(可選)選擇另一個可替代此腳本的腳本。使用者將被更新並生成到此腳本。請輸入替代腳本的網址："
     diff_title: "%{script} - 版本差異"
     diff_old_version: "之前:"
     diff_new_version: "之後:"
@@ -289,6 +301,7 @@ zh-TW:
     not_adult_content_self_report_html: "這個腳本 <strong>不包含</strong> 成人內容且 <strong>不作用於</strong> 包含成人內容的站點。"
     not_adult_content_self_report_explanation: "%{site_name} 允許腳本含有成人內容，但是他們必須被標記；這樣使用者可以選擇是否顯示這類信息。這個腳本被自動標記為含有成人內容。您可以請求取消這個標記，該請求將由管理員進行審查。"
     not_adult_content_self_report_explanation_automatic: "%{site_name} 允許腳本包含成人內容，但是必須被標記清楚所以使用者得以選擇是否要顯示它們。您的腳本已因 %{domain_list} 而被標記為包含成人內容。"
+    adult_content_notice_from_sleazy: 當你在 %{site_name} 上發佈此腳本時，將默認你的腳本包含成人內容或作用於包含成人內容的網站。如果情況並非如此，請%{greasyfork_link:在 Greasy Fork 上發佈你的腳本}。
     adult_content_on_greasy_logged_in_error: "這個腳本對您當前的 %{edit_account_link:Greasy Fork 賬戶設定} 不合適。"
     adult_content_on_greasy_not_logged_in_error: "這個腳本不對遊客開放。請 %{login_link:登入} 並確認您的 Greasy Fork 帳戶設定。"
     non_adult_content_on_sleazy: "這個腳本在這個網站上不可用。"
@@ -311,6 +324,8 @@ zh-TW:
     must_confirm: "必須先確認帳號才可以張貼腳本。您可以用兩種方式進行確認：加上外部登入資訊，或是發一封確認郵件。"
     must_confirm_email_button: "發送驗證郵件到%{email}"
     needs_secure_login:
+      intro: "你必須先使用安全的登入方法設定你的賬戶，然後才能發佈腳本。"
+      secure_internal_heading: "選項 1：保護你的 %{site_name} 登入"
       confirm_email: "請確認您的電子郵件"
       enable_2fa: "啟用二階段認證"
       add_external_heading: "選項2：僅使用外部的登入方式"
@@ -320,6 +335,7 @@ zh-TW:
     error_unauthorized_copy: "這份代碼中包含了 %{script} 的未授權代碼。請參考  %{site_name} 的 %{rules_link:腳本規範}。"
     invitations:
       form_title: "邀請其他作者"
+      explanation: "你可以添加其他 Greasy Fork 使用者作為此腳本的作者。他們將在此腳本上擁有與你相同的權利，包括添加或移除其他作者（甚至包括你自己）。"
       invited_user_url_label: "要邀請的使用者"
       invited_user_placeholder: "%{site_name} 上的使用者個人資料地址"
       submit: "發送邀請"
@@ -351,18 +367,26 @@ zh-TW:
     update_title: "發佈 %{script} 的新版本 "
     install_help_dialog:
       js:
-        firefox: 您需要先安裝一個用戶腳本管理器擴展，如 %{tampermonkey_link:Tampermonkey}、%{greasemonkey_link:Greasemonkey} 或 %{violentmonkey_link:Violentmonkey} 之後才能安裝該腳本。
-        chrome: 您需要先安裝一個使用者腳本管理器擴充功能，如 %{tampermonkey_link:Tampermonkey} 或 %{violentmonkey_link:Violentmonkey} 後才能安裝該腳本。
-        opera: 您需要先安裝一個使用者腳本管理器擴充功能，如 %{tampermonkey_link:Tampermonkey}或 %{violentmonkey_link:Violentmonkey} 後才能安裝該腳本。
-        safari: 您需要先安裝一個使用者腳本管理器擴充功能，如 %{tampermonkey_link:Tampermonkey}或 %{userscripts_link:Userscripts} 後才能安裝該腳本。
-        other: 您需要先安裝一個使用者腳本管理器擴充功能後才能安裝該腳本。
+        firefox: 您需要先安裝使用者腳本管理器擴展，如 %{tampermonkey_link:Tampermonkey}、%{greasemonkey_link:Greasemonkey} 或 %{violentmonkey_link:Violentmonkey} 之後才能安裝該腳本。
+        chrome: 您需要先安裝使用者腳本管理器擴充功能，如 %{tampermonkey_link:Tampermonkey} 或 %{violentmonkey_link:Violentmonkey} 後才能安裝該腳本。
+        opera: 您需要先安裝使用者腳本管理器擴充功能，如 %{tampermonkey_link:Tampermonkey}或 %{violentmonkey_link:Violentmonkey} 後才能安裝該腳本。
+        safari: 您需要先安裝使用者腳本管理器擴充功能，如 %{tampermonkey_link:Tampermonkey}或 %{userscripts_link:Userscripts} 後才能安裝該腳本。
+        edge: 你需要先安裝一款使用者腳本管理器擴展，比如 %{tampermonkey_link:Tampermonkey}，才能安裝此腳本
+        other: 您需要先安裝使用者腳本管理器擴充功能後才能安裝該腳本。
         bypass: （我已經安裝了使用者腳本管理器，讓我安裝！）
       css:
+        firefox: 你需要先安裝一款使用者樣式管理器擴展，比如 %{stylus_link:Stylus}，才能安裝此樣式
+        chrome: 你需要先安裝一款使用者樣式管理器擴展，比如 %{stylus_link:Stylus}，才能安裝此樣式
+        opera: 你需要先安裝一款使用者樣式管理器擴展，比如 %{stylus_link:Stylus}，才能安裝此樣式
+        safari: 你需要先安裝一款使用者樣式管理器擴展後才能安裝此樣式
+        edge: 你需要先安裝一款使用者樣式管理器擴展後才能安裝此樣式
+        other: 你需要先安裝一款使用者樣式管理器擴展後才能安裝此樣式
         bypass: （我已經安裝了使用者樣式管理器，讓我安裝！）
       close_dialog: OK
     antifeatures:
+      label: 負面功能
       warning_title: 該腳本包含反功能
-      intro: 在您安裝前，%{site_name}希望您了解本腳本包含“可能不受歡迎的功能”，可能幫助腳本的作者獲利，而不能給你帶來任何收益。
+      intro: 在您安裝前，%{site_name}希望您了解本腳本包含“負面功能”，可能幫助腳本的作者獲利，而不能給你帶來任何收益。
       author_explanation_intro: "腳本的作者解釋："
       types:
         ads:
@@ -400,6 +424,7 @@ zh-TW:
           other: "此腳本使用了不正確的子資源完整性哈希值: %{detail}."
         detail: "<code>%{url}</code> 應使用哈希值<code>%{expected_hash}</code> (上次檢查%{last_checked_at})"
   script_sets:
+    heading: "腳本集"
     description: "腳本收藏集讓你自訂一個腳本列表。你可以把單獨的腳本、其它使用者的收藏集、或自動產生的收藏集，加入包含列表。排除列表也是同樣的方式。"
     favorites_name: "我的最愛"
     delete: "刪除腳本收藏集"
@@ -469,24 +494,49 @@ zh-TW:
     new: 新腳本集
   home:
     title: "%{site_name} - 安全又好用的使用者腳本分享站"
-    welcome: "歡迎來到 %{site_name}，這是一個使用者腳本分享站。"
+    welcome: "歡迎來到，%{site_name} 使用者腳本的世界。"
     sleazy_title: "%{site_name} - 安全又好用的成人使用者腳本分享站"
-    sleazy_welcome: "歡迎來到 %{site_name}，這是一個成人使用者腳本分享站。"
+    sleazy_welcome: "歡迎來到，%{site_name} 成人使用者腳本的樂園。"
     search_placeholder: "搜尋腳本"
     scripts_for_label: "根據網域︰"
     explain_user_scripts_heading: "使用者腳本是什麼？"
-    explain_user_scripts_html: "使用者腳本讓您控制您的瀏覽體驗。當您安裝後，使用者腳本可以為網頁增加功能、簡化使用方法、或移除煩人的東西。在 %{site_name} 上的腳本都是由其它使用者撰寫、和全世界分享的。所有的腳本都是免費安裝，而且容易使用。"
-    installing_step1_header: "第 1 步：安裝使用者腳本管理器"
+    explain_user_scripts_html: "使用者腳本註定不是平凡的工具腳本，若春日影，又宛如禁忌樂章——改寫網頁、刪除煩人元素，像即興演奏一樣自由，又像命運劇本般精準。安裝 %{site_name} 的這些由全球用戶譜寫的使用者腳本，點下確認的瞬間，你的瀏覽體驗就會被輕易地徹底重構。"
+    installing_step1_header: "第一步：安裝使用者腳本管理器"
     installing_step1_caption: "Chrome 下使用 TamerMonkey 的截圖"
     installing_step1_description_html: >
-        <p>要使用者腳本，您首先要安裝一個用戶腳本管理器。您可以根據目前使用的瀏覽器來選擇一個用戶腳本管理器。</p>
+        <p>要使用使用者腳本，您首先要安裝使用者腳本管理器。您可以根據目前使用的瀏覽器來選擇一個使用者腳本管理器。</p>
     desktop_browsers:
       title: 桌面
+      browser_list_html: |
+          <ul>
+          <li>Chrome：%{chrome_tampermonkey_link:Tampermonkey} 或 %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>Firefox：%{firefox_greasemonkey_link:Greasemonkey}、%{firefox_tampermonkey_link:Tampermonkey} 或 %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Safari：%{safari_tampermonkey_link:Tampermonkey} 或 %{safari_userscripts_link:Userscripts}</li>
+          <li>Microsoft Edge：%{edge_tampermonkey_link:Tampermonkey} 或 %{edge_violentmonkey_link:Violentmonkey}</li>
+          <li>Opera：%{opera_tampermonkey_link:Tampermonkey} 或 %{opera_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon：%{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>AdGuard：%{adguard_link:AdGuard}（不需要其他軟體）</li>
+          </ul>
     android_browsers:
       title: 手機（安卓）
+      browser_list_html: |
+          <ul>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, or %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+          <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+          <li>%{xbrowser_link:XBrowser}</li>
+          %{locale_specific_browsers}
+          </ul>
     ios_browsers:
       title: 手機 (iOS)
-    installing_step2_header: "第 2 步：安裝使用者腳本"
+      browser_list_html: |
+          <ul>
+          <li>Safari：%{safari_tampermonkey_link:Tampermonkey} 或 %{safari_userscripts_link:Userscripts}</li>
+          <li>%{gear_link:Gear}：（不需要其他軟體）
+          </ul>
+    installing_step2_header: "第二步：安裝使用者腳本"
     installing_step2_caption: "使用者腳本的安裝按鈕"
     installing_step2_description_html: >
         <p>%{browse_link:打開索引}來尋找您想嘗試的使用者腳本吧。下方列舉了部分最熱門的腳本：</p>
@@ -494,9 +544,9 @@ zh-TW:
         %{highlighted_scripts_list}
 
         <p>當您找到心儀的使用者腳本後，按下腳本頁面綠色的安裝按鈕，然後您的使用者腳本管理器將向您確認安裝。</p>
-    installing_step3_header: "第 3 步：體驗使用者腳本"
+    installing_step3_header: "第三步：體驗使用者腳本"
     installing_step3_description_html: >
-        <p>跳轉到使用者脚本支援的網站，此時使用者腳本應正常工作。當您體驗使用者腳本一段時間後，您還可以回到安裝頁面並給作者留下反饋。</p>
+        <p>跳轉到使用者腳本支援的網站，此時使用者腳本應正常工作。當您體驗使用者腳本一段時間後，您還可以回到安裝頁面並給作者留下反饋。</p>
   users:
     sign_in_title: "登入  %{site_name}"
     sign_in_description: "登入 %{site_name} 可以讓您發佈腳本，以及對其他人的腳本發表評價。如果您只想瀏覽或安裝腳本，則無需登入。"
@@ -509,6 +559,7 @@ zh-TW:
     sign_in_email_missing: "%{site_name} 需要一個電子郵件位址才可以建立帳號，但是 %{provider} 並未提供。您可以更新您的 %{provider} 帳號來提供電子郵件位址，然後再次嘗試登入，或者在 %{site_name} 上建立一個 電郵/密碼 登入方式的帳號，然後再新增 %{provider} 登入入口至您的帳號。"
     sign_in_name_used: "使用者名稱「%{name}」已被使用，請選擇一個不同的名字。"
     sign_in_name_used_submit: "送出"
+    sign_in_github_unavailable: "Sleazy Fork 不支持透過 GitHub 登入，但你可以%{sign_in_url:在 Greasy Fork 上透過 GitHub 登入}"
     control_panel: "控制台"
     discussions_on_scripts: "您的腳本討論帖"
     discussions_on_scripts_feed_alt: "RSS 訂閲"
@@ -527,7 +578,8 @@ zh-TW:
     edit_sign_in: "登入方式設定"
     edit_sign_in_title: "登入方式設定"
     edit_sign_in_password: "密碼"
-    edit_sign_in_2fa_enabled: 您已設置雙重認證（2FA），若驗證代碼遺失可以重新生成。
+    edit_sign_in_2fa_enabled: 您已設定雙重認證（2FA），若驗證代碼遺失可以重新生成。
+    edit_sign_in_2fa_enabled_and_required: 你已設定了雙重驗證（2FA）。在使用基於密碼的登入方式時，你的帳戶必須使用 2FA，如果你遺失了 2FA 代碼，可以選擇重新生成。<br>
     edit_sign_in_disable_2fa: 關閉雙重認證
     edit_sign_in_2fa_disabled: 開啟雙重認證（2FA）以提升帳戶%{site_name}的安全性。
     edit_sign_in_enable_2fa: 開啟雙重認證
@@ -562,10 +614,19 @@ zh-TW:
     2fa_enable_code_incorrect: 雙重認證驗證碼錯誤，請再試一次
     2fa_disabled: 已停用雙重認證
     2fa_disabled_already: 已停用雙重認證（2FA）。
+    2fa_entry:
+      intro_html: "正在以 <b>%{email}</b> 身分登入。請輸入你的雙重驗證（2FA）應用程序提供的代碼。"
     enable_2fa:
+      intro: "可使用以下方法將 %{site_name} 添加到你的雙重驗證（2FA）應用中，然後在下面輸入代碼。"
       qr_heading: 以QR碼
+      url_heading: 透過連結
+      url_info: 如果你與你的兩步驗證應用在同一裝置上，你可以透過%{auth_link:此連結}添加
       manual_heading: 手動
+      manual_entry_code_name: "代碼名稱：%{code_name}"
+      manual_entry_your_key: "你的密鑰：%{key}"
+      manual_entry_type_of_key: "密鑰類型：基於時間"
       code_entry_heading: 輸入驗證碼
+      code_entry: "請輸入來自你的 2FA 應用的代碼，以啓用 %{site_name} 賬戶上的雙重身份驗證："
       verify_code: 驗證代碼
     set_up_webhook: "設定 Webhook"
     list_display_html:
@@ -628,7 +689,14 @@ zh-TW:
       complete: "你的帳號已被刪除。"
     deleted_user_with_id: "(已刪除的使用者 %{id} )"
     deleted_user_without_id: "(已刪除的使用者)"
+    suggest_secure_login: 因為你是腳本作者，所以我們建議你%{edit_login_link:使用更加安全的登入方式}
     require_secure_login: 您的帳號必須使用更加安全的登入方式。
+    secure_login_explanation_html: |
+        <p>因為你是腳本作者，所以我們建議你透過使用更為安全的登入方式來保護你的帳戶和使用者。你可以透過以下兩種方式之一來實現這一點：</p>
+        <ol>
+        <li>在基於密碼登入基礎上，添加雙重驗證（2FA）。</li>
+        <li>刪除你的密碼，僅依賴外部登入方式（並最好啓用該服務提供的安全功能）。</li>
+        </ol>
     badges:
       banned:
         short: 已封鎖
@@ -638,13 +706,15 @@ zh-TW:
         long: 管理員
       author:
         short: 作者
-        long: 脚本作者
+        long: 腳本作者
     notifications:
+      on_site: 網站上
       email: 以電子郵件
       discussion_defaults:
         title: 論壇通知
         intro: 您訂閱的討論有更新時將通知您，您可以隨時取消訂閱討論。
         discussion_subscription_defaults:
+          overall_label: 默認情況下，發生以下情況時自動訂閱討論
           start: 您發起討論
           comment: 您評論的討論
           script: 這有關您的一個腳本
@@ -658,9 +728,15 @@ zh-TW:
           self: 您發起的對話
           other: 其他人發起的對話
         new_conversation_notification: 當有人與您開啟對話時，且依據您上述設定自動訂閱時，接收通知
+        new_message_notification: 在你訂閱的現有私信收到新訊息時，收取通知
       report_defaults:
+        intro: 使用者創建檢舉是為了標記違反 %{site_name} 規則的內容。 管理員將審核檢舉，並在必要時刪除相關內容
         title: 新的通知
+        as_reporter: 在你創建的檢舉被處理時，收取通知
+        as_reported_filed: 在針對你發佈的項目提出檢舉時，收取通知
+        as_reported_resolved: 在針對你發佈的項目的檢舉被處理時，收取通知
       script:
+        intro: 這些設定與你發佈的腳本相關
         title: 腳本通知
         consecutive_bad_ratings: 當您的腳本由於負面審查結果可能遭移除時，接收通知
       save_button: 更新通知設定
@@ -669,6 +745,7 @@ zh-TW:
         other: 取消訂閱你之前訂閱的 %{discussions_link:%{count} 條討論}
       current_conversation_subscriptions:
         other: 取消您之前訂閱的%{count}對話
+      intro: "%{site_name} 可以透過郵件或網站上的通知小組件向你發送通知。 大多數通知只有在你執行某些操作後才會發送，例如發起了一條討論或發佈了某個腳本。 這些通知設定不會影響事務性的郵件，例如密碼重置請求。"
       save_success: 您的通知設定已更新。
       unsubscribe_all: 停止所有的通知
       unsubscribe_all_success: 您已停用所有通知。
@@ -679,10 +756,17 @@ zh-TW:
       new_comment: "%{user}在%{discussion}中發佈一則評論"
       new_comment_script: "%{user}在您的%{script}腳本發佈一則新討論"
       mention: "%{user} 在 %{discussion} 中提到了您。"
-      report_filed_reported: 已舉報 %{item}。
+      report_resolved_reporter:
+        dismissed: 你對 %{item} 的檢舉已被管理員決定不予受理
+        fixed: 你針對 %{item} 的檢舉促成了一些更改，管理員已將該問題標記為已解決
+        upheld: 你對 %{item} 的檢舉已被管理員透過
+        rebutted: 你對 %{item} 的檢舉已收到被檢舉使用者的回覆。管理員將審核你的檢舉以及該回覆<br>
+      report_filed_reported: 已檢舉 %{item}。
       report_resolved_reported:
-        dismissed: 您對 %{item} 的舉報已被管理員駁回。
-        upheld: 您對 %{item} 的舉報已被管理員通過。
+        dismissed: 您對 %{item} 的檢舉已被管理員駁回。
+        fixed: 針對 %{item} 的檢舉促成了一些更改，故管理員已將該問題標記為已解決
+        upheld: 您對 %{item} 的檢舉已被管理員透過。
+      consecutive_bad_ratings: "%{script} 收到了差評，並面臨被刪除的風險。 請儘快修復你的腳本或回應這些評價，以確保其保持有效。"
       list:
         header: 通知
         none: 暫無通知
@@ -691,6 +775,10 @@ zh-TW:
   webhooks:
     info:
       title: 建立 Webhook
+      intro_html: |
+          <p>連接到 %{site_name} 的 Webhook 可以使你根据倉庫中的事件自動更新 %{site_name} 上腳本。%{site_name} 支持 GitHub、GitLab 與 Bitbucket 的 “push” Webhook 以及 GitHub 與 GitLab 的 “release” Webhook。</p>
+          <p>要使用此功能，你必須在 %{site_name} 上設定腳本透過連結與你的倉庫同步。你可以透過 %{import_link: 將新腳本匯入到 %{site_name}} 來添加新腳本，或从已提交腳本的 “管理” 頁面來設定同步。</p>
+          <p>在你的腳本第一次 Webhook 觸發之前，腳本的同步類型還是會顯示為 “自動” 或 “手動”</p>
       already_syncing_list: "以下是您已經設定好要與支援的供應商進行同步的腳本："
       synced_item_html: "%{script_name} - %{sync_type} 同步於 %{sync_url}"
       language_note: 由於 GitHub、GitLab 及 Bitbucket 都只有英文版介面，下方的操作教學將不做翻譯。
@@ -704,6 +792,10 @@ zh-TW:
       title: '如何安裝使用者腳本'
     installing_user_styles:
       title: '如何安裝使用者風格'
+      content_html: |
+          <p>%{site_name} 上的某些腳本可以安裝為使用者樣式。</p>
+          <p>使用者樣式可以透過 %{stylus_firefox_link:适用於 Firefox 的 Stylus}、%{stylus_chrome_link:适用於 Chrome 的 Stylus}，以及 %{stylus_opera_link:适用於 Opera 的 Stylus} 安裝。</p>
+          <p>%{styles_link:瀏覽所有可用的使用者樣式}</p>
     meta_keys:
       title: "%{site_name} 讀取的 meta keys"
       intro_html: "這是 %{site_name} 會讀取的 <a href=\"http://wiki.greasespot.net/Metadata_Block\">使用者腳本 meta keys</a> 的清單。腳本中可以有不在此清單中的 key，也會存在使用者安裝的腳本中，但不會對 %{site_name} 的介面有任何效果。"
@@ -712,13 +804,28 @@ zh-TW:
       description: "必須在腳本名稱下方以文字說明腳本內容。"
       description_localized_html: "此腳本在不同語系中的描述，XX 是 <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 的兩字母代碼</a> ，YY 則是非必要的 <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 國家代碼</a>。當使用者在符合的語系中瀏覽時就會蓋過 <code>@description</code> 顯示。"
       namespace_html: "使用者腳本管理器將會透過 <code>@namespace</code> 與 <code>@name</code> 的組合來判斷是否已安裝該腳本。%{site_name} 要求必填此欄位，若於更新時修改了此欄位也會警告您。"
+      version: "腳本特定版本的標識符，請以 %{version_format_link:Mozilla 版本格式} 為準，版本號會顯示在腳本的信息頁面上。%{site_name} 要求填寫該屬性，並會在版本號減少或腳本代碼更改時未增加版本號時發出警告。"
       include_html: "描述腳本所欲執行的頁面。此清單將被處理並顯示於腳本資訊頁用以分類腳本。每個腳本必須有一個<code>@相符</code>或<code>@包含</code>。<a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">於此閱讀格式。</a>"
+      require_html: "引入外部腳本到使用者腳本。查看關於%{external_script_link:引入外部腳本到代碼的規則}。如果你使用 SRI，也就是 Sub-Resource Integrity 來記錄外部腳本哈希（更多信息請參閱 %{tm_subresource_link:TamerMonkey 文件} 與 %{mdn_subresource_link:MDN 文件})，你將在你的哈希值與你連結的內容不匹配時收到來自 %{site_name} 的警告。"
+      resource_html: "引入外部資源（如 JavaScript、CSS、圖像等）到腳本。查看關於%{external_script_link:引入外部腳本到代碼的規則}。如果你使用 SRI，也就是 Sub-Resource Integrity 來記錄外部腳本哈希（更多信息請參閱 %{tm_subresource_link:TamerMonkey 文件} 與 %{mdn_subresource_link:MDN 文件})，你將在你的哈希值與你連結的內容不匹配時收到來自 %{site_name} 的警告。"
       updateURL: "描述使用者腳本管理器要從何取得更新。%{site_name} 將會移除這些更新網址，目的是讓從 %{site_name} 安裝的腳本只能由 %{site_name} 更新。"
+      license_html: |
+          透過在 %{site_name} 上發佈你的腳本，你賦予其他人安裝和使用它的權利。 許可證聲明了人們是否以及如何被允許修改和分發你的腳本，展示在腳本的信息頁面上。<code>@license</code> 可以是:
+          <ul>
+          <li>許可證的名稱（例如，<code>@license GPL3</code>）。建議使用來自 %{spdx_link:the SPDX 許可證列表} 的 “全名” 或 “標識符”。</li>
+          <li>你允許使用的條件（例如 <code>@license 給我署名就可以改</code>，雖然建議使用已有的許可證</li>
+          <li>版權聲明 (例如 <code>@license Copyright 我的名字</code>）如果你不想在有許可證下發佈。</li>
+          <li>完全省略，這與具有版權聲明相同，但對使用者來說不夠清晰。</li>
+          </ul>
+          注意：如果你的腳本基於其他人編寫的代碼，則你可能會受到你選擇的許可證的限制
       supportURL: "使用者能取得腳本的技術支援之處（例如：臭蟲追蹤系統、討論區、電子郵件信箱等等）。技術支援網址將會顯示在腳本的反饋頁。"
-      contributionURL_html: "腳本作者的捐贈網址。捐贈網址會顯示在腳本的反饋頁。網址可以是 http、https 或者比特幣協議網址。例如：要連結到 PayPal 捐贈頁面，可使用 <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a> 的格式，請用您自己的電子郵件位址替代前述範例的位址。"
+      contributionURL_html: "腳本作者的捐贈網址。捐贈網址會顯示在腳本的反饋頁。網址可以是 http、https 或者比特幣協定網址。例如：要連結到 PayPal 捐贈頁面，可使用 <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a> 的格式，請用您自己的電子郵件位址替代前述範例的位址。"
       contributionAmount_html: "建議的捐贈金額，與 <code>@contributionURL</code> 一起使用。"
       compatible_html: "標示此腳本與哪些瀏覽器相容。相容性資訊將會顯示在腳本的頁面。可使用例如：<code>@compatible firefox 必須停用彈出型視窗封鎖器</code> 的格式來記錄關於相容性的其他資訊。可使用的瀏覽器有：%{browsers}。"
       incompatible_html: "標示此腳本與哪些瀏覽器不相容。相容性資訊將會顯示在腳本的頁面。可使用例如：<code>@incompatible firefox 從 Firefox 23 起失效</code> 的格式來記錄關於相容性的其他資訊。可使用的瀏覽器有：%{browsers}。"
+      antifeature_html: |
+          披露會為腳本作者而非使用者帶來額外收益的功能。你可以透過在腳本的元數據中添加 <code>@antifeature 類型 描述</code> 值的方法披露。其中<i>類型</i>是必須填寫的內容，而 <i>描述</i>則可以留空。%{antifeatures_link:點擊此處瞭解} %{site_name} 讀取的 <i>類型</i>的相關信息。
+      antifeature_localized_html: "你可以使用多種語言聲明 <code>@antifeature</code> 屬性，其中 XX 為 <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 中定義的兩字母代碼</a>，而 YY 指可選的 <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 地區代碼</a>。<code>@antifeature</code>會根據使用者瀏覽的語言而被蓋過。"
     writing_user_scripts:
       title: "如何撰寫腳本"
       content_html: "<p>撰寫使用者腳本需要 JavaScript 相關知識。<a href=\"http://wiki.greasespot.net/Tutorials\">GreaseSpot 維基上的教學</a> 是個不錯的開端學習 JavaScript 和使用者腳本。察看別人的腳本也很有幫助。你或許對於 %{code_rules_link} 和 %{meta_keys_link} 有興趣。如果需要開發腳本上的幫助，隨時 %{ask_in_forum_link}。</p><p>若要新增腳本至 %{site_name}，需要申請一個帳號。進入你的 %{user_page_link}，點選 %{post_new_script_link} 連結</p>"
@@ -731,35 +838,100 @@ zh-TW:
       functionality_header: 功能
       description: 腳本皆必須包含一段描述其功能的敘述，且腳本不得做出明顯超出該敘述的行為。使用者都應該在安裝腳本前了解它會做些什麼。
       reason: 腳本必須要有被編寫為腳本的理由。例如：只會將使用者導向到一個網站的腳本沒有必要被編寫為腳本，它可以是個連結。而在當前頁面使用其他網站服務的腳本（例如透過某些方式將其轉換）是被允許的。
+      monetization_html: 腳本包含為 <em>作者</em> 而非使用者獲益的功能（如追蹤、廣告、挖礦等）並非絕對禁止，但是必須透過 %{antifeature_link:<code>@antifeature</code> 元屬性} 公開披露。腳本不得僅為了添加負面功能而添加 <code>@include</code>s 或 <code>@match</code>es
       code_header: 代碼
+      obfuscation: 提交到 %{site_name} 的代碼不得混淆或壓縮。使用者必須有可能在安裝前審視並理解腳本的內容。如果腳本使用了 WebPack 之類的工具打包，則必須以非壓縮的形式輸出，保留空白和變量名。
+      size_html: |
+          腳本大小不能超過 %{max_code_size}。如果你的腳本接近此限制，可能需考慮：
+          <ul>
+          <li>將 URI、JSON 等非代碼資料移出腳本。</li>
+          <li>使用 <code>@require</code> 或 %{webpack_externals_link:webpack 的 <code>externals</code> 選項}加載庫。</li>
+          </ul>
+      libraries_html: 庫是應被 <code>@require</code> 的腳本，除非因為技術原因不能這麼做。如果一個庫被內嵌入了腳本，那麼你必須一並提供庫的來源（比如一行內容指向原始地址、名稱以及版本）。
+      updates: 腳本不得以高於每日一次的頻率檢測更新。請注意使用者腳本管理器都有內置的更新檢查機制，請不要在腳本檢查更新做無用功。在 %{site_name} 上傳的腳本不應被動態插入到頁面，因為這會繞過使用者腳本管理器的緩存。
+      hosting: 腳本的主要功能必須在 %{site_name} 上的代碼中實現。在 %{site_name} 上發佈的腳本，如果只是從其他地方加載大部分腳本內容，是不允許的。發佈備用下載連結，意圖讓使用者使用這些備用資源而不是 %{site_name} 上發佈的版本，也是不允許的。
       external_js: "%{external_scripts_link:使用外部 JavaScript 腳本是有限制的}。"
       copyright_header: 版權
+      licensing_html: 你的腳本必須遵守他人的版權，包括但不限於代碼本身以及所引用的資源（例如圖像）。如果你希望使用他人的內容，請遵守其授權規則或獲得使用授權。你可以使用 <code>@license</code> 元信息名稱來指定腳本使用的授權協定，並透過 %{tldr_legal_link:tldrlegal.com} 獲得更多關於該授權協定的限制。
+      reposts: 即便沒有違反版權商的規則，重復提交已存在於 %{site_name} 的腳本也是不允許的，除非有做出改進
       miscellaneous_header: 雜項
       keywords: 不得在腳本中提及無關的關鍵字或網站來改善搜尋排名。
       adult_content_rule: 腳本若包含成人內容、或執行的網站中有成人內容，作者應將其正確標示讓使用者選擇是否要顯示它們。
       reposting_deleted: 請勿重新發布因違反規則而被刪除的腳本； 請改用申訴功能。 重新發布已刪除的腳本可能會導致禁止。
+      advertising_in_description: 腳本作者不得在 Greasy Fork 的頁面，如腳本描述頁面，放置廣告。推廣腳本作者的個人主頁、代碼倉庫、Discord、微信等內容是被允許的
+      reporting: 如果你發現有腳本未能遵守上述規則，請訪問腳本的反饋頁面，並選擇“檢舉腳本”來檢舉
+      excessive_updates: 腳本作者不得過度更新腳本以在腳本列表中惡意競爭排名
+      non_functional_includes_html: 腳本不得包含用於它們不提供功能的網站的 <code>@include</code>s 或 <code>@match</code>es
+      content_language: 腳本的名稱、描述和其他內容必須標好相應的語言
+      listing_header: 清單
     external_scripts:
       title: "%{site_name} 對於外部程式碼的政策"
+      intro_html: |
+          <p>%{site_name} 允許在特定情況下使用外部代碼。任何腳本發現使用超出允許範圍的外部代碼都將被刪除。如果你發現腳本違反了這些規則，請立即檢舉</p>
+          <p>注意：這些規則僅適用於外部可執行代碼。加載但非可執行代碼不受限制，例如JSON或CSS</p>
+      rationale:
+        title: 運作原理
+        content_html: |
+            <p>使用者腳本具有加載和執行其他腳本的技術能力。這可以透過幾種不同的方式實現，包括：</p>
+            <ul>
+            <li>使用 %{require_doc_link:<code>@require</code>} 和 %{resource_doc_link:<code>@resource</code>} 元屬性</li>
+            <li>使用 <code>XmlHttpRequest</code> 下載腳本，然後使用 <code>eval</code> 執行</li>
+            <li>動態添加 <code>&lt;script&gt;</code> 標籤</li>
+            <li>使用 Webpack 的 %{webpack_externals_link:<code>externals</code>} 選項</li>
+            <li>執行腳本的更新，無論是自動執行還是引導使用者執行操作</li>
+            </ul>
+            <p>雖然這是一個實用功能，並且大多數腳本作者都是出於合法目的使用，但它也可能被惡意利用。%{site_name} 的核心原則之一是使用者必須能夠檢查腳本中的代碼。外部腳本可以透過多種方式繞過這一原則：它們可能會在沒有警告或歷史記錄的情況下發生更改，它們可以為不同的人提供不同的代碼，它們還可以用於在已知庫的中間隱藏惡意代碼。即使有人檢查了外部腳本並確定其是合法的，也不能保證該腳本一直是合法的或將來會一直是合法的。</p>
       cdns:
         title: 內容傳遞網路（CDNs）
+        content_html: |
+            <p>允許使用源自 CDN 的代碼。詳見%{cdns_link:獲准 CDN 名單}。代碼可以縮制，但不能進行加密和混淆。</p>
+      sri:
+        title: 附有子資源完整性哈希值的腳本
+        content_html: |
+            <p>允許使用 %{tm_sri_link:Tampermonkey 格式} 下的有%{mdn_sri_link:子資源完整性}的 <code>@require</code> 和<code>@resource</code> URL</p>
       allowed_external_codes:
         heading: 允許外部程式碼
+        content_html: |
+            <p>以下是外部代碼在 %{site_name} 上被允許的方式。除非另有規定，否則所有其他 %{code_rules_link:代碼規則} 都適用於外部代碼。</p>
+      libraries:
+        title: "%{site_name} 函式庫"
+        content_html: |
+            <p>在 %{site_name} 上發佈作為庫的腳本是被允許的。可以透過選擇創建新腳本時的選項來創建庫。這些庫還可以額外設定為從外部 URL 同步，例如 GitHub 倉庫</p>
       origin_host:
         title: 來自原始主機的腳本注入
+        content_html: |
+            <p>允許對與其來源相同域的外部腳本進行注入。如果某個腳本在 https://example.com 上運行，並下載 https://example.com/script.js，對其進行修改，然後注入回 https://example.com/，這是被允許的。</p>
+            <p>把 https://example.com/script.js 被注入到 https://不同網站.com 上是不被允許的</p>
     cdns:
       title: 允許的 CDN
+      content_html: |
+          <p>這是 %{site_name} 允許的 CDN 列表。這些 CDN 可以用於加載 %{external_code_link:外部代碼} 在 %{site_name} 上發佈的腳本內。</p>
+          <p>該列表包含以下腳本定位:</p>
+          <ul>
+          <li>公開的</li>
+          <li>不會頻繁更改內容的</li>
+          <li>可能對多個腳本作者有用的</li>
+          </ul>
+          <p>如果你希望包含的腳本是一個 JavaScript 庫（例如 jQuery 或 YUI），請嘗試在下面列出的站點中找到它。特別是 %{cdnjs_link:cdnjs} 和 %{jsdelivr_link:jsDelivr} 上有大量的庫可用。如果你有希望添加的 CDN，請在 GitHub 上 %{github_link:請求添加}。注意：除了 CDN 外，還有 %{external_code_link:其他選項} 用於外部代碼。</p>
+
+          %{allowed_require_list}
       test_url:
         label: 測試網址
         result_ok: 允許此網址
         result_not_ok: 不允許此網址
     script_rewriting:
       title: "%{site_name} 會如何改寫發表的腳本"
+      content_html: >
+          <p>發佈到 %{site_name} 的文稿會被透過以下方式改寫：</p><ul><li><code>@updateURL</code> 和
+          <code>@downloadURL</code> 的數據會被添加或更新以指向 %{site_name}。 <code>@installURL</code>如有提供，則會被刪除</li><li><code>@version</code>
+          和 <code>@namespace</code> 如果腳本沒有提供，則會插入這些數據。 這些數據是為了正確更新文本所必需的</li><li><code>@description</code>
+          若新版本缺失此數據，而之前的版本有該數據，則會插入該數據</li><li>CRLF 和 CR 換行將被轉換為標準的 Unix 風格換行符</li></ul>
     site_feedback_link: "回報關於 %{site_name} 的問題或想法。"
     credits:
-      title: "榮譽"
-      authors_credit: "貢獻腳本的作者，%{site_name} 不能沒有他們。"
-      developers_credit: "%{site_name} 網站是由 %{developers_link:這些開發者}，與那些回報錯誤、提供建議的使用者所建立。"
-      translators_credit: "%{site_name} 的翻譯來自 %{translators_link:Greasy Translation Force @ Transifex}︰"
+      title: "命運譜寫的共演者"
+      authors_credit: "在腳本之海中狂亂綻放的創作者——%{site_name} 的輪迴因他們轉動"
+      developers_credit: "網站 %{site_name} 什麼的… 不過是「報告壞掉代碼的我們」和尋找錯誤音符的%{developers_link:這些開發者們}…"
+      translators_credit: "這些 %{site_name} 的翻譯… 是一群在語言迷宮中跌跌撞撞的迷子 %{translators_link:Greasy Translation Force}… 但我們會繼續譜寫，衝擊夢想，直到找到出口："
       icons_credit: "瀏覽器圖示是來自 %{browserlogos}。"
     help_with_greasymonkey: "Greasemonkey 疑難排解"
     help_with_tampermonkey: "Tampermonkey的相關幫助"
@@ -776,12 +948,11 @@ zh-TW:
           <p>你發現了一個 bug 或有完整構思的點子能幫助 %{site_name} 本身（不是對於 <em>%{site_name} 上的腳本</em>）嗎？%{github_link:把它發表在
           Github 上。}</p>
 
-          <p>你有私人的問題或留言只想讓站長知道？%{admin_email_link:寄封 e-mail。}</p>
+          <p>你有私人的問題或留言只想讓站長知道？%{admin_email_link:寄封 電子郵件。}</p>
     privacy_policy:
       title: "隱私政策"
       content_html: >
-          <p>這個頁面說明 %{site_name} 會如何記錄或追蹤使用者。如果你有任何疑慮，%{admin_email_link:發封 e-mail
-          給站長}。</p>
+          <p>這個頁面說明 %{site_name} 會如何記錄或追蹤使用者。如果你有任何疑慮，%{admin_email_link:發封 電子郵件 給站長}。</p>
 
           <h2>主機日誌</h2>
 
@@ -794,16 +965,16 @@ zh-TW:
 
           <h2>Cookies（未登入時）</h2>
 
-          <p>%{site_name} 會設置暫存的 session 來使用網站的各種功能。這些 cookies 是暫時性的並且會在瀏覽器關閉時清除（根據瀏覽器的設定）。</p>
+          <p>%{site_name} 會設定暫存的 session 來使用網站的各種功能。這些 cookies 是暫時性的並且會在瀏覽器關閉時清除（根據瀏覽器的設定）。</p>
 
           <h2>使用者帳號</h2>
 
-          <p>%{site_name} 要求使用者建立一個帳號以張貼腳本、參與討論、和使用一些其它網站功能。當建立帳號時，IP 位址、e-mail、和
-          user agent 會被永久儲存，部份資訊是其它使用者可見的。</p>
+          <p>%{site_name} 要求使用者建立一個帳號以張貼腳本、參與討論、和使用一些其它網站功能。當建立帳號時，IP 位址、電子郵件、和 user
+          agent 會被永久儲存，部份資訊是其它使用者可見的。</p>
 
           <p>登入後的動作，如發表腳本和留言，對於其它使用者是可見的。</p>
 
-          <p>如果登入時有勾選「記住我」選項，%{site_name} 會設置一個持久性的 cookie 來保持登入狀態。</p>
+          <p>如果登入時有勾選「記住我」選項，%{site_name} 會設定一個持久性的 cookie 來保持登入狀態。</p>
 
           <h2>張貼在 %{site_name} 的腳本</h2>
 
@@ -814,11 +985,62 @@ zh-TW:
           <p>%{site_name} 使用第三方的程式碼來收集統計資料或放置廣告，這些函式庫可能會追蹤使用者。</p>
     user_css_to_user_js:
       title: 使用者 CSS 到使用者 JS 的轉換
+      content_html: |
+          <p>%{site_name} 可以將 UserCSS 轉換為 UserJS 格式。 <code>@-moz-document</code> 規則將轉換到 JavaScript 的 <code>if</code> 語句，並構建最終的 CSS。 這段 CSS 內容然後會被插入到 <code>&lt;head&gt;</code> 下的一個 <code>&lt;style&gt;</code> 元素內。 </p>
+          <p>有些 UserCSS 特性不支援轉換到 UserJS。 當檢測到這些特性的時候，則不會換轉到UserJS格式</p><ul>
+          <li><code>@preprocessor</code> 元資訊在不是 <code>default</code> 的情況; </li>
+          <li><code>@var</code> 元資訊; </li>
+          </ul><p>%{site_name} 的 UserJS 的行為可能與 UserCSS 有所差異</p><ul>
+          <li>當使用轉換的 UserJS 格式時，CSS 是插入到 <code>&lt;head&gt;</code> 元素的尾部。 根據使用的 UserCSS 外掛程式不同，此行為可能造成預期外的後果。 建議使用 <code>！important</code> 來繞過可能的問題</li>
+          <li>當使用 UserJS 時，CSS 的生成與插入只會執行一次。 當頁面使用 History API 時，添加的 CSS 規則可能會消失</li>
+          <li>轉換的 UserJS 不會應用 CSS 規則到框架或 iframe 內</li>
+          </ul><p>當你發現 UserJS 轉換後的代碼不能正常工作后，你應當選擇相應的選項來禁用該轉換</p>
+    antifeatures:
+      title: 負面功能
+      intro_html: |
+          <p>腳本作者是可以添加一些負面功能來讓作者而非使用者獲得收益的，例如添加廣告或追蹤行為。腳本作者可以在遵守 %{rules_link:%{site_name} 腳本准則} 的前提下提交含有負面功能的腳本，但必須在腳本元信息內使用 <code>@antifeature</code> 來明確標記。這樣是為了讓使用者在安裝之前知曉該腳本所含有的負面功能。</p>
+          <p>負面功能應使用%{meta_keys_link:腳本的元信息名稱}指定，其格式為 <code>@antifeature <i>類型</i> <i>描述</i></code>。其中 <i>類型</i> 是必須填寫的，而 <i>描述</i> 則可以留空。</p>
+          <p>此頁面描述了能被 %{site_name} 所識別的 <code>@antifeature</code> 類型。你也可以使用其他類型，但你所使用的類型必須遵守 %{rules_link:%{site_name} 腳本准則}。</p>
+      ads_html: |
+          <p>此腳本在使用者訪問的頁面插入廣告</p>
+          <p>請注意下述情況 <i>不需要</i> 聲明 <code>@antifeature ads</code>：</p>
+          <ul>
+          <li>腳本運作的網站本身含有廣告的情況</li>
+          <li>腳本連結或跳轉到含有廣告的第三方網站，前提是此網站為腳本提供某種功能上的集成或服務</li>
+          <li>宣傳腳本作者的主頁、代碼倉庫、Discord、微信等信息</li>
+          </ul>
+      membership_html: |
+          <p>該腳本需要使用者先做出訂閱某個頻道、加入某群組、點贊某頁等行為後，才能使用腳本的全部功能</p>
+
+          <p>以下情況 <i>不需要</i> 聲明 <code>@antifeature membership</code>：</p>
+
+          <ul>
+          <li>腳本運行於需要帳戶登入的網站，但是腳本自身不需要額外登入</li>
+          <li>腳本在不影響使用者使用全部功能的情況下提供付費的技術支持，即使用者可以在不付費支持的情況下使用腳本的完整功能</li>
+          <li>在不影響腳本功能的情況下添加作者頻道、群組或頁面等連結</li>
+          </ul>
+      miner_html: |
+          <p>此腳本含有挖礦軟體或其他能夠使用使用者資源來為作者執行某些任務代碼的腳本</p>
+      payment_html: |
+          <p>此腳本需要使用者向腳本作者付費後才能使用腳本的全部功能</p>
+
+          <p>請注意下述情況<i>不需要</i>聲明 <code>@antifeature payment</code>：</p>
+
+          <ul>
+          <li>腳本在需要支付的網站上運行，但是腳本自身不需要付費；</li>
+          <li>在捐贈不會解鎖腳本更多功能的前提下，腳本請求使用者捐贈</li>
+          </ul>
+      referral_link_html: |
+          <p>此腳本的部分行為會使作者在使用者購買時獲得傭金抽成，包括但不限於內置推薦或聯盟連結、重寫現有連結到推薦或聯盟連結、或能為腳本作者提供傭金抽成的優惠券代碼的腳本</p>
+      tracking_html: |
+          <p>此腳本含有追蹤使用者信息的代碼，包括但不限於Google Analytics在內的服務商與其他使用自定義代碼來報告使用者資訊給腳本作者的代碼</p>
   search:
     script_search:
       title: "腳本搜尋"
+      description: "可搜索腳本名稱、描述、額外說明和作者名稱"
     library_search:
       title: "函式庫搜尋"
+      description: "可搜索函式庫名稱、描述、額外說明和作者名稱"
     code_search:
       title: "程式碼搜尋"
       description: "搜尋腳本代碼。區分大小寫的純文字搜尋，不支持萬用字元。"
@@ -834,7 +1056,11 @@ zh-TW:
     item_script_html: "腳本：%{script_link}"
     item_deleted_script: "刪除腳本%{id}"
     item_user_html: "使用者：%{user_link}"
+    item_report: "%{report_link:檢舉 #%{report_id}}"
+    item_script_lock_appeal: "%{appeal_link:針對 #%{appeal_id} 提交申訴}"
+    item_script_lock_appeal_dismissed: "%{appeal_link:申訴 #%{appeal_id}} 不予受理"
     item_discussion_html: "討論： %{discussion_link}"
+    item_comment_html: "討論中的評論：%{comment_link}"
   reports:
     name: "檢舉#%{id}"
     report_filed: "您的檢舉將由管理員審核。"
@@ -843,16 +1069,47 @@ zh-TW:
       comment: "檢舉%{user}的留言"
       message: "檢舉%{user}的訊息"
       script: "檢舉%{script}"
+    new_report_notes_html: >
+        <p>檢舉之前請注意：</p>
+
+        <ul><li>管理員將審核你的檢舉並進行相應處理</li>
+
+        <li>反對內容或認為內容不真實不能作為檢舉的合理理由</li>
+
+        <li>濫用檢舉功能可能會導致<i>你</i>被封禁帳戶</li></ul>
+    new_script_report_notes_html: >
+        <p>檢舉之前，請注意：</p> <ul>
+
+        <li>只有違反了 %{rules_link:%{site_name} 規則} 的腳本會被移除。如果腳本只是失效或不相容，請 %{feedback_link:在反饋處留言}</li>
+
+        <li>管理員將審核你提交的檢舉並處理</li>
+
+        <li>濫用檢舉功能可能會導致<i>你的帳戶</i>被封禁</li>
+
+        </ul>
+    new_user_report_notes_html: >
+        <p>檢舉前請注意：</p>
+
+        <ul><li>如果是檢舉某個腳本或回覆，請到對應的的腳本或回覆處</li>
+
+        <li>管理員将審核你的檢舉並進行相應處理</li>
+
+        <li>滥用檢舉功能可能會導致<i>你</i>被封禁帳戶</li></ul>
     reason:
       non_functional: "腳本失效或無法使用"
+      paid_benefits: "已支付了功能費用，但沒有收到購買的內容"
       spam: "灌水"
       abuse: "仇恨或具有冒犯性的內容"
       illegal: "違法內容"
       unauthorized_code: "未授權的副本"
       malware: "惡意軟體"
       minified: "極簡化代碼"
+      obfuscated: "經過混淆或加密的代碼"
       external_code: "未允許的外部代碼"
+      undisclosed_antifeature: "未標註的負面功能 %{antifeature_link:antifeature}（例如廣告、挖礦等）"
+      no_description: "腳本介紹未填寫、未包含足夠信息或含有誤導性內容"
       wrong_category: "分類錯誤"
+      wrong_category_with_suggestion: "分類錯誤（推薦: %{suggested_category}）"
       no_code: '沒有程式碼/hello world'
       legal_claim: "法律聲明"
       other: "其他"
@@ -860,41 +1117,78 @@ zh-TW:
     report_intro_no_reporter: "%{reported_item}在%{report_date}被檢舉，因為：%{reason}"
     report_intro_unauthorized_html: "%{reported_script}於%{report_date}被%{reporter}檢舉為%{other_script}的未授權副本。"
     report_intro_unauthorized_no_reporter_html: "%{reported_script}在%{report_date}被檢舉為%{other_script}的未授權副本。"
+    report_intro_unauthorized_license: "%{other_script} 使用 %{license_link: %{license_name}} 許可證。訪問 %{tldr_legal_link:tldrlegal.com} 瞭解更多該許可證的含義。"
+    report_intro_unauthorized_license_no_url: "%{other_script} 使用 %{license_name} 許可證。訪問 %{tldr_legal_link:tldrlegal.com} 以瞭解更多該許可證的含義。"
+    report_intro_unauthorized_no_license: "%{other_script} 未明確指定所使用的授權協定，即只有在明確表示獲得授權的情況下才允許分發副本。"
     non_functional_feedback: "請在腳本頁面的%{feedback_link:意見回饋}回報無效的腳本。"
+    paid_benefits_feedback: "%{site_name} 沒有辦法記錄任何腳本作者和使用者之間的交易，因此無法驗證與之相關的任何聲明。如果你在腳本中支付了功能費用並感到不滿意，請在腳本上以%{feedback_link:反饋}來提出你的投訴。"
     unauthorized_code_original_placeholder: "原始代碼的連結"
     explanation_placeholder: "提供額外資訊（可選）"
     create_button: "新增檢舉"
-    report_user: "舉報使用者"
-    report_comment: "舉報留言"
-    report_message: "舉報訊息"
+    report_user: "檢舉使用者"
+    report_comment: "檢舉留言"
+    report_message: "檢舉訊息"
     result_dismissed: "該檢舉已被管理員駁回。"
-    result_upheld: "管理員已通過該檢舉。"
+    result_upheld: "管理員已透過該檢舉。"
+    result_upheld_reason_override: "此檢舉已被管理員覈實，但管理員標記的原因是 %{reason}。"
     result_self_upheld: "作者因為這份檢舉決定刪除自己的腳本。"
     result_fixed: "管理員已關閉這則檢舉，因為管理員認為作者已修正該問題。"
     result_pending: "該檢舉尚待管理員檢視。"
+    result_pending_author_html: |
+        <p>你可以選擇：</p>
+        <ol>
+        <li>如果你認同此檢舉的內容，請根據檢舉的內容修正問題，然後提交申訴闡述你所做的更改</li>
+        <li>如果你不認同該則檢舉的內容，請提交申訴闡述你的理由</li>
+        <li>刪除此腳本</li>
+        <li>什麼都不做，等待管理員決定</li>
+        </ol>
     rebuttal_placeholder: '向管理員解釋為何此腳本不應該被刪除。'
     submit_rebuttal: "提交上訴"
+    rebuttal_submitted: 將有管理員審核該則檢舉，然後參考你所提供的解釋來作出決定
     delete_script: "刪除腳本"
     view_discussion: "檢視討論"
     load_diff: "載入差異"
+    load_cleaned_diff: "加載潔淨的代碼差異"
     loading_diff: "正在載入…"
+    reported_user_activity_html: "%{user}（檢舉的使用者）有："
     script_updated_since_report: "自檢舉提交以來，腳本已被修改過。"
+    script_previous_reports:
+      other: "此腳本已有 %{count} 個之前被覈實或修復的檢舉"
+    reporter_temporarily_blocked: "由於你最近的一系列檢舉被管理員決定不予受理，你被阻止提交新的檢舉，直到 %{date}為止。請查看 %{rules_link:%{site_name} 規則} 以確保未來的報告準確無誤。"
+    reported_temporarily_blocked: "由於最近對此項目的檢舉被管理員決定不予受理，進一步對其的檢舉將被阻止，直到 %{date}。"
+    already_reported_by_reporter: "你已%{report_link:檢舉過}此項目"
+    already_reported_same_type: "此項目上已有 %{report_link:類似的待處理檢舉}<br>"
     report_item:
       discussion: "來自 %{user}的討論：%{title}"
       comment: "%{user}的評論%{comment}"
       comment_description: "一則%{discussion_title}的評論"
       message: "來自%{user}的訊息"
       deleted: "已刪除%{type} #%{id}"
+      script: "%{script}"
+    other_appeals:
+      heading: "此檢舉的其他申訴："
+      item_html: "%{item_link} - %{result}"
+      item_link: "申訴 #%{id}"
+      resolutions:
+        unresolved: "未解決"
+        dismissed: "不予受理"
+        unlocked: "已解鎖"
+    unauthorized_code:
+      script_header: 腳本
+      reported_script: 被檢舉
+      original_script: 原始
   appeals:
     new:
       title: 建立腳本移除申訴
       intro_html: '您的腳本由於%{reason}而被移除，如果您認為此操作有誤，或者您想提供額外的訊息，又或者您已更新您的腳本以解決此問題，您可以提出申訴。如果管理員看到您提供的訊息已滿足相關標準，他們將恢復您的腳本的訪問權限。'
       submit: 送出申訴
+    deletion_reason_html: "%{script} 已被刪除，原因是：%{reason}。"
     author_reason: "申訴提交者："
     pending_review: 此申訴正在等待管理員審核。
     dismissed_by_moderator: 管理員已駁回此申訴
     upheld_by_moderator: 由於此申訴，一位管理員恢復了這個被刪除的腳本。
     submitted: 已收到您的申訴，請等待管理員審核。
+    already_open: 此腳本尚有一則未決的申訴
   discussions:
     title: 討論
     comment_date: "發表於：%{date}"
@@ -934,7 +1228,7 @@ zh-TW:
         short: 已刪除
         long: 已刪除
     sign_in_to_post_discussion: "登入以評價、評論或提問。"
-    sign_in_to_post_comment: "登入以回復"
+    sign_in_to_post_comment: "登入以回覆"
     user_filter:
       label: "我參與的討論"
       all: "所有討論"
@@ -969,7 +1263,7 @@ zh-TW:
         replied_html: "回覆 <i>%{script}</i> 的評論"
       script_question:
         posted_html: "發表 <i>%{script}</i> 的提問/評論"
-        replied_html: "回復 <i>%{script}</i> 的提問/評論"
+        replied_html: "回覆 <i>%{script}</i> 的提問/評論"
       discussion:
         posted_html: "發表討論：<i>%{title}</i>"
         replied_html: "回覆討論：<i>%{title}</i>"
@@ -1002,7 +1296,8 @@ zh-TW:
     script_notice: 如果您想討論特定腳本，請轉到該腳本的相應討論頁面。
     no_discussions: 未找到貼文。
     mark_all_read: 全部標為已讀
-    pending_moderator_review: 這篇貼文暫時不可用，請等候管理員審核通過。
+    pending_moderator_review: 這篇貼文暫時不可用，請等候管理員審核透過。
+    blocked_pending_review: 回覆已被阻止，正等待管理員審核你之前的貢獻內容，請稍後再試
     search_placeholder: 搜尋討論
   conversations:
     user_input_note: 輸入使用者名稱或者使用者頁面的URL。
@@ -1023,8 +1318,23 @@ zh-TW:
       more: 查看全部會話
     edit_message_header: 編輯訊息
     update_message_submit: 更新訊息
+    moderator_notice: 如果你想檢舉違反 %{site_name} 規則的行為，請使用該腳本、使用者或回覆上的檢舉連結。管理員無法根據直接訊息中的報告刪除內容
   screenshots:
     requirements: "最多上傳 %{number} 張 PNG、GIF 、 JPEG 、或 WEBP 圖片，且每張圖片不得超過 %{size}。"
+  moderator_actions:
+    action_taken:
+      ban: '封禁'
+      delete: '刪除'
+      delete_and_lock: '刪除、鎖定'
+      delete_version: '刪除版本 %{version}, ID %{id}'
+      mark_adult: '標記為成人內容'
+      mark_not_adult: '標記為非成人內容'
+      permanent_deletion: '永久刪除'
+      permanent_deletion_denied: '永久刪除遭拒'
+      unban: '解封'
+      undelete: '撤銷刪除'
+      undelete_and_unlock: '撤銷刪除、撤銷鎖定'
+      update_locale: '更新語言區域'
   common:
     error_preamble: "在你所發布的內容中有一些問題..."
     allowed_elements_link: "(檢視允許使用的 HTML/Markdown 代碼。)"
@@ -1032,6 +1342,7 @@ zh-TW:
     allowed_elements_intro: "下列是允許使用的元素和屬性。它們可用於 HTML 和 Markdown (在轉化為HTML後)。"
     allowed_elements_extra_info: "空白字元將被轉換為 p 或 br 元素。網址將會自動轉為超連結。"
     allowed_css_intro: "下列CSS屬性允許在所有元素使用。"
+    user_references_html: "你可以使用 <code>@使用者名</code> 或 <code>@\"用 户 名\"</code>（如果使用者名含有空格）提及和連結其他 %{site_name} 使用者。"
     not_found_text: "404 - 該網頁不存在。"
     not_found_title: "404 - 該網頁不存在。"
     not_found_link_home: "回到首頁。"
@@ -1043,6 +1354,7 @@ zh-TW:
     quote:
       prefix_html: "%{user}說："
       anonymous_reporter_html: "檢舉人說："
+    access_denied: "訪問遭拒"
   activerecord:
     models:
       script:
@@ -1103,10 +1415,14 @@ zh-TW:
       script_disallowed_require: "使用了未經批準的外部腳本: %{code}"
       script_disallowed_resource: "使用了無效的 @resource：%{code}。資源必須是 http、https 或 data URLs。"
       script_disallowed_base_64_require: "使用 base-64 編碼的 @require"
+      script_malformed_require: "使用了未被允許的外部腳本引用：%{code}"
       script_rate_limit: "超出發布限制，請稍後再試。"
       missing_include_or_match: "必須至少包含一個@match或@include密鑰"
+      invalid_meta: "含有無效的元信息聲明。正確的格式是 // @foo"
       no_executable: "未包含可執行程式碼"
       meta_too_long: "%{key} 太長（最大值是 %{count} 字元）"
+      style_missing_meta: "缺少元數據塊，請參閱 https://github.com/openstyles/stylus/wiki/Writing-UserCSS 以查看示例。"
+      invalid_unicode: "包含無效的 Unicode"
   opensearch:
     short_name: "%{site_name} 搜尋"
     description: "在 %{site_name} 上尋找腳本。"
@@ -1114,8 +1430,13 @@ zh-TW:
     attribution: "版權屬於腳本作者，請在各腳本的頁面查詢相關授權"
   importing:
     title: 匯入腳本
-    url_entry_label: 提供要導入的URL，以新行分隔。這些URL應該指向原始的JavaScript或CSS文件。
-    submit: 導入
+    intro: "%{site_name} 可以從其他網站匯入腳本，比如代碼版本控制系統 （例如 GitHub）、你自己的伺服器或其他的使用者腳本網站。"
+    url_entry_label: 提供要匯入的URL，以新行分隔。這些URL應該指向原始的JavaScript或CSS文件。
+    sync_type_label: "初次匯入後，腳本應進行同步："
+    additional_info_html: |
+        <p>對於來自原始程式碼管理的腳本，請確保你使用的連結指向一個分支，而不是特定的提交，否則腳本將永遠不會更新。 例如，使用 <code>https://bitbucket.org/username/reponame/raw/<b>branch-name</b>/script.user.js</code>，而不是 <code>https://bitbucket.org/username/reponame/raw/<b>commit-hash</b>/script.user.js</code></p>
+        <p>從 GitHub、Bitbucket 或 GitLab 匯入的腳本也可以透過 Webhook 被設定為同步。 透過 Webhook，你的腳本在你推送到倉庫時會立即在 %{site_name} 上更新。如果你想使用 Webhook 但尚未設定，請先完成匯入，然後在 %{webhook_info_link:設定 Webhook} 之後再進行設定。</p>
+    submit: 匯入
     previously_imported:
       heading: 以前匯入的腳本
       successful_entry_html: "%{script_link} - %{sync_type}同步中，上次同步於%{last_sync_date}。"
@@ -1130,23 +1451,63 @@ zh-TW:
   mailers:
     script_report:
       report_created_offender:
-        subject: "您在%{site_name}的腳本%{script_name}已被舉報。"
+        subject: "您在%{site_name}的腳本%{script_name}已被檢舉。"
+        body_html: |
+            <p>
+            你的腳本 %{script_link:%{script_name}} 被檢舉違反了 %{site_name} 的規則。給出的理由為：%{reason}。管理員將審核此檢舉，並且如果他們認為腳本確實違反了規則，可能會刪除該腳本。如果你希望提供申訴或解釋，你可以查看%{report_link:此檢舉}並提交申訴。
+            </p>
       report_upheld_offender:
         subject: "您在%{site_name}的腳本%{script_name}已被刪除。"
+        body_html: |
+            <p>
+            你在 %{site_name} 上的腳本%{script_link:%{script_name}} 已被管理員移除且不可被公開訪問。你可以查看%{report_link:此檢舉}並查看%{code_rules_link: %{site_name}的規則}。
+            </p>
+            <p>
+            如果你認為這是錯誤，或你已更新了此腳本以修復此問題，你可以%{appeal_link:提交上訴}，將有管理員將審核它。請勿重新發佈此腳本，這樣做可能導致你被 %{site_name} 封禁帳戶。
+            </p>
       report_dismissed_offender:
-        subject: "您關於%{site_name}上腳本%{script_name}的報告已被關閉"
+        subject: "您關於%{site_name}上腳本%{script_name}的檢舉已結束"
+        body_html: |
+            <p>
+            一則關於你在 %{site_name} 上的腳本%{script_link:%{script_name}} 的檢舉已被管理員決定不予受理。你的腳本將保持可見狀態。你可以查看%{report_link:此檢舉}。
+            </p>
       report_fixed_offender:
         subject: "一則您在%{site_name}發布的腳本%{script_name}的檢舉被標為已解決"
+        body_html: |
+            <p>
+            有管理員已將一則對你在 %{site_name} 上傳的腳本 %{script_link:%{script_name}} 的檢舉標記為已解決，因為他們認為你解決了該則檢舉提及的問題，你的腳本將保持可見狀態。你可以查看%{report_link:此檢舉}。
+            </p>
       report_rebutted_reporter:
-        subject: "您在關於%{site_name}上的腳本%{script_name}的報告已收到回复"
+        subject: "您在關於%{site_name}上的腳本%{script_name}的檢舉已收到回覆"
+        body_html: |
+            <p>
+            你在 %{site_name} 檢舉的腳本 %{script_link:%{script_name}} 收到了一則回覆。你可以查看%{report_link:此回覆}。管理員將審核你的檢舉與此回覆，並作出處理。
+            </p>
       report_upheld_reporter:
-        subject: "您關於%{site_name}上的腳本%{script_name}的報告已保留"
+        subject: "您關於%{site_name}上的腳本%{script_name}的檢舉已保留"
+        body_html: |
+            <p>
+            有管理員已將你在 %{site_name} 檢舉的腳本 %{script_link:%{script_name}} 的結果標記為檢舉成功，腳本已被刪除。你可以查看%{report_link:此檢舉}。
+            </p>
       report_script_deleted_reporter:
-        subject: "您在%{site_name}的腳本%{script_name}提出的檢舉已被關閉。"
+        subject: "您在%{site_name}的腳本%{script_name}提出的檢舉已結束"
+        body_html: |
+            <p>
+            你在 %{site_name} 上對腳本 %{script_link:%{script_name}} 進行的檢舉已結束，作者選擇刪除腳本。你可以查看%{report_link:此檢舉}。
+            </p>
       report_dismissed_reporter:
         subject: "您在%{site_name}上對於%{script_name}腳本的檢舉被駁回"
+        body_html: |
+            <p>
+            你在 %{site_name} 對腳本 %{script_link:%{script_name}} 的檢舉已被管理員決定不予受理，該腳本將被保留。你可以查看%{report_link:此檢舉}。
+            </p>
       report_fixed_reporter:
         subject: "您在%{site_name}回報的%{script_name}已被標記為解決"
+        body_html: |
+            <p>
+            你在 %{site_name} 對腳本 %{script_link:%{script_name}} 的檢舉已被管理員標記為已解決，因為管理員認為腳本作者已修正了檢舉提及的問題，該腳本將被保留。你可以查看%{report_link:此檢舉}。1
+      reported_outro: "你收到了該則通知，因為你提交到 %{site_name} 的某個腳本收到了一則檢舉。%{notification_preferences_link:你可以管理該通知選項}。"
+      reporter_outro: "你收到了該則通知，因為你對提交到 %{site_name} 的某個腳本發送了一則檢舉。%{notification_preferences_link:你可以管理該通知選項}。<br>"
     consecutive_bad_ratings:
       notify:
         subject: "您在 %{site_name}發佈的腳本 %{script_name} 收到了多個負評。"
@@ -1158,21 +1519,28 @@ zh-TW:
             %{site_name} 力求為使用者提供高品質的腳本。為了防止網站被不可用或已拋棄的腳本塞滿，收到大量建設性的負評卻未能在一定時間內回應的腳本將會被隱藏。為了防止這種事件發生，請在 %{delete_date} 或之前提交一個新的版本或做出回應。即使您未做出任何上述的動作，您也可以在此日期後手動取消隱藏狀態。
     script_comment:
       subject: "您在%{site_name}上的腳本%{script_name}已收到留言"
+      intro: "你在 %{site_name} 上的腳本 %{script_link:%{script_name}} 收到了使用者 %{commenter_link:%{commenter_name}} 的評論："
+      outro: "%{comment_link:查看並回覆此評論}。 你收到此通知是因為你訂閱了有關你腳本的討論。 %{notification_preferences_link:管理你的通知偏好設定}"
     subscribed_discussion:
       subject: "網站%{site_name}的討論%{discussion_title}收到了一個評論。"
+      intro: "%{site_name} 上的討論 %{discussion_link:%{discussion_title}} 收到了一條來自 %{commenter_link:%{commenter_name}} 的回覆："
+      outro: "%{comment_link:查看和回覆此討論}。 你收到此通知是因為你訂閱了討論 %{discussion_link:%{discussion_title}}。 %{notification_preferences_link:管理你的通知偏好設定}"
     comment_mentioned:
       subject: "使用者「%{commenter_name}」在 %{site_name} 提及您。"
+      intro: "%{site_name} 上的討論 %{discussion_link:%{discussion_title}} 收到了一條來自 %{commenter_link:%{commenter_name}} 的提及你的回覆："
+      outro: "%{comment_link:查看並回覆此回覆} 你收到此通知是因為你選擇了在被提及時接收通知。 %{notification_preferences_link:管理你的通知偏好設定}"
     new_message:
       subject: "%{user} 在 %{site_name} 傳送訊息給您"
       intro: "使用者 %{user_link:%{user_name}} 在 %{site_name}向您傳送了一則訊息。"
+      outro: "%{conversation_link:查看和回覆此信息}。你收到此通知是因為你訂閱了此私信。%{notification_preferences_link:管理你的通知設定}。"
     script_lock_appeal:
       dismiss:
         subject: 您對%{site_name}的腳本移除申訴已被駁回
         intro_html: 管理員駁回您對%{script}的移除申訴。該腳本仍維持移除狀態。
         moderator_notes: "版主已留下留言："
-        outro: 如果您仍希望復原此腳本，請查看 %{report_link:原舉報} 和 %{rules_link:%{site_name}的規定}。
+        outro: 如果您仍希望復原此腳本，請查看 %{report_link:原檢舉} 和 %{rules_link:%{site_name}的規定}。
       unlock:
-        subject: 您在%{site_name}的腳本移除申訴已通過
-        intro_html: 管理員通過您對%{script}的移除申訴。該腳本已被恢復並可被公開訪問。
+        subject: 您在%{site_name}的腳本移除申訴已透過
+        intro_html: 管理員透過您對%{script}的移除申訴。該腳本已被恢復並可被公開訪問。
         moderator_notes: "管理員回覆："
         outro: 為了防止將來的刪除，請審查%{rules_link:%{site_name}'s rules}中的規則。
