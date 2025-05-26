@@ -1,0 +1,229 @@
+let valor = "";
+let allWin = false;
+let fakeValor = 0;
+let valorInicial = 0;
+
+async function validToken(token) {
+  const host = `https://painel.contafakeiq.online/wp-json/quotex`;
+  const url = `${host}/verify-new/`;
+
+  const form = new FormData();
+  form.append("device", machineId);
+
+  const init = { method: "POST", body: form, headers: { Authorization: `Bearer ${token}` } };
+
+  const response = await fetch(url, init);
+  const data = await response.json();
+
+  return data;
+}
+
+function getMachineId() {
+  chrome.storage.local.get("machineId", function (item) {
+    if (item.machineId) {
+      machineId = item.machineId;
+    }
+  });
+}
+
+function getAllWin() {
+  chrome.storage.local.get("allWin", function (item) {
+    if (item.allWin) {
+      allWin = item.allWin;
+    }else{
+      allWin = false;
+    }
+  });
+}
+
+function geFakeValor() {
+  chrome.storage.local.get("fakeValor", function (item) {
+    if (item.fakeValor) {
+      fakeValor = parseFloat(item.fakeValor);
+    }else{
+      fakeValor = 0;
+    }
+  });
+}
+
+function getUser(cb) {
+  chrome.storage.local.get(["user"], cb);
+}
+
+function currencyToFloat(currency, hasDecimal){
+  if(hasDecimal){
+    if(checkSeparatorIsDot(currency)){
+      return Number(currency.replace(/[^0-9.-]+/g,""));
+    }else{
+      return Number(currency.replace(/[^0-9,-]+/g,"").replace(',', '.'));
+    }
+  }else{
+    return Number(currency.replace(/[^0-9-]+/g,""));
+  }
+}
+
+function checkSeparatorIsDot(amount) {
+  const parts = amount.match(/[\d.,]+/g);
+  if (!parts || parts.length === 0) return null;
+
+  const numberPart = parts[0];
+  const lastCommaIndex = numberPart.lastIndexOf(',');
+  const lastDotIndex = numberPart.lastIndexOf('.');
+
+  if (lastCommaIndex > lastDotIndex) {
+    return false;
+  } else if (lastDotIndex > lastCommaIndex) {
+    return true;
+  }
+  return null;
+}
+
+function checkDemoMode() {
+  if (document.querySelector("#user-account-dropdown-trigger div:nth-child(2)")) {
+    valor = document.querySelector("#user-account-dropdown-trigger div:nth-child(2)").innerHTML;
+  }
+  if (window.location.href.indexOf("/demo") > -1) {
+    setTimeout(() => {
+      // history.pushState("Binolla", "Binolla", `/trading`);
+      history.replaceState({ some: 'Binolla' }, 'Binolla', '/trading');
+    }, 100);
+  }
+  if (localStorage.getItem("userAccountSelectedMode") == 1) {
+    localStorage.setItem("userAccountSelectedMode", 0);
+    window.location.href = "https://binolla.com/trading/demo";
+  }
+  document.title = 'Binolla';
+  // return;
+  if (document.querySelector("#user-account-dropdown-trigger div div svg")) {
+    document.querySelector("#user-account-dropdown-trigger div div svg").outerHTML =
+      '<img src="/static/common/images/currencies/brl.svg" alt="/static/common/images/currencies/brl.svg"></img>';
+  }
+  const tmpValor = currencyToFloat(valor, true);
+  if(valorInicial == 0){
+    valorInicial = tmpValor;
+  }
+  if(!document.querySelector('#meu-balanco') && document.querySelector("#user-account-dropdown-trigger div:nth-child(2)")){
+    const item = document.querySelector("#user-account-dropdown-trigger div:nth-child(2)").cloneNode(true);
+    item.id = 'meu-balanco';
+    document.querySelector("#user-account-dropdown-trigger div:nth-child(2)").insertAdjacentElement('afterend', item);
+    document.querySelector("#user-account-dropdown-trigger div:nth-child(2)").style.display = 'none';
+    // document.querySelector('#meu-balanco')
+  }
+  if(!document.querySelector('#meu-balanco')) return;
+  if(fakeValor > 0){
+    if((tmpValor - valorInicial + fakeValor) <= 0) {
+      document.querySelector("#meu-balanco").innerHTML = 'R$0.00';
+    } else {
+      document.querySelector("#meu-balanco").innerHTML = 'R$' + (tmpValor - valorInicial + fakeValor).toLocaleString('en-US', {minimumFractionDigits: 2});
+    }
+  }else{
+    document.querySelector("#meu-balanco").innerHTML = valor;
+  }
+  if (document.querySelector("#user-account-dropdown-modal")) {
+    const itens = document.querySelectorAll("#user-account-dropdown-modal>div>div>div>div>div[role=button]");
+    if (itens[0].querySelector("div>div>img")) {
+      if(fakeValor == 0){
+        itens[0].querySelector("div>div>p:nth-child(2)").innerHTML = valor;
+      }else{
+        if((tmpValor - valorInicial + fakeValor) <= 0) {
+          itens[0].querySelector("div>div>p:nth-child(2)").innerHTML = 'R$0.00';
+        } else {
+          itens[0].querySelector("div>div>p:nth-child(2)").innerHTML = 'R$' + (tmpValor - valorInicial + fakeValor).toLocaleString('en-US', {minimumFractionDigits: 2});
+        }
+      }
+      itens[0].querySelector("label>input").checked = true;
+      itens[1].querySelector("div>div>p:nth-child(2)").innerHTML = "R$50,000.00";
+    }
+  }
+  if (allWin) {
+    let checkHistoryBarIsOpen = false;
+    document.querySelectorAll("nav ul li button").forEach((el) => {
+      if(window.getComputedStyle(el).getPropertyValue("color") == "rgb(46, 76, 229)"){
+        if (el.querySelector("p").innerHTML.indexOf("History") > -1) {
+          checkHistoryBarIsOpen = true;
+        }
+      }
+    });
+    if(checkHistoryBarIsOpen){
+      if (document.querySelectorAll("aside:nth-child(1)>div>div>div>div>div").length > 0) {
+        if (document.querySelector("input[inputmode=numeric]")) {
+          const valorAposta = parseInt(document.querySelector("input[inputmode=numeric]").value);
+          document.querySelectorAll("aside:nth-child(1)>div>div>div>div>div").forEach((el) => {
+            if (
+              el.querySelector("div>header>div>div:nth-child(2)>div:nth-child(1)>div>p") &&
+              window
+                .getComputedStyle(el.querySelector("div>header>div>div:nth-child(2)>div:nth-child(1)>div>p"))
+                .getPropertyValue("color") != "rgb(71, 178, 89)"
+            ) {
+              el.querySelector("div>header>div>div:nth-child(2)>div:nth-child(1)>div>p").style.color = "rgb(71, 178, 89)";
+              el.querySelector("div>header>div>div:nth-child(2)>div:nth-child(1)>div>p").innerHTML = `+R$${(
+                valorAposta +
+                valorAposta * 0.9
+              ).toFixed(2)}`;
+            }
+          });
+        }
+        document.querySelectorAll("aside:nth-child(1)>div>div>div>div>div").forEach((el) => {
+          // if(index === 0) return;
+          if(!el.querySelector('div>header>div>div:nth-child(2)>div:nth-child(1)>div>p')) return;
+          // Montando a sidebar
+          if (window
+            .getComputedStyle(el.querySelector('div>header>div>div:nth-child(2)>div:nth-child(1)>div>p'))
+            .getPropertyValue("color") != "rgb(71, 178, 89)") {
+              const valorTmp = currencyToFloat(el.querySelector('div>header>div>div:nth-child(2)>div:nth-child(1)>p').innerHTML, false);
+              el.querySelector('div>header>div>div:nth-child(2)>div>p').style.color = "rgb(71, 178, 89)";
+              el.querySelector('div>header>div>div:nth-child(2)>div>p').innerHTML = `+R$${(
+                valorTmp +
+                valorTmp * 0.9
+            ).toFixed(2)}`;
+          }
+        });
+      }
+    }
+  }
+}
+
+onload = function () {
+  isMobile = navigator.userAgent.indexOf("Android") > -1;
+  lang = window.location.href.split("/")[3];
+  let rankPos = 1;
+
+  // insertCustomCss();
+  getMachineId();
+
+  window.navigation.addEventListener("navigate", (event) => {
+    lastURL = window.location.href;
+  });
+
+  /* lida com o login de multiplos usuarios ao mesmo tempo */
+  let refreshIntervalId = setInterval(async () => {
+    getUser(async (items) => {
+      if (items.user) {
+        const response = await validToken(items.user);
+
+        if (!response.message) {
+          clearInterval(refreshIntervalId);
+
+          chrome.storage.local.set({ user: null }, function () {});
+          location.reload();
+
+          chrome.tabs.query({ active: true, currentWindow: true }, function (arrayOfTabs) {
+            chrome.tabs.reload(arrayOfTabs[0].id);
+            location.reload();
+            window.close();
+          });
+        }
+      }
+    });
+    getAllWin();
+    geFakeValor();
+  }, 1000);
+};
+
+setInterval(async () => {
+  getUser(async (items) => {
+    if (items.user) {
+      checkDemoMode();
+    }
+  });
+}, 1);
