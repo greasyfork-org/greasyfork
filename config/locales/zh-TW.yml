@@ -819,13 +819,13 @@ zh-TW:
           </ul>
           注意：如果你的腳本基於其他人編寫的代碼，則你可能會受到你選擇的許可證的限制
       supportURL: "使用者能取得腳本的技術支援之處（例如：臭蟲追蹤系統、討論區、電子郵件信箱等等）。技術支援網址將會顯示在腳本的反饋頁。"
-      contributionURL_html: "腳本作者的捐贈網址。捐贈網址會顯示在腳本的反饋頁。網址可以是 http、https 或者比特幣協定網址。例如：要連結到 PayPal 捐贈頁面，可使用 <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a> 的格式，請用您自己的電子郵件位址替代前述範例的位址。"
+      contributionURL_html: "腳本作者的捐贈網址。捐贈網址會顯示在腳本的意見回饋頁。網址可以是 http、https 或者比特幣協定網址。例如：要連結到 PayPal 捐贈頁面，可使用 <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a> 的格式，請用您自己的電子郵件位址替代前述範例的位址。"
       contributionAmount_html: "建議的捐贈金額，與 <code>@contributionURL</code> 一起使用。"
       compatible_html: "標示此腳本與哪些瀏覽器相容。相容性資訊將會顯示在腳本的頁面。可使用例如：<code>@compatible firefox 必須停用彈出型視窗封鎖器</code> 的格式來記錄關於相容性的其他資訊。可使用的瀏覽器有：%{browsers}。"
       incompatible_html: "標示此腳本與哪些瀏覽器不相容。相容性資訊將會顯示在腳本的頁面。可使用例如：<code>@incompatible firefox 從 Firefox 23 起失效</code> 的格式來記錄關於相容性的其他資訊。可使用的瀏覽器有：%{browsers}。"
       antifeature_html: |
           披露會為腳本作者而非使用者帶來額外收益的功能。你可以透過在腳本的元數據中添加 <code>@antifeature 類型 描述</code> 值的方法披露。其中<i>類型</i>是必須填寫的內容，而 <i>描述</i>則可以留空。%{antifeatures_link:點擊此處瞭解} %{site_name} 讀取的 <i>類型</i>的相關信息。
-      antifeature_localized_html: "你可以使用多種語言聲明 <code>@antifeature</code> 屬性，其中 XX 為 <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 中定義的兩字母代碼</a>，而 YY 指可選的 <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 地區代碼</a>。<code>@antifeature</code>會根據使用者瀏覽的語言而被蓋過。"
+      antifeature_localized_html: "你可以使用多種語言來聲明 <code>@antifeature</code> 屬性，其中 XX 為 <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 中定義的兩字母代碼</a>，而 YY 指可選的 <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 地區代碼</a>。<code>@antifeature</code>會根據使用者瀏覽的語言而被蓋過。"
     writing_user_scripts:
       title: "如何撰寫腳本"
       content_html: "<p>撰寫使用者腳本需要 JavaScript 相關知識。<a href=\"http://wiki.greasespot.net/Tutorials\">GreaseSpot 維基上的教學</a> 是個不錯的開端學習 JavaScript 和使用者腳本。察看別人的腳本也很有幫助。你或許對於 %{code_rules_link} 和 %{meta_keys_link} 有興趣。如果需要開發腳本上的幫助，隨時 %{ask_in_forum_link}。</p><p>若要新增腳本至 %{site_name}，需要申請一個帳號。進入你的 %{user_page_link}，點選 %{post_new_script_link} 連結</p>"
@@ -859,7 +859,7 @@ zh-TW:
       adult_content_rule: 腳本若包含成人內容、或執行的網站中有成人內容，作者應將其正確標示讓使用者選擇是否要顯示它們。
       reposting_deleted: 請勿重新發布因違反規則而被刪除的腳本； 請改用申訴功能。 重新發布已刪除的腳本可能會導致禁止。
       advertising_in_description: 腳本作者不得在 Greasy Fork 的頁面，如腳本描述頁面，放置廣告。推廣腳本作者的個人主頁、代碼倉庫、Discord、微信等內容是被允許的
-      reporting: 如果你發現有腳本未能遵守上述規則，請訪問腳本的反饋頁面，並選擇“檢舉腳本”來檢舉
+      reporting: 如果你發現有腳本未能遵守上述規則，請訪問腳本的意見回饋頁連結，並選擇“檢舉腳本”來檢舉。
       excessive_updates: 腳本作者不得過度更新腳本以在腳本列表中惡意競爭排名
       non_functional_includes_html: 腳本不得包含用於它們不提供功能的網站的 <code>@include</code>s 或 <code>@match</code>es
       content_language: 腳本的名稱、描述和其他內容必須標好相應的語言
@@ -928,10 +928,10 @@ zh-TW:
           若新版本缺失此數據，而之前的版本有該數據，則會插入該數據</li><li>CRLF 和 CR 換行將被轉換為標準的 Unix 風格換行符</li></ul>
     site_feedback_link: "回報關於 %{site_name} 的問題或想法。"
     credits:
-      title: "命運譜寫的共演者"
-      authors_credit: "在腳本之海中狂亂綻放的創作者——%{site_name} 的輪迴因他們轉動"
-      developers_credit: "網站 %{site_name} 什麼的… 不過是「報告壞掉代碼的我們」和尋找錯誤音符的%{developers_link:這些開發者們}…"
-      translators_credit: "這些 %{site_name} 的翻譯… 是一群在語言迷宮中跌跌撞撞的迷子 %{translators_link:Greasy Translation Force}… 但我們會繼續譜寫，衝擊夢想，直到找到出口："
+      title: "貢獻者"
+      authors_credit: "%{site_name} 的成功離不開那些無私奉獻的腳本作者。"
+      developers_credit: "%{site_name} 本身由 %{developers_link:這些開發者} 構建，並得到了所有回報錯誤和提出改進建議者的技術支持。"
+      translators_credit: "%{site_name} 的繁體中文翻譯由 %{translators_link:Transifex 上的 Greasy 翻譯組} 提供："
       icons_credit: "瀏覽器圖示是來自 %{browserlogos}。"
     help_with_greasymonkey: "Greasemonkey 疑難排解"
     help_with_tampermonkey: "Tampermonkey的相關幫助"
