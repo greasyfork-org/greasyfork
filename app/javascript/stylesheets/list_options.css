@@ -20,9 +20,9 @@
   display: block;
 }
 .list-option-group a:hover, .list-option-group a:focus {
-  background: linear-gradient(white, #F6F6F6);
+  background: linear-gradient(var(--list-option-hover-background-color-gradient-1), var(--list-option-hover-background-color-gradient-2));
   text-decoration: none;
-  box-shadow: inset 0 -1px #DDDDDD, inset 0 1px #EEEEEE;
+  box-shadow: inset 0 -1px var(--list-option-hover-box-shadow-top), inset 0 1px var(--list-option-hover-box-shadow-bottom);
 }
 .list-option-group .list-current {
   border-left: 7px solid #800;
