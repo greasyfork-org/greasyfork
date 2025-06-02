@@ -278,7 +278,7 @@ label.subselection-radio-title {
 }
 .pagination > *, .script-list + .pagination > *, .user-list + .pagination > * {
   display: inline-block;
-  background-color: #F2E5E5;
+  background-color: var(--pagination-background-color);
   padding: 0.5em;
   border-radius: 5px;
   text-decoration: none;
@@ -294,7 +294,7 @@ label.subselection-radio-title {
   background-color: transparent;
 }
 .pagination > a:hover, .pagination > a:focus {
-  background-color: #e2c5c5;
+  background-color: var(--pagination-hover-background-color);
 }
 @media screen and (max-width: 400px) {
   .pagination, .script-list + .pagination, .user-list + .pagination {
