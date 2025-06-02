@@ -38,6 +38,18 @@
   --chart-border-color: rgb(220,220,220);
 
   --highlight-background-color: #ffc;
+
+  --rating-icon-good-border-color: rgb(77, 166, 77);
+  --rating-icon-good-background-color: rgb(230, 242, 230);
+  --rating-icon-good-color: rgb(0, 128, 0);
+
+  --rating-icon-ok-border-color: rgb(211, 211, 77);
+  --rating-icon-ok-background-color: rgb(255, 255, 230);
+  --rating-icon-ok-color: rgb(192, 192, 0);
+
+  --rating-icon-bad-border-color: rgb(255, 77, 77);
+  --rating-icon-bad-background-color: rgb(255, 230, 230);
+  --rating-icon-bad-color: rgb(255, 0, 0);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -71,5 +83,17 @@
     --list-option-background-color-gradient-2: #222222;
 
     --highlight-background-color: #550;
+
+    --rating-icon-ok-border-color: rgb(135, 135, 33);
+    --rating-icon-ok-background-color: rgb(49, 49, 0);
+    --rating-icon-ok-color: rgb(255, 255, 70);
+  
+    --rating-icon-bad-border-color: rgb(155, 0, 0);
+    --rating-icon-bad-background-color: rgb(32, 0, 0);
+    --rating-icon-bad-color: rgb(255, 26, 26);
+  
+    --rating-icon-good-border-color: rgb(58, 124, 58);
+    --rating-icon-good-background-color: rgb(31, 49, 25);
+    --rating-icon-good-color: rgb(114, 255, 114);
   }    
 }
