@@ -18,7 +18,6 @@
   --inactive-item-background-color: #F5F5F5;
 
   --code-background-color: #F2E5E5;
-  --code-border-color: #E6DDD6;
 
   --user-content-background-color-gradient-1: #fcf1f1;
   --user-content-background-color-gradient-2: #FFF;
@@ -79,9 +78,13 @@
   --list-option-button-background-color: white;
   --list-option-button-color: black;
   --list-option-button-border-color: #BBB;
-
   --list-option-button-background-color-gradient-1: white;
   --list-option-button-background-color-gradient-2: #F6F6F6;
+
+  --code-container-border-color: #E6DDD6;
+
+  --prettyprint-background-color: white;
+  --prettyprint-color: black;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -106,7 +109,6 @@
     --inactive-item-background-color: #333;
 
     --code-background-color: #321919;
-    --code-border-color: #4C3B2E;
 
     --user-content-background-color-gradient-1: #2e1111;
     --user-content-background-color-gradient-2: #000;
@@ -165,5 +167,10 @@
     --list-option-button-border-color: #43494c;
     --list-option-button-background-color-gradient-1: #232526;
     --list-option-button-background-color-gradient-2: #181a1b;
+
+    --code-container-border-color: #4c3b2e;
+
+    --prettyprint-background-color: #181a1b;
+    --prettyprint-color: #e8e6e3;
   }
 }
