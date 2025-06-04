@@ -1205,6 +1205,18 @@ fr:
       message: "Un message de %{user}"
       deleted: "Supprimé %{type} #%{id}"
       script: "%{script}"
+    other_appeals:
+      heading: "Autres appels pour ce rapport:"
+      item_html: "%{item_link} - %{result}"
+      item_link: "appel #%{id}"
+      resolutions:
+        unresolved: "non résolu"
+        dismissed: "révoque"
+        unlocked: "dévérouiller"
+    unauthorized_code:
+      script_header: Script
+      reported_script: Signaler
+      original_script: Original
   appeals:
     new:
       title: Appel de suppression de nouveau script
@@ -1353,6 +1365,17 @@ fr:
     moderator_notice: Si vous souhaitez signaler une violation des règles de %{site_name}, utilisez le lien Signaler sur ce script, cet utilisateur ou ce commentaire. Les modérateurs ne peuvent pas supprimer le contenu basé sur les rapports via des messages directs.
   screenshots:
     requirements: "Maximum %{number} images PNG, GIF, JPEG ou WebP, inférieures à %{size} chacune."
+  moderator_actions:
+    action_taken:
+      ban: 'Ban'
+      delete: 'Supprimer'
+      delete_and_lock: 'Supprimer et verrouiller'
+      delete_version: 'Supprimer la version %{version}, ID %{id}'
+      permanent_deletion: 'Suppression définitive'
+      unban: 'Dé-ban'
+      undelete: 'Restaurer'
+      undelete_and_unlock: 'Restaurer et déverrouiller'
+      update_locale: 'Mise à jour locale'
   common:
     error_preamble: "Il y a eu des problèmes avec ce que vous avez posté…"
     allowed_elements_link: "(Voir les balises autorisées.)"
@@ -1372,6 +1395,7 @@ fr:
     quote:
       prefix_html: "%{user} a dit:"
       anonymous_reporter_html: "Le rapport dit :"
+    access_denied: "Accès refusé."
   activerecord:
     models:
       script:
