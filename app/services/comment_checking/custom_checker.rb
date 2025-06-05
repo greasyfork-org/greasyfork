@@ -9,7 +9,8 @@ module CommentChecking
        'Keto ',
        'hbyvipxnzj.buzz',
        'gmkm.zrnq.one',
-       'Cocaine'].each do |snippet|
+       'Cocaine',
+       'Coinbase'].each do |snippet|
         return CommentChecking::Result.new(true, text: "Matched custom check for '#{snippet}'.") if comment.text.include?(snippet)
       end
 
