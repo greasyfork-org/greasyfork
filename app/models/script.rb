@@ -396,11 +396,11 @@ class Script < ApplicationRecord
     update_children(:antifeatures, new_antifeature_data)
 
     new_subresource_data = []
-    [meta['require'], meta['resource']&.map { |v| v.split(/\s+/, 2).last }]
-      .flatten
-      .compact
-      .uniq
-      .each do |url|
+    urls_and_hashes = [meta['require'], meta['resource']&.map { |v| v.split(/\s+/, 2).last }]
+                      .flatten
+                      .compact
+                      .uniq
+                      .filter_map do |url|
       next unless url.starts_with?('https:') || url.starts_with?('http:')
 
       url, integrity_hashes = url.split('#', 2)
@@ -409,7 +409,11 @@ class Script < ApplicationRecord
         integrity_hashes = integrity_hashes.map { |entry| entry.split(/[=-]/, 2) }
         integrity_hashes = integrity_hashes.select { |algorithm, hash| algorithm.present? && hash.present? }
       end
-      subresource = Subresource.find_or_initialize_by(url:)
+      [url, integrity_hashes]
+    end
+    existing_subresources = Subresource.where(url: urls_and_hashes.map(&:first))
+    urls_and_hashes.each do |url, integrity_hashes|
+      subresource = existing_subresources.find { |sub| sub.url == url } || Subresource.new(url:)
       if integrity_hashes&.any?
         integrity_hashes.each { |algorithm, hash| new_subresource_data << { subresource:, algorithm:, encoding: /\A[0-9a-f]+\z/.match?(hash) ? 'hex' : 'base64', integrity_hash: hash } }
       else
