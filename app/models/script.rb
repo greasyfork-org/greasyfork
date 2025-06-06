@@ -712,7 +712,7 @@ class Script < ApplicationRecord
   end
 
   def bad_integrity_hashes
-    subresource_usages_with_hashes = subresource_usages.where.not(integrity_hash: nil).load
+    subresource_usages_with_hashes = subresource_usages.where.not(integrity_hash: nil).includes(:subresource).load
     return [] unless subresource_usages_with_hashes.any?
 
     sris = subresource_usages_with_hashes.filter_map do |subresource_usage|
