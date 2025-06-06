@@ -2,23 +2,23 @@
   <%= t('users.enable_2fa.intro', site_name:) %>
 </p>
 
-<% opt_url = current_user.otp_provisioning_uri(current_user.email, issuer: site_name) %>
+<% otp_url = current_user.otp_provisioning_uri(current_user.email, issuer: site_name, otp_secret: @new_otp_secret) %>
 
 <h3><%= t('users.enable_2fa.qr_heading') %></h3>
 
-<%= image_tag(qr_path(url: opt_url, format: :svg), class: 'qr-code') %>
+<%= image_tag(qr_path(url: otp_url, format: :svg), class: 'qr-code') %>
 
 <h3><%= t('users.enable_2fa.url_heading') %></h3>
 
 <p>
-  <%= it('users.enable_2fa.url_info', auth_link: opt_url) %>
+  <%= it('users.enable_2fa.url_info', auth_link: otp_url) %>
 </p>
 
 <h3><%= t('users.enable_2fa.manual_heading') %></h3>
 
 <p>
   <%= t('users.enable_2fa.manual_entry_code_name', code_name: site_name) %><br>
-  <%= t('users.enable_2fa.manual_entry_your_key', key: current_user.otp_secret) %><br>
+  <%= t('users.enable_2fa.manual_entry_your_key', key: @new_otp_secret) %><br>
   <%= t('users.enable_2fa.manual_entry_type_of_key') %>
 </p>
 
@@ -29,6 +29,7 @@
 
   <%= form_tag(user_confirm_2fa_path, method: :patch) do %>
     <input type="hidden" name="return_to" value="<%= @return_to %>">
+    <input type="hidden" name="otp_secret" value="<%= @new_otp_secret %>">
     <input name="code" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code" required>
     <input type="submit" value="<%= t('users.enable_2fa.verify_code') %>">
   <% end %>

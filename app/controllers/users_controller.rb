@@ -378,8 +378,7 @@ class UsersController < ApplicationController
 
   def enable_2fa
     @return_to = params[:return_to]
-    current_user.otp_secret = User.generate_otp_secret
-    current_user.save!
+    @new_otp_secret = User.generate_otp_secret
   end
 
   def disable_2fa
@@ -397,9 +396,11 @@ class UsersController < ApplicationController
   end
 
   def confirm_2fa
+    current_user.otp_secret = params[:otp_secret]
+    current_user.save!
     unless current_user.validate_and_consume_otp!(params[:code])
       flash[:alert] = t('users.2fa_enable_code_incorrect')
-      @return_to = params[:return_to]
+      enable_2fa
       render :enable_2fa
       return
     end

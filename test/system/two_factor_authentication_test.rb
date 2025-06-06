@@ -24,19 +24,25 @@ class TwoFactorAuthenticationTest < ApplicationSystemTestCase
     user = User.first
     user.password = user.password_confirmation = 'password'
     user.otp_required_for_login = true
+    user.otp_secret = User.generate_otp_secret
     user.save!
 
     login_as(user)
 
-    visit user_path(user, locale: :en)
-    click_link 'Edit sign in methods'
-    click_button 'Regenerate 2FA'
+    assert_no_changes -> { user.reload.otp_secret } do
+      visit user_path(user, locale: :en)
+      click_link 'Edit sign in methods'
+      click_button 'Regenerate 2FA'
+      assert_content 'Add Greasy Fork to your two-factor authentication (2FA) app'
+    end
 
-    User.any_instance.expects(:validate_and_consume_otp!).returns(true)
-    fill_in 'code', with: '123456'
-    click_button 'Verify code'
+    assert_changes -> { user.reload.otp_secret } do
+      User.any_instance.expects(:validate_and_consume_otp!).returns(true)
+      fill_in 'code', with: '123456'
+      click_button 'Verify code'
 
-    assert_content '2FA has been enabled'
+      assert_content '2FA has been enabled'
+    end
     assert user.reload.otp_required_for_login
   end
 
