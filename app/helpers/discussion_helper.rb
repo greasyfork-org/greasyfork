@@ -152,6 +152,6 @@ module DiscussionHelper
              label
            end
 
-    tag.li(class: "list-option#{is_link ? '' : ' list-current'}") { text }
+    tag.li(class: "list-option#{' list-current' unless is_link}") { text }
   end
 end

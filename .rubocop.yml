@@ -31,6 +31,9 @@ Lint/SuppressedException:
 Lint/UnusedMethodArgument:
   AllowUnusedKeywordArguments: true
 
+Lint/UselessDefaultValueArgument:
+  AllowedReceivers: ['Rails.cache']
+
 Metrics/AbcSize:
   Enabled: false
 
@@ -78,6 +81,9 @@ Naming/AccessorMethodName:
 
 Naming/MethodParameterName:
   MinNameLength: 2
+
+Naming/PredicateMethod:
+  Enabled: false
 
 Naming/VariableNumber:
   Enabled: false
@@ -133,6 +139,9 @@ Style/InverseMethods:
   Enabled: false
 
 Style/NumericPredicate:
+  Enabled: false
+
+Style/RedundantArrayFlatten:
   Enabled: false
 
 Style/RedundantReturn:

@@ -15,6 +15,6 @@ class LocalizedScriptAttribute < ApplicationRecord
   end
 
   def self.localized_meta_key(attr, locale, attribute_default)
-    return "@#{attr}#{(attribute_default || locale.nil?) ? '' : ":#{locale.code}"}"
+    return "@#{attr}#{":#{locale.code}" unless attribute_default || locale.nil?}"
   end
 end

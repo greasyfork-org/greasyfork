@@ -27,7 +27,7 @@ module ScriptsHelper
     else
       l = link_to label, by_site_scripts_path(sort: sort_param_to_use, site:, set:, q: params[:q], language:, filter_locale:, by:), rel:
     end
-    tag.li(class: "list-option#{is_link ? '' : ' list-current'}") { l }
+    tag.li(class: "list-option#{' list-current' unless is_link}") { l }
   end
 
   def script_applies_to_list_contents(script)
