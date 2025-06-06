@@ -14,7 +14,6 @@ window.initializeChart = async function(rawData, containerId) {
     labels: Object.keys(rawData),
     datasets: [{
       backgroundColor: getComputedStyle(canvas).getPropertyValue("--chart-background-color"),
-      borderColor: getComputedStyle(canvas).getPropertyValue("--chart-border-color"),
       data: Object.values(rawData)
     }]
   }
@@ -34,7 +33,8 @@ window.initializeChart = async function(rawData, containerId) {
         },
         y: {
           suggestedMax: 10,
-          beginAtZero: true
+          beginAtZero: true,
+          grid: {color: getComputedStyle(canvas).getPropertyValue("--chart-border-color")},
         }
       },
       plugins: {

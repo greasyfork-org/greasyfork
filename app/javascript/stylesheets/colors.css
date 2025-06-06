@@ -26,6 +26,12 @@
   --list-option-background-color-gradient-1: white;
   --list-option-background-color-gradient-2: #EEEEEE;
 
+  --list-option-hover-background-color-gradient-1: white;
+  --list-option-hover-background-color-gradient-2: #F6F6F6;
+
+  --list-option-hover-box-shadow-top: #DDDDDD;
+  --list-option-hover-box-shadow-bottom: #EEEEEE;
+
   --notice-background-color: #D9EDF7;
   --notice-border-color: #31708F;
   --notice-text-color: black;
@@ -38,10 +44,54 @@
   --chart-border-color: rgb(220,220,220);
 
   --highlight-background-color: #ffc;
+
+  --rating-icon-good-border-color: rgb(77, 166, 77);
+  --rating-icon-good-background-color: rgb(230, 242, 230);
+  --rating-icon-good-color: rgb(0, 128, 0);
+
+  --rating-icon-ok-border-color: rgb(211, 211, 77);
+  --rating-icon-ok-background-color: rgb(255, 255, 230);
+  --rating-icon-ok-color: rgb(192, 192, 0);
+
+  --rating-icon-bad-border-color: rgb(255, 77, 77);
+  --rating-icon-bad-background-color: rgb(255, 230, 230);
+  --rating-icon-bad-color: rgb(255, 0, 0);
+
+  --expander-color: #670000;
+  --expander-background-color: #F2E5E5;
+
+  --pagination-background-color: #F2E5E5;
+  --pagination-hover-background-color: #E2C5C5;
+
+  --diff-del-background: #FEE;
+  --diff-del-color: #B00;
+
+  --diff-ins-background: #DFD;
+  --diff-ins-color: #080;
+
+  --diff-del-strong-background: #FCC;
+
+  --diff-ins-strong-background: #9F9;
+
+  --diff-block-info: gray;
+
+  --list-option-button-background-color: white;
+  --list-option-button-color: black;
+  --list-option-button-border-color: #BBB;
+  --list-option-button-background-color-gradient-1: white;
+  --list-option-button-background-color-gradient-2: #F6F6F6;
+
+  --code-container-border-color: #E6DDD6;
+
+  --prettyprint-background-color: white;
+  --prettyprint-color: black;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
+    color-scheme: dark;
+    scrollbar-color: #454a4d #202324;
+
     --overall-background-color: #0A0A0A;
     --overall-text-color: white;
 
@@ -59,7 +109,7 @@
 
     --inactive-item-background-color: #333;
 
-    --code-background-color: black;
+    --code-background-color: #321919;
 
     --user-content-background-color-gradient-1: #2e1111;
     --user-content-background-color-gradient-2: #000;
@@ -68,6 +118,63 @@
     --list-option-background-color-gradient-1: #111;
     --list-option-background-color-gradient-2: #222222;
 
+    --list-option-hover-background-color-gradient-1: #1d1e1e;
+    --list-option-hover-background-color-gradient-2: #2a2c2d;
+
+    --list-option-hover-box-shadow-top: #3a3a3a;
+    --list-option-hover-box-shadow-bottom: #2a2c2d;
+
+    --notice-background-color: #0E3041;
+    --notice-text-color: white;
+
+    --alert-background-color: #3D3D00;
+    --alert-border-color: #A19000;
+    --alert-text-color: white;
+
+    --chart-background-color: #606060;
+    --chart-border-color: #454545;
+
     --highlight-background-color: #550;
-  }    
+
+    --rating-icon-ok-border-color: rgb(135, 135, 33);
+    --rating-icon-ok-background-color: rgb(49, 49, 0);
+    --rating-icon-ok-color: rgb(255, 255, 70);
+
+    --rating-icon-bad-border-color: rgb(155, 0, 0);
+    --rating-icon-bad-background-color: rgb(32, 0, 0);
+    --rating-icon-bad-color: rgb(255, 26, 26);
+
+    --rating-icon-good-border-color: rgb(58, 124, 58);
+    --rating-icon-good-background-color: rgb(31, 49, 25);
+    --rating-icon-good-color: rgb(114, 255, 114);
+
+    --expander-color: #e95757;
+    --expander-background-color: #321919;
+
+    --pagination-background-color: #321919;
+    --pagination-hover-background-color: #452222;
+
+    --diff-del-background: #3D0000;
+    --diff-del-color: #FF4949;
+
+    --diff-ins-background: #124700;
+    --diff-ins-color: #6DFF6D;
+
+    --diff-del-strong-background: #520000;
+
+    --diff-ins-strong-background: #1c7000;
+
+    --diff-block-info: #60686C;
+
+    --list-option-button-background-color: #181a1b;
+    --list-option-button-color: #e8e6e3;
+    --list-option-button-border-color: #43494c;
+    --list-option-button-background-color-gradient-1: #232526;
+    --list-option-button-background-color-gradient-2: #181a1b;
+
+    --code-container-border-color: #4c3b2e;
+
+    --prettyprint-background-color: #181a1b;
+    --prettyprint-color: #e8e6e3;
+  }
 }

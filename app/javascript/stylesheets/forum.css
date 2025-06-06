@@ -114,19 +114,19 @@ a.discussion-title, .notification-list-item a {
   top: -1px;
 }
 .rating-icon-good {
-  border-color: rgb(77,166,77);
-  background-color: rgb(230, 242, 230);
-  color: rgb(0, 128, 0);
+  border-color: var(--rating-icon-good-border-color);
+  background-color: var(--rating-icon-good-background-color);
+  color: var(--rating-icon-good-color)
 }
 .rating-icon-ok {
-  border-color: rgb(211, 211, 77);
-  background-color: rgb(255, 255, 230);
-  color: rgb(192, 192, 0);
+  border-color: var(--rating-icon-ok-border-color);
+  background-color: var(--rating-icon-ok-background-color);
+  color: var(--rating-icon-ok-color)
 }
 .rating-icon-bad {
-  border-color: rgb(255, 77, 77);
-  background-color: rgb(255, 230, 230);
-  color: rgb(255, 0, 0);
+  border-color: var(--rating-icon-bad-border-color);
+  background-color: var(--rating-icon-bad-background-color);
+  color: var(--rating-icon-bad-color)
 }
 .discussion-meta-item-script-name {
   overflow: hidden;
