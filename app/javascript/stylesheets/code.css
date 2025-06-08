@@ -7,15 +7,14 @@ pre code {
 }
 pre, code {
   border-radius: 2px;
-  border: 1px solid #E6DDD6;
 }
 pre {
   padding: 1em;
 }
 .prettyprint {
   min-width: calc(100% - 6px);
-  background-color: white;
-  color: black;
+  background-color: var(--prettyprint-background-color);
+  color: var(--prettyprint-color);
 }
 .prettyprint.wrap {
   white-space: pre-wrap;
@@ -29,7 +28,7 @@ pre {
   max-height: calc(100vh - 54px);
   overflow-x: auto;
   border-radius: 2px;
-  border: 1px solid #E6DDD6;
+  border: 1px solid var(--code-container-border-color);
 }
 .code-container pre {
   border: 0;
