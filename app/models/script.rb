@@ -764,9 +764,13 @@ class Script < ApplicationRecord
       default_la.assign_attributes({ attribute_value: default_value, value_markup: 'text' })
     end
 
-    meta_keys.select { |n, _v| n.starts_with?("#{attr_name}:") }.each do |n, v|
+    localized_meta_keys = meta_keys.select { |n, _v| n.starts_with?("#{attr_name}:") }
+    localized_meta_keys_locales = Locale.where(code: localized_meta_keys.map(&:first).map { |key| key.split(':', 2).last })
+                                        .index_by(&:code)
+
+    localized_meta_keys.each do |n, v|
       locale_code = n.split(':', 2).last
-      meta_locale = Locale.find_by(code: locale_code)
+      meta_locale = localized_meta_keys_locales[locale_code]
       if meta_locale.nil?
         Rails.logger.error "Unknown locale code - #{locale_code}"
         next
@@ -775,7 +779,7 @@ class Script < ApplicationRecord
       # Ignore if we match the default locale
       next if meta_locale == locale
 
-      matching_la = existing_localized_attributes.find { |la| la.locale == meta_locale && la.attribute_key == attr_name }
+      matching_la = existing_localized_attributes.find { |la| la.locale_id == meta_locale.id && la.attribute_key == attr_name }
       if matching_la.nil?
         matching_la = localized_attributes.build({ attribute_key: attr_name, locale: meta_locale })
       else
