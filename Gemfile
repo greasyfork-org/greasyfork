@@ -37,7 +37,8 @@ gem 'will-paginate-i18n'
 gem 'hiredis'
 gem 'redis'
 
-gem 'elasticsearch'
+# Need to stick to the same major version as the es server per https://github.com/ankane/searchkick/issues/1713#issuecomment-2829261681
+gem 'elasticsearch', '~> 8.0'
 gem 'searchkick'
 
 gem 'stackprof'

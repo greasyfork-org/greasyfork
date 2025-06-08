@@ -181,10 +181,10 @@ GEM
     elastic-transport (8.4.0)
       faraday (< 3)
       multi_json
-    elasticsearch (8.17.1)
+    elasticsearch (8.18.0)
       elastic-transport (~> 8.3)
-      elasticsearch-api (= 8.17.1)
-    elasticsearch-api (8.17.1)
+      elasticsearch-api (= 8.18.0)
+    elasticsearch-api (8.18.0)
       multi_json
     email_address (0.2.5)
       base64
@@ -515,8 +515,8 @@ GEM
     sanitize (7.0.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.16.8)
-    searchkick (5.4.0)
-      activemodel (>= 6.1)
+    searchkick (5.5.2)
+      activemodel (>= 7.1)
       hashie
     securerandom (0.4.1)
     selenium-webdriver (4.32.0)
@@ -629,7 +629,7 @@ DEPENDENCIES
   devise-i18n
   devise-two-factor
   diffy
-  elasticsearch
+  elasticsearch (~> 8.0)
   email_address
   erb_lint
   google-analytics-data
@@ -738,8 +738,8 @@ CHECKSUMS
   drb (2.2.3) sha256=0b00d6fdb50995fe4a45dea13663493c841112e4068656854646f418fda13373
   dry-cli (1.2.0) sha256=8c97df3b290ee6354ee2025a5f0a67226b381627de32741d06f35ea0887cd95b
   elastic-transport (8.4.0) sha256=b5e9e406c98a867dc73a9c7c2f29faf619de3ade94aa1b7f5a8dcf45ffc0e577
-  elasticsearch (8.17.1) sha256=697d80b1f6bbffdf59877334efd91e7444aaf7e77509cd7084c0005d5c687cd9
-  elasticsearch-api (8.17.1) sha256=c6841275847e5b37506c72fef696cc67cc59a4176494eda0b7038c163b3894c7
+  elasticsearch (8.18.0) sha256=2bad7699b49dfd3a66b9a2fefa86460d884bbc6600eba189df46822134a45671
+  elasticsearch-api (8.18.0) sha256=56ea86d763a8dd781374b76eba6b45977e267510c09e979d1ebe018463379666
   email_address (0.2.5) sha256=873ab0175806d5807a40a05d37452b07370525ea87525273a587d8110220289c
   erb (5.0.1) sha256=760439803b36cc93eca8a266aab614614e588024a89bc30a62e78d98ff452c23
   erb_lint (0.9.0) sha256=dfb5e40ad839e8d1f0d56ca85ec9a7ac4c9cd966ec281138282f35b323ca7c31
@@ -875,7 +875,7 @@ CHECKSUMS
   rubyzip (2.4.1) sha256=8577c88edc1fde8935eb91064c5cb1aef9ad5494b940cf19c775ee833e075615
   rufus-scheduler (3.9.2) sha256=55fa9e4db0ff69d7f38c804f17baba0c9bce5cba39984ae3c5cf6c039d1323b9
   sanitize (7.0.0) sha256=269d1b9d7326e69307723af5643ec032ff86ad616e72a3b36d301ac75a273984
-  searchkick (5.4.0) sha256=75d7256d3ec2af2dc11c2ba8160c86d80451f3f86447aae2ace1f79553de0bf3
+  searchkick (5.5.2) sha256=8be24a74b612d1ac7f1dbc4a3cba310d6af2f8ba7405f30960769db871e3cf67
   securerandom (0.4.1) sha256=cc5193d414a4341b6e225f0cb4446aceca8e50d5e1888743fac16987638ea0b1
   selenium-webdriver (4.32.0) sha256=20dbdf27b586beeac9e2791a22312b414d0a30192b6ce144779f7dfde8ae8afe
   sentry-rails (5.24.0) sha256=fb6a0c8de331cea8783806b2f2f85b93e780cc35ea0cb37ba9fdd84f112c949e
