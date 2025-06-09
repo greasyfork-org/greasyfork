@@ -151,7 +151,7 @@
       <% end %>
     <% else %>
       <p>
-        <%= link_to t('discussions.sign_in_to_post_comment'), new_user_session_path(return_to: request.fullpath) %>
+        <%= link_to t('discussions.sign_in_to_post_comment'), new_user_session_path(return_to: request.fullpath), rel: :nofollow %>
       </p>
     <% end %>
   </div>

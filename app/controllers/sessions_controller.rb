@@ -170,6 +170,7 @@ class SessionsController < Devise::SessionsController
 
   def new
     @bots = 'noindex'
+    @return_to = params[:return_to]
     super
   end
 
