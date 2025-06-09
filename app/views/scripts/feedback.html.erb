@@ -79,7 +79,7 @@
   <% else %>
     <p>
       <%# Use just the script ID in the return_to param to ensure it's not overlong long and causes cookie overflow. %>
-      <%= link_to t('discussions.sign_in_to_post_discussion'), new_user_session_path(return_to: feedback_script_path(locale:, id: @script.id)), {}, rel: :nofollow %>
+      <%= link_to t('discussions.sign_in_to_post_discussion'), new_user_session_path(return_to: feedback_script_path(locale:, id: @script.id)), rel: :nofollow %>
     </p>
   <% end %>
 </div>
