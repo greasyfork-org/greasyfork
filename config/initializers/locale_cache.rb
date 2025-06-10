@@ -1,3 +1,3 @@
-ActiveSupport.on_load(:active_record) do
+Rails.application.config.after_initialize do
   Locale.load_locale_cache
 end
