@@ -44,7 +44,7 @@ class DiscussionsController < ApplicationController
             end
 
             if params[:show_locale]
-              locale = Locale.find_by(code: params[:show_locale])
+              locale = Locale.fetch_locale(params[:show_locale])
               with[:locale_id] = locale.id if locale
             end
 
@@ -364,7 +364,7 @@ class DiscussionsController < ApplicationController
     end
 
     if params[:show_locale].present?
-      locale = Locale.find_by(code: params[:show_locale])
+      locale = Locale.fetch_locale(params[:show_locale])
       discussions = discussions.where(locale_id: locale) if locale
     end
 

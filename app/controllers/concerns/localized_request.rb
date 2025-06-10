@@ -9,7 +9,7 @@ module LocalizedRequest
   end
 
   def request_locale
-    Locale.find_by(code: I18n.locale)
+    Locale.fetch_locale(I18n.locale)
   end
   memoize :request_locale
 
@@ -59,7 +59,7 @@ module LocalizedRequest
           flash.now[:notice] = view_context.tag.b { view_context.link_to(t('common.suggest_locale', locale: top.code, locale_name: top.native_name || top.english_name, site_name:), { locale: top.code }) } if top.code != params[:locale]
         end
         if flash.now[:notice].nil?
-          locale = Locale.find_by(code: params[:locale])
+          locale = Locale.fetch_locale(params[:locale])
           flash.now[:notice] = view_context.tag.b { view_context.link_to(t('common.incomplete_locale', locale_name: locale.native_name || locale.english_name, percent: view_context.number_to_percentage(locale.percent_complete, precision: 0), site_name:), Rails.configuration.help_translate_url, target: '_new') } if !locale.nil? && locale.percent_complete <= 95
         end
       end

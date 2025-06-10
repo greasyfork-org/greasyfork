@@ -11,8 +11,8 @@ module DetectsLocale
         Rails.logger.error "Could not detect language - #{e}"
       end
       unless dl_lang_code.nil?
-        locales = Locale.where(detect_language_code: dl_lang_code)
-        return locales.first unless locales.empty?
+        locale = Locale.fetch_locale(dl_lang_code)
+        return locale if locale
 
         Rails.logger.error "detect_language gave unrecognized code #{dl_lang_code}"
       end

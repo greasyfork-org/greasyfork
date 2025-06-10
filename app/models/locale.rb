@@ -1,15 +1,17 @@
 class Locale < ApplicationRecord
+  @locale_cache = {}
+
   has_many :scripts, dependent: :restrict_with_exception
   has_many :locale_contributors, dependent: :destroy
 
   scope :with_listable_scripts, ->(script_subset) { joins(:scripts).where(scripts: Script.listable(script_subset).where_values_hash).distinct.order(:code) }
 
   def self.english
-    Locale.find_by!(code: 'en')
+    fetch_locale('en')
   end
 
   def self.simplified_chinese
-    Locale.find_by!(code: 'zh-CN')
+    fetch_locale('zh-CN')
   end
 
   def display_text
@@ -54,5 +56,13 @@ class Locale < ApplicationRecord
       Discussion.visible.distinct.pluck(:locale_id)
     end
     where(id: locale_ids)
+  end
+
+  def self.load_locale_cache
+    @locale_cache = Locale.all.index_by(&:code).freeze
+  end
+
+  def self.fetch_locale(code)
+    @locale_cache[code.to_s]
   end
 end
