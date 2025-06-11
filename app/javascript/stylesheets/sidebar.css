@@ -21,7 +21,7 @@
 .open-sidebar {
   visibility: hidden;
   float: right;
-  background-color: white;
+  background-color: var(--sidebar-background);
   padding: 2px 1.2vw 2px 1.2vw;
   margin-left: 1.2vw;
   margin-right: -1.2vw;
@@ -44,7 +44,7 @@
     position: absolute;
     right: -1.2vw;
     top: 0;
-    background: white;
+    background: var(--sidebar-background);
     padding-top: 0;
     padding-left: 1em;
     padding-right: 1em;
@@ -59,8 +59,8 @@
   .close-sidebar {
     display: flex;
     margin-bottom: 1.5em;
-    background-color: #EEE;
-    border-bottom: 1px solid black;
+    background-color: var(--close-sidebar-background);
+    border-bottom: 1px solid var(--close-sidebar-border-bottom);
     margin-left: -16px;
     margin-right: -16px;
     padding: 0.25em 1.2vw 0.25em 16px;
