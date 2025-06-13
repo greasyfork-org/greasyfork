@@ -321,10 +321,17 @@ class Script < ApplicationRecord
       applies_to_delete.each(&:mark_for_destruction)
       applies_to_add = applies_to_names.reject { |atn| script_applies_tos.any? { |sat| sat.text == atn[:text] && sat.tld_extra == atn[:tld_extra] && sat.domain? == atn[:domain] } }
 
-      existing_site_applications = SiteApplication.where(text: applies_to_add.pluck(:text))
-      applies_to_add.each do |atn|
-        site_application = existing_site_applications.find { |esa| esa.text == atn[:text] && esa.domain? == atn[:domain] } || SiteApplication.new(text: atn[:text], domain_text: atn[:domain] ? atn[:text] : nil)
-        script_applies_tos.build(site_application:, tld_extra: atn[:tld_extra])
+      if applies_to_add.any?
+        # If everything is a domain, then query based on domain_text, as that's indexed.
+        existing_site_applications = if applies_to_add.all? { |atn| atn[:domain] }
+                                       SiteApplication.where(domain_text: applies_to_add.pluck(:text))
+                                     else
+                                       SiteApplication.where(text: applies_to_add.pluck(:text))
+                                     end
+        applies_to_add.each do |atn|
+          site_application = existing_site_applications.find { |esa| esa.text == atn[:text] && esa.domain? == atn[:domain] } || SiteApplication.new(text: atn[:text], domain_text: atn[:domain] ? atn[:text] : nil)
+          script_applies_tos.build(site_application:, tld_extra: atn[:tld_extra])
+        end
       end
     end
 
