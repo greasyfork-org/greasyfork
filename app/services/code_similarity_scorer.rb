@@ -21,8 +21,15 @@ class CodeSimilarityScorer
                                      end
 
     if tersed
-      CleanedCode.where(script_id: other_scripts.pluck(:id)).find_each(batch_size: 100) do |cleaned_code|
-        results[cleaned_code.script_id] = score_for_codes(base_code, cleaned_code.code, base_length:, base_compressed_length:, compressed_length_if_identical:)
+      # Avoid loading all CleanCodes as that will cause memory issues. Also avoid repeatedly passing huge amounts of IDs in SQL statements -
+      # load the IDs then use in_groups_of.
+      cleaned_code_ids = CleanedCode.where(script_id: other_scripts.pluck(:id))
+      cleaned_code_ids.in_groups_of(100, false) do |cleaned_code_ids_group|
+        # rubocop:disable Rails/FindEach
+        CleanedCode.where(id: cleaned_code_ids_group).each do |cleaned_code|
+          # rubocop:enable Rails/FindEach
+          results[cleaned_code.script_id] = score_for_codes(base_code, cleaned_code.code, base_length:, base_compressed_length:, compressed_length_if_identical:)
+        end
       end
 
       return results
