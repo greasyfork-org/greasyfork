@@ -72,7 +72,7 @@ class Report < ApplicationRecord
   validates :moderator_reason_override, inclusion: { in: SCRIPT_REASONS, message: :invalid }, allow_nil: true, if: -> { item.is_a?(Script) }
   validates :reason, inclusion: { in: DISCUSSION_REASONS, message: :invalid }, presence: true, if: -> { item.is_a?(Discussion) }
   validates :moderator_reason_override, inclusion: { in: DISCUSSION_REASONS, message: :invalid }, allow_nil: true, if: -> { item.is_a?(Discussion) }
-  validates :reason, exclusion: { in: ADMIN_ONLY_REASONS }, unless: -> { reporter&.administrator? }
+  validates :reason, exclusion: { in: ADMIN_ONLY_REASONS }, unless: -> { reporter&.administrator? || auto_reporter }
 
   validates :reporter, presence: true, if: -> { auto_reporter.nil? }, on: :create
   validates :explanation, presence: true, if: -> { [REASON_UNDISCLOSED_ANTIFEATURE, REASON_MALWARE, REASON_ILLEGAL, REASON_OTHER].include?(reason) }, on: :create
