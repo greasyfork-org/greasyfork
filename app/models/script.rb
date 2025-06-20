@@ -278,6 +278,10 @@ class Script < ApplicationRecord
     end
   end
 
+  after_commit on: :destroy do
+    CleanedCodeDeleteJob.perform_async(id)
+  end
+
   def apply_from_script_version(script_version)
     # Copy additional_info from script versions. Retain syncing info.
     original_script_las = localized_attributes_for('additional_info').to_a
