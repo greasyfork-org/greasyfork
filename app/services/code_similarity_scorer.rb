@@ -1,6 +1,8 @@
 require 'zlib'
 
 class CodeSimilarityScorer
+  USE_DB_FOR_CLEANED_CODE = false
+
   def self.get_similarities(base_script, other_scripts, tersed: false)
     results = {}
 
@@ -21,14 +23,26 @@ class CodeSimilarityScorer
                                      end
 
     if tersed
-      # Avoid loading all CleanCodes as that will cause memory issues. Also avoid repeatedly passing huge amounts of IDs in SQL statements -
-      # load the IDs then use in_groups_of.
-      cleaned_code_ids = CleanedCode.where(script_id: other_scripts.pluck(:id)).pluck(:id)
-      cleaned_code_ids.in_groups_of(100, false) do |cleaned_code_ids_group|
-        # rubocop:disable Rails/FindEach
-        CleanedCode.where(id: cleaned_code_ids_group).each do |cleaned_code|
-          # rubocop:enable Rails/FindEach
-          results[cleaned_code.script_id] = score_for_codes(base_code, cleaned_code.code, base_length:, base_compressed_length:, compressed_length_if_identical:)
+      if USE_DB_FOR_CLEANED_CODE
+        # Avoid loading all CleanCodes as that will cause memory issues. Also avoid repeatedly passing huge amounts of IDs in SQL statements -
+        # load the IDs then use in_groups_of.
+        cleaned_code_ids = CleanedCode.where(script_id: other_scripts.pluck(:id)).pluck(:id)
+        cleaned_code_ids.in_groups_of(100, false) do |cleaned_code_ids_group|
+          # rubocop:disable Rails/FindEach
+          CleanedCode.where(id: cleaned_code_ids_group).each do |cleaned_code|
+            # rubocop:enable Rails/FindEach
+            results[cleaned_code.script_id] = score_for_codes(base_code, cleaned_code.code, base_length:, base_compressed_length:, compressed_length_if_identical:)
+          end
+        end
+      else
+        # The worker server has these as files, so avoid hammering the DB.
+        script_ids = other_scripts.pluck(:id)
+        script_ids_and_codes = script_ids.lazy.filter_map do |script_id|
+          path = CleanedCodeJob.path_for_script_id(script_id)
+          [script_id, File.read(path)] if File.exist?(path)
+        end
+        script_ids_and_codes.each do |script_id, cleaned_code|
+          results[script_id] = score_for_codes(base_code, cleaned_code, base_length:, base_compressed_length:, compressed_length_if_identical:)
         end
       end
 
