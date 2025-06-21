@@ -5,7 +5,6 @@
   - default
   - active_storage_analysis
   - active_storage_purge
-  - ts_delta
   - searchkick
   - user_low
   - low
@@ -46,3 +45,6 @@
     stat_ban_checking_job:
       cron: '0 0 1 * * *'
       class: StatBanCheckingJob
+    cleaned_code_cleanup_job:
+      cron: '0 0 2 * * *'
+      class: CleanedCodeCleanupJob
