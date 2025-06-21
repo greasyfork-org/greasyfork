@@ -4,12 +4,12 @@ require 'sidekiq/max_concurrency_exception'
 # This job should have three levels of locks on it:
 #
 # 1. Only one enqueued/running per script ID. Handled by sidekiq-unique-jobs.
-# 2. Only two running at a time. Handled by ScriptDuplicateCheckerQueueingJob checking spare_processes.
+# 2. Only three running at a time. Handled by ScriptDuplicateCheckerQueueingJob checking spare_processes.
 # 3. Only one running per process. Handled by writing/deleting to cache with key run_process_cache_key.
 class ScriptDuplicateCheckerJob
   include Sidekiq::Job
 
-  DESIRED_RUN_COUNT = 2
+  DESIRED_RUN_COUNT = 3
   RUN_COUNTER_KEY = 'ScriptDuplicateCheckerJob-executing-count'.freeze
   RUN_PROCESS_KEY_PREFIX = 'ScriptDuplicateCheckerJob-executing-process-'.freeze
 
