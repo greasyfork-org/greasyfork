@@ -1,7 +1,7 @@
 require 'zlib'
 
 class CodeSimilarityScorer
-  USE_DB_FOR_CLEANED_CODE = false
+  USE_DB_FOR_CODE = false
 
   def self.get_similarities(base_script, other_scripts, tersed: false)
     results = {}
@@ -23,7 +23,7 @@ class CodeSimilarityScorer
                                      end
 
     if tersed
-      if USE_DB_FOR_CLEANED_CODE
+      if USE_DB_FOR_CODE
         # Avoid loading all CleanCodes as that will cause memory issues. Also avoid repeatedly passing huge amounts of IDs in SQL statements -
         # load the IDs then use in_groups_of.
         cleaned_code_ids = CleanedCode.where(script_id: other_scripts.pluck(:id)).pluck(:id)
@@ -49,17 +49,28 @@ class CodeSimilarityScorer
       return results
     end
 
-    # Create a map from script id to code id
-    script_id_and_latest_version_id = ScriptVersion.where(script_id: other_scripts).group(:script_id).pluck(:script_id, 'MAX(id)')
-    script_version_id_and_code_id = ScriptVersion.where(id: script_id_and_latest_version_id.map(&:last)).pluck(:id, :script_code_id).to_h
-    script_id_and_code_id = script_id_and_latest_version_id.map { |script_id, script_version_id| [script_id, script_version_id_and_code_id[script_version_id]] }
+    if USE_DB_FOR_CODE
+      # Create a map from script id to code id
+      script_id_and_latest_version_id = ScriptVersion.where(script_id: other_scripts).group(:script_id).pluck(:script_id, 'MAX(id)')
+      script_version_id_and_code_id = ScriptVersion.where(id: script_id_and_latest_version_id.map(&:last)).pluck(:id, :script_code_id).to_h
+      script_id_and_code_id = script_id_and_latest_version_id.map { |script_id, script_version_id| [script_id, script_version_id_and_code_id[script_version_id]] }
 
-    script_id_and_code_id.each_slice(100) do |slice|
-      script_code_id_to_code = ScriptCode.where(id: slice.map(&:last)).pluck(:id, :code).to_h
+      script_id_and_code_id.each_slice(100) do |slice|
+        script_code_id_to_code = ScriptCode.where(id: slice.map(&:last)).pluck(:id, :code).to_h
 
-      slice.each do |script_id, code_id|
-        other_code = script_code_id_to_code[code_id]
-        results[script_id] = score_for_codes(base_code, other_code, base_length:, base_compressed_length:, compressed_length_if_identical:)
+        slice.each do |script_id, code_id|
+          other_code = script_code_id_to_code[code_id]
+          results[script_id] = score_for_codes(base_code, other_code, base_length:, base_compressed_length:, compressed_length_if_identical:)
+        end
+      end
+    else
+      script_ids = other_scripts.pluck(:id)
+      script_ids_and_codes = script_ids.lazy.filter_map do |script_id|
+        path = CleanedCodeJob.dirty_path_for_script_id(script_id)
+        [script_id, File.read(path)] if File.exist?(path)
+      end
+      script_ids_and_codes.each do |script_id, dirty_code|
+        results[script_id] = score_for_codes(base_code, dirty_code, base_length:, base_compressed_length:, compressed_length_if_identical:)
       end
     end
 
