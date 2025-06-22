@@ -31,7 +31,7 @@ class ScriptDuplicateCheckerQueueingJob
       .left_joins(:script_similarities)
       .group('scripts.id')
       .order('min(script_similarities.checked_at)', :deleted_at, :id)
-      .limit(10)
+      .limit(50)
       .pluck('scripts.id')
   end
 end
