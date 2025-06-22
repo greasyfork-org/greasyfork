@@ -7,6 +7,7 @@ class CleanedCodeJobTest < ActiveSupport::TestCase
     CleanedCodeJob.delete_for_script(script)
     CleanedCodeJob.perform_now(script)
     assert_not_empty CleanedCode.where(script_id: script.id)
-    assert_path_exists CleanedCodeJob.path_for_script(script)
+    assert_path_exists CleanedCodeJob.clean_path_for_script(script)
+    assert_path_exists CleanedCodeJob.dirty_path_for_script(script)
   end
 end

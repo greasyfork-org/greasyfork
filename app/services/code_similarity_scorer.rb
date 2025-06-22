@@ -38,7 +38,7 @@ class CodeSimilarityScorer
         # The worker server has these as files, so avoid hammering the DB.
         script_ids = other_scripts.pluck(:id)
         script_ids_and_codes = script_ids.lazy.filter_map do |script_id|
-          path = CleanedCodeJob.path_for_script_id(script_id)
+          path = CleanedCodeJob.clean_path_for_script_id(script_id)
           [script_id, File.read(path)] if File.exist?(path)
         end
         script_ids_and_codes.each do |script_id, cleaned_code|
