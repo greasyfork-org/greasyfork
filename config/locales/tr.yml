@@ -13,11 +13,13 @@ tr:
   scripts:
     created_date: "Oluşturulma"
     updated_date: "Güncellenme"
+    code_size: Boyut
     total_installs: "Toplam kurulumlar"
     daily_installs: "Günlük kurulumlar"
     ratings: "Değerlendirmeler"
     author_name: "Yazar"
     version_number: "Versiyon"
+    version_abbreviation: "v%{number}"
     license: "Lisans"
     no_license: "N/A"
     compatibility: "Uyumluluk"
@@ -230,12 +232,14 @@ tr:
     warning_code_previously_posted_html: "Bu kod zaten daha önceden %{script_links}' de paylaşılmış. Yeniden gönderiler moderatörler tarafından kaldırılabilir."
     warning_license_missing_html: "208\nBir @lisans belirtmediniz. %{site_name} üzerinde gönderi paylaşarak, başkalarının kodunuzu kullanmasına izin vermiş olursunuz, ancak bir lisans, başkalarına kodunuzu nasıl değiştirebileceklerini ve yeniden dağıtabileceklerini söylemenize de izin verir. Örneğin, // @license MIT, herhangi birinin yazdığınız kodu değiştirmesine ve yeniden dağıtmasına izin verdiğiniz anlamına gelir. %{license_chooser_link:Lisanslarla ilgili daha fazla bilgiyi burada bulabilirsiniz.} Bir lisans sağlamazsanız, %{site_name}, başkalarının değişiklik yapmasına veya kopyaları yeniden dağıtmasına izin vermediğinizi varsayacaktır. Gönderdiğiniz kodun tek yazarı değilseniz, diğer tüm yazarlardan izin almadığınız sürece genellikle kodu göndermenize izin verilmediğini unutmayın."
     warning_license_missing_override_html: "Lisans olmadan kaydet"
+    warning_meta_not_at_start_html: "Kodunuz <code>// ==UserScript==</code> ile başlamıyor. Kod, yorum satırı ya da boşluk eklemek bazı script yöneticileriyle uyumluluk sorunlarına neden olabilir. "
     additional_info_locale_prompt: "(Bir yer seç)"
     additional_info_add_localized: "Yerel ek bilgi ekle"
     additional_info_locale_repeated: "'%{locale_code}' yeri için bir ek bilgi sağlayın."
     localized_additional_info_with_no_name: " '%{locale_code}' yeri için ek bilgi belirtildi, ancak @name:%{locale_code} sağlanmadı."
     code_syncing_from_url_html: "Bu scriptin kodun senkronizasyonu şuraya ayarlanmış: %{field}"
     provide_code_syncing_from_url_html: "%{site_name}'a başka yerlerde barındırılan scriptleri aktarabilirsin, örnek olarak versiyon kontrol sisteminden (GitHub gibi), senin serverından, ya da başka user script hosting sitelerinden. Scriptlerinin senkronizasyonunu etkinleştirmek için ihtiyacını sağlayacak bir URL: %{field}"
+    code_syncing_from_webhook_html: "Bu script kodu bir webhook ile senkronize olacak şekilde ayarlandı. Webhook isteklerini şu URL'ye göre eşleştireceğiz: %{field}"
     sync_type_intro: "Script senkronize olacak:"
     sync_type_1:
       name: Manuel
@@ -246,6 +250,7 @@ tr:
     sync_type_3:
       name: Web kancası
       description: deponuzdaki bu dosyada değişiklik yaptığınızda güncellenecektir.
+    sync_webhook_info_with_sync: Eğer GitHub, GitLab ya da BitBucket repolarından senkronize ediyorsanız, reponuza pushladığınızda %{site_name}scriptini otomatik olarak güncellemek için %{webhook_info_link:buradan bir webhook kurabilirsiniz}.
     sync_name_and_description: "%{name} - %{description}"
     sync_failed_info_html: "Son senkronizasyon teşebbüsü %{date} oldu, %{error} ile sonuçlandı."
     sync_success_info_html: "Son başarılı senkronizasyon %{date} tarihinde yapıldı."
