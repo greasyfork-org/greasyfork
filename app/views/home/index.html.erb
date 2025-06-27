@@ -1,6 +1,10 @@
 <%- title t(sleazy? ? 'home.sleazy_title' : 'home.title', site_name: site_name) %>
 <%- description "#{site_name} is a free site providing user scripts to improve your web browsing experience." %>
 
+<% if @ad_method&.ea? %>
+  <div id="home-ea" class="ad flat ethical-ads text-content-top-ad ethical-ads-text" data-ea-publisher="greasyfork" data-ea-type="text"></div>
+<% end %>
+
 <h2 class="super-title"><%= t(sleazy? ? 'home.sleazy_welcome' : 'home.welcome', site_name: site_name) %></h2>
 
 <div id="home-script-nav">
