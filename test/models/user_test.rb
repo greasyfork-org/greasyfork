@@ -41,13 +41,13 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'invisible characters are OK if they do not match an existing user' do
-    new_user = User.new(name: "i like weird\u2064chars", email: 'test@myexample.com', password: 'password')
+    new_user = User.new(name: "i like weird\u2064chars", email: 'test@aol.com', password: 'password')
     assert new_user.valid?, new_user.errors.messages
   end
 
   test 'invisible characters are not OK if they match an existing user' do
     existing_user = users(:one)
-    new_user = User.new(name: 'foo', email: 'test@myexample.com', password: 'password')
+    new_user = User.new(name: 'foo', email: 'test@aol.com', password: 'password')
     assert new_user.valid?, new_user.errors.messages
     new_user.name = existing_user.name
     new_user.name.insert(2, "\u2064")

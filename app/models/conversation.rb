@@ -41,7 +41,9 @@ class Conversation < ApplicationRecord
   end
 
   def path_for_message(user, message, locale: nil)
-    pages = (messages.where(id: ..message.id).count / 50) + 1
+    message_ids = messages.pluck(:id)
+    earlier_message_ids = message_ids.select { |message_id| message_id <= message.id }
+    pages = (earlier_message_ids.count / 50) + 1
     locale = locale.code if locale.is_a?(Locale)
     Rails.application.routes.url_helpers.user_conversation_path(user, self, locale: locale || user.available_locale_code, page: (pages > 1) ? pages : nil, anchor: "message-#{message.id}")
   end

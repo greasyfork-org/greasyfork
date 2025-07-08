@@ -22,7 +22,7 @@
         <%= render_poster(message) %>
       </div>
       <div class="comment-meta-item">
-        <%= link_to('§', { anchor: "message-#{message.id}" }, { class: 'self-link' }) %>
+        <%= link_to('§', message.path(current_user, locale: I18n.locale), { class: 'self-link' }) %>
       </div>
       <div class="comment-meta-item">
         <%= t('discussions.comment_date', date: markup_date(message.created_at)).html_safe %>
