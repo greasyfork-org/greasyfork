@@ -14,7 +14,7 @@ class CssToJsConverter
                                      .reject { |_doc_block, block_code| block_code.blank? }
 
       # Remove blocks that do nothing - no rules and no code
-      if doc_blocks_and_code.count > 1
+      if doc_blocks_and_code.many?
         doc_blocks_and_code = doc_blocks_and_code.reject do |doc_block, block_code|
           doc_block.matches.none? && only_comments?(block_code)
         end
@@ -22,7 +22,7 @@ class CssToJsConverter
 
       # If we have only one doc block, and the rest is just a @namespace rule, then put the namespace rule inside
       # the doc block.
-      if doc_blocks_and_code.count > 1
+      if doc_blocks_and_code.many?
         namespace_only_blocks = doc_blocks_and_code.select { |doc_block, block_code| doc_block.matches.none? && only_global_directives?(block_code) }
         if namespace_only_blocks.any?
           namespace_code = "#{namespace_only_blocks.map { |b| b.last.strip }.join("\n")}\n"

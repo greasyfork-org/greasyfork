@@ -84,7 +84,7 @@ class Discussion < ApplicationRecord
   strip_attributes
 
   def replies?
-    comments.not_deleted.count > 1
+    comments.not_deleted.many?
   end
 
   def last_comment

@@ -28,7 +28,7 @@ class ScriptVersionCompareNumbersTest < ActiveSupport::TestCase
       ['2.0'],
     ]
     # make sure each step is smaller than the next
-    (0..strings_to_test.length - 2).each do |i|
+    (0..(strings_to_test.length - 2)).each do |i|
       strings_to_test[i].product(strings_to_test[i + 1]).each do |vs|
         assert_equal(-1, ScriptVersion.compare_versions(vs[0], vs[1]), "compare_versions('#{vs[0]}', '#{vs[1]}')")
       end

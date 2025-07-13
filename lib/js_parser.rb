@@ -21,7 +21,7 @@ class JsParser
       end_block = code.index(META_END_COMMENT, start_block)
       return nil if end_block.nil?
 
-      return code[start_block..end_block + META_END_COMMENT.length]
+      return code[start_block..(end_block + META_END_COMMENT.length)]
     end
 
     # Returns the meta for this script in a hash of key to array of values
@@ -55,7 +55,7 @@ class JsParser
       return [code, ''] if meta_end_start.nil?
 
       meta_end = meta_end_start + META_END_COMMENT.length
-      return [((meta_start == 0) ? '' : code[0..meta_start - 1]), code[meta_end..code.length]]
+      return [((meta_start == 0) ? '' : code[0..(meta_start - 1)]), code[meta_end..code.length]]
     end
 
     # Inserts, changes, or deletes meta values in the code and returns the entire code

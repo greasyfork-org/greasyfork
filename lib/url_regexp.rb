@@ -58,7 +58,7 @@ class UrlRegexp
   end
 
   def self.de_single_element(array)
-    (array.count == 1) ? array.first : array
+    array.one? ? array.first : array
   end
 
   def self.handle_quantifier(group)

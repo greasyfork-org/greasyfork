@@ -10,7 +10,7 @@ class ScriptPreviouslyDeletedChecker < ApplicationJob
 
     similar_locked_scripts = (check_by_code(script) + check_by_name(script) + check_by_exact_code(script)).uniq
 
-    return unless similar_locked_scripts.count > 1
+    return unless similar_locked_scripts.many?
 
     # No description is removed because there could be that info in additional info, which is not checked by this
     # process. Auto-reports are removed to reduce noise.

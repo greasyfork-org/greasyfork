@@ -283,7 +283,7 @@ class ScriptVersionsController < ApplicationController
     # Grab those vars...
     delete
 
-    if @script_version.script.script_versions.count == 1
+    if @script_version.script.script_versions.one?
       @script_version.errors.add(:script, 'would have no versions')
       render :delete
       return

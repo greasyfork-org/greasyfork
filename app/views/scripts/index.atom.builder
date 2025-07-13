@@ -14,7 +14,7 @@ atom_feed(root_url: current_path_with_params(host: request.host)) do |feed|
       end
 
       entry.author do |author|
-        if script.users.count == 1
+        if script.users.one?
           author.name(script.users.first.name)
           author.uri(user_url(script.users.first))
         else
