@@ -7,8 +7,6 @@ module ShowsAds
 
     return AdMethod.cd if sleazy?
 
-    return AdMethod.ea if controller_name == 'home' && action_name == 'index' && valid_locale_for_ea?
-
     AdMethod.ga
   end
 
