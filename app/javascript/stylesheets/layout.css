@@ -586,6 +586,11 @@ form.new_user + a {
   max-width: 400px;
   background-color: white;
 }
+@media (prefers-color-scheme: dark) {
+  .qr-code {
+    border: 5px solid white;
+  }
+}
 
 .sidebar-search, .home-search {
   position: relative;
