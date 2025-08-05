@@ -336,4 +336,17 @@ class GithubWebhookTest < ActionDispatch::IntegrationTest
     assert_equal '200', response.code
     assert_equal({ 'updated_scripts' => [], 'updated_failed' => ['http://localhost/scripts/18-mystring'], 'message' => "Could not pull contents from git: fatal: path 'aliyundrive-rename.user.js' does not exist in '0.2.5'" }, response.parsed_body)
   end
+
+  def test_webhook_validation_error
+    Script.find_by(sync_identifier: 'https://github.com/JasonBarnabe/webhooktest/raw/master/test.user.js')
+    Git.expects(:get_contents).with('https://github.com/JasonBarnabe/webhooktest.git', { 'test.user.js' => '7e1817e12430e179c0103c658018168f081336af' }).yields('test.user.js', 'abc123', 'this is not valid js')
+    user = User.find(1)
+    push_webhook_request(user)
+    assert_equal '200', response.code
+    assert_equal({
+                   'updated_scripts' => [],
+                   'updated_failed' => ['https://greasyfork.org/en/scripts/18'],
+                   'message' => 'https://greasyfork.org/en/scripts/18: Script versions is invalid, Default name is required - specify one with @name, Description is required - specify one with @description',
+                 }, response.parsed_body)
+  end
 end

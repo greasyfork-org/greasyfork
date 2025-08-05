@@ -198,6 +198,13 @@ module Webhooks
       end
     end
 
-    render json: { updated_scripts: updated_scripts.map { |s| script_url(s) }, updated_failed: update_failed_scripts.map { |s| script_url(s) } }
+    result = {
+      updated_scripts: updated_scripts.map { |s| script_url(s) },
+      updated_failed: update_failed_scripts.map { |s| script_url(s) },
+    }
+
+    result[:message] = update_failed_scripts.map { |s| "#{script_url(s)}: #{s.errors.full_messages.join(', ')}" }.join('. ') if update_failed_scripts.any?
+
+    render json: result
   end
 end
