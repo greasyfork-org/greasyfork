@@ -13,11 +13,13 @@ ar:
   scripts:
     created_date: "تم إنشاؤه"
     updated_date: "تم تحديثه"
+    code_size: الحجم
     total_installs: "إجمالي التثبيت"
     daily_installs: "التثبيت اليومي"
     ratings: "التقييمات"
     author_name: "المؤلف"
     version_number: "الإصدار"
+    version_abbreviation: "v%{number}"
     license: "الترخيص"
     no_license: "لا يوجد"
     compatibility: "التوافق"
@@ -45,9 +47,17 @@ ar:
     promoted_text_html: "ربما يعجبك أيضا %{script_link}."
     library_instructions_html: "لا ينبغي أن لا يتم تثبيت هذا السكريت مباشرة. هو مكتبة لسكبتات لتشمل مع التوجيه الفوقية %{code}"
     deleted_notice: "لقد تم حذف هذا البرنامج النصي."
+    deleted_notice_with_reason: "تم حذف هذا البرنامج النصي بسبب %{report_link:this report}."
     deleted_notice_with_related: "تم حذف برنامج نصي الذي طلبته ، ولكن إليك بعض البرامج النصية ذات الصلة."
+    deleted_notice_with_related_and_reason: "تم حذف البرنامج النصي الذي طلبته بسبب %{report_link:this report}، ولكن إليك بعض البرامج النصية ذات الصلة."
+    deleted_undelete_notice_html: "تم حذف هذا البرنامج النصي بواسطة المشرف ولا يمكن استعادته. السبب المذكور هو:\"<i>%{delete_reason}</i>\"."
+    deleted_locked_author_notice_html: "تم حذف هذا البرنامج النصي بواسطة المشرف استجابةً لـ%{report_link:هذا البلاغ}، ولا يمكن للآخرين الوصول إليه بعد الآن. السبب هو: \"<i>قم بمراجعة  %{code_rules_link:الشروط%{site_name}}.إذا كنت تعتقد أن الحذف تم عن طريق الخطأ، يمكنك %{appeal_link:تقديم طعن} بشأن هذا القرار. لا تقم بإعادة نشر هذا البرنامج النصي؛ فقد يؤدي ذلك إلى حظرك من %{site_name}"
+    self_deleted_locked_author_notice_html: "تم حذف هذا البرنامج النصي بواسطتك استجابةً لـ%{report_link:هذا البلاغ}، ولا يمكن للآخرين الوصول إليه. إذا قمت بتحديث برنامجك النصي ليتماشى مع %{code_rules_link:قواعد %{site_name}} ، فيمكنك %{appeal_link:تقديم طعن} على هذا الحذف. لا تقم بإعادة نشر هذا البرنامج النصي؛ فقد يؤدي ذلك إلى حظرك من%{site_name} ."
+    deleted_author_notice: "تم حذف هذا البرنامج النصي ولا يمكن للآخرين الوصول إليه. يمكنك استعادته من علامة تبويب \"المحذوفات\"."
     version_notice_html: "اعتبارا من %{date}. شاهد %{latest_version_link}."
     version_notice_latest_version_link: "أحدث إصدار"
+    reported_notice: "%{script_name} قد تم الإبلاغ عنه وينتظر مراجعة المشرف."
+    reported_notice_for_author: "هذا البرنامج النصي غير متاح للمستخدمين الآخرين حتى تتم مراجعته من قبل المشرف."
     info_page: "معلومات"
     code_page: "الكود"
     history_page: "التاريخ"
@@ -115,6 +125,9 @@ ar:
       medium: متشابه إلى حد ما
       low: مشابهة إلى حد ما
       none: لا تتشابه
+    derivatives_similar_none: "لا توجد أي برامج نصية مشابهة لبرنامجك النصي."
+    derivatives_similar_item: "%{score}: %{diff_link:[Diff]} %{script}"
+    derivatives_similar_last_check_html: "آخر مرة تحققنا فيها من وجود برامج نصية مشابهة لبرنامجك كانت في %{date}"
     derivatives_similar_check_now: "أعد الفحص الآن"
     listing_title_all_sites: "برامج نصية لكل المواقع"
     listing_description_all_sites: "البرامج النصية التي تضيف ميزات وتزيل الأخطاء على جميع المواقع"
@@ -179,12 +192,18 @@ ar:
     warning_potentially_minified_html: "يبدو أنا برنامجك النصي يحتوي كود مصغر (مضغوط). إذا كنت تستخدم مكتبة مضغوطة رجاء استبدلها <code>@require</code> من %{allowed_requires_link}. البرامج النصية التي تحوي كود مضغوط هي عرضة للحذف."
     warning_automatic_sensitive_html: "السكربت الخاص بك مخصص لـ %{sensitive_domains} وسيتم تمييزه على أنه محتوى للبالغين."
     warning_potentially_minified_allowed_requires_link: "واحد من هذه الأماكن"
+    warning_code_previously_posted_html: "تم نشر هذا الكود مسبقا في %{script_links}قد يتم حذف المشاركات المُعاد نشرها من قبل المشرفين."
+    warning_license_missing_html: "لم تُحدّد ترخيصًا باستخدام @license. من خلال النشر على %{site_name}، فإنك تسمح للآخرين باستخدام الكود الخاص بك، ولكن تحديد الترخيص سيسمح لك بتوضيح كيفية تعديل الكود الخاص بك وإعادة توزيعه للآخرين. على سبيل المثال، <code>// @license MIT </code>يعني أنك تسمح لأي شخص بتعديل الكود الذي كتبته وإعادة توزيعه. %{license_chooser_link:يمكنك معرفة المزيد عن التراخيص من هنا.} إذا لم تُدرج ترخيصًا%{site_name}، فسنفترض أنك لا تسمح للآخرين بتعديل الكود أو إعادة توزيعه. لاحظ أنه إذا لم تكن المؤلف الوحيد للكود الذي تنشره، فلا يُسمح لك بنشره عادةً ما لم تحصل على إذن من جميع المؤلفين الآخرين."
+    warning_license_missing_override_html: "حفظ بدون ترخيص"
+    warning_meta_not_at_start_html: "الكود الخاص بك لا يبدأ بـ<code>// ==UserScript==</code>تضمين كود أو تعليقات أو مسافات فارغة قبله قد يسبب مشاكل في التوافق مع بعض أدوات إدارة السكربتات."
     additional_info_locale_prompt: "(اختر اللغة المحلية)"
     additional_info_add_localized: "إضافة معلومات إضافية بلغة محلية أخرى"
     additional_info_locale_repeated: "تزويد معلومة إضافية للغة المحلية '%{locale_code}'"
     localized_additional_info_with_no_name: "تم تعيين معلومات إضافية لـ '%{locale_code}' لكن لم يتم تزويد name:%{locale_code}."
+    invalid_matchers: "تم استخدام مطابقة غير صالحة: %{matches}"
     code_syncing_from_url_html: "هذا البرنامج النصي وضع للمزامنة من: %{field}"
     provide_code_syncing_from_url_html: "%{site_name} بإمكانه استيراد البرامج النصية المستضافة في مكان آخر. مثلا في أنظمة إدارة الإصدارات (مثل GitHub)، خادومك الخاص أو موقع آخر لاستضافة البرامج النصية. لتمكين مزامنة برنامج النصي قم بإضافة وصلة: %{field}"
+    code_syncing_from_webhook_html: "تم إعداد كود هذا البرنامج النصي للمزامنة مع Webhook. سنطابق طلبات الـ Webhook مع هذا البرنامج النصي استنادًا إلى عنوان URL التالي:%{field}"
     sync_type_intro: "سيتم مزامن البرنامج النصي:"
     sync_type_1:
       name: يدوي
@@ -217,6 +236,7 @@ ar:
     ok_rating_explanation: "عدد الأشخاص الذين قيموه بـ لا بأس."
     bad_rating_explanation: "عدد الأشخاص الذين قيموه أنه سيئ."
     write_your_own_html: "%{post_a_script_link} (أو %{learn_to_write_scripts_link})"
+    post_a_script_link_text: "أنشر برنامج نصي قمت بكتابته"
     learn_to_write_scripts_link_text: "تعلم كيفية كتابة واحد"
     adult_content: "محتوى للبالغين"
     adult_content_self_report: "يتضمن هذا البرنامج النصي محتوى للبالغين أو أنه لموقع يحتوي على محتوى للبالغين."
@@ -224,6 +244,7 @@ ar:
     not_adult_content_self_report_html: "هذا البرنامج النصي <strong>لا</strong> يحتوي محتوى للبالغين و <strong>ليس</strong> ليس لموقع ذو محتويات للبالغين."
     not_adult_content_self_report_explanation: "%{site_name} يسمح بالبرامج النصية ذات محتوى للبالغين، ولكنها يجب أن يشار إليها على هذا النحو بحيث يمكن للمستخدمين اختيار ما إذا كان يريدون رؤيتها. تم وسم برنامجك النصي بأنه يحوي محتوى للبالغين. يمكنك الإبلاغ عن أنه ليس كذلك. وسيتم مراجعة ذلك عن طريق أحد المشروفين."
     not_adult_content_self_report_explanation_automatic: " %{site_name} يسمح بالسكربتات التي تحتوي على محتوى للبالغين ، ولكن يجب تمييزها على هذا النحو بحيث يمكن للمستخدمين اختيار ما إذا كانوا يريدون رؤيتها. تم تمييز السكربت الخاص بك على أنه يحتوي على محتوى للبالغين نظراً لأنه مخصص للعمل على %{domain_list}"
+    adult_content_notice_from_sleazy: عند نشرك لهذا البرنامج النصي على %{site_name}، فيُفترض أنه يحتوي على محتوى للبالغين أو موجَّه لموقع يحتوي على محتوى للبالغين. إذا لم يكن كذلك يرجى %{greasyfork_link:نشر برنامجك النصي مباشرة على Greasy Fork} بدلا من ذلك.
     adult_content_on_greasy_logged_in_error: "هذا البرنامج النصي لم يعد متوفرا على هذا الموقع %{edit_account_link:Greasy Fork account settings}."
     adult_content_on_greasy_not_logged_in_error: "هذا البرنامج النصي لم يعد متوفرا بشكل مجهول على هذا الموقع. %{login_link:سجل دخولك} وتفحص إعدادات حسابك في موقع Greasy Fork."
     non_adult_content_on_sleazy: "هذا البرنامج النصي غير متوفر على هذا الموقع."
@@ -241,9 +262,19 @@ ar:
     updated: "تم تحديث السكربت."
     preview_additional_info: "معاينة"
     must_confirm_email_button: "أرسل رابط التأكيد إلى %{email}"
+    needs_secure_login:
+      intro: "يجب عليك إعداد حسابك باستخدام طريقة تسجيل دخول آمنة قبل أن تتمكن من نشر البرامج النصية."
+      secure_internal_heading: "الخيار 1: قم بتأمين %{site_name} تسجيل الدخول الخاص بك"
+      confirm_email: "التحقق من بريدك الإلكتروني"
+      enable_2fa: "تفعيل التحقق بخطوتين (2FA)"
+      add_external_heading: "الخيار 2: استخدم تسجيل الدخول الخارجي فقط"
+      add_external: "أضف طريقة تسجيل دخول خارجيه"
+      remove_password: "حذف %{site_name}كلمة المرور الخاصة بك"
     authors_heading: "المؤلفين"
+    error_unauthorized_copy: "يبدو أن هذا الكود هو نسخة غير مصرح بها من %{script}. يرجى الرجوع إلى %{site_name} % الخاصة بـ {rules\\_link:القواعد} لنشر البرامج النصية."
     invitations:
       form_title: "أدعُ مؤلفين آخرين"
+      explanation: "يمكنك إضافة مستخدمين آخرين من Greasy Fork كمؤلفين لهذا البرنامج النصي. سيكون لديهم نفس الحقوق التي لديك على هذا البرنامج النصي، بما في ذلك الحق في إضافة أو إزالة مؤلفين آخرين (بمن فيهم أنت)."
       invited_user_url_label: "مستخدم لدعوته"
       invited_user_placeholder: "رابط الملف الشخصي للمستخدم على %{site_name}"
       submit: "أرسل دعوة"
@@ -265,12 +296,26 @@ ar:
     no_disposable_email: "لا يجوز لك نشر السكربتات إذا كنت تستخدم عنوان بريد إلكتروني يمكن التخلص منه."
     new_script_notice:
       title: "ماذا تحاول أن تفعل؟"
+    install_help_dialog:
+      css:
+        opera: ستحتاج إلى تثبيت إضافة مثل %{stylus_link:Stylus} لتثبيت هذا النمط.
+        safari: ستحتاج إلى تثبيت إضافة لإدارة أنماط المستخدم لتتمكن من تثبيت هذا النمط.
+        edge: ستحتاج إلى تثبيت إضافة لإدارة أنماط المستخدم لتثبيت هذا النمط.
+        other: ستحتاج إلى تثبيت إضافة لإدارة أنماط المستخدم لتثبيت هذا النمط.
+        bypass: (لدي بالفعل مثبت أنماط للمستخدم، دعني أقم بتثبيته!)
     antifeatures:
+      author_explanation_intro: "شرح مؤلف هذا البرنامج النصي:"
       types:
         ads:
           title: إعلانات
+          description_html: سيقوم هذا البرنامج النصي<b>بحقن الإعلانات </b>في المواقع التي تزورها.
         tracking:
           title: تتبع
+        membership:
+          description_html: يعمل هذا البرنامج النصي بكامل وظائفه فقط بعد <b>التسجيل في شيء ما</b>، مثل الانضمام إلى مجموعة، أو الاشتراك في قناة، أو الإعجاب بصفحة.
+        payment:
+          title: الدفع
+          description_html: يعمل هذا البرنامج النصي بكامل وظائفه فقط بعد<b> إجراء دفعة. ‏%{site_name} لن يكون طرفا في عملية الدفع، ولذلك لا يمكنه التحقق مما إذا كنت ستحصل على شيء ذا قيمة أو مساعدتك في استرداد المبلغ.
       cancel_install: إلغاء
     badges:
       css:
@@ -281,6 +326,7 @@ ar:
     delete: "حذف مجموعة البرامج النصية"
     delete_confirmation: "هل أنت متأكد أنك تريد حذف مجموعة البرامج النصية هذه؟"
     site_default_sort: "(افتراضي الموقع)"
+    edit_link: "تعديل"
     edit_scripts:
       heading: "البرامج النصية"
       description: "تضمين أو استثناء  برامج نصية منفردة من مجموعة البرامج النصية الخاصة بك."
@@ -357,6 +403,23 @@ ar:
     explain_user_scripts_html: "البرامج النصية تتيح لك التحكم بتجربة التصفح الخاص بك. بمجرد تركيبها، سوف تجعل المواقع التي تزورها أفضل من خلال إضافة ميزات، مما يجعلها أسهل للاستخدام، أو تزيل الأشياء تلقائيا. تم كتابة البرامج النصية على %{site_name} من قبل المستخدمين الآخرين ونشرت لمشاركتها مع العالم. إنها مجانية للتثبيت وسهلة الاستخدام."
     installing_step1_header: "الخطوة 1: قم بتثبيت برنامج إدارة البرامج النصية"
     installing_step1_caption: "Tampermonkey على Chrome"
+    installing_step1_description_html: >
+        لاستخدام السكربتات، تحتاج أولاً إلى تثبيت مدير سكربتات. مدير السكربتات الذي
+        يمكنك استخدامه يعتمد على المتصفح الذي تستخدمه.
+    desktop_browsers:
+      title: سطح المكتب
+      browser_list_html: |
+          كروم: %{chrome_tampermonkey_link:Tampermonkey} أو %{chrome_violentmonkey_link:Violentmonkey}
+          فايرفوكس: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, أو %{firefox_violentmonkey_link:Violentmonkey}
+          سفاري: %{safari_tampermonkey_link:Tampermonkey} أو %{safari_userscripts_link:Userscripts}
+          مايكروسوفت إيدج: %{edge_tampermonkey_link:Tampermonkey} أو %{edge_violentmonkey_link:Violentmonkey}
+          أوبرا: %{opera_tampermonkey_link:Tampermonkey} أو %{opera_violentmonkey_link:Violentmonkey}
+          Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}
+          %{adguard_link:AdGuard}: (لا حاجة لبرنامج إضافي)
+    android_browsers:
+      title: هاتف (أندرويد)
+    ios_browsers:
+      title: هاتف (IOS)
     installing_step2_header: "خطوة 2: قم بتثبيت برنامج نصي"
     installing_step2_caption: "زر تثبيت برنامج نصي"
     installing_step2_description_html: >
