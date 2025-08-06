@@ -203,7 +203,7 @@ module Webhooks
       updated_failed: update_failed_scripts.map { |s| script_url(s) },
     }
 
-    result[:message] = update_failed_scripts.map { |s| "#{script_url(s)}: #{s.errors.full_messages.join(', ')}" }.join('. ') if update_failed_scripts.any?
+    result[:message] = update_failed_scripts.map { |s| "#{script_url(s)}: #{(s.errors.full_messages + s.script_versions.last.errors.full_messages).join(', ')}" }.join('. ') if update_failed_scripts.any?
 
     render json: result
   end

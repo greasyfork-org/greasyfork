@@ -346,7 +346,7 @@ class GithubWebhookTest < ActionDispatch::IntegrationTest
     assert_equal({
                    'updated_scripts' => [],
                    'updated_failed' => ['https://greasyfork.org/en/scripts/18'],
-                   'message' => 'https://greasyfork.org/en/scripts/18: Script versions is invalid, Default name is required - specify one with @name, Description is required - specify one with @description',
+                   'message' => 'https://greasyfork.org/en/scripts/18: Script versions is invalid, Default name is required - specify one with @name, Description is required - specify one with @description, Code contains errors: Uncaught SyntaxError: Unexpected identifier \'is\' at <eval>:2:5, Rewritten script code must exist, Code is invalid, Code must include at least one @match or @include key',
                  }, response.parsed_body)
   end
 end
