@@ -16,7 +16,7 @@ sv:
     total_installs: "Totala installationer"
     daily_installs: "Dagliga installationer"
     ratings: "Betyg"
-    author_name: "Skapare"
+    author_name: "Upphovsman"
     version_number: "Version"
     license: "Licens"
     no_license: "N/A"
@@ -29,20 +29,20 @@ sv:
       other: "Se %{count} andra skript för %{site}"
     applies_to_all: "Alla sidor"
     install: "Installera detta skript"
-    install_css: "Installera som användar stil"
+    install_css: "Installera som användarstil"
     install_help: "?"
     install_help_title: "Hur man installerar"
     update: "Uppdatera till version %{version}"
     downgrade: "Nergradera till version %{version}"
     reinstall: "Återinstallera version %{version}"
     old_version_warning: "Det här är inte senaste versionen av denna skripten. Om du installer det, du kommer aldrig bli uppdaterad till en nyare version. Installera det även?"
-    author_promoted: "Författaren's rekommenderade skript"
+    author_promoted: "Upphovsmannens rekommenderade skript"
     promoted_text_html: "Du kanske också gillar %{script_link}."
     library_instructions_html: "Detta skript bör inte installeras direkt. Det är ett bibliotek för andra skript att inkludera med meta-direktivet %{code}"
     deleted_notice: "Detta skript har blivit raderat"
     deleted_notice_with_reason: "Det här skriptet har blivit borttaget på grund av %{report_link:denna rapporteringen}."
     deleted_notice_with_related: "Skripten du har viljat ha har blivit raderad, men här är några relaterade skripter"
-    deleted_notice_with_related_and_reason: "Skriptet du vill ha har blivit borttaget på grund av %{report_link:this report}, men här är några relaterade skripter."
+    deleted_notice_with_related_and_reason: "Skriptet du vill ha har blivit borttaget på grund av %{report_link:denna rapport}, men här är några relaterade skripter."
     deleted_undelete_notice_html: "Skripten har blivit låst av en moderator och kan inte bli avraderad. Anledningen till detta: \"<i>%{delete_reason}</i>\"."
     deleted_locked_author_notice_html: "Detta skript har blivit raderat av en moderator som svar på %{report_link:denna rapporten} och är inte tillgänglig till andra. Angiven anledning är: <i>%{delete_reason}</i>\". Var god granska %{code_rules_link:%{site_name}s regler}. Om du anser att detta är felaktigt kan du %{appeal_link:överklaga beslutet}. Posta inte om detta skriptet; att göra det kan leda till avstängning från %{site_name}."
     version_notice_html: "Från och med %{date}. Se %{latest_version_link}."
@@ -56,8 +56,8 @@ sv:
     derivatives_page: "derivat"
     update_page: "Uppdatera"
     delete_page: "Radera"
-    delete_explanation: "Raderar du ditt skript så blir det otillgänglig för alla förutom Greasy Fork Moderatorer och dig själv. Du kan återställa ditt script när som helst."
-    delete_update_behaviour: "Vad Skulle du vilja hända användare som tidigare installerade ditt Script?"
+    delete_explanation: "Raderar du ditt skript så blir det otillgänglig för alla förutom Greasy Fork-moderatorer och dig själv. Du kan återställa ditt skript när som helst."
+    delete_update_behaviour: "Vad vill du ska hända med användare som tidigare installerat ditt skript?"
     delete_update_behaviours:
       keep: "De kommer att behålla det som det är."
       blanked: "De kommer att uppdateras till ett blankt skript. Detta är lämpligt när skriptet har en negativ effekt på hemsidorna det körs på."
@@ -73,13 +73,13 @@ sv:
       title: "%{script_name} - Administratör"
       compare_button: "Jämföra"
     history_title: "%{script_name} - Versionshistorik"
-    history_only_code_changes_info: "Dessa är versionerna av skriptet där koden uppdaterades."
+    history_only_code_changes_info: "Detta är versioner av skriptet där koden uppdaterats."
     history_all_changes_link: "Visa alla versioner."
-    history_all_changes_info: "Där är alla versioner av detta skript"
+    history_all_changes_info: "Detta är alla versioner av detta skript."
     history_only_code_changes_link: "Visa endast de skript där koden är ändrad"
     diff_button: "Diff valda versioner"
-    list_all_script_versions: "Visa alla versioner."
-    code_title: "%{script_name} - Source code"
+    list_all_script_versions: "Visa alla skriptversioner."
+    code_title: "%{script_name} - Källkod"
     feedback_title: "%{script_name} - Feedback"
     feedback_no_discussions_html: "Inga diskussioner postade ännu. %{start_first_discussion_link}"
     feedback_no_discussions_on_page_form: "Inga diskussioner har postats ännu."
@@ -106,7 +106,7 @@ sv:
       high: Väldigt lika
       low: Något liknande
       none: Inte lika alls
-    derivatives_similar_none: "Det finns inga liknande skript som dina."
+    derivatives_similar_none: "Det finns inga liknande skript som ditt."
     derivatives_similar_item: "%{score}: %{diff_link:[Diff]} %{script}"
     listing_title_all_sites: "Användarskript för alla sidor"
     listing_description_all_sites: "Användarskript som lägger till funktioner och tar bort buggar på alla sidor"
@@ -117,26 +117,33 @@ sv:
     listing_title_generic: "Användarskript"
     listing_title_for_favorites: "%{user_name}s %{set_name}"
     listing_description_generic: "Användarskript som lägger till funktioner och tar bort buggar på hemsidor du använder"
-    listing_sort_label: "Sortering av:"
+    listing_sort_label: "Sortera efter:"
     listing_sort_relevance: "Relevans"
     listing_sort_daily_installs: "Dagliga installationer"
     listing_sort_total_installs: "Totala installationer"
     listing_sort_ratings: "Betyg"
-    listing_sort_created: "skapandedatum"
-    listing_sort_updated: "uppdaterad datum"
+    listing_sort_created: "Skapandedatum"
+    listing_sort_updated: "Uppdateringsdatum"
     listing_sort_name: "Namn"
-    listing_filter_by_site_label: "Visar skripts för:"
+    listing_filter_by_site_label: "Visar skript för:"
     listing_filter_by_site_disable: "Alla"
     listing_filter_by_site_all_sites: "(Alla Sidor)"
     listing_filter_by_language_label: "Språk:"
     listing_filter_by_site_more_sites: "Mer..."
-    listing_no_scripts: "Inget skript hittade."
-    listing_created_feed: "Nya skripts"
-    listing_updated_feed: "Uppdaterade skripts"
+    listing_no_scripts: "Inga skript hittades."
+    listing_created_feed: "Nya skript"
+    listing_updated_feed: "Uppdaterade skript"
     listing_none: "(Inga)"
+    listing_set_locale_filter: "Visar resultat för alla språk. %{set_filter_link:Visa enbart %{language} resultat.}"
+    listing_remove_locale_filter: "Visar enbart %{language}resultat. %{remove_filter_link:Visa resultat för alla språk.}"
+    listing_language_all: "Alla"
+    listing_author:
+      all: Alla upphovsmän
+      me: Mina skript
+      user: Skript av %{author_name}
     import: "Viktiga skripts"
-    support_site: "Besök författarens supportsida."
-    support_email: "E-posta författaren för stöd."
+    support_site: "Besök upphovsmannens supportsida."
+    support_email: "E-posta upphovsmannen för support."
     contribution_no_amount: "Tacka %{author} genom en donation."
     contribution_with_amount: "Tacka %{author} genom en donation. Den föreslagna donationen är %{amount}."
     contribution_bitcoin_no_amount_html: "Tacka %{author} genom en Bitcoin-donation till %{address}."
@@ -164,14 +171,14 @@ sv:
     type_2_html: "Olistat användarskript - ett användarskript för (semi-)privat användning. Tillgänglig via direkt åtkomst, men inte länkad till från någonstans på %{site_name}."
     type_3_html: "Bibliotek- ett skript avsedd att vara <code>@require</code>-d \nfrån andra skript och inte installeras direkt."
     override_warning_checkbox_label: "Spara ändå"
-    warning_version_not_incremented_html: "Du uppdaterade koden men inte öka <code>@version</code> numret. De som tidigare installerat skriptet kan inte få den uppdaterade koden."
+    warning_version_not_incremented_html: "Du uppdaterade koden men ökade inte <code>@version</code>-numret. De som tidigare installerat skriptet kan inte få den uppdaterade koden."
     warning_namespace_changed_html: "Din <code>@namespace</code> har förändrats. En konsekvent <code>@namespace</code> tillåter användare att ominstallera skriptet för att uppdatera den."
     warning_potentially_minified_allowed_requires_link: "en av dessa platser"
     warning_license_missing_override_html: "Spara utan en licens"
     additional_info_locale_prompt: "(Välj ett språk)"
-    additional_info_add_localized: "Lägg till en språkanpassad beskrivning"
-    additional_info_locale_repeated: "Lägg endast till en beskrivning för språket '%{locale_code}'."
-    localized_additional_info_with_no_name: "En ytterligare beskrivning var specificerad för språkvarianten '%{locale_code}', men inget @name:%{locale_code} tillhandahölls."
+    additional_info_add_localized: "Lägg till språkanpassad ytterligare info"
+    additional_info_locale_repeated: "Lägg endast till en ytterligare info för språket '%{locale_code}'."
+    localized_additional_info_with_no_name: "En ytterligare info var specificerad för språkvarianten '%{locale_code}', men inget @name:%{locale_code} tillhandahölls."
     code_syncing_from_url_html: "Detta skriptets kod är inställt på att synka från: %{field}"
     provide_code_syncing_from_url_html: "%{site_name} kan importera skript som redan värd någon annanstans, till exempel i ett versionshanteringssystem (som GitHub), din egen server, eller en annan användar skript webbsida.till att aktivera synkronisering för dina skript, tillhandahålla en webbadress: %{field}"
     sync_type_intro: "Skriptet kommer synkas:"
@@ -185,7 +192,7 @@ sv:
     update_and_sync: "Uppdatera och synka nu"
     update_no_sync: "Uppdatera"
     turn_off_syncing: "Stäng av synkning för detta skript"
-    additional_info_default_sync_html: "Standard beskrivning (språkvariant matchar <code>@name</code>)"
+    additional_info_default_sync_html: "Standard ytterligare info (språkvariant matchar <code>@name</code>)"
     additional_info_localized_sync_html: "För språkvariant (matchar <code>@name:XX</code>)"
     sync_url_placeholder: "(URL)"
     screenshots_add: "Lägg till:"
@@ -206,11 +213,11 @@ sv:
     learn_to_write_scripts_link_text: "lär dig hur man skriver ett"
     adult_content: "Vuxeninnehåll"
     adult_content_self_report: "Detta skript innehåller vuxet innehåll eller är till för en sida med vuxet innehåll."
-    adult_content_self_report_explanation: "%{site_name} tillåter skript med vuxet innehåll, men dom måste bli markerade som så, så att användare kan välja vare sig dom vill se det eller inte."
-    not_adult_content_self_report_html: "Detta skript innehåller <strong>inte </strong> sexuellt innehåll och är <strong>inte</strong> för en webbplats som innehåller pornografiskt innehåll."
-    not_adult_content_self_report_explanation: "%{site_name} tillåter skript med vuxet innehåll, men dom måste bli markerade som så, så att användare kan välja vare sig dom vill se det eller inte. Ditt skript har blivit markerat för vuxeninnehåll. Du kan rapportera det för att vara felaktigt; vilket i så fall kommer granskas av en moderator."
-    adult_content_on_greasy_logged_in_error: "Detta skript är inte längre tillgängligt på denna sidan med dina nuvarande %{edit_account_link:Greasy Fork account settings}."
-    adult_content_on_greasy_not_logged_in_error: "Detta skript är inte längre anonymt tillgängligt på denna sidan. %{login_link:Log in} och kontrollera dina Greasy Fork kontoinställningar."
+    adult_content_self_report_explanation: "%{site_name} tillåter skript med vuxet innehåll, men dom måste bli markerade som så, så att användare kan om de vill se dem eller ej."
+    not_adult_content_self_report_html: "Detta skript innehåller <strong>inte </strong> vuxet innehåll och är <strong>inte</strong> för en webbplats som innehåller vuxet innehåll."
+    not_adult_content_self_report_explanation: "%{site_name} tillåter skript med vuxet innehåll, men dom måste bli markerade som så, så att användare kan välja om de vill se dem eller ej. Ditt skript har blivit markerat för vuxeninnehåll. Du kan rapportera det för att vara felaktigt; vilket i så fall kommer granskas av en moderator."
+    adult_content_on_greasy_logged_in_error: "Detta skript är inte längre tillgängligt på denna sidan med dina nuvarande %{edit_account_link:Greasy Fork-kontoinställningar}."
+    adult_content_on_greasy_not_logged_in_error: "Detta skript är inte längre anonymt tillgängligt på denna sidan. %{login_link:Logga in} och kontrollera dina Greasy Fork-kontoinställningar."
     non_adult_content_on_sleazy: "Detta skript är inte tillgängligt på denna sidan."
     adult_marker: "(Vuxet)"
     deleted_marker: "(Borttaget)"
@@ -218,7 +225,9 @@ sv:
     unlisted_marker: "(Olistad)"
     library_marker: "(Bibliotek)"
     libraries_title: "Bibliotek"
+    libraries_description_html: "Det finns bibliotek postade av %{site_name}-användare som du kan <code>@require</code> i dina skript. För andra slags bibliotek kan du<code>@require</code>, läs %{policy_link:%{site_name}s policy för <code>@require</code>}."
     by_site_list_title: "Användarskript på %{site_name} grupperade efter sida"
+    by_site_list_description: "Detta är webbsidorna påverkade av de populäraste användarskripten. Större teckenstorlek betyder mer populärt användarskript."
     by_site_list_filter: "Filtrera efter sidnamn:"
     search_placeholder: "Sök skript"
     invitations:
@@ -243,11 +252,11 @@ sv:
         short: JS
       css:
         short: CSS
-        long: Användar stil
+        long: Användarstil
   script_sets:
     favorites_name: "Favoriter"
-    delete: "Radera skript uppsättning"
-    delete_confirmation: "Är du säker på att du vill radera detta script uppsättning?"
+    delete: "Radera skriptuppsättning"
+    delete_confirmation: "Är du säker på att du vill radera denna skriptuppsättning?"
     site_default_sort: "(Site standard)"
     edit_scripts:
       heading: "Skript"
@@ -261,8 +270,8 @@ sv:
       add_include: "Inkludera"
       add_exclude: "Exkludera"
     edit_sets:
-      heading: "Skriptset"
-      description: "Inkludera eller exkludera andra skriptset i ditt skriptset."
+      heading: "Skriptuppsättningar"
+      description: "Inkludera eller exkludera andra skriptuppsättningar i din skriptuppsättning."
       included: "Inkluderat"
       included_none: "(Inga)"
       remove_included: "Ta bort markerade"
@@ -288,7 +297,7 @@ sv:
       for_language_exclude: "Exkludera"
     calculated_list_none: "(Inga)"
     save: "Spara"
-    saved: "Skriptset sparat."
+    saved: "Skriptuppsättning sparad."
     auto_set_types:
       all_scripts: "Alla skript"
       site: "Skript för %{site}"
@@ -298,13 +307,58 @@ sv:
     welcome: "Välkommen till %{site_name}, en sida för användarskript."
     sleazy_title: "%{site_name} - säkra och praktiska vuxenanvändarskript"
     sleazy_welcome: "Välkommen till %{site_name}, en sida för vuxenanvändarskript."
+    search_placeholder: "Sök efter användarskript"
+    scripts_for_label: "Skript för:"
     explain_user_scripts_heading: "Vad är användarskript?"
-    explain_user_scripts_html: "Användar skript sätta dig i kontroll över din webbupplevelse . när skriptet är installerat, de automatiskt gör de webbplatser du besöker bättre genom att lägga till funktioner, vilket gör dem lättare att använda, eller ta ut irriterande bitar. Användaren skript på %{site_name} skrivna av andra användare och skrivit att dela med världen. De är gratis att installera och lätt att använda."
+    explain_user_scripts_html: "Användarskript ger dig kontroll över din webbupplevelse. När skriptet är installerat, gör de automatiskt webbplatser du besöker bättre genom att lägga till funktioner, göra dem lättare att använda, eller ta bort irriterande delar. Användarskript på %{site_name} är skrivna av andra användare och delade med världen. De är gratis att installera och lätta att använda."
+    installing_step1_header: "Steg 1: Installera en användarskripthanterare"
     installing_step1_caption: "Tampermonkey på Chrome"
     desktop_browsers:
       title: Skrivbord
+      browser_list_html: |
+          <ul>
+          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} eller %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, eller %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} eller %{safari_userscripts_link:Userscripts}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} eller%{edge_violentmonkey_link:Violentmonkey}</li>
+          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} eller %{opera_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>%{adguard_link:AdGuard}: (ingen ytterligare programvara krävs)</li>
+          </ul>
+    android_browsers:
+      title: Mobil (Android)
+      browser_list_html: |
+          <ul>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, eller %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+          <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+          <li>%{xbrowser_link:XBrowser}</li>
+          %{locale_specific_browsers}
+          </ul>
     ios_browsers:
       title: Mobil (iOS)
+      browser_list_html: |
+          <ul>
+          <li> Safari: %{safari_tampermonkey_link:Tampermonkey} eller %{safari_userscripts_link:Userscripts}</li>
+          <li>%{gear_link:Gear}: (ingen ytterligare programvara krävs)
+          </ul>
+    installing_step2_header: "Steg 2: Installera ett användarskript"
+    installing_step2_caption: "Ett användarskripts installationsknapp"
+    installing_step2_description_html: >
+        <p>%{browse_link:Bläddra på denna webbsida} för att hitta ett användarskript
+        du vill testa. Här är exempel på de mest populära skripten::
+
+        %{highlighted_scripts_list}
+
+        <p>När du hittat ett användarskript, klicka på den gröna installationsknappen
+        på skriptets sida så kommer din användarskripthanterare be dig bekräfta installationen.</p>
+    installing_step3_header: "Steg 3: Använd användarskriptet"
+    installing_step3_description_html: >
+        <p>Gå till webbsidan som användarskriptet påverkar. Det ska automatiskt fungera.
+        Efter att du testat användarskriptet ett tag, gå tillbaka till sidan där du
+        installerade skriptet och lämna feedback till skriptets upphovsman.</p>
   users:
     sign_in_title: "Logga in på %{site_name}"
     sign_in_description: "Att logga in på %{site_name} låter dig publicera skript och recensera andras skript. Du behöver inte logga in för att bläddra eller installera skript."
@@ -327,7 +381,9 @@ sv:
     script_list_none_for_filter: "Inga skript passade in med nuvarande filterinställningar."
     script_list_none_same_user_html: "Du har inte skrivit några skript. %{script_list_none_same_user_info_link}"
     script_list_none_same_user_info_link_text: "Skulle du vilja lära dig hur?"
+    listing_sort_name: "Namn"
     deleted_script_list: "Raderade skript"
+    unlisted_script_list: "Olistade skript"
     sign_out: "Logga ut"
     edit: "Redigera konto"
     edit_sign_in: "Ändra inloggningsmetoder."
@@ -360,10 +416,16 @@ sv:
       one: "%{user_link} - %{count} skript"
       other: "%{user_link} - %{count} skript"
     listing_number_of_scripts: "Antal användarskript"
-    listing_new_scripts: "Nya scripts"
-    listing_updated_scripts: "Uppdaterade scripts"
+    listing_new_scripts: "Nya skript"
+    listing_updated_scripts: "Uppdaterade skript"
     listing_registration_date: "Registreringsdatum"
     listing_title: "Användare"
+    listing_banned_filter:
+      banned: "Bannade"
+      not_banned: "Ej bannade"
+    listing_author_filter:
+      script_author: "Skriptupphovsman"
+      not_script_author: "Ej skriptupphovsman"
     search_placeholder: "Sök användare"
     locale_prompt: "(Välj ett språk)"
     show_ads_description: "Stöd %{site_name} genom att låta den visa annonser"
@@ -375,7 +437,23 @@ sv:
     delete_link: "Radera konto"
     delete:
       password_effect: "Du kommer inte längre kunna logga in med ditt lösenord."
+    badges:
+      banned:
+        short: Bannade
+        long: Bannade
+      author:
+        short: Upphovsman
+        long: Detta skripts upphovsman
   help:
+    sections:
+      usage: Användning
+      development: Utveckling
+      miscellaneous: Övrigt
+    open_source: "%{site_name}är öppen källkod (GPLv3-licenserad) Du kan %{github_link:se källkoden på GitHub}."
+    installing_user_scripts:
+      title: 'Hur man installerar användarskript'
+    installing_user_styles:
+      title: 'Hur man installerar användarstilar'
     meta_keys:
       title: "Skriptets metanycklar, lästa av %{site_name}"
       name: "Namnet på ditt skript. Används som titel och i länkar. Krävs."
@@ -388,37 +466,93 @@ sv:
       post_new_script_link_text: 'publicera ett nytt skript'
     code_rules:
       title: "%{site_name}s regler för publicerade skript"
+      miscellaneous_header: Övrigt
     external_scripts:
       title: "%{site_name}s integritetspolicy om externa skript"
+    cdns:
+      test_url:
+        result_not_ok: URL tillåts ej
     script_rewriting:
       title: "Hur %{site_name} kommer skriva om publicerade skript"
     site_feedback_link: "Rapportera ett problem eller dela med dig av idéer för själva %{site_name}"
     credits:
       title: "Medverkande"
-      authors_credit: "%{site_name} skulle inte vara möjligt utan författarna som bidragit skript."
-      developers_credit: "%{site_name} är byggt av %{developers_link:these people} med hjälp av alla de personer som rapporterar fel och föreslå förbättringar."
-      translators_credit: "%{site_name} vart översatt av %{translators_link:the Greasy Translation Force on Transifex}:"
+      authors_credit: "%{site_name} skulle inte vara möjligt utan upphovsmännen som bidrar med skript."
+      developers_credit: "%{site_name} är byggt av %{developers_link:dessa människor} med hjälp av alla de personer som rapporterar fel och föreslå förbättringar."
+      translators_credit: "%{site_name} har översatts av %{translators_link:Greasy Translation Force på Transifex}:"
     help_with_greasymonkey: "Hjälp med Greasemonkey"
     contact:
       title: "Kontakta någon"
     privacy_policy:
       title: "Integritetspolicy"
+    user_css_to_user_js:
+      title: Konvertering av användar-CSS till användar-JS
+  search:
+    script_search:
+      title: "Skriptsökning"
+      description: "Sök efter skript. Söker på skriptnamn, beskrivningar, ytterligare info och upphovsmäns namn."
+    library_search:
+      title: "Bibliotekssök"
+      description: "Söker efter bibliotek. Söker på biblioteksnamn, beskrivningar, ytterligare info och upphovsmäns namn."
+    code_search:
+      title: "Kodsök"
+      description: "Sök efter skriptkod. Detta är en skiftlägesokänslig i klartext utan wildcards."
+    user_search:
+      title: "Användarsök"
+      description: "Sök användare efter namn."
+  moderator_logs:
+    date_column: "Datum"
+    action_column: "Åtgärd"
+    reason_column: "Orsak"
+  reports:
+    reason:
+      wrong_category: "Fel kategori"
+      wrong_category_with_suggestion: "Fel kategori (förslag: %{suggested_category})"
   appeals:
     new:
       submit: Lämna in överklagande
     deletion_reason_html: "%{script} är borttaget på grund av: %{reason}"
-    author_reason: "Överklagan inlämnad av skaparen"
+    author_reason: "Överklagan inlämnad av upphovsmannen:"
     pending_review: Den här överklagan väntar på granskning av en moderator.
     dismissed_by_moderator: En moderator har avvisat denna överklagan.
-    upheld_by_moderator: Som ett resultat av denna överklagan
+    upheld_by_moderator: Som ett resultat av denna överklagan har en moderator återställt detta skript.
   discussions:
+    title: Diskussioner
+    last_comment: "Senaste: %{user} %{date}"
+    update_comment_submit: "Uppdateringskommentar"
+    category_filter:
+      label: Kategori
+      all: Alla kategorier
+    locale_filter:
+      label: Språk
+    sort:
+      comment_created: Datum
+      discussion_last_comment: Senaste kommentarsdatum
+      discussion_created: Diskussionens startdatum
     subscribe: Prenumerera
     unsubscribe: Avsluta prenumerationen
     notify: Meddela mig vid varje svar
+    categories:
+      development:
+        name: Utveckling
+      requests:
+        name: Förfrågningar om skapande
+      script-discussions:
+        name: Skriptdiskussioner
+      no-scripts:
+        name: Allt förutom skriptdiskussioner
+    new_title: Ny diskussion
+    new_button: Ny diskussion
+    search_placeholder: Sök diskussioner
   conversations:
     new_button: skapa konverstation
     send_message: skicka medelande
     conversation_list_title: konverstationer
+  moderator_actions:
+    action_taken:
+      delete_and_lock: 'Ta bort och lås'
+      mark_adult: 'Markera som vuxeninnehåll'
+      undelete_and_unlock: 'Återställ och lås upp'
   common:
     allowed_elements_link: "(Se tillåten kod.)"
     allowed_elements_and_attributes_title: "Tillåtna element för HTML-innehåll"
@@ -428,7 +562,7 @@ sv:
     not_found_title: "404 - Sidan kunde ej hittas"
     not_found_link_home: "Gå hem."
     suggest_locale: "%{site_name} är tillgänglig i %{locale_name}."
-    incomplete_locale: "%{site_name}'s %{locale_name} translationen är bara %{percent} färdigt. Du kan ändra på det."
+    incomplete_locale: "%{site_name}s %{locale_name} översättning är bara %{percent} färdigt. Du kan ändra på det."
   activerecord:
     attributes:
       user:
@@ -447,12 +581,13 @@ sv:
         code: "Kod"
         changelog: "Ändringslogg"
         type: "Skripttyp"
-        additional_info: "Ytterligare beskrivning"
+        additional_info: "Ytterligare info"
         screenshots: "Skärmdumpar"
         replaced_by_script_id: "Ersättningsskript"
       script_set:
         name: "Namn"
         description: "Beskrivining"
+        default_sort: "Standardsortering"
       discussion:
         rating: "Betyg"
         category: "Kategori"
@@ -472,12 +607,12 @@ sv:
       script_too_many_screenshots: "För många inkluderade skärmdumpar - maxantal är %{number}"
       cannot_be_self_reference: "får inte vara samma skript"
       cannot_be_deleted_reference: "får inte vara ett borttaget skript"
-      cannot_be_used_with_this_script: "Kan inte användas med detta skript"
+      cannot_be_used_with_this_script: "kan inte användas med detta skript"
       must_be_greasy_fork_script: "måste vara URL:en för ett skript på %{site_name}"
       script_update_not_utf8: "uppladdat måste vara UTF-8 text"
       script_disallowed_require: "använder ett icke godkänt externt skript: %{code}"
   opensearch:
     short_name: "%{site_name}-sökning"
     description: "Sök efter användarskript på %{site_name}."
-    long_name: "%{site_name} användarskript-sökning"
-    attribution: "Ge copyright till skriptens skapare, se individuella skript för licensering"
+    long_name: "%{site_name} användarskriptsökning"
+    attribution: "Ge copyright till skriptens upphovsman, se individuella skript för licensering"
