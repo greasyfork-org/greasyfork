@@ -1,5 +1,6 @@
 class ConversationMailer < ApplicationMailer
   include UsersHelper
+
   helper UsersHelper
   helper UserTextHelper
 

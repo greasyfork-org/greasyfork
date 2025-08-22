@@ -1,5 +1,6 @@
 class ForumMailer < ApplicationMailer
   include UsersHelper
+
   helper UsersHelper
   helper UserTextHelper
 

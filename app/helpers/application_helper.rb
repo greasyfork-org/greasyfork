@@ -59,7 +59,7 @@ module ApplicationHelper
     top_percentage_count = (locale_script_count * TOP_SCRIPTS_PERCENTAGE).to_i
     # If there are enough from the top percentage, then sample from that.
     highlighted_scripts = if top_percentage_count >= TOP_SCRIPTS_COUNT
-                            Set.new + locale_scripts.order('daily_installs DESC').limit(top_percentage_count).sample(TOP_SCRIPTS_COUNT).map(&:id)
+                            Set.new + locale_scripts.order(daily_installs: :desc).limit(top_percentage_count).sample(TOP_SCRIPTS_COUNT).map(&:id)
                           else
                             # Otherwise, sample from all scripts in this locale.
                             Set.new + locale_scripts.sample(TOP_SCRIPTS_COUNT).map(&:id)
@@ -68,7 +68,7 @@ module ApplicationHelper
     # If we don't have enough, use scripts that aren't in the passed locale.
     if highlighted_scripts.length < TOP_SCRIPTS_COUNT
       total_script_count = highlightable_scripts.count
-      highlightable_scripts.order('daily_installs DESC').limit((total_script_count * TOP_SCRIPTS_PERCENTAGE).to_i).pluck(:id).shuffle.each do |id|
+      highlightable_scripts.order(daily_installs: :desc).limit((total_script_count * TOP_SCRIPTS_PERCENTAGE).to_i).pluck(:id).shuffle.each do |id|
         highlighted_scripts << id
         break if highlighted_scripts.length >= TOP_SCRIPTS_COUNT
       end

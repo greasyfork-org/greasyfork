@@ -7,7 +7,9 @@ class AcceptInvitationService
   end
 
   def invitation
-    @invitation ||= @script.script_invitations.order(expires_at: :desc).find_by(invited_user_id: @user.id)
+    return @invitation if defined?(@invitation)
+
+    @invitation = @script.script_invitations.order(expires_at: :desc).find_by(invited_user_id: @user.id)
   end
 
   def valid?

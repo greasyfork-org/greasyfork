@@ -9,7 +9,7 @@ class JsParser
   APPLIES_TO_ALL_PATTERNS = ['http://*', 'https://*', 'http://*/*', 'https://*/*', 'http*://*', 'http*://*/*', '*', '*://*', '*://*/*', 'http*'].freeze
 
   # Include * in this too as that's allowed in various scenarios
-  VALID_DOMAIN_REGEXP = /\A[a-z0-9\-.\*]+\z/i
+  VALID_DOMAIN_REGEXP = /\A[a-z0-9\-.*]+\z/i
 
   class << self
     def get_meta_block(code)
