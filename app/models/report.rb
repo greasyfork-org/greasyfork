@@ -125,11 +125,16 @@ class Report < ApplicationRecord
           ModeratorAction.create!(moderator:, automod:, discussion: item, action_taken: :delete, report: self, private_reason: moderator_notes) unless item.soft_deleted? || ban_user
         end
       when Script
+        item.locked = true
+        item.delete_report = self
+        item.self_deleted = moderator.nil?
         if unauthorized_code? && reference_script
-          item.assign_attributes(delete_type: redirect ? 'redirect' : 'keep', locked: true, replaced_by_script: reference_script, self_deleted: moderator.nil?, delete_report: self)
+          item.delete_type = redirect ? 'redirect' : 'keep'
+          item.replaced_by_script = reference_script
         else
-          item.assign_attributes(delete_type: warrants_blanking? ? 'blanked' : 'keep', locked: true, self_deleted: moderator.nil?, delete_report: self)
+          item.delete_type = warrants_blanking? ? 'blanked' : 'keep'
         end
+        item.pure_404 = true if legal_claim?
         item.save(validate: false)
         if ban_user
           reported_users.each { |user| user.ban!(moderator:, automod:, delete_comments:, delete_scripts:, ban_related: true, report: self) }
@@ -232,6 +237,10 @@ class Report < ApplicationRecord
 
   def unauthorized_code?
     reason == REASON_UNAUTHORIZED_CODE
+  end
+
+  def legal_claim?
+    reason == REASON_LEGAL_CLAIM
   end
 
   def in_grace_period?
