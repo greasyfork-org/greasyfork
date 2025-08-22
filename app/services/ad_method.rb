@@ -39,6 +39,10 @@ class AdMethod
     @ad_method == 'cd'
   end
 
+  def ne?
+    @ad_method == 'ne'
+  end
+
   def self.ga
     new('ga')
   end
@@ -53,6 +57,10 @@ class AdMethod
 
   def self.cd
     new('cd')
+  end
+
+  def self.ne
+    new('ne')
   end
 
   def self.no_ad(reason)
