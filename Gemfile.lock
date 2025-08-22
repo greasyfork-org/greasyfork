@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/devise-i18n/devise-i18n.git
+  revision: 8d2a8342ac852832389383822c828d8b8f3e999e
+  specs:
+    devise-i18n (1.14.0)
+      devise (>= 4.9.0)
+      rails-i18n
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -167,9 +175,6 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    devise-i18n (1.14.0)
-      devise (>= 4.9.0)
-      rails-i18n
     devise-two-factor (6.1.0)
       activesupport (>= 7.0, < 8.1)
       devise (~> 4.0)
@@ -626,7 +631,7 @@ DEPENDENCIES
   daemons
   detect_language
   devise
-  devise-i18n
+  devise-i18n!
   devise-two-factor
   diffy
   elasticsearch (~> 8.0)
@@ -732,7 +737,7 @@ CHECKSUMS
   debug_inspector (1.2.0) sha256=9bdfa02eebc3da163833e6a89b154084232f5766087e59573b70521c77ea68a2
   detect_language (1.1.2) sha256=eba22ebe6ba0224a2d7bd168e94da3c745f8d9a80af2c0b90b170292f511398b
   devise (4.9.4) sha256=920042fe5e704c548aa4eb65ebdd65980b83ffae67feb32c697206bfd975a7f8
-  devise-i18n (1.14.0) sha256=15a2cf1ab849d725b65d3aae3e4529654436540c03ad2e32978f0b86a82a0ddb
+  devise-i18n (1.14.0)
   devise-two-factor (6.1.0) sha256=90389ea00e6eab999f1868311972b6f4c84e6d7d6d1e90990eea8fcaf3372c10
   diffy (3.4.3) sha256=4264b9e7db00d1cd426fcd32e36565779163cedc2340a95b0e6f025e71f9aaa7
   drb (2.2.3) sha256=0b00d6fdb50995fe4a45dea13663493c841112e4068656854646f418fda13373
