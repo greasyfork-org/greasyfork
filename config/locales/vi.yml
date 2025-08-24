@@ -13,11 +13,13 @@ vi:
   scripts:
     created_date: "Đã tạo"
     updated_date: "Đã cập nhật"
+    code_size: Kích thước
     total_installs: "Số lần cài đặt"
     daily_installs: "Cài đặt hàng ngày"
     ratings: "Đánh giá"
     author_name: "Tác giả"
     version_number: "Phiên bản"
+    version_abbreviation: "v%{number}"
     license: "Giấy phép"
     no_license: "N/A"
     compatibility: "Sự tương thích"
@@ -100,6 +102,12 @@ vi:
       compare_button: "So sánh"
       compare_must_be_local_url: "Scrip được so sánh phải là một URL ở  %{site_name}."
       compare_cleaned_code_unavailable: "Mã Clean của tập lệnh so sánh không có sẵn."
+      checkup:
+        title: Kiểm tra
+        intro: Đây là các gợi ý để cải thiện tập lệnh của bạn trên %{site_name}. Những thứ này không %{rules_link:rules}; tập lệnh của bạn sẽ không bị xóa nếu bạn không tuân theo
+        license_html: Chỉ định %{license_link:<code>@license</code>}. Điều này sẽ cho người khác biết liệu họ có thể chia sẻ và sửa đổi mã của bạn hay không và bằng cách nào.
+        globs_html: Tránh sử dụng glob và biểu thức chính quy trong phần tên miền của %{include_link:<code>@include</code>} và %{match_link:<code>@match</code>}. Những điều này khiến %{site_name} khó có thể phân loại chính xác tập lệnh của bạn.
+        additional_info: Hãy bao gồm thông tin bổ sung - Ví dụ như dánh sách các tính năng, một vài ảnh chụp màn hình,... để người dùng có thể biết tập lệnh của bạn dùng làm gì.
     history_title: "%{script_name} - Lược sử Phiên bản"
     history_only_code_changes_info: "Đây là phiên bản của script này, nơi mã nguồn đã được cập nhật."
     history_all_changes_link: "Hiện tất cả các phiên bản."
@@ -156,6 +164,7 @@ vi:
     listing_description_for_site: "Các scripts sử dụng thêm tính năng và loại bỏ các lỗi trên %{site}"
     listing_title_for_search: "'%{search_string}' scripts"
     listing_title_for_code_search: "'%{search_string}' scripts"
+    listing_description_for_code_search_html: "Tìm kiếm mã cho <code>%{search_string}</code>"
     listing_title_generic: "User scripts"
     listing_title_for_favorites: "%{user_name}'s %{set_name}"
     listing_description_generic: "Script sử dụng thêm tính năng và loại bỏ các lỗi trên các trang web mà bạn sử dụng"
@@ -172,6 +181,7 @@ vi:
     listing_filter_by_site_all_sites: "(Tất cả trang)"
     listing_filter_by_language_label: "Ngôn ngữ:"
     listing_filter_by_site_more_sites: "Thêm..."
+    listing_filter_by_authorship_label: "Tác giả:"
     listing_no_scripts: "Không có script nào."
     listing_created_feed: "Scripts mới"
     listing_updated_feed: "Scripts đã cập nhật"
@@ -181,6 +191,10 @@ vi:
     listing_language_all: "Tất cả"
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
+    listing_author:
+      all: Tất cả tác giả
+      me: Tập lệnh của tôi
+      user: Tập lệnh tạo bởi %{author_name}
     search_failed: Đã có lỗi xảy ra khi tải kết quả của bạn. Một số chức năng tìm kiếm có thể không hoạt động. Chúng tôi đã được thông báo về sự cố này.
     import: "Nhập script"
     new: "Xuất bản một script bạn đã viết"
@@ -227,10 +241,12 @@ vi:
     warning_code_previously_posted_html: "Mã này đã được đăng trước đó tại %{script_links}. Đăng lại bài viết có thể bị quản lý xóa."
     warning_license_missing_html: "Bạn chưa chọn giấy phép sử dụng. Bằng cách đăng bài trên %{site_name}, bạn cho phép người khác sử dụng mã của bạn, nhưng giấy phép cũng cho phép bạn nói với người khác cách họ có thể sửa đổi và phân phối lại mã của bạn. Ví dụ, 2// @license MIT2 có nghĩa là bạn cho phép bất kỳ ai sửa đổi và phân phối lại mã bạn đã viết. %{license_chooser_link:Bạn có thể tìm thêm thông tin về giấy phép tại đây.} Nếu bạn không cung cấp giấy phép, %{site_name} sẽ mặc định là bạn không cho phép người khác sửa đổi hoặc phân phối lại các bản sao. Lưu ý rằng nếu bạn không phải là tác giả duy nhất của mã bạn đang đăng, thông thường bạn không được phép đăng nó trừ khi bạn có sự cho phép từ tất cả các tác giả khác."
     warning_license_missing_override_html: "Lưu mà không cần giấy phép"
+    warning_meta_not_at_start_html: "Mã của bạn không bắt đầu bằng <code>// ==UserScript==</code>. Việc bao gồm mã, bình luận hoặc khoảng trắng có thể gây ra sự cố tương thích với một số trình quản lý tập lệnh của người dùng."
     additional_info_locale_prompt: "(Chọn một khu vực)"
     additional_info_add_localized: "Thêm một thông tin bổ sung cục bộ"
     additional_info_locale_repeated: "Cung cấp thêm duy nhất một thông tin '%{locale_code}' khu vực"
     localized_additional_info_with_no_name: "Thông tin bổ sung dành cho khu vực  '%{locale_code}', nhưng không có @name:%{locale_code} được cung cấp"
+    invalid_matchers: "Các mẫu không hợp lệ đã được sử dụng: %{matches}"
     code_syncing_from_url_html: "Với mã script này được thiết lập để đồng bộ từ: %{field}"
     provide_code_syncing_from_url_html: "%{site_name} có thể lấy những script đã được lưu trữ ở bất kỳ đâu. Ví dụ như một hệ thống quản lý phiên bản (tương tự GitHub), máy chủ của bạn, hoặc dịch vụ lưu trữ script khác. Để bật tính năng đồng bộ script của bạn, Hãy cung cấp liên kết: %{field}"
     code_syncing_from_webhook_html: "Mã của kịch bản này được thiết lập để đồng bộ hóa với webhook. Chúng tôi sẽ khớp các yêu cầu webhook với kịch bản này dựa trên URL này: %{field}"
@@ -288,6 +304,7 @@ vi:
     not_adult_content_self_report_html: "Scripnt này <strong>không</strong> chứa nội dung người lớn và <strong>không</strong> dành cho trang có nội dung người lớn"
     not_adult_content_self_report_explanation: "%{site_name} cho phép các script với nội dung nhạy cảm, nhưng nó phải được đánh dấu để người dụng lựa chọn có xem nó hay không. Script của bạn đã bị đánh dấu có nội dung nhạy cảm. Bạn có thể báo cáo sai sót để được quản trị viên xem xét."
     not_adult_content_self_report_explanation_automatic: "%{site_name}cho phép những script với nội dung người lớn, nhưng họ buộc phải dánh đấu chúng để người dùng có thể lựa chọn khi thấy nó. Script của bạn được dánh dấu là có nội dung người lớn do dành cho %{domain_list}"
+    adult_content_notice_from_sleazy: Khi bạn đăng tập lệnh này lên %{site_name}. Nó sẽ được đánh là chứa nội dung người lớn hoặc cho trang có nội dung người lớn. Nếu không phải, vui lòng %{greasyfork_link:đăng tập lệnh của bạn lên Greasy Fork} thay vào đó.
     adult_content_on_greasy_logged_in_error: "Script này không còn khả dụng với thiết lập tài khoản của bạn :%{edit_account_link:Greasy Fork account settings}."
     adult_content_on_greasy_not_logged_in_error: "Script này không còn ẩn danh trên trang. %{login_link:Log in} vui lòng kiểm tra thiết lập tài khoản của bạn."
     non_adult_content_on_sleazy: "Script không có sẵn trên trang web này."
@@ -309,10 +326,19 @@ vi:
     preview_additional_info: "Xem trước"
     must_confirm: "Bạn phải xác nhận tài khoản của mình trước khi có thể đăng tải tập lệnh. Bạn có hai tùy chọn xác nhận - thêm phương thức đăng nhập khác hoặc qua email xác nhận."
     must_confirm_email_button: "Gửi liên kết xác nhận đến %{email}"
+    needs_secure_login:
+      intro: "Bạn cần phải thiết lập tài khoản bằng phương thức an toàn trước khi đăng tập lệnh"
+      secure_internal_heading: "Tùy chọn 1: Bảo vệ thông tin đăng nhập %{site_name} của bạn"
+      confirm_email: "Xác nhận địa chỉ email của bạn"
+      enable_2fa: "Bật xác thực hai yếu tố (2FA)"
+      add_external_heading: "Tùy chọn 2: chỉ sẽ dụng thông tin đăng nhập bên ngoài"
+      add_external: "Thêm phương thức đăng nhập ngoài"
+      remove_password: "Loại bỏ mật khẩu %{site_name} của bạn"
     authors_heading: "Tác giả"
     error_unauthorized_copy: "Đoạn mã này dường như là một bản sao trái phép của %{script}. Vui lòng tham khảo %{rules_link:quy tắc} của %{site_name} về việc đăng tải kịch bản."
     invitations:
       form_title: "Mời thêm tác giả khác"
+      explanation: "Bạn có thể thêm người dùng Greasy Fork khác làm tác giả của tập lệnh này. Họ sẽ có cùng quyền đối với tập lệnh này như bạn, bao gồm quyền thêm hoặc xóa tác giả khác (kể cả bạn)."
       invited_user_url_label: "Người dùng được mời"
       invited_user_placeholder: "URL trang cá nhân của người dùng trên %{site_name}"
       submit: "Gửi lời mời"
