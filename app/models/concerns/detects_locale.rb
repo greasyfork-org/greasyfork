@@ -6,7 +6,7 @@ module DetectsLocale
     if Greasyfork::Application.config.enable_detect_locale
       begin
         # Metered on number of requests and bytes.
-        dl_lang_code = DetectLanguage.simple_detect(ft[0...1000])
+        dl_lang_code = DetectLanguage.detect_code(ft[0...1000])
       rescue StandardError => e
         Rails.logger.error "Could not detect language - #{e}"
       end

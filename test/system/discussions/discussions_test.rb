@@ -162,7 +162,7 @@ class DiscussionsTest < ApplicationSystemTestCase
 
   test 'locale detection' do
     Greasyfork::Application.config.enable_detect_locale = true
-    DetectLanguage.expects(:simple_detect).with("discussion title\nthis is my comment").returns('fr')
+    DetectLanguage.expects(:detect_code).with("discussion title\nthis is my comment").returns('fr')
 
     user = User.first
     login_as(user, scope: :user)
