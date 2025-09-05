@@ -350,7 +350,7 @@ module ScriptListings
 
     @scripts = Script.search(
       params[:q].presence || '*',
-      fields: ['name^10', 'description^5', 'author^5', 'additional_info^1'],
+      fields: ['name^10', 'search_site_names^9', 'description^5', 'author^5', 'additional_info^1'],
       boost_by: [:fan_score],
       where: with,
       order: self.class.get_es_sort(params),

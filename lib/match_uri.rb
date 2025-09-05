@@ -3,12 +3,23 @@ class MatchUri
   IP_PATTERN = /^([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}):?[0-9]*$/
 
   def self.get_tld_plus_1(domain)
-    return domain unless domain.include?('.')
-    return domain unless IP_PATTERN.match(domain).nil?
-    return domain if DONT_STRIP_TLD_SITES.include?(domain)
-    return domain unless PublicSuffix.valid?(domain)
+    return domain if unparseable?(domain)
 
-    pd = PublicSuffix.parse(domain)
-    return pd.domain
+    PublicSuffix.parse(domain).domain
+  end
+
+  def self.get_sld(domain)
+    return domain if unparseable?(domain)
+
+    PublicSuffix.parse(domain).sld
+  end
+
+  def self.unparseable?(domain)
+    return true unless domain.include?('.')
+    return true unless IP_PATTERN.match(domain).nil?
+    return true if DONT_STRIP_TLD_SITES.include?(domain)
+    return true unless PublicSuffix.valid?(domain)
+
+    false
   end
 end

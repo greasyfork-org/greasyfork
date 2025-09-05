@@ -51,4 +51,8 @@ class ScriptTest < ActiveSupport::TestCase
   test 'code_path limits length' do
     assert_operator CGI.unescapeURIComponent(Script.new(id: 0, language: :js, default_name: '好' * 1000).code_path.split('/').last).length, :<=, 255
   end
+
+  test 'search_site_names' do
+    assert_equal ['example.com', 'example'], scripts(:example_com_application).search_site_names
+  end
 end

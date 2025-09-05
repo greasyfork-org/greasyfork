@@ -4,18 +4,28 @@ module ScriptIndexing
   included do
     searchkick callbacks: false,
                max_result_window: 10_000, # Refuse to load past this, as ES raises an error anyway
-               searchable: [:name, :description, :additional_info, :author],
+               searchable: [:name, :description, :additional_info, :author, :search_site_names],
                filterable: [],
                # Match anywhere in the word, not just the full word.
                word_middle: [:name, :description, :additional_info, :author],
-               # Apply additional mappings for the name field - type: keyword to make it sortable, and define case
-               # insensitive sort.
+               # Only exact matches for site name (and other string search_site_names returns)
+               word: [:search_site_names],
                settings: {
                  analysis: {
+                   # Apply additional mappings for the name field - type: keyword to make it sortable, and define case
+                   # insensitive sort.
                    normalizer: {
                      case_insensitive_sort: {
                        type: 'custom',
                        char_filter: [],
+                       filter: %w[lowercase asciifolding],
+                     },
+                   },
+                   # Whitespace tokenizer for search_site_names makes it so example.com is 1 word not 2.
+                   analyzer: {
+                     rebuilt_whitespace: {
+                       type: 'custom',
+                       tokenizer: 'whitespace',
                        filter: %w[lowercase asciifolding],
                      },
                    },
@@ -65,6 +75,10 @@ module ScriptIndexing
                    site_application_id: {
                      type: 'integer',
                    },
+                   search_site_names: {
+                     type: 'text',
+                     analyzer: 'rebuilt_whitespace',
+                   },
                    locale_id: {
                      type: 'integer',
                    },
@@ -77,7 +91,7 @@ module ScriptIndexing
                  },
                }
 
-    scope :search_import, -> { includes(:localized_attributes, :users, :script_applies_tos) }
+    scope :search_import, -> { includes(:localized_attributes, :users, :script_applies_tos, :site_applications) }
     scope :indexable, -> { not_deleted.where.not(script_type: :unlisted).where.not(review_state: 'required') }
 
     after_commit if: ->(model) { should_index? && model.previous_changes.keys.intersect?(%w[created_at code_updated_at total_installs daily_installs sensitive script_type fan_score available_as_js available_as_css]) } do
@@ -109,6 +123,7 @@ module ScriptIndexing
       script_type: Script.script_types[script_type],
       fan_score:,
       site_application_id: script_applies_tos.map(&:site_application_id),
+      search_site_names:,
       locale: localized_attributes.map(&:locale_id).uniq,
       available_as_js: js? || css_convertible_to_js,
       available_as_css: css?,
@@ -131,5 +146,10 @@ module ScriptIndexing
 
   def reindex_authors
     users.each { |u| u.reindex(mode: :async) } if Searchkick.callbacks?
+  end
+
+  # Returns example.com and example.
+  def search_site_names
+    site_applications.pluck(:domain_text).compact.map { |d| [d, MatchUri.get_sld(d)] }.flatten.uniq
   end
 end
