@@ -31,14 +31,6 @@ class AdMethod
     @ad_method == 'ea'
   end
 
-  def ev?
-    @ad_method == 'ev'
-  end
-
-  def cd?
-    @ad_method == 'cd'
-  end
-
   def ne?
     @ad_method == 'ne'
   end
@@ -49,14 +41,6 @@ class AdMethod
 
   def self.ea
     new('ea')
-  end
-
-  def self.ev
-    new('ev')
-  end
-
-  def self.cd
-    new('cd')
   end
 
   def self.ne

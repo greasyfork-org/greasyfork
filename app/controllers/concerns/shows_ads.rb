@@ -5,7 +5,7 @@ module ShowsAds
     no_ads = general_ads_setting
     return no_ads if no_ads
 
-    return AdMethod.cd if sleazy?
+    return AdMethod.no_ad(:sleazy) if sleazy?
 
     AdMethod.ga
   end
@@ -16,23 +16,20 @@ module ShowsAds
 
     return AdMethod.no_ad(:script_deleted) if script.nil? || script.deleted?
 
-    return [AdMethod.cd, AdMethod.ne].sample if sleazy?
+    return AdMethod.ne if sleazy?
 
     return AdMethod.no_ad(:sensitive) if script&.sensitive
 
     return AdMethod.ga if script.adsense_approved && locale_allows_adsense? && (script.additional_info || script.newest_saved_script_version.attachments.any? || script.similar_scripts(script_subset:, locale: I18n.locale).any?)
 
     return AdMethod.ea if valid_locale_for_ea?
-
-    # Very poor results with this
-    # AdMethod.cd
   end
 
   def choose_ad_method_for_scripts(scripts)
     no_ads = general_ads_setting
     return no_ads if no_ads
 
-    return AdMethod.cd if sleazy?
+    return AdMethod.no_ad(:sleazy) if sleazy?
 
     return AdMethod.no_ad(:sensitive_list) if scripts.any?(&:sensitive?)
 
@@ -40,9 +37,6 @@ module ShowsAds
 
     # Not great RPM here, but we got nothing else
     return AdMethod.ga if scripts.all?(&:adsense_approved)
-
-    # Very poor results with this
-    # AdMethod.cd
   end
 
   def choose_ad_method_for_discussion(discussion)
@@ -61,7 +55,7 @@ module ShowsAds
     no_ads = general_ads_setting
     return no_ads if no_ads
 
-    return AdMethod.cd if sleazy?
+    return AdMethod.no_ad(:sleazy) if sleazy?
 
     AdMethod.ea if valid_locale_for_ea?
   end
@@ -70,7 +64,7 @@ module ShowsAds
     no_ads = general_ads_setting
     return no_ads if no_ads
 
-    return AdMethod.cd if sleazy?
+    return AdMethod.no_ad(:sleazy) if sleazy?
 
     return AdMethod.no_ad(:sensitive_list) if user.scripts.any?(&:sensitive?)
 
