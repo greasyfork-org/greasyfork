@@ -1547,7 +1547,7 @@ ru:
             На ваш скрипт %{script_link:%{script_name}} поступила жалоба о нарушении правил%{site_name}, а именно: %{reason}. Модераторы рассмотрят жалобу и могут удалить ваш скрипт, если решат, что он нарушает правила. Вы можете %{report_link:посмотреть эту жалобу} и отправить опровержение, если захотите предоставить аргументы и пояснения.
             </p>
       report_upheld_offender:
-        subject: "Ваш скрипт %{script_name} на %{site_name} был удалён"
+        subject: "Ваш скрипт %{script_name} на %{site_name} удалён"
         body_html: |
             <p>
             Ваш скрипт %{script_link:%{script_name}} на %{site_name} был удалён модератором и теперь недоступен пользователям. Вы можете просмотреть %{report_link:жалобу} и %{code_rules_link:правила %{site_name}}.
@@ -1556,13 +1556,13 @@ ru:
             Если вы уверены, что решение ошибочно, или проблема в скрипте устранена, то вы можете %{appeal_link:подать апелляцию} модератору. Повторное размещение этого скрипта может привести к блокировке на %{site_name}.
             </p>
       report_dismissed_offender:
-        subject: "Жалоба на ваш скрипт %{script_name} на %{site_name} была отклонена"
+        subject: "Жалоба на ваш скрипт %{script_name} на %{site_name} отклонена"
         body_html: |
             <p>
             Жалоба на ваш скрипт %{script_link:%{script_name}} на %{site_name} была отклонена модератором. Ваш скрипт по-прежнему на сайте. Вы можете %{report_link:просмотреть эту жалобу}.
             </p>
       report_fixed_offender:
-        subject: "Жалоба на ваш скрипт %{script_name} на %{site_name} была помечена как решённая"
+        subject: "Жалоба на ваш скрипт %{script_name} на %{site_name} решена"
         body_html: |
             <p>
             Жалоба на ваш скрипт %{script_link:%{script_name}} на %{site_name} была помечена модератором как решённая, потому что, по его мнению, вы устранили проблему. Ваш скрипт по-прежнему на сайте. Вы можете %{report_link:просмотреть эту жалобу}.
@@ -1574,25 +1574,25 @@ ru:
             Получен ответ на вашу жалобу на %{script_link:%{script_name}} на %{site_name}. Вы можете %{report_link:просмотреть этот ответ}. Модератор примет решение на основе вашей жалобы и этого ответа.
             </p>
       report_upheld_reporter:
-        subject: "Ваша жалоба на %{script_name} на %{site_name} была удовлетворена"
+        subject: "Ваша жалоба на %{script_name} на %{site_name} удовлетворена"
         body_html: |
             <p>
             Ваша жалоба на %{script_link:%{script_name}} на %{site_name} была удовлетворена модератором. Скрипт удалён. Вы можете %{report_link:просмотреть эту жалобу}.
             </p>
       report_script_deleted_reporter:
-        subject: "Ваша жалоба на %{script_name} на %{site_name} была закрыта"
+        subject: "Ваша жалоба на %{script_name} на %{site_name} закрыта"
         body_html: |
             <p>
             Ваша жалоба на %{script_link:%{script_name}} на %{site_name} была закрыта, потому что автор удалил свой скрипт. Вы можете %{report_link:просмотреть эту жалобу}.
             </p>
       report_dismissed_reporter:
-        subject: "Ваша жалоба на %{script_name} на %{site_name} была отклонена"
+        subject: "Ваша жалоба на %{script_name} на %{site_name} отклонена"
         body_html: |
             <p>
             Ваша жалоба на %{script_link:%{script_name}} на %{site_name} была отклонена модератором. Обжалованный скрипт по-прежнему на сайте. Вы можете %{report_link:просмотреть эту жалобу}.
             </p>
       report_fixed_reporter:
-        subject: "Ваша жалоба на %{script_name} на %{site_name} была помечена как решённая"
+        subject: "Ваша жалоба на %{script_name} на %{site_name} решена"
         body_html: |
             <p>
             Ваша жалоба на %{script_link:%{script_name}} на %{site_name} была помечена модератором как решённая, потому что, по его мнению, автор устранил проблему. Скрипт по-прежнему на сайте. Вы можете %{report_link:просмотреть эту жалобу}.
@@ -1603,7 +1603,7 @@ ru:
       notify:
         subject: "Ваш скрипт %{script_name} на %{site_name} получил несколько отрицательных отзывов."
         text: |
-            Ваш скрипт «%{script_name}» на %{site_name} (%{script_url}) получил несколько отрицательных отзывов подряд.
+            Ваш скрипт %{script_name} на %{site_name} (%{script_url}) получил несколько отрицательных отзывов подряд.
 
             Это может означать ошибку в вашем скрипте, сбой в работе или сделанные изменения на сервере, с которым работает скрипт. Пожалуйста, прочтите полученные отзывы по адресу %{feedback_url}, исправьте проблему или ответьте в обсуждении.
 
@@ -1613,12 +1613,12 @@ ru:
       intro: "Ваш скрипт %{script_link:%{script_name}} на %{site_name} прокомментировал пользователь %{commenter_link:%{commenter_name}}:"
       outro: "%{comment_link:Просмотреть и ответить на этот комментарий.} Вы получили это уведомление, потому что настроили подписку на обсуждения ваших скриптов. %{notification_preferences_link:Изменить настройки уведомлений.}"
     subscribed_discussion:
-      subject: "В обсуждении «%{discussion_title}» на %{site_name} был добавлен комментарий."
-      intro: "Пользователь %{commenter_link:%{commenter_name}} добавил комментарий в обсуждение %{discussion_link:«%{discussion_title}»} на %{site_name}:"
-      outro: "%{comment_link:Просмотреть и ответить на этот комментарий.} Вы получили это уведомление, потому что подписаны на обсуждение %{discussion_link:«%{discussion_title}»}. %{notification_preferences_link:Настройка уведомлений.}"
+      subject: "В обсуждении [%{discussion_title}] на %{site_name} оставлен комментарий."
+      intro: "Пользователь %{commenter_link:%{commenter_name}} добавил комментарий к обсуждению [%{discussion_link:%{discussion_title}}] на %{site_name}:"
+      outro: "%{comment_link:Просмотреть и ответить на этот комментарий.} Вы получили это уведомление, потому что подписаны на обсуждение [%{discussion_link:%{discussion_title}}]. %{notification_preferences_link:Настройка уведомлений.}"
     comment_mentioned:
-      subject: "Пользователь «%{commenter_name}» упомянул вас на %{site_name}."
-      intro: "Пользователь %{commenter_link:%{commenter_name}} добавил комментарий в обсуждение %{discussion_link:«%{discussion_title}»} на %{site_name}, в котором упоминаетесь вы:"
+      subject: "Пользователь %{commenter_name} упомянул вас на %{site_name}."
+      intro: "Пользователь %{commenter_link:%{commenter_name}} добавил комментарий с упоминаем вас к обсуждению %{discussion_link:«%{discussion_title}»} на %{site_name}:"
       outro: "%{comment_link:Просмотреть и ответить на этот комментарий.} Вы получили это уведомление, потому что в настройках включены уведомления при упоминании вас в обсуждениях. %{notification_preferences_link:Настройка уведомлений.}"
     new_message:
       subject: "%{user} на %{site_name} присылает вам сообщение"
@@ -1626,12 +1626,12 @@ ru:
       outro: "%{conversation_link:Просмотреть и ответить на это сообщение.} Вы получили это уведомление, потому что подписаны на этот разговор. %{notification_preferences_link:Настройка уведомлений.}"
     script_lock_appeal:
       dismiss:
-        subject: Апелляция удаления вашего скрипта на %{site_name} была отклонена
+        subject: Апелляция удаления вашего скрипта на %{site_name} отклонена
         intro_html: Ваша апелляция удаления скрипта %{script} была отклонена модератором. Скрипт по-прежнему удалён.
         moderator_notes: "Комментарий модератора:"
         outro: Если вы по-прежнему хотите отменить удаление этого скрипта, пожалуйста, %{report_link:прочтите жалобу} и %{rules_link:правила %{site_name}}.
       unlock:
-        subject: Апелляция удаления вашего скрипта на %{site_name} была удовлетворена
+        subject: Апелляция удаления вашего скрипта на %{site_name} удовлетворена
         intro_html: Ваша апелляция удаления скрипта %{script} была удовлетворена модератором. Удаление скрипта отменено, и он снова доступен всем желающим.
         moderator_notes: "Комментарий модератора:"
         outro: Пожалуйста, ознакомьтесь с %{rules_link:правилами %{site_name}}, чтобы избежать последующих удалений.
