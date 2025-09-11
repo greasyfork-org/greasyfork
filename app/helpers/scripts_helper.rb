@@ -89,7 +89,7 @@ module ScriptsHelper
     return 0 if count.nil? || count == 0
 
     # take this one out of the count if it's a listable
-    return (count - (script.listable? ? 1 : 0))
+    return count - (script.listable? ? 1 : 0)
   end
 
   def similarity_string(score)
