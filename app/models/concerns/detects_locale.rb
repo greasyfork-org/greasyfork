@@ -11,6 +11,8 @@ module DetectsLocale
         Rails.logger.error "Could not detect language - #{e}"
       end
       unless dl_lang_code.nil?
+        dl_lang_code = 'zh-CN' if dl_lang_code == 'zh'
+
         locale = Locale.fetch_locale(dl_lang_code)
         return locale if locale
 
