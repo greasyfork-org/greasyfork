@@ -16,7 +16,7 @@ module ShowsAds
 
     return AdMethod.no_ad(:script_deleted) if script.nil? || script.deleted?
 
-    return AdMethod.ne if sleazy?
+    return AdMethod.no_ad(:sleazy) if sleazy?
 
     return AdMethod.no_ad(:sensitive) if script&.sensitive
 

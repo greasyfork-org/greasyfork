@@ -31,20 +31,12 @@ class AdMethod
     @ad_method == 'ea'
   end
 
-  def ne?
-    @ad_method == 'ne'
-  end
-
   def self.ga
     new('ga')
   end
 
   def self.ea
     new('ea')
-  end
-
-  def self.ne
-    new('ne')
   end
 
   def self.no_ad(reason)
