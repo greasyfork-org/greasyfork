@@ -63,7 +63,9 @@
       end
       displayed_errors.uniq.each do |err| %>
         <p><%= err %></p>
-      <% end
+      <% rescue Encoding::CompatibilityError => ex
+        Sentry.capture_exception(ex, extra: message)
+      end
       script_version.warnings.each do |w| %>
         <p><%
           case w
