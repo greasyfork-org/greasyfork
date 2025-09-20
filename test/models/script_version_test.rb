@@ -1022,4 +1022,24 @@ class ScriptVersionTest < ActiveSupport::TestCase
     assert_equal :base, script_version.errors.first.attribute
     assert_equal 'warning-meta_not_at_start', script_version.errors.first.type
   end
+
+  test 'syntax error with bad encoding' do
+    script = valid_script
+    script_version = script.script_versions.first
+    script_version.code = <<~JS
+      // ==UserScript==
+      // @name		blah blah
+      // @description		description
+      // @version 1.0
+      // @namespace http://greasyfork.local/users/1
+      // @include *
+      // @license MIT
+      // ==/UserScript==
+
+      var test = "[CENTER]Пользователь форума будет наказан по пункту правил пользования форумом:[QUOTE][SIZE=5][color=red]2.06.[/color] Запрещено размещение любого возрастного контента, которые несут в себе интимный, либо насильственный характер, также фотографии содержащие в себе "шок-контент", на примере расчленения и тому подобного.[/QUOTE][/CENTER]<br>"
+    JS
+    assert_not script_version.valid?
+    assert_equal :code, script_version.errors.first.attribute
+    assert_equal "contains errors: Uncaught SyntaxError: Unexpected identifier '������' at <eval>:11:278", script_version.errors.first.message
+  end
 end
