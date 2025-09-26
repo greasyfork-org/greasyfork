@@ -614,14 +614,19 @@ fr:
     2fa_enable_code_incorrect: Le code 2FA n'est pas correct. Veuillez réessayer.
     2fa_disabled: 2FA a été désactivé.
     2fa_disabled_already: 2FA est déjà désactivé.
+    2fa_entry:
+      intro_html: "En vous connectant en tant que <b>%{email}</b>. Entrez le code fourni par votre application d’authentification à deux facteurs (2FA)."
     enable_2fa:
+      intro: "Ajoutez %{site_name} à votre application d’authentification à deux facteurs (2FA) à l’aide de l’une de ces méthodes, puis saisissez le code ci-dessous."
       qr_heading: Via le code QR
       url_heading: Via le lien
+      url_info: Si vous utilisez le même appareil que votre application d’authentification à deux facteurs, vous pouvez peut-être l’ajouter avec %{auth_link:ce lien}.
       manual_heading: 'Manuellement '
       manual_entry_code_name: "Nom de code: %{code_name}"
       manual_entry_your_key: "Votre clé: %{key}"
       manual_entry_type_of_key: "Type de clé: basé sur le temps"
       code_entry_heading: Entrer le code
+      code_entry: "Entrez le code de votre application 2FA pour l’activer votre compte %{site_name}:"
       verify_code: Vérifier le code
     set_up_webhook: "Mettre en place un Webhook"
     list_display_html:
@@ -696,6 +701,8 @@ fr:
       complete: "Votre compte a été supprimé."
     deleted_user_with_id: "(Utilisateur %{id} supprimé)"
     deleted_user_without_id: "(Utilisateur supprimé)"
+    suggest_secure_login: En tant qu’auteur de script, nous vous suggérons %{edit_login_link:utiliser une méthode de connexion plus sécurisée}.
+    require_secure_login: Votre compte est requis pour utiliser une méthode de connexion plus sécurisée.
     badges:
       banned:
         short: Banni
@@ -1088,6 +1095,7 @@ fr:
     item_user_html: "Utilisateur: %{user_link}"
     item_report: "%{report_link: signalent #%{report_id}}"
     item_script_lock_appeal: "%{appeal_link:Faire appel #%{appeal_id}}"
+    item_script_lock_appeal_dismissed: "%{appeal_link:Appeal #%{appeal_id}} rejeter"
     item_discussion_html: "Discussion: %{discussion_link}"
     item_comment_html: "Commentaire sur la discussion: %{comment_link}"
   reports:
@@ -1371,7 +1379,10 @@ fr:
       delete: 'Supprimer'
       delete_and_lock: 'Supprimer et verrouiller'
       delete_version: 'Supprimer la version %{version}, ID %{id}'
+      mark_adult: 'Marquer comme contenu adulte'
+      mark_not_adult: 'Marquer comme contenu non adulte'
       permanent_deletion: 'Suppression définitive'
+      permanent_deletion_denied: 'Suppression définitive refusée'
       unban: 'Dé-ban'
       undelete: 'Restaurer'
       undelete_and_unlock: 'Restaurer et déverrouiller'
