@@ -15,7 +15,7 @@ module ScriptImporter
         status, new_script, message = importer.generate_script(script.sync_identifier, script.description, script.users.first, 'manual', script.localized_attributes_for('additional_info'), script.locale, do_not_recheck_if_equal_to: script.current_code)
       rescue StandardError => e
         status = :failure
-        message = e
+        message = e.to_s
       end
       # libraries can be any old JS
       if status == :notuserscript
