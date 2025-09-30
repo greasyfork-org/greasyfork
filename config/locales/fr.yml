@@ -342,6 +342,7 @@ fr:
     error_unauthorized_copy: "Ce code source a l'air d'être une reproduction interdite de %{script}. Veuillez vous référer aux %{rules_link:règles} de %{site_name} sur la soumission de scripts."
     invitations:
       form_title: "Inviter d'autres auteurs"
+      explanation: "Vous pouvez ajouter d'autres utilisateurs gras de Fork en tant qu'auteurs de ce script. Ils auront les mêmes droits sur ce script que vous, y compris le droit d'ajouter ou de supprimer d'autres auteurs (y compris vous)."
       invited_user_url_label: "Utilisateur à inviter"
       invited_user_placeholder: "URL du profil de l'utilisateur sur %{site_name}"
       submit: "Envoyer une invitation"
@@ -377,9 +378,16 @@ fr:
         chrome: Vous devrez installer une extension telle que %{tampermonkey_link:Tampermonkey} ou %{violentmonkey_link:Violentmonkey} pour installer ce script.
         opera: Vous devrez installer une extension telle que %{tampermonkey_link:Tampermonkey} ou %{violentmonkey_link:Violentmonkey} pour installer ce script.
         safari: Vous devrez installer une extension telle que %{tampermonkey_link:Tampermonkey} ou %{userscripts_link:Userscripts} pour installer ce script.
+        edge: Vous devrez installer une extension telle que %{tampermonkey_link:Tampermonkey} pour installer ce script.
         other: Vous devrez installer une extension de gestionnaire de script utilisateur pour installer ce script.
         bypass: (J'ai déjà un gestionnaire de scripts utilisateur, laissez-moi l'installer !)
       css:
+        firefox: Vous devrez installer une extension telle que %{stylus_link:Stylus} pour installer ce style.
+        chrome: Vous devrez installer une extension telle que %{stylus_link:Stylus} pour installer ce style.
+        opera: Vous devrez installer une extension telle que %{stylus_link:Stylus} pour installer ce style.
+        safari: Vous devrez installer une extension du gestionnaire de style pour utilisateur pour installer ce style.
+        edge: Vous devrez installer une extension du gestionnaire de style pour utilisateur pour installer ce style.
+        other: Vous devrez installer une extension du gestionnaire de style pour utilisateur pour installer ce style.
         bypass: (J'ai déjà un gestionnaire de style utilisateur, laissez-moi l'installer!)
       close_dialog: OK
     antifeatures:
@@ -526,6 +534,16 @@ fr:
           </ul>
     android_browsers:
       title: Mobile (Android)
+      browser_list_html: |
+          <ul>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, or %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+          <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+          <li>%{xbrowser_link:XBrowser}</li>
+          %{locale_specific_browsers}
+          </ul>
     ios_browsers:
       title: Mobile (iOS)
       browser_list_html: |
@@ -562,6 +580,7 @@ fr:
     sign_in_email_missing: "%{site_name} nécessite une adresse email pour créer un nouveau compte, mais %{provider} n'en fournit pas pour vous. Vous pouvez soit mettre à jour votre compte %{provider} pour en avoir une, et réessayer de vous identifier, ou créer un compte normal email/mot de passe sur %{site_name}, puis lui ajouter votre compte %{provider}."
     sign_in_name_used: "Le nom '%{name}' est déjà utilisé. Veuillez en choisir un autre."
     sign_in_name_used_submit: "Soumettre"
+    sign_in_github_unavailable: "Connectez-vous avec GitHub n'est pas disponible sur Sleazy Fork, mais vous pouvez %{sign_in_url:Connectez-vous avec GitHub sur Greasy Fork}."
     control_panel: "Panneau de contrôle"
     discussions_on_scripts: "Discussions sur vos scripts"
     discussions_on_scripts_feed_alt: "Flux RSS"
@@ -580,6 +599,8 @@ fr:
     edit_sign_in: "Modifier mes méthodes d'identification"
     edit_sign_in_title: "Modifier mes méthodes d'identification"
     edit_sign_in_password: "Mot de passe"
+    edit_sign_in_2fa_enabled: Vous avez configuré l'authentification à deux facteurs (2FA). Vous pouvez régénérer votre code 2FA si vous l'avez perdu.
+    edit_sign_in_2fa_enabled_and_required: Vous êtes configuré avec l'authentification à deux facteurs (2FA). 2FA est requis sur votre compte lorsque vous utilisez des connexions basées sur des mots de passe. Vous pouvez régénérer votre code 2FA si vous l'avez perdu.
     edit_sign_in_disable_2fa: Désactiver 2FA
     edit_sign_in_2fa_disabled: Vous pouvez activer la double authentification (2FA) pour une meilleure sécurité votre compte sur %{site_name}.
     edit_sign_in_enable_2fa: Activer 2FA
@@ -703,6 +724,12 @@ fr:
     deleted_user_without_id: "(Utilisateur supprimé)"
     suggest_secure_login: En tant qu’auteur de script, nous vous suggérons %{edit_login_link:utiliser une méthode de connexion plus sécurisée}.
     require_secure_login: Votre compte est requis pour utiliser une méthode de connexion plus sécurisée.
+    secure_login_explanation_html: |
+        <p>En tant qu’auteur de script, nous vous recommandons de protéger votre compte et vos utilisateurs en utilisant une méthode de connexion sécurisée. Vous pouvez y parvenir de deux manières:</p>
+        <ol>
+        <li>Ajouter l'authentification à deux facteurs (2FA) à votre connexion basée sur le mot de passe.</li>
+        <li>Remove votre mot de passe et comptez uniquement sur une connexion externe (et idéalement, activer les fonctionnalités de sécurité fournies).</li>
+        </ol>
     badges:
       banned:
         short: Banni
@@ -1508,6 +1535,10 @@ fr:
     script_report:
       report_created_offender:
         subject: "Votre script %{script_name} par %{site_name}  a été signalé"
+        body_html: |
+            <p>
+            Votre script %{script_link:%{script_name}} a été signalé comme violant les règles de %{site_name}. La raison spécifique donnée:%{reason}. Les modérateurs examineront ce rapport et pourront supprimer votre script s'ils conviennent qu'il violait les règles. Vous pouvez %{report_link:examinez ce rapport} et soumettre une réfutation si vous souhaitez fournir un argument ou une explication.
+            </p>
       report_upheld_offender:
         subject: "Votre script %{script_name} par %{site_name} a été supprimé"
         body_html: |
