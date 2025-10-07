@@ -16,6 +16,12 @@ module CommentChecking
         return CommentChecking::Result.new(true, text: "Matched custom check for '#{snippet}'.") if comment.text.include?(snippet)
       end
 
+      [
+        ['Mathematical Alphanumeric Symbols', /[\u{1d400}-\u{1d7ff}]/],
+      ].each do |name, pattern|
+        return CommentChecking::Result.new(true, text: "Matched custom pattern check for '#{name}'.") if comment.text.match?(pattern)
+      end
+
       CommentChecking::Result.not_spam
     end
   end
