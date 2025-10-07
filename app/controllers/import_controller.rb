@@ -12,6 +12,9 @@ class ImportController < ApplicationController
   end
 
   def add
+    language = params['sync-language']
+    language = nil unless %w[js css].include?(language)
+
     importer = ScriptSyncer.choose_importer
     @results = { new: [], failure: [], needsdescription: [], existing: [] }
     sync_ids = if params[:sync_ids].nil?
@@ -21,7 +24,7 @@ class ImportController < ApplicationController
                end
     sync_ids.each do |sync_id|
       provided_description = params["needsdescription-#{sync_id}"]
-      result, script, message = importer.generate_script(sync_id, provided_description, current_user, params['sync-type'] || 'manual')
+      result, script, message = importer.generate_script(sync_id, provided_description, current_user, params['sync-type'] || 'manual', expected_language: language)
       case result
       when :needsdescription
         @results[:needsdescription] << script

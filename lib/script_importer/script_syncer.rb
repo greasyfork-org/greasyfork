@@ -12,7 +12,7 @@ module ScriptImporter
       importer = ScriptSyncer.choose_importer
       # pass the description in so we retain it if it's missing
       begin
-        status, new_script, message = importer.generate_script(script.sync_identifier, script.description, script.users.first, 'manual', script.localized_attributes_for('additional_info'), script.locale, do_not_recheck_if_equal_to: script.current_code)
+        status, new_script, message = importer.generate_script(script.sync_identifier, script.description, script.users.first, 'manual', script.localized_attributes_for('additional_info'), script.locale, do_not_recheck_if_equal_to: script.current_code, expected_language: script.language)
       rescue StandardError => e
         status = :failure
         message = e.to_s

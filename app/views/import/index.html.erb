@@ -7,6 +7,14 @@
     <label for="sync-urls"><%= t('importing.url_entry_label') %></label><br>
     <textarea id="sync-urls" name="sync_urls" rows="5" required style="width: 75%"></textarea>
   </p>
+
+  <p class="radio-group">
+    <%= t('importing.language.label') %><br>
+    <input name="sync-language" id="sync-language-detect" type="radio" checked value=""><label for="sync-language-detect"><%= t('importing.language.detect') %></label><br>
+    <input name="sync-language" id="sync-language-js" type="radio" value="js"><label for="sync-language-js"><%= t('importing.language.js') %></label><br>
+    <input name="sync-language" id="sync-language-css" type="radio" value="css"><label for="sync-language-css"><%= t('importing.language.css') %></label>
+  </p>
+
   <p class="radio-group">
     <%= t('importing.sync_type_label') %><br>
     <input name="sync-type" id="sync-type-2" type="radio" checked value="automatic"><label for="sync-type-2"><%= t('scripts.sync_type_2.name') %> - <%= t('scripts.sync_type_2.description') %></label><br>

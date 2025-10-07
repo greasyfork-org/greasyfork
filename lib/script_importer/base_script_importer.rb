@@ -18,7 +18,7 @@ module ScriptImporter
     #   - :success
     # - The script
     # - An error message
-    def self.generate_script(sync_id, provided_description, user, sync_type = 'manual', localized_attribute_syncs = {}, locale = nil, do_not_recheck_if_equal_to: nil)
+    def self.generate_script(sync_id, provided_description, user, sync_type = 'manual', localized_attribute_syncs = {}, locale = nil, do_not_recheck_if_equal_to: nil, expected_language: nil)
       sync_id = fix_sync_id(sync_id)
       begin
         code = download(sync_id)
@@ -42,7 +42,7 @@ module ScriptImporter
       script.authors.build(user:)
       script.script_type = :public
       script.sync_type = sync_type
-      script.language = sync_id.ends_with?('.css') ? 'css' : 'js'
+      script.language = expected_language || (sync_id.ends_with?('.css') ? 'css' : 'js')
       script.locale = locale
       script.sync_identifier = sync_id
       script.last_attempted_sync_date = DateTime.now
@@ -73,7 +73,7 @@ module ScriptImporter
       sv.calculate_all(provided_description)
       script.apply_from_script_version(sv)
 
-      return [:notuserscript, script, 'Does not appear to be a user script.'] if script.name.nil?
+      return [:notuserscript, script, script.js? ? 'Does not appear to be a user script.' : 'Does not appear to be a user style.'] if script.name.nil?
 
       return [:needsdescription, script, nil] if script.description.blank?
 

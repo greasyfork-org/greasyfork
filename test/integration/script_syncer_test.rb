@@ -183,4 +183,16 @@ class ScriptSyncerTest < ActiveSupport::TestCase
     assert_nil script.sync_error
     assert_equal 2, script.script_versions.length
   end
+
+  test 'sync style' do
+    script = scripts(:style)
+    assert_equal 1, script.script_versions.length
+    assert_equal :success, ScriptSyncer.sync(script), script.reload.sync_error
+    assert_equal 'A Test Update!', script.name
+    assert_equal Time.now.utc.to_date, script.code_updated_at.to_date
+    assert_equal Time.now.utc.to_date, script.last_attempted_sync_date.to_date
+    assert_equal Time.now.utc.to_date, script.last_successful_sync_date.to_date
+    assert_nil script.sync_error
+    assert_equal 2, script.script_versions.length
+  end
 end
