@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_09_221815) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_08_144918) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -194,14 +194,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_09_221815) do
     t.datetime "updated_at", null: false
     t.bigint "discussion_id", null: false
     t.bigint "poster_id", null: false
-    t.text "text", null: false
+    t.text "text", size: :medium, null: false
     t.string "text_markup", limit: 10, default: "html", null: false
     t.datetime "edited_at", precision: nil
     t.boolean "first_comment", default: false, null: false
     t.datetime "deleted_at", precision: nil
     t.bigint "deleted_by_user_id"
     t.string "review_reason", limit: 10
-    t.text "plain_text"
+    t.text "plain_text", size: :medium
     t.index ["deleted_at"], name: "index_comments_on_deleted_at"
     t.index ["discussion_id"], name: "index_comments_on_discussion_id"
     t.index ["poster_id"], name: "index_comments_on_poster_id"
