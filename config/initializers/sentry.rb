@@ -4,7 +4,6 @@ Sentry.init do |config|
   config.excluded_exceptions += ['JSON::ParserError', 'Sidekiq::JobRetry::Skip', 'Sidekiq::Shutdown', 'Puma::HttpParserError', 'ActionDispatch::RemoteIp::IpSpoofAttackError', 'ActiveStorage::FileNotFoundError']
   config.traces_sample_rate = 0.0007
   config.profiles_sample_rate = 0.001
-  config.metrics.enabled = true
 
   config.before_send = lambda do |event, hint|
     return nil if hint[:exception].message.include?('invalid byte sequence in UTF-8')
