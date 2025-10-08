@@ -1488,6 +1488,11 @@ bg:
     title: Импортирай скриптове
     intro: "%{site_name} може да импортира скриптове, които вече се помещават някъде другаде, например във система за контрол на версиите (като GitHub), ваш сървър или друг сайт за хостване на потребителски скриптове."
     url_entry_label: Задайте адреси, от които да стане импортирането, разделени с нов ред. Адресите трябва да водят към чистите JS или CSS файлове.
+    language:
+      label: На какъв език са горните връзки?
+      detect: Според разширението, по подразбиране JavaScript
+      js: JavaScript
+      css: CSS
     sync_type_label: "След първоначалното импортиране, ще бъдат синхронизирани скриптовете:"
     additional_info_html: |
         <p>За скриптове от контрол на версиите, убедете се, че използваната връзка сочи към branch, а не към някой commit, защото ако е така, никога няма да се обнови. Например <code>https://bitbucket.org/username/reponame/raw/<b>branch-name</b>/script.user.js</code> вместо <code>https://bitbucket.org/username/reponame/raw/<b>commit-hash</b>/script.user.js</code>.</p>

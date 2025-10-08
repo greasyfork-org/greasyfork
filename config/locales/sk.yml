@@ -1521,6 +1521,11 @@ sk:
     title: Importovať skripty
     intro: "%{site_name} dokáže importovať skripty, ktoré už sú hostované niekde inde, napríklad v systéme správy verzií (ako GitHub), vlastnom serveri, alebo ďalšej stránke s používateľskými skriptami."
     url_entry_label: Zadajte URL adresy, z ktorých sa majú importovať, oddelené novými riadkami. Mali by to byť URL na neupravené JS-y alebo CSS súbory.
+    language:
+      label: V akom jazyku sú uvedené adresy URL?
+      detect: Detekcia na základe rozšírenia, predvolene JavaScript
+      js: JavaScript
+      css: CSS
     sync_type_label: "Po úvodnom importe by sa mal(-i) skript(-y) synchronizovať:"
     additional_info_html: |+
         <p>V prípade skriptov zo systému správy zdrojov sa uistite, že použitá URL odkazuje na vetvu, a nie na konkrétnu revíziu, inak sa nikdy neaktualizuje. Napríklad: <code>https://bitbucket.org/username/reponame/raw/<b>nazov-vetvy</b>/script.user.js<code>.</p>

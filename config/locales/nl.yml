@@ -1490,6 +1490,11 @@ nl:
     title: Scripts importeren
     intro: "%{site_name} kan scripts importeren die ergens anders worden gehost, bijv. op een versiebeheersysteem (zoals GitHub), je eigen server of een andere gebruikersscript-hostingsite."
     url_entry_label: Geef de import-url's op, één per regel. De url's moeten direct verwijzen naar js- of css-bestanden.
+    language:
+      label: In welke taal zijn bovenstaande url's opgemaakt?
+      detect: 'Detectie vindt plaats op basis van de extensie - standaard: JavaScript'
+      js: JavaScript
+      css: CSS
     sync_type_label: "Na het importeren worden de scripts gesynchroniseerd:"
     additional_info_html: |
         <p>Bij scripts uit openbare bronnen dient de url te verwijzen naar een afsplitsing (branch) en niet naar een specifieke commit, anders kunnen ze nooit bijgewerkt worden. Voorbeeld: <code>https://bitbucket.org/username/reponame/raw/<b>afsplitsingsnaam</b>/script.user.js</code> in plaats van <code>https://bitbucket.org/username/reponame/raw/<b>commit-controlesom</b>/script.user.js</code>.</p>

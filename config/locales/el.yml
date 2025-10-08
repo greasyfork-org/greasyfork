@@ -896,6 +896,7 @@ el:
     item_user_html: "Χρήστης: %{user_link}"
     item_report: "%{report_link: Αναφορά #%{report_id}}"
     item_script_lock_appeal: "%{appeal_link:Έφεση #%{appeal_id}}"
+    item_script_lock_appeal_dismissed: "Η %{appeal_link:¨Εφεση #%{appeal_id}} απορρίφθηκε"
     item_discussion_html: "Συζήτηση: %{discussion_link}"
     item_comment_html: "Σχόλιο σε συζήτηση: %{comment_link}"
   reports:
@@ -1223,6 +1224,11 @@ el:
     attribution: "Για τα πνευματικά δικαιώματα των δημιουργών των κωδικών, δείτε κάθε ξεχωριστό κώδικα για την αδειοδότηση"
   importing:
     title: Εισαγωγή κωδίκων
+    language:
+      label: Τι γλώσσα είναι τα παραπάνω URLs;
+      detect: Ανίχνευση με βάση την επέκταση, προεπιλογή η JavaScript
+      js: JavaScript
+      css: CSS
     sync_type_label: "Μετά την αρχική εισαγωγή, ο συγχρονισμός εκτελείτε για κώδικα(ες)"
     submit: Εισαγωγή
     previously_imported:
