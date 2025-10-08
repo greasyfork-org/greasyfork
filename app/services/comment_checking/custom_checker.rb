@@ -18,7 +18,9 @@ module CommentChecking
 
       [
         ['Mathematical Alphanumeric Symbols', /[\u{1d400}-\u{1d7ff}]/],
-        ['Halfwidth and Fullwidth Forms', /[\uff00-\uffef]/],
+        ['Fullwidth Numbers', /[\uff10-\uff19]/],
+        ['Fullwidth Capital Letters', /[\uff21-\uff3a]/],
+        ['Fullwidth Small Letters', /[\uff41-\uff5a]/],
       ].each do |name, pattern|
         return CommentChecking::Result.new(true, text: "Matched custom pattern check for '#{name}'.") if comment.text.match?(pattern)
       end
