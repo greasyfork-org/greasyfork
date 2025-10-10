@@ -1515,6 +1515,11 @@ fr:
     title: Importer des scripts
     intro: "%{site_name} peut importer des scripts déjà hébergés ailleurs, par exemple dans un système de contrôle de version (comme GitHub), votre propre serveur ou un autre site d'hébergement de scripts utilisateur."
     url_entry_label: Fournissez les URL à partir desquelles importer, séparées par des sauts de ligne. Il doit s'agir d'URL vers les fichiers JS ou CSS bruts.
+    language:
+      label: Dans quelle langue sont les URL ci-dessus?
+      detect: Détection basé sur l'extension, par défaut sur JavaScript
+      js: JavaScript
+      css: CSS
     sync_type_label: "Après l'importation initiale, le ou les scripts doivent être synchronisés:"
     additional_info_html: |
         <p>Pour les scripts du contrôle de source, assurez-vous que l'URL que vous utilisez fait référence à une branche et non à un commit spécifique, sinon elle ne sera jamais mise à jour. Par exemple, <code>https://bitbucket.org/username/reponame/raw/<b>branch-name</b>/script.user.js</code> plutôt que <code>https://bitbucket.org/username/reponame/raw/<b>commit-hash</b>/script.user. js</code>.</p>
