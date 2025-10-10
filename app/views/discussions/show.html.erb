@@ -49,7 +49,7 @@
   <p id="reported-note"><%= t('discussions.pending_moderator_review') %></p>
 <% end %>
 
-<% comment_scope = @discussion.comments %>
+<% comment_scope = @discussion.comments.includes(:poster) %>
 <% comment_scope = comment_scope.not_deleted unless @discussion.soft_deleted? %>
 <% comment_scope.reject(&:new_record?).each do |comment| %>
   <% by_current_user = comment.poster && current_user == comment.poster %>
