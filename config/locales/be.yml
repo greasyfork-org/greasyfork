@@ -1,0 +1,146 @@
+be:
+  layouts:
+    application:
+      script_list: "Скрыпты"
+      forum: "Форум"
+      help: "Даведка"
+      sign_in: "Увайсці"
+      submenu: "Яшчэ"
+      advanced_search: "Пашыраны пошук"
+      user_list: "Спіс карыстальнікаў"
+      libraries: "Бібліятэкі"
+  scripts:
+    created_date: "Створаны"
+    updated_date: "Абноўлены"
+    code_size: Памер
+    ratings: "Рэйтынг"
+    author_name: "Аўтар"
+    version_number: "Версія"
+    version_abbreviation: "v%{number}"
+    license: "Ліцэнзія"
+    no_license: "Н/Д"
+    compatibility: "Сумяшчальнасць"
+    compatible_with_browser: "Сумяшчальны з %{browser}"
+    incompatible_with_browser: "Несумяшчальны з %{browser}"
+    install_help: "?"
+    install_help_title: "Як усталяваць"
+    code_page: "Код"
+    history_page: "Гісторыя"
+    stats_page: "Статыстыка"
+    update_page: "Абнавіць"
+    delete_page: "Выдаліць"
+    admin_page: "Адміністратар"
+    admin:
+      title: "%{script_name} - Адміністратар"
+      locale_heading: "Прадвызначаная лакаль"
+      update_locale: "Абнавіць лакаль"
+      compare_button: "Параўнаць"
+    stats_daily_installs_date_column_heading: "Дата"
+    stats_no_data: "Н/Д"
+    stats_filters: "Фільтр: %{filter_options}"
+    stats_filter_options:
+      month: Апошнія 30 дзён
+      year: Апошнія 365 дзён
+      all: Увесь час
+    listing_sort_name: "Назве"
+    listing_filter_by_site_more_sites: "Яшчэ…"
+    listing_created_feed: "Новыя скрыпты"
+    listing_updated_feed: "Абноўленыя скрыпты"
+    listing_none: "(Няма)"
+    listing_language_all: "Усе"
+    listing_language_js: "JavaScript"
+    listing_language_css: "CSS"
+    listing_author:
+      all: Усе аўтары
+      me: Мае скрыпты
+    sync_name_and_description: "%{name} - %{description}"
+    update_no_sync: "Абнавіць"
+    sync_url_placeholder: "(URL-адрас)"
+    screenshots_add: "Дадаць:"
+    screenshots_remove: "Выдаліць"
+    libraries_title: "Бібліятэкі"
+    preview_additional_info: "Перадпрагляд"
+    authors_heading: "Аўтары"
+    remove_author:
+      remove_button: "Выдаліць"
+    install_help_dialog:
+      close_dialog: ОК
+    antifeatures:
+      types:
+        ads:
+          title: Рэклама
+      cancel_install: Скасаваць
+    badges:
+      js:
+        short: JS
+      css:
+        short: CSS
+  script_sets:
+    edit_link: "Рэдагаваць"
+    edit_scripts:
+      heading: "Скрыпты"
+    edit_sets:
+      included_none: "(Няма)"
+      excluded_none: "(Няма)"
+    edit_auto_sets:
+      included_none: "(Няма)"
+      excluded_none: "(Няма)"
+      all_scripts_label: "Усе скрыпты"
+    calculated_list_none: "(Няма)"
+    save: "Захаваць"
+    auto_set_types:
+      all_scripts: "Усе скрыпты"
+  users:
+    sign_in_name_used_submit: "Адправіць"
+    discussions_on_scripts_feed_alt: "RSS-стужка"
+    script_list: "Скрыпты"
+    listing_sort_name: "Імені"
+    deleted_script_list: "Выдаленыя скрыпты"
+    sign_out: "Выйсці"
+    edit_sign_in_password: "Пароль"
+    set_password: "Задаць пароль"
+    update_password: "Абнавіць пароль"
+    update_password_no_match: "Паролі не супадаюць."
+    password_updated: "Пароль абноўлены."
+    remove_password: "Выдаліць пароль"
+    password_removed: "Пароль выдалены."
+    remove_external_sign_in: "Выдаліць"
+    enable_2fa:
+      qr_heading: Праз QR-код
+      url_heading: Праз спасылку
+      code_entry_heading: Увядзіце код
+    listing_title: "Карыстальнікі"
+    listing_banned_filter:
+      banned: "Заблакіраваныя"
+      not_banned: "Незаблакіраваныя"
+      all: "Усе"
+    listing_author_filter:
+      script_author: "Аўтар скрыпта"
+      not_script_author: "Не аўтар скрыпта"
+      all: "Усе"
+    search_placeholder: "Пошук карыстальнікаў"
+    delete:
+      submit: "Выдаліць уліковы запіс"
+      confirmation:
+        cancel: "Скасаваць выдаленне"
+        cancelled: "Выдаленне скасавана."
+        completed: "Ваш уліковы запіс выдалены."
+    banned_delete:
+      complete: "Ваш уліковы запіс выдалены."
+    deleted_user_with_id: "(Выдалены карыстальнік %{id})"
+    deleted_user_without_id: "(Выдалены карыстальнік)"
+    badges:
+      author:
+        short: Аўтар
+    notifications:
+      discussion_defaults:
+        title: Апавяшчэнні форума
+      title: Апавяшчэнні
+  activerecord:
+    attributes:
+      user:
+        name: "Імя"
+      script:
+        name: "Назва"
+      script_set:
+        name: "Назва"
