@@ -9,6 +9,7 @@ be:
       advanced_search: "Пашыраны пошук"
       user_list: "Спіс карыстальнікаў"
       libraries: "Бібліятэкі"
+      moderator_log: "Журнал мадэратара"
   scripts:
     created_date: "Створаны"
     updated_date: "Абноўлены"
@@ -43,6 +44,7 @@ be:
       year: Апошнія 365 дзён
       all: Увесь час
     listing_sort_name: "Назве"
+    listing_filter_by_language_label: "Мова:"
     listing_filter_by_site_more_sites: "Яшчэ…"
     listing_created_feed: "Новыя скрыпты"
     listing_updated_feed: "Абноўленыя скрыпты"
@@ -59,6 +61,7 @@ be:
     screenshots_add: "Дадаць:"
     screenshots_remove: "Выдаліць"
     libraries_title: "Бібліятэкі"
+    search_placeholder: "Пошук скрыптоў"
     preview_additional_info: "Перадпрагляд"
     authors_heading: "Аўтары"
     remove_author:
@@ -130,17 +133,118 @@ be:
     deleted_user_with_id: "(Выдалены карыстальнік %{id})"
     deleted_user_without_id: "(Выдалены карыстальнік)"
     badges:
+      moderator:
+        long: Мадэратар
       author:
         short: Аўтар
     notifications:
       discussion_defaults:
         title: Апавяшчэнні форума
       title: Апавяшчэнні
+  search:
+    script_search:
+      title: "Пошук скрыптоў"
+  moderator_logs:
+    moderator_column: "Мадэратар"
+  discussions:
+    ratings_short:
+      question: "Пытанне/каментарый"
+      ok: "ОК"
+    other_user_filter:
+      all: "Усе абмеркаванні"
+      comments_by: "Каментарыі карыстальніка %{user}"
+    category_filter:
+      label: Катэгорыя
+      all: Усе катэгорыі
+    read_filter:
+      label: Статус прачытання
+      all: Усе
+      read: Прачытаныя
+      unread: Непрачытаныя
+    locale_filter:
+      label: Мова
+      all: Усе
+    sort:
+      comment_created: Дата
+    review_title: "Водгук на %{script_name}"
+    question_title: "Пытанне наконт %{script_name}"
+    categories:
+      development:
+        name: Распрацоўка
+      moderators:
+        name: Мадэратары
+    new_title: Новае абмеркаванне
+    new_button: Новае абмеркаванне
+    no_discussions: Абмеркаванняў не знойдзена
+    search_placeholder: Пошук абмеркаванняў
+  conversations:
+    new_title: Стварыць новую размову
+    new_link: Стварыць новую размову
+    new_button: Стварыць размову
+    title_html:
+      one: Размова з %{users}
+      few: Размова з %{users}
+      many: Размова з %{users}
+      other: Размова з %{users}
+    send_message: Адправіць паведамленне
+    conversation_list_title: Размовы
+    conversation_link_html:
+      one: Размова з %{users}.
+      few: Размова з %{users}.
+      many: Размова з %{users}.
+      other: Размова з %{users}.
+    recent:
+      title: Нядаўнія размовы
+      more: Праглядзець усе размовы
+    edit_message_header: Рэдагаваць паведамленне
+    update_message_submit: Абнавіць паведамленне
+  moderator_actions:
+    action_taken:
+      ban: 'Заблакіраваць'
+      delete: 'Выдаліць'
+      delete_and_lock: 'Выдаліць і заблакіраваць'
+      unban: 'Разблакіраваць'
+      undelete: 'Аднавіць'
+      undelete_and_unlock: 'Аднавіць і разблакіраваць'
+      update_locale: 'Абнавіць лакаль'
+  common:
+    not_found_text: "404 - старонка не знойдзена."
+    not_found_title: "404 - старонка не знойдзена"
+    not_found_link_home: "На дамашнюю старонку."
+    preview_tab: Перадпрагляд
+    listing_options_title: "Параметры пошуку"
   activerecord:
     attributes:
       user:
         name: "Імя"
+        profile: "Профіль"
+        locale: "Прыярытэтная лакаль"
+        show_ads: "Паказваць рэкламу"
       script:
         name: "Назва"
+        description: "Апісанне"
+        locale: "Лакаль"
+        code: "Код"
       script_set:
         name: "Назва"
+        description: "Апісанне"
+      discussion:
+        category: "Катэгорыя"
+        title: Загаловак
+      conversation:
+        user_input: Карыстальнік
+      message:
+        content: Паведамленне
+  importing:
+    language:
+      js: JavaScript
+      css: CSS
+    submit: Імпарт
+    previously_imported:
+      unknown_date: "(невядома)"
+    results:
+      title: "Вынік імпарту"
+  mailers:
+    script_lock_appeal:
+      unlock:
+        moderator_notes: "Мадэратар пракаментаваў:"
