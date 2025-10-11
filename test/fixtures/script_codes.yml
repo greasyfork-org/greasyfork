@@ -301,3 +301,19 @@ example_com_application:
     // ==/UserScript==
     var foo = 1;
   code_hash: 27e969ebfb2c56e9daf4ab45bf3782c592125c78
+
+library_with_partial_meta:
+  id: 25
+  code: |
+    // ==UserScript==
+    // @name         Bangumi BBCode to HTML
+    // @namespace    bbcode.bangumi
+    // @version      1.0
+    // @description  将 bangumi BBCode 转为 HTML
+    // @author       you
+    // @license      MIT
+    // @grant        none
+    // ==/UserScript==
+    var foo = 'z';
+    var bar = 'y';
+  code_hash: 27e969ebfb2c56e9daf4ab45bf3782c592125c78

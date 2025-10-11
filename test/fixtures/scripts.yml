@@ -244,3 +244,22 @@ example_com_application:
   default_name: A Test!
   code_updated_at: 2014-01-01
   version: 1
+
+library_with_partial_meta:
+  id: 26
+  default_name: Bangumi BBCode to HTML
+  script_type: 3
+  code_updated_at: 2000-01-01
+  version: 1
+  sync_identifier: |
+    // ==UserScript==
+    // @name         Bangumi BBCode to HTML
+    // @namespace    bbcode.bangumi
+    // @version      1.1.0
+    // @description  将 bangumi BBCode 转为 HTML
+    // @author       you
+    // @license      MIT
+    // @grant        none
+    // ==/UserScript==
+    var foo = 'a';
+    var bar = 'b';
