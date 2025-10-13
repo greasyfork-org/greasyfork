@@ -48,7 +48,7 @@ module LocalizedRequest
     end
 
     # Locale is properly set
-    unless params[:locale].nil?
+    if params[:locale].present?
       I18n.locale = params[:locale]
       if cookies[:locale_messaged].nil?
         # Only hassle the user about locales once per session.
