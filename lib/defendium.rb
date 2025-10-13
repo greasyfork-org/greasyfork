@@ -33,7 +33,8 @@ class Defendium
     when Net::HTTPSuccess
       JSON.parse(response.body)['result']
     else
-      raise "Defendium request failed: #{response.code} #{response.message}"
+      Sentry.capture_message("Defendium request failed: #{response.code} #{response.body}", extra: { data: data.except(:api_key) })
+      false
     end
   end
 end
