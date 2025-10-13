@@ -13,7 +13,7 @@ module CommentChecking
        'Coinbase',
        'Lipomax',
        'www.8842030.com'].each do |snippet|
-        return CommentChecking::Result.new(true, text: "Matched custom check for '#{snippet}'.") if comment.text.include?(snippet)
+        return CommentChecking::Result.new(true, strategy: self, text: "Matched custom check for '#{snippet}'.") if comment.text.include?(snippet)
       end
 
       [
@@ -22,10 +22,10 @@ module CommentChecking
         ['Fullwidth Capital Letters', /[\uff21-\uff3a]/],
         ['Fullwidth Small Letters', /[\uff41-\uff5a]/],
       ].each do |name, pattern|
-        return CommentChecking::Result.new(true, text: "Matched custom pattern check for '#{name}'.") if comment.text.match?(pattern)
+        return CommentChecking::Result.new(true, strategy: self, text: "Matched custom pattern check for '#{name}'.") if comment.text.match?(pattern)
       end
 
-      CommentChecking::Result.not_spam
+      CommentChecking::Result.not_spam(self)
     end
   end
 end

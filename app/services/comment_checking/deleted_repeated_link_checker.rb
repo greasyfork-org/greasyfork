@@ -1,15 +1,15 @@
 module CommentChecking
   class DeletedRepeatedLinkChecker
     def self.check(comment, ip:, user_agent:, referrer:)
-      return CommentChecking::Result.not_spam if comment.poster.created_at < 7.days.ago
+      return CommentChecking::Result.not_spam(self) if comment.poster.created_at < 7.days.ago
 
       comments = find_recently_deleted_comments_with_link(comment)
 
-      return CommentChecking::Result.not_spam if comments.count < 2
+      return CommentChecking::Result.not_spam(self) if comments.count < 2
 
       reports = comments.filter_map { |c| c.reports.upheld.take }
 
-      CommentChecking::Result.new(true, text: "Post contains links in common with recently deleted comments: #{comments.map(&:url).join(' ')}", reports:)
+      CommentChecking::Result.new(true, strategy: self, text: "Post contains links in common with recently deleted comments: #{comments.map(&:url).join(' ')}", reports:)
     end
 
     def self.find_recently_deleted_comments_with_link(comment)

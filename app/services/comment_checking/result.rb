@@ -1,8 +1,8 @@
 module CommentChecking
   class Result
-    attr_accessor :spam, :text, :reports
+    attr_accessor :spam, :strategy, :text, :reports
 
-    def initialize(spam, text: nil, reports: [])
+    def initialize(spam, strategy:, text: nil, reports: [])
       @spam = spam
       @text = text
       @reports = reports
@@ -12,8 +12,8 @@ module CommentChecking
       @spam
     end
 
-    def self.not_spam
-      new(false)
+    def self.not_spam(strategy)
+      new(false, strategy:)
     end
   end
 end
