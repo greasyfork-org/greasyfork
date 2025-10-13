@@ -3,7 +3,7 @@ module Admin
     before_action :administrators_only, except: :index
 
     def index
-      @spammy_email_domains = SpammyEmailDomain.all
+      @spammy_email_domains = SpammyEmailDomain.order(:domain)
     end
 
     def new
