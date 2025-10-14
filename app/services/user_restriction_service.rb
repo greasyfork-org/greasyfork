@@ -17,7 +17,7 @@ class UserRestrictionService
 
   def new_script_restriction
     if @user.email
-      sed = SpammyEmailDomain.find_by(domain: @user.email.split('@').last)
+      sed = SpammyEmailDomain.find_for_email(@user.email)
       if sed
         return BLOCKED if sed.blocked_script_posting?
         return DELAYED if @user.in_confirmation_period?

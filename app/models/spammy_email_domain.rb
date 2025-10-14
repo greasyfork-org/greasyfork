@@ -16,4 +16,14 @@ class SpammyEmailDomain < ApplicationRecord
   def description
     BLOCK_TYPE_DESCRIPTIONS[block_type]
   end
+
+  def self.find_for_email(email)
+    domain = email.split('@').last
+    domains = [domain, MatchUri.get_tld_plus_1(domain)].compact.uniq
+    find_by(domain: domains)
+  end
+
+  def block_type_register?
+    block_type == BLOCK_TYPE_REGISTER
+  end
 end

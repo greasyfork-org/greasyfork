@@ -138,7 +138,9 @@ class User < ApplicationRecord
   end
 
   validate do
-    errors.add(:email) if new_record? && email && SpammyEmailDomain.where(domain: email.split('@').last, block_type: SpammyEmailDomain::BLOCK_TYPE_REGISTER).any?
+    next unless new_record? && email
+
+    errors.add(:email) if SpammyEmailDomain.find_for_email(email)&.block_type_register?
   end
 
   validate do
