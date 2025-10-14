@@ -11,7 +11,7 @@ class Defendium
       content:,
       content_type:,
       ip:,
-      url:,
+      # url:,
       user_agent:,
       referrer:,
       author:,
