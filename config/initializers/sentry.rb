@@ -6,7 +6,7 @@ Sentry.init do |config|
   config.profiles_sample_rate = 0.001
 
   config.before_send = lambda do |event, hint|
-    return nil if hint[:exception].message.include?('invalid byte sequence in UTF-8')
+    return nil if hint[:exception]&.message&.include?('invalid byte sequence in UTF-8')
 
     event
   end
