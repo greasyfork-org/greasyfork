@@ -11,6 +11,8 @@ class SpammyEmailDomain < ApplicationRecord
 
   scope :active, -> { where('expires_at IS NULL OR expires_at > NOW()') }
 
+  validates :domain, uniqueness: { case_sensitive: false }
+
   def blocked_script_posting?
     [BLOCK_TYPE_SCRIPT, BLOCK_TYPE_REGISTER].include?(block_type)
   end
