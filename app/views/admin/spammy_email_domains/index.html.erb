@@ -33,7 +33,7 @@
         <td style="text-align: right"><%= spammy_email_domain.block_count %></td>
         <td>
           <%= link_to('Edit', edit_admin_spammy_email_domain_path(spammy_email_domain)) if current_user.administrator? %>
-          <%= link_to('Delete', admin_spammy_email_domain_path(spammy_email_domain), method: :delete) if current_user.administrator? %>
+          <%= link_to('Delete', admin_spammy_email_domain_path(spammy_email_domain), data: { turbo: true, turbo_method: :DELETE }) if current_user.administrator? %>
         </td>
       </tr>
     <% end %>
