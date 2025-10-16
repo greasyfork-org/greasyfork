@@ -11,6 +11,8 @@
     <tr>
       <th>Domain</th>
       <th>Check</th>
+      <th>Expires</th>
+      <th>Block count</th>
       <th></th>
     </tr>
   </thead>
@@ -19,6 +21,16 @@
       <tr>
         <td><%= spammy_email_domain.domain %></td>
         <td><%= spammy_email_domain.description %></td>
+        <td>
+          <% if spammy_email_domain.expires_at %>
+            <% if spammy_email_domain.expires_at.past? %>
+              <span style="backgroud-color: red"><%= markup_date(spammy_email_domain.expires_at) %></span>
+            <% else %>
+              <%= markup_date(spammy_email_domain.expires_at) %>
+            <% end %>
+          <% end %>
+        </td>
+        <td style="text-align: right"><%= spammy_email_domain.block_count %></td>
         <td>
           <%= link_to('Edit', edit_admin_spammy_email_domain_path(spammy_email_domain)) if current_user.administrator? %>
           <%= link_to('Delete', admin_spammy_email_domain_path(spammy_email_domain), method: :delete) if current_user.administrator? %>

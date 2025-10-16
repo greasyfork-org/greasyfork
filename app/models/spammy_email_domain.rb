@@ -9,6 +9,8 @@ class SpammyEmailDomain < ApplicationRecord
     BLOCK_TYPE_REGISTER => "Can't register",
   }.freeze
 
+  scope :active, -> { where('expires_at IS NULL OR expires_at > NOW()') }
+
   def blocked_script_posting?
     [BLOCK_TYPE_SCRIPT, BLOCK_TYPE_REGISTER].include?(block_type)
   end
@@ -20,7 +22,7 @@ class SpammyEmailDomain < ApplicationRecord
   def self.find_for_email(email)
     domain = email.split('@').last
     domains = [domain, MatchUri.get_tld_plus_1(domain)].compact.uniq
-    find_by(domain: domains)
+    active.find_by(domain: domains)
   end
 
   def block_type_register?
