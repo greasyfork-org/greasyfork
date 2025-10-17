@@ -140,7 +140,7 @@ class User < ApplicationRecord
   validate do
     next unless new_record? && email
 
-    errors.add(:email) if SpammyEmailDomain.find_for_email(email)&.block_type_register?
+    errors.add(:email) if SpammyEmailDomain.find_active_for_email(email)&.block_type_register?
   end
 
   validate do
@@ -313,12 +313,14 @@ class User < ApplicationRecord
       other_report.uphold!(moderator:)
     end
 
-    return unless delete_scripts
-
-    # Resolve any reports on the user's deleted scripts
-    Report.unresolved.where(item: scripts).find_each do |other_report|
-      other_report.uphold!(moderator:)
+    if delete_scripts
+      # Resolve any reports on the user's deleted scripts
+      Report.unresolved.where(item: scripts).find_each do |other_report|
+        other_report.uphold!(moderator:)
+      end
     end
+
+    SpammyEmailDomainBannerJob.perform_async(email_domain) if email_domain
   end
 
   def unban!(moderator:, reason: nil, undelete_scripts: false)
