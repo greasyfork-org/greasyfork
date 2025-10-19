@@ -17,7 +17,9 @@ class DeletedRepeatedLinkCheckerTest < ActiveSupport::TestCase
     second_comment.created_at = 1.day.ago
     second_comment.save!
 
-    assert CommentChecking::DeletedRepeatedLinkChecker.check(comment_to_check, ip: '127.0.0.1', referrer: nil, user_agent: 'Bot').spam?
+    checker = CommentChecking::DeletedRepeatedLinkChecker.new(comment_to_check, ip: '127.0.0.1', referrer: nil, user_agent: 'Bot')
+    assert_not checker.skip?
+    assert checker.check.spam?
   end
 
   test 'when it is a link repost by an existing user of a recently deleted comment' do
@@ -36,7 +38,7 @@ class DeletedRepeatedLinkCheckerTest < ActiveSupport::TestCase
     second_comment.created_at = 1.day.ago
     second_comment.save!
 
-    assert_not CommentChecking::DeletedRepeatedLinkChecker.check(comment_to_check, ip: '127.0.0.1', referrer: nil, user_agent: 'Bot').spam?
+    assert CommentChecking::DeletedRepeatedLinkChecker.new(comment_to_check, ip: '127.0.0.1', referrer: nil, user_agent: 'Bot').skip?
   end
 
   test 'when it is a link repost by a new user of a non-deleted comment' do
@@ -53,6 +55,8 @@ class DeletedRepeatedLinkCheckerTest < ActiveSupport::TestCase
     comment_to_check.poster.update!(created_at: 1.day.ago)
     comment_to_check.save!
 
-    assert_not CommentChecking::DeletedRepeatedLinkChecker.check(comment_to_check, ip: '127.0.0.1', referrer: nil, user_agent: 'Bot').spam?
+    checker = CommentChecking::DeletedRepeatedLinkChecker.new(comment_to_check, ip: '127.0.0.1', referrer: nil, user_agent: 'Bot')
+    assert_not checker.skip?
+    assert_not checker.check.spam?
   end
 end

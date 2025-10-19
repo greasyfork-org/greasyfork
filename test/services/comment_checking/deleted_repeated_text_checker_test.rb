@@ -10,7 +10,9 @@ class DeletedRepeatedTextCheckerTest < ActiveSupport::TestCase
     second_comment.save!
     comment.update(deleted_at: Time.zone.now)
 
-    assert CommentChecking::DeletedRepeatedTextChecker.check(second_comment, ip: '127.0.0.1', referrer: nil, user_agent: 'Bot').spam?
+    checker = CommentChecking::DeletedRepeatedTextChecker.new(second_comment, ip: '127.0.0.1', referrer: nil, user_agent: 'Bot')
+    assert_not checker.skip?
+    assert checker.check.spam?
   end
 
   test 'when it is a repost by an existing user of a recently deleted comment' do
@@ -22,7 +24,8 @@ class DeletedRepeatedTextCheckerTest < ActiveSupport::TestCase
     second_comment.save!
     comment.update(deleted_at: Time.zone.now)
 
-    assert_not CommentChecking::DeletedRepeatedTextChecker.check(second_comment, ip: '127.0.0.1', referrer: nil, user_agent: 'Bot').spam?
+    checker = CommentChecking::DeletedRepeatedTextChecker.new(second_comment, ip: '127.0.0.1', referrer: nil, user_agent: 'Bot')
+    assert checker.skip?
   end
 
   test 'when it is a repost by a new user of a non-deleted comment' do
@@ -33,6 +36,8 @@ class DeletedRepeatedTextCheckerTest < ActiveSupport::TestCase
     second_comment.poster.update!(created_at: 1.day.ago)
     second_comment.save!
 
-    assert_not CommentChecking::DeletedRepeatedTextChecker.check(second_comment, ip: '127.0.0.1', referrer: nil, user_agent: 'Bot').spam?
+    checker = CommentChecking::DeletedRepeatedTextChecker.new(second_comment, ip: '127.0.0.1', referrer: nil, user_agent: 'Bot')
+    assert_not checker.skip?
+    assert_not checker.check.spam?
   end
 end

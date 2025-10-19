@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_16_202458) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_19_212023) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -187,6 +187,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_16_202458) do
     t.bigint "script_id", null: false
     t.text "code", size: :long, null: false
     t.index ["script_id"], name: "index_cleaned_codes_on_script_id", unique: true
+  end
+
+  create_table "comment_check_results", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+    t.bigint "comment_id", null: false
+    t.string "strategy", limit: 50, null: false
+    t.integer "result", null: false
+    t.index ["comment_id"], name: "fk_rails_92ffc01091"
   end
 
   create_table "comments", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
@@ -777,6 +784,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_16_202458) do
   add_foreign_key "authors", "users", on_delete: :cascade
   add_foreign_key "blocked_script_codes", "scripts", column: "originating_script_id", on_delete: :nullify
   add_foreign_key "cleaned_codes", "scripts", on_delete: :cascade
+  add_foreign_key "comment_check_results", "comments", on_delete: :cascade
   add_foreign_key "comments", "discussions", on_delete: :cascade
   add_foreign_key "compatibilities", "browsers", on_delete: :cascade
   add_foreign_key "compatibilities", "scripts", on_delete: :cascade

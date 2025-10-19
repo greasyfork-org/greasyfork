@@ -1,9 +1,11 @@
 module CommentChecking
-  class OnlyLinkChecker
-    def self.check(comment, ip:, user_agent:, referrer:)
-      return CommentChecking::Result.not_spam(self) if comment.poster.created_at < 7.days.ago
+  class OnlyLinkChecker < BaseCommentChecker
+    def skip?
+      @comment.poster.created_at < 7.days.ago
+    end
 
-      doc = comment.text_as_doc
+    def check
+      doc = @comment.text_as_doc
       return CommentChecking::Result.not_spam(self) if doc.text.squish.empty?
 
       doc.search('a[href]').each { |a| a.remove unless Comment::INTERNAL_LINK_PREFIXES.any? { |prefix| a.attr(:href).starts_with?(prefix) } }

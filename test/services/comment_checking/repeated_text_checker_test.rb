@@ -8,7 +8,9 @@ class RepeatedTextCheckerTest < ActiveSupport::TestCase
     second_comment = comment.dup
     second_comment.save!
 
-    assert CommentChecking::RepeatedTextChecker.check(second_comment, ip: '127.0.0.1', referrer: nil, user_agent: 'Bot').spam?
+    checker = CommentChecking::RepeatedTextChecker.new(second_comment, ip: '127.0.0.1', referrer: nil, user_agent: 'Bot')
+    assert_not checker.skip?
+    assert checker.check.spam?
   end
 
   test 'when it is a repost by an existing user of one of their previous comments' do
@@ -18,6 +20,6 @@ class RepeatedTextCheckerTest < ActiveSupport::TestCase
     second_comment = comment.dup
     second_comment.save!
 
-    assert_not CommentChecking::RepeatedTextChecker.check(second_comment, ip: '127.0.0.1', referrer: nil, user_agent: 'Bot').spam?
+    assert CommentChecking::RepeatedTextChecker.new(second_comment, ip: '127.0.0.1', referrer: nil, user_agent: 'Bot').skip?
   end
 end
