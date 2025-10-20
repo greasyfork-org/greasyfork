@@ -375,9 +375,10 @@ class User < ApplicationRecord
     c.first
   end
 
-  def delete_all_comments!(by_user: nil, automod: false)
-    discussions.not_deleted.each { |discussion| discussion.soft_destroy!(by_user:) }
-    comments.not_deleted.each { |comment| comment.soft_destroy!(by_user:) }
+  def delete_all_comments!(by_user: nil, automod: false, spam: false)
+    additional_updates = spam ? { spam_deleted: true } : {}
+    discussions.not_deleted.each { |discussion| discussion.soft_destroy!(by_user:, **additional_updates) }
+    comments.not_deleted.each { |comment| comment.soft_destroy!(by_user:, **additional_updates) }
     Report.unresolved.where(item: discussions + comments).find_each { |report| report.uphold!(moderator: by_user, automod:) }
   end
 

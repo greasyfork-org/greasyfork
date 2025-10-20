@@ -5,9 +5,11 @@ class CommentCheckingStats
   end
 
   def run
-    comments = CommentCheckResult.joins(:comment).where(comments: { created_at: @from..@to })
+    comments = CommentCheckResult.joins(:comment).where(comment: { created_at: @from..@to })
     spam_comment_ids = comments.joins(comment: :reports).where(reports: { reason: Report::REASON_SPAM, result: Report::RESULT_UPHELD }).pluck(:comment_id) +
-                       comments.joins(comment: { discussion: :reports }).where(comments: { first_comment: true }, reports: { reason: Report::REASON_SPAM, result: Report::RESULT_UPHELD }).pluck(:comment_id)
+                       comments.joins(comment: { discussion: :reports }).where(comment: { first_comment: true }, reports: { reason: Report::REASON_SPAM, result: Report::RESULT_UPHELD }).pluck(:comment_id) +
+                       comments.where(comment: { spam_deleted: true }).pluck(:comment_id) +
+                       comments.joins(comment: :discussion).where(comment: { first_comment: true, discussions: { spam_deleted: true } }).pluck(:comment_id)
 
     stats = {}
     CommentCheckingService::STRATEGIES.each do |strategy|

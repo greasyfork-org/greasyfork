@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_19_212023) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_20_190553) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -209,6 +209,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_19_212023) do
     t.bigint "deleted_by_user_id"
     t.string "review_reason", limit: 10
     t.text "plain_text", size: :medium
+    t.boolean "spam_deleted", default: false, null: false
     t.index ["deleted_at"], name: "index_comments_on_deleted_at"
     t.index ["discussion_id"], name: "index_comments_on_discussion_id"
     t.index ["poster_id"], name: "index_comments_on_poster_id"
@@ -300,6 +301,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_19_212023) do
     t.bigint "locale_id"
     t.bigint "report_id"
     t.boolean "publicly_visible", default: true, null: false
+    t.boolean "spam_deleted", default: false, null: false
     t.index ["discussion_category_id"], name: "fk_rails_e08db1bd53"
     t.index ["locale_id"], name: "index_discussions_on_locale_id"
     t.index ["migrated_from"], name: "index_discussions_on_migrated_from"

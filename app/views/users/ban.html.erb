@@ -1,4 +1,4 @@
-<%= form_tag(user_do_ban_path) do |f| %>
+<%= form_with(path: user_do_ban_path) do |f| %>
   <% if @user.banned? && @user.non_locked_scripts.none? %>
     <p>(User already banned.)</p>
   <% else %>
@@ -9,13 +9,22 @@
     <% end %>
     <p>
       <% if @user.banned? %>
-        <label for="reason">Why are you deleting <%= @user.name %>'s scripts?</label>
+        <label>Why are you deleting <%= @user.name %>'s scripts?</label>
       <% else %>
-        <label for="reason">Why are you banning <%= @user.name %>?</label>
+        <label>Why are you banning <%= @user.name %>?</label>
       <% end %>
-      <br>
-      <textarea id="reason" name="reason" rows="5" cols="100" maxlength="500" required></textarea>
     </p>
+
+    <div class="form-control radio-group">
+      <% Report::NON_SCRIPT_REASONS.each do |reason| %>
+        <div>
+          <%= f.radio_button(:reason, reason, required: true) %> <%= f.label :reason, it("reports.reason.#{reason}", antifeature_link: help_antifeatures_path), class: 'radio-label', value: reason %>
+        </div>
+      <% end %>
+    </div>
+
+    <%= f.text_area :explanation, placeholder: t('reports.explanation_placeholder'), rows: 5, cols: 100, maxlength: 500 %>
+
     <% if @user.non_locked_scripts.any? %>
       <p><%= @user.name %> has <%= @user.non_locked_scripts.count %> non-locked scripts:</p>
       <ul>

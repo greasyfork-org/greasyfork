@@ -246,9 +246,13 @@ class UsersController < ApplicationController
 
   def do_ban
     user = User.find(params[:user_id])
-    user.ban!(moderator: current_user, reason: params[:reason]) unless user.banned?
-    user.lock_all_scripts!(reason: params[:reason], moderator: current_user, delete_type: params[:delete_type]) if params[:delete_type].present?
-    user.delete_all_comments!(by_user: user) if params[:delete_comments] == '1'
+
+    full_reason = t("reports.reason.#{params[:reason]}", locale: 'en')
+    full_reason += ": #{params[:explanation]}" if params[:explanation].present?
+
+    user.ban!(moderator: current_user, reason: full_reason) unless user.banned?
+    user.lock_all_scripts!(reason: full_reason, moderator: current_user, delete_type: params[:delete_type]) if params[:delete_type].present?
+    user.delete_all_comments!(by_user: current_user, spam: params[:reason] == Report::REASON_SPAM) if params[:delete_comments] == '1'
     flash[:notice] = "#{user.name} has been banned."
     redirect_to user
   end
