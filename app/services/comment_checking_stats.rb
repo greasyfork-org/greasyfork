@@ -16,10 +16,10 @@ class CommentCheckingStats
       stats[strategy.name] = {
         total: results_for_strategy.count,
         skips: results_for_strategy.skipped.count,
-        true_positives: results_for_strategy.spam.where(spam_comment_ids:).count,
-        false_positives: results_for_strategy.spam.where.not(spam_comment_ids:).count,
-        true_negatives: results_for_strategy.ham.where.not(spam_comment_ids:).count,
-        false_negatives: results_for_strategy.ham.where(spam_comment_ids:).count,
+        true_positives: results_for_strategy.spam.where(comment_id: spam_comment_ids).count,
+        false_positives: results_for_strategy.spam.where.not(comment_id: spam_comment_ids).count,
+        true_negatives: results_for_strategy.ham.where.not(comment_id: spam_comment_ids).count,
+        false_negatives: results_for_strategy.ham.where(comment_id: spam_comment_ids).count,
       }
     end
 
