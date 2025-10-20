@@ -6,6 +6,7 @@ module CommentChecking
       @spam = spam
       @text = text
       @reports = reports
+      @strategy = strategy
     end
 
     def spam?

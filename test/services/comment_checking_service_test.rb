@@ -26,6 +26,7 @@ class CommentCheckingServiceTest < ActiveSupport::TestCase
     assert_equal Discussion::REVIEW_REASON_RAINMAN, comment.discussion.review_reason
     assert_equal CommentCheckingService::STRATEGIES.count, comment.comment_check_results.count
     assert_equal 1, comment.comment_check_results.where(result: :spam).count
+    assert_equal CommentChecking::AkismetChecker.name, comment.comment_check_results.where(result: :spam).first.strategy
   end
 
   test 'when multiple match for an existing user' do
