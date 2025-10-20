@@ -7,7 +7,7 @@ module CommentChecking
     def check
       comments = find_recently_deleted_comments_with_link
 
-      return CommentChecking::Result.not_spam(self) if comments.count < 2
+      return CommentChecking::Result.ham(self) if comments.count < 2
 
       reports = comments.filter_map { |c| c.reports.upheld.take }
 

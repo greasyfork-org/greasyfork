@@ -12,7 +12,7 @@ module CommentChecking
         return CommentChecking::Result.new(true, strategy: self, text: "Matched previous comments by same user: #{previous_comments_by_same_user.map(&:url).join(' ')}", reports:)
       end
 
-      CommentChecking::Result.not_spam(self)
+      CommentChecking::Result.ham(self)
     end
   end
 end

@@ -12,7 +12,7 @@ module CommentChecking
         return CommentChecking::Result.new(true, strategy: self, text: "Matched recent deleted comments: #{previously_deleted_comments.map(&:url).join(' ')}", reports:)
       end
 
-      CommentChecking::Result.not_spam(self)
+      CommentChecking::Result.ham(self)
     end
   end
 end

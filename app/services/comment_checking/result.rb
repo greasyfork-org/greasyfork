@@ -13,7 +13,7 @@ module CommentChecking
       @spam
     end
 
-    def self.not_spam(strategy)
+    def self.ham(strategy)
       new(false, strategy:)
     end
   end

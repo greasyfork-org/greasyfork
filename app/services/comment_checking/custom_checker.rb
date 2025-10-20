@@ -25,7 +25,7 @@ module CommentChecking
         return CommentChecking::Result.new(true, strategy: self, text: "Matched custom pattern check for '#{name}'.") if @comment.text.match?(pattern)
       end
 
-      CommentChecking::Result.not_spam(self)
+      CommentChecking::Result.ham(self)
     end
   end
 end

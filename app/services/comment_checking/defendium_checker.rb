@@ -5,7 +5,7 @@ module CommentChecking
     def check
       is_spam = submit_to_defendium
 
-      return CommentChecking::Result.not_spam(self) unless is_spam
+      return CommentChecking::Result.ham(self) unless is_spam
 
       CommentChecking::Result.new(true, strategy: self, text: 'Defendium result is spam.')
     end

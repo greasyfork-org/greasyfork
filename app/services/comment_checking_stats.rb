@@ -18,8 +18,8 @@ class CommentCheckingStats
         skips: results_for_strategy.skipped.count,
         true_positives: results_for_strategy.spam.where(spam_comment_ids:).count,
         false_positives: results_for_strategy.spam.where.not(spam_comment_ids:).count,
-        true_negatives: results_for_strategy.not_spam.where.not(spam_comment_ids:).count,
-        false_negatives: results_for_strategy.not_spam.where(spam_comment_ids:).count,
+        true_negatives: results_for_strategy.ham.where.not(spam_comment_ids:).count,
+        false_negatives: results_for_strategy.ham.where(spam_comment_ids:).count,
       }
     end
 

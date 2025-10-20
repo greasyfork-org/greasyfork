@@ -15,12 +15,12 @@ class CommentCheckingService
 
     strategies = STRATEGIES.map { |s| s.new(comment, ip:, user_agent:, referrer:) }
     skipped_strategies, strategies_to_run = strategies.partition(&:skip?)
-    spam_results, not_spam_results = strategies_to_run.map(&:check).partition(&:spam?)
+    spam_results, ham_results = strategies_to_run.map(&:check).partition(&:spam?)
 
     comment.comment_check_results.destroy_all
     CommentCheckResult.insert_all(
       skipped_strategies.map { |s| { comment_id: comment.id, strategy: s.class.name, result: :skipped } } +
-      not_spam_results.map { |r| { comment_id: comment.id, strategy: r.strategy.class.name, result: :not_spam } } +
+      ham_results.map { |r| { comment_id: comment.id, strategy: r.strategy.class.name, result: :ham } } +
       spam_results.map { |r| { comment_id: comment.id, strategy: r.strategy.class.name, result: :spam } }
     )
 

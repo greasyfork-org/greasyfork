@@ -63,7 +63,7 @@ class CommentCheckingServiceTest < ActiveSupport::TestCase
   def mock_comment_spam_results(*spam_returning_strategies)
     CommentCheckingService::STRATEGIES.each { |strategy_class| strategy_class.any_instance.expects(:skip?).returns(false) }
     non_spam_returning_strategies = CommentCheckingService::STRATEGIES - spam_returning_strategies
-    non_spam_returning_strategies.each { |strategy_class| strategy_class.any_instance.expects(:check).returns(CommentChecking::Result.not_spam(strategy_class.new(nil, ip: nil, referrer: nil, user_agent: nil))) }
+    non_spam_returning_strategies.each { |strategy_class| strategy_class.any_instance.expects(:check).returns(CommentChecking::Result.ham(strategy_class.new(nil, ip: nil, referrer: nil, user_agent: nil))) }
     spam_returning_strategies.each { |strategy_class| strategy_class.any_instance.expects(:check).returns(CommentChecking::Result.new(true, strategy: strategy_class.new(nil, ip: nil, referrer: nil, user_agent: nil))) }
   end
 end
