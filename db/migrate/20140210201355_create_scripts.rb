@@ -1,4 +1,4 @@
-class CreateScripts < ActiveRecord::Migration
+Cclass CreateScripts < ActiveRecord::Migration
 	def change
 		create_table :scripts do |t|
 			t.string :name, :limit => 100, :null => false

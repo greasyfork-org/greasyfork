@@ -15,9 +15,9 @@ module CommentChecking
       defendium.check(
         content: @comment.text,
         url: @comment.url,
-        ip:,
-        user_agent:,
-        referrer:,
+        ip: @ip,
+        user_agent: @user_agent,
+        referrer: @referrer,
         author: @comment.poster&.name,
         languages: Rails.application.config.available_locales.keys.map { |l| l.tr('-', '_') }.join(', ')
       )
