@@ -15,6 +15,7 @@ module Admin
           false_negatives: sum[:false_negatives] + stats[:false_negatives],
         }
       end
+      @miss_count = CommentCheckingStats.new(from: params[:from], to: params[:to]).misses.distinct('comment_id').count
     end
 
     def detail
@@ -23,6 +24,12 @@ module Admin
       comment_ids = CommentCheckingStats.new(from: params[:from], to: params[:to]).records(strategy: params[:strategy], result: params[:result]).pluck(:comment_id)
       @results = CommentCheckResult.includes(:comment).where(comment_id: comment_ids.first(1000)).order('comment.created_at DESC, strategy')
       @results = @results.group_by(&:comment_id)
+    end
+
+    def misses
+      params[:from] ||= 30.days.ago.to_date.to_s
+      params[:to] ||= Time.zone.tomorrow.to_s
+      @results = CommentCheckingStats.new(from: params[:from], to: params[:to]).misses.includes(:comment).order('comment.created_at DESC, strategy').group_by(&:comment_id)
     end
   end
 end

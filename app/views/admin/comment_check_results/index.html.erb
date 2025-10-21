@@ -92,3 +92,7 @@
     </tr>
   </tfoot>
 </table>
+
+<p>
+  <%= link_to "#{@miss_count} comments were marked as spam but not caught by any strategy", misses_admin_comment_check_results_path(from: params[:from], to: params[:to]) %>  
+</p>

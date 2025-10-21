@@ -52,4 +52,10 @@ class CommentCheckingStats
       raise "Unknown result type: #{result}"
     end
   end
+
+  def misses
+    hit_comment_ids = CommentCheckResult.where(comment_id: spam_comment_ids).spam.distinct('comment_id').pluck(:comment_id)
+    miss_comment_ids = spam_comment_ids - hit_comment_ids
+    CommentCheckResult.where(comment_id: miss_comment_ids)
+  end
 end

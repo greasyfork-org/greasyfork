@@ -268,6 +268,7 @@ Rails.application.routes.draw do
       resources :comment_check_results, only: [:index] do
         collection do
           get :detail
+          get :misses
         end
       end
     end
