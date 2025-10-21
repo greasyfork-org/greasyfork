@@ -265,6 +265,11 @@ Rails.application.routes.draw do
       resources :redirect_service_domains, only: [:index, :new, :create, :edit, :update, :destroy]
       resources :script_similarities, only: :index
       resources :spammy_email_domains, only: [:index, :new, :create, :edit, :update, :destroy]
+      resources :comment_check_results, only: [:index] do
+        collection do
+          get :detail
+        end
+      end
     end
 
     get '/forum', to: redirect('/%{locale}/discussions'), status: 301

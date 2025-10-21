@@ -1,0 +1,94 @@
+<h2>Comment Spam Check Results</h2>
+
+<%= form_with url: admin_comment_check_results_path, method: :get, local: true do |f| %>
+  <p>
+    <%= f.label :from, "From:" %>
+    <%= f.date_field :from, value: params[:from] %>
+    <%= f.label :to, "To:" %>
+    <%= f.date_field :to, value: params[:to] %>
+    <%= f.submit "Filter" %>
+  </p>
+<% end %>
+
+<table style="width: 100%">
+  <thead>
+    <tr>
+      <th>Strategy</th>
+      <th class="numeric">Total</th>
+      <th class="numeric">Skips</th>
+      <th class="numeric">Processed</th>
+      <th class="numeric">True Pos.</th>
+      <th class="numeric">False Pos.</th>
+      <th class="numeric">True Neg.</th>
+      <th class="numeric">False Neg.</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @results.each do |strategy, result| %>
+      <tr>
+        <td><%= strategy.split('::').last %></td>
+        <td class="numeric">
+          <%= link_to(result[:total], detail_admin_comment_check_results_path(from: params[:from], to: params[:to], strategy:)) %>
+        </td>
+        <td class="numeric">
+          <%= link_to(detail_admin_comment_check_results_path(from: params[:from], to: params[:to], strategy:, result: :skips)) do %>
+            <%= result[:skips] %>
+            <% if result[:total] > 0 %>
+              (<%= number_to_percentage(result[:skips].to_f / result[:total] * 100, precision: 1) %>)
+            <% end %>
+          <% end %>
+        </td>
+        <td class="numeric">
+          <%= link_to(detail_admin_comment_check_results_path(from: params[:from], to: params[:to], strategy:, result: :processed)) do %>
+            <%= result[:processed] %>
+            <% if result[:total] > 0 %>
+              (<%= number_to_percentage(result[:processed].to_f / result[:total] * 100, precision: 1) %>)
+            <% end %>
+          <% end %>
+        </td>
+        <td class="numeric">
+          <%= link_to(detail_admin_comment_check_results_path(from: params[:from], to: params[:to], strategy:, result: :true_positives)) do %>
+            <%= result[:true_positives] %>
+            <% if result[:processed] > 0 %>
+              (<%= number_to_percentage(result[:true_positives].to_f / result[:processed] * 100, precision: 1) %>)
+            <% end %>
+          <% end %>
+        </td>
+        <td class="numeric">
+          <%= link_to(detail_admin_comment_check_results_path(from: params[:from], to: params[:to], strategy:, result: :false_positives)) do %>
+            <%= result[:false_positives] %>
+            <% if result[:processed] > 0 %>
+              (<%= number_to_percentage(result[:false_positives].to_f / result[:processed] * 100, precision: 1) %>)
+            <% end %>
+          <% end %>
+        </td>
+        <td class="numeric">
+          <%= link_to(detail_admin_comment_check_results_path(from: params[:from], to: params[:to], strategy:, result: :true_negatives)) do %>
+            <%= result[:true_negatives] %>
+            <% if result[:processed] > 0 %>
+              (<%= number_to_percentage(result[:true_negatives].to_f / result[:processed] * 100, precision: 1) %>)
+            <% end %>
+          <% end %>
+        </td>
+        <td class="numeric">
+          <%= link_to(detail_admin_comment_check_results_path(from: params[:from], to: params[:to], strategy:, result: :false_negatives)) do %>
+            <%= result[:false_negatives] %>
+            <% if result[:processed] > 0 %>
+              (<%= number_to_percentage(result[:false_negatives].to_f / result[:processed] * 100, precision: 1) %>)
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>Total</td>
+      <% [:total, :skips, :processed, :true_positives, :false_positives, :true_negatives, :false_negatives].each do |key| %>
+        <td class="numeric">
+          <%= link_to(@totals[key], detail_admin_comment_check_results_path(from: params[:from], to: params[:to], result: key == :total ? nil : key)) %>
+        </td>
+      <% end %>
+    </tr>
+  </tfoot>
+</table>

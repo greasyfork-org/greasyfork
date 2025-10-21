@@ -1,0 +1,39 @@
+<h2>
+  Comment spam check results from <%= params[:from] %> to <%= params[:to] %>
+  <% if params[:strategy].present? %>
+    for <%= params[:strategy].split('::').last %>
+  <% end %>
+  <% if params[:result].present? %>
+    with result <%= params[:result].humanize.singularize.downcase %>
+  <% end %>
+</h2>
+
+<% @results.each do |_comment_id, results| %>
+  <hr>
+  <% comment = results.first.comment %>
+  <div><%= t('reports.report_item.comment', comment: link_to(t('reports.report_item.comment_description', discussion_title: comment.discussion.display_title(locale: :en)), comment.path), user: render_user(comment.poster, comment.poster_id, skip_badge: true)).html_safe %></div>
+  <blockquote>
+    <div class="user-content">
+      <%= format_user_text(comment.text, comment.text_markup) %>
+      <%= render partial: 'screenshots/show', locals: { attachable: comment } %>
+    </div>
+  </blockquote>
+  <% results.each do |result| %>
+    <%= result.strategy.split('::').last %>: <b><%= result.result.humanize %></b>
+    <br>
+  <% end %>
+  <% if comment.spam_deleted %>
+    <p>Comment was deleted due to manual user ban.</p>
+  <% end %>
+  
+  <% spam_reports = comment.reports.where(reason: Report::REASON_SPAM) %>
+  <p>
+    <% if spam_reports.empty? %>
+      (No reports)
+    <% else %>
+      <% comment.reports.where(reason: Report::REASON_SPAM).each do |report| %>
+        <%= link_to("Report ##{report.id}", report_path(report)) %> by <%= report.auto_reporter || render_user(report.reporter, report.reporter_id, skip_badge: true) %><br>
+      <% end %>
+    <% end %>
+  </p>
+<% end %>
