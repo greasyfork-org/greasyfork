@@ -15,7 +15,7 @@ module Admin
           false_negatives: sum[:false_negatives] + stats[:false_negatives],
         }
       end
-      @miss_count = CommentCheckingStats.new(from: params[:from], to: params[:to]).misses.distinct('comment_id').count
+      @miss_count = CommentCheckingStats.new(from: params[:from], to: params[:to]).misses.count('distinct comment_id')
     end
 
     def detail
