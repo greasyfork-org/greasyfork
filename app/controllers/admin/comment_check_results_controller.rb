@@ -21,7 +21,7 @@ module Admin
       params[:from] ||= 30.days.ago.to_date.to_s
       params[:to] ||= Time.zone.tomorrow.to_s
       comment_ids = CommentCheckingStats.new(from: params[:from], to: params[:to]).records(strategy: params[:strategy], result: params[:result]).pluck(:comment_id)
-      @results = CommentCheckResult.includes(:comment).where(comment_id: comment_ids.first(1000)).order('comment.created_at DESC')
+      @results = CommentCheckResult.includes(:comment).where(comment_id: comment_ids.first(1000)).order('comment.created_at DESC, strategy')
       @results = @results.group_by(&:comment_id)
     end
   end

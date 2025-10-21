@@ -8,7 +8,7 @@ class CommentCheckingStats
 
   def overview
     stats = {}
-    CommentCheckingService::STRATEGIES.map(&:name).each do |strategy|
+    CommentCheckingService::STRATEGIES.map(&:name).sort.each do |strategy|
       stats[strategy] = s = { total: records(strategy:).count }
       STAT_TYPES.each do |result|
         s[result] = records(strategy:, result:).count
