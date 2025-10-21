@@ -19,7 +19,14 @@
     </div>
   </blockquote>
   <% results.each do |result| %>
-    <%= result.strategy.split('::').last %>: <b><%= result.result.humanize %></b>
+    <% reported_strategy = result.strategy == params[:strategy] %>
+    <% if reported_strategy %>
+      <b>
+    <% end %>
+    <%= result.strategy.split('::').last %>: <%= result.result.humanize %>
+    <% if reported_strategy %>
+      </b>
+    <% end %>
     <br>
   <% end %>
   <% if comment.spam_deleted %>

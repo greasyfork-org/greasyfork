@@ -1,7 +1,7 @@
 class CommentCheckingStats
   STAT_TYPES = [:skips, :true_positives, :false_positives, :true_negatives, :false_negatives].freeze
 
-  def initialize(from: 1.month.ago, to: Time.zone.now)
+  def initialize(from: 1.month.ago, to: Time.zone.tomorrow)
     @from = from
     @to = to
   end
