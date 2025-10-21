@@ -13,9 +13,7 @@ module ScriptVersionJs
       else
         js.errors.each do |_type, message|
           record.script.has_syntax_error = true
-          # Seems like this can mangle encoding, so fix it so we show something instead of an encoding error in the view.
-          # https://github.com/rubyjs/mini_racer/issues/369
-          record.errors.add(:code, "contains errors: #{message.encode('UTF-8', invalid: :replace, undef: :replace, replace: '�')}")
+          record.errors.add(:code, "contains errors: #{message}")
         end
       end
     end

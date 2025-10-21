@@ -1023,7 +1023,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
     assert_equal 'warning-meta_not_at_start', script_version.errors.first.type
   end
 
-  test 'syntax error with bad encoding' do
+  test 'syntax error with non-Latin encoding' do
     script = valid_script
     script_version = script.script_versions.first
     script_version.code = <<~JS
@@ -1040,6 +1040,6 @@ class ScriptVersionTest < ActiveSupport::TestCase
     JS
     assert_not script_version.valid?
     assert_equal :code, script_version.errors.first.attribute
-    assert_equal "contains errors: Uncaught SyntaxError: Unexpected identifier '������' at <eval>:11:278", script_version.errors.first.message
+    assert_equal "contains errors: Uncaught SyntaxError: Unexpected identifier 'шок' at <eval>:11:278", script_version.errors.first.message
   end
 end
