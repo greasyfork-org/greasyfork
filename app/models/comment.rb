@@ -134,6 +134,7 @@ class Comment < ApplicationRecord
       .css('a[href]')
       .pluck('href')
       .reject { |href| INTERNAL_LINK_PREFIXES.any? { |prefix| href.starts_with?(prefix) } }
+      .reject(&:blank?)
   end
 
   def prior_deleted_comments(age)
