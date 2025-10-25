@@ -377,7 +377,14 @@ class User < ApplicationRecord
 
   def delete_all_comments!(by_user: nil, automod: false, spam: false)
     additional_updates = spam ? { spam_deleted: true } : {}
+
+    # Deleting the discussions will run a callback to delete the first comments, and then they won't get picked up by the Comment update below
+    # because they're already deleted. So if we need to set spam_deleted, we need to record the first comment IDs first, then perform an update
+    # to set spam_deleted after.
+    first_comment_ids = discussions.not_deleted.pluck(:stat_first_comment_id) if additional_updates.present?
+
     discussions.not_deleted.each { |discussion| discussion.soft_destroy!(by_user:, **additional_updates) }
+    Comment.where(id: first_comment_ids).update_all(additional_updates) if first_comment_ids
     comments.not_deleted.each { |comment| comment.soft_destroy!(by_user:, **additional_updates) }
     Report.unresolved.where(item: discussions + comments).find_each { |report| report.uphold!(moderator: by_user, automod:) }
   end

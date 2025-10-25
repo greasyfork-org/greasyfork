@@ -33,6 +33,7 @@ module Users
       assert user.reload.banned?
       assert user.discussions.first.soft_deleted?
       assert user.discussions.first.spam_deleted
+      assert user.discussions.first.comments.first.spam_deleted
       assert_equal 'Spam: Posting spam links', ModeratorAction.last.reason
     end
   end
