@@ -24,7 +24,7 @@
         <td>
           <% if spammy_email_domain.expires_at %>
             <% if spammy_email_domain.expires_at.past? %>
-              <span style="backgroud-color: red"><%= markup_date(spammy_email_domain.expires_at) %></span>
+              <span style="background-color: #FAA"><%= markup_date(spammy_email_domain.expires_at) %></span>
             <% else %>
               <%= markup_date(spammy_email_domain.expires_at) %>
             <% end %>
