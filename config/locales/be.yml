@@ -14,6 +14,8 @@ be:
     created_date: "Створаны"
     updated_date: "Абноўлены"
     code_size: Памер
+    total_installs: "Усяго ўсталяванняў"
+    daily_installs: "Усталяванняў за дзень"
     ratings: "Рэйтынг"
     author_name: "Аўтар"
     version_number: "Версія"
@@ -23,8 +25,13 @@ be:
     compatibility: "Сумяшчальнасць"
     compatible_with_browser: "Сумяшчальны з %{browser}"
     incompatible_with_browser: "Несумяшчальны з %{browser}"
+    applies_to: "Ужываецца на"
+    applies_to_all: "Усе сайты"
+    install: "Усталяваць скрыпт"
     install_help: "?"
     install_help_title: "Як усталяваць"
+    update: "Абнавіць да версіі %{version}"
+    downgrade: "Панізіць версію да %{version}"
     reinstall: "Пераўсталяваць версію %{version}"
     promoted_text_html: "Вам таксама можа спадабацца %{script_link}."
     deleted_notice: "Гэты скрыпт быў выдалены."
@@ -37,6 +44,7 @@ be:
     delete_page: "Выдаліць"
     delete_permanently_heading: "Выдаленне назаўжды"
     delete_permanently_immediate_submit: "Выдаліць назаўжды"
+    delete_permanently_notice_immediate: "Скрыпт выдалены назаўжды"
     admin_page: "Адміністратар"
     admin:
       title: "%{script_name} - Адміністратар"
@@ -49,13 +57,17 @@ be:
     list_all_script_versions: "Паказаць усе версіі скрыпта"
     code_title: "%{script_name} - зыходны код"
     feedback_title: "%{script_name} - водгук"
+    stats_daily_installs_heading: "Усталяванняў за дзень"
+    stats_weekly_installs_heading: "Усталяванняў за тыдзень"
     stats_daily_installs_date_column_heading: "Дата"
+    stats_daily_installs_install_count_column_heading: "Устяляванні"
     stats_no_data: "Н/Д"
     stats_filters: "Фільтр: %{filter_options}"
     stats_filter_options:
       month: Апошнія 30 дзён
       year: Апошнія 365 дзён
       all: Увесь час
+    listing_description_for_code_search_html: "Пошук коду па <code>%{search_string}</code>"
     listing_title_generic: "Карыстальніцкія скрыпты"
     listing_sort_label: "Сартаванне па:"
     listing_sort_relevance: "Рэлевантнасці"
@@ -86,6 +98,9 @@ be:
     sync_url_placeholder: "(URL-адрас)"
     screenshots_add: "Дадаць:"
     screenshots_remove: "Выдаліць"
+    feedback_or_report: "%{feedback_link:Задайце пытанне, пакіньце водгук} або %{report_link:паскардзіцеся на скрыпт}."
+    support_feedback_or_report: "%{support_url:Наведайце сайт аўтара для атрымання падтрымкі}, %{feedback_link:задайце пытанне, пакіньце водгук} або %{report_link:паскардзіцеся на скрыпт}."
+    support_email_feedback_or_report: "%{support_url:Напішыце аўтару ліст для атрымання падтрымкі}, %{feedback_link:задайце пытанне, пакіньце водгук} або %{report_link:паскардзіцеся на скрыпт}."
     libraries_title: "Бібліятэкі"
     search_placeholder: "Пошук скрыптоў"
     preview_additional_info: "Перадпрагляд"
@@ -170,6 +185,16 @@ be:
   search:
     script_search:
       title: "Пошук скрыптоў"
+      description: "Пошук скрыптоў па назвах, апісаннях, дадатковай інфармацыі і імёнах аўтараў."
+    library_search:
+      title: "Пошук бібліятэк"
+      description: "Пошук бібліятэк па назвах, апісаннях, дадатковай інфармацыі і імёнах аўтараў."
+    code_search:
+      title: "Пошук коду"
+      description: "Пошук коду скрыптоў. Гэта пошук у звычайным тэксце без падстаноўных сімвалаў, без уліку рэгістра."
+    user_search:
+      title: "Пошук карыстальнікаў"
+      description: "Пошук карыстальнікаў па імені."
   moderator_logs:
     moderator_column: "Мадэратар"
   discussions:
@@ -234,6 +259,7 @@ be:
       undelete_and_unlock: 'Аднавіць і разблакіраваць'
       update_locale: 'Абнавіць лакаль'
   common:
+    allowed_elements_intro: "Дазволены наступныя элементы і атрыбуты. Гэта датычыцца як HTML, так і Markdown (пасля пераўтварэння ў HTML)."
     not_found_text: "404 - старонка не знойдзена."
     not_found_title: "404 - старонка не знойдзена"
     not_found_link_home: "На дамашнюю старонку."
