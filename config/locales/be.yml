@@ -182,6 +182,18 @@ be:
       discussion_defaults:
         title: Апавяшчэнні форума
       title: Апавяшчэнні
+  help:
+    code_rules:
+      copyright_header: Аўтарскае права
+    external_scripts:
+      libraries:
+        title: "Бібліятэкі %{site_name}"
+    cdns:
+      test_url:
+        result_ok: URL-адрас дазволены
+        result_not_ok: URL-адрас недазволены
+    privacy_policy:
+      title: "Палітыка прыватнасці"
   search:
     script_search:
       title: "Пошук скрыптоў"
@@ -196,11 +208,51 @@ be:
       title: "Пошук карыстальнікаў"
       description: "Пошук карыстальнікаў па імені."
   moderator_logs:
+    date_column: "Дата"
     moderator_column: "Мадэратар"
+    item_column: "Элемент"
+    action_column: "Дзеянне"
+    reason_column: "Прычына"
+    item_script_html: "Скрыпт: %{script_link}"
+    item_deleted_script: "Выдалены скрыпт %{id}"
+    item_user_html: "Карыстальнік: %{user_link}"
+    item_discussion_html: "Абмеркаванне: %{discussion_link}"
+    item_comment_html: "Каментарый да абмеркавання: %{comment_link}"
+  reports:
+    reason:
+      non_functional: "Скрыпт не працуе"
+      spam: "Спам"
+      wrong_category: "Няправільная катэгорыя"
+      wrong_category_with_suggestion: "Няправільная катэгорыя (прапанавана: %{suggested_category})"
+      other: "Іншае"
+    delete_script: "Выдаліць скрыпт"
+    loading_diff: "Загрузка…"
+    report_item:
+      script: "%{script}"
+    unauthorized_code:
+      script_header: Скрыпт
   discussions:
+    title: Абмеркаванні
+    edit_comment_link: "Рэдагаваць"
+    edit_comment_header: " Рэдагаваць каметарый"
+    delete_comment: "Выдаліць"
+    delete_comment_confirm: Вы ўпэўнены, што хочаце выдаліць гэты каментарый?
+    delete_discussion: "Выдаліць"
+    delete_discussion_confirm: Вы ўпэўнены, што хочаце выдаліць гэта абмеркаванне?
+    update_comment_submit: "Абнавіць каметарый"
+    cancel_update_comment: "Скасаваць"
+    quote_comment: "Квота"
+    question_heading_html: "Пытанне/каментарый"
     ratings_short:
       question: "Пытанне/каментарый"
       ok: "ОК"
+    badges:
+      deleted:
+        short: Выдалена
+        long: Выдалена
+    user_filter:
+      label: "Абмеркаванні з маім удзелам"
+      all: "Усе абмеркаванні"
     other_user_filter:
       all: "Усе абмеркаванні"
       comments_by: "Каментарыі карыстальніка %{user}"
@@ -224,6 +276,7 @@ be:
         name: Распрацоўка
       moderators:
         name: Мадэратары
+    category_display: "%{name} - %{description}"
     new_title: Новае абмеркаванне
     new_button: Новае абмеркаванне
     no_discussions: Абмеркаванняў не знойдзена
@@ -265,13 +318,28 @@ be:
     not_found_link_home: "На дамашнюю старонку."
     preview_tab: Перадпрагляд
     listing_options_title: "Параметры пошуку"
+    access_denied: "Доступ забаронены."
   activerecord:
+    models:
+      script:
+        one: "%{count} скрыпт"
+        few: "%{count} скрыпты"
+        many: "%{count} скрыптоў"
+        other: "%{count} скрыптоў"
+      comment:
+        one: "%{count} каментарый"
+        few: "%{count} каментарыі"
+        many: "%{count} каментарыяў"
+        other: "%{count} каментарыяў"
     attributes:
       user:
         name: "Імя"
         profile: "Профіль"
         locale: "Прыярытэтная лакаль"
         show_ads: "Паказваць рэкламу"
+        current_password: "Бягучы пароль"
+        new_password: "Новы пароль"
+        new_password_confirmation: "Пацвердзіце новы пароль"
       script:
         name: "Назва"
         description: "Апісанне"
@@ -281,6 +349,7 @@ be:
         name: "Назва"
         description: "Апісанне"
       discussion:
+        rating: "Рэйтынг"
         category: "Катэгорыя"
         title: Загаловак
       conversation:
@@ -297,6 +366,8 @@ be:
     results:
       title: "Вынік імпарту"
   mailers:
+    script_comment:
+      subject: "Ваш скрапт %{script_name} на %{site_name} атрымаў каментарый."
     script_lock_appeal:
       unlock:
         moderator_notes: "Мадэратар пракаментаваў:"
