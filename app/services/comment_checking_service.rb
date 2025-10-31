@@ -8,6 +8,7 @@ class CommentCheckingService
     CommentChecking::DeletedRepeatedTextChecker,
     CommentChecking::DeletedRepeatedLinkChecker,
     CommentChecking::OnlyLinkChecker,
+    CommentChecking::NewUserChecker,
   ].freeze
 
   def self.check(comment, ip:, user_agent:, referrer:)
@@ -26,12 +27,21 @@ class CommentCheckingService
 
     return if spam_results.empty?
 
-    report = Report.create!(item: comment.reportable_item, auto_reporter: 'rainman', reason: Report::REASON_SPAM, private_explanation: spam_results.map(&:text).map { |t| "- #{t}" }.join("\n").truncate_bytes(65_535))
+    report_attributes = { auto_reporter: 'rainman', reason: Report::REASON_SPAM, private_explanation: spam_results.map(&:text).map { |t| "- #{t}" }.join("\n").truncate_bytes(65_535) }
+    report = Report.create!(item: comment.reportable_item, **report_attributes)
 
-    if spam_results.count { |sr| !sr.strategy.is_a?(CommentChecking::DefendiumChecker) } >= 2 && strict_results?(comment)
+    if spam_results.count { |sr| !sr.strategy.is_a?(CommentChecking::DefendiumChecker) } >= 3 && strict_results?(comment)
       report.uphold!(moderator_notes: 'Blatant comment spam', ban_user: true, delete_comments: true, delete_scripts: true, automod: true)
     elsif report.item.is_a?(Discussion)
       report.item.update!(review_reason: Discussion::REVIEW_REASON_RAINMAN)
+    end
+
+    # If NewUserChecker triggered, report all other discussions by this user
+    return unless report.item.is_a?(Discussion) && spam_results.any? { |sr| sr.strategy.is_a?(CommentChecking::NewUserChecker) }
+
+    comment.poster.discussions.not_deleted.reject { |d| d.reports.any? }.each do |d|
+      Report.create!(item: d, **report_attributes)
+      d.update!(review_reason: Discussion::REVIEW_REASON_RAINMAN)
     end
   end
 

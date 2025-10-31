@@ -45,7 +45,7 @@ class CommentCheckingServiceTest < ActiveSupport::TestCase
   end
 
   test 'when multiple match for a new user' do
-    mock_comment_spam_results(CommentChecking::AkismetChecker, CommentChecking::CustomChecker)
+    mock_comment_spam_results(CommentChecking::AkismetChecker, CommentChecking::CustomChecker, CommentChecking::OnlyLinkChecker)
 
     comment = comments(:script_comment)
     comment.poster.update!(created_at: 1.day.ago)
@@ -57,7 +57,26 @@ class CommentCheckingServiceTest < ActiveSupport::TestCase
     assert comment.reload.soft_deleted?
     assert comment.poster.reload.banned?
     assert_nil comment.discussion.review_reason
-    assert_equal 2, comment.comment_check_results.where(result: :spam).count
+    assert_equal 3, comment.comment_check_results.where(result: :spam).count
+  end
+
+  test 'when NewUserChecker matches all discussions by the user are reported' do
+    mock_comment_spam_results(CommentChecking::NewUserChecker)
+
+    first_discussion = discussions(:non_script_discussion)
+    second_discussion = first_discussion.dup
+    second_discussion.created_at = first_discussion.created_at + 30.minutes
+    second_comment = first_discussion.comments.first.dup
+    second_comment.discussion = second_discussion
+    second_comment.save!
+
+    assert_difference -> { Report.count } => 2 do
+      CommentCheckingService.check(second_comment, ip: '127.0.0.1', referrer: nil, user_agent: 'Bot')
+    end
+    assert_equal 1, first_discussion.reports.count
+    assert_equal 1, second_discussion.reports.count
+    assert_equal Discussion::REVIEW_REASON_RAINMAN, first_discussion.reload.review_reason
+    assert_equal Discussion::REVIEW_REASON_RAINMAN, second_discussion.reload.review_reason
   end
 
   def mock_comment_spam_results(*spam_returning_strategies)

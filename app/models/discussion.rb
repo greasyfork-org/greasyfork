@@ -43,6 +43,7 @@ class Discussion < ApplicationRecord
                                  visible
                                end
                              }
+  scope :not_for_script, -> { where(script_id: nil) }
 
   accepts_nested_attributes_for :comments
 
