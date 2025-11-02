@@ -1,29 +1,29 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    actioncable (8.0.3)
-      actionpack (= 8.0.3)
-      activesupport (= 8.0.3)
+    actioncable (8.0.4)
+      actionpack (= 8.0.4)
+      activesupport (= 8.0.4)
       nio4r (~> 2.0)
       websocket-driver (>= 0.6.1)
       zeitwerk (~> 2.6)
-    actionmailbox (8.0.3)
-      actionpack (= 8.0.3)
-      activejob (= 8.0.3)
-      activerecord (= 8.0.3)
-      activestorage (= 8.0.3)
-      activesupport (= 8.0.3)
+    actionmailbox (8.0.4)
+      actionpack (= 8.0.4)
+      activejob (= 8.0.4)
+      activerecord (= 8.0.4)
+      activestorage (= 8.0.4)
+      activesupport (= 8.0.4)
       mail (>= 2.8.0)
-    actionmailer (8.0.3)
-      actionpack (= 8.0.3)
-      actionview (= 8.0.3)
-      activejob (= 8.0.3)
-      activesupport (= 8.0.3)
+    actionmailer (8.0.4)
+      actionpack (= 8.0.4)
+      actionview (= 8.0.4)
+      activejob (= 8.0.4)
+      activesupport (= 8.0.4)
       mail (>= 2.8.0)
       rails-dom-testing (~> 2.2)
-    actionpack (8.0.3)
-      actionview (= 8.0.3)
-      activesupport (= 8.0.3)
+    actionpack (8.0.4)
+      actionview (= 8.0.4)
+      activesupport (= 8.0.4)
       nokogiri (>= 1.8.5)
       rack (>= 2.2.4)
       rack-session (>= 1.0.1)
@@ -31,15 +31,15 @@ GEM
       rails-dom-testing (~> 2.2)
       rails-html-sanitizer (~> 1.6)
       useragent (~> 0.16)
-    actiontext (8.0.3)
-      actionpack (= 8.0.3)
-      activerecord (= 8.0.3)
-      activestorage (= 8.0.3)
-      activesupport (= 8.0.3)
+    actiontext (8.0.4)
+      actionpack (= 8.0.4)
+      activerecord (= 8.0.4)
+      activestorage (= 8.0.4)
+      activesupport (= 8.0.4)
       globalid (>= 0.6.0)
       nokogiri (>= 1.8.5)
-    actionview (8.0.3)
-      activesupport (= 8.0.3)
+    actionview (8.0.4)
+      activesupport (= 8.0.4)
       builder (~> 3.1)
       erubi (~> 1.11)
       rails-dom-testing (~> 2.2)
@@ -50,22 +50,22 @@ GEM
       activestorage (>= 6.1.4)
       activesupport (>= 6.1.4)
       marcel (>= 1.0.3)
-    activejob (8.0.3)
-      activesupport (= 8.0.3)
+    activejob (8.0.4)
+      activesupport (= 8.0.4)
       globalid (>= 0.3.6)
-    activemodel (8.0.3)
-      activesupport (= 8.0.3)
-    activerecord (8.0.3)
-      activemodel (= 8.0.3)
-      activesupport (= 8.0.3)
+    activemodel (8.0.4)
+      activesupport (= 8.0.4)
+    activerecord (8.0.4)
+      activemodel (= 8.0.4)
+      activesupport (= 8.0.4)
       timeout (>= 0.4.0)
-    activestorage (8.0.3)
-      actionpack (= 8.0.3)
-      activejob (= 8.0.3)
-      activerecord (= 8.0.3)
-      activesupport (= 8.0.3)
+    activestorage (8.0.4)
+      actionpack (= 8.0.4)
+      activejob (= 8.0.4)
+      activerecord (= 8.0.4)
+      activesupport (= 8.0.4)
       marcel (~> 1.0)
-    activesupport (8.0.3)
+    activesupport (8.0.4)
       base64
       benchmark (>= 0.3)
       bigdecimal
@@ -105,7 +105,7 @@ GEM
       aws-eventstream (~> 1, >= 1.0.2)
     base64 (0.3.0)
     bcrypt (3.1.20)
-    benchmark (0.4.1)
+    benchmark (0.5.0)
     better_errors (2.10.1)
       erubi (>= 1.0.0)
       rack (>= 0.9.0)
@@ -159,7 +159,7 @@ GEM
     crass (1.0.6)
     csv (3.3.5)
     daemons (1.4.1)
-    date (3.4.1)
+    date (3.5.0)
     debug_inspector (1.2.0)
     detect_language (2.0.0)
     devise (4.9.4)
@@ -190,7 +190,7 @@ GEM
     email_address (0.2.6)
       base64
       simpleidn
-    erb (5.1.1)
+    erb (5.1.3)
     erb_lint (0.9.0)
       activesupport
       better_html (>= 2.0.1)
@@ -276,7 +276,7 @@ GEM
       mini_magick (>= 4.9.5, < 6)
       ruby-vips (>= 2.0.17, < 3)
     io-console (0.8.1)
-    irb (1.15.2)
+    irb (1.15.3)
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
@@ -298,7 +298,8 @@ GEM
     loofah (2.24.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
-    mail (2.8.1)
+    mail (2.9.0)
+      logger
       mini_mime (>= 0.1.1)
       net-imap
       net-pop
@@ -340,7 +341,7 @@ GEM
     net-smtp (0.5.1)
       net-protocol
     net-ssh (7.3.0)
-    nio4r (2.7.4)
+    nio4r (2.7.5)
     nokogiri (1.18.10)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
@@ -415,20 +416,20 @@ GEM
       rack (>= 1.3)
     rackup (2.2.1)
       rack (>= 3)
-    rails (8.0.3)
-      actioncable (= 8.0.3)
-      actionmailbox (= 8.0.3)
-      actionmailer (= 8.0.3)
-      actionpack (= 8.0.3)
-      actiontext (= 8.0.3)
-      actionview (= 8.0.3)
-      activejob (= 8.0.3)
-      activemodel (= 8.0.3)
-      activerecord (= 8.0.3)
-      activestorage (= 8.0.3)
-      activesupport (= 8.0.3)
+    rails (8.0.4)
+      actioncable (= 8.0.4)
+      actionmailbox (= 8.0.4)
+      actionmailer (= 8.0.4)
+      actionpack (= 8.0.4)
+      actiontext (= 8.0.4)
+      actionview (= 8.0.4)
+      activejob (= 8.0.4)
+      activemodel (= 8.0.4)
+      activerecord (= 8.0.4)
+      activestorage (= 8.0.4)
+      activesupport (= 8.0.4)
       bundler (>= 1.15.0)
-      railties (= 8.0.3)
+      railties (= 8.0.4)
     rails-dom-testing (2.3.0)
       activesupport (>= 5.0.0)
       minitest
@@ -441,9 +442,9 @@ GEM
       railties (>= 8.0.0, < 9)
     rails-observers (0.1.5)
       activemodel (>= 4.0)
-    railties (8.0.3)
-      actionpack (= 8.0.3)
-      activesupport (= 8.0.3)
+    railties (8.0.4)
+      actionpack (= 8.0.4)
+      activesupport (= 8.0.4)
       irb (~> 1.13)
       rackup (>= 1.0.0)
       rake (>= 12.2)
@@ -451,11 +452,11 @@ GEM
       tsort (>= 0.2)
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
-    rake (13.3.0)
+    rake (13.3.1)
     rb-fsevent (0.11.2)
     rb-inotify (0.11.1)
       ffi (~> 1.0)
-    rdoc (6.15.0)
+    rdoc (6.15.1)
       erb
       psych (>= 4.0.0)
       tsort
@@ -574,14 +575,14 @@ GEM
     strip_attributes (2.0.1)
       activemodel (>= 3.0, < 9.0)
     thor (1.4.0)
-    timeout (0.4.3)
+    timeout (0.4.4)
     tsort (0.2.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (3.2.0)
       unicode-emoji (~> 4.1)
     unicode-emoji (4.1.0)
-    uri (1.0.4)
+    uri (1.1.0)
     user_agent_parser (2.20.0)
     useragent (0.16.11)
     version_gem (1.1.9)
@@ -687,18 +688,18 @@ DEPENDENCIES
   will_paginate
 
 CHECKSUMS
-  actioncable (8.0.3) sha256=f8cad39cebefaa1c9d4904f3e843022f22ee7a9201b59db703bf3ef7f2877493
-  actionmailbox (8.0.3) sha256=2a0444f8937c641db100128a1826554c5298ade65c62b623a1fcb34a1dc6bd2f
-  actionmailer (8.0.3) sha256=6dc0c3701065a96f845a05a28e9d7a60055222cfc324cc6c3a281cec148cc723
-  actionpack (8.0.3) sha256=d63c21cb109e0529d785ffdb657a092928890327c5c8ea2e46f63b6751be5ad3
-  actiontext (8.0.3) sha256=1c46fdfa60ffa282bf29cccc0714071128826bef5740c4f2a88d375d206a9df4
-  actionview (8.0.3) sha256=5171946ff07d1e95bf3d805ad9425a89040a013dea11bb1f4cf604f108b1ce66
+  actioncable (8.0.4) sha256=aadb2bf2977b666cfeaa7dee66fd50e147559f78a8d55f6169e913502475e09f
+  actionmailbox (8.0.4) sha256=ed0b634a502fb63d1ba01ae025772e9d0261b7ba12e66389c736fcf4635cd80f
+  actionmailer (8.0.4) sha256=3b9270d8e19f0afb534b11c52f439937dc30028adcbbae2b244f3383ce75de4b
+  actionpack (8.0.4) sha256=0364c7582f32c8f404725fa30d3f6853f834c5f4964afd4a072b848c8a23cddb
+  actiontext (8.0.4) sha256=40b3970268ac29b865685456b2586df5052d068fd0cb04acb2291e737cea2340
+  actionview (8.0.4) sha256=5bd3c41ee7a59e14cf062bb5e4ee53c9a253d12fc13c8754cae368012e1a1648
   active_storage_validations (3.0.2) sha256=4277ac242c923e4c7d72f4eea823d6a3bfbb286eba1dc4dd4611d7a3f529f17b
-  activejob (8.0.3) sha256=469eddb3822aff1c6a0df0bd3398f28bff8fcd1bd0e9d309e6b7ccbd0bdba1b6
-  activemodel (8.0.3) sha256=406907245a1c6c04cdf2187cc4590fdc081d7a07392123d322125677022ea67c
-  activerecord (8.0.3) sha256=9b95c63b2ae9ccb57bb15db730300fdd02af387e12474eb9002a668acab3cea8
-  activestorage (8.0.3) sha256=4f4eadeb5d128a35ed21d960eeece027225b36d54542512c8a36ad5316988c5e
-  activesupport (8.0.3) sha256=a711ce5e30660b23232f26a38699469f8d859d47aa1f722e183fda6d7cc17823
+  activejob (8.0.4) sha256=cbc8a85d0e168cb90a5629c8a36fe2d08ba840103d3aed3eee0c7beb784fccce
+  activemodel (8.0.4) sha256=8f4e4fac3cd104b1bf30419c3745206f6f724c0e2902a939b4113f4c90730dfd
+  activerecord (8.0.4) sha256=bda32c171799e5ca5460447d3b7272ed14447244e2497abf2107f87fc44cbf32
+  activestorage (8.0.4) sha256=47f312962fc898c1669f20cf7448d19668a5547f4a5f64e59a837d9d3f64a043
+  activesupport (8.0.4) sha256=894a3a6c7733b5fae5a7df3acd76c4b563f38687df8a04fa3cbd25360f3fe95a
   addressable (2.8.7) sha256=462986537cf3735ab5f3c0f557f14155d778f4b43ea4f485a9deb9c8f7c58232
   airbrussh (1.5.3) sha256=7b06eb03be15f50120bc03d95967c95144fbbb7a6ad58d4105cd1550c3aa989c
   akismet (3.0.0) sha256=74991b8e3d3257eeea996b47069abb8da2006c84a144255123e8dffd1c86b230
@@ -711,7 +712,7 @@ CHECKSUMS
   aws-sigv4 (1.12.1) sha256=6973ff95cb0fd0dc58ba26e90e9510a2219525d07620c8babeb70ef831826c00
   base64 (0.3.0) sha256=27337aeabad6ffae05c265c450490628ef3ebd4b67be58257393227588f5a97b
   bcrypt (3.1.20) sha256=8410f8c7b3ed54a3c00cd2456bf13917d695117f033218e2483b2e40b0784099
-  benchmark (0.4.1) sha256=d4ef40037bba27f03b28013e219b950b82bace296549ec15a78016552f8d2cce
+  benchmark (0.5.0) sha256=465df122341aedcb81a2a24b4d3bd19b6c67c1530713fd533f3ff034e419236c
   better_errors (2.10.1) sha256=f798f1bac93f3e775925b7fcb24cffbcf0bb62ee2210f5350f161a6b75fc0a73
   better_html (2.2.0) sha256=e68ab66ab09696b708333bbf35e8aa3c107500ba7892f528e2111624bdd8cf76
   bigdecimal (3.3.1) sha256=eaa01e228be54c4f9f53bf3cc34fe3d5e845c31963e7fcc5bedb05a4e7d52218
@@ -732,7 +733,7 @@ CHECKSUMS
   crass (1.0.6) sha256=dc516022a56e7b3b156099abc81b6d2b08ea1ed12676ac7a5657617f012bd45d
   csv (3.3.5) sha256=6e5134ac3383ef728b7f02725d9872934f523cb40b961479f69cf3afa6c8e73f
   daemons (1.4.1) sha256=8fc76d76faec669feb5e455d72f35bd4c46dc6735e28c420afb822fac1fa9a1d
-  date (3.4.1) sha256=bf268e14ef7158009bfeaec40b5fa3c7271906e88b196d958a89d4b408abe64f
+  date (3.5.0) sha256=5e74fd6c04b0e65d97ad4f3bb5cb2d8efb37f386cc848f46310b4593ffc46ee5
   debug_inspector (1.2.0) sha256=9bdfa02eebc3da163833e6a89b154084232f5766087e59573b70521c77ea68a2
   detect_language (2.0.0) sha256=d7be52919b6d7e0fe83023036c6968093a71fe63f0421a046fb6535da8027b04
   devise (4.9.4) sha256=920042fe5e704c548aa4eb65ebdd65980b83ffae67feb32c697206bfd975a7f8
@@ -745,7 +746,7 @@ CHECKSUMS
   elasticsearch (8.19.1) sha256=a0869c1427ef077032d456dcb2fdd527a2270d95898b6a9b342ab627657770ae
   elasticsearch-api (8.19.1) sha256=13253f983c11281ee5616ed71e70f1c2981e7a15eb99a92d718075fd3fa471db
   email_address (0.2.6) sha256=65c2801743f2a0cc169c398750745fcd15d728af554615fb8a79fc7abd477233
-  erb (5.1.1) sha256=b2c26e7924551d9efbae998e17ddbef220937b6422b1d2ec7ae71417b5a1f4ec
+  erb (5.1.3) sha256=566e53057b6ba48699f824b578473b391fa8aef100aa14afad1c46725fae0e67
   erb_lint (0.9.0) sha256=dfb5e40ad839e8d1f0d56ca85ec9a7ac4c9cd966ec281138282f35b323ca7c31
   erubi (1.13.1) sha256=a082103b0885dbc5ecf1172fede897f9ebdb745a4b97a5e8dc63953db1ee4ad9
   et-orbi (1.4.0) sha256=6c7e3c90779821f9e3b324c5e96fda9767f72995d6ae435b96678a4f3e2de8bc
@@ -776,7 +777,7 @@ CHECKSUMS
   i18n (1.14.7) sha256=ceba573f8138ff2c0915427f1fc5bdf4aa3ab8ae88c8ce255eb3ecf0a11a5d0f
   image_processing (1.14.0) sha256=754cc169c9c262980889bec6bfd325ed1dafad34f85242b5a07b60af004742fb
   io-console (0.8.1) sha256=1e15440a6b2f67b6ea496df7c474ed62c860ad11237f29b3bd187f054b925fcb
-  irb (1.15.2) sha256=222f32952e278da34b58ffe45e8634bf4afc2dc7aa9da23fed67e581aa50fdba
+  irb (1.15.3) sha256=4349edff1efa7ff7bfd34cb9df74a133a588ba88c2718098b3b4468b81184aaa
   it (2.0.0) sha256=c7169fcc7345617dfdbae7681c2df9d0fdba067d65ac207e72be88aff4cf2117
   jmespath (1.6.2) sha256=238d774a58723d6c090494c8879b5e9918c19485f7e840f2c1c7532cf84ebcb1
   json (2.15.1) sha256=b1c1b2e7c116eb1903e0ce0c374783e6ead8747a0f9eca132d274018ebb80b89
@@ -789,7 +790,7 @@ CHECKSUMS
   listen (3.9.0) sha256=db9e4424e0e5834480385197c139cb6b0ae0ef28cc13310cfd1ca78377d59c67
   logger (1.7.0) sha256=196edec7cc44b66cfb40f9755ce11b392f21f7967696af15d274dde7edff0203
   loofah (2.24.1) sha256=655a30842b70ec476410b347ab1cd2a5b92da46a19044357bbd9f401b009a337
-  mail (2.8.1) sha256=ec3b9fadcf2b3755c78785cb17bc9a0ca9ee9857108a64b6f5cfc9c0b5bfc9ad
+  mail (2.9.0) sha256=6fa6673ecd71c60c2d996260f9ee3dd387d4673b8169b502134659ece6d34941
   marcel (1.1.0) sha256=fdcfcfa33cc52e93c4308d40e4090a5d4ea279e160a7f6af988260fa970e0bee
   matrix (0.4.3) sha256=a0d5ab7ddcc1973ff690ab361b67f359acbb16958d1dc072b8b956a286564c5b
   memoist (0.16.2) sha256=a52c53a3f25b5875151670b2f3fd44388633486dc0f09f9a7150ead1e3bf3c45
@@ -813,7 +814,7 @@ CHECKSUMS
   net-sftp (4.0.0) sha256=65bb91c859c2f93b09826757af11b69af931a3a9155050f50d1b06d384526364
   net-smtp (0.5.1) sha256=ed96a0af63c524fceb4b29b0d352195c30d82dd916a42f03c62a3a70e5b70736
   net-ssh (7.3.0) sha256=172076c4b30ce56fb25a03961b0c4da14e1246426401b0f89cba1a3b54bf3ef0
-  nio4r (2.7.4) sha256=d95dee68e0bb251b8ff90ac3423a511e3b784124e5db7ff5f4813a220ae73ca9
+  nio4r (2.7.5) sha256=6c90168e48fb5f8e768419c93abb94ba2b892a1d0602cb06eef16d8b7df1dca1
   nokogiri (1.18.10) sha256=d5cc0731008aa3b3a87b361203ea3d19b2069628cb55e46ac7d84a0445e69cc1
   nokogiri (1.18.10-x86_64-linux-gnu) sha256=ff5ba26ba2dbce5c04b9ea200777fd225061d7a3930548806f31db907e500f72
   oauth2 (2.0.17) sha256=c4e182aeabc06dfdafce9a15095c30edc3a1a21fc3c4f0ea49d9295429e79835
@@ -844,17 +845,17 @@ CHECKSUMS
   rack-session (2.1.1) sha256=0b6dc07dea7e4b583f58a48e8b806d4c9f1c6c9214ebc202ec94562cbea2e4e9
   rack-test (2.2.0) sha256=005a36692c306ac0b4a9350355ee080fd09ddef1148a5f8b2ac636c720f5c463
   rackup (2.2.1) sha256=f737191fd5c5b348b7f0a4412a3b86383f88c43e13b8217b63d4c8d90b9e798d
-  rails (8.0.3) sha256=5d83c0822d1aaea32a278a99b1afedd3f28e14cfff846e96987bb24ebcb3fd45
+  rails (8.0.4) sha256=364494a32d2dc3f9d5c135d036ce47e7776684bc6add73f1037ac2b1007962db
   rails-dom-testing (2.3.0) sha256=8acc7953a7b911ca44588bf08737bc16719f431a1cc3091a292bca7317925c1d
   rails-html-sanitizer (1.6.2) sha256=35fce2ca8242da8775c83b6ba9c1bcaad6751d9eb73c1abaa8403475ab89a560
   rails-i18n (8.0.2) sha256=624f31f652f85fd28024a521fea786223c4653cc83a468fbe3d410cb40f738af
   rails-observers (0.1.5) sha256=4ce96ae7f3e934d4d21cabdac87029b419aafd8534914940961a941b9eaf935c
-  railties (8.0.3) sha256=ace31dcad7134299a64d6d96310d76d32868756e58e2983e25b121acd457f1d2
+  railties (8.0.4) sha256=8203d853dcffab4abcdd05c193f101676a92068075464694790f6d8f72d5cb47
   rainbow (3.1.1) sha256=039491aa3a89f42efa1d6dec2fc4e62ede96eb6acd95e52f1ad581182b79bc6a
-  rake (13.3.0) sha256=96f5092d786ff412c62fde76f793cc0541bd84d2eb579caa529aa8a059934493
+  rake (13.3.1) sha256=8c9e89d09f66a26a01264e7e3480ec0607f0c497a861ef16063604b1b08eb19c
   rb-fsevent (0.11.2) sha256=43900b972e7301d6570f64b850a5aa67833ee7d87b458ee92805d56b7318aefe
   rb-inotify (0.11.1) sha256=a0a700441239b0ff18eb65e3866236cd78613d6b9f78fea1f9ac47a85e47be6e
-  rdoc (6.15.0) sha256=0f0e68864969e77c2acd4063a9585baa5216d362701d827a93feaa9cbae78b05
+  rdoc (6.15.1) sha256=28bfac73cd8b226a8079f53a564ceaccdb5b4480e34335100001570ddb1a481a
   recaptcha (5.21.1) sha256=e003e9ceba9b993a9f0c6a828c192f2d46693cd2aa0b0beae94f936649507adb
   redcarpet (3.6.1) sha256=d444910e6aa55480c6bcdc0cdb057626e8a32c054c29e793fa642ba2f155f445
   redis (5.4.1) sha256=b5e675b57ad22b15c9bcc765d5ac26f60b675408af916d31527af9bd5a81faae
@@ -897,12 +898,12 @@ CHECKSUMS
   stringio (3.1.7) sha256=5b78b7cb242a315fb4fca61a8255d62ec438f58da2b90be66048546ade4507fa
   strip_attributes (2.0.1) sha256=604cb833fc69aedefffc60a79bd91a7faf3753caf34db3889beaf2d88afa7e8b
   thor (1.4.0) sha256=8763e822ccb0f1d7bee88cde131b19a65606657b847cc7b7b4b82e772bcd8a3d
-  timeout (0.4.3) sha256=9509f079b2b55fe4236d79633bd75e34c1c1e7e3fb4b56cb5fda61f80a0fe30e
+  timeout (0.4.4) sha256=f0f6f970104b82427cd990680f539b6bbb8b1e55efa913a55c6492935e4e0edb
   tsort (0.2.0) sha256=9650a793f6859a43b6641671278f79cfead60ac714148aabe4e3f0060480089f
   tzinfo (2.0.6) sha256=8daf828cc77bcf7d63b0e3bdb6caa47e2272dcfaf4fbfe46f8c3a9df087a829b
   unicode-display_width (3.2.0) sha256=0cdd96b5681a5949cdbc2c55e7b420facae74c4aaf9a9815eee1087cb1853c42
   unicode-emoji (4.1.0) sha256=4997d2d5df1ed4252f4830a9b6e86f932e2013fbff2182a9ce9ccabda4f325a5
-  uri (1.0.4) sha256=34485d137c079f8753a0ca1d883841a7ba2e5fae556e3c30c2aab0dde616344b
+  uri (1.1.0) sha256=e23a2061c1e924efa2cc3016f517f888e7c866c0d7f6531f5cded089f2b9e625
   user_agent_parser (2.20.0) sha256=4bd9b667923ee4c7ca0abbe07135e49d9acd6534200b156b89c5e082acbe6ca6
   useragent (0.16.11) sha256=700e6413ad4bb954bb63547fa098dddf7b0ebe75b40cc6f93b8d54255b173844
   version_gem (1.1.9) sha256=0c1a0962ae543c84a00889bb018d9f14d8f8af6029d26b295d98774e3d2eb9a4
