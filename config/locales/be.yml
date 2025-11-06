@@ -152,7 +152,19 @@ be:
     enable_2fa:
       qr_heading: Праз QR-код
       url_heading: Праз спасылку
+      manual_heading: Уручную
+      manual_entry_your_key: "Ваш ключ: %{key}"
       code_entry_heading: Увядзіце код
+    list_display_html:
+      one: "%{user_link} - %{count} скрыпт"
+      few: "%{user_link} - %{count} скрыпты"
+      many: "%{user_link} - %{count} скрыптоў"
+      other: "%{user_link} - %{count} скрыптоў"
+    listing_number_of_scripts: "Колькасць скрыптоў"
+    listing_new_scripts: "Новыя скрыпты"
+    listing_updated_scripts: "Абноўленыя скрыпты"
+    listing_registration_date: "Дата рэгістрацыі"
+    listing_relevance: "Рэлевантнасць"
     listing_title: "Карыстальнікі"
     listing_banned_filter:
       banned: "Заблакіраваныя"
@@ -163,12 +175,25 @@ be:
       not_script_author: "Не аўтар скрыпта"
       all: "Усе"
     search_placeholder: "Пошук карыстальнікаў"
+    locale_prompt: "(Выберыце лакаль)"
+    show_ads_description: "Падтрымайце %{site_name}, дазволіўшы яму паказваць рэкламу"
     delete:
+      scripts_effect:
+        one: "Будзе выдалены %{count} скрыпт"
+        few: "Будуць выдалены %{count} скрыпты"
+        many: "Будзе выдалена %{count} скрыптоў"
+        other: "Будзе выдалена %{count} скрыптоў"
       submit: "Выдаліць уліковы запіс"
+      confirmation_email:
+        subject: "Пацвярджэнне выдалення ўліковага запісу %{site_name}"
       confirmation:
+        intro: "Вы збіраецеся выдаліць уліковы запіс '%{user_name}'. Гэта дзеянне нельга адрабіць."
+        confirm: "Выдаліць '%{user_name}'"
         cancel: "Скасаваць выдаленне"
         cancelled: "Выдаленне скасавана."
         completed: "Ваш уліковы запіс выдалены."
+    banned_notice:
+      no_report_no_reason: "Ваш уліковы запіс заблакіраваны. Вы можаце %{delete_link:выдаліць уліковы запіс}, калі хочаце."
     banned_delete:
       complete: "Ваш уліковы запіс выдалены."
     deleted_user_with_id: "(Выдалены карыстальнік %{id})"
@@ -368,6 +393,11 @@ be:
   mailers:
     script_comment:
       subject: "Ваш скрапт %{script_name} на %{site_name} атрымаў каментарый."
+    new_message:
+      subject: "%{user} адправіў(-ла) вам паведамленне на %{site_name}"
+      intro: "Карыстальнік %{user_link:%{user_name}} адправіў вам паведамленне на %{site_name}."
     script_lock_appeal:
+      dismiss:
+        moderator_notes: "Мадэратар пракаментаваў:"
       unlock:
         moderator_notes: "Мадэратар пракаментаваў:"
