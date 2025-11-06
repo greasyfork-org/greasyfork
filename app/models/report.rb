@@ -77,6 +77,7 @@ class Report < ApplicationRecord
   validates :reporter, presence: true, if: -> { auto_reporter.nil? }, on: :create
   validates :explanation, presence: true, if: -> { [REASON_UNDISCLOSED_ANTIFEATURE, REASON_MALWARE, REASON_ILLEGAL, REASON_OTHER].include?(reason) }, on: :create
   validates :explanation, presence: true, if: -> { reason == REASON_UNAUTHORIZED_CODE && script_url.nil? }, on: :create
+  validates :explanation, length: { maximum: 50_000 }
   validates :explanation_markup, inclusion: { in: %w[html markdown text] }, presence: true
   validates :discussion_category, presence: true, if: -> { reason == REASON_WRONG_CATEGORY }
   validates :private_explanation, length: { maximum: 65_535 }

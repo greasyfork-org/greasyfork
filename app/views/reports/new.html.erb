@@ -63,7 +63,7 @@
   </div>
 
   <%= with_user_text_preview_for_form(form: f, markup_name: :explanation_markup) do
-    f.text_area :explanation, placeholder: t('reports.explanation_placeholder')
+    f.text_area :explanation, placeholder: t('reports.explanation_placeholder'), maxlength: 50_000
   end %>
 
   <div class="report-screenshot-control">
