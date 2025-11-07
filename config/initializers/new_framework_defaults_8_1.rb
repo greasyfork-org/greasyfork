@@ -25,7 +25,7 @@
 #
 # Applications that want to keep the escaping behavior can set the config to `true`.
 #++
-# Rails.configuration.action_controller.escape_json_responses = false
+Rails.configuration.action_controller.escape_json_responses = false
 
 ###
 # Skips escaping LINE SEPARATOR (U+2028) and PARAGRAPH SEPARATOR (U+2029) in JSON.
@@ -33,7 +33,7 @@
 # Historically these characters were not valid inside JavaScript literal strings but that changed in ECMAScript 2019.
 # As such it's no longer a concern in modern browsers: https://caniuse.com/mdn-javascript_builtins_json_json_superset.
 #++
-# Rails.configuration.active_support.escape_js_separators_in_json = false
+Rails.configuration.active_support.escape_js_separators_in_json = false
 
 ###
 # Raises an error when order dependent finder methods (e.g. `#first`, `#second`) are called without `order` values
