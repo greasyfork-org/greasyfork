@@ -16,8 +16,15 @@
   z-index: 100;
 }
 
+@media (prefers-color-scheme: dark) {
+  .modal__overlay {
+    background: rgba(255, 255, 255, 0.6);
+  }
+}
+
 .modal__container {
-  background-color: #fff;
+  background-color: var(--content-background-color);
+  color: var(--content-color);
   padding: 30px;
   max-width: 500px;
   max-height: 100vh;
