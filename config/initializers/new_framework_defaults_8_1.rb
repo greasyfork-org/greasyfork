@@ -43,7 +43,7 @@ Rails.configuration.active_support.escape_js_separators_in_json = false
 # The current behavior of not raising an error has been deprecated, and this configuration option will be removed in
 # Rails 8.2.
 #++
-# Rails.configuration.active_record.raise_on_missing_required_finder_order_columns = true
+Rails.configuration.active_record.raise_on_missing_required_finder_order_columns = true
 
 ###
 # Controls how Rails handles path relative URL redirects.
