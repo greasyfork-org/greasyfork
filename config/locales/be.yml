@@ -120,10 +120,13 @@ be:
       css:
         short: CSS
   script_sets:
+    heading: "Наборы скрыптоў"
+    favorites_name: "Абранае"
     edit_link: "Рэдагаваць"
     edit_scripts:
       heading: "Скрыпты"
     edit_sets:
+      heading: "Наборы скрыптоў"
       included_none: "(Няма)"
       excluded_none: "(Няма)"
     edit_auto_sets:
@@ -134,14 +137,20 @@ be:
     save: "Захаваць"
     auto_set_types:
       all_scripts: "Усе скрыпты"
+    new: Новы набор скрыптоў
   users:
     sign_in_name_used_submit: "Адправіць"
+    control_panel: "Панэль кіравання"
     discussions_on_scripts_feed_alt: "RSS-стужка"
     script_list: "Скрыпты"
+    script_list_none_same_user_html: "Вы не напісалі ніводнага скрыпта. %{script_list_none_same_user_info_link}"
+    script_list_none_same_user_info_link_text: "Хочаце даведацца, як гэта зрабіць?"
     listing_sort_name: "Імені"
     deleted_script_list: "Выдаленыя скрыпты"
     sign_out: "Выйсці"
+    edit: "Рэдагаваць уліковы запіс"
     edit_sign_in_password: "Пароль"
+    edit_notifications: "Рэдагаваць налады апавяшчэнняў"
     set_password: "Задаць пароль"
     update_password: "Абнавіць пароль"
     update_password_no_match: "Паролі не супадаюць."
@@ -177,6 +186,7 @@ be:
     search_placeholder: "Пошук карыстальнікаў"
     locale_prompt: "(Выберыце лакаль)"
     show_ads_description: "Падтрымайце %{site_name}, дазволіўшы яму паказваць рэкламу"
+    delete_link: "Выдаліць уліковы запіс"
     delete:
       scripts_effect:
         one: "Будзе выдалены %{count} скрыпт"
@@ -294,6 +304,9 @@ be:
       all: Усе
     sort:
       comment_created: Дата
+    user_activity:
+      title: "Нядаўнія каментарыі"
+      no_recent_activity: "Гэты карыстальнік апошнім часам не пакідаў каментарыяў."
     review_title: "Водгук на %{script_name}"
     question_title: "Пытанне наконт %{script_name}"
     categories:
@@ -322,6 +335,7 @@ be:
       few: Размова з %{users}.
       many: Размова з %{users}.
       other: Размова з %{users}.
+    no_conversations: У вас пакуль не было ніякіх размоў.
     recent:
       title: Нядаўнія размовы
       more: Праглядзець усе размовы
