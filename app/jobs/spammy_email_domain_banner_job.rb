@@ -15,8 +15,8 @@ class SpammyEmailDomainBannerJob
 
     users = User.where(email_domain: domain)
 
-    # If it was never previously banned, and users existed for a while, don't auto-ban.
-    return if !sed&.expires_at && users.not_banned.where(created_at: ..OLD_USER_CUT_OFF.ago).any?
+    # If it was never previously banned, and active users existed for a while, don't auto-ban.
+    return if !sed&.expires_at && users.not_banned.where(created_at: ..OLD_USER_CUT_OFF.ago).left_joins(:comments, :scripts).where('scripts.id is null and comments.id is null').any?
 
     users_count = users.count
     return if users_count < MINIMUM_USER_COUNT
