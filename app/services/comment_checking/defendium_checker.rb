@@ -21,6 +21,9 @@ module CommentChecking
         author: @comment.poster&.name,
         languages: Rails.application.config.available_locales.keys.map { |l| l.tr('-', '_') }.join(', ')
       )
+    rescue Net::OpenTimeout => e
+      Sentry.capture_exception(e)
+      false
     end
   end
 end
