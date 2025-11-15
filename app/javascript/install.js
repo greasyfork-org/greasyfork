@@ -1,5 +1,4 @@
 import sha1 from 'js-sha1';
-import MicroModal from 'micromodal';
 import { canInstallUserJS, canInstallUserCSS } from "./managers";
 import onload from '~/onload'
 
@@ -48,14 +47,12 @@ function installationHelpFunction(js) {
     bypassLink.setAttribute("href", installLink.getAttribute("href"))
     return new Promise(resolve => {
       bypassLink.addEventListener("click", function (event) {
-        resolve(true)
         localStorage.setItem(js ? 'manualOverrideInstallJS' : 'manualOverrideInstallCSS', '1')
-        MicroModal.close(modal.id)
         event.preventDefault()
+        modal.close("continue")
       })
-      MicroModal.show(modal.id, {
-        onClose: _modal => resolve(false)
-      })
+      modal.addEventListener('close', (event) => { resolve(modal.returnValue == 'continue') })
+      modal.showModal()
     })
   }
 }
@@ -74,19 +71,14 @@ async function showPreviousVersionWarning(installLink) {
 
 async function showAntifeatureWarning() {
   return new Promise((resolve) => {
-    if (document.getElementById("preinstall-modal")) {
-      MicroModal.show('preinstall-modal', {
-        onClose: function (modal, button, event) {
-          if (event.target.hasAttribute("data-micromodal-accept")) {
-            resolve(true)
-          } else {
-            resolve(false)
-          }
-        }
-      });
-      return;
+    let preinstallModal = document.getElementById("preinstall-modal");
+    if (!preinstallModal) {
+      resolve(true)
+      return
     }
-    resolve(true)
+
+    preinstallModal.addEventListener('close', (event) => { resolve(preinstallModal.returnValue == 'continue')})
+    preinstallModal.showModal()
   })
 }
 
@@ -140,7 +132,23 @@ function init() {
     installLink.addEventListener("click", onInstallClick);
     installLink.addEventListener("mouseover", onInstallMouseOver);
     installLink.addEventListener("touchstart", onInstallMouseOver);
-  });
+  })
+  initializeModalButtons()
+}
+
+const initializeModalButtons = () => {
+  document.querySelectorAll('.modal__cancel').forEach((el) => {
+    el.addEventListener('click', (e) => {
+      const modal = el.closest('dialog');
+      modal.close();
+    })
+  })
+  document.querySelectorAll('.modal__accept').forEach((el) => {
+    el.addEventListener('click', (e) => {
+      const modal = el.closest('dialog');
+      modal.close('continue');
+    })
+  })
 }
 
 onload(init);

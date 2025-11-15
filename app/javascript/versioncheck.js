@@ -113,7 +113,7 @@ function handleInstallResult(installButton, installedVersion, version) {
 
   installButton.textContent = installLabel
 
-  let preinstallModalButton = document.querySelector('#preinstall-modal [data-micromodal-accept]')
+  let preinstallModalButton = document.querySelector('#preinstall-modal .modal__accept')
   if (preinstallModalButton) {
     preinstallModalButton.textContent = installLabel
   }

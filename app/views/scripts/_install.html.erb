@@ -35,137 +35,125 @@
 <% end %>
 
 <% if script.antifeatures.any? %>
-  <div id="preinstall-modal" class="modal micromodal-slide" aria-hidden="true">
-    <div class="modal__overlay" tabindex="-1" data-micromodal-close>
-      <div class="modal__container" role="dialog" aria-modal="true">
-        <header class="modal__header" aria-labelledby="preinstall-modal-title">
-          <h3 class="modal__title" id="preinstall-modal-title">
-            <%= t('scripts.antifeatures.warning_title') %>
-          </h3>
-          <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
-        </header>
-        <main class="modal__content" id="preinstall-modal-content">
-          <p>
-            <%= t('scripts.antifeatures.intro', site_name: site_name) %>
-          </p>
-          <% script.best_antifeatures_for_locale(request_locale).each do |antifeature| %>
-            <p>
-              <%= t("scripts.antifeatures.types.#{antifeature.antifeature_type}.description_html", site_name: site_name) %>
-              <% if antifeature.description %>
-                <%= t('scripts.antifeatures.author_explanation_intro') %>
-                <q><%= antifeature.description %></q>
-              <% end %>
-            </p>
+  <dialog id="preinstall-modal" class="modal" closedby="any">
+    <header class="modal__header" aria-labelledby="preinstall-modal-title">
+      <h3 class="modal__title" id="preinstall-modal-title">
+        <%= t('scripts.antifeatures.warning_title') %>
+      </h3>
+      <button class="modal__close modal__cancel" aria-label="Close modal"></button>
+    </header>
+    <main class="modal__content" id="preinstall-modal-content">
+      <p>
+        <%= t('scripts.antifeatures.intro', site_name: site_name) %>
+      </p>
+      <% script.best_antifeatures_for_locale(request_locale).each do |antifeature| %>
+        <p>
+          <%= t("scripts.antifeatures.types.#{antifeature.antifeature_type}.description_html", site_name: site_name) %>
+          <% if antifeature.description %>
+            <%= t('scripts.antifeatures.author_explanation_intro') %>
+            <q><%= antifeature.description %></q>
           <% end %>
-        </main>
-        <footer class="modal__footer">
-          <button class="modal__btn" data-micromodal-close><%= t('scripts.antifeatures.cancel_install') %></button>
-          <button class="modal__btn modal__btn-primary" data-micromodal-close data-micromodal-accept><%= t('scripts.install') %></button>
-        </footer>
-      </div>
-    </div>
-  </div>
+        </p>
+      <% end %>
+    </main>
+    <footer class="modal__footer">
+      <button class="modal__btn modal__cancel"><%= t('scripts.antifeatures.cancel_install') %></button>
+      <button class="modal__btn modal__accept"><%= t('scripts.install') %></button>
+    </footer>
+  </dialog>
 <% end %>
 
-<div id="installation-instructions-modal-js" class="modal micromodal-slide" aria-hidden="true">
-  <div class="modal__overlay" tabindex="-1" data-micromodal-close>
-    <div class="modal__container" role="dialog" aria-modal="true">
-      <header class="modal__header" aria-labelledby="installation-instructions-modal-title">
-        <h3 class="modal__title" id="installation-instructions-modal-title">
-          <%= t('scripts.install_help_title') %>
-        </h3>
-        <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
-      </header>
-      <main class="modal__content" id="installation-instructions-modal-content">
-        <p class="installation-instructions-modal-content-firefox">
-          <%= it('scripts.install_help_dialog.js.firefox',
-                 tampermonkey_link: It.link('https://addons.mozilla.org/firefox/addon/tampermonkey/', target: 'tampermonkey'),
-                 greasemonkey_link: It.link('https://addons.mozilla.org/firefox/addon/greasemonkey/', target: 'greasemonkey'),
-                 violentmonkey_link: It.link('https://addons.mozilla.org/firefox/addon/violentmonkey/', target: 'violentmonkey'))
-          %>
-        </p>
-        <p class="installation-instructions-modal-content-chrome">
-          <%= it('scripts.install_help_dialog.js.chrome',
-                 tampermonkey_link: It.link('https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo', target: 'tampermonkey'),
-                 violentmonkey_link: It.link('https://chrome.google.com/webstore/detail/violent-monkey/jinjaccalgkegednnccohejagnlnfdag', target: 'violentmonkey'))
-          %>
-        </p>
-        <p class="installation-instructions-modal-content-opera">
-          <%= it('scripts.install_help_dialog.js.opera',
-                 tampermonkey_link: It.link('https://addons.opera.com/extensions/details/tampermonkey-beta/', target: 'tampermonkey'),
-                 violentmonkey_link: It.link('https://violentmonkey.github.io/get-it/', target: 'violentmonkey'))
-          %>
-        </p>
-        <p class="installation-instructions-modal-content-safari">
-          <%= it('scripts.install_help_dialog.js.safari',
-                 tampermonkey_link: It.link('https://www.tampermonkey.net/?browser=safari', target: 'tampermonkey'),
-                 userscripts_link: It.link('https://apps.apple.com/app/userscripts/id1463298887', target: 'Userscripts'))
-          %>
-        </p>
-        <p class="installation-instructions-modal-content-edge">
-          <%= it('scripts.install_help_dialog.js.edge',
-                 tampermonkey_link: It.link('https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd', target: 'tampermonkey'))
-          %>
-        </p>
-        <p class="installation-instructions-modal-content-other">
-          <%= t('scripts.install_help_dialog.js.other') %>
-        </p>
-        <p class="installation-instructions-modal-content-bypass">
-          <%= link_to t('scripts.install_help_dialog.js.bypass'), '#' %>
-        </p>
-      </main>
-      <footer class="modal__footer">
-        <button class="modal__btn modal__btn-primary" data-micromodal-close data-micromodal-accept>
-          <%= t('scripts.install_help_dialog.close_dialog') %>
-        </button>
-      </footer>
-    </div>
-  </div>
-</div>
+<dialog id="installation-instructions-modal-js" class="modal" closedby="any">
+  <header class="modal__header" aria-labelledby="installation-instructions-modal-title">
+    <h3 class="modal__title" id="installation-instructions-modal-title">
+      <%= t('scripts.install_help_title') %>
+    </h3>
+    <button class="modal__close modal__cancel" aria-label="Close modal"></button>
+  </header>
+  <main class="modal__content" id="installation-instructions-modal-content">
+    <p class="installation-instructions-modal-content-firefox">
+      <%= it('scripts.install_help_dialog.js.firefox',
+              tampermonkey_link: It.link('https://addons.mozilla.org/firefox/addon/tampermonkey/', target: 'tampermonkey'),
+              greasemonkey_link: It.link('https://addons.mozilla.org/firefox/addon/greasemonkey/', target: 'greasemonkey'),
+              violentmonkey_link: It.link('https://addons.mozilla.org/firefox/addon/violentmonkey/', target: 'violentmonkey'))
+      %>
+    </p>
+    <p class="installation-instructions-modal-content-chrome">
+      <%= it('scripts.install_help_dialog.js.chrome',
+              tampermonkey_link: It.link('https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo', target: 'tampermonkey'),
+              violentmonkey_link: It.link('https://chrome.google.com/webstore/detail/violent-monkey/jinjaccalgkegednnccohejagnlnfdag', target: 'violentmonkey'))
+      %>
+    </p>
+    <p class="installation-instructions-modal-content-opera">
+      <%= it('scripts.install_help_dialog.js.opera',
+              tampermonkey_link: It.link('https://addons.opera.com/extensions/details/tampermonkey-beta/', target: 'tampermonkey'),
+              violentmonkey_link: It.link('https://violentmonkey.github.io/get-it/', target: 'violentmonkey'))
+      %>
+    </p>
+    <p class="installation-instructions-modal-content-safari">
+      <%= it('scripts.install_help_dialog.js.safari',
+              tampermonkey_link: It.link('https://www.tampermonkey.net/?browser=safari', target: 'tampermonkey'),
+              userscripts_link: It.link('https://apps.apple.com/app/userscripts/id1463298887', target: 'Userscripts'))
+      %>
+    </p>
+    <p class="installation-instructions-modal-content-edge">
+      <%= it('scripts.install_help_dialog.js.edge',
+              tampermonkey_link: It.link('https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd', target: 'tampermonkey'))
+      %>
+    </p>
+    <p class="installation-instructions-modal-content-other">
+      <%= t('scripts.install_help_dialog.js.other') %>
+    </p>
+    <p class="installation-instructions-modal-content-bypass">
+      <%= link_to t('scripts.install_help_dialog.js.bypass'), '#' %>
+    </p>
+  </main>
+  <footer class="modal__footer">
+    <button class="modal__btn modal__cancel">
+      <%= t('scripts.install_help_dialog.close_dialog') %>
+    </button>
+  </footer>
+</dialog>
 
-<div id="installation-instructions-modal-css" class="modal micromodal-slide" aria-hidden="true">
-  <div class="modal__overlay" tabindex="-1" data-micromodal-close>
-    <div class="modal__container" role="dialog" aria-modal="true">
-      <header class="modal__header" aria-labelledby="installation-instructions-modal-title">
-        <h3 class="modal__title" id="installation-instructions-modal-title">
-          <%= t('scripts.install_help_title') %>
-        </h3>
-        <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
-      </header>
-      <main class="modal__content" id="installation-instructions-modal-content">
-        <p class="installation-instructions-modal-content-firefox">
-          <%= it('scripts.install_help_dialog.css.firefox',
-                 stylus_link: It.link('https://addons.mozilla.org/firefox/addon/styl-us/', target: 'stylus'))
-          %>
-        </p>
-        <p class="installation-instructions-modal-content-chrome">
-          <%= it('scripts.install_help_dialog.css.chrome',
-                 stylus_link: It.link('https://chrome.google.com/webstore/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne', target: 'stylus'))
-          %>
-        </p>
-        <p class="installation-instructions-modal-content-opera">
-          <%= it('scripts.install_help_dialog.css.opera',
-                 stylus_link: It.link('https://addons.opera.com/extensions/details/stylus/', target: 'stylus'))
-          %>
-        </p>
-        <p class="installation-instructions-modal-content-safari">
-          <%= t('scripts.install_help_dialog.css.safari') %>
-        </p>
-        <p class="installation-instructions-modal-content-edge">
-          <%= t('scripts.install_help_dialog.css.edge') %>
-        </p>
-        <p class="installation-instructions-modal-content-other">
-          <%= t('scripts.install_help_dialog.css.other') %>
-        </p>
-        <p class="installation-instructions-modal-content-bypass">
-          <%= link_to t('scripts.install_help_dialog.css.bypass'), '#' %>
-        </p>
-      </main>
-      <footer class="modal__footer">
-        <button class="modal__btn modal__btn-primary" data-micromodal-close data-micromodal-accept>
-          <%= t('scripts.install_help_dialog.close_dialog') %>
-        </button>
-      </footer>
-    </div>
-  </div>
-</div>
+<dialog id="installation-instructions-modal-css" class="modal" closedby="any">
+  <header class="modal__header" aria-labelledby="installation-instructions-modal-title">
+    <h3 class="modal__title" id="installation-instructions-modal-title">
+      <%= t('scripts.install_help_title') %>
+    </h3>
+    <button class="modal__close modal__cancel" aria-label="Close modal"></button>
+  </header>
+  <main class="modal__content" id="installation-instructions-modal-content">
+    <p class="installation-instructions-modal-content-firefox">
+      <%= it('scripts.install_help_dialog.css.firefox',
+              stylus_link: It.link('https://addons.mozilla.org/firefox/addon/styl-us/', target: 'stylus'))
+      %>
+    </p>
+    <p class="installation-instructions-modal-content-chrome">
+      <%= it('scripts.install_help_dialog.css.chrome',
+              stylus_link: It.link('https://chrome.google.com/webstore/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne', target: 'stylus'))
+      %>
+    </p>
+    <p class="installation-instructions-modal-content-opera">
+      <%= it('scripts.install_help_dialog.css.opera',
+              stylus_link: It.link('https://addons.opera.com/extensions/details/stylus/', target: 'stylus'))
+      %>
+    </p>
+    <p class="installation-instructions-modal-content-safari">
+      <%= t('scripts.install_help_dialog.css.safari') %>
+    </p>
+    <p class="installation-instructions-modal-content-edge">
+      <%= t('scripts.install_help_dialog.css.edge') %>
+    </p>
+    <p class="installation-instructions-modal-content-other">
+      <%= t('scripts.install_help_dialog.css.other') %>
+    </p>
+    <p class="installation-instructions-modal-content-bypass">
+      <%= link_to t('scripts.install_help_dialog.css.bypass'), '#' %>
+    </p>
+  </main>
+  <footer class="modal__footer">
+    <button class="modal__btn modal__cancel">
+      <%= t('scripts.install_help_dialog.close_dialog') %>
+    </button>
+  </footer>
+</dialog>
