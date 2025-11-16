@@ -15,7 +15,7 @@ set :assets_roles, [:web, :worker]
 # set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 # set :rbenv_roles, :all # default value
 
-append :linked_files, 'config/database.yml', 'config/credentials/production.key', 'config/initializers/detect_language.rb', 'bin/git', 'config/application.yml'
+append :linked_files, 'config/database.yml', 'config/credentials/production.key', 'bin/git', 'config/application.yml'
 
 append :linked_dirs, '.bundle', 'log', 'tmp', 'public/data', 'public/cached_pages', 'public/cached_code'
 
