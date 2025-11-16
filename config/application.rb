@@ -38,9 +38,6 @@ module Greasyfork
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
-    # Overridden in config/initializers/omniauth.rb
-    config.available_auths = {}
-
     config.active_record.observers = :script_observer
 
     config.exceptions_app = routes
