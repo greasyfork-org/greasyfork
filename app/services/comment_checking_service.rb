@@ -1,7 +1,6 @@
 class CommentCheckingService
   STRATEGIES = [
     CommentChecking::AkismetChecker,
-    CommentChecking::DefendiumChecker,
     CommentChecking::CustomChecker,
     CommentChecking::LinkCountChecker,
     CommentChecking::RepeatedTextChecker,
@@ -30,7 +29,7 @@ class CommentCheckingService
     report_attributes = { auto_reporter: 'rainman', reason: Report::REASON_SPAM, private_explanation: spam_results.map(&:text).map { |t| "- #{t}" }.join("\n").truncate_bytes(65_535) }
     report = Report.create!(item: comment.reportable_item, **report_attributes)
 
-    if spam_results.count { |sr| !sr.strategy.is_a?(CommentChecking::DefendiumChecker) } >= 3 && strict_results?(comment)
+    if spam_results.count >= 3 && strict_results?(comment)
       report.uphold!(moderator_notes: 'Blatant comment spam', ban_user: true, delete_comments: true, delete_scripts: true, automod: true)
     elsif report.item.is_a?(Discussion)
       report.item.update!(review_reason: Discussion::REVIEW_REASON_RAINMAN)
