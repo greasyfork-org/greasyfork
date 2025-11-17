@@ -27,6 +27,7 @@ class ScriptVersion < ApplicationRecord
   MAX_CODE_LENGTH = 2.megabytes
 
   validates :code, presence: true, length: { minimum: 20, maximum: MAX_CODE_LENGTH }, on: :create
+  validates :version, length: { maximum: 200 }, on: :create
 
   validate do
     errors.add(:code, :style_missing_meta) if css? && code.exclude?('/* ==UserStyle==')
