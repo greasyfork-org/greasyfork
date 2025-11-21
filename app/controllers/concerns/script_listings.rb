@@ -8,6 +8,13 @@ module ScriptListings
 
   DEFAULT_SORT = 'daily_installs'.freeze
 
+  ADVANCED_SEARCH_FIELDS = {
+    total_installs: { type: :integer },
+    daily_installs: { type: :integer },
+    created: { type: :datetime, index_name: :created_at },
+    updated: { type: :datetime, index_name: :code_updated_at },
+  }.freeze
+
   included do
     layout 'list', only: [:index, :search, :libraries, :reported, :reported_not_adult, :code_search]
   end
@@ -392,6 +399,45 @@ module ScriptListings
              {}
            end
     with[:script_type] = Script.script_types[:public]
+
+    ADVANCED_SEARCH_FIELDS.each do |field, field_data|
+      next if params[field].blank?
+
+      es_field_name = field_data[:index_name] || field
+      case field_data[:type]
+      when :integer
+        field_value = params[field].to_i
+        case params["#{field}_operator"]
+        when 'eq'
+          with[es_field_name] = field_value
+        when 'lte'
+          with[es_field_name] = ..field_value
+        when 'gte'
+          with[es_field_name] = field_value..
+        else
+          # Ignore any other operator
+        end
+      when :datetime
+        field_value = begin
+          Time.zone.parse(params[field])
+        rescue StandardError
+          nil
+        end
+        next unless field_value
+
+        case params["#{field}_operator"]
+        when 'lte'
+          with[es_field_name] = ..field_value
+        when 'gte'
+          with[es_field_name] = field_value..
+        else
+          # Ignore any other operator
+        end
+      else
+        raise "Unknown advanced search field type: #{field_type}"
+      end
+    end
+
     with
   end
 

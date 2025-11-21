@@ -1,7 +1,45 @@
 <%= form_tag(scripts_path, id: 'script-search', method: :get) do %>
   <h3><%= t('search.script_search.title') %></h3>
   <p><%= it('search.script_search.description') %></p>
-  <input type="search" name="q"><input class="search-submit" type="submit" value="🔎">
+
+  <p><input type="search" name="q" placeholder="Search terms"></p>
+
+  <table>
+    <% ScriptListings::ADVANCED_SEARCH_FIELDS.each do |field, field_data| %>
+      <tr>
+        <td><label for="search-<%= field %>"><%= t("scripts.listing_sort_#{field_data[:label] || field}") %></label></td>
+        <% case field_data[:type]
+        when :integer %>
+          <td>
+            <select id="search-<%= field %>-operator" name="<%= field %>_operator">
+              <option value="eq">=</option>
+              <option value="lte">&lt;</option>
+              <option value="gte">&gt;</option>
+            </select>
+          </td>
+          <td>
+            <input type="number" id="search-<%= field %>" name="<%= field %>" step="1" min="0" size="8" placeholder="(Any)">
+          </td>
+        <% when :datetime %>
+          <td>
+            <select id="search-<%= field %>-operator" name="<%= field %>_operator">
+              <option value="lte">&lt;</option>
+              <option value="gte">&gt;</option>
+            </select>
+          </td>
+          <td>
+            <input type="datetime-local" id="search-<%= field %>" name="<%= field %>" placeholder="(Any)">
+          </td>
+        <% else 
+          raise "Unknown field type: #{field_type}"
+        end %>
+      </tr>
+    <% end %>
+  </table>
+
+  <p>
+    <input class="search-submit" type="submit" value="<%= t('scripts.search_placeholder') %>">
+  </p>
 <% end %>
 
 <%= form_tag(libraries_scripts_path, id: 'library-search', method: :get) do %>
