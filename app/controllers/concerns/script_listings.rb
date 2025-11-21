@@ -382,6 +382,19 @@ module ScriptListings
     false
   end
 
+  def es_options_for_request
+    with = case script_subset
+           when :greasyfork
+             { sensitive: false }
+           when :sleazyfork
+             { sensitive: true }
+           else
+             {}
+           end
+    with[:script_type] = Script.script_types[:public]
+    with
+  end
+
   def scripts_as_json(scripts)
     scripts = scripts.results if scripts.is_a?(Searchkick::Relation)
     scripts.as_json(include: { users: { sleazy: sleazy? } }, sleazy: sleazy?)

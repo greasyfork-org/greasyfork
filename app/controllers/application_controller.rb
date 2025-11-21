@@ -223,19 +223,6 @@ class ApplicationController < ActionController::Base
     render_error(503, "#{site_name} is in read-only mode while it's being upgraded. This upgrade should be complete within a few hours. You can still browse the site and install scripts while the upgrade proceeds.") if Rails.application.config.read_only_mode
   end
 
-  def es_options_for_request
-    with = case script_subset
-           when :greasyfork
-             { sensitive: false }
-           when :sleazyfork
-             { sensitive: true }
-           else
-             {}
-           end
-    with[:script_type] = Script.script_types[:public]
-    with
-  end
-
   def moderators_only
     render_access_denied unless current_user&.moderator?
   end
