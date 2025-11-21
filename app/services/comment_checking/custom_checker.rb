@@ -17,6 +17,12 @@ module CommentChecking
       end
 
       [
+        %w[Facebook hack],
+      ].each do |words|
+        return CommentChecking::Result.new(true, strategy: self, text: "Matched custom check for [#{words.join(',')}].") if words.all? { |word| @comment.text.downcase.include?(word.downcase) }
+      end
+
+      [
         ['Mathematical Alphanumeric Symbols', /[\u{1d400}-\u{1d7ff}]/],
         ['Fullwidth Numbers', /[\uff10-\uff19]/],
         ['Fullwidth Capital Letters', /[\uff21-\uff3a]/],
