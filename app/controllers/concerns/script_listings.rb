@@ -399,6 +399,7 @@ module ScriptListings
              {}
            end
     with[:script_type] = Script.script_types[:public]
+    time_zone = nil
 
     ADVANCED_SEARCH_FIELDS.each do |field, field_data|
       next if params[field].blank?
@@ -418,9 +419,14 @@ module ScriptListings
           # Ignore any other operator
         end
       when :datetime
+        time_zone ||= begin
+          ActiveSupport::TimeZone[params[:tz]]
+        rescue TZInfo::InvalidTimezoneIdentifier
+          Time.zone
+        end
         field_value = begin
-          Time.zone.parse(params[field])
-        rescue StandardError
+          time_zone.parse(params[field])
+        rescue Date::Error
           nil
         end
         next unless field_value
