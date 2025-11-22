@@ -1,25 +1,27 @@
 module CommentChecking
   class CustomChecker < BaseCommentChecker
     def check
+      string_to_check = [(@comment.discussion.title if @comment.first_comment?), @comment.text].compact.join("\n").downcase
+
       ['yxd02040608',
        'zrnq',
        'gmkm.zrnq.one',
        '🐧',
-       'CBD ',
-       'Keto ',
+       'cbd ',
+       'keto ',
        'hbyvipxnzj.buzz',
        'gmkm.zrnq.one',
-       'Cocaine',
-       'Coinbase',
-       'Lipomax',
+       'cocaine',
+       'coinbase',
+       'lipomax',
        'www.8842030.com'].each do |snippet|
-        return CommentChecking::Result.new(true, strategy: self, text: "Matched custom check for '#{snippet}'.") if @comment.text.include?(snippet)
+        return CommentChecking::Result.new(true, strategy: self, text: "Matched custom check for '#{snippet}'.") if string_to_check.include?(snippet)
       end
 
       [
-        %w[Facebook hack],
+        %w[facebook hack],
       ].each do |words|
-        return CommentChecking::Result.new(true, strategy: self, text: "Matched custom check for [#{words.join(',')}].") if words.all? { |word| @comment.text.downcase.include?(word.downcase) }
+        return CommentChecking::Result.new(true, strategy: self, text: "Matched custom check for [#{words.join(',')}].") if words.all? { |word| string_to_check.include?(word) }
       end
 
       [
@@ -28,7 +30,7 @@ module CommentChecking
         ['Fullwidth Capital Letters', /[\uff21-\uff3a]/],
         ['Fullwidth Small Letters', /[\uff41-\uff5a]/],
       ].each do |name, pattern|
-        return CommentChecking::Result.new(true, strategy: self, text: "Matched custom pattern check for '#{name}'.") if @comment.text.match?(pattern)
+        return CommentChecking::Result.new(true, strategy: self, text: "Matched custom pattern check for '#{name}'.") if string_to_check.match?(pattern)
       end
 
       CommentChecking::Result.ham(self)
