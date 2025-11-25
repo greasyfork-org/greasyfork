@@ -11,6 +11,7 @@ module ScriptListings
   ADVANCED_SEARCH_FIELDS = {
     total_installs: { type: :integer },
     daily_installs: { type: :integer },
+    ratings: { type: :float, index_name: :fan_score, min: 0, max: 1, info: 'The probability that the next review received will have a good rating, from 0 to 1.' },
     created: { type: :datetime, index_name: :created_at },
     updated: { type: :datetime, index_name: :code_updated_at },
   }.freeze
@@ -408,6 +409,18 @@ module ScriptListings
       case field_data[:type]
       when :integer
         field_value = params[field].to_i
+        case params["#{field}_operator"]
+        when 'eq'
+          with[es_field_name] = field_value
+        when 'lte'
+          with[es_field_name] = ..field_value
+        when 'gte'
+          with[es_field_name] = field_value..
+        else
+          # Ignore any other operator
+        end
+      when :float
+        field_value = params[field].to_f
         case params["#{field}_operator"]
         when 'eq'
           with[es_field_name] = field_value

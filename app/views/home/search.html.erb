@@ -7,7 +7,12 @@
   <table>
     <% ScriptListings::ADVANCED_SEARCH_FIELDS.each do |field, field_data| %>
       <tr>
-        <td><label for="search-<%= field %>"><%= t("scripts.listing_sort_#{field_data[:label] || field}") %></label></td>
+        <td>
+          <label for="search-<%= field %>"><%= t("scripts.listing_sort_#{field_data[:label] || field}") %></label>
+          <% if field_data[:info] %>
+            <span class="info" title="<%= field_data[:info] %>">ⓘ</span>
+          <% end %>
+        </td>
         <% case field_data[:type]
         when :integer %>
           <td>
@@ -18,7 +23,17 @@
             </select>
           </td>
           <td>
-            <input type="number" id="search-<%= field %>" name="<%= field %>" step="1" min="0" size="8" placeholder="(Any)">
+            <input type="number" id="search-<%= field %>" name="<%= field %>" step="1" min="<%= field_data[:min] || 0 %>" max="<%= field_data[:max] || 0 %>" size="8" placeholder="(Any)">
+          </td>
+        <% when :float %>
+          <td>
+            <select id="search-<%= field %>-operator" name="<%= field %>_operator">
+              <option value="lte">&lt;</option>
+              <option value="gte">&gt;</option>
+            </select>
+          </td>
+          <td>
+            <input type="number" id="search-<%= field %>" name="<%= field %>" step="any" min="<%= field_data[:min] || 0 %>" max="<%= field_data[:max] || 0 %>" size="8" placeholder="(Any)">
           </td>
         <% when :datetime %>
           <td>
