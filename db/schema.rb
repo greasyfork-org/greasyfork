@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_10_28_233021) do
+ActiveRecord::Schema[8.1].define(version: 2025_11_26_021145) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.text "Attributes"
     t.text "Body", null: false
@@ -602,7 +602,6 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_28_233021) do
     t.integer "delete_type"
     t.datetime "deleted_at", precision: nil
     t.text "deletion_message"
-    t.boolean "delta", default: true, null: false
     t.decimal "fan_score", precision: 3, scale: 1, default: "0.0", null: false
     t.integer "good_ratings", default: 0
     t.boolean "has_syntax_error", default: false, null: false
@@ -638,7 +637,6 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_28_233021) do
     t.string "version", limit: 200, null: false
     t.index ["delete_report_id"], name: "fk_rails_98da13b1a3"
     t.index ["delete_type"], name: "index_scripts_on_delete_type"
-    t.index ["delta"], name: "index_scripts_on_delta"
     t.index ["license_id"], name: "fk_rails_45570d785a"
     t.index ["locale_id"], name: "fk_rails_8d9ea2abb5"
     t.index ["promoted_script_id"], name: "fk_rails_f98f8b875c"
