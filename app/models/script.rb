@@ -4,6 +4,8 @@ require 'localizing_model'
 require 'css_to_js_converter'
 
 class Script < ApplicationRecord
+  self.ignored_columns += %w[delta]
+
   include LocalizingModel
   include DetectsLocale
   include ScriptIndexing
