@@ -433,7 +433,7 @@ module ScriptListings
         end
       when :datetime
         time_zone ||= begin
-          ActiveSupport::TimeZone[params[:tz]]
+          ActiveSupport::TimeZone[params[:tz]] || Time.zone
         rescue TZInfo::InvalidTimezoneIdentifier
           Time.zone
         end
