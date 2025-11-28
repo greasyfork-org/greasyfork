@@ -329,12 +329,12 @@ class ScriptsController < ApplicationController
 
     # verify for CSRF, but do it in a way that avoids an exception. Prevents monitoring from going nuts.
     unless verified_request?
-      head :unprocessable_entity
+      head :unprocessable_content
       return
     end
     ip, script_id = ScriptsController.per_user_stat_params(request, params)
     if ip.nil? || script_id.nil?
-      head :unprocessable_entity
+      head :unprocessable_content
       return
     end
 

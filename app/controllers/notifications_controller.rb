@@ -9,6 +9,6 @@ class NotificationsController < ApplicationController
 
   def mark_all_read
     Notification.where(user: current_user).mark_read!
-    redirect_back(fallback_location: notifications_path(current_user))
+    redirect_back_or_to(notifications_path(current_user))
   end
 end

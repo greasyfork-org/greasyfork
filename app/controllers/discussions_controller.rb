@@ -162,7 +162,7 @@ class DiscussionsController < ApplicationController
         render layout: @script ? 'scripts' : 'application'
       end
       format.all do
-        head :unprocessable_entity
+        head :unprocessable_content
       end
     end
   end
@@ -293,7 +293,7 @@ class DiscussionsController < ApplicationController
       current_user.update!(discussions_read_since: Time.current)
     end
 
-    redirect_back(fallback_location: discussions_path)
+    redirect_back_or_to(discussions_path)
   end
 
   private

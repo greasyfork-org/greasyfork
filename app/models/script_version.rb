@@ -208,7 +208,7 @@ class ScriptVersion < ApplicationRecord
     namespace = namespaces.first
 
     previous_namespace = get_meta_from_previous('namespace', use_rewritten: true)
-    previous_namespace = previous_namespace.blank? ? nil : previous_namespace.first
+    previous_namespace = previous_namespace.presence&.first
 
     # if there was no previous namespace, then anything new is fine
     return false if previous_namespace.nil?
