@@ -95,11 +95,14 @@ be:
       all: Усе аўтары
       me: Мае скрыпты
     import: "Імпарт скрыптоў"
+    new: "Апублікаваць напісаны вамі скрыпт"
+    new_css: "Апублікаваць напісаны вамі стыль"
     sync_name_and_description: "%{name} - %{description}"
     update_no_sync: "Абнавіць"
     sync_url_placeholder: "(URL-адрас)"
     screenshots_add: "Дадаць:"
     screenshots_remove: "Выдаліць"
+    post_a_script_link_text: "Апублікаваць напісаны вамі скрыпт"
     feedback_or_report: "%{feedback_link:Задайце пытанне, пакіньце водгук} або %{report_link:паскардзіцеся на скрыпт}."
     support_feedback_or_report: "%{support_url:Наведайце сайт аўтара для атрымання падтрымкі}, %{feedback_link:задайце пытанне, пакіньце водгук} або %{report_link:паскардзіцеся на скрыпт}."
     support_email_feedback_or_report: "%{support_url:Напішыце аўтару ліст для атрымання падтрымкі}, %{feedback_link:задайце пытанне, пакіньце водгук} або %{report_link:паскардзіцеся на скрыпт}."
@@ -197,11 +200,23 @@ be:
     show_ads_description: "Падтрымайце %{site_name}, дазволіўшы яму паказваць рэкламу"
     delete_link: "Выдаліць уліковы запіс"
     delete:
+      intro: "Выдаленне ўліковага запісу %{site_name} '%{user_name}' будзе мець наступныя наступствы:"
+      identities_effect:
+        one: "Уваход праз %{identities} прывядзе да стварэння новага ўліковага запісу."
+        few: "Уваход праз %{identities} прывядзе да стварэння новага ўліковага запісу."
+        many: "Уваход праз %{identities} прывядзе да стварэння новага ўліковага запісу."
+        other: "Уваход праз %{identities} прывядзе да стварэння новага ўліковага запісу."
       scripts_effect:
         one: "Будзе выдалены %{count} скрыпт"
         few: "Будуць выдалены %{count} скрыпты"
         many: "Будзе выдалена %{count} скрыптоў"
         other: "Будзе выдалена %{count} скрыптоў"
+      script_sets_effect:
+        one: "%{count} скрыпт будзе выладены."
+        few: "%{count} скрыпты будуць выладены."
+        many: "%{count} скрыптоў будзе выладена."
+        other: "%{count} скрыптоў будзе выладена."
+      email_confirmation: "Перад выдаленнем вашага ўліковага запісу, %{site_name} адправіць вам ліст %{email}, каб пацвердзіць запыт."
       submit: "Выдаліць уліковы запіс"
       confirmation_email:
         subject: "Пацвярджэнне выдалення ўліковага запісу %{site_name}"
