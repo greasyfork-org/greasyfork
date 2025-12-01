@@ -109,6 +109,7 @@ Rails.application.routes.draw do
         get 'diff', constraints: ->(req) { req.params[:v1].present? && req.params[:v2].present? }
         get 'feedback'
         get 'stats'
+        get 'post-install'
 
         post 'install-ping', locale: nil
 

@@ -16,7 +16,7 @@ class ScriptsController < ApplicationController
   MEMBER_AUTHOR_ACTIONS = [:sync_update, :update_promoted, :request_permanent_deletion, :unrequest_permanent_deletion, :update_promoted, :invite, :remove_author].freeze
   MEMBER_AUTHOR_OR_MODERATOR_ACTIONS = [:delete, :do_delete, :undelete, :do_undelete, :derivatives, :admin, :update_locale, :request_duplicate_check].freeze
   MEMBER_MODERATOR_ACTIONS = [:mark, :do_mark, :approve].freeze
-  MEMBER_PUBLIC_ACTIONS = [:diff, :report, :accept_invitation].freeze
+  MEMBER_PUBLIC_ACTIONS = [:diff, :report, :accept_invitation, :post_install].freeze
   MEMBER_PUBLIC_ACTIONS_WITH_SPECIAL_LOADING = [:show, :show_code, :user_js, :meta_js, :user_css, :meta_css, :feedback, :install_ping, :stats, :sync_additional_info_form].freeze
 
   before_action do
@@ -876,6 +876,11 @@ class ScriptsController < ApplicationController
     # strip the slug
     script_id = params[:id].to_i.to_s
     return [ip, script_id]
+  end
+
+  def post_install
+    @ad_method = choose_ad_method_for_post_install(@script)
+    @bots = 'noindex'
   end
 
   private

@@ -12,7 +12,7 @@ async function doInstallProcess(installLink) {
     await showPreviousVersionWarning(installLink) &&
     await showAntifeatureWarning() &&
     await doInstall(installLink) &&
-    showPostInstall();
+    showPostInstall(installLink);
 }
 
 async function detectCanInstall(installLink) {
@@ -117,14 +117,8 @@ function onInstallMouseOver(event) {
   }
 }
 
-function showPostInstall() {
-  setTimeout(function() {
-    let postInstall = document.querySelector(".post-install");
-    if (!postInstall) {
-      return;
-    }
-    postInstall.style.display = 'flex';
-  }, 2000);
+function showPostInstall(installLink) {
+  setTimeout(() => location.href = installLink.dataset.postInstallUrl, 2000);
 }
 
 function init() {

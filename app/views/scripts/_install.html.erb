@@ -12,15 +12,6 @@
         <% else %>
           <%= render partial: 'install_button', locals: {script_version: script_version, version_param: params[:version]} %><%= link_to t('scripts.install_help'), help_installing_user_scripts_path, {class: 'install-help-link', title: t('scripts.install_help_title'), rel: 'nofollow'} %>
         <% end %>
-        <% if promoted_script(@script) %>
-          <div class="post-install">
-            <div class="post-install-label"><%= t(@script.promoted_script ? 'scripts.author_promoted' : 'scripts.promoted') %></div>
-            <div class="post-install-text"><p><%= t('scripts.promoted_text_html', script_link: link_to(promoted_script(@script).name(request_locale), promoted_script(@script))) %></p></div>
-            <div class="post-install-button">
-              <%= render partial: 'install_button', locals: {script_version: promoted_script(@script).script_versions.last} %>
-            </div>
-          </div>
-        <% end %>
       </div>
 
     <% when 'library' %>

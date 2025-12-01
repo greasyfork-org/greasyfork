@@ -9,6 +9,7 @@ code_url = script.code_url(sleazy: sleazy?, cn_greasy: cn_greasy?, format_overri
   class: 'install-link',
   'data-install-format' => install_as_js ? 'js' : 'css',
   'data-ping-url' => install_ping_script_path(script.id, authenticity_token: @caching_request ? PageCache::CSRF_TOKEN : session[:_csrf_token], locale_override: nil),
+  'data-post-install-url' => post_install_script_url(script),
   'data-ip-address' => @caching_request ? PageCache::IP_ADDRESS : request.remote_ip,
   'data-script-id' => script.id,
   'data-ping-key' => install_keys.first,

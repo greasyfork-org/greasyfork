@@ -10,7 +10,7 @@ module ShowsAds
     AdMethod.ga
   end
 
-  def choose_ad_method_for_script(script)
+  def choose_ad_method_for_script(script, allow_ga: true)
     no_ads = general_ads_setting
     return no_ads if no_ads
 
@@ -20,9 +20,13 @@ module ShowsAds
 
     return AdMethod.no_ad(:sensitive) if script&.sensitive
 
-    return AdMethod.ga if script.adsense_approved && locale_allows_adsense? && (script.additional_info || script.newest_saved_script_version.attachments.any? || script.similar_scripts(script_subset:, locale: I18n.locale).any?)
+    return AdMethod.ga if allow_ga && script.adsense_approved && locale_allows_adsense? && (script.additional_info || script.newest_saved_script_version.attachments.any? || script.similar_scripts(script_subset:, locale: I18n.locale).any?)
 
     return AdMethod.ea if valid_locale_for_ea?
+  end
+
+  def choose_ad_method_for_post_install(script)
+    choose_ad_method_for_script(script, allow_ga: false)
   end
 
   def choose_ad_method_for_scripts(scripts)

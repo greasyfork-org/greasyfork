@@ -1,0 +1,31 @@
+<%- title @script.name(request_locale) %>
+<%- description @script.description(request_locale) %>
+
+<p>
+  You now should have <%= render_script(@script) %> installed. If you've had trouble installing, <%= link_to 'read our help docs', @script.js? ? help_installing_user_scripts_path : help_installing_user_styles_path %>.
+
+  Your feedback is important maintain the quality of scripts on <%= site_name %>. Once you've tried out <%= render_script(@script) %>, please consider <%= link_to 'leaving a review', feedback_script_path(@script, anchor: 'post-discussion') %>.
+</p>
+
+<% if promoted_script(@script) %>
+  <div class="post-install-promoted-script">
+    <hr>
+    <p>You may also like...</p>
+    <h2><%= render_script(promoted_script(@script)) %></h2>
+    <p><%= promoted_script(@script).description(request_locale) %></p>
+    <div class="post-install-promoted-install">
+      <%= render partial: 'install_button', locals: {script_version: promoted_script(@script).script_versions.last} %>
+    </div>
+  </div>
+<% elsif (similar_scripts = @script.similar_scripts(script_subset: script_subset, locale: request_locale)).any? %>
+  <p>
+    <%= t('scripts.related_scripts') %>
+  </p>
+  <ul>
+    <% similar_scripts.each do |script| %>
+      <li><%= render_script(script) %> - <span class="script-description"><%= script.description(request_locale) %></span></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= render partial: 'shared/in_page_ad', locals: { ad_method: @ad_method, div_id: 'script-after-install-ad', adsense_slot: '2579817802', ea_div_id: 'script-after-install'} %>
