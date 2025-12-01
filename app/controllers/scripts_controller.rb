@@ -1064,7 +1064,7 @@ class ScriptsController < ApplicationController
     now = Time.now.to_i
     present_key = now - (now % 300)
     past_key = present_key - 300
-    Rails.cache.fetch_multi("install-key-#{present_key}", "install-key-#{past_key}", expires_in: 15.minutes) { SecureRandom.hex(10) }.values
+    Rails.cache.fetch_multi("install-key-#{present_key}", "install-key-#{past_key}", expires_in: 15.minutes) { Digest::SHA1.hexdigest(Rails.application.credentials.install_key['secret'] + present_key.to_s) }.values
   end
   helper_method :install_keys
 
