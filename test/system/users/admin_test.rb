@@ -36,5 +36,26 @@ module Users
       assert user.discussions.first.comments.first.spam_deleted
       assert_equal 'Spam: Posting spam links', ModeratorAction.last.reason
     end
+
+    test 'can ban as spammer' do
+      login_as(users(:mod))
+
+      user = users(:geoff)
+      visit user_path(user, locale: :en)
+
+      assert_difference -> { ModeratorAction.count } => 2 do
+        accept_confirm do
+          click_link 'Ban as spammer'
+        end
+        assert_content 'has been banned'
+      end
+
+      assert user.reload.banned?
+      assert user.discussions.first.soft_deleted?
+      assert user.discussions.first.spam_deleted
+      assert user.discussions.first.comments.first.spam_deleted
+      assert user.scripts.first.locked
+      assert_equal 'Spam', ModeratorAction.last.reason
+    end
   end
 end

@@ -93,7 +93,8 @@
           <% end %>
           <%= link_to 'Unban', user_unban_path(@user) %>
         <% elsif @user.bannable? %>
-          <%= link_to 'Ban', user_ban_path(@user) %>
+          <%= link_to 'Ban', user_ban_path(@user) %> |
+          <%= link_to 'Ban as spammer', user_do_ban_path(@user, reason: Report::REASON_SPAM, delete_type: 'keep', delete_comments: 1), data: { turbo: true, turbo_method: :POST, turbo_confirm: "Ban '#{@user.name}' as a spammer, deleting all scripts and comments?" } %>
         <% end %>
       </p>
       <p>
