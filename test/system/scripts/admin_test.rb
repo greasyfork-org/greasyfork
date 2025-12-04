@@ -135,4 +135,18 @@ class ScriptAdminTest < ApplicationSystemTestCase
     assert_equal 'Spanish add', script.additional_info(:es)
     assert_equal 'Portuguese add', script.additional_info(:pt)
   end
+
+  test 'changing default locale' do
+    script = Script.find(1)
+    login_as(script.users.first, scope: :user)
+    visit admin_script_url(script, locale: :en)
+    within '#set-default-locale' do
+      select 'Français (fr)', from: 'script[locale_id]', match: :first
+      click_on 'Update Locale'
+    end
+    assert_content 'Script updated'
+    script.reload
+    assert_equal 'fr', script.locale.code
+    assert(script.localized_attributes.where(attribute_default: true).all? { |a| a.locale.code == 'fr' })
+  end
 end

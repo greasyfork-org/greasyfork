@@ -777,16 +777,17 @@ class ScriptsController < ApplicationController
 
   def update_locale
     update_params = params.expect(script: [:locale_id])
-    if @script.update(update_params)
+
+    Script.transaction do
+      @script.update!(update_params)
+      @script.localized_attributes.where(attribute_default: true).update_all(locale_id: @script.locale_id)
       unless @script.users.include?(current_user)
         ModeratorAction.create!(script: @script, moderator: current_user, action_taken: :update_locale, reason: "Changed to #{@script.locale.code}#{' (auto-detected)' if update_params[:locale_id].blank?}")
       end
-      flash.now[:notice] = I18n.t('scripts.updated')
-      redirect_to admin_script_path(@script)
-      return
     end
 
-    render :admin
+    flash[:notice] = I18n.t('scripts.updated')
+    redirect_to admin_script_path(@script)
   end
 
   def invite
