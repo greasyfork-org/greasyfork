@@ -51,7 +51,6 @@
     <% if scripts_to_render.empty? %>
       <% if @ad_method&.ea? %>
         <div id="script-list-blank-ea" class="ad flat ethical-ads ethical-ads-text" data-ea-publisher="greasyfork" data-ea-type="text"></div>
-        <div data-element-name="script" data-cfasync="false" type="text/javascript" src="//endowmentoverhangutmost.com/lv/esnk/2017767/code.js" async class="__clb-2017767 ea-fallback" data-parent-id="script-list-blank-cd"></div>
       <% end %>
 
       <p><%= t('scripts.listing_no_scripts') %></p>
@@ -60,7 +59,6 @@
         <% if @ad_method&.ea? %>
           <li class="ad-entry">
             <div id="script-list-ea" class="flat ethical-ads ethical-ads-text" data-ea-publisher="greasyfork" data-ea-type="text"></div>
-            <div data-element-name="script" data-cfasync="false" type="text/javascript" src="//chaseherbalpasty.com/lv/esnk/2050386/code.js" async class="__clb-2050386 ea-fallback" data-parent-id="script-list-cd"></div>
           </li>
         <% end %>
         <%= render partial: 'scripts/script', collection: scripts_to_render, cached: overriding_locale? ? false : ->(script) { [script, request_locale] } %>
