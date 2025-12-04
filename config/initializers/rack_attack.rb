@@ -39,7 +39,7 @@ if Rails.env.production?
   end
 
   Rack::Attack.throttle('limit logins attempts per email', limit: 10, period: 600) do |req|
-    req.params.dig('user', 'email') if LOGIN_PATH_PATTERN.match?(req.path) && req.post? && !req.params.is_a?(String) && req.params.dig('user', 'email')
+    req.params.dig('user', 'email').encode('UTF-8', invalid: :replace, undef: :replace, replace: '') if LOGIN_PATH_PATTERN.match?(req.path) && req.post? && !req.params.is_a?(String) && req.params.dig('user', 'email')
   end
 
   if Rails.application.config.ip_address_tracking
