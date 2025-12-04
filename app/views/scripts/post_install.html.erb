@@ -2,15 +2,17 @@
 <%- description @script.description(request_locale) %>
 
 <p>
-  You now should have <%= render_script(@script) %> installed. If you've had trouble installing, <%= link_to 'read our help docs', @script.js? ? help_installing_user_scripts_path : help_installing_user_styles_path %>.
-
-  Your feedback is important maintain the quality of scripts on <%= site_name %>. Once you've tried out <%= render_script(@script) %>, please consider <%= link_to 'leaving a review', feedback_script_path(@script, anchor: 'post-discussion') %>.
+  <%= it('scripts.post_install.info_html',
+      script: render_script(@script),
+      help_link: @script.js? ? help_installing_user_scripts_path : help_installing_user_styles_path,
+      site_name: site_name,
+      feedback_link: feedback_script_path(@script, anchor: 'post-discussion')) %>
 </p>
 
 <% if promoted_script(@script) %>
   <div class="post-install-promoted-script">
     <hr>
-    <p>You may also like...</p>
+    <p><%= t('scripts.post_install.promoted_script_intro') %></p>
     <h2><%= render_script(promoted_script(@script)) %></h2>
     <p><%= promoted_script(@script).description(request_locale) %></p>
     <div class="post-install-promoted-install">
@@ -23,7 +25,7 @@
   </p>
   <ul>
     <% similar_scripts.each do |script| %>
-      <li><%= render_script(script) %> - <span class="script-description"><%= script.description(request_locale) %></span></li>
+      <li><%= t('scripts.post_install.similar_script_html', name: render_script(script), description: script.description(request_locale)) %></li>
     <% end %>
   </ul>
 <% end %>
