@@ -39,9 +39,6 @@ es:
     downgrade: "Degradar a la versión %{version}"
     reinstall: "Reinstalar versión %{version}"
     old_version_warning: "Esta no es la versión reciente de este script, si la instalas no se actualizará a una versión más nueva. ¿Quieres instalarla de todos modos?"
-    promoted: "Script destacado"
-    author_promoted: "Script recomendado por el autor"
-    promoted_text_html: "Puede que también te guste %{script_link}."
     library_instructions_html: "Este script no debería instalarse directamente. Es una biblioteca que utilizan otros scripts mediante la meta-directiva de inclusión %{code}"
     deleted_notice: "Este script ha sido borrado."
     deleted_notice_with_reason: "Este script ha sido eliminado debido a %{report_link:this report}."
@@ -374,7 +371,6 @@ es:
     install_help_dialog:
       js:
         firefox: Tendrás que instalar una extensión para tu navegador como %{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} o %{violentmonkey_link:Violentmonkey} si quieres utilizar este script.
-        chrome: Necesitarás instalar una extensión como %{tampermonkey_link:Tampermonkey} o %{violentmonkey_link:Violentmonkey} para instalar este script.
         opera: Necesitarás instalar una extensión como %{tampermonkey_link:Tampermonkey} o %{violentmonkey_link:Violentmonkey} para instalar este script.
         safari: Necesitarás instalar una extensión como %{tampermonkey_link:Tampermonkey} o %{userscripts_link:Userscripts} para instalar este script.
         edge: Necesitará instalar una extensión como %{tampermonkey_link:Tampermonkey} para instalar este script.

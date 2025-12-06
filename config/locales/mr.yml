@@ -37,9 +37,6 @@ mr:
     downgrade: "या आवृत्तीला डाउनग्रेड करा: %{version}"
     reinstall: "ही आवृत्ती पुन्हा इंस्टॉल करा: %{version}"
     old_version_warning: "ही या स्क्रिप्टची सर्वात नवीन आवृत्ती नाही. ही इंस्टॉल केली तर ती सर्वात नवीन आवृत्तीला कधीच अपडेट केली जाणार नाही. तरीही इंस्टॉल करायची का?"
-    promoted: "प्रवर्तित स्क्रिप्ट"
-    author_promoted: "लेखकाने सुचवलेली स्क्रिप्ट"
-    promoted_text_html: "तुम्हाला कदाचित ही स्क्रिप्टदेखील आवडेल: %{script_link}."
     deleted_notice: "ही स्क्रिप्ट डिलीट केली गेली आहे."
     deleted_notice_with_reason: "ही स्क्रिप्ट %{report_link:या अहवालामुळे} डिलीट करण्यात आली आहे."
     deleted_notice_with_related: "तुम्ही ज्या स्क्रिप्टची विनंती केली आहे ती डिलीट करण्यात आली आहे, पण त्यासंबंधी काही इतर स्क्रिप्ट आम्ही प्रस्तुत करत आहोत."
@@ -275,7 +272,6 @@ mr:
     install_help_dialog:
       js:
         firefox: ही स्क्रिप्ट इंस्टॉल करण्यासाठी तुम्हाला %{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} किंवा %{violentmonkey_link:Violentmonkey} यासारखे एक्स्टेंशन इंस्टॉल करावे लागेल.
-        chrome: ही स्क्रिप्ट इंस्टॉल करण्यासाठी तुम्हाला %{tampermonkey_link:Tampermonkey} किंवा %{violentmonkey_link:Violentmonkey} यासारखे एक्स्टेंशन इंस्टॉल करावे लागेल..
         opera: ही स्क्रिप्ट इंस्टॉल करण्यासाठी तुम्हाला %{tampermonkey_link:Tampermonkey} किंवा %{violentmonkey_link:Violentmonkey} यासारखे एक्स्टेंशन इंस्टॉल करावे लागेल..
         edge: ही स्क्रिप्ट इंस्टॉल करण्यासाठी तुम्हाला %{tampermonkey_link:Tampermonkey} यासारखे एक्स्टेंशन इंस्टॉल करावे लागेल..
         other: ही स्क्रिप्ट इंस्टॉल करण्यासाठी तुम्हाला एक युझर स्क्रिप्ट व्यवस्थापक एक्स्टेंशन इंस्टॉल करावे लागेल.
@@ -396,16 +392,6 @@ mr:
         ब्राउझरवर अवलंबून आहे.</p>
     desktop_browsers:
       title: डेस्कटॉप
-      browser_list_html: |
-          <ul>
-          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} किंवा %{chrome_violentmonkey_link:Violentmonkey}</li>
-          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, किंवा %{firefox_violentmonkey_link:Violentmonkey}</li>
-          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} किंवा %{safari_userscripts_link:Userscripts}</li>
-          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} किंवा %{edge_violentmonkey_link:Violentmonkey}</li>
-          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} किंवा %{opera_violentmonkey_link:Violentmonkey}</li>
-          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
-          <li>%{adguard_link:AdGuard}: (कोणत्याही अधिक सॉफ्टवेअरची गरज नाही)</li>
-          </ul>
     android_browsers:
       title: मोबाइल (अँड्रॉइड)
     ios_browsers:

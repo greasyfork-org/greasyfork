@@ -38,9 +38,6 @@ bg:
     downgrade: "Върнете версия %{version}"
     reinstall: "Преинсталирайте %{version}"
     old_version_warning: "Това не е последната версия на този скрипт. Ако я инсталирате, тя никога няма да бъде обновена до по-нова версия. Инсталиране въпреки това?"
-    promoted: "Рекламиран скрипт"
-    author_promoted: "Препоръчано от автора"
-    promoted_text_html: "Може да харесате и %{script_link}."
     library_instructions_html: "Този скрипт не може да бъде инсталиран директно. Това е библиотека за други скриптове и може да бъде използвана с мета-директива %{code}"
     deleted_notice: "Този скрипт беше изтрит."
     deleted_notice_with_reason: "Този скрипт е изтрит заради %{report_link:този доклад}."
@@ -373,7 +370,6 @@ bg:
     install_help_dialog:
       js:
         firefox: За да инсталирате този скрипт, трябва да имате инсталирано разширение като %{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} или %{violentmonkey_link:Violentmonkey}.
-        chrome: За да инсталирате този скрипт, трябва да имате инсталирано разширение като  %{tampermonkey_link:Tampermonkey} или %{violentmonkey_link:Violentmonkey}.
         opera: За да инсталирате този скрипт, трябва да имате инсталирано разширение като  %{tampermonkey_link:Tampermonkey} или %{violentmonkey_link:Violentmonkey}.
         safari: За да инсталирате този скрипт, трябва да имате инсталирано разширение като  %{tampermonkey_link:Tampermonkey} или %{userscripts_link:Userscripts}.
         edge: За да инсталирате скрипта, трябва да инсталирате разширение като %{tampermonkey_link:Tampermonkey}.
@@ -516,16 +512,6 @@ bg:
         мениджър. Кой ще използвате, това зависи от използвания от вас браузър.</p>
     desktop_browsers:
       title: Десктоп (настолен)
-      browser_list_html: |
-          <ul>
-          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} или %{chrome_violentmonkey_link:Violentmonkey}</li>
-          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, или %{firefox_violentmonkey_link:Violentmonkey}</li>
-          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} или %{safari_userscripts_link:Userscripts}</li>
-          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} или %{edge_violentmonkey_link:Violentmonkey}</li>
-          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} или %{opera_violentmonkey_link:Violentmonkey}</li>
-          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
-          <li>%{adguard_link:AdGuard}: (не е нужен допълнителен софтуер)</li>
-          </ul>
     android_browsers:
       title: Мобилен (Андроид)
       browser_list_html: |

@@ -42,9 +42,6 @@ ar:
     downgrade: "رجوع لنسخة %{version}"
     reinstall: "إعادة تثبيت نسخة %{version}"
     old_version_warning: "هذا البرنامج النصي ليس أحدث اصدار. إذا قمت بتثبيته ، فلن يتم تحديثه إلى إصدار أحدث. تثبيت على أي حال؟"
-    promoted: "برنامج نصي ترويجي"
-    author_promoted: "سكربت موصى به للمؤلف"
-    promoted_text_html: "ربما يعجبك أيضا %{script_link}."
     library_instructions_html: "لا ينبغي أن لا يتم تثبيت هذا السكريت مباشرة. هو مكتبة لسكبتات لتشمل مع التوجيه الفوقية %{code}"
     deleted_notice: "لقد تم حذف هذا البرنامج النصي."
     deleted_notice_with_reason: "تم حذف هذا البرنامج النصي بسبب %{report_link:this report}."
@@ -408,14 +405,6 @@ ar:
         يمكنك استخدامه يعتمد على المتصفح الذي تستخدمه.
     desktop_browsers:
       title: سطح المكتب
-      browser_list_html: |
-          كروم: %{chrome_tampermonkey_link:Tampermonkey} أو %{chrome_violentmonkey_link:Violentmonkey}
-          فايرفوكس: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, أو %{firefox_violentmonkey_link:Violentmonkey}
-          سفاري: %{safari_tampermonkey_link:Tampermonkey} أو %{safari_userscripts_link:Userscripts}
-          مايكروسوفت إيدج: %{edge_tampermonkey_link:Tampermonkey} أو %{edge_violentmonkey_link:Violentmonkey}
-          أوبرا: %{opera_tampermonkey_link:Tampermonkey} أو %{opera_violentmonkey_link:Violentmonkey}
-          Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}
-          %{adguard_link:AdGuard}: (لا حاجة لبرنامج إضافي)
     android_browsers:
       title: هاتف (أندرويد)
     ios_browsers:

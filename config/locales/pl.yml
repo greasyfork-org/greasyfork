@@ -39,9 +39,6 @@ pl:
     downgrade: "Powrót do wersji %{version}"
     reinstall: "Ponowna instalacja wersji %{version}"
     old_version_warning: "To nie jest najnowsza wersja tego skryptu. Jeśli go zainstalujesz, nigdy nie zostanie on zaktualizowany do nowszej wersji. Zainstalować mimo to?"
-    promoted: "Skrypt promowany"
-    author_promoted: "Skrypt zaproponowany przez autora"
-    promoted_text_html: "Może Ci się również spodobać. %{script_link}"
     library_instructions_html: "Ten skrypt nie powinien być instalowany bezpośrednio. Jest to biblioteka dla innych skyptów do włączenia dyrektywą meta %{code}"
     deleted_notice: "Ten skrypt został usunięty."
     deleted_notice_with_reason: "Ten skrypt został usunięty z powodu %{report_link:this report}."
@@ -366,7 +363,6 @@ pl:
     install_help_dialog:
       js:
         firefox: 'Aby zainstalować ten skrypt, wymagana jest instalacje jednego z następujących rozszerzeń: %{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} lub %{violentmonkey_link:Violentmonkey}.'
-        chrome: 'Aby zainstalować ten skrypt, wymagana jest instalacje jednego z następujących rozszerzeń: %{tampermonkey_link:Tampermonkey}, %{violentmonkey_link:Violentmonkey}.'
         opera: 'Aby zainstalować ten skrypt, wymagana jest instalacje jednego z następujących rozszerzeń: %{tampermonkey_link:Tampermonkey}, %{violentmonkey_link:Violentmonkey}.'
         safari: Aby zainstalować ten skrypt, wymagana będzie instalacja rozszerzenia %{tampermonkey_link:Tampermonkey} lub %{userscripts_link:Userscripts}.
         other: Aby zainstalować ten skrypt, musisz zainstalować rozszerzenie menedżera skryptów użytkownika.

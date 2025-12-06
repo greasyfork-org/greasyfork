@@ -37,9 +37,6 @@ ko:
     downgrade: "%{version} 버전으로 다운그레이드"
     reinstall: "%{version} 버전 재설치"
     old_version_warning: "이 버전은 최신 버전이 아닙니다. 이 버전을 설치하면 최신 버전으로 자동 업데이트되지 않습니다. 계속 설치하시겠습니까?"
-    promoted: "추천 스크립트"
-    author_promoted: "작성자 추천 스크립트"
-    promoted_text_html: "%{script_link} 스크립트도 사용해 보세요."
     library_instructions_html: "이 스크립트는 직접 설치하는 용도가 아닙니다. 다른 스크립트에서 메타 지시문 %{code}을(를) 사용하여 포함하는 라이브러리입니다."
     deleted_notice: "삭제된 스크립트입니다."
     deleted_notice_with_reason: "이 스크립트는 %{report_link:이 신고}로 인해 삭제되었습니다."
@@ -370,7 +367,6 @@ ko:
     install_help_dialog:
       js:
         firefox: 이 스크립트를 설치하려면 %{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} 또는 %{violentmonkey_link:Violentmonkey}와 같은 확장 프로그램이 필요합니다.
-        chrome: 이 스크립트를 설치하려면 %{tampermonkey_link:Tampermonkey} 또는 %{violentmonkey_link:Violentmonkey}와 같은 확장 프로그램이 필요합니다.
         opera: 이 스크립트를 설치하려면 %{tampermonkey_link:Tampermonkey} 또는 %{violentmonkey_link:Violentmonkey}와 같은 확장 프로그램이 필요합니다.
         safari: 이 스크립트를 설치하려면 %{tampermonkey_link:Tampermonkey} 또는 %{userscripts_link:Userscripts}와 같은 확장 프로그램이 필요합니다.
         edge: 이 스크립트를 설치하려면 %{tampermonkey_link:Tampermonkey}와 같은 확장 프로그램이 필요합니다.
@@ -509,16 +505,6 @@ ko:
         <p>유저 스크립트를 사용하려면 먼저 유저 스크립트 관리자를 설치해야 합니다. 사용하는 브라우저에 따라 설치할 수 있는 관리자가 다릅니다.</p>
     desktop_browsers:
       title: 데스크톱
-      browser_list_html: |
-          <ul>
-          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} 또는 %{chrome_violentmonkey_link:Violentmonkey}</li>
-          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, 또는 %{firefox_violentmonkey_link:Violentmonkey}</li>
-          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} 또는 %{safari_userscripts_link:Userscripts}</li>
-          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} 또는 %{edge_violentmonkey_link:Violentmonkey}</li>
-          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} 또는 %{opera_violentmonkey_link:Violentmonkey}</li>
-          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
-          <li>%{adguard_link:AdGuard}: (추가 소프트웨어 필요 없음)</li>
-          </ul>
     android_browsers:
       title: 모바일 (Android)
       browser_list_html: |

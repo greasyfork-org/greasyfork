@@ -40,9 +40,10 @@ sk:
     downgrade: "Prejsť na verziu %{version}"
     reinstall: "Preinštalovať verziu %{version}"
     old_version_warning: "Toto nie je posledná verzia tohto skriptu. Ak ju nainštalujete, už nikdy viac nebude aktualizovaná na najnovšiu verziu. Aj tak nainštalovať?"
-    promoted: "Propagovaný skript"
-    author_promoted: "Autor skriptu navrhuje"
-    promoted_text_html: "Tiež sa vám môže páčiť %{script_link}."
+    post_install:
+      info_html: "Teraz by ste mali mať nainštalovaný %{script}. Ak ste mali problémy s inštaláciou, %{help_link:prečítajte si našu dokumentáciu}. Vaša spätná väzba je dôležitá na udržanie kvality skriptov na %{site_name}. Keď ste vyskúšali %{script}, zvážte, prosím, %{feedback_link:napísanie recenzie}."
+      promoted_script_intro: "Možno sa vám bude páčiť aj"
+      similar_script_html: "%{name} – %{description}"
     library_instructions_html: "Tento skript by nemal byť nainštalovaný priamo. Je to knižnica pre ďalšie skripty, ktorú by mali používať cez meta príkaz  %{code}"
     deleted_notice: "Tento skript bol odstránený."
     deleted_notice_with_reason: "Tento skript bol odstránený na základe %{report_link:tejto sťažnosti}."
@@ -374,7 +375,7 @@ sk:
     install_help_dialog:
       js:
         firefox: Na nainštalovanie skriptu si budete musieť nainštalovať rozšírenie, ako napríklad %{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} alebo %{violentmonkey_link:Violentmonkey}.
-        chrome: Na nainštalovanie skriptu si budete musieť nainštalovať rozšírenie, ako napríklad %{tampermonkey_link:Tampermonkey}, % alebo %{violentmonkey_link:Violentmonkey}.
+        chrome: Na inštaláciu tohto skriptu je potrebné nainštalovať rozšírenie, ako napríklad %{tampermonkey_link:Tampermonkey}.
         opera: Na nainštalovanie skriptu si budete musieť nainštalovať rozšírenie, ako napríklad %{tampermonkey_link:Tampermonkey}, % alebo %{violentmonkey_link:Violentmonkey}.
         safari: Na nainštalovanie skriptu si budete musieť nainštalovať rozšírenie, ako napríklad %{tampermonkey_link:Tampermonkey} alebo %{userscripts_link:Userscripts}.
         edge: Na inštaláciu tohto skriptu je potrebné nainštalovať rozšírenie, ako napríklad %{tampermonkey_link:Tampermonkey}.
@@ -526,10 +527,10 @@ sk:
       title: Stolný počítač
       browser_list_html: |
           <ul>
-          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} alebo %{chrome_violentmonkey_link:Violentmonkey}</li>
-          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, alebo %{firefox_violentmonkey_link:Violentmonkey}</li>
-          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} alebo %{safari_userscripts_link:Userscripty}</li>
-          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} alebo %{edge_violentmonkey_link:Violentmonkey}</li>
+          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</li>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, {firefox_tampermonkey_link:Tampermonkey}, alebo %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} alebo %{safari_userscripts_link:Userscripts}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
           <li>Opera: %{opera_tampermonkey_link:Tampermonkey} alebo %{opera_violentmonkey_link:Violentmonkey}</li>
           <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
           <li>%{adguard_link:AdGuard}: (nie je potrebný žiadny ďalší softvér)</li>

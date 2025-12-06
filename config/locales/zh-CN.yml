@@ -37,9 +37,6 @@ zh-CN:
     downgrade: "降级到 %{version} 版本"
     reinstall: "重新安装 %{version} 版本"
     old_version_warning: "这不是此脚本的最新版本。如果您选择安装，您将永远不会收到新版本的更新。仍要安装吗？"
-    promoted: "推荐脚本"
-    author_promoted: "作者推荐脚本"
-    promoted_text_html: "您可能也喜欢%{script_link}。"
     library_instructions_html: "此脚本不应直接安装。它是供其他脚本使用的外部库，要使用该库请加入元指令 %{code}"
     deleted_notice: "此脚本已被删除。"
     deleted_notice_with_reason: "此脚本已因%{report_link:此举报}被删除。"
@@ -369,7 +366,6 @@ zh-CN:
     install_help_dialog:
       js:
         firefox: 您需要先安装一个扩展，例如 %{tampermonkey_link:篡改猴}、%{greasemonkey_link:Greasemonkey} 或 %{violentmonkey_link:暴力猴}，之后才能安装此脚本。
-        chrome: 您需要先安装一个扩展，例如 %{tampermonkey_link:篡改猴} 或 %{violentmonkey_link:暴力猴}，之后才能安装此脚本。
         opera: 您需要先安装一个扩展，例如 %{tampermonkey_link:篡改猴} 或 %{violentmonkey_link:暴力猴}，之后才能安装此脚本。
         safari: 您需要先安装一个扩展，例如 %{tampermonkey_link:篡改猴} 或 %{userscripts_link:Userscripts} ，之后才能安装此脚本。
         edge: 您需要先安装一款用户脚本管理器扩展，例如 %{tampermonkey_link:Tampermonkey}，才能安装此脚本。
@@ -508,16 +504,6 @@ zh-CN:
         <p>要使用用户脚本，您首先需要安装一个用户脚本管理器。您可以根据您自己当前使用的浏览器来选择一个用户脚本管理器。</p>
     desktop_browsers:
       title: 桌面端
-      browser_list_html: |
-          <ul>
-          <li>Chrome：%{chrome_tampermonkey_link:Tampermonkey} 或 %{chrome_violentmonkey_link:Violentmonkey}</li>
-          <li>Firefox：%{firefox_greasemonkey_link:Greasemonkey}、%{firefox_tampermonkey_link:Tampermonkey} 或 %{firefox_violentmonkey_link:Violentmonkey}</li>
-          <li>Safari：%{safari_tampermonkey_link:Tampermonkey} 或 %{safari_userscripts_link:Userscripts}</li>
-          <li>Microsoft Edge：%{edge_tampermonkey_link:Tampermonkey} 或 %{edge_violentmonkey_link:Violentmonkey}</li>
-          <li>Opera：%{opera_tampermonkey_link:Tampermonkey} 或 %{opera_violentmonkey_link:Violentmonkey}</li>
-          <li>Maxthon：%{maxthon_violentmonkey_link:Violentmonkey}</li>
-          <li>AdGuard：%{adguard_link:AdGuard}（不需要其他软件）</li>
-          </ul>
     android_browsers:
       title: 移动端（Android）
       browser_list_html: |

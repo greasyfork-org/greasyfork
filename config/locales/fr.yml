@@ -39,9 +39,6 @@ fr:
     downgrade: "Revenir à la version %{version}"
     reinstall: "Réinstaller la version %{version}"
     old_version_warning: "Ceci n'est pas la dernière version de ce script. Si vous l'installez, vous n'aurez jamais de mise à jour vers les nouvelles versions. Voulez-vous vraiment l'installer ?"
-    promoted: "Script promotionnel"
-    author_promoted: "Script suggéré par l'auteur"
-    promoted_text_html: "Vous pourriez également aimer %{script_link}."
     library_instructions_html: "Ce script ne doit pas être installé directement. C'est une librairie destinée à être incluse dans d'autres scripts avec la méta-directive %{code}"
     deleted_notice: "Ce script a été supprimé."
     deleted_notice_with_reason: "Ce script a été supprimé en raison de %{report_link:ce rapport}."
@@ -375,7 +372,6 @@ fr:
     install_help_dialog:
       js:
         firefox: Vous devrez installer une extension telle que %{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} ou %{violentmonkey_link:Violentmonkey} pour installer ce script.
-        chrome: Vous devrez installer une extension telle que %{tampermonkey_link:Tampermonkey} ou %{violentmonkey_link:Violentmonkey} pour installer ce script.
         opera: Vous devrez installer une extension telle que %{tampermonkey_link:Tampermonkey} ou %{violentmonkey_link:Violentmonkey} pour installer ce script.
         safari: Vous devrez installer une extension telle que %{tampermonkey_link:Tampermonkey} ou %{userscripts_link:Userscripts} pour installer ce script.
         edge: Vous devrez installer une extension telle que %{tampermonkey_link:Tampermonkey} pour installer ce script.
@@ -522,16 +518,6 @@ fr:
         que vous pouvez utiliser dépend du navigateur que vous utilisez.</p>
     desktop_browsers:
       title: Bureau
-      browser_list_html: |
-          <ul>
-          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} ou %{chrome_violentmonkey_link:Violentmonkey}</li>
-          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey} ou %{firefox_violentmonkey_link:Violentmonkey}</li>
-          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} ou %{safari_userscripts_link:Userscripts}</li>
-          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} ou %{edge_violentmonkey_link:Violentmonkey}</li>
-          <li>Opéra: %{opera_tampermonkey_link:Tampermonkey} ou %{opera_violentmonkey_link:Violentmonkey}</li>
-          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
-          <li>%{adguard_link:AdGuard}: (aucun logiciel supplémentaire requis)</li>
-          </ul>
     android_browsers:
       title: Mobile (Android)
       browser_list_html: |

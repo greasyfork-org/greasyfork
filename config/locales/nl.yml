@@ -38,9 +38,10 @@ nl:
     downgrade: "Oudere versie (%{version}) installeren"
     reinstall: "Versie %{version} opnieuw installeren"
     old_version_warning: "Dit is niet de nieuwste versie van dit script. Als je deze versie installeert, zal hij nooit worden bijgewerkt naar een nieuwere versie. Weet je het zeker?"
-    promoted: "Aanbevolen script"
-    author_promoted: "Aanbevolen script door maker"
-    promoted_text_html: "Wellicht ook leuk: %{script_link}."
+    post_install:
+      info_html: "‘%{script}’ zou nu geïnstalleerd moeten zijn. Als je problemen ervaart tijdens het installeren, %{help_link:bekijk dan onze documentatie}. Feedback is belangrijk om de kwaliteit van scripts op %{site_name} hoog te houden. Als je ‘%{script}’ hebt uitgeprobeerd, overweeg dan %{feedback_link:een recensie achter te laten}."
+      promoted_script_intro: "Wellicht ben je ook geïnteresseerd in…"
+      similar_script_html: "%{name} - %{description}"
     library_instructions_html: "Dit script moet niet direct worden geïnstalleerd - het is een bibliotheek voor andere scripts om op te nemen met de meta-richtlijn %{code}"
     deleted_notice: "Dit script is verwijderd."
     deleted_notice_with_reason: "Dit script is verwijderd op basis van %{report_link:deze melding}."
@@ -375,7 +376,7 @@ nl:
     install_help_dialog:
       js:
         firefox: Voor het installeren van scripts heb je een extensie nodig, zoals %{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} of %{violentmonkey_link:Violentmonkey}.
-        chrome: Voor het installeren van scripts heb je een extensie nodig, zoals %{tampermonkey_link:Tampermonkey} of %{violentmonkey_link:Violentmonkey}.
+        chrome: Voor het installeren van scripts heb je een extensie nodig, zoals {tampermonkey_link:Tampermonkey}.
         opera: Voor het installeren van scripts heb je een extensie nodig, zoals %{tampermonkey_link:Tampermonkey} of %{violentmonkey_link:Violentmonkey}.
         safari: Voor het installeren van scripts heb je een extensie nodig, zoals %{tampermonkey_link:Tampermonkey} of %{userscripts_link:Userscripts}.
         edge: Voor het installeren van scripts heb je een extensie nodig, zoals {tampermonkey_link:Tampermonkey}.
@@ -521,13 +522,13 @@ nl:
       title: Computer
       browser_list_html: |
           <ul>
-          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} of %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</li>
           <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey} of %{firefox_violentmonkey_link:Violentmonkey}</li>
           <li>Safari: %{safari_tampermonkey_link:Tampermonkey} of %{safari_userscripts_link:Userscripts}</li>
-          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} of %{edge_violentmonkey_link:Violentmonkey}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
           <li>Opera: %{opera_tampermonkey_link:Tampermonkey} of %{opera_violentmonkey_link:Violentmonkey}</li>
           <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
-          <li>%{adguard_link:AdGuard}: (geen aanvullende software vereist)</li>
+          <li>AdGuard: (geen aanvullende software vereist)</li>
           </ul>
     android_browsers:
       title: Smartphone/Tablet (Android)

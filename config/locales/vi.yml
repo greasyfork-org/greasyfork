@@ -37,9 +37,6 @@ vi:
     downgrade: "Hạ xuống phiên bản %{version}"
     reinstall: "Cài đặt lại phiên bản %{version}"
     old_version_warning: "Đây không phải phiên bản mới nhất của script. Nếu bạn cài đặt nó, bạn sẽ không được cập nhật lên phiên bản mới nhất. Bạn chắc chắn muốn cài đặt?"
-    promoted: "Script được khuyến nghị"
-    author_promoted: "Script được tác giả gợi ý"
-    promoted_text_html: "Bạn có thế thích %{script_link}"
     library_instructions_html: "Script này sẽ không được không được cài đặt trực tiếp. Nó là một thư viện cho các script khác để bao gồm các chỉ thị meta\n%{code}"
     deleted_notice: "Script này đã bị xóa."
     deleted_notice_with_reason: "Script đã bị xoá bởi vì %{report_link:báo cáo này}."
@@ -359,7 +356,6 @@ vi:
     update_title: "Đăng phiên bản mới của %{script}"
     install_help_dialog:
       js:
-        chrome: Bạn sẽ cần cài đặt một tiện ích mở rộng như %{tampermonkey_link:Tampermonkey} hoặc %{violentmonkey_link:Violentmonkey} để cài đặt kịch bản này.
         bypass: (Tôi đã có Trình quản lý tập lệnh người dùng, hãy cài đặt nó!)
       close_dialog: OK
     antifeatures:

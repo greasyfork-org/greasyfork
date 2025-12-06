@@ -36,8 +36,6 @@ sv:
     downgrade: "Nergradera till version %{version}"
     reinstall: "Återinstallera version %{version}"
     old_version_warning: "Det här är inte senaste versionen av denna skripten. Om du installer det, du kommer aldrig bli uppdaterad till en nyare version. Installera det även?"
-    author_promoted: "Upphovsmannens rekommenderade skript"
-    promoted_text_html: "Du kanske också gillar %{script_link}."
     library_instructions_html: "Detta skript bör inte installeras direkt. Det är ett bibliotek för andra skript att inkludera med meta-direktivet %{code}"
     deleted_notice: "Detta skript har blivit raderat"
     deleted_notice_with_reason: "Det här skriptet har blivit borttaget på grund av %{report_link:denna rapporteringen}."
@@ -315,16 +313,6 @@ sv:
     installing_step1_caption: "Tampermonkey på Chrome"
     desktop_browsers:
       title: Skrivbord
-      browser_list_html: |
-          <ul>
-          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} eller %{chrome_violentmonkey_link:Violentmonkey}</li>
-          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, eller %{firefox_violentmonkey_link:Violentmonkey}</li>
-          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} eller %{safari_userscripts_link:Userscripts}</li>
-          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} eller%{edge_violentmonkey_link:Violentmonkey}</li>
-          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} eller %{opera_violentmonkey_link:Violentmonkey}</li>
-          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
-          <li>%{adguard_link:AdGuard}: (ingen ytterligare programvara krävs)</li>
-          </ul>
     android_browsers:
       title: Mobil (Android)
       browser_list_html: |

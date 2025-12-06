@@ -37,9 +37,6 @@ ja:
     downgrade: "バージョン%{version}へダウングレード"
     reinstall: "バージョン%{version}を再インストール"
     old_version_warning: "これはこのスクリプトの最新バージョンではありません。最新バージョンへの自動更新は行われませんが、インストールを続行しますか?"
-    promoted: "推奨スクリプト"
-    author_promoted: "作者が勧める他のスクリプト"
-    promoted_text_html: "%{script_link}も気に入るかもしれません"
     library_instructions_html: "このスクリプトは単体で利用できません。右のようなメタデータを含むスクリプトから、ライブラリとして読み込まれます: %{code}"
     deleted_notice: "このスクリプトは削除されました"
     deleted_notice_with_reason: "このスクリプトは、%{report_link:こちらの通報}のため削除されました"
@@ -368,7 +365,6 @@ ja:
     install_help_dialog:
       js:
         firefox: スクリプトをインストールするには、%{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} や %{violentmonkey_link:Violentmonkey} のような拡張機能のインストールが必要です。
-        chrome: スクリプトをインストールするには、%{tampermonkey_link:Tampermonkey} や %{violentmonkey_link:Violentmonkey} のような拡張機能のインストールが必要です。
         opera: スクリプトをインストールするには、%{tampermonkey_link:Tampermonkey} や %{violentmonkey_link:Violentmonkey} のような拡張機能のインストールが必要です。
         safari: スクリプトをインストールするには、%{tampermonkey_link:Tampermonkey} や %{userscripts_link:Userscripts} のような拡張機能のインストールが必要です。
         edge: このスクリプトをインストールするには、%{tampermonkey_link:Tampermonkey}などの拡張機能をインストールする必要があります。
@@ -507,16 +503,6 @@ ja:
         <p>ユーザースクリプトを使うには、まずユーザースクリプト管理ツールをインストールする必要があります。使用できるスクリプト管理ツールの種類はブラウザにより異なります。</p>
     desktop_browsers:
       title: デスクトップ
-      browser_list_html: |
-          <ul>
-          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} / %{chrome_violentmonkey_link:Violentmonkey}</li>
-          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey} / %{firefox_tampermonkey_link:Tampermonkey} / %{firefox_violentmonkey_link:Violentmonkey}</li>
-          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} / %{safari_userscripts_link:Userscripts}</li>
-          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} / %{edge_violentmonkey_link:Violentmonkey}</li>
-          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} / %{opera_violentmonkey_link:Violentmonkey}</li>
-          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
-          <li>%{adguard_link:AdGuard}: (アプリの追加は不要)</li>
-          </ul>
     android_browsers:
       title: モバイル (Android)
       browser_list_html: |

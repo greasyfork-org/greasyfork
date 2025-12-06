@@ -37,9 +37,6 @@ zh-TW:
     downgrade: "降級至版本 %{version}"
     reinstall: "重新安裝版本 %{version}"
     old_version_warning: "這不是此腳本的最新版本，安裝此版本後將不會自動更新。仍要安裝嗎？"
-    promoted: "精選腳本"
-    author_promoted: "作者推薦腳本"
-    promoted_text_html: "您可能也會喜歡 %{script_link}"
     library_instructions_html: "此腳本不應該直接安裝，它是一個供其他腳本使用的函式庫。欲使用本函式庫，請在腳本 metadata 寫上： %{code}"
     deleted_notice: "此腳本已被刪除。"
     deleted_notice_with_reason: "此腳本已因%{report_link:此檢舉}被刪除"
@@ -368,7 +365,6 @@ zh-TW:
     install_help_dialog:
       js:
         firefox: 您需要先安裝使用者腳本管理器擴展，如 %{tampermonkey_link:Tampermonkey}、%{greasemonkey_link:Greasemonkey} 或 %{violentmonkey_link:Violentmonkey} 之後才能安裝該腳本。
-        chrome: 您需要先安裝使用者腳本管理器擴充功能，如 %{tampermonkey_link:Tampermonkey} 或 %{violentmonkey_link:Violentmonkey} 後才能安裝該腳本。
         opera: 您需要先安裝使用者腳本管理器擴充功能，如 %{tampermonkey_link:Tampermonkey}或 %{violentmonkey_link:Violentmonkey} 後才能安裝該腳本。
         safari: 您需要先安裝使用者腳本管理器擴充功能，如 %{tampermonkey_link:Tampermonkey}或 %{userscripts_link:Userscripts} 後才能安裝該腳本。
         edge: 你需要先安裝一款使用者腳本管理器擴展，比如 %{tampermonkey_link:Tampermonkey}，才能安裝此腳本
@@ -507,16 +503,6 @@ zh-TW:
         <p>要使用使用者腳本，您首先要安裝使用者腳本管理器。您可以根據目前使用的瀏覽器來選擇一個使用者腳本管理器。</p>
     desktop_browsers:
       title: 桌面
-      browser_list_html: |
-          <ul>
-          <li>Chrome：%{chrome_tampermonkey_link:Tampermonkey} 或 %{chrome_violentmonkey_link:Violentmonkey}</li>
-          <li>Firefox：%{firefox_greasemonkey_link:Greasemonkey}、%{firefox_tampermonkey_link:Tampermonkey} 或 %{firefox_violentmonkey_link:Violentmonkey}</li>
-          <li>Safari：%{safari_tampermonkey_link:Tampermonkey} 或 %{safari_userscripts_link:Userscripts}</li>
-          <li>Microsoft Edge：%{edge_tampermonkey_link:Tampermonkey} 或 %{edge_violentmonkey_link:Violentmonkey}</li>
-          <li>Opera：%{opera_tampermonkey_link:Tampermonkey} 或 %{opera_violentmonkey_link:Violentmonkey}</li>
-          <li>Maxthon：%{maxthon_violentmonkey_link:Violentmonkey}</li>
-          <li>AdGuard：%{adguard_link:AdGuard}（不需要其他軟體）</li>
-          </ul>
     android_browsers:
       title: 手機（安卓）
       browser_list_html: |

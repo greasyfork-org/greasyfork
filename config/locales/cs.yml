@@ -38,9 +38,6 @@ cs:
     downgrade: "Návrat k verzi %{version}"
     reinstall: "Přeinstalovat verzi %{version}"
     old_version_warning: "Toto není poslední verze skriptu. Po instalaci nebude funkční aktualizace na nejnovější verzi. Přejete si přesto provést instalaci?"
-    promoted: "Doporučený skript"
-    author_promoted: "Skript doporučený autorem"
-    promoted_text_html: "Mohlo by se vám také líbit %{script_link}."
     library_instructions_html: "Tento skript by neměl být instalován přímo. Jedná se o knihovnu, kterou by měly jiné skripty využívat pomocí meta příkazu %{code}"
     deleted_notice: "Tento skript byl smazán."
     deleted_notice_with_related: "Požadovaný skript byl odstraněn, ale jsou zde podobné skripty."
@@ -336,7 +333,6 @@ cs:
     install_help_dialog:
       js:
         firefox: K instalaci tototo skriptu si budete muset nainstalovat rozšíření jako %{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} nebo %{violentmonkey_link:Violentmonkey}.
-        chrome: K instalaci tohoto skriptu si budete muset nainstalovat rozšíření jako %{tampermonkey_link:Tampermonkey} nebo %{violentmonkey_link:Violentmonkey}.
         opera: K instalaci tohoto skriptu si budete muset nainstalovat rozšíření jako %{tampermonkey_link:Tampermonkey} nebo %{violentmonkey_link:Violentmonkey}.
         safari: K instalaci tohoto skriptu si budete muset nainstalovat rozšíření jako %{tampermonkey_link:Tampermonkey} nebo %{userscripts_link:Userscripts}.
         other: K instalaci tohoto skriptu si budete muset nainstalovat manažer uživatelských skriptů.
