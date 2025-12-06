@@ -45,6 +45,20 @@
           <td>
             <input type="datetime-local" id="search-<%= field %>" name="<%= field %>" placeholder="(Any)">
           </td>
+        <% when :select %>
+          <td></td>
+          <td>
+            <% case field %>
+            <% when :entry_locales %>
+              <select id="search-<%= field %>" name="<%= field %>[]" multiple>
+                <%= Locale.order(:code).each do |locale| %>
+                  <option value="<%= locale.id %>"><%= locale.display_text %></option>
+                <% end %>
+              </select>
+            <% else %>
+              <% raise "Unknown select field: #{field}" %>
+            <% end %>
+          </td>
         <% else 
           raise "Unknown field type: #{field_type}"
         end %>

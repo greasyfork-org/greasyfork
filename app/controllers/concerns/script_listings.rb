@@ -14,6 +14,7 @@ module ScriptListings
     ratings: { type: :float, index_name: :fan_score, min: 0, max: 1, info: 'The probability that the next review received will have a good rating, from 0 to 1.' },
     created: { type: :datetime, index_name: :created_at },
     updated: { type: :datetime, index_name: :code_updated_at },
+    entry_locales: { type: :select, index_name: :locale_id, info: 'Script is available in any of the selected languages.' },
   }.freeze
 
   included do
@@ -320,7 +321,11 @@ module ScriptListings
   def load_scripts_for_index_with_es(for_json: false)
     with = es_options_for_request
 
-    with[:locale] = @search_locale if @search_locale
+    if params[:entry_locales].present?
+      with[:locale] = params[:entry_locales].map(&:to_i)
+    elsif @search_locale
+      with[:locale] = @search_locale
+    end
 
     if params[:site]
       if params[:site] == '*'
@@ -452,6 +457,9 @@ module ScriptListings
         else
           # Ignore any other operator
         end
+      when :select
+        # entry_locales handled elsewhere
+        raise "Unknown advanced search field select type: #{field}" unless field == :entry_locales
       else
         raise "Unknown advanced search field type: #{field_type}"
       end
