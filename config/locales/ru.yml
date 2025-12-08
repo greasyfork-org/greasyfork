@@ -40,6 +40,10 @@ ru:
     downgrade: "Откатить до версии %{version}"
     reinstall: "Переустановить версию %{version}"
     old_version_warning: "Это устаревшая версия скрипта. Автоматическое обновление до последней версии будет отключено. Установить?"
+    post_install:
+      info_html: "Теперь у вас должен быть установлен скрипт «%{script}». Если у вас возникли проблемы с установкой, %{help_link:прочитайте нашу справку}. Ваше мнение важно для поддержания качества скриптов на %{site_name}. После того, как вы опробуете скрипт «%{script}», пожалуйста, %{feedback_link:оставьте отзыв}."
+      promoted_script_intro: "Вам также могут понравиться…"
+      similar_script_html: "%{name} — %{description}"
     library_instructions_html: "Этот скрипт недоступен для установки пользователем. Он является библиотекой, которая подключается к другим скриптам мета-ключом %{code}"
     deleted_notice: "Этот скрипт был удалён."
     deleted_notice_with_reason: "Этот скрипт был удалён на основании %{report_link:этой жалобы}."
@@ -177,6 +181,7 @@ ru:
     listing_sort_created: "Дата создания"
     listing_sort_updated: "Дата обновления"
     listing_sort_name: "Название"
+    listing_sort_entry_locales: 'Языки'
     listing_filter_by_site_label: "Скрипты:"
     listing_filter_by_site_disable: "Все"
     listing_filter_by_site_all_sites: "(всех сайтов)"
@@ -372,6 +377,7 @@ ru:
     install_help_dialog:
       js:
         firefox: Чтобы установить этот скрипт, вы сначала должны установить расширение браузера, например %{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} или %{violentmonkey_link:Violentmonkey}.
+        chrome: Для установки этого скрипта вам необходимо установить расширение, такое как %{tampermonkey_link:Tampermonkey}.
         opera: Чтобы установить этот скрипт, вы сначала должны установить расширение браузера, например %{tampermonkey_link:Tampermonkey} или %{violentmonkey_link:Violentmonkey}.
         safari: Чтобы установить этот скрипт, вы сначала должны установить расширение браузера, например %{tampermonkey_link:Tampermonkey} или %{userscripts_link:Userscripts}.
         edge: Чтобы установить этот скрипт, сначала вы должны установить расширение браузера, например %{tampermonkey_link:Tampermonkey}.
@@ -520,6 +526,16 @@ ru:
         Для браузеров доступны следующие менеджеры скриптов.</p>
     desktop_browsers:
       title: Для ПК
+      browser_list_html: |
+          <ul>
+          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</li>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey} или %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} или %{safari_userscripts_link:Userscripts}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} или %{opera_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>%{adguard_link:AdGuard}: (дополнительного ПО не требуется)</li>
+          </ul>
     android_browsers:
       title: Для Android
       browser_list_html: |
