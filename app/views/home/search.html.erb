@@ -46,7 +46,7 @@
             <% when :entry_locales %>
               <select id="search-<%= field %>" name="<%= field %>[]" multiple>
                 <%= Locale.order(:code).each do |locale| %>
-                  <option value="<%= locale.id %>" <%= 'selected' if params[field].include?(locale.id.to_s)%>><%= locale.display_text %></option>
+                  <option value="<%= locale.id %>" <%= 'selected' if params[field]&.include?(locale.id.to_s)%>><%= locale.display_text %></option>
                 <% end %>
               </select>
             <% else %>
