@@ -12,8 +12,14 @@ current_options[:rel] = rel if rel
 
   <% if include_search %>
     <form class="sidebar-search">
-      <% [:filter_locale, :sort, :site, :language].each do |p| %>
-        <% if params[p] %><input type="hidden" name="<%= p %>" value="<%= params[p] %>"><% end %>
+      <% ([:filter_locale, :sort, :site, :language] + advanced_search_params.keys).each do |p| %>
+        <% if params[p].is_a?(Array) %>
+          <% params[p].each do |v| %>
+            <input type="hidden" name="<%= p %>[]" value="<%= v %>">
+          <% end %>
+        <% elsif params[p].present? %>
+          <input type="hidden" name="<%= p %>" value="<%= params[p] %>">
+        <% end %>
       <% end %>
       <%= render partial: 'shared/locale_override_field' %>
       <input type="search" name="q" value="<%= params[:q] %>" placeholder="<%= t('scripts.search_placeholder') %>"><input class="search-submit" type="submit" value="🔎">
@@ -104,6 +110,13 @@ current_options[:rel] = rel if rel
         <% end %>
       </ul>
     </div>
+  <% end %>
 
+  <% if advanced_search_applied? %>
+    <div id="script-list-advanced-search" class="list-option-group">
+      <ul>
+        <li class="list-option list-current"><%= link_to 'Advanced search applied', search_path(**all_search_params) %></li>
+        <li class="list-option"><%= link_to 'Clear', params[:site].present? ? by_site_scripts_path(regular_search_params.except(:site)) : scripts_path(regular_search_params) %></li>
+    </div>
   <% end %>
 </div>

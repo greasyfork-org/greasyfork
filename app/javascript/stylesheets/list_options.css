@@ -31,6 +31,9 @@
   padding: .4em 1em .4em calc(1em - 3px);
   background: linear-gradient(var(--list-option-background-color-gradient-1), var(--list-option-background-color-gradient-2));
 }
+.list-option-group .list-current a {
+  padding: 0;
+}
 
 @media screen and (min-width: 440px) and (max-width: 960px) {
   .list-option-group a,

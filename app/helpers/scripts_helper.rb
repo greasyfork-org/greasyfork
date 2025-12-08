@@ -15,17 +15,17 @@ module ScriptsHelper
       l = label
       is_link = false
     elsif is_libraries
-      l = link_to(label, libraries_scripts_path(sort: sort_param_to_use, q: params[:q], set:, by:), rel:)
+      l = link_to(label, libraries_scripts_path(sort: sort_param_to_use, q: params[:q].presence, set:, by:), rel:)
     elsif is_minified
       l = link_to(label, minified_scripts_path(sort: sort_param_to_use), rel:)
     elsif is_code_search
       l = link_to(label, code_search_scripts_path(sort: sort_param_to_use, c: params[:c], language:, by:), rel:)
     elsif site.nil?
-      l = link_to(label, { sort: sort_param_to_use, site: nil, set:, q: params[:q], language:, filter_locale:, by: }, rel:)
+      l = link_to(label, { sort: sort_param_to_use, site: nil, set:, q: params[:q].presence, language:, filter_locale:, by:, **advanced_search_params }, rel:)
     elsif params[:controller] == 'users'
       l = link_to(label, { sort: sort_param_to_use, site:, set:, language:, filter_locale: }, rel:)
     else
-      l = link_to label, by_site_scripts_path(sort: sort_param_to_use, site:, set:, q: params[:q], language:, filter_locale:, by:), rel:
+      l = link_to label, by_site_scripts_path(sort: sort_param_to_use, site:, set:, q: params[:q].presence, language:, filter_locale:, by:, **advanced_search_params), rel:
     end
     tag.li(class: "list-option#{' list-current' unless is_link}") { l }
   end
@@ -112,5 +112,42 @@ module ScriptsHelper
       reason += "\"#{script.delete_reason}\""
     end
     reason.html_safe
+  end
+
+  def search_comparator_field(field_name, include_equals: false)
+    field = field_name.to_s.parameterize
+    return tag.select(id: "search-#{field}-operator", name: "#{field}_operator") do
+      options = []
+      options << tag.option('>', value: 'gt', selected: params["#{field}_operator"] == 'gt')
+      options << tag.option('<', value: 'lt', selected: params["#{field}_operator"] == 'lt')
+      options << tag.option('=', value: 'eq', selected: params["#{field}_operator"] == 'eq') if include_equals
+      safe_join(options)
+    end
+  end
+
+  def advanced_search_params(exclude_blank: true)
+    rv = {}
+    ScriptListings::ADVANCED_SEARCH_FIELDS.each do |name, options|
+      next if exclude_blank && params[name].blank?
+
+      rv[name] = params[name]
+      operator_param = :"#{name}_operator"
+      rv[operator_param] = params[operator_param] if params[operator_param].present?
+      rv[:tz] ||= params[:tz] if options[:type] == :datetime && (!exclude_blank || params[:tz].present?)
+    end
+
+    rv
+  end
+
+  def advanced_search_applied?
+    advanced_search_params.any?
+  end
+
+  def regular_search_params
+    params.permit(:sort, :site, :q, :language, :filter_locale, :by)
+  end
+
+  def all_search_params
+    regular_search_params.merge(advanced_search_params)
   end
 end

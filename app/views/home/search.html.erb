@@ -1,8 +1,12 @@
-<%= form_tag(scripts_path, id: 'script-search', method: :get) do %>
+<%= form_tag(params[:site].present? ? by_site_scripts_path(params[:site]) : scripts_path, id: 'script-search', method: :get) do %>
   <h3><%= t('search.script_search.title') %></h3>
   <p><%= it('search.script_search.description') %></p>
 
-  <p><input type="search" name="q" placeholder="Search terms"></p>
+  <p><input type="search" name="q" placeholder="Search terms" value="<%= params[:q]%>"></p>
+
+  <% regular_search_params.except(:q, :site).each do |p, v| %>
+    <input type="hidden" name="<%= p %>" value="<%= v %>">
+  <% end %>
 
   <table>
     <% ScriptListings::ADVANCED_SEARCH_FIELDS.each do |field, field_data| %>
@@ -16,34 +20,24 @@
         <% case field_data[:type]
         when :integer %>
           <td>
-            <select id="search-<%= field %>-operator" name="<%= field %>_operator">
-              <option value="eq">=</option>
-              <option value="lte">&lt;</option>
-              <option value="gte">&gt;</option>
-            </select>
+            <%= search_comparator_field(field, include_equals: true) %>
           </td>
           <td>
-            <input type="number" id="search-<%= field %>" name="<%= field %>" step="1" min="<%= field_data[:min] || 0 %>" max="<%= field_data[:max] || 0 %>" size="8" placeholder="(Any)">
+            <input type="number" id="search-<%= field %>" name="<%= field %>" value="<%= params[field] %>" step="1" min="<%= field_data[:min] || 0 %>" max="<%= field_data[:max] || 0 %>" size="8" placeholder="(Any)">
           </td>
         <% when :float %>
           <td>
-            <select id="search-<%= field %>-operator" name="<%= field %>_operator">
-              <option value="lte">&lt;</option>
-              <option value="gte">&gt;</option>
-            </select>
+            <%= search_comparator_field(field, include_equals: false) %>
           </td>
           <td>
-            <input type="number" id="search-<%= field %>" name="<%= field %>" step="any" min="<%= field_data[:min] || 0 %>" max="<%= field_data[:max] || 0 %>" size="8" placeholder="(Any)">
+            <input type="number" id="search-<%= field %>" name="<%= field %>" value="<%= params[field] %>" step="any" min="<%= field_data[:min] || 0 %>" max="<%= field_data[:max] || 0 %>" size="8" placeholder="(Any)">
           </td>
         <% when :datetime %>
           <td>
-            <select id="search-<%= field %>-operator" name="<%= field %>_operator">
-              <option value="lte">&lt;</option>
-              <option value="gte">&gt;</option>
-            </select>
+            <%= search_comparator_field(field, include_equals: false) %>
           </td>
           <td>
-            <input type="datetime-local" id="search-<%= field %>" name="<%= field %>" placeholder="(Any)">
+            <input type="datetime-local" id="search-<%= field %>" name="<%= field %>" value="<%= params[field] %>" placeholder="(Any)">
           </td>
         <% when :select %>
           <td></td>
@@ -52,7 +46,7 @@
             <% when :entry_locales %>
               <select id="search-<%= field %>" name="<%= field %>[]" multiple>
                 <%= Locale.order(:code).each do |locale| %>
-                  <option value="<%= locale.id %>"><%= locale.display_text %></option>
+                  <option value="<%= locale.id %>" <%= 'selected' if params[field].include?(locale.id.to_s)%>><%= locale.display_text %></option>
                 <% end %>
               </select>
             <% else %>
@@ -67,7 +61,7 @@
   </table>
 
   <p>
-    <input type="hidden" name="tz">
+    <input type="hidden" name="tz" value="<%= params[:tz]%>">
     <input class="search-submit" type="submit" value="<%= t('scripts.search_placeholder') %>">
   </p>
 <% end %>
