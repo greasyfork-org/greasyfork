@@ -24,7 +24,6 @@ export const allAdsenseUnfilled = () => {
 
     await waitForAdsenseLoad(adsensePlacements)
 
-    console.log(adsensePlacements.map(placement => `Placement ID ${placement.id || '(no id)'} status: ${placement.dataset['adStatus']} dataset: ${JSON.stringify(placement.dataset)}`).join('\n'))
     resolve(adsensePlacements.every(placement => placement.dataset['adStatus'] === 'unfilled'))
   })
 }
