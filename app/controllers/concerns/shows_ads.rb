@@ -22,7 +22,7 @@ module ShowsAds
 
     return AdMethod.ga if allow_ga && script.adsense_approved && locale_allows_adsense? && (script.additional_info || script.newest_saved_script_version.attachments.any? || script.similar_scripts(script_subset:, locale: I18n.locale).any?)
 
-    return AdMethod.ea if valid_locale_for_ea?
+    AdMethod.ea(variant: (request_locale.code unless valid_locale_for_ea?))
   end
 
   def choose_ad_method_for_post_install(script)
@@ -37,10 +37,10 @@ module ShowsAds
 
     return AdMethod.no_ad(:sensitive_list) if scripts.any?(&:sensitive?)
 
-    return AdMethod.ea if valid_locale_for_ea?
+    AdMethod.ea(variant: (request_locale.code unless valid_locale_for_ea?))
 
     # Not great RPM here, but we got nothing else
-    return AdMethod.ga if scripts.all?(&:adsense_approved)
+    # return AdMethod.ga if scripts.all?(&:adsense_approved)
   end
 
   def choose_ad_method_for_discussion(discussion)
@@ -50,9 +50,7 @@ module ShowsAds
 
     return AdMethod.no_ad(:sensitive) if discussion.script&.sensitive? || sleazy?
 
-    return AdMethod.ea if valid_locale_for_ea?
-
-    nil
+    AdMethod.ea(variant: (request_locale.code unless valid_locale_for_ea?))
   end
 
   def choose_ad_method_for_error_page
@@ -61,7 +59,7 @@ module ShowsAds
 
     return AdMethod.no_ad(:sleazy) if sleazy?
 
-    AdMethod.ea if valid_locale_for_ea?
+    AdMethod.ea(variant: (request_locale.code unless valid_locale_for_ea?))
   end
 
   def choose_ad_method_for_user(user)
@@ -75,7 +73,7 @@ module ShowsAds
     # EA performs better here
     # return AdMethod.ga if user.scripts.all?(&:adsense_approved)
 
-    return AdMethod.ea if valid_locale_for_ea?
+    AdMethod.ea(variant: (request_locale.code unless valid_locale_for_ea?))
   end
 
   private
@@ -94,6 +92,6 @@ module ShowsAds
   end
 
   included do
-    helper_method :general_ads_setting
+    helper_method :general_ads_setting, :valid_locale_for_ea?
   end
 end

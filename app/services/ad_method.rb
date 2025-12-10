@@ -1,9 +1,10 @@
 class AdMethod
-  attr_accessor(:ad_method, :no_ad_reason)
+  attr_accessor(:ad_method, :no_ad_reason, :variant)
 
-  def initialize(ad_method, no_ad_reason = nil)
+  def initialize(ad_method, no_ad_reason: nil, variant: nil)
     @ad_method = ad_method
     @no_ad_reason = no_ad_reason
+    @variant = variant
   end
 
   def show_ads?
@@ -35,11 +36,11 @@ class AdMethod
     new('ga')
   end
 
-  def self.ea
-    new('ea')
+  def self.ea(variant: nil)
+    new('ea', variant:)
   end
 
   def self.no_ad(reason)
-    new(nil, reason)
+    new(nil, no_ad_reason: reason)
   end
 end

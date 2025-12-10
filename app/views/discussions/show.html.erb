@@ -6,7 +6,7 @@
 <% end %>
 
 <% if @ad_method&.ea? %>
-  <div id="discussion-show-ea" class="ad flat ethical-ads text-content-top-ad ethical-ads-text" data-ea-publisher="greasyfork" data-ea-type="text"></div>
+  <%= render(partial: 'shared/ea_text_ad', locals: {ad_method: @ad_method, ea_div_id: 'discussion-show-ea'}) %>
 <% end %>
 
 <% if @discussion.script %>

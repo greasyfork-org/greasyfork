@@ -50,7 +50,7 @@
 
     <% if scripts_to_render.empty? %>
       <% if @ad_method&.ea? %>
-        <div id="script-list-blank-ea" class="ad flat ethical-ads ethical-ads-text" data-ea-publisher="greasyfork" data-ea-type="text"></div>
+        <%= render(partial: 'shared/ea_text_ad', locals: {ad_method: @ad_method, ea_div_id: 'script-list-blank-ea'}) %>
       <% end %>
 
       <p><%= t('scripts.listing_no_scripts') %></p>
@@ -58,7 +58,7 @@
       <ol id="browse-script-list" class="script-list <%= 'showing-all-languages' if params[:language] == 'all' %>">
         <% if @ad_method&.ea? %>
           <li class="ad-entry">
-            <div id="script-list-ea" class="flat ethical-ads ethical-ads-text" data-ea-publisher="greasyfork" data-ea-type="text"></div>
+            <%= render(partial: 'shared/ea_text_ad', locals: {ad_method: @ad_method, ea_div_id: 'script-list-ea'}) %>
           </li>
         <% end %>
         <%= render partial: 'scripts/script', collection: scripts_to_render, cached: overriding_locale? ? false : ->(script) { [script, request_locale] } %>
