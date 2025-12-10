@@ -1,4 +1,5 @@
 import onload from '~/onload'
+import { allAdsenseUnfilled } from '~/adsense'
 
 function setupEthicalAdsFallback() {
   if (typeof window.ethicalads === "undefined") {
@@ -48,4 +49,30 @@ const switchToEaFallback = function() {
 }
 window.switchToEaFallback = switchToEaFallback
 
+const fallbackAdsenseToEa = async () => {
+  let unfilled = await allAdsenseUnfilled()
+  if (!unfilled) {
+    console.log("At least one AdSense ad was filled; not falling back to EthicalAds.")
+    return
+  }
+
+  console.log("All AdSense ads were unfilled; falling back to EthicalAds.")
+  let script = document.createElement('script')
+  script.onload = function () {
+    ethicalads.load()
+  }
+  script.src = 'https://media.ethicalads.io/media/client/ethicalads.min.js'
+  document.head.appendChild(script)
+
+  document.querySelector('[data-ea-manual="true"]').closest('.ad-ea').style.display = "block"
+  document.querySelectorAll('.adsbygoogle').forEach((adSenseAd) => { adSenseAd.remove() })
+}
+
+const fallbackAdsenseToEaIfAvailable = () => {
+  if (document.querySelector('[data-ea-manual="true"]')) {
+    fallbackAdsenseToEa()
+  }
+}
+
 onload(setupEthicalAdsFallback)
+onload(fallbackAdsenseToEaIfAvailable)

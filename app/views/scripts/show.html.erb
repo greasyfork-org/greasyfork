@@ -3,7 +3,7 @@
 
 <%= render partial: 'install', locals: {script: @script, script_version: @script_version} %>
 
-<%= render partial: 'shared/in_page_ad', locals: { ad_method: @ad_method, div_id: 'script-show-info-ad', adsense_slot: '2579817802', ea_div_id: 'script-show-ea-image'} %>
+<%= render partial: 'shared/in_page_ad', locals: { ad_method: @ad_method, div_id: 'script-show-info-ad', adsense_slot: '2579817802', ea_div_id: 'script-show-ea-image', fallback_ea: true} %>
 
 <%= render partial: 'feedback_suggestion', locals: {script: @script} %>
 

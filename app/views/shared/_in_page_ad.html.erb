@@ -1,4 +1,4 @@
-<%# locals: (ad_method:, div_id:, adsense_slot:, ea_div_id: nil, skip_ea: false) %>
+<%# locals: (ad_method:, div_id:, adsense_slot:, ea_div_id: nil, skip_ea: false, fallback_ea: false) %>
 
 <% if ad_method&.show_ads? %>
   <div class="ad <%= ad_method.css_class %>" id="<%= div_id %>">
@@ -13,9 +13,18 @@
         <script>
           (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
-      <% elsif ad_method&.ea? & !skip_ea %>
+      <% elsif ad_method.ea? & !skip_ea %>
         <div id="<%= ea_div_id %><%= "_#{ad_method.variant}" if ad_method.variant %>" class="flat ethical-ads" data-ea-publisher="greasyfork" data-ea-type="image"></div>
       <% end %>
     </div>
   </div>
+
+  <% if ad_method.ga? & !skip_ea && fallback_ea %>
+    <% other_ad_method = AdMethod.ea(variant: 'fallback') %>
+    <div class="ad <%= other_ad_method.css_class %>" id="<%= div_id %>-fallback" style="display:none;">
+      <div class="ad-content">
+        <div id="<%= ea_div_id %><%= "_#{other_ad_method.variant}" if other_ad_method.variant %>" class="flat ethical-ads" data-ea-publisher="greasyfork" data-ea-type="image" data-ea-manual="true"></div>
+      </div>
+    </div>
+  <% end %>
 <% end %>
