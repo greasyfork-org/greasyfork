@@ -1,4 +1,4 @@
-<%= form_tag(params[:site].present? ? by_site_scripts_path(params[:site]) : scripts_path, id: 'script-search', method: :get) do %>
+<%= form_tag(current_script_listing_path, id: 'script-search', method: :get) do %>
   <h3><%= t('search.script_search.title') %></h3>
   <p><%= it('search.script_search.description') %></p>
 
@@ -23,14 +23,14 @@
             <%= search_comparator_field(field, include_equals: true) %>
           </td>
           <td>
-            <input type="number" id="search-<%= field %>" name="<%= field %>" value="<%= params[field] %>" step="1" min="<%= field_data[:min] || 0 %>" max="<%= field_data[:max] || 0 %>" size="8" placeholder="(Any)">
+            <input type="number" id="search-<%= field %>" name="<%= field %>" value="<%= params[field] %>" step="1" min="<%= field_data[:min] || 0 %>" max="<%= field_data[:max] %>" size="8" placeholder="(Any)">
           </td>
         <% when :float %>
           <td>
             <%= search_comparator_field(field, include_equals: false) %>
           </td>
           <td>
-            <input type="number" id="search-<%= field %>" name="<%= field %>" value="<%= params[field] %>" step="any" min="<%= field_data[:min] || 0 %>" max="<%= field_data[:max] || 0 %>" size="8" placeholder="(Any)">
+            <input type="number" id="search-<%= field %>" name="<%= field %>" value="<%= params[field] %>" step="any" min="<%= field_data[:min] || 0 %>" max="<%= field_data[:max] %>" size="8" placeholder="(Any)">
           </td>
         <% when :datetime %>
           <td>

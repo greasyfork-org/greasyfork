@@ -144,10 +144,14 @@ module ScriptsHelper
   end
 
   def regular_search_params
-    params.permit(:sort, :site, :q, :language, :filter_locale, :by)
+    params.slice(:sort, :site, :q, :language, :filter_locale, :by).permit!
   end
 
   def all_search_params
     regular_search_params.merge(advanced_search_params)
+  end
+
+  def current_script_listing_path(**args)
+    params[:site].present? ? by_site_scripts_path(params[:site], **args) : scripts_path(**args)
   end
 end

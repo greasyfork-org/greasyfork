@@ -417,9 +417,9 @@ module ScriptListings
         case params["#{field}_operator"]
         when 'eq'
           with[es_field_name] = field_value
-        when 'lte'
+        when 'lt'
           with[es_field_name] = ..field_value
-        when 'gte'
+        when 'gt'
           with[es_field_name] = field_value..
         else
           # Ignore any other operator
@@ -429,9 +429,9 @@ module ScriptListings
         case params["#{field}_operator"]
         when 'eq'
           with[es_field_name] = field_value
-        when 'lte'
+        when 'lt'
           with[es_field_name] = ..field_value
-        when 'gte'
+        when 'gt'
           with[es_field_name] = field_value..
         else
           # Ignore any other operator
@@ -450,9 +450,9 @@ module ScriptListings
         next unless field_value
 
         case params["#{field}_operator"]
-        when 'lte'
+        when 'lt'
           with[es_field_name] = ..field_value
-        when 'gte'
+        when 'gt'
           with[es_field_name] = field_value..
         else
           # Ignore any other operator
