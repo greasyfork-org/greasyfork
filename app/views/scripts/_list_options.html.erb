@@ -115,8 +115,8 @@ current_options[:rel] = rel if rel
   <% if advanced_search_applied? %>
     <div id="script-list-advanced-search" class="list-option-group">
       <ul>
-        <li class="list-option list-current"><%= link_to 'Advanced search applied', search_path(**all_search_params) %></li>
-        <li class="list-option"><%= link_to 'Clear', current_script_listing_path(**regular_search_params.except(:site)) %></li>
+        <li class="list-option list-current"><%= link_to t('scripts.listing_advanced_search_applied'), search_path(**all_search_params) %></li>
+        <li class="list-option"><%= link_to t('scripts.listing_advanced_search_clear'), current_script_listing_path(**regular_search_params.except(:site)) %></li>
     </div>
   <% end %>
 </div>

@@ -14,7 +14,7 @@
         <td>
           <label for="search-<%= field %>"><%= t("scripts.listing_sort_#{field_data[:label] || field}") %></label>
           <% if field_data[:info] %>
-            <span class="info" title="<%= field_data[:info] %>">ⓘ</span>
+            <span class="info" title="<%= t(field_data[:info]) %>">ⓘ</span>
           <% end %>
         </td>
         <% case field_data[:type]

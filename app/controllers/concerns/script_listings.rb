@@ -11,10 +11,10 @@ module ScriptListings
   ADVANCED_SEARCH_FIELDS = {
     total_installs: { type: :integer },
     daily_installs: { type: :integer },
-    ratings: { type: :float, index_name: :fan_score, min: 0, max: 1, info: 'The probability that the next review received will have a good rating, from 0 to 1.' },
+    ratings: { type: :float, index_name: :fan_score, min: 0, max: 1, info: 'scripts.listing_ratings_explanation' },
     created: { type: :datetime, index_name: :created_at },
     updated: { type: :datetime, index_name: :code_updated_at },
-    entry_locales: { type: :select, index_name: :locale_id, info: 'Script is available in any of the selected languages.' },
+    entry_locales: { type: :select, index_name: :locale_id, info: 'scripts.listing_locale_explanation' },
   }.freeze
 
   included do
