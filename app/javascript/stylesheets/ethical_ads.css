@@ -1,22 +1,65 @@
-.ea-content {
+.ethical-ads:not([data-ea-style]) .ea-content {
   margin: 0 !important;
 }
-.ea-callout {
+.ethical-ads:not([data-ea-style]) .ea-callout {
   margin: 0 !important;
 }
-#about-user .ethical-ads {
-  margin: 0 calc(-1em - 5px);
+#user-show-ea:not([data-ea-style]) + .report-link {
+  top: 65px;
+}
+
+/* For EthicalAds text ads, put the "Ads by EthicalAds" inside the shaded area. */
+.ethical-ads-text:not([data-ea-style]) .ea-placement {
+  position: relative;
+}
+.ethical-ads-text:not([data-ea-style]) .ea-callout {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+/* Prevent jumping when it loads. */
+.ethical-ads-text:empty:not([data-ea-style]) {
+  min-height: 46px;
+}
+
+/* EthicalAds on top of a .text-content */
+.text-content > .ethical-ads:first-child:not([data-ea-style]) {
+  margin: 0 calc(-1em - 1px);
+  border-radius: 5px 5px 0 0;
 }
 @media screen and (max-width: 960px) {
-  #about-user .ethical-ads {
-    margin: 0 -1.2vw;
+  .text-content > .ethical-ads:first-child:not([data-ea-style]) {
+    margin: 0 calc(-1.2vw - 1px);
   }
 }
 @media screen and (max-width: 400px) {
-  #about-user .ethical-ads {
-    margin: 0 -1em;
+  .text-content > .ethical-ads:first-child:not([data-ea-style]) {
+    margin: 0 calc(-1em - 1px);
+    border-radius: 5px 5px 0 0;
   }
 }
-#user-show-ea + .report-link {
-  top: 65px;
+
+/* Any ad in a script list */
+@media screen and (max-width: 400px) {
+  .script-list li.ad-entry {
+    padding: 0;
+  }
+}
+
+/* EthicalAds text ad on a script's page */
+#script-info .ethical-ads-text:not([data-ea-style]) {
+  margin: 0 calc(-1em - 1px);
+}
+#script-info .ethical-ads-text:not([data-ea-style]) .ea-content {
+  border-radius: 0 !important;
+}
+@media screen and (max-width: 960px) {
+  #script-info .ethical-ads-text:not([data-ea-style]) {
+    margin: 0 calc(-1.2vw - 1px);
+  }
+}
+
+.ad[data-ea-style] {
+  margin-bottom: 0;
 }

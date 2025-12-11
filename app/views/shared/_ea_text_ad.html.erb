@@ -1,2 +1,2 @@
-<%# locals: (ad_method:, ea_div_id: nil) %>
-<div id="<%= ea_div_id %><%= "_#{ad_method.variant}" if ad_method.variant %>" class="ad flat ethical-ads ethical-ads-text" data-ea-publisher="greasyfork" data-ea-type="text"></div>
+<%# locals: (ad_method:, ea_div_id: nil, ea_style: nil) %>
+<div id="<%= ea_div_id %><%= "_#{ad_method.variant}" if ad_method.variant %>" class="ad flat ethical-ads ethical-ads-text" data-ea-publisher="greasyfork" data-ea-type="text" <%= "data-ea-style=\"#{ea_style}\"".html_safe if ea_style %>></div>
