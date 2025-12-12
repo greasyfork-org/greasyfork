@@ -25,15 +25,15 @@
 
     <% if @current_locale_filter %>
       <% if current_user && !current_user.filter_locale_default %>
-        <p class="script-list-description"><%= it('scripts.listing_remove_locale_filter', language: @current_locale_filter.best_name, remove_filter_link: current_path_with_params(filter_locale: nil)) %></p>
+        <p class="script-list-description"><%= it('scripts.listing_remove_locale_filter', language: @current_locale_filter.best_name(in_locale: request_locale), remove_filter_link: current_path_with_params(filter_locale: nil)) %></p>
       <% else %>
-        <p class="script-list-description"><%= it('scripts.listing_remove_locale_filter', language: @current_locale_filter.best_name, remove_filter_link: It.link(current_path_with_params(filter_locale: '0'), rel: :nofollow)) %></p>
+        <p class="script-list-description"><%= it('scripts.listing_remove_locale_filter', language: @current_locale_filter.best_name(in_locale: request_locale), remove_filter_link: It.link(current_path_with_params(filter_locale: '0'), rel: :nofollow)) %></p>
       <% end %>
     <% elsif @offer_filtered_results_for_locale && @scripts.any? %>
       <% if current_user && !current_user.filter_locale_default %>
-        <p class="script-list-description"><%= it('scripts.listing_set_locale_filter', language: @offer_filtered_results_for_locale.best_name, set_filter_link: It.link(current_path_with_params(filter_locale: '1'), rel: :nofollow)) %></p>
+        <p class="script-list-description"><%= it('scripts.listing_set_locale_filter', language: @offer_filtered_results_for_locale.best_name(in_locale: request_locale), set_filter_link: It.link(current_path_with_params(filter_locale: '1'), rel: :nofollow)) %></p>
       <% else %>
-        <p class="script-list-description"><%= it('scripts.listing_set_locale_filter', language: @offer_filtered_results_for_locale.best_name, set_filter_link: current_path_with_params(filter_locale: nil)) %></p>
+        <p class="script-list-description"><%= it('scripts.listing_set_locale_filter', language: @offer_filtered_results_for_locale.best_name(in_locale: request_locale), set_filter_link: current_path_with_params(filter_locale: nil)) %></p>
       <% end %>
     <% end %>
 

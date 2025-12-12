@@ -1,7 +1,4 @@
-require 'memoist'
-
 class Comment < ApplicationRecord
-  extend Memoist
   include HasAttachments
   include SoftDeletable
   include MentionsUsers

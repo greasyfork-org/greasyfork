@@ -5,10 +5,10 @@
   <option value="" <% if script.locale_id.nil? %> selected<% end %>><%= t('scripts.locale_auto_select') %></option>
   <option disabled>---</option>
   <% Locale.where(ui_available: true).order(:code).each do |locale| %>
-    <option value="<%= locale.id %>" <% if script.locale_id == locale.id %> selected<% end %>><%= locale.display_text %></option>
+    <option value="<%= locale.id %>" <% if script.locale_id == locale.id %> selected<% end %>><%= locale.display_text(in_locale: request_locale) %></option>
   <% end %>
   <option disabled>---</option>
   <% Locale.order(:code).each do |locale| %>
-    <option value="<%= locale.id %>"<% if script.locale_id == locale.id %> selected<% end %>><%= locale.display_text %></option>
+    <option value="<%= locale.id %>"<% if script.locale_id == locale.id %> selected<% end %>><%= locale.display_text(in_locale: request_locale) %></option>
   <% end %>
 </select>

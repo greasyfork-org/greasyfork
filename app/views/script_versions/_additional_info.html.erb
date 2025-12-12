@@ -13,11 +13,11 @@
       <select name="script_version[additional_info][<%= index %>][locale]">
         <option value="" <% if la.locale_id.nil? %> selected<% end %>><%= t('scripts.additional_info_locale_prompt') %></option>
         <% Locale.where(ui_available: true).each do |locale| %>
-          <option value="<%= locale.id %>" <% if la.locale_id == locale.id %> selected<% end %>><%= locale.display_text %></option>
+          <option value="<%= locale.id %>" <% if la.locale_id == locale.id %> selected<% end %>><%= locale.display_text(in_locale: request_locale) %></option>
         <% end %>
         <option disabled>---</option>
         <% Locale.all.each do |locale| %>
-          <option value="<%= locale.id %>"<% if la.locale_id == locale.id %> selected<% end %>><%= locale.display_text %></option>
+          <option value="<%= locale.id %>"<% if la.locale_id == locale.id %> selected<% end %>><%= locale.display_text(in_locale: request_locale) %></option>
         <% end %>
       </select>
     <% end %>

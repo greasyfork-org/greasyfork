@@ -45,8 +45,8 @@
             <% case field %>
             <% when :entry_locales %>
               <select id="search-<%= field %>" name="<%= field %>[]" multiple>
-                <%= Locale.order(:code).each do |locale| %>
-                  <option value="<%= locale.id %>" <%= 'selected' if params[field]&.include?(locale.id.to_s)%>><%= locale.display_text %></option>
+                <%= Locale.sort_by_name(Locale.locales_used_by_scripts, in_locale: request_locale).each do |locale| %>
+                  <option value="<%= locale.id %>" <%= 'selected' if params[field]&.include?(locale.id.to_s)%>><%= locale.display_text(in_locale: request_locale) %></option>
                 <% end %>
               </select>
             <% else %>

@@ -107,10 +107,10 @@ class ScriptAdminTest < ApplicationSystemTestCase
     fill_in 'Default additional info', with: 'https://example.com/en'
     click_on 'Add a localized, synced additional info'
     fill_in 'For locale (matches @name:XX)', with: 'https://example.com/fr'
-    select 'Français (fr)', from: 'additional_info_sync[1][locale]', match: :first
+    select 'French (fr)', from: 'additional_info_sync[1][locale]', match: :first
     click_on 'Add a localized, synced additional info'
     fill_in 'additional_info_sync[2][sync_identifier]', with: 'https://example.com/es'
-    select 'Español (es)', from: 'additional_info_sync[2][locale]', match: :first
+    select 'Spanish (es)', from: 'additional_info_sync[2][locale]', match: :first
     click_on 'Update and sync now'
     assert_content 'Script successfully synced.'
 
@@ -124,7 +124,7 @@ class ScriptAdminTest < ApplicationSystemTestCase
 
     click_on 'Add a localized, synced additional info'
     fill_in 'additional_info_sync[3][sync_identifier]', with: 'https://example.com/pt'
-    select 'Português (pt)', from: 'additional_info_sync[3][locale]', match: :first
+    select 'Portuguese (pt)', from: 'additional_info_sync[3][locale]', match: :first
     click_on 'Update and sync now'
     assert_content 'Script successfully synced.'
 
@@ -141,7 +141,7 @@ class ScriptAdminTest < ApplicationSystemTestCase
     login_as(script.users.first, scope: :user)
     visit admin_script_url(script, locale: :en)
     within '#set-default-locale' do
-      select 'Français (fr)', from: 'script[locale_id]', match: :first
+      select 'French (fr)', from: 'script[locale_id]', match: :first
       click_on 'Update Locale'
     end
     assert_content 'Script updated'

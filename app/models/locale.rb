@@ -1,4 +1,8 @@
+require 'memo_wise'
+
 class Locale < ApplicationRecord
+  prepend MemoWise
+
   @locale_cache = {}
 
   has_many :scripts, dependent: :restrict_with_exception
@@ -14,13 +18,34 @@ class Locale < ApplicationRecord
     fetch_locale('zh-CN')
   end
 
-  def display_text
-    "#{best_name} (#{code})"
+  def display_text(in_locale: I18n.locale)
+    "#{best_name(in_locale:)} (#{code})"
   end
 
-  def best_name
+  def best_name(in_locale:)
+    in_locale = in_locale.code if in_locale.is_a?(Locale)
+    # The data from the gem does not have region-specific names.
+    in_locale = in_locale.to_s.split('-').first
+
+    language_code, country_code = code.split('-', 2)
+    language_name_in_current_language, country_name_in_current_language = nil
+
+    begin
+      language_name_in_current_language = I18nData.languages(in_locale)[language_code.upcase]&.split(';')&.first
+      country_name_in_current_language = I18nData.countries(in_locale)[country_code] if country_code
+    rescue I18nData::NoTranslationAvailable
+      # in_locale is not supported by I18nData.
+    end
+
+    if country_code
+      return "#{language_name_in_current_language} (#{country_name_in_current_language})" if language_name_in_current_language && country_name_in_current_language
+    elsif language_name_in_current_language
+      return language_name_in_current_language
+    end
+
     native_name || english_name
   end
+  memo_wise :best_name
 
   # Returns the matching locales for the passed locale code, with locales with UI available first.
   def self.matching_locales(locale_code, chinese_only: false)
@@ -64,5 +89,15 @@ class Locale < ApplicationRecord
 
   def self.fetch_locale(code)
     @locale_cache[code.to_s]
+  end
+
+  def self.sort_by_name(locales, in_locale:)
+    in_locale = in_locale.code if in_locale.is_a?(Locale)
+    collator = ICU::Collation::Collator.new(in_locale)
+    locales.sort { |a, b| collator.compare(a.best_name(in_locale:), b.best_name(in_locale:)) }
+  end
+
+  def self.locales_used_by_scripts
+    Locale.where(id: LocalizedScriptAttribute.distinct(:locale_id).select(:locale_id))
   end
 end

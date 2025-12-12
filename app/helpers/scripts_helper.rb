@@ -1,7 +1,7 @@
-require 'memoist'
+require 'memo_wise'
 
 module ScriptsHelper
-  extend Memoist
+  prepend MemoWise
 
   def script_list_link(label, sort: nil, site: nil, set: nil, default_sort: nil, language: nil, filter_locale: nil, rel: nil, by: nil)
     is_link = true
@@ -64,7 +64,7 @@ module ScriptsHelper
 
     return for_script.promoted_script
   end
-  memoize :promoted_script
+  memo_wise :promoted_script
 
   def render_script(script, locale: nil, full_url: false, skip_link: false)
     name = script.name(locale || request_locale)

@@ -1,9 +1,9 @@
 require 'sanitize'
 require 'redcarpet'
-require 'memoist'
+require 'memo_wise'
 
 module UserTextHelper
-  extend Memoist
+  prepend MemoWise
 
   def with_user_text_preview(markup_name:, markup:, &)
     markup_choice_html = label_tag(nil, class: 'radio-label') do
@@ -138,14 +138,6 @@ module UserTextHelper
 
     config[:transformers] << detect_user_references
   end
-
-  def sanitize_config_for_display(markup_type)
-    return html_sanitize_config if markup_type == 'html'
-    return markdown_sanitize_config if markup_type == 'markdown'
-
-    raise "Unknown markup_type #{markup_type}."
-  end
-  memoize :sanitize_config_for_display
 
   def html_sanitize_config
     hsc = markdown_sanitize_config.dup
@@ -370,4 +362,14 @@ module UserTextHelper
       </div>
     HTML
   end
+
+  module_function
+
+  def sanitize_config_for_display(markup_type)
+    return html_sanitize_config if markup_type == 'html'
+    return markdown_sanitize_config if markup_type == 'markdown'
+
+    raise "Unknown markup_type #{markup_type}."
+  end
+  memo_wise self: :sanitize_config_for_display
 end

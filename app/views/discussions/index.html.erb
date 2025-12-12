@@ -108,13 +108,13 @@
         <%= t('discussions.locale_filter.label') %>
         <ul>
           <%= discussion_list_link(t('discussions.locale_filter.all'), show_locale: nil) %>
-          <%= discussion_list_link(request_locale.best_name, show_locale: request_locale.code) %>
+          <%= discussion_list_link(request_locale.best_name(in_locale: request_locale), show_locale: request_locale.code) %>
           <% showing_request_locale = @filter_result.locale && @filter_result.locale == request_locale %>
           <li class="list-option <%= 'list-current' if @filter_result.locale && !showing_request_locale %>">
             <select id="discussion-locale">
               <option></option>
               <% @possible_locales.each do |l| %>
-                <option data-url="<%= current_path_with_params(show_locale: l.code, page: nil) %>" value="<%= l.code %>" <%= 'selected' if !showing_request_locale && @filter_result.locale && @filter_result.locale.id == l.id %>><%= l.display_text %></option>
+                <option data-url="<%= current_path_with_params(show_locale: l.code, page: nil) %>" value="<%= l.code %>" <%= 'selected' if !showing_request_locale && @filter_result.locale && @filter_result.locale.id == l.id %>><%= l.display_text(in_locale: request_locale) %></option>
               <% end %>
             </select>
           </li>

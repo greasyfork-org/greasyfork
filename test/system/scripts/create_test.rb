@@ -166,7 +166,7 @@ class CreateTest < ApplicationSystemTestCase
     fill_in 'Additional info', with: 'English additional info'
 
     click_on 'Add a localized additional info'
-    select 'Français (fr)', from: 'script_version[additional_info][1][locale]', match: :first
+    select 'French (fr)', from: 'script_version[additional_info][1][locale]', match: :first
     fill_in 'script_version[additional_info][1][attribute_value]', with: 'Additional info en francais'
 
     click_on 'Post script'

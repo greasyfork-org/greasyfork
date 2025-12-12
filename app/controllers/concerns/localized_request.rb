@@ -1,6 +1,8 @@
+require 'memo_wise'
+
 module LocalizedRequest
   extend ActiveSupport::Concern
-  extend Memoist
+  prepend MemoWise
 
   included do
     before_action :set_locale
@@ -11,7 +13,7 @@ module LocalizedRequest
   def request_locale
     Locale.fetch_locale(I18n.locale)
   end
-  memoize :request_locale
+  memo_wise :request_locale
 
   def set_locale
     # User chose "Help us translate" in the locale picker
