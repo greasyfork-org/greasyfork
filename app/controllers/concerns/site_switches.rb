@@ -45,7 +45,7 @@ module SiteSwitches
   def available_locales_for_domain
     return Rails.application.config.available_locales unless cn_greasy?
 
-    Rails.application.config.available_locales.slice('zh-CN', 'zh-TW')
+    %w[zh-CN zh-TW]
   end
 
   def cn_greasy_404!

@@ -85,7 +85,7 @@ class TopSitesService
     end
 
     def refresh!
-      (Locale.where(ui_available: true).pluck(:id) + [nil]).each do |locale_id|
+      (Locale.ui_available.pluck(:id) + [nil]).each do |locale_id|
         SCRIPT_SUBSETS.each do |script_subset|
           TopSitesService.get_by_sites(script_subset:, locale_id:, force: true)
         end

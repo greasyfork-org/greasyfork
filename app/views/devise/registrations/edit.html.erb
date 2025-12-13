@@ -38,7 +38,7 @@
     <label><%= t('activerecord.attributes.user.locale') %></label><br>
     <select name="user[locale_id]">
       <option value="" <% if @user.locale_id.nil? %> selected<% end %>><%= t('users.locale_prompt') %></option>
-      <% Locale.where(ui_available: true).each do |locale| %>
+      <% Locale.ui_available.each do |locale| %>
         <option value="<%= locale.id %>" <% if @user.locale_id == locale.id %> selected<% end %>><%= locale.display_text(in_locale: request_locale) %></option>
       <% end %>
       <option disabled>---</option>

@@ -27,7 +27,7 @@ module CommentChecking
           created_at: @comment.created_at,
           author: @comment.poster&.name,
           author_email: @comment.poster&.email,
-          languages: Rails.application.config.available_locales.keys,
+          languages: Rails.application.config.available_locales,
           env: {},
         },
       ]

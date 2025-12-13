@@ -13,7 +13,7 @@
 </p>
 
 <ul>
-  <% Locale.where(ui_available: true).includes(:locale_contributors).order(:code).distinct.reject { |locale| locale.locale_contributors.none? }.each do |locale| %>
+  <% Locale.ui_available.includes(:locale_contributors).order(:code).distinct.reject { |locale| locale.locale_contributors.none? }.each do |locale| %>
     <li>
       <b>
         <%= link_to "#{locale.native_name || locale.english_name} (#{locale.code})", root_path(locale: locale.code, locale_override: 1) %>

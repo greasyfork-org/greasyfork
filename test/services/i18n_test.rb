@@ -27,7 +27,7 @@ class I18nTest < ActiveSupport::TestCase
 
   def verify_translations(context, english_text)
     english_interpolations = get_interpolations(english_text)
-    Rails.application.config.available_locales.keys.each do |locale|
+    Rails.application.config.available_locales.each do |locale|
       locale_text = I18n.backend.send(:translations).dig(locale.to_sym, *context.map(&:to_sym))
       next if locale_text.nil?
 

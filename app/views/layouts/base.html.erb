@@ -28,7 +28,7 @@
     # https://support.google.com/webmasters/answer/189077
     alternate_url_without_locale = current_path_with_params(locale: 'XX').sub(/\A\/XX/, '') %>
     <link rel="alternate" hreflang="x-default" href="<%= current_path_with_params(locale: nil) %>">
-    <% available_locales_for_domain.each do |code, name| %>
+    <% available_locales_for_domain.each do |code| %>
       <link rel="alternate" hreflang="<%= code %>" href="/<%= code %><%= alternate_url_without_locale %>">
     <% end
   end %>
@@ -104,7 +104,7 @@
               locale_with_override_param = user_with_locale ? '1' : nil
               switch_url_without_locale = current_path_with_params(locale: 'XX', locale_override: locale_with_override_param).delete_prefix('/XX') if valid_request_for_locale_switch %>
               <select class="language-selector-locale" name="locale" data-translate-url="<%= Rails.configuration.help_translate_url %>">
-                <% available_locales_for_domain.each do |code, name|
+                <% site_locales(in_locale: request_locale).each do |code, name|
                   if valid_request_for_locale_switch %>
                     <option data-language-url="/<%= code %><%= switch_url_without_locale %>" value="<%= code %>"<% if params[:locale] == code %> selected<% end %>>
                       <%= name %> (<%= code %>)

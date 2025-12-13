@@ -221,7 +221,7 @@ class User < ApplicationRecord
   # Returns the user's preferred locale code, if we have that locale available, otherwise nil.
   def available_locale_code
     return nil if locale.nil?
-    return nil unless locale.ui_available
+    return nil unless locale.ui_available?
 
     return locale.code
   end

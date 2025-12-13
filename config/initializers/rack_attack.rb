@@ -16,8 +16,8 @@ end
 
 Rack::Attack::Throttle.include(RackAttackThrottleExceeded)
 
-SIGNUP_PATH_PATTERN = Regexp.new("\\A/(#{Rails.application.config.available_locales.keys.map { |locale| Regexp.escape(locale) }.join('|')})/users\\z")
-LOGIN_PATH_PATTERN = Regexp.new("\\A/(#{Rails.application.config.available_locales.keys.map { |locale| Regexp.escape(locale) }.join('|')})/users/sign_in\\z")
+SIGNUP_PATH_PATTERN = Regexp.new("\\A/(#{Rails.application.config.available_locales.map { |locale| Regexp.escape(locale) }.join('|')})/users\\z")
+LOGIN_PATH_PATTERN = Regexp.new("\\A/(#{Rails.application.config.available_locales.map { |locale| Regexp.escape(locale) }.join('|')})/users/sign_in\\z")
 
 PENTESTER_QUERY_STRINGS = [
   '/etc/passwd',

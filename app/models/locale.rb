@@ -3,6 +3,8 @@ require 'memo_wise'
 class Locale < ApplicationRecord
   prepend MemoWise
 
+  self.ignored_columns += %w[ui_available]
+
   @locale_cache = {}
 
   has_many :scripts, dependent: :restrict_with_exception
@@ -61,13 +63,14 @@ class Locale < ApplicationRecord
     locale_scope = locale_scope.where("code LIKE 'zh%'") if chinese_only
 
     # The dashed one is last alphabetically but first in our hearts.
-    locales = locale_scope.where(code: locale_codes_to_look_up).order(ui_available: :asc, code: :desc).load
-    return locales if locales.any?
+    locales = locale_scope.where(code: locale_codes_to_look_up).order(code: :desc).load
+    return [locales.partition(&:ui_available?)].flatten if locales.any?
 
     # Special case for Chinese locales that are more similar to zh-TW than zh-CN.
     return locale_scope.where(code: 'zh-TW') if %w[zh-HK zh-MO].include?(locale_code)
 
-    return locale_scope.where('code like ?', "#{language_part_only}-%").order(:ui_available, :code)
+    locales = locale_scope.where('code like ?', "#{language_part_only}-%").order(:code)
+    [locales.partition(&:ui_available?)].flatten
   end
 
   def scripts?(script_subset)
@@ -99,5 +102,13 @@ class Locale < ApplicationRecord
 
   def self.locales_used_by_scripts
     Locale.where(id: LocalizedScriptAttribute.distinct(:locale_id).select(:locale_id))
+  end
+
+  def ui_available?
+    Rails.application.config.available_locales.include?(code)
+  end
+
+  def self.ui_available
+    where(code: Rails.application.config.available_locales)
   end
 end
