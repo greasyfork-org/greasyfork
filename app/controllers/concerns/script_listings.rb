@@ -444,7 +444,7 @@ module ScriptListings
         end
         field_value = begin
           time_zone.parse(params[field])
-        rescue Date::Error
+        rescue ArgumentError
           nil
         end
         next unless field_value
