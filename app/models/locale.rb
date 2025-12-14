@@ -91,6 +91,8 @@ class Locale < ApplicationRecord
   end
 
   def self.fetch_locale(code)
+    # This should be loaded by locale_cache.rb, but in CI, that runs before the test database is set up.
+    load_locale_cache if @locale_cache.empty?
     @locale_cache[code.to_s]
   end
 
