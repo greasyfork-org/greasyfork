@@ -3,8 +3,6 @@ require 'memo_wise'
 class Locale < ApplicationRecord
   prepend MemoWise
 
-  self.ignored_columns += %w[ui_available]
-
   @locale_cache = {}
 
   has_many :scripts, dependent: :restrict_with_exception

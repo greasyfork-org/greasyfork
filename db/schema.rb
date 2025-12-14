@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_11_26_021145) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_14_014535) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.text "Attributes"
     t.text "Body", null: false
@@ -350,7 +350,6 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_26_021145) do
     t.string "native_name", limit: 100
     t.integer "percent_complete", default: 0
     t.boolean "rtl", default: false, null: false
-    t.boolean "ui_available", default: false, null: false
   end
 
   create_table "localized_script_attributes", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
