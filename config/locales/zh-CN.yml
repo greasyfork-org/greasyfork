@@ -37,6 +37,10 @@ zh-CN:
     downgrade: "降级到 %{version} 版本"
     reinstall: "重新安装 %{version} 版本"
     old_version_warning: "这不是此脚本的最新版本。如果您选择安装，您将永远不会收到新版本的更新。仍要安装吗？"
+    post_install:
+      info_html: "现在您应该已经安装了 %{script}。如果您在安装过程中遇到问题，请%{help_link:阅读我们的帮助文档}。您的反馈对于维护 %{site_name} 上脚本的质量至关重要，在试用 %{script} 后，请考虑%{feedback_link:提供反馈}。"
+      promoted_script_intro: "您可能也喜欢…"
+      similar_script_html: "%{name} - %{description}"
     library_instructions_html: "此脚本不应直接安装。它是供其他脚本使用的外部库，要使用该库请加入元指令 %{code}"
     deleted_notice: "此脚本已被删除。"
     deleted_notice_with_reason: "此脚本已因%{report_link:此举报}被删除。"
@@ -171,6 +175,7 @@ zh-CN:
     listing_sort_created: "创建日期"
     listing_sort_updated: "更新日期"
     listing_sort_name: "名称"
+    listing_sort_entry_locales: '语言'
     listing_filter_by_site_label: "根据脚本生效的网站过滤："
     listing_filter_by_site_disable: "全部"
     listing_filter_by_site_all_sites: "（所有网站）"
@@ -191,6 +196,10 @@ zh-CN:
       me: 我的脚本
       user: '%{author_name} 的脚本'
     search_failed: 加载结果时出现了问题。部分搜索功能可能无法正常正常工作，我们已收到有关此问题的通知。
+    listing_ratings_explanation: 收到的下一条评价获得好评的概率，取值范围为0到1。
+    listing_locale_explanation: 脚本提供所有已选定的语言版本。
+    listing_advanced_search_applied: "应用高级搜索选项"
+    listing_advanced_search_clear: "清空"
     import: "导入脚本"
     new: "发布您编写的脚本"
     new_css: "发布您编写的样式"
@@ -243,7 +252,7 @@ zh-CN:
     localized_additional_info_with_no_name: "您提交了“%{locale_code}”这个语言的附加信息，但没有指定 <code>@name:%{locale_code}</code>。"
     invalid_matchers: "使用了无效的匹配表达式：%{matches}"
     code_syncing_from_url_html: "脚本代码已被设置为从该链接同步：%{field} "
-    provide_code_syncing_from_url_html: "%{site_name} 可以导入已经托管在其他地方的脚本，例如版本控制系统（如 GitHub）、您自己的服务器或其他的用户脚本托管网站。若需对您的脚本启用脚本同步，提供安装链接即可：%{field}"
+    provide_code_syncing_from_url_html: "%{site_name} 可以导入已经托管在其他地方的脚本，例如版本控制系统（如 GitHub）、您的服务器或其他的用户脚本托管网站。若需对您的脚本启用脚本同步，提供安装链接即可：%{field}"
     code_syncing_from_webhook_html: "此脚本的代码被设置为与 Webhook 同步，我们将根据以下链接将 Webhook 请求与此脚本匹配：%{field} "
     sync_type_intro: "此脚本的同步方式："
     sync_type_1:
@@ -333,7 +342,7 @@ zh-CN:
     error_unauthorized_copy: "这段代码似乎是 %{script} 的未经授权副本。请参阅 %{site_name} %{rules_link:规则} 以了解发布脚本的相关规定。"
     invitations:
       form_title: "邀请其他作者"
-      explanation: "您可以添加其他 Greasy Fork 用户作为此脚本的作者。他们将在此脚本上拥有与您相同的权利，包括添加或移除其他作者（甚至包括您自己）。"
+      explanation: "您可添加其他 Greasy Fork 用户作为此脚本的共同作者。他们将在此脚本上拥有与您相同的权限，包括添加或移除其他作者（甚至包括您本人）。"
       invited_user_url_label: "邀请用户"
       invited_user_placeholder: "在 %{site_name} 的用户资料链接"
       submit: "发送邀请"
@@ -365,11 +374,12 @@ zh-CN:
     update_title: "发布 %{script} 的新版本"
     install_help_dialog:
       js:
-        firefox: 您需要先安装一个扩展，例如 %{tampermonkey_link:篡改猴}、%{greasemonkey_link:Greasemonkey} 或 %{violentmonkey_link:暴力猴}，之后才能安装此脚本。
-        opera: 您需要先安装一个扩展，例如 %{tampermonkey_link:篡改猴} 或 %{violentmonkey_link:暴力猴}，之后才能安装此脚本。
-        safari: 您需要先安装一个扩展，例如 %{tampermonkey_link:篡改猴} 或 %{userscripts_link:Userscripts} ，之后才能安装此脚本。
-        edge: 您需要先安装一款用户脚本管理器扩展，例如 %{tampermonkey_link:Tampermonkey}，才能安装此脚本。
-        other: 您需要先安装用户脚本管理器扩展后才能安装此脚本。
+        firefox: 您需要先安装一款用户脚本管理器扩展，例如 %{tampermonkey_link:Tampermonkey 篡改猴}、%{greasemonkey_link:Greasemonkey 油猴子} 或 %{violentmonkey_link:Violentmonkey 暴力猴}，才能安装此脚本。
+        chrome: 您需要先安装一款用户脚本管理器扩展，例如 %{tampermonkey_link:Tampermonkey 篡改猴}，才能安装此脚本。
+        opera: 您需要先安装一款用户脚本管理器扩展，例如 %{tampermonkey_link:Tampermonkey 篡改猴} 或 %{violentmonkey_link:Violentmonkey 暴力猴}，才能安装此脚本。
+        safari: 您需要先安装一款用户脚本管理器扩展，例如 %{tampermonkey_link:Tampermonkey 篡改猴} 或 %{userscripts_link:Userscripts} ，才能安装此脚本。
+        edge: 您需要先安装一款用户脚本管理器扩展，例如 %{tampermonkey_link:Tampermonkey 篡改猴}，才能安装此脚本。
+        other: 您需要先安装一款用户脚本管理器扩展后才能安装此脚本。
         bypass: （我已经安装了用户脚本管理器，让我安装！）
       css:
         firefox: 您需要先安装一款用户样式管理器扩展，比如 %{stylus_link:Stylus}，才能安装此样式。
@@ -497,13 +507,24 @@ zh-CN:
     search_placeholder: "搜索用户脚本"
     scripts_for_label: "脚本适用于："
     explain_user_scripts_heading: "用户脚本是什么？"
-    explain_user_scripts_html: "用户脚本能让您掌握自己的浏览体验。一经安装，它们便会自动优化您访问的网站——不管是添加实用功能、简化操作流程，还是去除烦人内容。%{site_name} 上的用户脚本由全球用户编写并分享，免费安装，轻松上手。"
+    explain_user_scripts_html: "用户脚本可让您完全掌控自己的浏览体验。一经安装，它们便自动优化您访问的网站——添加实用功能、简化操作流程或去除烦人元素。%{site_name} 上的用户脚本由全球用户编写并分享，免费安装，轻松上手。"
     installing_step1_header: "第 1 步：安装一个用户脚本管理器"
-    installing_step1_caption: "Chrome 上的 Tampermonkey"
+    installing_step1_caption: "Chrome 上的 Tampermonkey 篡改猴"
     installing_step1_description_html: >
-        <p>要使用用户脚本，您首先需要安装一个用户脚本管理器。您可以根据您自己当前使用的浏览器来选择一个用户脚本管理器。</p>
+        <p>要使用用户脚本，您首先需要安装一个用户脚本管理器。您可以根据您当前使用的浏览器来选择一个用户脚本管理器。</p>
     desktop_browsers:
       title: 桌面端
+      browser_list_html: |
+          <ul>
+          <li>Chrome：%{chrome_tampermonkey_link:Tampermonkey}</li>
+          <li>Firefox：%{firefox_greasemonkey_link:Greasemonkey}、%{firefox_tampermonkey_link:Tampermonkey} 或 %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Safari：%{safari_tampermonkey_link:Tampermonkey} 或 %{safari_userscripts_link:Userscripts}</li>
+          <li>Microsoft Edge：%{edge_tampermonkey_link:Tampermonkey} </li>
+          <li>Opera：%{opera_tampermonkey_link:Tampermonkey} 或 %{opera_violentmonkey_link:Violentmonkey}</li>
+          <li>傲游浏览器：%{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>%{adguard_link:AdGuard}（无须安装额外软件）
+          </li>
+          </ul>
     android_browsers:
       title: 移动端（Android）
       browser_list_html: |
@@ -513,7 +534,7 @@ zh-CN:
           <li>傲游浏览器: %{maxthon_violentmonkey_link:Violentmonkey}</li>
           <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
           <li>UC 浏览器: %{uc_tampermonkey_link:Tampermonkey}</li>
-          <li>%{xbrowser_link:XBrowser}</li>
+          <li>%{xbrowser_link:X 浏览器}</li>
           %{locale_specific_browsers}
           </ul>
     ios_browsers:
@@ -521,7 +542,7 @@ zh-CN:
       browser_list_html: |
           <ul>
           <li>Safari：%{safari_tampermonkey_link:Tampermonkey} 或 %{safari_userscripts_link:Userscripts}</li>
-          <li>%{gear_link:Gear}：（不需要其他软件）
+          <li>%{gear_link:Gear}：（无须安装额外软件）
           </ul>
     installing_step2_header: "第 2 步：安装一个用户脚本"
     installing_step2_caption: "用户脚本的安装按钮"
@@ -732,7 +753,7 @@ zh-CN:
         other: 取消订阅您已订阅的 %{discussions_link:%{count} 条讨论}
       current_conversation_subscriptions:
         other: 取消订阅您已订阅的 %{count} 条私信
-      intro: "%{site_name} 可以通过邮件或网站上的通知小组件向您发送通知。大多数通知只有在您执行某些操作后才会发送，例如发起了一条讨论或发布了某个脚本。这些通知设置不会影响事务性的邮件，例如密码重置请求。"
+      intro: "%{site_name} 可通过邮件或网站上的通知小组件向您发送通知。大多数通知只有在您执行某些操作后才会发送，例如发起了一条讨论或发布了某个脚本。这些通知设置不会影响事务性的邮件，例如密码重置请求。"
       save_success: 您的通知偏好设置已更新。
       unsubscribe_all: 取消订阅所有通知
       unsubscribe_all_success: 您已取消订阅所有通知。
@@ -780,7 +801,7 @@ zh-CN:
     installing_user_styles:
       title: '如何安装用户样式'
       content_html: |
-          <p>%{site_name} 上的某些脚本可以安装为用户样式。</p>
+          <p>%{site_name} 上的某些脚本可作为用户样式安装。</p>
           <p>用户样式可以通过 %{stylus_firefox_link:适用于 Firefox 的 Stylus}、%{stylus_chrome_link:适用于 Chrome 的 Stylus}，以及 %{stylus_opera_link:适用于 Opera 的 Stylus} 来安装。</p>
           <p>%{styles_link:浏览所有可用的用户样式。}</p>
     meta_keys:
@@ -806,7 +827,7 @@ zh-CN:
           </ul>
           注意：如果您的脚本基于其他人编写的代码，则您可能会受到您选择的许可证的限制。
       supportURL: "用户获得脚本支持的链接（例如漏洞跟踪器、论坛或邮箱地址），该支持链接将显示于脚本的反馈页面。"
-      contributionURL_html: "用户用于捐赠脚本作者的链接，该捐赠链接将显示在脚本的反馈页面。网址可以为 http、https 或比特币协议的网址。如果您需要链接到 PayPal 捐赠页面，请使用例如 <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a> 这样的格式，替换其中的示例邮箱地址为您自己的邮箱地址即可。"
+      contributionURL_html: "用户用于捐赠脚本作者的链接，该捐赠链接将显示在脚本的反馈页面。网址可以为 http、https 或比特币协议的网址。如果您需要链接到 PayPal 捐赠页面，请使用例如 <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a> 这样的格式，替换其中的示例邮箱地址为您本人的邮箱地址即可。"
       contributionAmount_html: "建议捐赠金额，配合 <code>@contributionURL</code> 使用。"
       compatible_html: "标记此脚本与某个浏览器兼容，兼容性信息将显示在脚本的简介页面上。您也可以添加额外的兼容说明，如 <code>@compatible firefox 火狐上必须关闭广告过滤器</code> 这样的格式。目前能被网站识别的浏览器名称有：%{browsers}。"
       incompatible_html: "标记此脚本与某个浏览器不兼容，兼容性信息将显示在脚本的简介页面上。您也可以添加额外的兼容说明，如 <code>@incompatible firefox 自火狐 23 开始不兼容</code> 这样的写法。目前能被网站识别的浏览器名称有：%{browsers}。"
@@ -929,7 +950,7 @@ zh-CN:
       translators_credit: "%{site_name} 的简体中文翻译由 %{translators_link:Transifex 上的 Greasy 翻译小组} 提供："
       icons_credit: "浏览器图标来源于 %{browserlogos}。"
     help_with_greasymonkey: "Greasemonkey 的相关帮助"
-    help_with_tampermonkey: "篡改猴的相关帮助"
+    help_with_tampermonkey: "Tampermonkey 篡改猴的相关帮助"
     contact:
       title: "与某个人取得联系"
       content_html: >
@@ -1055,7 +1076,7 @@ zh-CN:
     new_script_report_notes_html: >
         <p>举报之前，请注意：</p> <ul>
 
-        <li>只有违反了 %{rules_link:%{site_name} 规则} 的脚本会被移除。如果脚本只是失效或不兼容，%{feedback_link:请给予反馈}。</li>
+        <li>只有违反了 %{rules_link:%{site_name} 规则} 的脚本会被移除。如果脚本只是失效或不兼容，您只需要%{feedback_link:提供反馈}。</li>
 
         <li>管理员将审核您提交的举报并处理。</li>
 
@@ -1098,7 +1119,7 @@ zh-CN:
     report_intro_unauthorized_license_no_url: "%{other_script} 使用 %{license_name} 许可证。访问 %{tldr_legal_link:tldrlegal.com} 以了解更多该许可证的含义。"
     report_intro_unauthorized_no_license: "%{other_script} 未明确声明许可证，这意味着仅在获得明确授权的情况下才允许分发其副本。"
     non_functional_feedback: "请于%{feedback_link:反馈区}中报告脚本失效。"
-    paid_benefits_feedback: "%{site_name} 没有办法记录任何脚本作者和用户之间的交易，因此无法验证与之相关的任何声明。如果您在脚本中支付了功能费用并感到不满意，请在脚本上以%{feedback_link:反馈}来提出您的投诉。"
+    paid_benefits_feedback: "%{site_name} 无法记录任何脚本作者和用户之间的私下交易，因此无法验证与之相关的任何声明。如果您在脚本中支付了功能费用并感到不满意，请在脚本上以%{feedback_link:反馈}来提出您的投诉。"
     unauthorized_code_original_placeholder: "原始代码的链接"
     explanation_placeholder: "提供更多信息（可选）"
     create_button: "创建举报"
@@ -1108,7 +1129,7 @@ zh-CN:
     result_dismissed: "管理员对该举报不予受理。"
     result_upheld: "管理员已通过该举报。"
     result_upheld_reason_override: "该举报已被管理员核实，但管理员的理由是 %{reason}。"
-    result_self_upheld: "因为该举报，作者删除了自己的脚本。"
+    result_self_upheld: "因为该举报，作者删除了脚本。"
     result_fixed: "管理员结束了该举报，并认为作者已修正了报告的问题。"
     result_pending: "该举报尚待管理员审核。"
     result_pending_author_html: |
@@ -1124,7 +1145,7 @@ zh-CN:
     rebuttal_submitted: 将有管理员审核该则举报，然后参考您所提供的解释来作出决定。
     delete_script: "删除脚本"
     view_discussion: "查看讨论"
-    load_diff: "查看对比（diff 格式）"
+    load_diff: "查看差异"
     load_cleaned_diff: "加载洁净的代码差异"
     loading_diff: "加载中…"
     reported_user_activity_html: "%{user}（被举报用户）已有："
@@ -1295,7 +1316,7 @@ zh-CN:
       more: 查看所有私信
     edit_message_header: 编辑消息
     update_message_submit: 更新消息
-    moderator_notice: 如果您想报告违反 %{site_name} 规则的行为，请使用脚本、用户或留言上的举报链接。管理员无法仅通过私信举报来移除内容。
+    moderator_notice: 如果您想报告违反 %{site_name} 规则的行为，请使用脚本、用户或留言上的举报链接。管理员无法基于通过私信进行的举报来移除内容。
   screenshots:
     requirements: "最多上传 %{number} 张 PNG、GIF、JPEG 或 WebP 图片，且每张图片大小不得超过 %{size}。"
   moderator_actions:
@@ -1407,8 +1428,13 @@ zh-CN:
     attribution: "版权归脚本的作者所有，具体许可信息请查看每个脚本的相关说明"
   importing:
     title: 导入脚本
-    intro: "%{site_name} 可以从其他网站导入脚本，比如代码版本控制系统 （例如 GitHub）、您自己的服务器或其他的用户脚本网站。"
+    intro: "%{site_name} 可以从其他网站导入脚本，比如代码版本控制系统 （例如 GitHub）、您的服务器或其他的用户脚本网站。"
     url_entry_label: 提供要导入的链接，每行一个。这应该是原始 JS 或 CSS 文件的网址。
+    language:
+      label: 以上链接的语言是？
+      detect: 根据扩展名检测，默认使用 JavaScript
+      js: JavaScript
+      css: CSS
     sync_type_label: "在初次导入后，此脚本（这些脚本）应被同步："
     additional_info_html: |
         <p>对于来自源代码管理的脚本，请确保您使用的链接指向一个分支，而非特定的提交，否则脚本将永远不会更新。例如，应使用 <code>https://bitbucket.org/username/reponame/raw/<b>branch-name</b>/script.user.js</code> 而非 <code>https://bitbucket.org/username/reponame/raw/<b>commit-hash</b>/script.user.js</code></p>
