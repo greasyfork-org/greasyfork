@@ -30,9 +30,8 @@
     <% locale_specific_android_browsers = nil
     if request_locale.code == 'zh-CN'
       locale_specific_android_browsers = <<~HTML.html_safe
-        <li><a href="https://www.bookmarkearth.cn/download/app">书签地球</a></li>
-        <li><a href="http://mbrowser.nr19.cn/">M浏览器</a></li>
-        <li><a href="https://www.lemurbrowser.com/">狐猴浏览器</a>：<a href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo">Tampermonkey</a></li>
+        <li><a href="https://viayoo.com/">Via 浏览器</a></li>
+        <li><a href="https://www.lemurbrowser.com/">狐猴浏览器</a>：<a href="https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd">Tampermonkey</a></li>
       HTML
     end %>
     <%= it('home.android_browsers.browser_list_html', firefox_greasemonkey_link: 'https://addons.mozilla.org/firefox/addon/greasemonkey/', firefox_tampermonkey_link: 'https://addons.mozilla.org/firefox/addon/tampermonkey/', firefox_violentmonkey_link: 'https://addons.mozilla.org/firefox/addon/violentmonkey/', maxthon_violentmonkey_link: 'http://extension.maxthon.com/detail/index.php?view_id=1680', dolphin_tampermonkey_link: 'https://play.google.com/store/apps/details?id=net.tampermonkey.dolphin', uc_tampermonkey_link: 'https://www.tampermonkey.net/?browser=ucweb&ext=dhdg', safari_userscripts_link: 'https://apps.apple.com/app/userscripts/id1463298887', xbrowser_link: 'https://www.xbext.com', edge_tampermonkey_link: 'https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd', locale_specific_browsers: locale_specific_android_browsers) %>
