@@ -112,7 +112,11 @@ class UsersController < ApplicationController
         @scripts = all_displayable_scripts.paginate(per_page: per_page(default: 50), page: page_number)
         @other_site_scripts = (script_subset == :sleazyfork) ? @user.scripts.listable(:greasyfork).count : 0
 
-        @bots = 'noindex,follow' if [:per_page, :set, :site, :sort, :language].any? { |name| params[name].present? }
+        if @user.banned?
+          @bots = 'noindex'
+        elsif [:per_page, :set, :site, :sort, :language].any? { |name| params[name].present? }
+          @bots = 'noindex,follow'
+        end
 
         @link_alternates = [
           { url: current_api_url_with_params(format: :json), type: 'application/json' },
