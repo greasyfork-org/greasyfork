@@ -1,7 +1,7 @@
 <%- title t('scripts.history_title', script_name: @script.name(request_locale)) %>
 <%- description "Version history for #{@script.name(request_locale)}" %>
 
-<%= render partial: 'shared/in_page_ad', locals: { ad_method: @ad_method, div_id: 'script-versions-list-ad', adsense_slot: '8369077042', ea_div_id: 'script-versions-list-ea-image'} %>
+<%= render partial: 'shared/in_page_ad', locals: { ad_method: @ad_method, div_id: 'script-versions-list-ad', adsense_slot: '8369077042', ea_div_id: 'script-versions-list-ea-image', fallback_ea: true} %>
 
 <%
 show_diff = @script.script_versions.length > 1

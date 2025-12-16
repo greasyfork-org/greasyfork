@@ -4,6 +4,8 @@
 <section id="about-user" class="text-content reportable">
   <% if @ad_method&.ea? %>
     <%= render(partial: 'shared/ea_text_ad', locals: {ad_method: @ad_method, ea_div_id: 'user-show-ea'}) %>
+  <% elsif @ad_method&.ga? %>
+    <%= render(partial: 'shared/ea_fallback', locals: { div_id: 'user-show-ad-fallback', ea_div_id: 'user-show-ea'})%>
   <% end %>
 
   <%= link_to(t('reports.report_user'), new_report_path(item_class: 'user', item_id: @user.id), class: 'report-link report-link-abs') unless @user.banned? %>
