@@ -62,13 +62,13 @@ module ShowsAds
     AdMethod.ea(variant: (request_locale.code unless valid_locale_for_ea?))
   end
 
-  def choose_ad_method_for_user(user)
+  def choose_ad_method_for_user(displayed_scripts:)
     no_ads = general_ads_setting
     return no_ads if no_ads
 
     return AdMethod.no_ad(:sleazy) if sleazy?
 
-    return AdMethod.no_ad(:sensitive_list) if user.scripts.any?(&:sensitive?)
+    return AdMethod.no_ad(:sensitive_list) if displayed_scripts.where(sensitive: true).any?
 
     # EA performs better here
     # return AdMethod.ga if user.scripts.all?(&:adsense_approved)
