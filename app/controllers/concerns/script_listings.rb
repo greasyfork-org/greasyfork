@@ -449,6 +449,9 @@ module ScriptListings
         end
         next unless field_value
 
+        # Eliminate stupid values to prevent them causing exceptions in elasticsearch
+        next if (field_value - Time.zone.now).abs > 100.years
+
         case params["#{field}_operator"]
         when 'lt'
           with[es_field_name] = ..field_value
