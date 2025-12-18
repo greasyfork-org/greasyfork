@@ -45,7 +45,7 @@ class Locale < ApplicationRecord
     if in_locale
       language_code, country_code = code.split('-', 2)
 
-      language_name_in_current_language = I18nData.languages(in_locale)[language_code.upcase]&.split(/[;,]/)&.first
+      language_name_in_current_language = I18nData.languages(in_locale)[language_code.upcase]&.split(/[;,()]/)&.first
       country_name_in_current_language = I18nData.countries(in_locale)[country_code] if country_code
 
       if language_name_in_current_language
