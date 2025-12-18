@@ -39,6 +39,10 @@ fr:
     downgrade: "Revenir à la version %{version}"
     reinstall: "Réinstaller la version %{version}"
     old_version_warning: "Ceci n'est pas la dernière version de ce script. Si vous l'installez, vous n'aurez jamais de mise à jour vers les nouvelles versions. Voulez-vous vraiment l'installer ?"
+    post_install:
+      info_html: "Vous devriez maintenant avoir %{script} installé. Si vous rencontrez des difficultés lors de l'installation,  %{help_link:lisez nos documents d'aide}. Vos commentaires sont importants pour maintenir la qualité des scripts sur  %{site_name}. Une fois que vous aurez essayé  %{script}, pensez à %{feedback_link:laisser un avis}."
+      promoted_script_intro: "Vous aimerez peut-être aussi…"
+      similar_script_html: "%{name} - %{description}"
     library_instructions_html: "Ce script ne doit pas être installé directement. C'est une librairie destinée à être incluse dans d'autres scripts avec la méta-directive %{code}"
     deleted_notice: "Ce script a été supprimé."
     deleted_notice_with_reason: "Ce script a été supprimé en raison de %{report_link:ce rapport}."
@@ -177,6 +181,7 @@ fr:
     listing_sort_created: "Date de création"
     listing_sort_updated: "Date de mise à jour"
     listing_sort_name: "Nom"
+    listing_sort_entry_locales: 'Langues'
     listing_filter_by_site_label: "Montrer les scripts applicables à :"
     listing_filter_by_site_disable: "Tout"
     listing_filter_by_site_all_sites: "(Tous les sites)"
@@ -197,6 +202,10 @@ fr:
       me: Mes scripts
       user: Scripts de %{author_name}
     search_failed: Une erreur s'est produite lors du chargement de vos résultats. Certaines fonctionnalités de recherche peuvent ne pas fonctionner. Nous avons été informés du problème.
+    listing_ratings_explanation: La probabilité que le prochain avis reçois une bonne note, est entre 0 à 1.
+    listing_locale_explanation: Le script est disponible dans toutes les langues sélectionnées.
+    listing_advanced_search_applied: "Recherche avancée appliquée"
+    listing_advanced_search_clear: "Clear"
     import: "Importer des scripts"
     new: "Publiez un script que vous avez écrit"
     new_css: "Publiez un style que vous avez écrit"
@@ -372,6 +381,7 @@ fr:
     install_help_dialog:
       js:
         firefox: Vous devrez installer une extension telle que %{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} ou %{violentmonkey_link:Violentmonkey} pour installer ce script.
+        chrome: Vous devrez installer une extension telle que  %{tampermonkey_link:Tampermonkey} pour installer ce script.
         opera: Vous devrez installer une extension telle que %{tampermonkey_link:Tampermonkey} ou %{violentmonkey_link:Violentmonkey} pour installer ce script.
         safari: Vous devrez installer une extension telle que %{tampermonkey_link:Tampermonkey} ou %{userscripts_link:Userscripts} pour installer ce script.
         edge: Vous devrez installer une extension telle que %{tampermonkey_link:Tampermonkey} pour installer ce script.
@@ -518,6 +528,14 @@ fr:
         que vous pouvez utiliser dépend du navigateur que vous utilisez.</p>
     desktop_browsers:
       title: Bureau
+      browser_list_html: |
+          <ul>
+          <li>Chrome:  %{chrome_tampermonkey_link:Tampermonkey}</li>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey} ou  %{firefox_violentmonkey_link:Violentmonkey}</li><li>Safari: %{safari_tampermonkey_link:Tampermonkey} ou  %{safari_userscripts_link:Userscripts}</li><li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+          <li>Opéra: %{opera_tampermonkey_link:Tampermonkey} ou  %{opera_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>%{adguard_link:AdGuard}: (aucun logiciel supplémentaire requis)</li>
+          </ul>
     android_browsers:
       title: Mobile (Android)
       browser_list_html: |

@@ -38,6 +38,9 @@ bg:
     downgrade: "Върнете версия %{version}"
     reinstall: "Преинсталирайте %{version}"
     old_version_warning: "Това не е последната версия на този скрипт. Ако я инсталирате, тя никога няма да бъде обновена до по-нова версия. Инсталиране въпреки това?"
+    post_install:
+      promoted_script_intro: "Можете да харесате и..."
+      similar_script_html: "%{name} - %{description}"
     library_instructions_html: "Този скрипт не може да бъде инсталиран директно. Това е библиотека за други скриптове и може да бъде използвана с мета-директива %{code}"
     deleted_notice: "Този скрипт беше изтрит."
     deleted_notice_with_reason: "Този скрипт е изтрит заради %{report_link:този доклад}."
@@ -175,6 +178,7 @@ bg:
     listing_sort_created: "Дата на създаване"
     listing_sort_updated: "Дата на обновяване"
     listing_sort_name: "Име"
+    listing_sort_entry_locales: 'Езици'
     listing_filter_by_site_label: "Показване на скриптове за:"
     listing_filter_by_site_disable: "Всички"
     listing_filter_by_site_all_sites: "(Всички сайтове)"
@@ -195,6 +199,10 @@ bg:
       me: Моите скриптове
       user: Скриптове от %{author_name}
     search_failed: Нещо се обърка докато зареждахме резултатите. Някаква фунционалност на търсенето може да не работи. Известени сме за проблема.
+    listing_ratings_explanation: Вероятността следващото ревю да бъде с добра оценка, стойност между 0 и 1.
+    listing_locale_explanation: Скрипът е достъпен за всички избрани езици
+    listing_advanced_search_applied: "Приложено разширено търсене"
+    listing_advanced_search_clear: "Изчисти"
     import: "Импортиране на скриптове"
     new: "Публикувай написан от теб скрипт"
     new_css: "Публикувай създаден от теб стил"
@@ -370,6 +378,7 @@ bg:
     install_help_dialog:
       js:
         firefox: За да инсталирате този скрипт, трябва да имате инсталирано разширение като %{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} или %{violentmonkey_link:Violentmonkey}.
+        chrome: За да инсталирате този скрипт, трябва да инсталирате разширение, като например %{tampermonkey_link:Tampermonkey} .
         opera: За да инсталирате този скрипт, трябва да имате инсталирано разширение като  %{tampermonkey_link:Tampermonkey} или %{violentmonkey_link:Violentmonkey}.
         safari: За да инсталирате този скрипт, трябва да имате инсталирано разширение като  %{tampermonkey_link:Tampermonkey} или %{userscripts_link:Userscripts}.
         edge: За да инсталирате скрипта, трябва да инсталирате разширение като %{tampermonkey_link:Tampermonkey}.
