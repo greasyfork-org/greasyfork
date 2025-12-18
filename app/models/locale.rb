@@ -24,23 +24,35 @@ class Locale < ApplicationRecord
 
   def best_name(in_locale:)
     in_locale = in_locale.code if in_locale.is_a?(Locale)
-    # The data from the gem does not have region-specific names.
-    in_locale = in_locale.to_s.split('-').first
 
-    language_code, country_code = code.split('-', 2)
-    language_name_in_current_language, country_name_in_current_language = nil
-
+    # Find what locale we're going to display
     begin
-      language_name_in_current_language = I18nData.languages(in_locale)[language_code.upcase]&.split(';')&.first
-      country_name_in_current_language = I18nData.countries(in_locale)[country_code] if country_code
+      I18nData.languages(in_locale)
     rescue I18nData::NoTranslationAvailable
-      # in_locale is not supported by I18nData.
+      language_only_code = in_locale.split('-')[0]
+      if language_only_code == in_locale
+        in_locale = nil
+      else
+        begin
+          I18nData.languages(language_only_code)
+          in_locale = language_only_code
+        rescue I18nData::NoTranslationAvailable
+          in_locale = nil
+        end
+      end
     end
 
-    if country_code
-      return "#{language_name_in_current_language} (#{country_name_in_current_language})" if language_name_in_current_language && country_name_in_current_language
-    elsif language_name_in_current_language
-      return language_name_in_current_language
+    if in_locale
+      language_code, country_code = code.split('-', 2)
+
+      language_name_in_current_language = I18nData.languages(in_locale)[language_code.upcase]&.split(/[;,]/)&.first
+      country_name_in_current_language = I18nData.countries(in_locale)[country_code] if country_code
+
+      if language_name_in_current_language
+        return "#{language_name_in_current_language} (#{country_name_in_current_language})" if country_name_in_current_language
+
+        return language_name_in_current_language
+      end
     end
 
     native_name || english_name
