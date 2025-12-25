@@ -39,6 +39,7 @@ bg:
     reinstall: "Преинсталирайте %{version}"
     old_version_warning: "Това не е последната версия на този скрипт. Ако я инсталирате, тя никога няма да бъде обновена до по-нова версия. Инсталиране въпреки това?"
     post_install:
+      info_html: "%{script} вече би трябвало да е инсталиран. Ако сте срещнали проблеми при инсталацията, %{help_link:прочетете помощната документация}. Вашите отзиви са важни, за да поддържаме качеството на скриптовете на %{site_name}. След като пробвате %{script}, моля %{feedback_link:оставете отзив}."
       promoted_script_intro: "Можете да харесате и..."
       similar_script_html: "%{name} - %{description}"
     library_instructions_html: "Този скрипт не може да бъде инсталиран директно. Това е библиотека за други скриптове и може да бъде използвана с мета-директива %{code}"
@@ -521,6 +522,16 @@ bg:
         мениджър. Кой ще използвате, това зависи от използвания от вас браузър.</p>
     desktop_browsers:
       title: Десктоп (настолен)
+      browser_list_html: |
+          <ul>
+          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</li>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, или %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} или %{safari_userscripts_link:Userscripts}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} или %{opera_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>%{adguard_link:AdGuard}: (не е нужен допълнителен софтуер)</li>
+          </ul>
     android_browsers:
       title: Мобилен (Андроид)
       browser_list_html: |

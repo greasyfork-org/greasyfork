@@ -38,6 +38,8 @@ tr:
     downgrade: "%{version} sürümüne düşür"
     reinstall: "%{version} sürümünü tekrar yükle"
     old_version_warning: "Bu, betiğin en son sürümü değil. Siz eğer bu sürümü yüklerseniz en yeni sürüme asla güncelleyemeyeceksiniz. Yine de yüklensin mi?"
+    post_install:
+      promoted_script_intro: "Belki bunuda beğenebilirsiniz..."
     library_instructions_html: "Bu script direkt olarak kurulamaz. Başka scriptler için bir kütüphanedir ve meta yönergeleri içerir %{code}"
     deleted_notice: "Bu script silinmiş."
     deleted_notice_with_reason: "Bu script %{report_link:this report}. nedeniyle silindi."
@@ -171,11 +173,13 @@ tr:
     listing_sort_created: "Oluşturma tarihi"
     listing_sort_updated: "Güncellenme tarihi"
     listing_sort_name: "İsim"
+    listing_sort_entry_locales: 'Diller'
     listing_filter_by_site_label: "Şunun için scriptler gösteriliyor:"
     listing_filter_by_site_disable: "Tümü"
     listing_filter_by_site_all_sites: "(Tüm siteler)"
     listing_filter_by_language_label: "Dil:"
     listing_filter_by_site_more_sites: "Daha fazla.."
+    listing_filter_by_authorship_label: "Sahiplik:"
     listing_no_scripts: "Script bulunamadı."
     listing_created_feed: "Yeni scriptler"
     listing_updated_feed: "Güncellenmiş scriptler"
@@ -186,9 +190,13 @@ tr:
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
     listing_author:
+      all: Tüm yazarlar
       me: Benim betiklerim
       user: '%{author_name} kullanıcısının betikleri'
     search_failed: Sonuçlarınız yüklenirken bir sorun oluştu. Bazı arama işlevleri çalışmıyor olabilir. Sorun hakkında bilgilendirildik.
+    listing_locale_explanation: Betik herhangi seçilen bir dil için kullanılabilinir.
+    listing_advanced_search_applied: "Gelişmiş arama uygulandı"
+    listing_advanced_search_clear: "Temizle"
     import: "Scriptleri içe aktar"
     new: "Yazdığınız bir komut dosyasını yayınlayın"
     new_css: "Yazdığınız bir stili yayınlayın"
@@ -316,8 +324,13 @@ tr:
     must_confirm: "Script paylaşabilmek için hesabınızı onaylamanız gerekmektedir. İki onaylama seçeneği bulunmakta - harici bir giriş yöntemi ekleyin veya bir onay epostası gönderin"
     must_confirm_email_button: "%{email} adresine doğrulama e-postası yolla"
     needs_secure_login:
+      intro: "Betik paylaşmadan önce hesabınızda güvenli giriş yöntemi kurmanız gerekiyor."
+      secure_internal_heading: "1. Seçenek: %{site_name} giriş yönteminizi güvenceye alın"
       confirm_email: "E-posta adresinizi doğrulayın"
       enable_2fa: "2 faktörlü doğrulamayı etkinleştir"
+      add_external_heading: "2. Seçenek : sadece Harici giriş yöntemi kullan"
+      add_external: "Harici giriş yöntemi ekle"
+      remove_password: "%{site_name}şifrenizi kaldırın"
     authors_heading: "Yazarlar"
     error_unauthorized_copy: "Bu kod parçası görünüşe göre %{script} betiğinin izinsiz olarak kullanılmış bir kopyası. Lütfen %{site_name}'un betik yayınlamak hakkında ki %{rules_link:kurallarına} bakınız."
     invitations:
@@ -356,6 +369,7 @@ tr:
         firefox: 'Bu betiği kurabilmeniz için %{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} ya da %{violentmonkey_link:Violentmonkey} gibi bir kullanıcı betiği eklentisini kurmanız gerekmektedir. '
         opera: 'Bu betiği kurabilmeniz için %{tampermonkey_link:Tampermonkey} ya da %{violentmonkey_link:Violentmonkey} gibi bir kullanıcı betiği eklentisini kurmanız gerekmektedir. '
         safari: 'Bu betiği kurabilmeniz için %{tampermonkey_link:Tampermonkey} ya da %{userscripts_link:Userscripts} gibi bir kullanıcı betiği eklentisini kurmanız gerekmektedir. '
+        edge: Bu betiği indirebilmeniz için ayrıca %{tampermonkey_link:Tampermonkey} gibi bir eklenti kurmanız gerekmektedir.
         other: Bu komut dosyasını yüklemek için bir kullanıcı komut dosyası yöneticisi uzantısı yüklemeniz gerekecek.
         bypass: (Zaten bir kullanıcı komut dosyası yöneticim var, kurmama izin verin!)
       css:
