@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_14_014535) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_24_202322) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.text "Attributes"
     t.text "Body", null: false
@@ -328,6 +328,13 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_14_014535) do
     t.integer "installs", null: false
     t.bigint "script_id", null: false
     t.index ["script_id", "install_date"], name: "index_install_counts_on_script_id_and_install_date", unique: true
+  end
+
+  create_table "library_usages", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+    t.bigint "library_script_id", null: false
+    t.bigint "script_id", null: false
+    t.index ["library_script_id"], name: "fk_rails_2c229fa548"
+    t.index ["script_id"], name: "fk_rails_aa86baf7ab"
   end
 
   create_table "licenses", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
@@ -802,6 +809,8 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_14_014535) do
   add_foreign_key "discussions", "scripts", on_delete: :cascade
   add_foreign_key "identities", "users", on_delete: :cascade
   add_foreign_key "install_counts", "scripts", on_delete: :cascade
+  add_foreign_key "library_usages", "scripts", column: "library_script_id", on_delete: :cascade
+  add_foreign_key "library_usages", "scripts", on_delete: :cascade
   add_foreign_key "locale_contributors", "locales"
   add_foreign_key "localized_script_attributes", "locales"
   add_foreign_key "localized_script_attributes", "scripts", on_delete: :cascade

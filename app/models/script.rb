@@ -44,6 +44,8 @@ class Script < ApplicationRecord
   has_many :subresources, through: :subresource_usages
   has_many :notifications, inverse_of: :item, dependent: :destroy
   has_many :stat_bans, dependent: :destroy
+  has_many :library_usages, dependent: :destroy
+  has_many :library_usages_as_library, class_name: 'LibraryUsage', foreign_key: :library_script_id, inverse_of: :library_script, dependent: :destroy
 
   has_one :cleaned_code, dependent: :delete
 
