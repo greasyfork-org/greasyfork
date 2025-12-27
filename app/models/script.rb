@@ -451,7 +451,7 @@ class Script < ApplicationRecord
   end
 
   def self.record_install(id, ip)
-    Script.connection.execute("INSERT IGNORE INTO daily_install_counts (script_id, ip) VALUES (#{Script.connection.quote_string(id)}, '#{Script.connection.quote_string(ip)}');")
+    Script.connection.execute("INSERT IGNORE INTO daily_install_counts (script_id, ip) VALUES (#{Script.connection.quote(id)}, '#{Script.connection.quote_string(ip)}');")
   end
 
   def active?

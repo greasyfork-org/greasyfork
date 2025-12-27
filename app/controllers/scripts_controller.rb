@@ -344,7 +344,7 @@ class ScriptsController < ApplicationController
       return
     end
 
-    unless install_keys.any? { |install_key| Digest::SHA1.hexdigest(request.remote_ip + script_id + install_key) == params[:ping_key] }
+    unless install_keys.any? { |install_key| Digest::SHA1.hexdigest("#{request.remote_ip}#{script_id}#{install_key}") == params[:ping_key] }
       Rails.logger.warn("Install not recorded for script #{script_id} and IP #{ip} - install key does not match.")
       head :no_content
       return
@@ -357,7 +357,7 @@ class ScriptsController < ApplicationController
     end
 
     passed_checks = PingRequestCheckingService.check(request)
-    session[PingRequestChecking::SessionInstallKey::SESSION_KEY] -= [script_id.to_i] if session[PingRequestChecking::SessionInstallKey::SESSION_KEY]
+    session[PingRequestChecking::SessionInstallKey::SESSION_KEY] -= [script_id] if session[PingRequestChecking::SessionInstallKey::SESSION_KEY]
     unless passed_checks.count == PingRequestCheckingService::STRATEGIES.count
       Rails.logger.warn("Install not recorded for script #{script_id} and IP #{ip} - only passed ping checks: #{passed_checks.join(', ')}")
       head :no_content
@@ -874,9 +874,7 @@ class ScriptsController < ApplicationController
     rescue ActionDispatch::RemoteIp::IpSpoofAttackError
       # do nothing, ip remains nil
     end
-    # strip the slug
-    script_id = params[:id].to_i.to_s
-    return [ip, script_id]
+    [ip, params[:id].to_i]
   end
 
   def post_install
