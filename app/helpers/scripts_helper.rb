@@ -152,6 +152,6 @@ module ScriptsHelper
   end
 
   def current_script_listing_path(**args)
-    params[:site].present? ? by_site_scripts_path(params[:site], **args) : scripts_path(**args)
+    (params[:site].present? && /[a-z0-9\-.*]*?/i.match?(params[:site])) ? by_site_scripts_path(params[:site], **args) : scripts_path(**args)
   end
 end
