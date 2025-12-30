@@ -38,6 +38,25 @@ class ScriptVersionAllowedRequiresTest < ActiveSupport::TestCase
     assert_includes script_version.errors.full_messages, 'Code uses a malformed external script reference: @require https://ajax.googleapis.com/invalid^stuff'
   end
 
+  test 'invalid url with subresource integrity in require is disallowed' do
+    script = valid_script
+    script_version = script.script_versions.first
+    script_version.code = <<~JS
+      // ==UserScript==
+      // @name		A Test!
+      // @description		Unit test.
+      // @version 1.0
+      // @namespace http://greasyfork.local/users/1
+      // @include https://example.com
+      // @require https://ajax.googleapis.com/invalid^stuff#sha256=d776ab56bb50565a43df1932d2c28ce22574a00f33c9663bd5fd687fc64d9607
+      // @license MIT
+      // ==/UserScript==
+      var foo = "bar";
+    JS
+    assert_not script_version.valid?
+    assert_includes script_version.errors.full_messages, 'Code uses a malformed external script reference: @require https://ajax.googleapis.com/invalid^stuff#sha256=d776ab56bb50565a43df1932d2c28ce22574a00f33c9663bd5fd687fc64d9607'
+  end
+
   test 'relative url in require is disallowed' do
     script = valid_script
     script_version = script.script_versions.first
