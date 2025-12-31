@@ -1,0 +1,25 @@
+<%- title t('scripts.stats_title', script_name: @script.name(request_locale)) %>
+<%- description "Install stats for #{@script.name(request_locale)}" %>
+
+<p>
+  <%= t('scripts.stats_library_usages_intro_html', site_name:) %>
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th><%= t('scripts.stats_library_usages_script_column') %></th>
+      <td class="numeric"><%= t('scripts.daily_installs') %></td>
+      <td class="numeric"><%= t('scripts.total_installs') %></td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @using_scripts.each do |script| %>
+      <tr>
+        <td><%= render_script(script) %></td>
+        <td class="numeric"><%= number_with_delimiter(script.daily_installs) %></td>
+        <td class="numeric"><%= number_with_delimiter(script.total_installs) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

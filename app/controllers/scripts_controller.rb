@@ -654,7 +654,13 @@ class ScriptsController < ApplicationController
           @bots = 'noindex' unless params[:period].nil?
           @canonical_params = [:id, :version]
           set_bots_directive
-          render_to_string
+          if @script.library?
+            using_script_ids = @script.library_usages_as_library.pluck(:script_id)
+            @using_scripts = Script.listable(script_subset).where(id: using_script_ids).order(:id)
+            render_to_string 'library_stats'
+          else
+            render_to_string
+          end
         end
         format.csv do
           data = CSV.generate do |csv|
