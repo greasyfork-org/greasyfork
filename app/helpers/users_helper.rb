@@ -54,8 +54,7 @@ module UsersHelper
   end
 
   def render_user(user, user_id, skip_link: false, script: nil, force_author: false, skip_badge: false)
-    return tag.i { 'No-one' } unless user_id
-    return tag.i { "Deleted user #{user_id}" } unless user
+    return tag.i { render_user_text(user, user_id) } unless user
 
     badge = if skip_badge
               ''
