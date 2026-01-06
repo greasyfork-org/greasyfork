@@ -11,7 +11,7 @@ class UrlToScriptService
       return :non_gf_url
     # A GF URL?
     else
-      url_match = %r{/scripts/([0-9]+)(-|$)}.match(value)
+      url_match = %r{/scripts/([0-9]+)(-|$|/)}.match(value)
       return :non_script_url if url_match.nil?
 
       script_id = url_match[1].to_i

@@ -5,7 +5,7 @@ class UrlToScriptServiceTest < ActiveSupport::TestCase
   end
 
   test 'gf update url' do
-    assert_equal 1, UrlToScriptService.to_script('https://update.greasyfork.org/scripts/1', verify_existence: false)
+    assert_equal 1, UrlToScriptService.to_script('https://update.greasyfork.org/scripts/1/Script%20Name.js', verify_existence: false)
   end
 
   test 'non gf url' do
