@@ -192,6 +192,7 @@ ko:
       me: 내 스크립트
       user: '%{author_name}의 스크립트'
     search_failed: 결과를 불러오는 중 오류가 발생했습니다. 일부 검색 기능이 작동하지 않을 수 있습니다. 관리자에게 문제가 보고되었습니다.
+    listing_locale_explanation: 선택한 언어 중 하나로 스크립트를 이용할 수 있습니다.
     import: "스크립트 가져오기"
     new: "작성한 스크립트 게시하기"
     new_css: "작성한 스타일 게시하기"
@@ -222,7 +223,7 @@ ko:
     post_new_script: "스크립트 게시"
     post_updated_script: "새 버전 게시"
     type_1_html: "공개 유저 스크립트 - 모든 사용자가 보고 사용할 수 있습니다."
-    type_2_html: "미등록 유저 스크립트 - (준)비공개용입니다. 직접 URL로 접근할 수 있지만, %{site_name} 어디에도 링크되지 않습니다."
+    type_2_html: "비공개 사용자 스크립트 - 어느 곳에서도 링크되지 않은 사용자 스크립트입니다. 개발 중인 스크립트나 다른 사용자에게 일반적으로 유용하지 않은 스크립트에 사용됩니다. URL을 알고 있는 경우 다른 사용자가 접근하는 것을 막지는 않습니다. (greasy fork의 모든 스크립트는 숫자 색인으로 접근이 가능합니다)"
     type_3_html: "라이브러리 - 다른 스크립트에서 <code>@require</code>로 사용하며 직접 설치되지 않는 스크립트입니다."
     override_warning_checkbox_label: "경고 무시하고 저장"
     warning_version_not_incremented_html: "코드는 업데이트했지만 <code>@version</code> 번호를 올리지 않았습니다. 이전에 스크립트를 설치한 사용자는 업데이트된 코드를 받지 못할 수 있습니다."
@@ -367,6 +368,7 @@ ko:
     install_help_dialog:
       js:
         firefox: 이 스크립트를 설치하려면 %{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} 또는 %{violentmonkey_link:Violentmonkey}와 같은 확장 프로그램이 필요합니다.
+        chrome: 이 스크립트를 설치하려면 %{tampermonkey_link:Tampermonkey}와 같은 확장 프로그램을 설치해야 합니다.
         opera: 이 스크립트를 설치하려면 %{tampermonkey_link:Tampermonkey} 또는 %{violentmonkey_link:Violentmonkey}와 같은 확장 프로그램이 필요합니다.
         safari: 이 스크립트를 설치하려면 %{tampermonkey_link:Tampermonkey} 또는 %{userscripts_link:Userscripts}와 같은 확장 프로그램이 필요합니다.
         edge: 이 스크립트를 설치하려면 %{tampermonkey_link:Tampermonkey}와 같은 확장 프로그램이 필요합니다.
@@ -604,6 +606,8 @@ ko:
     2fa_enable_code_incorrect: 2FA 코드가 올바르지 않습니다. 다시 시도하세요.
     2fa_disabled: 2FA가 비활성화되었습니다.
     2fa_disabled_already: 2FA는 이미 비활성화되어 있습니다.
+    2fa_entry:
+      intro_html: "로그인하려면 . 2단계 인증(2FA) 앱에서 제공한 코드를 입력하세요."
     enable_2fa:
       intro: "다음 방법 중 하나를 사용하여 %{site_name}를 2단계 인증(2FA) 앱에 추가한 다음, 아래에 코드를 입력하세요."
       qr_heading: QR 코드로 추가
@@ -1425,6 +1429,10 @@ ko:
     title: 스크립트 가져오기
     intro: "%{site_name}는 버전 관리 시스템(예: GitHub), 자체 서버 또는 다른 유저 스크립트 호스팅 사이트 등 다른 곳에 이미 호스팅된 스크립트를 가져올 수 있습니다."
     url_entry_label: 가져올 URL을 줄바꿈으로 구분하여 입력하세요. 원본 JS 또는 CSS 파일 URL이어야 합니다.
+    language:
+      detect: 확장자를 기준으로 감지하며 기본값은 JavaScript입니다.
+      js: JavaScript
+      css: CSS
     sync_type_label: "초기 가져오기 후, 스크립트를 다음 방식으로 동기화합니다:"
     additional_info_html: |
         <p>소스 관리 시스템에서 가져오는 스크립트의 경우, 사용하는 URL이 특정 커밋이 아닌 브랜치를 참조하는지 확인하세요. 그렇지 않으면 업데이트되지 않습니다. 예를 들어, <code>https://bitbucket.org/username/reponame/raw/<b>커밋_해시</b>/script.user.js</code> 대신 <code>https://bitbucket.org/username/reponame/raw/<b>브랜치_이름</b>/script.user.js</code> 형식을 사용하세요.</p>

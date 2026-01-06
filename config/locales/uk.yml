@@ -38,6 +38,9 @@ uk:
     downgrade: "Відкотитися до версії %{version}"
     reinstall: "Перевстановити версію %{version}"
     old_version_warning: "Це застаріла версія скрипта. Якщо її встановити, новіша версія ніколи не буде встановлена. Все одно встановити?"
+    post_install:
+      promoted_script_intro: "Вам також може сподобатись..."
+      similar_script_html: "%{name} - %{description}"
     library_instructions_html: "Цей скрипт не слід встановлювати безпосередньо. Це - бібліотека для інших скриптів для включення в мета директиву %{code}"
     deleted_notice: "Цей скрипт було видалено."
     deleted_notice_with_reason: "Цей скрипт було видалено через %{report_link:ця скарга}."
@@ -52,6 +55,7 @@ uk:
     reported_notice_for_author: "Цей сценарій буде недоступним іншим користувачам, поки його не перегляне оператор."
     info_page: "Інформація"
     code_page: "Код"
+    wrap_lines: "Переніс слів"
     history_page: "Історія"
     feedback_page: "Відгуки (%{count})"
     stats_page: "Статистика"
@@ -85,14 +89,21 @@ uk:
       title: "%{script_name} - Адмін"
       promoted_heading: "Розкручений сценарій"
       promoted_explanation: "Коли встановлений скрипт, %{site_name} користувач може запропонувати інший скрипт з вашого обраного."
+      promoted_script_label: "URL-адреса скрипта для підвищення"
       promoted_submit: "Встановити розкручений сценарій"
       sync_heading: "Синхронізація ресурсів"
       locale_heading: "Мова за замовчуванням"
+      locale_example_html: "Локалізація цього тексту: <i>%{text}</i>"
+      locale_multiple_note: "Зверніть увагу, що %{meta_keys_link:для скрипта можна визначити кілька локалізацій}."
       update_locale: "Оновити мову"
       no_moderator_logs: "Модератори не виконали жодних дій над цим сценарієм."
       compare_title: "Повірняти з іншим скриптом."
+      compare_to: "Скрипт на %{site_name} для порівняння (URL)"
       compare_button: "Порівняти"
       compare_must_be_local_url: "Сценарій для порівняння має бути URL на %{site_name}."
+      compare_cleaned_code_unavailable: "Порівняння чистого коду скрипта ще недоступне. "
+      checkup:
+        title: Перевірка
     history_title: "%{script_name} - Історія версій"
     history_only_code_changes_info: "Це версії цього скрипту, де код був змінений."
     history_all_changes_link: "Показати всі версії."
@@ -123,11 +134,13 @@ uk:
       all: Увесь час
     derivatives_title: "%{script_name} - Подібні"
     derivatives_intro: "Ці сценарії можуть ґрунтуватись на ваших (або ваші можуть ґрунтуватись на них). Якщо ви знайшли приклад несанкціонованого використання вашого коду, зголосіть його із вкладки відгуків сценарію."
+    derivatives_script_html: "%{script} від %{user}, ліцензія: %{license} %{diff_link:[Diff]}"
     derivatives_exact_copies_heading: "Точні копії"
     derivatives_exact_copies_list_intro: "Наступні скрипти мають такий самий код, як і ваш:"
     derivatives_exact_copies_item_html: "%{script_link} від %{author_links} - версії: %{version_list}"
     derivatives_exact_copes_none: "Більше немає скриптів на %{site_name}, що мають такий самий код, як і цей скрипт."
     derivatives_similar_heading: "Схожі скрипти"
+    derivatives_similar_info: "Ми періодично перевіряємо найсвіжіші версії всіх інших скриптів, щоб знайти ті, що найбільш схожі на ваш. Ми також перевіряємо щоразу, коли ви публікуєте оновлення свого скрипта і на вимогу."
     similarity_score:
       high: Дуже схожі
       medium: Помірно схожі
@@ -139,12 +152,14 @@ uk:
     derivatives_similar_last_check_soon: "Ми скоро перевіримо скрипти, подібні до вашого."
     derivatives_similar_last_check_again_soon_html: "Ми востаннє перевіряли наявність сценаріїв, схожих на ваші, о %{date}. Незабаром ми здійснимо перевірку ще раз."
     derivatives_similar_check_now: "Перевірити зараз"
+    derivatives_similiar_queued: Перевірка на схожість буде завершена через кілька хвилин.
     listing_title_all_sites: "Скрипти користувачів для всіх сайтів"
     listing_description_all_sites: "Скрипти користувачів, що додають нові функції і видаляють помилки на всіх сайтах"
     listing_title_for_site: "Скрипти користувачів для %{site}"
     listing_description_for_site: "Скрипти користувачів, що додають нові функції і видаляють помилки на %{site}"
     listing_title_for_search: "'%{search_string}' скрипти користувачів"
     listing_title_for_code_search: "'%{search_string}' скрипти користувачів"
+    listing_description_for_code_search_html: "Пошук коду для <code>%{search_string}</code>"
     listing_title_generic: "Скрипти Користувачів"
     listing_title_for_favorites: "%{set_name} (Від %{user_name})"
     listing_description_generic: "Скрипти користувачів, що додають нові функції і видаляють помилки на сайтах якими ви користуєтесь"
@@ -156,11 +171,13 @@ uk:
     listing_sort_created: "Даті створення"
     listing_sort_updated: "Даті оновлення"
     listing_sort_name: "Назві"
+    listing_sort_entry_locales: 'Мови'
     listing_filter_by_site_label: "Показати сценарії для:"
     listing_filter_by_site_disable: "Всі"
     listing_filter_by_site_all_sites: "(Всі сайти)"
     listing_filter_by_language_label: "Мова:"
     listing_filter_by_site_more_sites: "Більше..."
+    listing_filter_by_authorship_label: "Авторство:"
     listing_no_scripts: "Скриптів не знайдено."
     listing_created_feed: "Нові скрипти"
     listing_updated_feed: "Оновлені скрипти"
@@ -170,6 +187,10 @@ uk:
     listing_language_all: "Всі"
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
+    listing_author:
+      all: Всі автори
+      me: Мої скрипти
+      user: Скрипти від %{author_name}
     import: "Імпортувати скрипти"
     new: "Опублікуйте свій скрипт"
     new_css: "Опублікуйте свій стиль"
@@ -200,7 +221,6 @@ uk:
     post_new_script: "Опублікувати скрипт"
     post_updated_script: "Опублікувати нову версію"
     type_1_html: "Загальний скрипт користувачів - скрипт який всі користувачі можуть бачити і використовувати."
-    type_2_html: "Приватні скрипти користувачів - скрипт користувача для (напів-)приватного використання. Доступні за прямим посиланням, проте не показані на жодній сторінці %{site_name}'у."
     type_3_html: "Бібліотека - скрипт, може бути підключений за допомогою <code>@require</code> з іншого скрипта, але не встановлюється безпосередньо."
     override_warning_checkbox_label: "Все одно зберегти"
     warning_version_not_incremented_html: "Ви оновили код, але не збільшили номер <code>@version</code>. Користувачі, які раніше встановили ваш скрипт не отримають оновлення коду."
@@ -218,19 +238,25 @@ uk:
     additional_info_add_localized: "Додати перекладену додаткову інформацію"
     additional_info_locale_repeated: "Надайте тільки одну додаткову інформацію для '%{locale_code}' мови."
     localized_additional_info_with_no_name: "Додаткова інформація була вказана для '%{locale_code}' мови, але при цьому @name:%{locale_code} не було вказано."
+    invalid_matchers: "Використано недійсні збіги: %{matches}"
     code_syncing_from_url_html: "Код скрипту налаштовано на синхронізацію з: %{field}"
     provide_code_syncing_from_url_html: "%{site_name} може імпортувати скрипти, які вже розміщених в іншому місці, наприклад, у системі контролю версій (як GitHub), ваш власний сервер або інший хостинг сайт користувацьких сценаріїв. Щоб включити синхронізацію для вашого сценарію, надайте URL: %{field}"
     sync_type_intro: "Скрипт буде синхронізовано:"
     sync_type_1:
       name: Вручну
+      description: перевірка на оновлення буде здійснюватися лише за вашим запитом
     sync_type_2:
       name: Автоматично
       description: перевірка оновлень буде проводитись періодично
     sync_type_3:
       name: Вебхук
+      description: буде оновлюватись при будь-якій зміні до цього файлу у вашому репозиторію
+    sync_name_and_description: "%{name} - %{description}"
     sync_failed_info_html: "Остання спроба синхронізації відбулась %{date}, і в результаті неї трапилась %{error}."
     sync_success_info_html: "Остання успішна спроба синхронізації відбулась %{date}."
     sync_never_succeeded: "Синхронізації ніколи не завершилась успішно."
+    sync_additional_info: Ви можете за бажанням синхронізувати додаткову інформацію свого скрипта.
+    add_synced_additional_info: Додайте перекладену, синхронізовану додаткову інформацію
     update_and_sync: "Оновити та синхронізувати зараз"
     update_no_sync: "Оновити"
     turn_off_syncing: "Вимкнути синхронізацію для цього скрипту"
@@ -249,6 +275,7 @@ uk:
     diff_new_version: "Нова:"
     diff_lines_of_context: "Рядки змін:"
     diff_ignore_whitespace: "Ігнорувати зміни в табуляції"
+    diff_terser: "Очистити код перед порівнянням "
     diff_refresh: "Оновити"
     diff_no_change: "Не знайдено відмінностей."
     good_rating_explanation: "Кількість людей, які оцінили його як Хороший, чи додали в улюблені."
