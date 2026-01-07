@@ -45,6 +45,17 @@ function installationHelpFunction(js) {
     }
     let bypassLink = modal.querySelector(".installation-instructions-modal-content-bypass a")
     bypassLink.setAttribute("href", installLink.getAttribute("href"))
+
+    try {
+      gtag('event', 'Installation install help modal', {
+        'browser_type': browserType,
+        'script_id': installLink.getAttribute('data-script-id'),
+        'value': 1
+      })
+    } catch (ex) {
+      console.log(ex)
+    }
+
     return new Promise(resolve => {
       bypassLink.addEventListener("click", function (event) {
         localStorage.setItem(js ? 'manualOverrideInstallJS' : 'manualOverrideInstallCSS', '1')
