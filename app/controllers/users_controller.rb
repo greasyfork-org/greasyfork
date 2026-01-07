@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:webhook]
 
   before_action :authenticate_user!, except: [:show, :webhook, :index]
-  before_action :authorize_for_moderators_only, only: [:ban, :do_ban, :unban, :do_unban, :mark_email_as_confirmed]
+  before_action :authorize_for_moderators_only, only: [:ban, :do_ban, :unban, :do_unban, :mark_email_as_confirmed, :ban_with_ip]
   before_action :check_read_only_mode, except: [:index, :show]
   before_action :disable_browser_caching!, only: [:edit_sign_in]
   before_action :handle_api_request, only: [:index, :show]
@@ -271,6 +271,24 @@ class UsersController < ApplicationController
     user.unban!(moderator: current_user, reason: params[:reason], undelete_scripts: params[:undelete_scripts] == '1')
     flash[:notice] = "#{user.name} has been unbanned."
     redirect_to user
+  end
+
+  def ban_with_ip
+    other_user = User.find(params[:same_ip])
+    ip = other_user.current_sign_in_ip
+
+    reason = Report::REASON_SPAM
+    full_reason = t("reports.reason.#{reason}", locale: 'en')
+    User.search('*', where: { ip:, banned: false }).each do |user|
+      next if user.banned?
+
+      user.ban!(moderator: current_user, reason: full_reason)
+      user.delete_all_comments!(by_user: current_user, spam: true)
+    end
+
+    # rubocop:disable Rails/I18nLocaleTexts
+    redirect_to users_path(same_ip: params[:same_ip]), notice: 'Users with this IP have been banned.'
+    # rubocop:enable Rails/I18nLocaleTexts
   end
 
   def delete_info

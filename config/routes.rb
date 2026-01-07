@@ -190,6 +190,9 @@ Rails.application.routes.draw do
           end
         end
       end
+      collection do
+        post 'ban_with_ip', to: 'users#ban_with_ip', as: 'ban_with_ip'
+      end
     end
 
     resources :discussions, path: 'discussions/:category', category: /greasyfork|development|requests|script-discussions|no-scripts|moderators/, only: [:index, :show, :destroy], as: 'category_discussion' do

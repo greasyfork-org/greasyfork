@@ -17,6 +17,9 @@
       <ol id="browse-user-list" class="user-list">
         <%= render partial: 'user', collection: @users, locals: {script_counts: @user_script_counts} %>
       </ol>
+      <% if current_user&.moderator? && params[:same_ip] %>
+        <%= link_to 'Ban all users with this IP as spammers', ban_with_ip_users_path(same_ip: params[:same_ip]), data: { turbo: true, turbo_method: :POST, turbo_confirm: "Ban all users with this IP as spammers, deleting all scripts and comments? Only do this if it's blatant and you're very sure." } %>
+      <% end %>
     <% end %>
 
     <% if !defined?(@paginate) or @paginate %>
