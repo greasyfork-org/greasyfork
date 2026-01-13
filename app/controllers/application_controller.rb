@@ -247,6 +247,6 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_from_cn_domain
-    redirect_to request.params.merge(host: 'greasyfork.org', port: nil), status: :moved_permanently, allow_other_host: true if request.host == 'cn.greasyfork.org'
+    redirect_to request.params.merge(host: 'greasyfork.org', port: nil), status: :moved_permanently, allow_other_host: true if request.host == 'cn-greasyfork.org'
   end
 end
