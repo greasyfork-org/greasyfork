@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_active_storage_url_options, if: -> { Rails.env.test? }
+  before_action :redirect_from_cn_domain
 
   include ApplicationHelper
   include ShowsAds
@@ -243,5 +244,9 @@ class ApplicationController < ActionController::Base
 
       params[param_name] = pv
     end
+  end
+
+  def redirect_from_cn_domain
+    redirect_to request.params.merge(host: 'greasyfork.org', port: nil), status: :moved_permanently, allow_other_host: true if request.host == 'cn.greasyfork.org'
   end
 end

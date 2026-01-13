@@ -539,8 +539,6 @@ class Script < ApplicationRecord
   def update_host(sleazy: false, cn_greasy: false)
     return Rails.env.production? ? 'update.sleazyfork.org' : 'update.sleazyfork.local:3000' if sleazy && sensitive
 
-    return Rails.env.production? ? 'update.cn-greasyfork.org' : 'update.cn-greasyfork.local:3000' if cn_greasy
-
     Rails.env.production? ? 'update.greasyfork.org' : 'update.greasyfork.local:3000'
   end
 
