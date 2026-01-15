@@ -32,12 +32,20 @@ class AdMethod
     @ad_method == 'ea'
   end
 
+  def rb?
+    @ad_method == 'rb'
+  end
+
   def self.ga
     new('ga')
   end
 
   def self.ea(variant: nil)
     new('ea', variant:)
+  end
+
+  def self.rb
+    new('rb')
   end
 
   def self.no_ad(reason)

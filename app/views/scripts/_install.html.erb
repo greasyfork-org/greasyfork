@@ -95,6 +95,7 @@
     <p class="installation-instructions-modal-content-other">
       <%= t('scripts.install_help_dialog.js.other') %>
     </p>
+    <%= render partial: 'shared/rb_ad' if @ad_method&.rb? %>
     <p class="installation-instructions-modal-content-bypass">
       <%= link_to t('scripts.install_help_dialog.js.bypass'), '#' %>
     </p>

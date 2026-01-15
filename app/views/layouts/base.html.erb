@@ -198,6 +198,8 @@
     <% end %>
 
     <%= content_for?(:content) ? yield(:content) : yield %>
+
+    <%= render partial: 'shared/rb_ad' if sleazy? && !rb_site_wide_exception? %>
   </div>
 
   <% unless general_ads_setting&.no_ads? %>
