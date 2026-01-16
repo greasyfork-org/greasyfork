@@ -1,3 +1,7 @@
 <div class="ad ad-rb">
-  <%= link_to vite_image_tag('images/ads/roxy/banner.png'), 'https://roxybrowser.com/?code=greasyfork', target: '_blank' %>
+  <% if request_locale.code == 'zh-CN' || request_locale.code == 'zh-TW' %>
+    <%= link_to vite_image_tag('images/ads/roxy/banner_zh.png'), 'https://roxybrowser.com/?code=greasyfork', target: '_blank' %>
+  <% else %>
+    <%= link_to vite_image_tag('images/ads/roxy/banner.png'), 'https://roxybrowser.com/?code=greasyfork', target: '_blank' %>
+  <% end %>
 </div>
