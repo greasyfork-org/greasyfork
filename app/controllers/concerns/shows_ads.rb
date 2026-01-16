@@ -5,7 +5,7 @@ module ShowsAds
     no_ads = general_ads_setting
     return no_ads if no_ads
 
-    return AdMethod.no_ad(:sleazy) if sleazy?
+    return AdMethod.rb if sleazy?
 
     AdMethod.ga
   end
@@ -16,7 +16,7 @@ module ShowsAds
 
     return AdMethod.no_ad(:script_deleted) if script.nil? || script.deleted?
 
-    return AdMethod.no_ad(:sleazy) if sleazy?
+    return AdMethod.rb if sleazy?
 
     return AdMethod.no_ad(:sensitive) if script&.sensitive
 
@@ -33,7 +33,7 @@ module ShowsAds
     no_ads = general_ads_setting
     return no_ads if no_ads
 
-    return AdMethod.no_ad(:sleazy) if sleazy?
+    return AdMethod.rb if sleazy?
 
     return AdMethod.no_ad(:sensitive_list) if scripts.any?(&:sensitive?)
 
@@ -48,7 +48,9 @@ module ShowsAds
 
     return no_ads if no_ads
 
-    return AdMethod.no_ad(:sensitive) if discussion.script&.sensitive? || sleazy?
+    return AdMethod.rb if sleazy?
+
+    return AdMethod.no_ad(:sensitive) if discussion.script&.sensitive?
 
     AdMethod.ea(variant: (request_locale.code unless valid_locale_for_ea?))
   end
@@ -57,7 +59,7 @@ module ShowsAds
     no_ads = general_ads_setting
     return no_ads if no_ads
 
-    return AdMethod.no_ad(:sleazy) if sleazy?
+    return AdMethod.rb if sleazy?
 
     AdMethod.ea(variant: (request_locale.code unless valid_locale_for_ea?))
   end
@@ -66,7 +68,7 @@ module ShowsAds
     no_ads = general_ads_setting
     return no_ads if no_ads
 
-    return AdMethod.no_ad(:sleazy) if sleazy?
+    return AdMethod.rb if sleazy?
 
     return AdMethod.no_ad(:sensitive_list) if displayed_scripts.where(sensitive: true).any?
 
@@ -91,7 +93,17 @@ module ShowsAds
     request_locale.code != 'zh-CN'
   end
 
+  def rb_site_wide_exception?
+    [
+      ['home', 'index'],
+      ['scripts', 'show'],
+      ['scripts', 'post_install'],
+      ['script_versions', 'index'],
+      ['users', 'show'],
+    ].include?([controller_name, action_name])
+  end
+
   included do
-    helper_method :general_ads_setting, :valid_locale_for_ea?
+    helper_method :general_ads_setting, :valid_locale_for_ea?, :rb_site_wide_exception?
   end
 end
