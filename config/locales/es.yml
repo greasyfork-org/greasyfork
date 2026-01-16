@@ -370,18 +370,18 @@ es:
     install_help_dialog:
       js:
         firefox: Tendrás que instalar una extensión para tu navegador como %{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} o %{violentmonkey_link:Violentmonkey} si quieres utilizar este script.
-        opera: Necesitarás instalar una extensión como %{tampermonkey_link:Tampermonkey} o %{violentmonkey_link:Violentmonkey} para instalar este script.
+        opera: Tendrás que instalar una extensión como %{tampermonkey_link:Tampermonkey} o %{violentmonkey_link:Violentmonkey} para instalar este script.
         safari: Necesitarás instalar una extensión como %{tampermonkey_link:Tampermonkey} o %{userscripts_link:Userscripts} para instalar este script.
-        edge: Necesitará instalar una extensión como %{tampermonkey_link:Tampermonkey} para instalar este script.
+        edge: Tendrás que instalar una extensión como %{tampermonkey_link:Tampermonkey} antes de poder instalar este script.
         other: Necesitarás instalar una extensión para administrar scripts de usuario si quieres instalar este script.
         bypass: (Ya tengo un administrador de scripts de usuario, déjame instalarlo)
       css:
-        firefox: Necesitará instalar una extensión como %{stylus_link:Stylus} para instalar este estilo.
-        chrome: Necesitará instalar una extensión como %{stylus_link:Stylus} para instalar este estilo.
-        opera: Necesitará instalar una extensión como %{stylus_link:Stylus} para instalar este estilo.
-        safari: Necesitará instalar una extensión del gestor de estilos de usuario para instalar este estilo.
-        edge: Necesitará instalar una extensión del gestor de estilos de usuario para instalar este estilo.
-        other: Necesitará instalar una extensión del gestor de estilos de usuario para instalar este estilo.
+        firefox: Tendrás que instalar una extensión como %{stylus_link:Stylus} antes de poder instalar este script.
+        chrome: Tendrás que instalar una extensión como %{stylus_link:Stylus} antes de poder instalar este script.
+        opera: Tendrás que instalar una extensión como %{stylus_link:Stylus} antes de poder instalar este script.
+        safari: Para poder instalar esto tendrás que instalar primero una extensión de estilos de usuario.
+        edge: Para poder instalar esto tendrás que instalar primero una extensión de estilos de usuario.
+        other: Para poder instalar esto tendrás que instalar primero una extensión de estilos de usuario.
         bypass: (Ya tengo un administrador de estilos de usuario, déjame instalarlo)
       close_dialog: Aceptar
     antifeatures:
@@ -552,7 +552,7 @@ es:
     sign_in_email_missing: "Para crear una nueva cuenta en %{site_name} necesitamos una dirección de correo electrónico que vincular a tu usuario, pero %{provider} no nos ha proporcionado ninguno. Puedes actualizar tu cuenta de %{provider} para añadir uno, y a continuación, intentar iniciar sesión de nuevo, o crear una cuenta normal con correo/contraseña en %{site_name}, y a continuación, añadir tu cuenta de %{provider} a la misma."
     sign_in_name_used: "El nombre «%{name}» ya está en uso. Elige uno diferente."
     sign_in_name_used_submit: "Enviar"
-    sign_in_github_unavailable: "Iniciar sesión con GitHub no está disponible en Sleazy Fork, pero puedes %{sign_in_url:iniciar sesión con GitHub en Greasy Fork}."
+    sign_in_github_unavailable: "No puedes iniciar sesión con GitHub en Sleazy Fork, pero sí puedes %{sign_in_url:iniciar sesión con GitHub en Greasy Fork}."
     control_panel: "Panel de control"
     discussions_on_scripts: "Conversaciones en tus scripts"
     discussions_on_scripts_feed_alt: "Canal RSS"
@@ -571,12 +571,12 @@ es:
     edit_sign_in: "Editar métodos de inicio de sesión"
     edit_sign_in_title: "Editar métodos de inicio de sesión"
     edit_sign_in_password: "Contraseña"
-    edit_sign_in_2fa_enabled: Ha configurado la autenticación de dos factores (2FA). Puedes regenerar tu código 2FA si lo has perdido.
-    edit_sign_in_2fa_enabled_and_required: Ha configurado la autenticación de dos factores (2FA). Se requiere 2FA en su cuenta cuando se utilizan inicios de sesión basados en contraseña. Puede regenerar su código 2FA si lo ha perdido.
-    edit_sign_in_disable_2fa: Desactivar 2FA
+    edit_sign_in_2fa_enabled: Has activado la autenticación de dos pasos (2FA), por lo que puedes regenerar tu código 2FA si lo pierdes.
+    edit_sign_in_2fa_enabled_and_required: Has activado la autenticación de dos pasos (2FA), que es obligatoria si tu cuenta utiliza inicio de sesión por contraseña, por lo que puedes regenerar tu código 2FA si lo pierdes.
+    edit_sign_in_disable_2fa: Desactivar autenticación de dos pasos (2FA)
     edit_sign_in_2fa_disabled: Puedes activar la autenticación de dos factores (2FA) para mejorar la seguridad de tu cuenta de %{site_name}.
-    edit_sign_in_enable_2fa: Activar 2FA
-    edit_sign_in_regenerate_2fa: Regenerar 2FA
+    edit_sign_in_enable_2fa: Activar autenticación de dos pasos (2FA)
+    edit_sign_in_regenerate_2fa: Regenerar autenticación de dos pasos (2FA)
     edit_notifications: "Editar la configuración de las notificaciones"
     view_notifications: "Ver notificaciones"
     no_password_set_info: "Tu cuenta todavía no tiene asignada una contraseña."
@@ -606,18 +606,18 @@ es:
     2fa_enabled: Hemos activado 2FA.
     2fa_enable_code_incorrect: El código 2FA no es correcto, vuelve a intentarlo.
     2fa_disabled: Hemos desactivado 2FA.
-    2fa_disabled_already: 2FA ya está desactivado.
+    2fa_disabled_already: La autenticación de dos pasos (2FA) ya está desactivada.
     enable_2fa:
-      intro: "Añade %{site_name} a tu aplicación de autenticación de dos factores (2FA) mediante uno de estos métodos y, a continuación, introduce el código que aparece a continuación."
+      intro: "Añade %{site_name} a tu aplicación de autenticación de dos pasos (2FA) mediante uno de estos métodos y luego escribe el código que te salga."
       qr_heading: Mediante un código QR
       url_heading: Mediante enlace
-      url_info: Si estás en el mismo dispositivo que tu aplicación de autenticación de dos factores, puedes añadirla con %{auth_link:este enlace}.
+      url_info: Si estás en el mismo dispositivo que tu aplicación de autenticación de dos pasos puedes añadirlo mediante %{auth_link:este enlace}.
       manual_heading: Manualmente
       manual_entry_code_name: "Nombre del código: %{code_name}"
       manual_entry_your_key: "Tu clave: %{key}"
       manual_entry_type_of_key: "Tipo de clave: Temporal"
       code_entry_heading: Introduce el código
-      code_entry: "Introduce el código de tu aplicación 2FA para activarla en tu cuenta de %{site_name}:"
+      code_entry: "Introduce el número generado por tu aplicación 2FA para darlo de alta en tu cuenta de %{site_name}:"
       verify_code: Verificar código
     set_up_webhook: "Configurar un «webhook»"
     list_display_html:
@@ -692,7 +692,7 @@ es:
       complete: "Tu cuenta ha sido borrada."
     deleted_user_with_id: "(Usuario eliminado %{id})"
     deleted_user_without_id: "(Usuario eliminado)"
-    suggest_secure_login: Como autor de scripts, le sugerimos que %{edit_login_link:utilice un método de inicio de sesión más seguro}.
+    suggest_secure_login: Al ser un creador de scripts te sugerimos que %{edit_login_link:te cambies a un método de inicio de sesión más seguro}.
     require_secure_login: Tu cuenta está obligada a utilizar un método de inicio de sesión más seguro.
     badges:
       banned:
@@ -709,13 +709,13 @@ es:
       email: Por correo electrónico
       discussion_defaults:
         title: Notificaciones del foro
-        intro: Recibirás notificaciones de los debates a los que estés suscrito. Puedes suscribirte o cancelar tu suscripción a los debates en cualquier momento.
+        intro: Recibirás notificaciones de las conversaciones en las que te suscribas. Puedes suscribirte o cancelar tus suscripciones cuando quieras.
         discussion_subscription_defaults:
           overall_label: Suscribirse a una conversación cuando...
           start: Al empezar una conversación
           comment: Al responder a una conversación ya existente
           script: La conversación es sobre uno de tus scripts
-        subscribed_discussion_notification: Cuando se publique un comentario en un debate al que estés suscrito, recibe la notificación
+        subscribed_discussion_notification: Cuando se publique un comentario en una conversación a la que te hayas suscrito recibirás una notificación
         mention: Recibe una notificación cuando se te mencione en una conversación
       conversation_defaults:
         title: Notificaciones de conversación
@@ -1100,15 +1100,15 @@ es:
     reported_user_activity_html: "%{user} (el usuario denunciado) ha hecho:"
     script_updated_since_report: "Este script se ha actualizado desde la denuncia."
     reporter_temporarily_blocked: "Debido a tu reciente volumen de denuncias desestimadas por un moderador no vas a poder denunciar más cosas hasta %{date}. Revisa las %{rules_link:reglas de %{site_name}} para asegurarte de que tus futuras denuncias sean correctas."
-    reported_temporarily_blocked: "Debido a que un moderador ha desestimado informes recientes sobre este tema, se bloquean más informes sobre el mismo hasta %{date}."
-    already_reported_by_reporter: "Ya has %{report_link:reportado recientemente} este artículo."
-    already_reported_same_type: "Ya existe un %{report_link:informe similar pendiente} sobre este tema."
+    reported_temporarily_blocked: "No se te permitirá crear más denuncias sobre este tema hasta %{date} debido a que un moderador ha desestimado tus denuncias previas."
+    already_reported_by_reporter: "Ya has creado una %{report_link:denunciar hace poco} sobre este tema."
+    already_reported_same_type: "Ya hay una %{report_link:denunciar similar} sobre este tema."
     report_item:
       discussion: "Conversación %{title} de %{user}"
       comment: "%{comment} de %{user}"
       comment_description: "Un comentario en %{discussion_title}"
       message: "Un mensaje de %{user}"
-      deleted: "Eliminado %{type} #%{id}"
+      deleted: "%{type} eliminado nº %{id}"
   appeals:
     new:
       title: Nueva revisión para eliminar script
@@ -1377,7 +1377,7 @@ es:
         subject: "Alguien ha denunciado tu script %{script_name} en %{site_name}"
         body_html: |
             <p>
-            Tu script %{script_link:%{script_name}} sido reportado por violar las reglas de %{site_name}. La razón específica dada: %{reason}. Los moderadores revisarán este informe y podrán eliminar tu script si consideran que infringe las normas. Usted puede %{report_link:revisar este informe} y envíar una refutación si desea aportar algún argumento o explicación.
+            Tu script %{script_link:%{script_name}} sido denunciado por infringir las reglas de %{site_name} debido a: %{reason}. Los moderadores revisarán la denuncia y podrán eliminar tu script si consideran que infringe las normas. Puedes %{report_link:revisar esta denuncia} si no estás de acuerdo y quieres argumentar tu posición.
             </p>
       report_upheld_offender:
         subject: "Tu script %{script_name} en %{site_name} ha sido eliminado."
@@ -1392,19 +1392,19 @@ es:
         subject: "Tu script %{script_name} no parece incumplir las normas de %{site_name}"
         body_html: |
             <p>
-            Un informe sobre su script %{script_link:%{script_name}} en %{site_name} ha sido descartado por un moderador. Tu script permanecerá activo. Puedes %{report_link:revisar este informe}.
+            Un moderador a descartado una denuncia pendiente sobre tu script %{script_link:%{script_name}} en %{site_name} y no le pasará nada. Si quieres puedes %{report_link:ver aquí la denuncia}.
             </p>
       report_fixed_offender:
         subject: "Se ha revisado tu script en %{site_name} y %{script_name} y una vez corregidos los problemas se ha marcado la denuncia como resuelta."
         body_html: |
             <p>
-            Un informe sobre tu script %{script_link:%{script_name}} en %{site_name} ha sido marcado como resuelto por un moderador ya que cree que has solucionado el problema. Tu script permanecerá activo. Puedes %{report_link:revisar este informe}.
+            Se ha resuelto la denuncia que pendía en %{site_name} sobre tu script %{script_link:%{script_name}} porque el problema parece estar resuelto. Tu script permanecerá activo. Si quieres puedes %{report_link:ver aquí la denuncia}.
             </p>
       report_rebutted_reporter:
         subject: "Alguien ha contestado a tu denuncia de %{script_name} en %{site_name}"
         body_html: |
             <p>
-            Tu informe sobre %{script_link:%{script_name}} en %{site_name} ha recibido una respuesta. Puedes %{report_link:revisar esta respuesta}. Un moderador revisará tu informe y esta respuesta y decidirá el resultado.
+            Tu informe en %{site_name} sobre %{script_link:%{script_name}} ha recibido una respuesta. Puedes %{report_link:revisar esta respuesta}. Un moderador revisará tu informe y esta respuesta y decidirá el resultado.
             </p>
       report_upheld_reporter:
         subject: "Se ha confirmado tu denuncia de %{script_name} en %{site_name}"
@@ -1413,10 +1413,10 @@ es:
             Tu informe sobre %{script_link:%{script_name}} en %{site_name} ha sido aceptado por un moderador y el script ha sido eliminado. Puedes %{report_link:revisar el informe}.
             </p>
       report_script_deleted_reporter:
-        subject: "Su informe sobre %{script_name} en %{site_name} ha sido cerrado"
+        subject: "Tu denuncia en %{site_name} de %{script_name} se ha cerrado"
         body_html: |
             <p>
-            Tu informe sobre %{script_link:%{script_name}} en %{site_name} ha sido cerrado ya que el script ha sido eliminado por su autor. Puedes %{report_link:revisar el informe}.
+            Tu denuncia en %{site_name} de %{script_link:%{script_name}} se ha cerrado porque el autor ha borrado su script. Puedes %{report_link:ver la denuncia aquí}.
             </p>
       report_dismissed_reporter:
         subject: "Se ha revisado tu denuncia en %{site_name} y %{script_name} no parece incumplir las normas."
@@ -1444,7 +1444,7 @@ es:
     script_comment:
       subject: "Alguien ha comentado en %{script_name} en %{site_name}."
       intro: "Tu script %{script_link:%{script_name}} en %{site_name} ha recibido un comentario del usuario %{commenter_link:%{commenter_name}}:"
-      outro: "%{comment_link:Ver y responder a este comentario.} Has recibido esta notificación porque has elegido que se te notifiquen los debates sobre tus scripts. %{notification_preferences_link:Gestiona tus preferencias de notificación.}"
+      outro: "%{comment_link:Ver y responder a este comentario.} Has recibido esta notificación porque quieres recibir notificaciones de conversaciones sobre tus scripts. %{notification_preferences_link:Si quieres puedes cambiar aquí tus notificaciones.}"
     subscribed_discussion:
       subject: "La conversación «%{discussion_title}» en %{site_name} ha recibido un comentario."
       intro: "La conversación %{discussion_link:%{discussion_title}} en %{site_name} ha recibido un comentario del usuario %{commenter_link:%{commenter_name}}:"
