@@ -1,4 +1,6 @@
-<div class="ad ad-rb">
+<%# locals: (container_class: '') %>
+
+<div class="ad ad-rb <%=container_class%>">
   <% if request_locale.code == 'zh-CN' || request_locale.code == 'zh-TW' %>
     <%= link_to vite_image_tag('images/ads/roxy/banner_zh.png'), 'https://roxybrowser.com/?code=greasyfork', target: '_blank' %>
   <% else %>
