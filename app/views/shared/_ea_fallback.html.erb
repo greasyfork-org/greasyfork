@@ -2,6 +2,6 @@
 <% other_ad_method = AdMethod.ea(variant: 'fallback') %>
 <div class="ad <%= other_ad_method.css_class %>" id="<%= div_id %>-fallback" style="display:none;">
   <div class="ad-content">
-    <div id="<%= ea_div_id %><%= "_#{other_ad_method.variant}" if other_ad_method.variant %>-fallback" class="flat ethical-ads" data-ea-publisher="greasyfork" data-ea-type="image" data-ea-manual="true"></div>
+    <div id="<%= ea_div_id %><%= "_#{other_ad_method.variant}" if other_ad_method.variant %>-fallback" class="flat ethical-ads adaptive" data-ea-publisher="greasyfork" data-ea-type="image" data-ea-manual="true"></div>
   </div>
 </div>
