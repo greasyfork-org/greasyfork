@@ -1,6 +1,10 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
+  setup do
+    EmailAddress.stubs(:valid?).returns(true)
+  end
+
   test 'deleting scripts where they are the sole author' do
     user = User.find(1)
     assert_equal user, Script.find(1).users.first
