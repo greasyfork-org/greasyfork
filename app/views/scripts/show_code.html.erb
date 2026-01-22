@@ -5,11 +5,7 @@
 
 <%= render partial: 'feedback_suggestion', locals: {script: @script} %>
 
-<% if @ad_method&.ea? %>
-  <div class="ad <%= @ad_method.css_class %>">
-    <%= render(partial: 'shared/ea_text_ad', locals: {ad_method: @ad_method, ea_div_id: 'script-show-code-ea'}) %>
-  </div>
-<% end %>
+<%= render partial: 'shared/in_page_ad', locals: { ad_method: @ad_method, div_id: 'script-show-code-ad', adsense_slot: '2579817802', ea_div_id: 'script-show-code-ea', fallback_ea: true} %>
 
 <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?lang=css"></script>
 
