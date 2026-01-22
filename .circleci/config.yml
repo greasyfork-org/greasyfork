@@ -17,6 +17,7 @@ jobs:
           MYSQL_DATABASE: greasyfork_test
           RAILS_ENV: test
           PARALLEL_WORKERS: 2
+          GRPC_RUBY_BUILD_PROCS: 4 # https://www.florianjosefreheis.com/blog/circleci-received-killed-signal/
       - image: cimg/mariadb:10.11
         environment:
           MYSQL_ROOT_PASSWORD: rootpw
