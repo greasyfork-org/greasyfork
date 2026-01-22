@@ -95,11 +95,11 @@ module ShowsAds
 
   def rb_site_wide_exception?
     [
-      ['home', 'index'],
-      ['scripts', 'show'],
-      ['scripts', 'post_install'],
-      ['script_versions', 'index'],
-      ['users', 'show'],
+      %w[home index],
+      %w[scripts show],
+      %w[scripts post_install],
+      %w[script_versions index],
+      %w[users show],
     ].include?([controller_name, action_name])
   end
 

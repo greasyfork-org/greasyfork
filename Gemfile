@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '3.4.7'
+ruby '4.0.1'
 
 gem 'bootsnap'
 gem 'connection_pool', '< 3.0' # https://github.com/mperham/connection_pool/issues/211

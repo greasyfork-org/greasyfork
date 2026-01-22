@@ -48,6 +48,7 @@ class RegistrationTest < ApplicationSystemTestCase
   end
 
   test 'invalid email' do
+    EmailAddress.stubs(:valid?).returns(false)
     visit root_url
     click_on 'Sign in'
     click_on 'Sign up'
