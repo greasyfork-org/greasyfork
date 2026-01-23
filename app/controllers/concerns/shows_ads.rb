@@ -20,7 +20,11 @@ module ShowsAds
 
     return AdMethod.no_ad(:sensitive) if script&.sensitive
 
-    return AdMethod.ga if allow_ga && script.adsense_approved && locale_allows_adsense? && (script.additional_info || script.newest_saved_script_version.attachments.any? || script.similar_scripts(script_subset:, locale: I18n.locale).any?)
+    if allow_ga && script.adsense_approved && locale_allows_adsense? && (script.additional_info || script.newest_saved_script_version.attachments.any? || script.similar_scripts(script_subset:, locale: I18n.locale).any?)
+      return [AdMethod.ga, AdMethod.ea].sample if controller_name == 'script_versions' && action_name == 'index'
+
+      return AdMethod.ga
+    end
 
     AdMethod.ea(variant: (request_locale.code unless valid_locale_for_ea?))
   end
@@ -95,11 +99,11 @@ module ShowsAds
 
   def rb_site_wide_exception?
     [
-      ['home', 'index'],
-      ['scripts', 'show'],
-      ['scripts', 'post_install'],
-      ['script_versions', 'index'],
-      ['users', 'show'],
+      %w[home index],
+      %w[scripts show],
+      %w[scripts post_install],
+      %w[script_versions index],
+      %w[users show],
     ].include?([controller_name, action_name])
   end
 
