@@ -60,10 +60,6 @@
           <li class="ad-entry">
             <%= render(partial: 'shared/ea_text_ad', locals: {ad_method: @ad_method, ea_div_id: 'script-list-ea'}) %>
           </li>
-        <% elsif @ad_method&.rb? %>
-          <li class="ad-entry">
-            <%= render partial: 'shared/rb_ad' %>
-          </li>
         <% end %>
         <%= render partial: 'scripts/script', collection: scripts_to_render, cached: overriding_locale? ? false : ->(script) { [script, request_locale] } %>
       </ol>
