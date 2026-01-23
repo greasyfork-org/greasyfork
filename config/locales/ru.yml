@@ -1587,28 +1587,28 @@ ru:
             Получен ответ на вашу жалобу на %{script_link:%{script_name}} на %{site_name}. Вы можете %{report_link:просмотреть этот ответ}. Модератор примет решение на основе вашей жалобы и этого ответа.
             </p>
       report_upheld_reporter:
-        subject: "Ваша жалоба на %{script_name} на %{site_name} удовлетворена"
+        subject: "Ваша жалоба на «%{script_name}» на %{site_name} удовлетворена"
         body_html: |
             <p>
-            Ваша жалоба на %{script_link:%{script_name}} на %{site_name} была удовлетворена модератором. Скрипт удалён. Вы можете %{report_link:просмотреть эту жалобу}.
+            Ваша жалоба на «%{script_link:%{script_name}}» на %{site_name} была удовлетворена модератором. Скрипт удалён. Вы можете %{report_link:просмотреть эту жалобу}.
             </p>
       report_script_deleted_reporter:
-        subject: "Ваша жалоба на %{script_name} на %{site_name} закрыта"
+        subject: "Ваша жалоба на «%{script_name}» на %{site_name} закрыта"
         body_html: |
             <p>
-            Ваша жалоба на %{script_link:%{script_name}} на %{site_name} была закрыта, потому что автор удалил свой скрипт. Вы можете %{report_link:просмотреть эту жалобу}.
+            Ваша жалоба на «%{script_link:%{script_name}}» на %{site_name} была закрыта, потому что автор удалил свой скрипт. Вы можете %{report_link:просмотреть эту жалобу}.
             </p>
       report_dismissed_reporter:
-        subject: "Ваша жалоба на %{script_name} на %{site_name} отклонена"
+        subject: "Ваша жалоба на «%{script_name}» на %{site_name} отклонена"
         body_html: |
             <p>
-            Ваша жалоба на %{script_link:%{script_name}} на %{site_name} была отклонена модератором. Обжалованный скрипт по-прежнему на сайте. Вы можете %{report_link:просмотреть эту жалобу}.
+            Ваша жалоба на «%{script_link:%{script_name}}» на %{site_name} была отклонена модератором. Обжалованный скрипт по-прежнему на сайте. Вы можете %{report_link:просмотреть эту жалобу}.
             </p>
       report_fixed_reporter:
-        subject: "Ваша жалоба на %{script_name} на %{site_name} решена"
+        subject: "Ваша жалоба на «%{script_name}» на %{site_name} решена"
         body_html: |
             <p>
-            Ваша жалоба на %{script_link:%{script_name}} на %{site_name} была помечена модератором как решённая, потому что, по его мнению, автор устранил проблему. Скрипт по-прежнему на сайте. Вы можете %{report_link:просмотреть эту жалобу}.
+            Ваша жалоба на «%{script_link:%{script_name}}» на %{site_name} была помечена модератором как решённая, потому что, по его мнению, автор устранил проблему. Скрипт по-прежнему на сайте. Вы можете %{report_link:просмотреть эту жалобу}.
             </p>
       reported_outro: "Вы получили это уведомление, потому что оно касается жалобы на скрипт, который вы разместили на %{site_name}. %{notification_preferences_link:Настройка уведомлений.}"
       reporter_outro: "Вы получили это уведомление, потому что вы пожаловались на скрипт на %{site_name}. %{notification_preferences_link:Настройка уведомлений.}"
