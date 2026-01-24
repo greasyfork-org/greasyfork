@@ -6,10 +6,12 @@
   margin: 0;
   border-radius: 5px;
 }
-.pagination > a[href], .script-list + .pagination > a[href], .user-list + .pagination > a[href], .pagy > a[href] {
-  display: inline-block;
-  background-color: var(--pagination-background-color);
+.pagination > a, .script-list + .pagination > a, .user-list + .pagination > a, .pagy > a {
   padding: 0.5em;
+  display: inline-block;
+}
+.pagination > a[href], .script-list + .pagination > a[href], .user-list + .pagination > a[href], .pagy > a[href] {
+  background-color: var(--pagination-background-color);
   border-radius: 5px;
   text-decoration: none;
 }
