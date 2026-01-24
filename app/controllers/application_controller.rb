@@ -12,7 +12,6 @@ class ApplicationController < ActionController::Base
   include BannedUser
   include Api
   include SiteSwitches
-  include Pagy::Method
 
   if Rails.env.test?
     show_announcement key: :test_announcement,
@@ -249,9 +248,5 @@ class ApplicationController < ActionController::Base
 
   def redirect_from_cn_domain
     redirect_to request.params.merge(host: 'greasyfork.org', port: nil), status: :moved_permanently, allow_other_host: true if request.host == 'cn-greasyfork.org'
-  end
-
-  def apply_pagy(relation, default_per_page: 50)
-    pagy(relation, limit: per_page(default: default_per_page))
   end
 end

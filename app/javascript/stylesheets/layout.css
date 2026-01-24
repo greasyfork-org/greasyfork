@@ -268,6 +268,41 @@ label.subselection-radio-title {
   }
 }
 
+.pagination, .script-list + .pagination, .user-list + .pagination {
+  font-size: 18px;
+  display: block;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  border-radius: 5px;
+}
+.pagination > *, .script-list + .pagination > *, .user-list + .pagination > * {
+  display: inline-block;
+  background-color: var(--pagination-background-color);
+  padding: 0.5em;
+  border-radius: 5px;
+  text-decoration: none;
+}
+.pagination .disabled {
+  display: none;
+}
+.pagination .current {
+  font-style: normal;
+  font-weight: bold;
+}
+.pagination .current, .pagination .gap {
+  background-color: transparent;
+}
+.pagination > a:hover, .pagination > a:focus {
+  background-color: var(--pagination-hover-background-color);
+}
+@media screen and (max-width: 400px) {
+  .pagination, .script-list + .pagination, .user-list + .pagination {
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+}
+
 .good-rating-count, .ok-rating-count, .bad-rating-count {
   display: inline-block;
   min-width: 1em;
