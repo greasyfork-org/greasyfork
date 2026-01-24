@@ -2,7 +2,7 @@ class ModeratorActionsController < ApplicationController
   def index
     respond_to do |format|
       format.html do
-        @pagy, @actions = apply_pagy(ModeratorAction.includes(:script, :moderator, :user, :report).order(id: :desc), default_per_page: 100)
+        @actions = apply_pagination(ModeratorAction.includes(:script, :moderator, :user, :report).order(id: :desc), default_per_page: 100)
         @bots = 'noindex'
         @canonical_params = [:page]
         render layout: 'base'

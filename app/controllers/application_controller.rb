@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   include BannedUser
   include Api
   include SiteSwitches
-  include Pagy::Method
+  include Pagination
 
   if Rails.env.test?
     show_announcement key: :test_announcement,
@@ -148,22 +148,6 @@ class ApplicationController < ActionController::Base
     script.localized_attributes.build({ attribute_key: 'additional_info', attribute_default: true, value_markup: default_markup }) unless script.localized_attributes_for('additional_info').any?(&:attribute_default)
   end
 
-  def per_page(default: 50)
-    return default unless params[:per_page].is_a?(String)
-
-    pp = default
-    pp = [params[:per_page].to_i, 200].min if params[:per_page].to_i > 0
-    return pp
-  end
-
-  def page_number
-    return nil unless params[:page].is_a?(String)
-
-    page = params[:page].to_i
-    page = 1 if page.nil? || page < 1
-    page
-  end
-
   def cache_with_log(key, options = {}, &)
     self.class.cache_with_log(key, options, &)
   end
@@ -249,9 +233,5 @@ class ApplicationController < ActionController::Base
 
   def redirect_from_cn_domain
     redirect_to request.params.merge(host: 'greasyfork.org', port: nil), status: :moved_permanently, allow_other_host: true if request.host == 'cn-greasyfork.org'
-  end
-
-  def apply_pagy(relation, default_per_page: 50)
-    pagy(relation, limit: per_page(default: default_per_page))
   end
 end
