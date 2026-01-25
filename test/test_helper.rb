@@ -56,7 +56,12 @@ module ActiveSupport
     end
 
     def stub_es(klass)
-      klass.stubs(:search).returns(klass.all.paginate(page: 1))
+      mock_search_result = klass.all
+      mock_search_result.stubs(:current_page).returns(1)
+      mock_search_result.stubs(:total_count).returns(klass.count)
+      mock_search_result.stubs(:per_page).returns(50)
+      klass.stubs(:search).returns(mock_search_result)
+
       yield if block_given?
     end
   end

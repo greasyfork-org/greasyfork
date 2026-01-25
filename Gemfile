@@ -36,8 +36,6 @@ gem 'sidekiq-worker-killer'
 gem 'strip_attributes'
 gem 'user_agent_parser'
 gem 'vite_rails'
-gem 'will_paginate'
-gem 'will-paginate-i18n'
 
 gem 'hiredis'
 gem 'redis'

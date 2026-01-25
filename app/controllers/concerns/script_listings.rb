@@ -141,7 +141,7 @@ module ScriptListings
     with[:script_type] = Script.script_types[:library]
     with[:author_ids] = params[:by] unless params[:by].to_i.zero?
 
-    @scripts = Script.search(
+    @scripts = apply_searchkick_pagination(Script.search(
       params[:q].presence || '*',
       fields: ['name^10', 'description^5', 'author^5', 'additional_info^1'],
       where: with,
@@ -149,7 +149,7 @@ module ScriptListings
       page: page_number,
       per_page: per_page(default: 100),
       includes: [:localized_attributes, :users]
-    )
+    ))
 
     respond_to do |format|
       format.html do
@@ -168,7 +168,7 @@ module ScriptListings
   end
 
   def reported_not_adult
-    @scripts = Script.reported_not_adult.paginate(page: params[:page], per_page:)
+    @scripts = apply_pagination(Script.reported_not_adult)
     render :index
   end
 
@@ -185,7 +185,7 @@ module ScriptListings
     @scripts = @scripts.where(language: (params[:language] == 'css') ? 'css' : 'js') unless params[:language] == 'all'
     include_deleted = current_user&.moderator? && params[:include_deleted] == '1'
     @scripts = @scripts.listable(script_subset) unless include_deleted
-    @scripts = @scripts.paginate(page: page_number, per_page:)
+    @scripts = apply_pagination(@scripts)
 
     respond_to do |format|
       format.html do
@@ -334,7 +334,7 @@ module ScriptListings
         site = SiteApplication.find_by(domain_text: params[:site])
 
         if site.nil?
-          @scripts = Script.none.paginate(page: 1)
+          @scripts = apply_pagination(Script.none)
           return false
         end
 
@@ -361,7 +361,7 @@ module ScriptListings
     includes = [:localized_attributes, :users]
     includes.push(:locale, :license) if for_json
 
-    @scripts = Script.search(
+    @scripts = apply_searchkick_pagination(Script.search(
       params[:q].presence || '*',
       fields: ['name^10', 'search_site_names^9', 'description^5', 'author^5', 'additional_info^1'],
       boost_by: [:fan_score],
@@ -370,7 +370,7 @@ module ScriptListings
       page: page_number,
       per_page: per_page(default: 100),
       includes:
-    )
+    ))
 
     false
   end
@@ -384,10 +384,9 @@ module ScriptListings
       end
     end
 
-    @scripts = Script
+    @scripts = apply_pagination(Script
                .listable(script_subset)
-               .includes({ users: {}, localized_attributes: :locale })
-               .paginate(page: page_number, per_page:)
+               .includes({ users: {}, localized_attributes: :locale }))
     @scripts = self.class.apply_filters(@scripts, params, script_subset)
     # Force a load as will be doing empty?, size, etc. and don't want separate queries for each.
     @scripts = @scripts.load

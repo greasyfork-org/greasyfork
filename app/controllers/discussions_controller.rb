@@ -108,7 +108,7 @@ class DiscussionsController < ApplicationController
             end
 
             @discussions = @filter_result.result
-            @discussions = @discussions.paginate(page: page_number, per_page: per_page(default: 25))
+            @discussions = apply_pagination(@discussions, default_per_page: 25)
             @bots = 'noindex' unless page_number == 1
           end
 

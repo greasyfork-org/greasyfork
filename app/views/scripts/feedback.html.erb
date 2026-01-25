@@ -51,7 +51,7 @@
     <div class="script-discussion-list">
       <%= render collection: @discussions, partial: 'discussions/discussion' %>
     </div>
-    <%= will_paginate @discussions %>
+    <%= render_pagination %>
   <% end %>
   <h3 id="post-discussion"><%= t('discussions.new_discussion_heading') %></h3>
   <p>

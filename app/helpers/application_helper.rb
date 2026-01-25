@@ -1,5 +1,3 @@
-require 'will_paginate/action_view/link_renderer_with_no_follow'
-
 module ApplicationHelper
   def title(page_title)
     content_for(:title) { page_title }

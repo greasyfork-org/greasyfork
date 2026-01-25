@@ -3,7 +3,7 @@ module Pagination
   include Pagy::Method
 
   included do
-    helper_method :render_pagination
+    helper_method :render_pagination, :multiple_pages?
   end
 
   def apply_pagination(relation, default_per_page: 50)
@@ -17,6 +17,8 @@ module Pagination
   end
 
   def render_pagination
+    return nil if @paginate == false
+
     @pagy.series_nav(slots: 13, anchor_string: ('rel="nofollow"' if @bots == 'noindex')).html_safe
   end
 
@@ -34,5 +36,9 @@ module Pagination
     page = params[:page].to_i
     page = 1 if page.nil? || page < 1
     page
+  end
+
+  def multiple_pages?
+    @pagy && @pagy.pages > 1
   end
 end

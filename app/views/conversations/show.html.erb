@@ -12,7 +12,7 @@
   </div>
 </div>
 
-<%= will_paginate(@messages) %>
+<%= render_pagination %>
 
 <% @messages.each do |message| %>
   <% by_current_user = message.poster && current_user == message.poster %>
@@ -59,7 +59,7 @@
   </div>
 <% end %>
 
-<%= will_paginate(@messages) %>
+<%= render_pagination %>
 
 <div id="post-reply" class="post-reply">
   <h3><%= t('discussions.new_comment_heading') %></h3>

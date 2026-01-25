@@ -11,7 +11,7 @@
       <%= render partial: report, locals: { i: i } %>
     </section>
   <% end %>
-  <%= will_paginate(@reports) %>
+  <%= render_pagination %>
 <% else %>
   <p>There are currently no actionable reports.</p>
 <% end %>

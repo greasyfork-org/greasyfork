@@ -35,7 +35,7 @@ class ScriptVersionsController < ApplicationController
       if params[:list_all] == '1'
         @paginate = false
       else
-        @script_versions = @script_versions.paginate(page: page_number, per_page:)
+        @script_versions = apply_pagination(@script_versions)
       end
 
       respond_to do |format|

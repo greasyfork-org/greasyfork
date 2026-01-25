@@ -64,9 +64,7 @@
         <%= render partial: 'scripts/script', collection: scripts_to_render, cached: overriding_locale? ? false : ->(script) { [script, request_locale] } %>
       </ol>
 
-      <% if !defined?(@paginate) || @paginate %>
-        <%= will_paginate(@scripts, renderer: @bots == 'noindex' ? WillPaginate::ActionView::LinkRendererWithNoFollow : nil) %>
-      <% end %>
+      <%= render_pagination %>
   <% end %>
 
     <p class="script-list-description"><%= t('scripts.write_your_own_html', post_a_script_link: link_to(t('scripts.post_a_script_link_text'), new_script_version_path), learn_to_write_scripts_link: link_to(t('scripts.learn_to_write_scripts_link_text'), help_writing_user_scripts_path)) %></p>

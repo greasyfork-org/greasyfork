@@ -45,12 +45,10 @@ end %>
       <%= submit_tag t('scripts.diff_button'), name: nil %>
     </p>
   <% end %>
-  <% if !defined?(@paginate) || @paginate %>
-    <%= will_paginate(@script_versions, renderer: @bots == 'noindex' ? WillPaginate::ActionView::LinkRendererWithNoFollow : nil) %>
-    <% if @script_versions.total_pages > 1 %>
-      <p>
-        <%= link_to t('scripts.list_all_script_versions'), { list_all: 1 }, { rel: :nofollow } %>
-      </p>
-    <% end %>
+  <%= render_pagination %>
+  <% if multiple_pages? %>
+    <p>
+      <%= link_to t('scripts.list_all_script_versions'), { list_all: 1 }, { rel: :nofollow } %>
+    </p>
   <% end %>
 </form>

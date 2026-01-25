@@ -171,12 +171,11 @@ class ScriptsController < ApplicationController
 
           return if handle_wrong_url(@script, :id)
 
-          @discussions = @script.discussions
-                                .visible
-                                .where(report_id: nil)
-                                .includes(:stat_first_comment, :stat_last_replier, :poster)
-                                .order(stat_last_reply_date: :desc)
-                                .paginate(page: page_number, per_page: per_page(default: 25))
+          @discussions = apply_pagination(@script.discussions
+                                                 .visible
+                                                 .where(report_id: nil)
+                                                 .includes(:stat_first_comment, :stat_last_replier, :poster)
+                                                 .order(stat_last_reply_date: :desc), default_per_page: 25)
           @discussion = @discussions.build(discussion_category: DiscussionCategory.script_discussions, poster: current_user)
           @discussion.rating = Discussion::RATING_QUESTION if @discussion.by_script_author?
 

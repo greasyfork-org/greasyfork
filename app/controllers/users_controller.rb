@@ -109,7 +109,7 @@ class UsersController < ApplicationController
         @scripts = @scripts.not_deleted.where(script_type: :public)
 
         all_displayable_scripts = ScriptsController.apply_filters(@scripts, params.reverse_merge(language: 'all'), script_subset)
-        @scripts = all_displayable_scripts.paginate(per_page: per_page(default: 50), page: page_number)
+        @scripts = apply_pagination(all_displayable_scripts, default_per_page: 50)
         @other_site_scripts = (script_subset == :sleazyfork) ? @user.scripts.listable(:greasyfork).count : 0
 
         if @user.banned?
