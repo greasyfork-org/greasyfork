@@ -17,7 +17,7 @@ module Pagination
   end
 
   def render_pagination
-    return nil if @paginate == false
+    return nil if @paginate == false || !multiple_pages?
 
     @pagy.series_nav(slots: 13, anchor_string: ('rel="nofollow"' if @bots == 'noindex')).html_safe
   end
