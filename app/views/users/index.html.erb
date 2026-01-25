@@ -22,9 +22,7 @@
       <% end %>
     <% end %>
 
-    <% if !defined?(@paginate) or @paginate %>
-      <%= will_paginate @users %>
-    <% end %>
+    <%= render_pagination %>
   </div>
   <div class="sidebar collapsed">
     <div class="close-sidebar">

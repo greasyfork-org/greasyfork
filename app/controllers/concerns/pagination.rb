@@ -11,6 +11,11 @@ module Pagination
     relation
   end
 
+  def apply_searchkick_pagination(search)
+    @pagy = pagy(:searchkick, search)
+    search
+  end
+
   def render_pagination
     @pagy.series_nav(slots: 13, anchor_string: ('rel="nofollow"' if @bots == 'noindex')).html_safe
   end
