@@ -66,14 +66,14 @@ class DiscussionsController < ApplicationController
             }
             order = param_to_search_option[params[:sort]]
 
-            @comments = Comment.search(
+            @comments = apply_searchkick_pagination(Comment.search(
               params[:q].presence || '*',
               fields: ['discussion_title^2', 'text'],
               where: with,
               order:,
               page: page_number,
               per_page: per_page(default: 25)
-            )
+            ))
             @comments_to_discussions = @comments.map { |c| [c, c.discussion] }
             @discussions = @comments_to_discussions.map(&:last)
             @filter_result = FILTER_RESULT.new(category: params[:category], related_to_me: params[:me], locale:)
