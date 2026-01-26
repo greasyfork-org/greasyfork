@@ -22,4 +22,6 @@
   <% if ad_method.ga? & !skip_ea && fallback_ea %>
     <%= render(partial: 'shared/ea_fallback', locals: { div_id:, ea_div_id: })%>
   <% end %>
+
+  <%= render partial: 'shared/rb_ad' if @ad_method&.rb? %>
 <% end %>
