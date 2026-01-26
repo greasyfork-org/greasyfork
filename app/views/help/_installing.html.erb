@@ -41,7 +41,7 @@
     <%= it('home.ios_browsers.browser_list_html', safari_tampermonkey_link: 'https://www.tampermonkey.net/?browser=safari', safari_userscripts_link: 'https://apps.apple.com/app/userscripts/id1463298887', gear_link: 'https://gear4.app/') %>
   </div>
 
-  <%= render partial: 'shared/rb_ad' if !general_ads_setting&.no_ads? && controller_name =='home' %>
+  <%= render partial: 'shared/rb_ad' if @ad_method&.rb? && controller_name =='home' %>
 </section>
 
 <section id="home-step-2">
