@@ -66,13 +66,13 @@ class UsersController < ApplicationController
             end
 
     @users = apply_searchkick_pagination(User.search(
-      params[:q].presence || '*',
-      fields: [{ name: :word_middle }],
-      where: with,
-      order:,
-      page: page_number,
-      per_page: per_page(default: 100)
-    ))
+                                           params[:q].presence || '*',
+                                           fields: [{ name: :word_middle }],
+                                           where: with,
+                                           order:,
+                                           page: page_number,
+                                           per_page: per_page(default: 100)
+                                         ))
 
     @user_script_counts = Script.listable(script_subset).joins(:authors).where(authors: { user_id: @users.map(&:id) }).group(:user_id).count
 
