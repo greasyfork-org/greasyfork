@@ -142,6 +142,6 @@ class TwoFactorAuthenticationTest < ApplicationSystemTestCase
     fill_in 'user[otp_attempt]', with: '123456'
     click_button 'Log in'
 
-    assert_content 'Invalid Email or password'
+    assert_content 'Invalid email or password'
   end
 end

@@ -1,3 +1,21 @@
+GIT
+  remote: https://github.com/devise-i18n/devise-i18n.git
+  revision: a90329440be097ebe9895fc8228a9b336ae0823d
+  specs:
+    devise-i18n (1.15.0)
+      devise (>= 5.0.0)
+      rails-i18n
+
+GIT
+  remote: https://github.com/devise-two-factor/devise-two-factor.git
+  revision: e7b528a99a049bbd068d52fd16f54b1b6a852ce0
+  specs:
+    devise-two-factor (6.3.1)
+      activesupport (>= 7.2, < 8.2)
+      devise (>= 4.0, < 6.0)
+      railties (>= 7.2, < 8.2)
+      rotp (~> 6.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -164,20 +182,12 @@ GEM
     date (3.5.1)
     debug_inspector (1.2.0)
     detect_language (2.0.0)
-    devise (4.9.4)
+    devise (5.0.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
-      railties (>= 4.1.0)
+      railties (>= 7.0)
       responders
       warden (~> 1.2.3)
-    devise-i18n (1.15.0)
-      devise (>= 4.9.0)
-      rails-i18n
-    devise-two-factor (6.3.1)
-      activesupport (>= 7.0, < 8.2)
-      devise (>= 4.0, < 5.0)
-      railties (>= 7.0, < 8.2)
-      rotp (~> 6.0)
     diffy (3.4.4)
     drb (2.2.3)
     dry-cli (1.3.0)
@@ -625,8 +635,8 @@ DEPENDENCIES
   daemons
   detect_language
   devise
-  devise-i18n
-  devise-two-factor
+  devise-i18n!
+  devise-two-factor!
   diffy
   elasticsearch (~> 8.0)
   email_address
@@ -730,9 +740,9 @@ CHECKSUMS
   date (3.5.1) sha256=750d06384d7b9c15d562c76291407d89e368dda4d4fff957eb94962d325a0dc0
   debug_inspector (1.2.0) sha256=9bdfa02eebc3da163833e6a89b154084232f5766087e59573b70521c77ea68a2
   detect_language (2.0.0) sha256=d7be52919b6d7e0fe83023036c6968093a71fe63f0421a046fb6535da8027b04
-  devise (4.9.4) sha256=920042fe5e704c548aa4eb65ebdd65980b83ffae67feb32c697206bfd975a7f8
-  devise-i18n (1.15.0) sha256=aff406e8a2941cd1d7614643b1619031a403b2855bb6057e391d1c7c273205cd
-  devise-two-factor (6.3.1) sha256=ac0a264499490e4a26d169acd3146a1214adc6b873fc3602752bef013eeaf957
+  devise (5.0.0) sha256=3ff37d39ccedf5d7dbe5971214d81fdf7a89b32d7071857f6585a0f7863f056b
+  devise-i18n (1.15.0)
+  devise-two-factor (6.3.1)
   diffy (3.4.4) sha256=79384ab5ca82d0e115b2771f0961e27c164c456074bd2ec46b637ebf7b6e47e3
   drb (2.2.3) sha256=0b00d6fdb50995fe4a45dea13663493c841112e4068656854646f418fda13373
   dry-cli (1.3.0) sha256=984a715f9d7f8d9bf87b6530acdd4321dcf747636bfeb3ea7fd1b81bc0226e84
