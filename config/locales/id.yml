@@ -13,6 +13,7 @@ id:
   scripts:
     created_date: "Dibuat"
     updated_date: "Diperbarui"
+    code_size: ukuran
     total_installs: "Total pemasangan"
     daily_installs: "Pemasangan harian"
     ratings: "Nilai"
@@ -35,6 +36,8 @@ id:
     downgrade: "Turunkan ke versi %{version}"
     reinstall: "Pasang ulang versi %{version}"
     old_version_warning: "Ini bukan skrip versi terbaru. jika kamu pasang, kamu tidak akan pernah memperbarui ke versi terbaru. tetap pasang?"
+    post_install:
+      promoted_script_intro: "mungkin kamu juga sukai.."
     library_instructions_html: "Skrip ini tidak untuk dipasang secara langsung. Ini adalah pustaka skrip lain untuk disertakan dengan direktif meta %{code}"
     deleted_notice: "Skrip ini telah dihapus."
     deleted_notice_with_reason: "Skrip ini telah dihapus karena %{report_link:this report}."
@@ -122,6 +125,7 @@ id:
     stats_raw_data_header: "Data mentah"
     stats_download_raw_data_html: "Unduh semua data sebagai: %{links}"
     stats_no_data: "N/A"
+    stats_filters: "saring"
     stats_filter_options:
       month: 30 hari terakhir
       year: 365 hari terakhir
