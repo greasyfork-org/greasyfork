@@ -61,14 +61,14 @@ class TopSitesService
 
     def all_sites_count
       return ApplicationController.cache_with_log('all_sites_count', expires_in: 10.minutes) do
-        sql = <<-SQL.squish
-        SELECT
-          sum(daily_installs) install_count, count(distinct scripts.id) script_count
-        FROM scripts
-        WHERE
-          script_type = 1
-          AND delete_type is null
-          AND NOT EXISTS (SELECT * FROM script_applies_tos WHERE script_id = scripts.id)
+        sql = <<~SQL.squish
+          SELECT
+            sum(daily_installs) install_count, count(distinct scripts.id) script_count
+          FROM scripts
+          WHERE
+            script_type = 1
+            AND delete_type is null
+            AND NOT EXISTS (SELECT * FROM script_applies_tos WHERE script_id = scripts.id)
         SQL
         Script.connection.select_all(sql).first
       end
