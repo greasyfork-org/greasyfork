@@ -72,6 +72,8 @@ class ProxiedImage < ApplicationRecord
     self.last_error = nil
   rescue StandardError => e
     self.success = false
+    self.expires_at = 1.day.from_now
+    self.size = 0
     self.last_error = e.message.truncate(500)
   ensure
     save!
