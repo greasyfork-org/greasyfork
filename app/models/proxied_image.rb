@@ -46,7 +46,7 @@ class ProxiedImage < ApplicationRecord
   def load_media
     uri = self.class.validate_url!(original_url)
 
-    uri.open(read_timeout: 10) do |f|
+    uri.open(read_timeout: 10, open_timeout: 10) do |f|
       content_type = f.content_type
       raise "Unsupported content type: #{content_type}" unless HasAttachments::ALLOWED_CONTENT_TYPES.include?(content_type)
 
