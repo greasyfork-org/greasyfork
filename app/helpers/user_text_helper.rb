@@ -283,7 +283,19 @@ module UserTextHelper
       { node_allowlist: [node] }
     end
 
-    msc[:transformers] = [linkify_urls, yes_follow, youtube_transformer]
+    proxy_image_transformer = lambda do |env|
+      node = env[:node]
+      return unless node.element? && node.name == 'img'
+
+      proxied_url = ProxiedImage.proxied_url_for_url(node['src'])
+      if proxied_url
+        node['src'] = proxied_url
+      else
+        node.remove
+      end
+    end
+
+    msc[:transformers] = [linkify_urls, yes_follow, youtube_transformer, proxy_image_transformer]
 
     msc
   end
