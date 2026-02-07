@@ -87,13 +87,13 @@ module ApplicationHelper
     canonical_params = params
                        .to_unsafe_h
                        .to_h do |k, v|
-      next [k, v] if v.is_a?(Array)
+                         next [k, v] if v.is_a?(Array)
 
-      if canonical_param_names.include?(k.to_sym)
-        [k, v.is_a?(String) ? v.encode('UTF-8', invalid: :replace, undef: :replace, replace: '') : v]
-      else
-        [k, nil]
-      end
+                         if canonical_param_names.include?(k.to_sym)
+                           [k, v.is_a?(String) ? v.encode('UTF-8', invalid: :replace, undef: :replace, replace: '') : v]
+                         else
+                           [k, nil]
+                         end
     end
 
     begin

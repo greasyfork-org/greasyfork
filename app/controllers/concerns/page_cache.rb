@@ -20,10 +20,10 @@ module PageCache
     response.set_header('X-Page-Cache', @caching_request ? 'write' : 'read')
 
     render html: html
-      .gsub(CSRF_META_TAGS, view_context.csrf_meta_tags)
-      .gsub(CSRF_TOKEN) { session[:_csrf_token] }
-      .gsub(IP_ADDRESS, request.remote_ip)
-      .html_safe, status: status || 200
+                 .gsub(CSRF_META_TAGS, view_context.csrf_meta_tags)
+                 .gsub(CSRF_TOKEN) { session[:_csrf_token] }
+                 .gsub(IP_ADDRESS, request.remote_ip)
+                 .html_safe, status: status || 200
   end
 
   def generally_cachable?
