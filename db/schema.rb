@@ -441,8 +441,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_28_011639) do
 
   create_table "proxied_images", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
     t.datetime "created_at", null: false
+    t.datetime "expires_at", null: false
     t.string "last_error", limit: 500
     t.string "original_url", null: false
+    t.integer "size", null: false
     t.boolean "success", default: false, null: false
     t.datetime "updated_at", null: false
     t.index ["original_url"], name: "index_proxied_images_on_original_url", unique: true

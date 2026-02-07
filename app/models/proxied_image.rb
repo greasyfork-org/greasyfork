@@ -1,6 +1,8 @@
 class ProxiedImage < ApplicationRecord
   has_one_attached :image
 
+  scope :expired, -> { where('expires_at < ?', Time.current) }
+
   SAFE_HOSTS = ['greasyfork.org', 'sleazyfork.org', 'amazonaws.com', 'github.com', 'shields.io', 'gitlab.com', 'githubusercontent.com'].freeze
 
   def self.uri_needs_to_be_proxied?(uri)
@@ -43,16 +45,28 @@ class ProxiedImage < ApplicationRecord
 
   def load_media
     uri = self.class.validate_url!(original_url)
-    downloaded_image = uri.open(read_timeout: 10)
-    content_type = downloaded_image.content_type
 
-    raise "Unsupported content type: #{content_type}" unless HasAttachments::ALLOWED_CONTENT_TYPES.include?(content_type)
+    uri.open(read_timeout: 10) do |f|
+      content_type = f.content_type
+      raise "Unsupported content type: #{content_type}" unless HasAttachments::ALLOWED_CONTENT_TYPES.include?(content_type)
 
-    image.attach(
-      io: downloaded_image,
-      filename: File.basename(uri.path),
-      content_type: content_type
-    )
+      if f.meta.key?('expires')
+        self.expires_at = Time.parse(f.meta['expires'])
+      elsif max_age = f.meta['cache-control']&.match(/max-age=(\d+)/)&.[](1)&.to_i
+        self.expires_at = max_age.seconds.from_now
+      end
+
+      # Minimum 1 day TTL
+      self.expires_at = 1.day.from_now if expires_at.nil? || expires_at < 1.day.from_now
+
+      self.size = f.size
+
+      image.attach(
+        io: f,
+        filename: File.basename(uri.path),
+        content_type: content_type
+      )
+    end
 
     self.success = true
     self.last_error = nil

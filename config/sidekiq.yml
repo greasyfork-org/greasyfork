@@ -51,3 +51,6 @@
     library_usage_statistics_refresh_job:
       cron: '0 0 4 * * *'
       class: LibraryUsageStatisticsRefreshJob
+    proxied_image_clear_job:
+      interval: '1h'
+      class: ProxiedImageClearJob
