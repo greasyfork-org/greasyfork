@@ -1,12 +1,12 @@
 class ProxiedImage < ApplicationRecord
   has_one_attached :image
 
-  scope :expired, -> { where('expires_at < ?', Time.current) }
+  scope :expired, -> { where(expires_at: ...Time.current) }
 
   SAFE_HOSTS = ['greasyfork.org', 'sleazyfork.org', 'amazonaws.com', 'github.com', 'shields.io', 'gitlab.com', 'githubusercontent.com'].freeze
 
   def self.uri_needs_to_be_proxied?(uri)
-    SAFE_HOSTS.none?{|safe_host| uri.host == safe_host || uri.host&.end_with?(".#{safe_host}") }
+    SAFE_HOSTS.none? { |safe_host| uri.host == safe_host || uri.host&.end_with?(".#{safe_host}") }
   end
 
   def self.proxied_url_for_url(original_url)
@@ -51,8 +51,8 @@ class ProxiedImage < ApplicationRecord
       raise "Unsupported content type: #{content_type}" unless HasAttachments::ALLOWED_CONTENT_TYPES.include?(content_type)
 
       if f.meta.key?('expires')
-        self.expires_at = Time.parse(f.meta['expires'])
-      elsif max_age = f.meta['cache-control']&.match(/max-age=(\d+)/)&.[](1)&.to_i
+        self.expires_at = Time.zone.parse(f.meta['expires'])
+      elsif (max_age = f.meta['cache-control']&.match(/max-age=(\d+)/)&.[](1)&.to_i)
         self.expires_at = max_age.seconds.from_now
       end
 
@@ -79,7 +79,7 @@ class ProxiedImage < ApplicationRecord
 
   def self.validate_url!(url)
     uri = URI.parse(url)
-    raise "Invalid URI" unless uri.is_a?(URI::HTTP) || uri.is_a?(URI::HTTPS)
+    raise 'Invalid URI' unless uri.is_a?(URI::HTTP) || uri.is_a?(URI::HTTPS)
 
     uri
   end
