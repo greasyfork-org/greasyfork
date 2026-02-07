@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_24_202322) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_28_011639) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.text "Attributes"
     t.text "Body", null: false
@@ -437,6 +437,17 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_24_202322) do
     t.index ["user_id", "created_at"], name: "index_notifications_on_user_id_and_created_at"
     t.index ["user_id", "item_type", "item_id"], name: "index_notifications_on_user_id_and_item_type_and_item_id"
     t.index ["user_id", "read_at"], name: "index_notifications_on_user_id_and_read_at"
+  end
+
+  create_table "proxied_images", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "expires_at", null: false
+    t.string "last_error", limit: 500
+    t.string "original_url", null: false
+    t.integer "size", null: false
+    t.boolean "success", default: false, null: false
+    t.datetime "updated_at", null: false
+    t.index ["original_url"], name: "index_proxied_images_on_original_url", unique: true
   end
 
   create_table "redirect_service_domains", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|

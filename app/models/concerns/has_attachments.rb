@@ -3,7 +3,7 @@ require 'active_support/concern'
 module HasAttachments
   extend ActiveSupport::Concern
 
-  ALLOWED_CONTENT_TYPES = %w[image/png image/jpeg image/gif image/webp].freeze
+  ALLOWED_CONTENT_TYPES = %w[image/png image/jpeg image/gif image/webp image/svg+xml].freeze
 
   included do
     has_many_attached :attachments
