@@ -39,10 +39,10 @@ module Sidekiq
         Sidekiq::Workers
           .new
           .each do |_process_id, _thread_id, work|
-          if work['payload']['wrapped'] == name
-            i += 1
-            return true if i >= count
-          end
+            if work['payload']['wrapped'] == name
+              i += 1
+              return true if i >= count
+            end
         end
         false
       end
