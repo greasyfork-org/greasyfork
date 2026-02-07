@@ -7,7 +7,7 @@ gem 'connection_pool', '< 3.0' # https://github.com/mperham/connection_pool/issu
 gem 'csv'
 gem 'daemons'
 gem 'devise'
-gem 'devise-i18n', github: 'devise-i18n/devise-i18n', branch: 'main'
+gem 'devise-i18n'
 gem 'devise-two-factor'
 gem 'diffy'
 gem 'ffi-icu'
