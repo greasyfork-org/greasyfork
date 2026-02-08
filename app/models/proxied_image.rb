@@ -66,16 +66,17 @@ class ProxiedImage < ApplicationRecord
         filename: File.basename(uri.path),
         content_type: content_type
       )
-    end
 
-    self.success = true
-    self.last_error = nil
+      self.success = true
+      self.last_error = nil
+
+      save!
+    end
   rescue StandardError => e
     self.success = false
     self.expires_at = 1.day.from_now
     self.size = 0
     self.last_error = e.message.truncate(500)
-  ensure
     save!
   end
 
