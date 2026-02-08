@@ -83,7 +83,7 @@ class ProxiedImage < ApplicationRecord
   end
 
   def self.validate_url!(url)
-    raise 'URL is too long' if url.length > 2000
+    raise 'URL is too long' if url.bytesize > 2000
 
     uri = URI.parse(url)
     raise 'Invalid URI' unless uri.is_a?(URI::HTTP) || uri.is_a?(URI::HTTPS)
