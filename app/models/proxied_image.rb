@@ -79,7 +79,7 @@ class ProxiedImage < ApplicationRecord
     self.expires_at = 1.day.from_now
     self.size = 0
     self.last_error = e.message.truncate(500)
-    self.original_url = original.truncate_bytes(2000, omission: nil)
+    self.original_url = original_url.truncate_bytes(2000, omission: nil)
     save!
   end
 
