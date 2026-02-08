@@ -61,6 +61,8 @@ class ProxiedImage < ApplicationRecord
 
       self.size = f.size
 
+      raise "Image is too large: #{size} bytes" if size > 5.megabytes
+
       image.attach(
         io: f,
         filename: File.basename(uri.path),
