@@ -158,7 +158,7 @@ module UserTextHelper
 
       # Looking for top-level text or non-block elements.
       return unless node.text? || (node.element? & !element_is_block(node))
-      return unless node.parent.fragment?
+      return unless node.parent&.fragment?
 
       paragraph = Nokogiri::XML::Node.new('p', node.document)
       node.before(paragraph)
