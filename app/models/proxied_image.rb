@@ -65,7 +65,7 @@ class ProxiedImage < ApplicationRecord
 
       image.attach(
         io: f,
-        filename: File.basename(uri.path),
+        filename: File.basename(uri.path).truncate_bytes(255, omission: nil),
         content_type: content_type
       )
 
