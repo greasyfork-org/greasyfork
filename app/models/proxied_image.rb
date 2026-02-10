@@ -3,7 +3,7 @@ class ProxiedImage < ApplicationRecord
 
   scope :expired, -> { where(expires_at: ...Time.current) }
 
-  SAFE_HOSTS = ['greasyfork.org', 'sleazyfork.org', 'amazonaws.com', 'github.com', 'shields.io', 'gitlab.com', 'githubusercontent.com'].freeze
+  SAFE_HOSTS = ['greasyfork.org', 'sleazyfork.org', 'amazonaws.com', 'github.com', 'shields.io', 'gitlab.com', 'githubusercontent.com', 'imgur.com'].freeze
 
   def self.uri_needs_to_be_proxied?(uri)
     SAFE_HOSTS.none? { |safe_host| uri.host == safe_host || uri.host&.end_with?(".#{safe_host}") }
