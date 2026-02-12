@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_08_000457) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_12_015452) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.text "Attributes"
     t.text "Body", null: false
@@ -443,6 +443,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_08_000457) do
     t.datetime "created_at", null: false
     t.datetime "expires_at", null: false
     t.string "last_error", limit: 500
+    t.string "original_host", limit: 200, null: false
     t.string "original_url", limit: 2000, null: false
     t.integer "size", null: false
     t.boolean "success", default: false, null: false

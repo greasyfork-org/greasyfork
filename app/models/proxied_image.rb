@@ -45,6 +45,7 @@ class ProxiedImage < ApplicationRecord
 
   def load_media
     uri = self.class.validate_url!(original_url)
+    self.original_host = uri.host
 
     # Try to look like a browser
     headers = {
