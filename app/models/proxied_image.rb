@@ -96,6 +96,7 @@ class ProxiedImage < ApplicationRecord
 
     uri = URI.parse(url)
     raise 'Invalid URI' unless uri.is_a?(URI::HTTP) || uri.is_a?(URI::HTTPS)
+    raise 'URI must have a host' if uri.host.nil?
 
     uri
   end
