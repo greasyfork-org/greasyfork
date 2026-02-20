@@ -11,6 +11,7 @@ set :init_system, :systemd
 set :puma_systemctl_user, :system
 set :puma_service_unit_name, 'puma'
 set :assets_roles, [:web, :worker]
+set :bundle_version, 4
 # set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
 # set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 # set :rbenv_roles, :all # default value
