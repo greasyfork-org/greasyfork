@@ -5,7 +5,6 @@ import { compression } from 'vite-plugin-compression2'
 export default defineConfig({
   plugins: [
     RubyPlugin(),
-    compression(),
-    compression({ algorithm: 'brotliCompress' })
+    compression(), // Defaults to gzip and brotli
   ],
 })

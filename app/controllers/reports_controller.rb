@@ -31,7 +31,7 @@ class ReportsController < ApplicationController
                .where(id: report_ids)
                .includes(:item, :reference_script, :reporter, :rebuttal_by_user)
     @reports = @reports.order(Arel.sql("FIELD(id, #{report_ids.join(',')})")) if report_ids.any?
-    @reports = @reports.paginate(page: params[:page], per_page: per_page(default: 25))
+    @reports = apply_pagination(@reports, default_per_page: 25)
     @bots = 'noindex'
   end
 

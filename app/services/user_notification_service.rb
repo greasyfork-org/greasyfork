@@ -5,7 +5,7 @@ class UserNotificationService
     users
       .select { |u| notification_type.nil? || UserNotificationSetting.delivery_types_for_user(u, notification_type).include?(UserNotificationSetting::DELIVERY_TYPE_EMAIL) }
       .each do |user|
-      yield user, locale_for(user, backup_locale:)
+        yield user, locale_for(user, backup_locale:)
     end
     return unless notification_type
 

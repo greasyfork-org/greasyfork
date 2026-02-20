@@ -11,7 +11,7 @@ class SubresourceCheckQueueingJob
       .distinct
       .limit(50)
       .each do |subresource|
-      SubresourceCheckJob.perform_later(subresource)
+        SubresourceCheckJob.perform_later(subresource)
     end
   end
 end

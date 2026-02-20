@@ -37,21 +37,26 @@ vi:
     downgrade: "Hạ xuống phiên bản %{version}"
     reinstall: "Cài đặt lại phiên bản %{version}"
     old_version_warning: "Đây không phải phiên bản mới nhất của script. Nếu bạn cài đặt nó, bạn sẽ không được cập nhật lên phiên bản mới nhất. Bạn chắc chắn muốn cài đặt?"
+    post_install:
+      info_html: "Bạn đã cài đặt thành công %{script} . Nếu như bạn gặp vấn đề trong quá trình cài đặt, %{help_link:hãy đọc tài liệu hướng dẫn của chúng tôi}. Phản hồi và ý kiến của bạn rất quan trọng để duy trì chất lượng của script tại %{site_name}. Khi bạn đã dùng thử %{script}, hãy %{feedback_link:để lại đánh giá} để giúp chúng tôi cải thiện script này."
+      promoted_script_intro: "Bạn cũng có thể thích..."
+      similar_script_html: "%{name}-%{description}"
     library_instructions_html: "Script này sẽ không được không được cài đặt trực tiếp. Nó là một thư viện cho các script khác để bao gồm các chỉ thị meta\n%{code}"
     deleted_notice: "Script này đã bị xóa."
     deleted_notice_with_reason: "Script đã bị xoá bởi vì %{report_link:báo cáo này}."
     deleted_notice_with_related: "Script mà bạn yêu cầu đã bị xoá; và đây là những script liên quan."
     deleted_notice_with_related_and_reason: "Script mà bạn yêu cầu đã bị xoá do %{report_link:bảo cáo này}; và đây là những script liên quan."
     deleted_undelete_notice_html: "Script này đã bị khóa bởi một người điều hành và không thể phục hồi. Lí do được đưa ra là: \"<i>%{delete_reason}</i>\"."
-    deleted_locked_author_notice_html: "Script này đã bị xóa bởi người quản trị trong phản hồi %{report_link:this report} và không thể hiển thị với những người khác. Lý do được đưa ra là \"<i>%{delete_reason}</i>\". Hãy xem lại %{code_rules_link:%{site_name}'s rules}. Nếu như bạn tin rằng đây là một sự sai sót, bạn có thể kháng cáo tại %{appeal_link:submit an appeal}. Không đăng lại script này; nếu không bạn sẽ bị ban khỏi %{site_name}."
-    self_deleted_locked_author_notice_html: "Kịch bản này đã bị bạn xóa để phản hồi %{report_link:báo cáo này} và không thể truy cập bởi người khác. Nếu bạn đã cập nhật kịch bản của mình để phù hợp với %{code_rules_link:quy tắc của %{site_name}}, bạn có thể %{appeal_link:gửi yêu cầu kháng cáo} việc xóa này. Không đăng lại kịch bản này; việc làm như vậy có thể dẫn đến việc bạn bị cấm khỏi %{site_name}."
-    deleted_author_notice: "Script này đã bị xóa và không thể bị truy cập bởi những người khác. Bạn có thể phục hồi ở Delete tab."
+    deleted_locked_author_notice_html: "Script này đã bị xóa bởi người quản trị trong phản hồi %{report_link:this report} và không thể hiển thị với những người khác. Lý do được đưa ra là \"<i>%{delete_reason}</i>\". Hãy xem lại %{code_rules_link: luật lệ và điều khoản của%{site_name}}. Nếu như bạn tin rằng đây là một sự sai sót, bạn có thể %{appeal_link:kháng cáo tại đây}. Không đăng lại script này; nếu không bạn sẽ bị cấm khỏi %{site_name}."
+    self_deleted_locked_author_notice_html: "Script này đã bị bạn xóa để phản hồi %{report_link:báo cáo này} và không thể truy cập bởi người khác. Nếu bạn đã cập nhật Script của mình để phù hợp với %{code_rules_link:quy tắc của %{site_name}}, bạn có thể %{appeal_link:gửi yêu cầu kháng cáo} cho việc xóa này. Không đăng lại Script này; việc làm như vậy có thể dẫn đến việc bạn bị cấm khỏi %{site_name}."
+    deleted_author_notice: "Script này đã bị xóa và không thể bị truy cập bởi những người khác. Bạn có thể phục hồi ở phần \"Xóa\"."
     version_notice_html: "Tính đến %{date}. Xem %{latest_version_link}."
     version_notice_latest_version_link: "phiên bản mới nhất"
     reported_notice: "\"%{script_name}\" đã bị tố cáo và đang chờ xem xét bởi một người điều hành."
     reported_notice_for_author: "Script này không khả dụng tới những người dùng khác cho đến khi được một người điều hành xem xét xong."
     info_page: "Thông tin"
     code_page: "Mã nguồn"
+    wrap_lines: "Bọc các dòng"
     history_page: "Lịch sử"
     feedback_page: "Phản hồi (%{count})"
     stats_page: "Thống kê"
@@ -61,7 +66,7 @@ vi:
     delete_explanation: "Xóa script của bạn làm cho nó không thể truy cập với bất cứ ai trừ bạn và điều hành viên Greasy Fork. Bạn có thể lấy lại bất cứ lúc nào."
     delete_update_behaviour: "Bạn muốn xảy ra với những người sử dụng cài đặt trước đó script của bạn?"
     delete_update_behaviours:
-      keep: "Họ sẽ giữ cho nó như ban đầu."
+      keep: "Chúng sẽ được giữ nguyên như vậy."
       blanked: "Chúng sẽ được cập nhật thành một script trống. Điều này phù hợp khi script có ảnh hưởng tiêu cực đến các trang web mà nó chạy. "
       redirect: "Chúng sẽ được chuyển hướng và cập nhật tới script mà bạn chỉ định bên dưới. "
     delete_permanently_heading: "Xóa vĩnh viễn"
@@ -104,6 +109,7 @@ vi:
         intro: Đây là các gợi ý để cải thiện tập lệnh của bạn trên %{site_name}. Những thứ này không %{rules_link:rules}; tập lệnh của bạn sẽ không bị xóa nếu bạn không tuân theo
         license_html: Chỉ định %{license_link:<code>@license</code>}. Điều này sẽ cho người khác biết liệu họ có thể chia sẻ và sửa đổi mã của bạn hay không và bằng cách nào.
         globs_html: Tránh sử dụng glob và biểu thức chính quy trong phần tên miền của %{include_link:<code>@include</code>} và %{match_link:<code>@match</code>}. Những điều này khiến %{site_name} khó có thể phân loại chính xác tập lệnh của bạn.
+        globs_used_html: "Các từ khóa không thuộc lĩnh vực cụ thể nào: %{globs}"
         additional_info: Hãy bao gồm thông tin bổ sung - Ví dụ như dánh sách các tính năng, một vài ảnh chụp màn hình,... để người dùng có thể biết tập lệnh của bạn dùng làm gì.
     history_title: "%{script_name} - Lược sử Phiên bản"
     history_only_code_changes_info: "Đây là phiên bản của script này, nơi mã nguồn đã được cập nhật."
@@ -116,9 +122,9 @@ vi:
     feedback_title: "%{script_name} - Phản hồi"
     feedback_no_discussions_html: "Không có cuộc thảo luận nào được đăng. %{start_first_discussion_link}"
     feedback_no_discussions_on_page_form: "Chưa có cuộc thảo luận nào được đăng."
-    feedback_report_instead: "Nếu bạn nghĩ script này dang phá %{rules_link:%{site_name}'s luật} , xin hãy %{report_link:xin hãy báo cáo}."
+    feedback_report_instead: "Nếu bạn nghĩ script này dang phá %{rules_link: luật lệ và điều khoản của %{site_name}} , xin hãy %{report_link: báo cáo tại đây}."
     feedback_start_first_discussion_link: "Hãy là người đầu tiên để thảo luận về script này."
-    feedback_discussion_or_report: "%{new_discussion_link:Bắt đầu một cuộc thảo luận trên scripts này} hoặc %{report_link:báo cáo để xóa}."
+    feedback_discussion_or_report: "%{new_discussion_link:Bắt đầu một cuộc trao đổi mới về script này} hoặc %{report_link:báo cáo để xóa}."
     stats_title: "%{script_name} - Thống kê"
     stats_daily_installs_heading: "Cài đặt hàng ngày"
     stats_weekly_installs_heading: "Cài đặt hàng tuần"
@@ -134,6 +140,8 @@ vi:
       month: Trong 30 ngày qua
       year: Trong 365 ngày qua
       all: Toàn thời gian
+    stats_library_usages_intro_html: "Các script sau sử dụng URL của thư viện này trên %{site_name}trong một <code>@require</code>:"
+    stats_library_usages_script_column: Script
     derivatives_title: "%{script_name} - Các dẫn xuất"
     derivatives_intro: "Những đoạn script này có nền tảng từ bạn (hoặc do chính bạn tạo nên). Nếu bạn tìm thấy một người nó đó chưa được phép của bạn mà đã sử dụng đoạn mã đó, bạn có thể báo cáo trong phần Phản hồi về scripts"
     derivatives_script_html: "%{script}bởi %{user}, bản quyền: %{license}%{diff_link:[Diff]}"
@@ -151,7 +159,7 @@ vi:
     derivatives_similar_none: "Không có script nào giống cái bạn cần"
     derivatives_similar_item: "%{score}: %{diff_link:[Diff]} %{script}"
     derivatives_similar_last_check_html: "Chúng tôi đã tìm kiếm những script tương tự cho bạn %{date}"
-    derivatives_similar_last_check_soon: "Chúng tôi sẽ tìm kiếm những script tương tự cho bạn ngay thôi."
+    derivatives_similar_last_check_soon: "Chúng tôi sẽ tìm kiếm những script tương tự cho bạn ngay sau đây."
     derivatives_similar_last_check_again_soon_html: "Lần cuối chúng tôi kiểm tra các tập lệnh tương tự của bạn là vào ngày %{date}. Chúng tôi sẽ kiểm tra lại ngay sau."
     derivatives_similar_check_now: "Kiểm tra lại ngay bây giờ"
     derivatives_similiar_queued: Tìm kiếm những script tương tự sẽ được hoàn tất trong những phút tới
@@ -173,6 +181,7 @@ vi:
     listing_sort_created: "Đã tạo"
     listing_sort_updated: "Đã cập nhật"
     listing_sort_name: "Tên"
+    listing_sort_entry_locales: 'Các ngôn ngữ'
     listing_filter_by_site_label: "Hiện script cho:"
     listing_filter_by_site_disable: "Tất cả"
     listing_filter_by_site_all_sites: "(Tất cả trang)"
@@ -192,7 +201,11 @@ vi:
       all: Tất cả tác giả
       me: Tập lệnh của tôi
       user: Tập lệnh tạo bởi %{author_name}
-    search_failed: Đã có lỗi xảy ra khi tải kết quả của bạn. Một số chức năng tìm kiếm có thể không hoạt động. Chúng tôi đã được thông báo về sự cố này.
+    search_failed: Đã có sự cố xảy ra khi tải kết quả của bạn. Một số chức năng tìm kiếm có thể không hoạt động. Chúng tôi đã được thông báo về vấn đề này.
+    listing_ratings_explanation: Xác suất để đánh giá tiếp theo nhận được có xếp hạng tốt, từ 0 đến 1.
+    listing_locale_explanation: Script có sẵn trong những ngôn ngữ được chọn.
+    listing_advanced_search_applied: "Tìm kiếm nâng cao được áp dụng."
+    listing_advanced_search_clear: "Xóa"
     import: "Nhập script"
     new: "Xuất bản một script bạn đã viết"
     new_css: "Xuất bản một phong cách bạn đã viết"

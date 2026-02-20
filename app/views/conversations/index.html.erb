@@ -22,4 +22,4 @@
   <%= link_to t('conversations.new_link'), new_user_conversation_path(@user) %>
 </p>
 
-<%= will_paginate @conversations %>
+<%= render_pagination %>

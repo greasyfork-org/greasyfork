@@ -1,0 +1,1 @@
+Searchkick.extend Pagy::Search

@@ -31,8 +31,7 @@ module UserTextHelper
     return '' if text.nil?
     return text if markup_type == 'text'
 
-    sanitize_config = sanitize_config_for_display(markup_type).dup
-    add_mention_transformer(sanitize_config, mentions) if mentions.any?
+    sanitize_config = sanitize_config_for_display(markup_type, mentions:)
 
     if markup_type == 'markdown'
       text = markdown.render(text)
@@ -159,7 +158,7 @@ module UserTextHelper
 
       # Looking for top-level text or non-block elements.
       return unless node.text? || (node.element? & !element_is_block(node))
-      return unless node.parent.fragment?
+      return unless node.parent&.fragment?
 
       paragraph = Nokogiri::XML::Node.new('p', node.document)
       node.before(paragraph)
@@ -284,7 +283,19 @@ module UserTextHelper
       { node_allowlist: [node] }
     end
 
-    msc[:transformers] = [linkify_urls, yes_follow, youtube_transformer]
+    proxy_image_transformer = lambda do |env|
+      node = env[:node]
+      return unless node.element? && node.name == 'img'
+
+      proxied_url = ProxiedImage.proxied_url_for_url(node['src'])
+      if proxied_url
+        node['src'] = proxied_url
+      else
+        node.remove
+      end
+    end
+
+    msc[:transformers] = [linkify_urls, yes_follow, youtube_transformer, proxy_image_transformer]
 
     msc
   end
@@ -365,11 +376,25 @@ module UserTextHelper
 
   module_function
 
-  def sanitize_config_for_display(markup_type)
-    return html_sanitize_config if markup_type == 'html'
-    return markdown_sanitize_config if markup_type == 'markdown'
+  def sanitize_config_for_display(markup_type, mentions: [])
+    config = case markup_type
+             when 'html'
+               html_sanitize_config
+             when 'markdown'
+               markdown_sanitize_config
+             else
+               raise "Unknown markup_type #{markup_type}."
+             end
 
-    raise "Unknown markup_type #{markup_type}."
+    # Create a closure around the mentions transformer including the actual mentions, as there's no other way to get that data
+    # inside sanitize's transformer system. If there are no mentions, avoid doing this, as the transformer will be a no-op, and
+    # we can avoid the #dup.
+    if mentions.any?
+      config = config.dup
+      add_mention_transformer(config, mentions)
+    end
+
+    config
   end
   memo_wise self: :sanitize_config_for_display
 end

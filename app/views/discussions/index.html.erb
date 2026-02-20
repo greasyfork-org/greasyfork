@@ -21,7 +21,7 @@
       <div class="discussion-list <%= 'discussion-list-logged-in' if current_user %>">
         <%= render collection: @comments_to_discussions || @discussions, partial: 'discussions/discussion', locals: { show_script: true, discussion_ids_read: @discussion_ids_read } %>
       </div>
-      <%= will_paginate @comments || @discussions, renderer: WillPaginate::ActionView::LinkRendererWithNoFollow %>
+      <%= render_pagination %>
     <% end %>
   </div>
 

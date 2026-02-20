@@ -65,14 +65,14 @@ class UsersController < ApplicationController
               end
             end
 
-    @users = User.search(
-      params[:q].presence || '*',
-      fields: [{ name: :word_middle }],
-      where: with,
-      order:,
-      page: page_number,
-      per_page: per_page(default: 100)
-    )
+    @users = apply_searchkick_pagination(User.search(
+                                           params[:q].presence || '*',
+                                           fields: [{ name: :word_middle }],
+                                           where: with,
+                                           order:,
+                                           page: page_number,
+                                           per_page: per_page(default: 100)
+                                         ))
 
     @user_script_counts = Script.listable(script_subset).joins(:authors).where(authors: { user_id: @users.map(&:id) }).group(:user_id).count
 
@@ -109,7 +109,7 @@ class UsersController < ApplicationController
         @scripts = @scripts.not_deleted.where(script_type: :public)
 
         all_displayable_scripts = ScriptsController.apply_filters(@scripts, params.reverse_merge(language: 'all'), script_subset)
-        @scripts = all_displayable_scripts.paginate(per_page: per_page(default: 50), page: page_number)
+        @scripts = apply_pagination(all_displayable_scripts, default_per_page: 50)
         @other_site_scripts = (script_subset == :sleazyfork) ? @user.scripts.listable(:greasyfork).count : 0
 
         if @user.banned?

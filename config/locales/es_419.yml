@@ -13,6 +13,7 @@ es_419:
   scripts:
     created_date: "Creado"
     updated_date: "Actualizado"
+    code_size: Tamaño
     total_installs: "Instalaciones totales"
     daily_installs: "Instalaciones diarias"
     ratings: "Valoraciones"
@@ -33,6 +34,9 @@ es_419:
     downgrade: "Degradar a la versión %{version}"
     reinstall: "Reinstalar versión %{version}"
     old_version_warning: "Esta no es la versión mas reciente del script. Si la instalas, nunca se actualizará a una versión más nueva. ¿Quieres instalarla de todos modos?"
+    post_install:
+      info_html: "Ahora debe tener %{script} instalado. Si ha tenido problemas con la instalación, %{help_link:read our help docs}. Sus comentarios son importantes para mantener la calidad de los scripts en %{site_name}. Una vez que haya probado %{script}, considere %{feedback_link:ldejar una reseña}."
+      promoted_script_intro: "Puede que también te guste..."
     library_instructions_html: "Este script no debería instalarse directamente. Es una biblioteca que utilizan otros scripts mediante la meta-directiva de inclusión %{code}"
     deleted_notice: "Este script ha sido eliminado."
     deleted_notice_with_reason: "Este script ha sido eliminado debido a %{report_link:this report}."
@@ -48,6 +52,7 @@ es_419:
     reported_notice_for_author: "Este script no esta disponible para el resto de usuarios hasta que sea revisado por un moderador."
     info_page: "Info"
     code_page: "Código"
+    wrap_lines: "Ajuste de línea"
     history_page: "Historial"
     feedback_page: "Comentarios (%{count})"
     stats_page: "Estadísticas"
@@ -130,6 +135,8 @@ es_419:
       month: Últimos 30 días
       year: Últimos 365 días
       all: Todo el tiempo
+    stats_library_usages_intro_html: "Los siguientes scripts usan esta biblioteca: %{site_name} URL en un <code>@require</code>:"
+    stats_library_usages_script_column: Script
     derivatives_title: "%{script_name} - Derivados"
     derivatives_intro: "Estos scripts pueden basarse en el tuyo (o viceversa). Si detectas un uso no autorizado de tu código, denuncia el script desde su pestaña de «comentarios y opiniones»."
     derivatives_script_html: "%{script} por %{user}, licencia: %{license} %{diff_link:[Diff]}"
@@ -149,7 +156,15 @@ es_419:
     derivatives_similar_last_check_html: "La última vez que verificamos guiones similares al tuyo fue el %{date}."
     derivatives_similar_last_check_soon: "Empezaremos a escanear scripts parecidos a los tuyos en breve."
     derivatives_similar_last_check_again_soon_html: "La última vez que se hizo la comprobación de coincidencias fue el %{date}. Y lo volveremos a comprobar otra vez en breve."
+    derivatives_similar_check_now: "Revisar ahora"
+    derivatives_similiar_queued: La verificación de similitudes se completará en unos minutos.
+    listing_title_all_sites: "Scripts de usuario para todos los sitios web"
+    listing_description_all_sites: "Scripts de usuario que añaden características y corrigen errores en todos los sitios"
+    listing_title_for_site: "Scripts de usuario para %{site}"
     listing_description_for_site: "Scripts de usuario que añaden características y corrigen bugs en %{site}"
+    listing_title_for_search: "Scripts de usuario '%{search_string}'"
+    listing_title_for_code_search: "Scripts de usuario '%{search_string}'"
+    listing_description_for_code_search_html: "Buscar código para <code>%{search_string}</code>"
     listing_title_generic: "Scripts de usuario"
     listing_description_generic: "Scripts de usuario que añaden características y que corrigen bugs en los sitios que usas"
     listing_sort_label: "Ordenar por:"
@@ -160,22 +175,69 @@ es_419:
     listing_sort_created: "Fecha de creacion"
     listing_sort_updated: "Fecha de actualización"
     listing_sort_name: "Nombre"
+    listing_sort_entry_locales: 'Idiomas'
     listing_filter_by_site_label: "Mostrar scripts para :"
     listing_filter_by_site_disable: "Todos"
     listing_filter_by_site_all_sites: "( Todos los sitios )"
     listing_filter_by_language_label: "Lenguaje"
     listing_filter_by_site_more_sites: "Mas..."
+    listing_filter_by_authorship_label: "Creador:"
     listing_no_scripts: "No se han encontrado scripts"
     listing_created_feed: "Nuevos scripts"
     listing_updated_feed: "Scripts actualizados"
     listing_none: "(Ninguno)"
+    listing_set_locale_filter: "Mostrando resultados para todos los idiomas. %{set_filter_link:Sólo mostrar resultados en %{language}.}"
+    listing_remove_locale_filter: "Mostrando sólo resultados en %{language}. %{remove_filter_link:Mostrar resultados para todos los idiomas.}"
     listing_language_all: "Todos"
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
     listing_author:
       all: Todos los autores
       me: Mis scripts
+      user: Scripts de %{author_name}
+    search_failed: Algo a salido mal cargando los resultados. Algunas funcionalidades de búsqueda pueden no funcionar. Hemos sido notificados sobre el asunto
+    listing_ratings_explanation: Probabilidad de que la próxima reseña recibida tenga una calificación positiva, de 0 a 1.
+    listing_locale_explanation: El script está disponible en cualquiera de los idiomas seleccionados.
+    listing_advanced_search_applied: "Búsqueda avanzada"
+    listing_advanced_search_clear: "Borrar"
     import: "importar scripts"
+    new: "Publica un script que hayas escrito"
+    new_css: "Publica un estilo que hayas escrito"
+    support_site: "Visitar el sitio de soporte del autor."
+    support_email: "Envíe un correo electrónico al autor para obtener ayuda."
+    contribution_no_amount: "Agradece al %{author} su trabajo haciendo una donación."
+    contribution_with_amount: "Agradece a %{author} su trabajo haciendo una donación. La cantidad recomendada es de %{amount}."
+    contribution_bitcoin_no_amount_html: "Agradece a %{author} su trabajo haciendo una donación en Bitcoin a %{address}."
+    contribution_bitcoin_with_amount_html: "Agradece a %{author} su trabajo haciendo una donación en Bitcoin a %{address}. La cantidad recomendada es de %{amount}."
+    locale_explanation_html: "Debe coincidir con el idioma de <code>@name</code>, <code>@description</code>, y la primera información adicional."
+    locale_auto_select: "(Detectar automaticamente)"
+    sets_label: "En los siguientes grupos de scripts:"
+    sets_label_no_sets: "Grupos de scripts:"
+    sets_remove_inclusion: "Eliminar de %{set_name}"
+    sets_remove_exclusion: "Retirar la exclusión de %{set_name}"
+    sets_add_inclusion: "Añadir a %{set_name}"
+    sets_add_exclusion: "Excluir de %{set_name}"
+    sets_add_to_new: "Añadir a un nuevo grupo"
+    rules_summary_html: "Los scripts se deben <strong>explicar y razonar con exactitud</strong>, no pueden <strong>ofuscar</strong>, <strong>compactar</strong> o <strong>miniaturizar</strong> su código, deben respetar los <strong>derechos de autor</strong> de otros, y están limitados en el uso de <strong>código externo</strong>. %{full_rules_link}"
+    rules_summary_link_to_full: "Lee todas las reglas."
+    syncing_notice_html: "Este script está %{syncing_notice_sync_type}. Cualquier cambio de código que hagas se sobrescribirá al sincronizar."
+    syncing_notice_sync_type_manual: "configurar para sincronizar manualmente desde %{sync_identifier}"
+    syncing_notice_sync_type_automatic: "establecido en sincronización automática desde %{sync_identifier}"
+    upload_label: "O subir:"
+    enable_source_code_editor_label: "Habilitar editor de código fuente con resaltado de sintaxis"
+    changelog_note: "¿Qué ha cambiado en esta versión?"
+    additional_info_note: "Una descripción más detallada, instrucciones, etc."
+    post_new_script: "Publicar script"
+    post_updated_script: "Publicar nueva versión"
+    type_1_html: "Script público: un script de usuario que todos pueden ver y utilizar."
+    type_2_html: "Script de usuario no listado: un script de usuario que no está vinculado desde ningún lugar de %{site_name}. Para scripts que están en desarrollo o que no serían de utilidad general para otros usuarios. No impide que otros accedan a él si conocen la URL."
+    type_3_html: "Biblioteca: un script diseñado para ser <code>@require</code>-d desde otros scripts y no instalado directamente."
+    override_warning_checkbox_label: "Guardar de todos modos"
+    warning_version_not_incremented_html: "Actualizaste el código, pero no aumentaste el<code>@version</code> número. Those who previously installed your script may not get the updated code."
+    warning_potentially_minified_allowed_requires_link: "uno de estos lugares"
+    warning_code_previously_posted_html: "Este código ya se ha publicado anteriormente en%{script_links}. Las publicaciones repetidas están sujetas a eliminación por parte de los moderadores."
+    warning_license_missing_override_html: "Guardar sin permiso"
+    additional_info_locale_prompt: "(Elija una configuración regional)"
     deleted_marker: "(Eliminado)"
   reports:
     new_report_title:
@@ -226,3 +288,17 @@ es_419:
   importing:
     title: Importar scripts
     submit: Importar
+  mailers:
+    subscribed_discussion:
+      subject: "La publicación %{discussion_title}de %{site_name}ha recibido un comentario."
+    comment_mentioned:
+      subject: "El usuario%{commenter_name}te menciono en %{site_name}"
+    script_lock_appeal:
+      dismiss:
+        intro_html: Tu apelación sobre la eliminación de %{script}ha sido rechazada por un moderador. El script permanecerá eliminado.
+        moderator_notes: "El moderador ha comentado:"
+      unlock:
+        subject: Tu solicitud de eliminar el script en %{site_name} ha sido aceptada.
+        intro_html: Tu apelación sobre la eliminación de %{script}ha sido aceptada por un moderador. El script ya no está eliminado y vuelve a estar accesible públicamente.
+        moderator_notes: "El moderador ha comentado:"
+        outro: Por favor, revise %{rules_link:%{site_name}para evitar más eliminaciones en el futuro.

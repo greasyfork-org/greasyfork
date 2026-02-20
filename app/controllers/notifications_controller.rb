@@ -4,7 +4,7 @@ class NotificationsController < ApplicationController
   layout 'discussions', only: :index
 
   def index
-    @notifications = Notification.where(user: current_user).includes(:item).order(id: :desc).paginate(page: page_number)
+    @notifications = apply_pagination(Notification.where(user: current_user).includes(:item).order(id: :desc))
   end
 
   def mark_all_read

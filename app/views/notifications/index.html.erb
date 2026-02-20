@@ -67,7 +67,7 @@
     <% end %>
   </div>
 
-  <%= will_paginate(@notifications) %>
+  <%= render_pagination %>
 <% else %>
   <h2><%= t('users.notifications.list.none') %></h2>
 

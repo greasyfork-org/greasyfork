@@ -34,7 +34,7 @@ module Users
       fill_in 'Email', with: user.email
 
       assert_emails(1) do
-        click_on 'Send me reset password instructions'
+        click_on 'Send me password reset instructions'
         assert_content 'If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes.'
       end
 

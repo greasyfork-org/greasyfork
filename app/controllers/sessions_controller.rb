@@ -95,7 +95,7 @@ class SessionsController < Devise::SessionsController
       end
       sign_in user
       remember_me user if session[:remember_me] || params[:remember_me]
-      I18n.locale = user.locale&.code || :en
+      Pagy::I18n.locale = I18n.locale = user.locale&.code || :en
       set_flash_message(:notice, :signed_in)
       redirect_to return_to || after_sign_in_path_for(user)
       return

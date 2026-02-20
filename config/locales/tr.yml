@@ -39,7 +39,9 @@ tr:
     reinstall: "%{version} sürümünü tekrar yükle"
     old_version_warning: "Bu, betiğin en son sürümü değil. Siz eğer bu sürümü yüklerseniz en yeni sürüme asla güncelleyemeyeceksiniz. Yine de yüklensin mi?"
     post_install:
+      info_html: "%{script} şimdi yüklenmiş olmalı. Yüklemede sıkıntı yaşadıysanız, %{help_link:yardım dökümanlarımızı okuyun}.%{site_name} üzerindeki betiklerin kalitesini korumak için sizden gelecek geri beslemeler önemli. %{script} betiğini denediğinizde, lütfen %{feedback_link:inceleme göndermeyi} düşünün."
       promoted_script_intro: "Belki bunuda beğenebilirsiniz..."
+      similar_script_html: "%{name} - %{description}"
     library_instructions_html: "Bu script direkt olarak kurulamaz. Başka scriptler için bir kütüphanedir ve meta yönergeleri içerir %{code}"
     deleted_notice: "Bu script silinmiş."
     deleted_notice_with_reason: "Bu script %{report_link:this report}. nedeniyle silindi."
@@ -106,6 +108,7 @@ tr:
         title: Kontrol
         intro: Bunlar %{site_name} üzerindeki betiğinizi geliştirmeye yönelik önerilerdir. Bunlar %{rules_link:rules} değildir; bunlara uymazsanız betiğiniz silinmez.
         license_html: Bir %{license_link:<code>@license</code>} belirtin. Bu, başkalarının kodunuzu paylaşıp paylaşamayacaklarını ve nasıl değiştirebileceklerini bilmelerini sağlar.
+        globs_html: '%{include_link:<code>@include</code>} ve %{match_link:<code>@match</code>} için alan adı kısmında, az bir bölüm veya düzenli ifade kullanmaktan kaçının. Bu, %{site_name} için betiğinizin uygun şekilde sınıflandırılmasını zorlaştırır.'
     history_title: "%{script_name} - Versiyon geçmişi"
     history_only_code_changes_info: "Bunlar bu scriptin güncellenmiş kod versiyonlarıdır."
     history_all_changes_link: "Bütün versiyonları göster."

@@ -21,9 +21,7 @@
       </ol>
     <% end %>
 
-    <% if !defined?(@paginate) or @paginate %>
-      <%= will_paginate @scripts %>
-    <% end %>
+    <%= render_pagination %>
 
     <p><%= t('scripts.write_your_own_html', post_a_script_link: link_to(t('scripts.post_a_script_link_text'), new_script_version_path), learn_to_write_scripts_link: link_to(t('scripts.learn_to_write_scripts_link_text'), help_writing_user_scripts_path)) %></p>
   </div>

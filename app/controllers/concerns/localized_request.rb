@@ -28,7 +28,7 @@ module LocalizedRequest
        action_name == 'routing_error' ||
        %w[js json jsonp].include?(params[:format])
       params[:locale] = I18n.locale_available?(params[:locale]) ? params[:locale] : 'en'
-      I18n.locale = params[:locale]
+      Pagy::I18n.locale = I18n.locale = params[:locale]
       return
     end
 
@@ -51,7 +51,7 @@ module LocalizedRequest
 
     # Locale is properly set
     if params[:locale].present?
-      I18n.locale = params[:locale]
+      Pagy::I18n.locale = I18n.locale = params[:locale]
       if cookies[:locale_messaged].nil?
         # Only hassle the user about locales once per session.
         set_cookie(:locale_messaged, true)

@@ -10,7 +10,7 @@ class ScriptSyncQueueingJob
       .order(:last_attempted_sync_date)
       .limit(1000)
       .each do |script|
-      ScriptSyncJob.perform_later(script.id)
+        ScriptSyncJob.perform_later(script.id)
     end
   end
 end

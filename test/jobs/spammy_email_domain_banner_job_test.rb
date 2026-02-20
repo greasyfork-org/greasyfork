@@ -1,6 +1,10 @@
 require 'test_helper'
 
 class SpammyEmailDomainBannerJobTest < ActiveSupport::TestCase
+  setup do
+    EmailAddress.stubs(:valid?).returns(true)
+  end
+
   test 'no matches' do
     assert_no_difference -> { SpammyEmailDomain.count } do
       SpammyEmailDomainBannerJob.perform_inline('nomatches.com')

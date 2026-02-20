@@ -5,7 +5,7 @@ module ShowsAds
     no_ads = general_ads_setting
     return no_ads if no_ads
 
-    return AdMethod.rb if sleazy?
+    return AdMethod.no_ad(:sleazy) if sleazy?
 
     AdMethod.ga
   end
@@ -16,11 +16,11 @@ module ShowsAds
 
     return AdMethod.no_ad(:script_deleted) if script.nil? || script.deleted?
 
-    return AdMethod.rb if sleazy?
+    return AdMethod.no_ad(:sleazy) if sleazy?
 
     return AdMethod.no_ad(:sensitive) if script&.sensitive
 
-    return AdMethod.ga if allow_ga && script.adsense_approved && locale_allows_adsense? && (script.additional_info || script.newest_saved_script_version.attachments.any? || script.similar_scripts(script_subset:, locale: I18n.locale).any?)
+    return AdMethod.ga if allow_ga && !(controller_name == 'script_versions' && action_name == 'index') && script.adsense_approved && locale_allows_adsense? && (script.additional_info || script.newest_saved_script_version.attachments.any? || script.similar_scripts(script_subset:, locale: I18n.locale).any?)
 
     AdMethod.ea(variant: (request_locale.code unless valid_locale_for_ea?))
   end
@@ -33,7 +33,7 @@ module ShowsAds
     no_ads = general_ads_setting
     return no_ads if no_ads
 
-    return AdMethod.rb if sleazy?
+    return AdMethod.no_ad(:sleazy) if sleazy?
 
     return AdMethod.no_ad(:sensitive_list) if scripts.any?(&:sensitive?)
 
@@ -48,7 +48,7 @@ module ShowsAds
 
     return no_ads if no_ads
 
-    return AdMethod.rb if sleazy?
+    return AdMethod.no_ad(:sleazy) if sleazy?
 
     return AdMethod.no_ad(:sensitive) if discussion.script&.sensitive?
 
@@ -59,7 +59,7 @@ module ShowsAds
     no_ads = general_ads_setting
     return no_ads if no_ads
 
-    return AdMethod.rb if sleazy?
+    return AdMethod.no_ad(:sleazy) if sleazy?
 
     AdMethod.ea(variant: (request_locale.code unless valid_locale_for_ea?))
   end
@@ -68,7 +68,7 @@ module ShowsAds
     no_ads = general_ads_setting
     return no_ads if no_ads
 
-    return AdMethod.rb if sleazy?
+    return AdMethod.no_ad(:sleazy) if sleazy?
 
     return AdMethod.no_ad(:sensitive_list) if displayed_scripts.where(sensitive: true).any?
 

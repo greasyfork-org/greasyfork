@@ -414,15 +414,15 @@ class Script < ApplicationRecord
                       .compact
                       .uniq
                       .filter_map do |url|
-      next unless url.starts_with?('https:') || url.starts_with?('http:')
+                        next unless url.starts_with?('https:') || url.starts_with?('http:')
 
-      url, integrity_hashes = url.split('#', 2)
-      if integrity_hashes
-        integrity_hashes = integrity_hashes.split(/[;,]/, 2)
-        integrity_hashes = integrity_hashes.map { |entry| entry.split(/[=-]/, 2) }
-        integrity_hashes = integrity_hashes.select { |algorithm, hash| algorithm.present? && hash.present? }
-      end
-      [url, integrity_hashes]
+                        url, integrity_hashes = url.split('#', 2)
+                        if integrity_hashes
+                          integrity_hashes = integrity_hashes.split(/[;,]/, 2)
+                          integrity_hashes = integrity_hashes.map { |entry| entry.split(/[=-]/, 2) }
+                          integrity_hashes = integrity_hashes.select { |algorithm, hash| algorithm.present? && hash.present? }
+                        end
+                        [url, integrity_hashes]
     end
     existing_subresources = Subresource.where(url: urls_and_hashes.map(&:first))
     urls_and_hashes.each do |url, integrity_hashes|
