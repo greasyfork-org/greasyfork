@@ -37,7 +37,7 @@
             <%= search_comparator_field(field, include_equals: false) %>
           </td>
           <td>
-            <input type="datetime-local" id="search-<%= field %>" name="<%= field %>" value="<%= params[field] %>" placeholder="(Any)" min="<%=Script.first.created_at.strftime('%Y-%m-%dT%H:%M')%>" max="<%=Time.zone.now.strftime('%Y-%m-%dT%H:%M')%>">
+            <input type="datetime-local" id="search-<%= field %>" name="<%= field %>" value="<%= params[field] %>" placeholder="(Any)" min="<%=(Script.first.created_at - 1.year).strftime('%Y-%m-%dT%H:%M')%>" max="<%=1.year.from_now.strftime('%Y-%m-%dT%H:%M')%>">
           </td>
         <% when :select %>
           <td></td>
