@@ -19,6 +19,7 @@ pt-BR:
     ratings: "Avaliações"
     author_name: "Autor"
     version_number: "Versão"
+    version_abbreviation: "v%{number}"
     license: "Licença"
     no_license: "N/A"
     compatibility: "Compatibilidade"
@@ -38,6 +39,9 @@ pt-BR:
     downgrade: "Retroceder para a versão %{version}"
     reinstall: "Reinstalar a versão %{version}"
     old_version_warning: "Essa não é a versão mais recente desse script. Se instalá-lo, você nunca estará atualizado com a versão mais nova. Deseja instalar mesmo assim? "
+    post_install:
+      promoted_script_intro: "Você também pode gostar..."
+      similar_script_html: "%{name} - %{description}"
     library_instructions_html: "Este script não deve ser instalado diretamente. Este script é uma biblioteca de outros scripts para incluir com o diretório meta %{code}"
     deleted_notice: "Este script foi deletado."
     deleted_notice_with_reason: "Esse script foi excluído devido a %{report_link:esse relatório}."
@@ -53,6 +57,7 @@ pt-BR:
     reported_notice_for_author: "Este script está indisponível para outros usuários até que seja avaliado por um moderador."
     info_page: "Informação"
     code_page: "Código"
+    wrap_lines: "Quebra de linha automática"
     history_page: "Histórico"
     feedback_page: "Comentários (%{count})"
     stats_page: "Estatísticas"
@@ -137,6 +142,7 @@ pt-BR:
       month: Últimos 30 dias
       year: Últimos 365 dias
       all: Todo o período
+    stats_library_usages_script_column: Script
     derivatives_title: "%{script_name} - Derivados"
     derivatives_intro: "Esses scripts podem ser baseados no seu (ou o seu pode ser baseados neles). Caso você detecte um uso não autorizado de seu código, denuncie através da aba feedback do script."
     derivatives_script_html: "%{script} feito por %{user}, sob a licença: %{license} %{diff_link:[Diff]}"
@@ -176,6 +182,7 @@ pt-BR:
     listing_sort_created: "Data de Criação"
     listing_sort_updated: "Data de Atualização"
     listing_sort_name: "Nome"
+    listing_sort_entry_locales: 'Idiomas'
     listing_filter_by_site_label: "Mostrando scripts para:"
     listing_filter_by_site_disable: "Todos"
     listing_filter_by_site_all_sites: "(Todos sites)"
@@ -196,6 +203,10 @@ pt-BR:
       me: Meus scripts
       user: Scripts de%{author_name}
     search_failed: Ocorreu um erro ao carregar os resultados. Algumas funcionalidades de pesquisa podem não estar funcionando. Já estamos cientes do problema.
+    listing_ratings_explanation: A probabilidade da próxima avaliação recebida ter uma boa classificação, de 0 a 1.
+    listing_locale_explanation: O script está disponível em qualquer um dos idiomas selecionados.
+    listing_advanced_search_applied: "Pesquisa avançada aplicada"
+    listing_advanced_search_clear: "Limpar"
     import: "Importar scripts"
     new: "Publicar um script que você escreveu"
     new_css: "Publicar um estilo que você escreveu"
@@ -337,6 +348,7 @@ pt-BR:
     error_unauthorized_copy: "Este código parece ser uma cópia não autorizada de %{script}. Consulte as %{rules_link:regras} do 2%{site_name} para publicação de scripts."
     invitations:
       form_title: "Convidar outros autores"
+      explanation: "Você pode adicionar outros usuários do Greasy Fork como autores deste script. Eles terão os mesmos direitos que você, incluindo o direito de adicionar ou remover outros autores (inclusive você)."
       invited_user_url_label: "Usuário para convidar"
       invited_user_placeholder: "URL do perfil do usuário no %{site_name}"
       submit: "Enviar convite"
@@ -369,6 +381,7 @@ pt-BR:
     install_help_dialog:
       js:
         firefox: Você precisará instalar uma extensão como %{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} ou %{violentmonkey_link:Violentmonkey} para instalar este script.
+        chrome: Você precisará instalar uma extensão como %{tampermonkey_link:Tampermonkey} para instalar este script.
         opera: Você precisará instalar uma extensão como %{tampermonkey_link:Tampermonkey} ou %{violentmonkey_link:Violentmonkey} para instalar este script.
         safari: Você precisará instalar uma extensão como %{tampermonkey_link:Tampermonkey} ou %{userscripts_link:Userscripts} para instalar este script.
         edge: Você precisará instalar uma extensão como o %{tampermonkey_link:Tampermonkey} para instalar este script.
@@ -428,11 +441,13 @@ pt-BR:
           other: "Este script utiliza hashes de integridade de sub-recursos incorretos: 1%{detail}"
         detail: "<code>%{url}</code> deveria usar o hash <code>%{expected_hash}</code> (verificado pela última vez em %{last_checked_at})"
   script_sets:
+    heading: "Conjuntos de Scripts"
     description: "Os conjuntos de scripts permitem criar uma lista personalizada de scripts para navegar no Greasy Fork. Você pode adicionar scripts ao seu conjunto, incluindo scripts individuais, conjuntos de outros usuários ou conjuntos gerados automaticamente. Você também pode excluir scripts do seu conjunto usando os mesmos métodos."
     favorites_name: "Favoritos"
     delete: "Excluir conjunto de scripts"
     delete_confirmation: "Tem certeza de que deseja excluir este conjunto de scripts?"
     site_default_sort: "(Padrão do site)"
+    edit_link: "Editar"
     edit_scripts:
       heading: "Scripts"
       description: "Incluir ou excluir scripts individuais na sua coleção de scripts."
@@ -513,8 +528,28 @@ pt-BR:
         escolher dependem de qual navegador você utiliza.</p>
     desktop_browsers:
       title: PC
+      browser_list_html: |
+          <ul>
+          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</li>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, or %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} or %{safari_userscripts_link:Userscripts}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} or %{opera_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>%{adguard_link:AdGuard}: (não é necessário nenhum software adicional)</li>
+          </ul>
     android_browsers:
       title: Móvel (Android)
+      browser_list_html: |
+          <ul>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, or %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+          <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+          <li>%{xbrowser_link:XBrowser}</li>
+          %{locale_specific_browsers}
+          </ul>
     ios_browsers:
       title: Móvel (iOS)
       browser_list_html: |
@@ -561,6 +596,7 @@ pt-BR:
     script_list_none_for_filter: "Sem scripts para o filtro atual."
     script_list_none_same_user_html: "Você não escreveu nenhum script. %{script_list_none_same_user_info_link}"
     script_list_none_same_user_info_link_text: "Você gostaria de saber como?"
+    listing_sort_name: "Nome"
     deleted_script_list: "Scripts deletados"
     unlisted_script_list: "Scripts não listados"
     sign_out: "Sair"
@@ -953,6 +989,7 @@ pt-BR:
       icons_credit: "Os ícones do navegador são do %{browserlogos}."
     help_with_greasymonkey: "Ajuda com o Greasemonkey"
     help_with_tampermonkey: "Ajuda com o Tampermonkey"
+    help_with_violentmonkey: "Ajuda com Violentmonkey"
     contact:
       title: "Contacte alguém"
       content_html: >
@@ -1193,6 +1230,19 @@ pt-BR:
       comment_description: "Um comentário sobre a discussão \"%{discussion_title}\""
       message: "Uma mensagem do usuário %{user}"
       deleted: "%{type} #%{id} removido"
+      script: "%{script}"
+    other_appeals:
+      heading: "Outros apelos para este relatório:"
+      item_html: "%{item_link} - %{result}"
+      item_link: "Apelo #%{id}"
+      resolutions:
+        unresolved: "não resolvido"
+        dismissed: "dispensado"
+        unlocked: "destrancado"
+    unauthorized_code:
+      script_header: Script
+      reported_script: Reportado
+      original_script: Original
   appeals:
     new:
       title: Novo recurso de exclusão de script
@@ -1313,6 +1363,7 @@ pt-BR:
     no_discussions: Nenhuma discussão foi encontrada.
     mark_all_read: Marcar tudo como lido
     pending_moderator_review: Esta discussão está indisponível para outros usuários até que seja revisada por um moderador.
+    blocked_pending_review: Os comentários estão bloqueados enquanto aguardam a revisão das suas contribuições anteriores por um moderador. Tente novamente mais tarde.
     search_placeholder: Pesquisar discussões
   conversations:
     user_input_note: Digite o nome do usuário ou o URL do perfil dele.
@@ -1340,6 +1391,20 @@ pt-BR:
     moderator_notice: Se você quiser denunciar uma violação das regras do %{site_name}, use o link Denunciar no script, usuário ou comentário em questão. Os moderadores não podem remover conteúdo com base em denúncias feitas por mensagens diretas.
   screenshots:
     requirements: "Máximo de %{number} imagens PNG, GIF, JPEG ou WebP, com tamanho inferior a %{size} cada."
+  moderator_actions:
+    action_taken:
+      ban: 'Banir'
+      delete: 'Excluir'
+      delete_and_lock: 'Excluir e trancar'
+      delete_version: 'Excluir versão %{version}, ID %{id}'
+      mark_adult: 'Marcar como conteúdo adulto'
+      mark_not_adult: 'Marcar como conteúdo não adulto'
+      permanent_deletion: 'Exclusão permanente'
+      permanent_deletion_denied: 'Exclusão permanente negada'
+      unban: 'Desbanir'
+      undelete: 'Restaurar'
+      undelete_and_unlock: 'Restaurar e destrancar'
+      update_locale: 'Atualizar locale'
   common:
     error_preamble: "Ocorreram alguns problemas com o que você publicou..."
     allowed_elements_link: "(Consulte o código permitido.)"
@@ -1359,6 +1424,7 @@ pt-BR:
     quote:
       prefix_html: "%{user} disse:"
       anonymous_reporter_html: "O autor da denúncia disse:"
+    access_denied: "Acesso negado."
   activerecord:
     models:
       script:
@@ -1430,6 +1496,7 @@ pt-BR:
       no_executable: "não contém código executável"
       meta_too_long: "%{key} é muito longo (o máximo é %{count} caracteres)"
       style_missing_meta: "está sem o bloco de metadados. Veja https://github.com/openstyles/stylus/wiki/Writing-UserCSS para exemplos"
+      invalid_unicode: "possui código Unicode inválido"
   opensearch:
     short_name: "pesquisa no %{site_name}"
     description: "Pesquisar scripts de usuário no %{site_name}."
@@ -1439,6 +1506,11 @@ pt-BR:
     title: Importar scripts
     intro: "O %{site_name} pode importar scripts que já estão hospedados em outros locais, como, por exemplo, em sistemas de controle de versão (como o GitHub), em seu próprio servidor ou em outro site que hospede scripts de usuário."
     url_entry_label: Forneça URLs para importação, separadas por linhas novas. Estas devem ser URLs para os arquivos JS ou CSS brutos.
+    language:
+      label: Em que idioma estão os URLs acima?
+      detect: Detecta com base na extensão, usando JavaScript como padrão.
+      js: JavaScript
+      css: CSS
     sync_type_label: "Após a importação inicial, o(s) script(s) deve(m) ser sincronizado(s):"
     additional_info_html: |
         <p>Para scripts vindos de um controle de versão, certifique-se de que a URL que você usa se refira a um branch e não a um commit específico, caso contrário, ele nunca será atualizado. Por exemplo, <code><b>branch-name</b>/script.user.js</code> em vez de <code><b>commit-hash</b>/script.user.js</code>.</p>
