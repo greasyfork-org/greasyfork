@@ -384,10 +384,12 @@ module ScriptListings
       end
     end
 
-    @scripts = apply_pagination(Script
+    @scripts = Script
                .listable(script_subset)
-               .includes({ users: {}, localized_attributes: :locale }))
+               .includes({ users: {}, localized_attributes: :locale })
     @scripts = self.class.apply_filters(@scripts, params, script_subset)
+    @scripts = apply_pagination(@scripts)
+
     # Force a load as will be doing empty?, size, etc. and don't want separate queries for each.
     @scripts = @scripts.load
 
