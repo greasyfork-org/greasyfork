@@ -6,6 +6,14 @@
       ☰
     </div>
 
+    <% if !general_ads_setting&.no_ads? && greasy? %>
+      <div class="ad ad-proxyseller">
+        <%= link_to 'https://proxy-seller.com/?partner=QDV3ZOD7JN9RRO', target: '_blank' do %>
+          <%= vite_image_tag('images/ads/proxyseller.png', alt: '') %>
+        <% end %>
+      </div>
+    <% end %>
+
     <div class="discussion-list-header">
       <h2><%= t('discussions.title') %></h2>
       <% if current_user && @filter_result.read_status != 'read' && @discussions.any? && !params[:q].present? %>
