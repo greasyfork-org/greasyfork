@@ -109,6 +109,8 @@ tr:
         intro: Bunlar %{site_name} üzerindeki betiğinizi geliştirmeye yönelik önerilerdir. Bunlar %{rules_link:rules} değildir; bunlara uymazsanız betiğiniz silinmez.
         license_html: Bir %{license_link:<code>@license</code>} belirtin. Bu, başkalarının kodunuzu paylaşıp paylaşamayacaklarını ve nasıl değiştirebileceklerini bilmelerini sağlar.
         globs_html: '%{include_link:<code>@include</code>} ve %{match_link:<code>@match</code>} için alan adı kısmında, az bir bölüm veya düzenli ifade kullanmaktan kaçının. Bu, %{site_name} için betiğinizin uygun şekilde sınıflandırılmasını zorlaştırır.'
+        globs_used_html: "Alan adına özgü olmayan include ifadeleri kullanıldı:"
+        additional_info: Ek bilgiler ekleyin — özelliklerinizi listeleyin, ekran görüntüleri paylaşın vb. Böylece kullanıcılar betiğinizin tam olarak ne yaptığını net şekilde anlayabilir.
     history_title: "%{script_name} - Versiyon geçmişi"
     history_only_code_changes_info: "Bunlar bu scriptin güncellenmiş kod versiyonlarıdır."
     history_all_changes_link: "Bütün versiyonları göster."
@@ -138,6 +140,8 @@ tr:
       month: Son 30 gün
       year: Son 365 gün
       all: Tüm zamanlar
+    stats_library_usages_intro_html: "Aşağıdaki betikler, bu kütüphanenin %{site_name} URL’sini bir <code>@require:</code> içinde kullanmaktadır:"
+    stats_library_usages_script_column: Betik
     derivatives_title: "%{script_name} - Türevleri"
     derivatives_intro: "Bu betikler sizinkine dayalı olabilir (veya sizin betiğiniz onların betiğine dayalı olabilir). Eğer kodunuzun izinsiz kullanıldığını düşünüyorsanız, betiğin Geribildirim menüsünden rapor edebilirsiniz."
     derivatives_script_html: "%{user}tarafından %{script}, lisans: %{license}%{diff_link:[Diff]}"
@@ -165,6 +169,7 @@ tr:
     listing_description_for_site: "%{site} sitesine özellikler ekleyen ve buglarını kaldıran scriptler."
     listing_title_for_search: "'%{search_string}' kullanıcı scriptleri"
     listing_title_for_code_search: "'%{search_string}' kullanıcı scriptleri"
+    listing_description_for_code_search_html: "<code>%{search_string}</code>için kod araması"
     listing_title_generic: "Kullanıcı scriptleri"
     listing_title_for_favorites: "%{user_name} kullanıcısının %{set_name}"
     listing_description_generic: "Senin kullandığın sitelere özellikler ekleyen ve buglarını kaldıran scriptler."
@@ -197,6 +202,7 @@ tr:
       me: Benim betiklerim
       user: '%{author_name} kullanıcısının betikleri'
     search_failed: Sonuçlarınız yüklenirken bir sorun oluştu. Bazı arama işlevleri çalışmıyor olabilir. Sorun hakkında bilgilendirildik.
+    listing_ratings_explanation: Alınacak bir sonraki değerlendirmenin iyi puanlı olma olasılığı (0 ile 1 arasında).
     listing_locale_explanation: Betik herhangi seçilen bir dil için kullanılabilinir.
     listing_advanced_search_applied: "Gelişmiş arama uygulandı"
     listing_advanced_search_clear: "Temizle"
@@ -230,6 +236,7 @@ tr:
     post_new_script: "Script gönder"
     post_updated_script: "Yeni versiyon gönder"
     type_1_html: "Herkese açık kullanıcı scripti - herkesin görmesi ve kullanması için bir kullanıcı scripti ."
+    type_2_html: "Listelenmemiş kullanıcı betiği — %{site_name} hiçbir yerden bağlantı verilmeyen kullanıcı betiğidir. Geliştirme aşamasındaki veya genel olarak başkaları için faydalı olmayan betikler içindir. URL’yi bilenlerin erişmesini engellemez."
     type_3_html: "Kütüphane - Script sadece <code>@require</code> ile kullanılır ve direkt olarak kurulmaz."
     override_warning_checkbox_label: "Yine de kaydet"
     warning_version_not_incremented_html: "Kodu güncelledin fakat <code>@version</code> numarasını arttırmadın. Önceden senin scriptini yüklemiş olanlar güncelleme alamayabilir."
@@ -249,6 +256,7 @@ tr:
     additional_info_add_localized: "Yerel ek bilgi ekle"
     additional_info_locale_repeated: "'%{locale_code}' yeri için bir ek bilgi sağlayın."
     localized_additional_info_with_no_name: " '%{locale_code}' yeri için ek bilgi belirtildi, ancak @name:%{locale_code} sağlanmadı."
+    invalid_matchers: "Geçersiz match ifadeleri kullanıldı:%{matches}"
     code_syncing_from_url_html: "Bu scriptin kodun senkronizasyonu şuraya ayarlanmış: %{field}"
     provide_code_syncing_from_url_html: "%{site_name}'a başka yerlerde barındırılan scriptleri aktarabilirsin, örnek olarak versiyon kontrol sisteminden (GitHub gibi), senin serverından, ya da başka user script hosting sitelerinden. Scriptlerinin senkronizasyonunu etkinleştirmek için ihtiyacını sağlayacak bir URL: %{field}"
     code_syncing_from_webhook_html: "Bu script kodu bir webhook ile senkronize olacak şekilde ayarlandı. Webhook isteklerini şu URL'ye göre eşleştireceğiz: %{field}"
@@ -262,6 +270,7 @@ tr:
     sync_type_3:
       name: Web kancası
       description: deponuzdaki bu dosyada değişiklik yaptığınızda güncellenecektir.
+    sync_webhook_info_without_sync: Yukarıda senkronizasyonu ayarladıktan sonra, GitHub, GitLab veya BitBucket deposuna senkronize ediyorsanız, deponuza push yaptığınızda %{site_name}’un otomatik olarak güncellenmesi için ayrıca %{webhook_info_link:webhook ayarlayabilirsiniz}.
     sync_webhook_info_with_sync: Eğer GitHub, GitLab ya da BitBucket repolarından senkronize ediyorsanız, reponuza pushladığınızda %{site_name}scriptini otomatik olarak güncellemek için %{webhook_info_link:buradan bir webhook kurabilirsiniz}.
     sync_name_and_description: "%{name} - %{description}"
     sync_failed_info_html: "Son senkronizasyon teşebbüsü %{date} oldu, %{error} ile sonuçlandı."
@@ -305,6 +314,7 @@ tr:
     not_adult_content_self_report_html: "Bu script içinde yetişkin içerikleri  <strong>barındırmıyor</strong> ve yetişkin içerik barındıran bir site için <strong>hazırlanmamış.</strong>"
     not_adult_content_self_report_explanation: " %{site_name} sitesi yetişkin içerikli scriptlere izin verir, ancak bu kullanıcıların görmek isteyip istemedikleri bir şekilde işaretlenmelidir. Senin kodun yetişkin içeriği olarak işaretlendi. Bunu geri bildirebilrsiniz, bir moderatör tarafından incelenecektir."
     not_adult_content_self_report_explanation_automatic: "%{site_name}yetişkin içerikli scriptlere izin verir, ancak bunlar kullanıcıların görmek isteyip istemediklerini seçebileceği bir şekilde işaretlenmelidir. Oluşturduğunuz script %{domain_list} sitesi ile ilişkili olduğundan yetişkin içerikli olarak işaretlendi."
+    adult_content_notice_from_sleazy: Bu betiği %{site_name} üzerinde yayımladığınıza göre, betiğinizin yetişkin içerik barındırdığı veya yetişkin içerikli bir siteye yönelik olduğu varsayılır. Bu doğru değilse, lütfen betiğinizi %{greasyfork_link:Greasy Fork üzerinde yayımlayın}.
     adult_content_on_greasy_logged_in_error: "Bu script artık sizin geçerli %{edit_account_link:Greasy Fork account settings} üyeliğiniz için kullanılabilir değil."
     adult_content_on_greasy_not_logged_in_error: "Bu script artık kullanıcı girişi yapılmadan kullanılamaz. Lütfen {login_link:Log in} linkinden giriş yapın ve hesap ayarlarınızı kontrol edin"
     non_adult_content_on_sleazy: "Bu script bu sitede mevcut değil."
@@ -317,6 +327,7 @@ tr:
     unlisted_marker: "(Liste dışı)"
     library_marker: "(Kitaplık)"
     libraries_title: "Kütüphaneler"
+    libraries_description_html: "%{site_name} kullanıcıları tarafından yayımlanmış ve betiklerinizde <code>@require</code> ile kullanabileceğiniz kütüphaneler vardır. <code>@require</code> ile kullanılabilecek diğer kütüphane türleri için %{policy_link:%%{site_name}'un <code>@require</code> politikası}nı okuyun."
     by_site_list_title: "Kullanıcı Scriptleri %{site_name} göre gruplandırılmış"
     by_site_list_description: "Bunlar, en popüler kullanıcıların ürettiği scriptlerinden etkilenen sitelerdir. Büyük yazı tipi boyutu daha popüler kullanıcı yapımı script anlamına gelir."
     by_site_list_filter: "Site ismine göre filtrele:"
@@ -337,6 +348,7 @@ tr:
     error_unauthorized_copy: "Bu kod parçası görünüşe göre %{script} betiğinin izinsiz olarak kullanılmış bir kopyası. Lütfen %{site_name}'un betik yayınlamak hakkında ki %{rules_link:kurallarına} bakınız."
     invitations:
       form_title: "Diğer yazarları davet edin"
+      explanation: "Bu betiğe diğer Greasy Fork kullanıcılarını yazar olarak ekleyebilirsiniz. Onlar da (sizi ekleme veya kaldırma hakkı dahil) bu betik üzerinde sizinle aynı haklara sahip olur."
       invited_user_url_label: "Davet için kullanıcı"
       invited_user_placeholder: "Kullanıcının %{site_name}sitesinde ki profili"
       submit: "Davet gönder"
@@ -369,12 +381,19 @@ tr:
     install_help_dialog:
       js:
         firefox: 'Bu betiği kurabilmeniz için %{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} ya da %{violentmonkey_link:Violentmonkey} gibi bir kullanıcı betiği eklentisini kurmanız gerekmektedir. '
+        chrome: Bu betiği yüklemek için %{tampermonkey_link:Tampermonkey} gibi bir uzantı yüklemeniz gerekir.
         opera: 'Bu betiği kurabilmeniz için %{tampermonkey_link:Tampermonkey} ya da %{violentmonkey_link:Violentmonkey} gibi bir kullanıcı betiği eklentisini kurmanız gerekmektedir. '
         safari: 'Bu betiği kurabilmeniz için %{tampermonkey_link:Tampermonkey} ya da %{userscripts_link:Userscripts} gibi bir kullanıcı betiği eklentisini kurmanız gerekmektedir. '
         edge: Bu betiği indirebilmeniz için ayrıca %{tampermonkey_link:Tampermonkey} gibi bir eklenti kurmanız gerekmektedir.
         other: Bu komut dosyasını yüklemek için bir kullanıcı komut dosyası yöneticisi uzantısı yüklemeniz gerekecek.
         bypass: (Zaten bir kullanıcı komut dosyası yöneticim var, kurmama izin verin!)
       css:
+        firefox: Bu stili yüklemek için %{stylus_link:Stylus} gibi bir uzantı yüklemeniz gerekir.
+        chrome: Bu stili yüklemek için %{stylus_link:Stylus} gibi bir uzantı kurmanız gerekir.
+        opera: Bu stili yükleyebilmek için %{stylus_link:Stylus} gibi bir uzantı yüklemeniz gerekir.
+        safari: Bu stili yüklemek için bir kullanıcı stili yöneticisi uzantısı yüklemeniz gerekir.
+        edge: Bu stili yüklemek için bir kullanıcı stili yöneticisi uzantısı kurmanız gerekir.
+        other: Bu stili yükleyebilmek için bir kullanıcı stili yöneticisi uzantısı yüklemeniz gerekir.
         bypass: (Zateb bir user-style yöneticim var, yükleyeyim!)
       close_dialog: Tamam
     antifeatures:
