@@ -2,8 +2,8 @@
 <%- description "Differences in #{@script.name(request_locale)} between #{@old_version.version} and #{@new_version.version}" %>
 
 <p>
-  <%= t('scripts.diff_old_version') %> <%= link_to("v#{@old_version.version}", show_code_script_path(@script, version: @old_version.id)) %> - <%= markup_date(@old_version.created_at) %> - <%= format_user_text_as_inline(@old_version.changelog, @old_version.changelog_markup) %><br>
-  <%= t('scripts.diff_new_version') %> <%= link_to("v#{@new_version.version}", show_code_script_path(@script, version: @new_version.id)) %> - <%= markup_date(@new_version.created_at) %> - <%= format_user_text_as_inline(@new_version.changelog, @new_version.changelog_markup) %><br>
+  <%= t('scripts.diff_old_version') %> <%= link_to(t('scripts.version_abbreviation', number: @old_version.version), show_code_script_path(@script, version: @old_version.id)) %> - <%= markup_date(@old_version.created_at) %> - <%= format_user_text_as_inline(@old_version.changelog, @old_version.changelog_markup) %><br>
+  <%= t('scripts.diff_new_version') %> <%= link_to(t('scripts.version_abbreviation', number: @new_version.version), show_code_script_path(@script, version: @new_version.id)) %> - <%= markup_date(@new_version.created_at) %> - <%= format_user_text_as_inline(@new_version.changelog, @new_version.changelog_markup) %><br>
   <form class="diff_options">
     <input type="hidden" name="v1" value="<%= params[:v1] %>">
     <input type="hidden" name="v2" value="<%= params[:v2] %>">
