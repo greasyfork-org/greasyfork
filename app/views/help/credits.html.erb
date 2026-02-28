@@ -8,6 +8,12 @@
   <%= it('help.credits.developers_credit', developers_link: 'https://github.com/greasyfork-org/greasyfork/graphs/contributors', site_name: site_name) %>
 </p>
 
+<% if greasy? %>
+  <p>
+  <%= it('help.credits.donors_credit', donor_links: financial_credits, site_name: site_name, admin_email_link: admin_email_url) %>
+  </p>
+<% end %>
+
 <p>
   <%= it('help.credits.translators_credit', translators_link: 'https://app.transifex.com/greasy-fork/teams/', site_name: site_name) %>
 </p>
