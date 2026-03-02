@@ -38,7 +38,8 @@ class ProxiedImage < ApplicationRecord
   SAFE_HOSTS = IMAGE_SHARING_HOSTS + INTERNAL_HOSTS + OTHER_HOSTS
 
   def self.uri_needs_to_be_proxied?(uri)
-    SAFE_HOSTS.none? { |safe_host| uri.host == safe_host || uri.host&.end_with?(".#{safe_host}") }
+    # SAFE_HOSTS.none? { |safe_host| uri.host == safe_host || uri.host&.end_with?(".#{safe_host}") }
+    false
   end
 
   def self.proxied_url_for_url(original_url)
