@@ -5,7 +5,7 @@ class CssToJsConverter
     include ActionView::Helpers::JavaScriptHelper
 
     VERBATIM_META_LINES = %w[name namespace version description author homepageURL supportURL license].freeze
-    MATCH_RESULT = Struct.new(:matches, :includes, keyword_init: true)
+    MATCH_RESULT = Struct.new(:matches, :includes)
 
     def convert(css)
       code_css = CssParser.get_code_blocks(css).join("\n")

@@ -38,6 +38,6 @@ class I18nTest < ActiveSupport::TestCase
   end
 
   def get_interpolations(i18n_text)
-    Array(i18n_text).select { |v| v.is_a?(String) }.map { |v| v.scan(/%{([^}:]*)[:}]/) }.flatten.sort
+    Array(i18n_text).grep(String).map { |v| v.scan(/%{([^}:]*)[:}]/) }.flatten.sort
   end
 end

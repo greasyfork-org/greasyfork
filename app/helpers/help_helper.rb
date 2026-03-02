@@ -4,7 +4,7 @@ module HelpHelper
       ['Dotcom-Monitor', 'https://www.dotcom-monitor.com/'],
       ['LoadView', 'https://www.loadview-testing.com/'],
       ['Web Hosting Buddy', 'https://webhostingbuddy.com/'],
-      ['Find My Electric', 'https://www.findmyelectric.com/']
+      ['Find My Electric', 'https://www.findmyelectric.com/'],
     ].map { |name, url| link_to(name, url) }.to_sentence.html_safe
   end
 
