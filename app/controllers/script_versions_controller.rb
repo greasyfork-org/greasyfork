@@ -11,6 +11,8 @@ class ScriptVersionsController < ApplicationController
   before_action :check_ip, only: :create
   before_action :handle_api_request, only: :index
 
+  skip_before_action :verify_authenticity_token, only: :prefill
+
   layout 'scripts', only: [:index]
 
   def index
@@ -66,7 +68,7 @@ class ScriptVersionsController < ApplicationController
   def new
     @bots = 'noindex'
 
-    if current_user.scripts.none? && session[:new_script_notice].nil?
+    if !@prefill && current_user.scripts.none? && session[:new_script_notice].nil?
       render 'new_script_notice'
       return
     end
@@ -77,13 +79,15 @@ class ScriptVersionsController < ApplicationController
       @script = Script.new(script_type: :public, language: params[:language] || 'js')
       @script.authors.build(user: current_user)
       @script_version.script = @script
+      @script_version.code = params.dig('script_version', 'code') if @prefill
       ensure_default_additional_info(@script_version, current_user.preferred_markup)
       @current_attachments = []
     else
       @script = Script.find(params[:script_id])
       @script_version.script = @script
       previous_script = @script.script_versions.last
-      @script_version.code = previous_script.code
+      @script_version.code = params.dig('script_version', 'code') if @prefill
+      @script_version.code ||= previous_script.code
       previous_script.localized_attributes.each { |la| @script_version.build_localized_attribute(la) }
       ensure_default_additional_info(@script_version, current_user.preferred_markup)
       @script_version.not_js_convertible_override = @script.not_js_convertible_override
@@ -116,7 +120,17 @@ class ScriptVersionsController < ApplicationController
       end
     end
 
-    render layout: 'scripts' unless @script.new_record?
+    # Need to specify the 'new' view because #prefill calls this method too.
+    if @script.new_record?
+      render 'new'
+    else
+      render 'new', layout: 'scripts'
+    end
+  end
+
+  def prefill
+    @prefill = true
+    new
   end
 
   def confirm_new_author

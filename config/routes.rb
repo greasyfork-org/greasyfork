@@ -144,6 +144,9 @@ Rails.application.routes.draw do
       resources :script_versions, only: [:create, :new, :index], path: 'versions' do
         get 'delete(.:format)', to: 'script_versions#delete', as: 'delete'
         post 'delete(.:format)', to: 'script_versions#do_delete', as: 'do_delete'
+        collection do
+          post 'prefill'
+        end
       end
 
       resources :discussions, only: [:show, :create, :show, :destroy] do
@@ -161,7 +164,11 @@ Rails.application.routes.draw do
         end
       end
     end
-    resources :script_versions, only: [:create, :new]
+    resources :script_versions, only: [:create, :new] do
+      collection do
+        post 'prefill'
+      end
+    end
     get 'script_versions/additional_info_form', to: 'script_versions#additional_info_form', as: 'script_version_additional_info_form'
     get 'script_versions/confirm_new_author', to: 'script_versions#confirm_new_author', as: 'script_version_confirm_new_author'
     resources :users, only: :show do
