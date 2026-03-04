@@ -79,14 +79,14 @@ class ScriptVersionsController < ApplicationController
       @script = Script.new(script_type: :public, language: params[:language] || 'js')
       @script.authors.build(user: current_user)
       @script_version.script = @script
-      @script_version.code = params.dig('script_version', 'code') if @prefill
+      @script_version.code = params['script_version']['code'] if @prefill && params['script_version'].is_a?(ActionController::Parameters)
       ensure_default_additional_info(@script_version, current_user.preferred_markup)
       @current_attachments = []
     else
       @script = Script.find(params[:script_id])
       @script_version.script = @script
       previous_script = @script.script_versions.last
-      @script_version.code = params.dig('script_version', 'code') if @prefill
+      @script_version.code = params['script_version']['code'] if @prefill && params['script_version'].is_a?(ActionController::Parameters)
       @script_version.code ||= previous_script.code
       previous_script.localized_attributes.each { |la| @script_version.build_localized_attribute(la) }
       ensure_default_additional_info(@script_version, current_user.preferred_markup)
