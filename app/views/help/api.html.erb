@@ -1,0 +1,17 @@
+<%= title "#{site_name} API" %>
+
+<h3>JSON API</h3>
+
+<p><%= site_name %> provides a read-only JSON and JSONP API for accessing data. In the HTML source of pages on <%= site_name %>, look for <code>&lt;link rel="alternate" type="application/json"&gt;</code> and <code>&lt;link rel="alternate" type="application/javascript"&gt;</code> for the URLs.</p>
+
+<h3>Prefilled updates</h3>
+
+<p>While there is no API for updates, you can use a special prefill URL to populate the update form. The user can then review and submit the update. This URL bypasses the normal anti-XSS protections on POST requests.</p>
+
+<ul>
+  <li>URL: <code><%= prefill_script_versions_url %></code> (for new scripts), <code><%= prefill_script_script_versions_url(script_id: 'SCRIPTID') %></code> (for updating existing scripts)</li>
+  <li>Method: <code>POST</code></li>
+  <li>Code parameter: <code>script_version[code]</code></li>
+  <li>Content type: <code>multipart/form-data</code></li>
+  <li>The request must include the user's session cookie.</li>
+</ul>

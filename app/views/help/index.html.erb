@@ -22,6 +22,7 @@
 
 <h3><%= t('help.sections.miscellaneous') %></h3>
 <ul>
+  <li><%= link_to "#{site_name} API", help_api_path %></li>
   <li><%= link_to t('help.site_feedback_link', site_name: site_name), 'https://github.com/greasyfork-org/greasyfork/issues' %></li>
   <li><%= link_to t('help.contact.title'), help_contact_path %></li>
   <li><%= link_to t('help.credits.title'), help_credits_path %></li>
