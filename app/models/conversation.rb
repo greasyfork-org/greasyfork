@@ -1,5 +1,6 @@
 class Conversation < ApplicationRecord
   belongs_to :stat_last_poster, class_name: 'User', optional: true
+  belongs_to :starting_user, class_name: 'User'
 
   has_many :messages, dependent: :destroy
 

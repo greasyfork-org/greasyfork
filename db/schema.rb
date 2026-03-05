@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_23_154533) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_05_203056) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.text "Attributes"
     t.text "Body", null: false
@@ -172,7 +172,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_23_154533) do
     t.string "url", null: false
   end
 
-  create_table "blocked_users", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+  create_table "blocked_users", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "pattern", null: false
     t.datetime "updated_at", null: false
@@ -189,7 +189,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_23_154533) do
     t.index ["script_id"], name: "index_cleaned_codes_on_script_id", unique: true
   end
 
-  create_table "comment_check_results", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+  create_table "comment_check_results", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.bigint "comment_id", null: false
     t.integer "result", null: false
     t.string "strategy", limit: 50, null: false
@@ -235,9 +235,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_23_154533) do
 
   create_table "conversations", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.datetime "created_at", null: false
+    t.bigint "starting_user_id", null: false
     t.datetime "stat_last_message_date", precision: nil
     t.bigint "stat_last_poster_id"
     t.datetime "updated_at", null: false
+    t.index ["starting_user_id"], name: "index_conversations_on_starting_user_id"
   end
 
   create_table "conversations_users", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
@@ -330,7 +332,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_23_154533) do
     t.index ["script_id", "install_date"], name: "index_install_counts_on_script_id_and_install_date", unique: true
   end
 
-  create_table "library_usages", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+  create_table "library_usages", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.bigint "library_script_id", null: false
     t.bigint "script_id", null: false
     t.index ["library_script_id"], name: "fk_rails_2c229fa548"
@@ -439,7 +441,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_23_154533) do
     t.index ["user_id", "read_at"], name: "index_notifications_on_user_id_and_read_at"
   end
 
-  create_table "proxied_images", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+  create_table "proxied_images", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "expires_at", null: false
     t.string "last_error", limit: 500
@@ -683,7 +685,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_23_154533) do
     t.index ["domain"], name: "index_spammy_email_domains_on_domain", unique: true
   end
 
-  create_table "stat_bans", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+  create_table "stat_bans", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "expires_at", null: false
     t.bigint "script_id", null: false

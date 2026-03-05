@@ -35,6 +35,7 @@ class ConversationsController < ApplicationController
 
   def create
     @conversation = Conversation.new(conversation_params)
+    @conversation.starting_user = current_user
 
     other_user = get_user_from_input(@conversation.user_input)
     if other_user.nil? || other_user == current_user
