@@ -51,6 +51,11 @@ class ConversationsController < ApplicationController
       @conversation = previous_conversation
     else
       @conversation.users = [current_user, other_user]
+
+      if UserRestrictionService.new(current_user).conversation_restriction == UserRestrictionService::BLOCKED
+        render 'blocked'
+        return
+      end
     end
     @subscribe = params[:subscribe] == '1'
 

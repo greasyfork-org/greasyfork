@@ -52,4 +52,12 @@ class UserRestrictionService
 
     nil
   end
+
+  def conversation_restriction
+    return nil unless @user.created_at >= 1.day.ago
+
+    return BLOCKED if Conversation.where(starting_user: @user, created_at: 1.day.ago..).count >= 3
+
+    nil
+  end
 end

@@ -104,4 +104,22 @@ class ConversationsTest < ApplicationSystemTestCase
       assert_link 'Subscribe'
     end
   end
+
+  test 'hitting rate limits' do
+    user = User.first
+    user.update!(created_at: 1.hour.ago)
+    to_user = User.second
+    User.where.not(id: [user.id, to_user.id]).limit(3).each do |other_user|
+      Conversation.create!(starting_user: user, users: [user, other_user])
+    end
+    login_as(user, scope: :user)
+
+    visit new_user_conversation_url(user, locale: :en)
+    fill_in 'User', with: "https://greasyfork.org/users/#{to_user.id}"
+    fill_in 'Message', with: '1 2 3 4'
+    assert_no_difference -> { Conversation.count } do
+      click_on 'Create conversation'
+      assert_content "You've reached the limit for how many conversations you can start. Try again later."
+    end
+  end
 end
