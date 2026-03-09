@@ -93,17 +93,7 @@ module ShowsAds
     request_locale.code != 'zh-CN'
   end
 
-  def rb_site_wide_exception?
-    [
-      %w[home index],
-      %w[scripts show],
-      %w[scripts post_install],
-      %w[script_versions index],
-      %w[users show],
-    ].include?([controller_name, action_name])
-  end
-
   included do
-    helper_method :general_ads_setting, :valid_locale_for_ea?, :rb_site_wide_exception?
+    helper_method :general_ads_setting, :valid_locale_for_ea?
   end
 end
