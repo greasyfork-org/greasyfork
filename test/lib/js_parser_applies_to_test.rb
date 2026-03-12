@@ -200,4 +200,8 @@ class JsParserAppliesToTest < ActiveSupport::TestCase
   test 'bad character in domain' do
     assert_equal [{ text: 'https://www.example.com$', domain: false, tld_extra: false }], get_applies_to(['https://www.example.com$'])
   end
+
+  test 'atomic' do
+    assert_equal [{ text: 'greasyfork.org', domain: true, tld_extra: false }], get_applies_to(['/https?\:\/\/(?>greasyfork)\.org/'])
+  end
 end

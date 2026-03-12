@@ -24,7 +24,7 @@ class UrlRegexp
     case group
     when Regexp::Expression::Root, Regexp::Expression::Alternative
       de_single_element(group.expressions.map { |sub| expand_group(sub) }.flatten.compact)
-    when Regexp::Expression::Group::Capture, Regexp::Expression::Assertion::Lookahead, Regexp::Expression::Group::Passive
+    when Regexp::Expression::Group::Capture, Regexp::Expression::Assertion::Lookahead, Regexp::Expression::Group::Passive, Regexp::Expression::Group::Atomic
       de_single_element(group.map { |sub| expand_group(sub) }.flatten)
     when Regexp::Expression::Alternation
       OptionNode.new(de_single_element(group.map { |sub| expand_group(sub) }))
