@@ -1,5 +1,6 @@
 require 'match_uri'
 require 'url_regexp'
+require 'sentry-ruby'
 
 class JsParser
   META_START_COMMENT = '// ==UserScript=='.freeze
@@ -129,8 +130,9 @@ class JsParser
             Timeout.timeout(0.1) do
               pre_wildcards = UrlRegexp.expand(p[1..-2])
             end
-          rescue Timeout::Error
+          rescue Timeout::Error => e
             Rails.logger.error("Timeout parsing regexp #{p}")
+            Sentry.capture_exception(e, extra: { pattern: p })
           rescue StandardError => e
             Rails.logger.error("Error parsing regexp #{p}: #{e}")
           end
