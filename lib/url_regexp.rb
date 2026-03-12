@@ -30,7 +30,7 @@ class UrlRegexp
       OptionNode.new(de_single_element(group.map { |sub| expand_group(sub) }))
     when Regexp::Expression::Anchor::BeginningOfLine, Regexp::Expression::Anchor::EndOfLine, Regexp::Expression::Assertion::NegativeLookahead
       ''
-    when Regexp::Expression::EscapeSequence::Literal
+    when Regexp::Expression::EscapeSequence::Base
       group.char
     when Regexp::Expression::Literal
       group.to_s
