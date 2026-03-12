@@ -2,7 +2,6 @@ require 'regexp_parser'
 
 class UrlRegexp
   def self.expand(regexp_str)
-
     begin
       regexp = Regexp.new(regexp_str)
     rescue RegexpError
