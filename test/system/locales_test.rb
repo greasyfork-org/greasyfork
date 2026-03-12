@@ -30,6 +30,17 @@ class LocalesTest < ApplicationSystemTestCase
     end
   end
 
+  test 'lowercase locales redirect on homepage' do
+    visit '/zh-tw'
+    assert_current_path '/zh-TW', ignore_query: true
+  end
+
+  test 'lowercase locales redirect on non-homepage' do
+    visit '/zh-tw/help'
+    assert_current_path '/zh-TW/help', ignore_query: true
+  end
+
+
   def ensure_all_locales_exist
     Rails.application.config.available_locales.each do |locale|
       ensure_locale_exists(locale)
