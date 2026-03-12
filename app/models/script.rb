@@ -783,7 +783,7 @@ class Script < ApplicationRecord
       locale_code = n.split(':', 2).last
       meta_locale = localized_meta_keys_locales[locale_code]
       if meta_locale.nil?
-        Rails.logger.error "Unknown locale code - #{locale_code}"
+        Rails.logger.warn "Unknown locale code - #{locale_code}"
         next
       end
 
