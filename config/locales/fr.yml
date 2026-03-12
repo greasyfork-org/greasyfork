@@ -142,6 +142,8 @@ fr:
       month: Moins de 30 jours
       year: Moins de 365 jours
       all: Tout le temps
+    stats_library_usages_intro_html: "Les scripts suivants utilisent l'URL %{site_name} de cette bibliothèque dans un <code>@require</code> :"
+    stats_library_usages_script_column: Script
     derivatives_title: "%{script_name} - Scripts similaires"
     derivatives_intro: "Ces scripts peuvent être basés sur les vôtres (ou même les vôtres peuvent être basés sur d'autres). Si vous trouvez une utilisation non autorisée de votre code, signalez-le à partir de l'onglet du script que vous voulez signaler."
     derivatives_script_html: "%{script}de%{user},Licence:%{license}%{diff_link:[Diff]}"
@@ -236,6 +238,7 @@ fr:
     post_new_script: "Publier un script"
     post_updated_script: "Publier une nouvelle version"
     type_1_html: "Script utilisateur public - un script utilisateur que tout le monde peut voir et utiliser."
+    type_2_html: "Script utilisateur non répertorié : un script utilisateur non lié depuis n'importe où sur %{site_name}. Pour les scripts qui sont des travaux en cours ou ceux qui ne seraient généralement pas utiles aux autres. N'empêche pas les autres d'y accéder s'ils connaissent l'URL."
     type_3_html: "Bibliothèque - un script fait pour être inclus dans d'autres scripts à l'aide de <code>@require</code>, et non installé directement."
     override_warning_checkbox_label: "Enregistrer quand même"
     warning_version_not_incremented_html: "Vous avez mis à jour le code source mais n'avez pas modifié la clé <code>@version</code>. Ceux qui ont déjà installé votre script risquent de ne pas recevoir la mise à jour."
@@ -987,8 +990,10 @@ fr:
       developers_credit: "%{site_name} lui-même est construit par %{developers_link:ces personnes} avec l'aide de tous ceux qui signalent des bugs et suggèrent des améliorations."
       translators_credit: "%{site_name} a été traduit par %{translators_link:la Greasy Translation Force sur Transifex}:"
       icons_credit: "Les icônes du navigateur sont de %{browserlogos}."
+      donors_credit: "%{site_name} a été soutenu financièrement par  %{donor_links}. Si vous souhaitez apporter un soutien financier,  %{admin_email_link:contactez-nous}."
     help_with_greasymonkey: "Aide avec Greasemonkey"
     help_with_tampermonkey: "Aide avec Tampermonkey"
+    help_with_violentmonkey: "Aide avec Violentmonkey"
     contact:
       title: "Contactez une personne"
       content_html: >
@@ -1401,6 +1406,7 @@ fr:
     edit_message_header: Modifier le message
     update_message_submit: Mettre à jour le message
     moderator_notice: Si vous souhaitez signaler une violation des règles de %{site_name}, utilisez le lien Signaler sur ce script, cet utilisateur ou ce commentaire. Les modérateurs ne peuvent pas supprimer le contenu basé sur les rapports via des messages directs.
+    rate_limited: Vous avez atteint la limite du nombre de conversations que vous pouvez démarrer. Réessayez plus tard.
   screenshots:
     requirements: "Maximum %{number} images PNG, GIF, JPEG ou WebP, inférieures à %{size} chacune."
   moderator_actions:
