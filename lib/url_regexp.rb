@@ -1,19 +1,20 @@
 require 'regexp_parser'
 
 class UrlRegexp
-  def self.expand(regexp)
+  def self.expand(regexp_str)
+
     begin
-      Regexp.new(regexp)
-    rescue StandardError
-      Rails.logger.warn("#{regexp} is not a valid regexp")
+      regexp = Regexp.new(regexp_str)
+    rescue RegexpError
+      Rails.logger.warn("#{regexp_str} is not a valid regexp")
       return []
     end
 
-    tree = Regexp::Parser.parse(regexp)
+    tree = Regexp::Parser.parse(regexp_str)
     result = Node.new(expand_group(tree))
     strings = result.every
     strings.each do |s|
-      Rails.logger.warn("#{s} does not match #{regexp}") unless Regexp.new(regexp).match?(s)
+      Rails.logger.warn("#{s} does not match #{regexp_str}") unless regexp.match?(s)
     end
     strings
   end

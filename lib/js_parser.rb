@@ -130,10 +130,7 @@ class JsParser
             Timeout.timeout(0.1) do
               pre_wildcards = UrlRegexp.expand(p[1..-2])
             end
-          rescue Timeout::Error => e
-            Rails.logger.error("Timeout parsing regexp #{p}")
-            Sentry.capture_exception(e, extra: { pattern: p })
-          rescue StandardError => e
+          rescue RegexpError, Timeout::Error => e
             Rails.logger.error("Error parsing regexp #{p}: #{e}")
           end
         else
