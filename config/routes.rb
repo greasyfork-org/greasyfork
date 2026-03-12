@@ -46,8 +46,13 @@ Rails.application.routes.draw do
 
   get '/forum', to: redirect('/discussions'), status: 301
 
-  get '/:locale', constraints: { locale: /fr-ca|pt-br|zh-cn|zh-tw/ }, to: redirect { |path_params, req| good_locale_parts = path_params[:locale].split('-'); good_locale_parts[1].upcase!; req.path.sub("/#{path_params[:locale]}", "/#{good_locale_parts.join('-')}") }
-  get '/:locale/*', constraints: { locale: /fr-ca|pt-br|zh-cn|zh-tw/ }, to: redirect { |path_params, req| good_locale_parts = path_params[:locale].split('-'); good_locale_parts[1].upcase!; req.path.sub("/#{path_params[:locale]}", "/#{good_locale_parts.join('-')}") }
+  lowercase_locale_redirector = redirect do |path_params, req|
+    good_locale_parts = path_params[:locale].split('-')
+    good_locale_parts[1].upcase!
+    req.fullpath.sub("/#{path_params[:locale]}", "/#{good_locale_parts.join('-')}")
+  end
+  get '/:locale', constraints: { locale: /fr-ca|pt-br|zh-cn|zh-tw/ }, to: lowercase_locale_redirector
+  get '/:locale/*', constraints: { locale: /fr-ca|pt-br|zh-cn|zh-tw/ }, to: lowercase_locale_redirector
 
   scope '(:locale)', locale: /ar|be|bg|ckb|cs|da|de|el|en|es|es-419|fi|fr|fr-CA|he|hr|hu|id|it|ja|ka|ko|mr|nb|nl|eo|pl|pt-BR|ro|ru|sk|sr|sv|th|tr|uk|ug|vi|zh-CN|zh-TW/ do
     get '/users', to: 'users#index', as: 'users'
