@@ -20,7 +20,7 @@ module ShowsAds
 
     return AdMethod.no_ad(:sensitive) if script&.sensitive
 
-    return AdMethod.ga if allow_ga && !(controller_name == 'script_versions' && action_name == 'index') && script.adsense_approved && locale_allows_adsense? && (script.additional_info || script.newest_saved_script_version.attachments.any? || script.similar_scripts(script_subset:, locale: I18n.locale).any?)
+    return AdMethod.ga if allow_ga && !Date.new(2026, 3, 13).today? && !(controller_name == 'script_versions' && action_name == 'index') && script.adsense_approved && locale_allows_adsense? && (script.additional_info || script.newest_saved_script_version.attachments.any? || script.similar_scripts(script_subset:, locale: I18n.locale).any?)
 
     AdMethod.ea(variant: (request_locale.code unless valid_locale_for_ea?))
   end
