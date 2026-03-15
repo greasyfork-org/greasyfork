@@ -36,6 +36,8 @@ class UrlRegexp
       group.to_s
     when Regexp::Expression::CharacterType::Any, Regexp::Expression::CharacterType::NonSpace, Regexp::Expression::CharacterType::Word, Regexp::Expression::CharacterType::NonDigit
       'a'
+    when Regexp::Expression::CharacterType::NonWord
+      '-'
     when Regexp::Expression::Anchor::WordBoundary
       '.'
     when Regexp::Expression::CharacterType::Digit
