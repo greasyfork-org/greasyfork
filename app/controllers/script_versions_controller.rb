@@ -16,6 +16,12 @@ class ScriptVersionsController < ApplicationController
   layout 'scripts', only: [:index]
 
   def index
+    # Using the version param here makes no sense.
+    if params[:version].present?
+      redirect_to current_path_with_params(version: nil)
+      return
+    end
+
     cachable_request = generally_cachable? && request.query_parameters.empty?
     page_key = "#{site_cache_key}/script/versions/#{params[:script_id]}/#{request_locale.id}" if cachable_request
 

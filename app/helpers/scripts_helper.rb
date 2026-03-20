@@ -8,7 +8,7 @@ module ScriptsHelper
 
     return "<li class=\"current\">#{label}</li>".html_safe if current_page?(path) || additional_current_check
 
-    "<li>#{link_to(label, path, rel: (params[:version].present? ? :nofollow : nil))}</li>".html_safe
+    "<li>#{link_to(label, path, rel: (path.include?('version=') ? :nofollow : nil))}</li>".html_safe
   end
 
   def script_list_link(label, sort: nil, site: nil, set: nil, default_sort: nil, language: nil, filter_locale: nil, rel: nil, by: nil)

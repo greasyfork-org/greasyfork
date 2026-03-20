@@ -1,6 +1,18 @@
 require 'application_system_test_case'
 
 class VersionsTest < ApplicationSystemTestCase
+  test 'list versions' do
+    script = Script.find(1)
+    visit script_script_versions_path(script_id: script, locale: :en)
+    assert_content 'v1'
+  end
+
+  test 'list versions strips version parameter' do
+    script = Script.find(1)
+    visit script_script_versions_path(script_id: script, locale: :en, version: script.script_versions.first.id)
+    assert_current_path script_script_versions_path(script_id: script, locale: :en)
+  end
+
   test 'script show with version' do
     script = Script.find(1)
     visit script_url(script.id, version: script.script_versions.first.id, locale: :en)

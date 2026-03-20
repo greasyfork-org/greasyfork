@@ -3,7 +3,7 @@
     <ul id="script-links" class="tabs">
       <%= script_tab_link(script_path(@script, version: params[:version]), t('scripts.info_page')) %>
       <%= script_tab_link(show_code_script_path(@script, version: params[:version]), t('scripts.code_page')) %>
-      <%= script_tab_link(script_script_versions_path(@script, version: params[:version]), t('scripts.history_page'), additional_current_check: ((controller_name == 'script_versions' && action_name == 'index') || (controller_name == 'scripts' && action_name == 'diff'))) %>
+      <%= script_tab_link(script_script_versions_path(@script), t('scripts.history_page'), additional_current_check: ((controller_name == 'script_versions' && action_name == 'index') || (controller_name == 'scripts' && action_name == 'diff'))) %>
       <%= script_tab_link(feedback_script_path(@script, version: params[:version]), t('scripts.feedback_page', count: @script.discussions.visible.count), additional_current_check: (controller_name == 'discussions')) %>
       <%= script_tab_link(stats_script_path(@script, version: params[:version]), t('scripts.stats_page')) %>
       <% same_user = current_user && @script.user_ids.include?(current_user.id)
