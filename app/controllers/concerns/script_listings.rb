@@ -378,6 +378,12 @@ module ScriptListings
   def load_scripts_for_index_without_es
     if params[:set]
       set = ScriptSet.find(params[:set])
+
+      unless current_user
+        render_error(:forbidden, 'Script sets only available to logged in users.')
+        return true
+      end
+
       if !current_user&.moderator? && set.user&.banned?
         redirect_to scripts_path(locale: request_locale.code), status: :moved_permanently
         return true
