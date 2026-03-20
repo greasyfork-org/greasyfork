@@ -28,7 +28,7 @@ class UrlRegexp
       de_single_element(group.map { |sub| expand_group(sub) }.flatten)
     when Regexp::Expression::Alternation
       OptionNode.new(de_single_element(group.map { |sub| expand_group(sub) }))
-    when Regexp::Expression::Anchor::BeginningOfLine, Regexp::Expression::Anchor::EndOfLine, Regexp::Expression::Assertion::NegativeLookahead
+    when Regexp::Expression::Anchor::BeginningOfLine, Regexp::Expression::Anchor::EndOfLine, Regexp::Expression::Assertion::NegativeLookahead, Regexp::Expression::Assertion::NegativeLookbehind
       ''
     when Regexp::Expression::EscapeSequence::Base
       group.char
