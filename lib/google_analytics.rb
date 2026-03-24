@@ -4,7 +4,6 @@ class GoogleAnalytics
   SITE_TO_PROPERTY = {
     greasyfork: 'properties/293110681',
     sleazyfork: 'properties/293114118',
-    cn_greasyfork: 'properties/477170299',
   }.freeze
 
   def self.report_installs(date, site: :greasyfork)
@@ -56,7 +55,7 @@ class GoogleAnalytics
 
   def self.client
     Google::Analytics::Data::V1beta::AnalyticsData::Client.new do |config|
-      config.credentials = Rails.application.credentials.google_analytics.credentials!
+      config.credentials = Rails.application.credentials.google.analytics!
     end
   end
 end
