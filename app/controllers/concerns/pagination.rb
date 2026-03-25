@@ -7,12 +7,12 @@ module Pagination
   end
 
   def apply_pagination(relation, default_per_page: 50)
-    @pagy, relation = pagy(relation, limit: per_page(default: default_per_page))
+    @pagy, relation = pagy(relation, limit: per_page(default: default_per_page), max_pages: 1000)
     relation
   end
 
   def apply_searchkick_pagination(search)
-    @pagy = pagy(:searchkick, search)
+    @pagy = pagy(:searchkick, search, max_pages: 1000)
     search
   end
 
