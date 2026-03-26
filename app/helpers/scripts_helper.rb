@@ -66,11 +66,20 @@ module ScriptsHelper
   end
 
   def promoted_script(for_script)
-    return nil if sleazy?
-    return nil if for_script.sensitive
     return nil if current_user && !current_user.show_ads
+    return nil unless for_script.promoted_script
 
-    return for_script.promoted_script
+    if sleazy?
+      # Only promote sleazy scripts on sleazy
+      return for_script.promoted_script if for_script.promoted_script.sensitive
+
+      return nil
+    end
+
+    # Only promote greasy scripts on greasy
+    return for_script.promoted_script unless for_script.promoted_script.sensitive
+
+    return nil
   end
   memo_wise :promoted_script
 
