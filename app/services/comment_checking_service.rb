@@ -8,6 +8,7 @@ class CommentCheckingService
     CommentChecking::DeletedRepeatedLinkChecker,
     CommentChecking::OnlyLinkChecker,
     CommentChecking::NewUserChecker,
+    CommentChecking::SockPuppetChecker,
   ].freeze
 
   def self.check(comment, ip:, user_agent:, referrer:)
