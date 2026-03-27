@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_05_203056) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_27_013143) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.text "Attributes"
     t.text "Body", null: false
@@ -680,7 +680,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_05_203056) do
   create_table "spammy_email_domains", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.integer "block_count", default: 1, null: false
     t.string "block_type", limit: 20, null: false
-    t.string "domain", limit: 20, null: false
+    t.string "domain", limit: 50, null: false
     t.datetime "expires_at"
     t.index ["domain"], name: "index_spammy_email_domains_on_domain", unique: true
   end
