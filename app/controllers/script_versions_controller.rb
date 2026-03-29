@@ -1,3 +1,5 @@
+require 'script_importer/script_syncer'
+
 class ScriptVersionsController < ApplicationController
   include ScriptAndVersions
   include UserTextHelper
@@ -82,10 +84,27 @@ class ScriptVersionsController < ApplicationController
     @script_version = ScriptVersion.new(changelog_markup: current_user.preferred_markup)
 
     if params[:script_id].nil?
-      @script = Script.new(script_type: :public, language: params[:language] || 'js')
+      @script = Script.new(script_type: params.dig('script', 'script_type')&.to_i || :public, language: params[:language] || 'js')
       @script.authors.build(user: current_user)
       @script_version.script = @script
-      @script_version.code = params['script_version']['code'] if @prefill && params['script_version'].is_a?(ActionController::Parameters)
+      if @prefill
+        if params['script_version'].is_a?(ActionController::Parameters)
+          # Externally open prefill URL used by script managers.
+          @script_version.code = params['script_version']['code']
+        elsif params['import_url']
+          # URL from the import process when users want to add it as a library
+          begin
+            @script_version.code = ScriptImporter::ScriptSyncer.choose_importer.download(params['import_url'])
+          rescue StandardError => e
+            raise e if Rails.env.local?
+
+            Rails.logger.warn(e)
+          else
+            @script.sync_identifier = params['import_url']
+            @script.sync_type = params['sync_type'] || 'manual'
+          end
+        end
+      end
       ensure_default_additional_info(@script_version, current_user.preferred_markup)
       @current_attachments = []
     else
@@ -158,6 +177,11 @@ class ScriptVersionsController < ApplicationController
     if params[:script_id].nil?
       @script = Script.new(language: params[:language] || 'js')
       @script.authors.build(user: current_user)
+      if params['import_url']
+        @script.sync_identifier = params[:import_url]
+        @script.sync_type = params[:sync_type] || 'manual'
+        @script.last_attempted_sync_date = @script.last_successful_sync_date = DateTime.now
+      end
     else
       @script = Script.find(params[:script_id])
     end

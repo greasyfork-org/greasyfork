@@ -65,6 +65,30 @@ class ImportTest < ApplicationSystemTestCase
     visit import_start_url
     fill_in 'Provide URLs to import from, separated by newlines.', with: 'https://example.com'
     click_button 'Import'
-    assert_content 'Does not appear to be a user script.'
+    assert_content 'The following scripts could not be imported.'
+  end
+
+  test 'importing a library' do
+    ScriptImporter::TestImporter.expects(:download).returns(<<~JS).at_least(2)
+      let foo = 'bar has enough characters to reach the minimum'
+    JS
+
+    login_as(User.first, scope: :user)
+    visit import_start_url
+    fill_in 'Provide URLs to import from, separated by newlines.', with: 'https://example.com'
+    click_button 'Import'
+    assert_content 'The following scripts could not be imported. If they are JS libraries not meant to be directly installed, you can click the link to add them as such.'
+    click_button 'Add as library'
+    assert_field('script_version[code]', with: "let foo = 'bar has enough characters to reach the minimum'\n")
+    fill_in 'Name', with: 'Test library'
+    fill_in 'Description', with: 'Test library descrpition'
+    click_on 'Post script'
+    assert_selector 'h2', text: 'Test library'
+
+    script = Script.last
+    assert_equal 'https://example.com', script.sync_identifier
+    assert_equal 'automatic', script.sync_type
+    assert_not_nil script.last_attempted_sync_date
+    assert_not_nil script.last_successful_sync_date
   end
 end

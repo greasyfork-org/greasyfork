@@ -33,6 +33,20 @@
   </ul>
 <% end %>
 
+<% if !@results[:notuserscript].empty? %>
+  <p><%= t('importing.results.notuserscript') %></p>
+  <ul>
+    <% @results[:notuserscript].each do |name| %>
+      <li>
+        <%= name %>
+        <%= form_with(url: prefill_script_versions_path(import_url: name, 'script[script_type]' => 3, sync_type: @sync_type), method: :POST, class: 'inline-form') do |f| %>
+          <%= f.submit t('importing.results.addlibrary') %>
+        <% end %>
+        </li>
+    <% end %>
+  </ul>
+<% end %>
+
 <% if !@results[:failure].empty? %>
   <p><%= t('importing.results.failure') %></p>
   <ul>

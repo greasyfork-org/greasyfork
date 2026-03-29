@@ -15,8 +15,10 @@ class ImportController < ApplicationController
     language = params['sync-language']
     language = nil unless %w[js css].include?(language)
 
+    @sync_type = params['sync-type'] || 'manual'
+
     importer = ScriptSyncer.choose_importer
-    @results = { new: [], failure: [], needsdescription: [], existing: [] }
+    @results = { new: [], failure: [], needsdescription: [], existing: [], notuserscript: [] }
     sync_ids = if params[:sync_ids].nil?
                  params[:sync_urls].split(/[\n\r]+/)
                else
@@ -24,12 +26,14 @@ class ImportController < ApplicationController
                end
     sync_ids.each do |sync_id|
       provided_description = params["needsdescription-#{sync_id}"]
-      result, script, message = importer.generate_script(sync_id, provided_description, current_user, params['sync-type'] || 'manual', expected_language: language)
+      result, script, message = importer.generate_script(sync_id, provided_description, current_user, @sync_type, expected_language: language)
       case result
       when :needsdescription
         @results[:needsdescription] << script
-      when :failure, :notuserscript
+      when :failure
         @results[:failure] << "#{sync_id} - #{message}"
+      when :notuserscript
+        @results[:notuserscript] << sync_id
       when :success
         existing_scripts = current_user.scripts.where(sync_identifier: sync_id)
         if !existing_scripts.empty?
