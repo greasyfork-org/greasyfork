@@ -138,8 +138,14 @@ class UsersController < ApplicationController
 
         render layout: 'base'
       end
-      format.json { render json: @user.api_as_json(with_private_scripts: @same_user) }
-      format.jsonp { render json: @user.api_as_json(with_private_scripts: @same_user), callback: clean_json_callback_param }
+      format.json do
+        script_filter = ->(scripts) { ScriptsController.apply_filters(scripts, params.reverse_merge(language: 'all'), script_subset) }
+        render json: @user.api_as_json(with_private_scripts: @same_user, script_filter:)
+      end
+      format.jsonp do
+        script_filter = ->(scripts) { ScriptsController.apply_filters(scripts, params.reverse_merge(language: 'all'), script_subset) }
+        render json: @user.api_as_json(with_private_scripts: @same_user, script_filter:, callback: clean_json_callback_param)
+      end
     end
   end
 

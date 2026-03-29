@@ -471,11 +471,14 @@ class User < ApplicationRecord
     !administrator? && !moderator?
   end
 
-  def api_as_json(with_private_scripts: false)
+  def api_as_json(with_private_scripts: false, script_filter: nil)
     return as_json(include: :scripts) if with_private_scripts
 
+    scripts = all_listable_scripts
+    scripts = script_filter.call(scripts) if script_filter
+
     json = as_json
-    json[:scripts] = all_listable_scripts.as_json
+    json[:scripts] = scripts.as_json
     json
   end
 
