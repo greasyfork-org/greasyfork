@@ -106,14 +106,17 @@ dt[title] > span {
   box-sizing: border-box;
   width: 100%;
 }
-.radio-group input[type=radio] {
+.radio-group input[type=radio], .radio-group input[type=checkbox] {
   margin-left: 1em;
+  vertical-align: top;
 }
 .form-control label {
   font-weight: bold;
 }
 .form-control label.radio-label, .form-control label.checkbox-label {
   font-weight: normal;
+  max-width: calc(100% - 38px);
+  vertical-align: top;
 }
 label.subselection-radio-title {
   font-weight: normal;
