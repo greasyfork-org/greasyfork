@@ -127,9 +127,13 @@ class ScriptSetsController < ApplicationController
         # is it a URL?
         if script_id.nil?
           begin
-            path_params = Rails.application.routes.recognize_path(possible_script)
-            script_id = path_params[:id]
-          rescue ActionController::RoutingError
+            possible_script_uri = URI.parse(possible_script)
+            if %w[http https].include?(possible_script_uri.scheme)
+              path_params = Rails.application.routes.recognize_path(possible_script_uri)
+              script_id = path_params[:id]
+            end
+          rescue URI::InvalidURIError, ActionController::RoutingError
+            # Not a URL
           end
         end
 
