@@ -37,10 +37,10 @@ tr:
     update: "%{version} sürümüne yükselt"
     downgrade: "%{version} sürümüne düşür"
     reinstall: "%{version} sürümünü tekrar yükle"
-    old_version_warning: "Bu, betiğin en son sürümü değil. Siz eğer bu sürümü yüklerseniz en yeni sürüme asla güncelleyemeyeceksiniz. Yine de yüklensin mi?"
+    old_version_warning: "Bu, scriptin en son sürümü değildir. Yüklediğiniz takdirde, daha yeni bir sürüme güncellenemeyeceksiniz. Yine de yüklemek istiyor musunuz?"
     post_install:
-      info_html: "%{script} şimdi yüklenmiş olmalı. Yüklemede sıkıntı yaşadıysanız, %{help_link:yardım dökümanlarımızı okuyun}.%{site_name} üzerindeki betiklerin kalitesini korumak için sizden gelecek geri beslemeler önemli. %{script} betiğini denediğinizde, lütfen %{feedback_link:inceleme göndermeyi} düşünün."
-      promoted_script_intro: "Belki bunuda beğenebilirsiniz..."
+      info_html: "Şu anda %{script} kurulumunuz tamamlanmış olmalıdır. Kurulum sırasında sorun yaşadıysanız, %{help_link:yardım belgelerimizi okuyun}. %{site_name} sitesindeki scriptlerin kalitesini korumak için geri bildiriminiz önemlidir. %{script}'i denedikten sonra, lütfen %{feedback_link:bir değerlendirme yazmayı düşünün}."
+      promoted_script_intro: "Şunlar da ilginizi çekebilir…"
       similar_script_html: "%{name} - %{description}"
     library_instructions_html: "Bu script direkt olarak kurulamaz. Başka scriptler için bir kütüphanedir ve meta yönergeleri içerir %{code}"
     deleted_notice: "Bu script silinmiş."
@@ -54,7 +54,7 @@ tr:
     version_notice_html: "%{date} itibariyledir. %{latest_version_link} görün."
     version_notice_latest_version_link: "En son verisyonu"
     reported_notice: "\"%{script_name}\" rapor edildi ve bir moderatör tarafından incelenmeyi bekliyor."
-    reported_notice_for_author: "Bu betik bir moderatör tarafından incelenene kadar diğer kullanıcılara erişimi olmayacaktır."
+    reported_notice_for_author: "Bu betik, bir moderatör tarafından incelenene kadar diğer kullanıcılar tarafından kullanılamaz."
     info_page: "Bilgi"
     code_page: "Kod"
     wrap_lines: "Satırları kaydır"
@@ -430,14 +430,22 @@ tr:
         long: Kullanıcı görünümü
     related_scripts: "Bu ilgili komut dosyalarını da deneyebilirsiniz:"
     integrity_hashes:
+      user_notice_html:
+        one: "Yanlış alt kaynak bütünlüğü hash değerlerine sahip komut dosyalarınız var: %{script_links}."
+        other: "Yanlış alt kaynak bütünlüğü hash değerlerine sahip komut dosyalarınız var: %{script_links}."
       script_notice:
+        text_html:
+          one: "Bu betik, hatalı alt kaynak bütünlüğü karma değerleri kullanıyor: %{detail}."
+          other: "Bu komut dosyası, hatalı alt kaynak bütünlüğü karma değerleri kullanıyor: %{detail}."
         detail: "<code>%{url}</code> hash kullanmalıdır <code>%{expected_hash}</code> (son denetim tarihi %{last_checked_at}) "
   script_sets:
+    heading: "Betik Setleri"
     description: "Komut dizileri, Greasey Fork ile göz atmak için özelleştirilmiş bir komut listesi oluşturmanıza izin verir. Tek tek komut dosyalarını, diğer kullanıcıların kümelerini veya otomatik olarak oluşturulan setleri ekleyerek kümenize komut dosyaları ekleyebilirsiniz. Komut dosyalarını da kümenizden aynı yöntemlerle hariç tutabilirsiniz."
     favorites_name: "Favoriler"
     delete: "Script setini sil"
     delete_confirmation: "Script setini silmek istediğinden emin misin?"
     site_default_sort: "(Site varsayılan)"
+    edit_link: "Düzenle"
     edit_scripts:
       heading: "Scriptler"
       description: "Bireyi script setine dahil et veya çıkarç"
@@ -517,8 +525,28 @@ tr:
         bağlıdır.</p>
     desktop_browsers:
       title: Masaüstü
+      browser_list_html: |
+          <ul>
+          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</li>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, veya %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} veya %{safari_userscripts_link:Userscripts}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} veya %{opera_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>%{adguard_link:AdGuard}: (ek yazılım gerekmez)</li>
+          </ul>
     android_browsers:
       title: Mobil (Android)
+      browser_list_html: |
+          <ul>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, veya %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+          <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+          <li>%{xbrowser_link:XBrowser}</li>
+          %{locale_specific_browsers}
+          </ul>
     ios_browsers:
       title: Mobil (iOS)
       browser_list_html: |
@@ -555,6 +583,7 @@ tr:
     sign_in_email_missing: "%{site_name}'ta yeni hesap yaratmak için e-posta gereklidir, ama %{provider} senin için bir tane vermedi. Sen %{provider} hesabını güncelleyebilirsin bir tane sahipsen, tekrar oturum açmayı deneyebilirsin, ya da %{site_name}'ta normal e-posta/şifre oluşturarak hesap yarattıktan sonra %{provider} hesabı ekleyebilirsin."
     sign_in_name_used: "İsim '%{name}' zaten kullanılıyor. Başka bir tane seçin."
     sign_in_name_used_submit: "Gönder"
+    sign_in_github_unavailable: "Sleazy Fork'ta GitHub ile giriş özelliği mevcut değildir, ancak %{sign_in_url:Greasy Fork'ta GitHub ile giriş yapabilirsiniz}."
     control_panel: "Kontrol panel"
     discussions_on_scripts: "Senin scriptlerindeki tartışmalar"
     discussions_on_scripts_feed_alt: "RSS Besleme"
@@ -573,8 +602,12 @@ tr:
     edit_sign_in: "Oturum metodlarını düzelt"
     edit_sign_in_title: "Oturum metodlarını düzelt"
     edit_sign_in_password: "Şifre"
+    edit_sign_in_2fa_enabled: İki faktörlü kimlik doğrulama (2FA) ayarlarınız yapılmıştır. 2FA kodunuzu kaybettiyseniz, yeniden oluşturabilirsiniz.
+    edit_sign_in_2fa_enabled_and_required: Hesabınızda iki faktörlü kimlik doğrulama (2FA) etkinleştirilmiştir. Şifre tabanlı oturum açma işlemlerinde hesabınızda 2FA kullanılması zorunludur. 2FA kodunuzu kaybettiyseniz yeniden oluşturabilirsiniz.
     edit_sign_in_disable_2fa: 2 faktörlü doğrulamayı devre dışı bırak
+    edit_sign_in_2fa_disabled: '%{site_name} hesabınızda daha fazla güvenlik için iki aşamalı kimlik doğrulamayı (2FA) etkinleştirebilirsiniz.'
     edit_sign_in_enable_2fa: 2 faktörlü doğrulamayı etkinleştir
+    edit_sign_in_regenerate_2fa: İki Aşamalı Doğrulamayı Yenile
     edit_notifications: "Bildirim seçeneklerini düzenle"
     view_notifications: "Bildirimleri görüntüle"
     no_password_set_info: "Hesabın bir şifre ile yapılandırılmamış."
@@ -605,13 +638,20 @@ tr:
     2fa_enable_code_incorrect: 2 faktörlü doğrulama kodu geçerli değil. Lütfen tekrar deneyin.
     2fa_disabled: 2 faktörlü doğrulama devre dışı bırakıldı.
     2fa_disabled_already: 2 faktörlü doğrulama zaten devre dışı.
+    2fa_entry:
+      intro_html: "<b>%{email}</b> olarak oturum açıyorsunuz. İki faktörlü kimlik doğrulama (2FA) uygulamanızın size gönderdiği kodu girin."
     enable_2fa:
+      intro: "Aşağıdaki yöntemlerden birini kullanarak %{site_name} adresini iki faktörlü kimlik doğrulama (2FA) uygulamanıza ekleyin, ardından aşağıdaki kodu girin."
       qr_heading: QR kodu ile
       url_heading: Bağlantı ile
+      url_info: İki faktörlü kimlik doğrulama uygulamanızla aynı cihazda iseniz, %{auth_link:bu bağlantı} ile uygulamayı ekleyebilirsiniz.
       manual_heading: Elle
       manual_entry_code_name: "Kod adı: %{code_name}"
       manual_entry_your_key: "Anahtarınız: %{key}"
+      manual_entry_type_of_key: "Anahtar türü: Zamana dayalı"
       code_entry_heading: Kodu girin
+      code_entry: "%{site_name} hesabınızda iki aşamalı kimlik doğrulamayı etkinleştirmek için iki aşamalı kimlik doğrulama uygulamanızdan kodu girin:"
+      verify_code: Kodu doğrula
     set_up_webhook: "Webhook kur"
     list_display_html:
       one: "%{user_link} - %{count} script"
@@ -620,6 +660,7 @@ tr:
     listing_new_scripts: "Yeni scriptler"
     listing_updated_scripts: "Güncellenmiş scriptler"
     listing_registration_date: "Kayıt tarihi"
+    listing_relevance: "Alaka düzeyi"
     listing_title: "Kullanıcılar"
     listing_banned_filter:
       banned: "Yasaklı"
@@ -676,6 +717,16 @@ tr:
     banned_delete:
       intro: "Hesabını silmek aynı zamanda gönderdiğin tüm betikleri de silecektir. Forumlara yaptığınız katkılar silinmeyecektir, ancak kullanıcı isminiz belirsizleştirilecektir. Hesabınızı sildikten sonra aynı e-posta adresiyle tekrardan kayıt olamazsınız. Aşağıdan giriş yaparak hesabını silebilirsin."
       complete: "Hesabınız silindi."
+    deleted_user_with_id: "(Silinen kullanıcı %{id})"
+    deleted_user_without_id: "(Silinen kullanıcı)"
+    suggest_secure_login: Bir betik yazarı olarak, %{edit_login_link:daha güvenli bir oturum açma yöntemi kullanmanızı} öneririz.
+    require_secure_login: Hesabınız için daha güvenli bir oturum açma yöntemi kullanmanız gerekmektedir.
+    secure_login_explanation_html: |
+        <p>Bir komut dosyası yazarı olarak, hesabınızı ve kullanıcılarınızı güvenli bir oturum açma yöntemi kullanarak korumanızı öneririz. Bunu iki yoldan biriyle gerçekleştirebilirsiniz: </p>
+        <ol>
+        <li>Şifre tabanlı oturum açma işleminize iki faktörlü kimlik doğrulamayı (2FA) ekleyin.</li>
+        <li>Şifrenizi kaldırın ve yalnızca harici bir oturum açma yöntemini kullanın (ve mümkünse, bu hizmetin sunduğu güvenlik özelliklerini etkinleştirin).</li>
+        </ol>
     badges:
       banned:
         short: Yasaklı
@@ -687,13 +738,31 @@ tr:
         short: Sahip
         long: Script sahibi
     notifications:
+      on_site: Sitede
+      email: E-posta yoluyla
       discussion_defaults:
         title: Forum bildirimleri
+        intro: Abone olduğunuz tartışmalarla ilgili bildirimler alacaksınız. İstediğiniz zaman tartışmalara abone olabilir veya aboneliğinizi iptal edebilirsiniz.
+        discussion_subscription_defaults:
+          overall_label: Varsayılan olarak, şu durumlarda tartışmalara abone olun
+          start: Tartışmayı siz başlatın
+          comment: Tartışmaya yorum yaparsınız
+          script: Konu, betiklerinden biriyle ilgili
+        subscribed_discussion_notification: Abone olduğunuz bir tartışmaya yorum yazıldığında bildirim alın
         mention: Bir tartışmada birisi sizden bahsettiğinde bildirim alın
       conversation_defaults:
         title: Konuşma bildirimleri
+        intro: Abone olduğunuz sohbetler için bildirim alacaksınız. İstediğiniz zaman sohbetlere abone olabilir veya aboneliğinizi iptal edebilirsiniz.
+        new_conversation_subscription:
+          overall_label: Varsayılan olarak, şu durumlarda yeni sohbetlere abone olun
+          self: Konuşmayı başlattın
+          other: Konuşmayı başka biri başlattı
+        new_conversation_notification: Birisi sizinle sohbet başlattığında ve yukarıdaki ayara göre abone olduğunuzda, bildirim alın
+        new_message_notification: Abone olduğunuz mevcut bir sohbette yeni bir mesaj geldiğinde bildirim alın
       report_defaults:
+        intro: Kullanıcılar, %{site_name}'in kurallarına aykırı olan içerikleri işaretlemek için bildirimler oluşturur. Moderatörler bu bildirimleri inceler ve gerekirse içeriği kaldırır.
         title: Rapor bildirimleri
+        as_reporter: Oluşturduğunuz bir rapor çözüldüğünde bildirim alın
       save_button: Bildirim ayarlarını güncelle
       title: Bildirimler
       save_success: Bildirim tercihleriniz güncellendi.

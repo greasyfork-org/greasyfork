@@ -40,6 +40,7 @@ pt-BR:
     reinstall: "Reinstalar a versão %{version}"
     old_version_warning: "Essa não é a versão mais recente desse script. Se instalá-lo, você nunca estará atualizado com a versão mais nova. Deseja instalar mesmo assim? "
     post_install:
+      info_html: "Você agora deve ter o %{script} instalado. Se teve problemas com a instalação, %{help_link:leia nossa documentação de ajuda}. Seu feedback é importante para manter a qualidade dos scripts no %{site_name}. Depois de testar o %{script}, considere %{feedback_link:deixar uma avaliação}."
       promoted_script_intro: "Você também pode gostar..."
       similar_script_html: "%{name} - %{description}"
     library_instructions_html: "Este script não deve ser instalado diretamente. Este script é uma biblioteca de outros scripts para incluir com o diretório meta %{code}"
@@ -142,6 +143,7 @@ pt-BR:
       month: Últimos 30 dias
       year: Últimos 365 dias
       all: Todo o período
+    stats_library_usages_intro_html: "Os seguintes scripts usam a URL do %{site_name} desta biblioteca em um <code>@require</code>:"
     stats_library_usages_script_column: Script
     derivatives_title: "%{script_name} - Derivados"
     derivatives_intro: "Esses scripts podem ser baseados no seu (ou o seu pode ser baseados neles). Caso você detecte um uso não autorizado de seu código, denuncie através da aba feedback do script."
@@ -237,6 +239,7 @@ pt-BR:
     post_new_script: "Publicar script"
     post_updated_script: "Publicar nova versão"
     type_1_html: "Script de usuário público - um script para todos verem e usarem."
+    type_2_html: "Script de usuário não listado - um script de usuário sem links em nenhum lugar do %{site_name}. Para scripts que são trabalhos em andamento ou que não seriam úteis para outras pessoas em geral. Isso não impede que outros o acessem se souberem a URL."
     type_3_html: "Biblioteca - um script para ser utilizado com <code>@require</code> em outros scripts e não instalado diretamente."
     override_warning_checkbox_label: "Salvar mesmo assim"
     warning_version_not_incremented_html: "Você atualizou o código, mas não incrementou o número em <code>@version</code>. Quem já instalou seu script pode não receber a atualização."
@@ -640,6 +643,8 @@ pt-BR:
     2fa_enable_code_incorrect: O código 2FA está incorreto. Tente novamente.
     2fa_disabled: A 2FA foi desativada.
     2fa_disabled_already: A 2FA já está desativada.
+    2fa_entry:
+      intro_html: "Fazendo login como <b>%{email}</b>. Insira o código fornecido pelo seu aplicativo de autenticação de dois fatores (2FA)."
     enable_2fa:
       intro: "Adicione o 1%{site_name} ao seu app de autenticação de dois fatores (2FA) usando um dos métodos abaixo e, em seguida, insira o código."
       qr_heading: Via QR code
@@ -987,6 +992,7 @@ pt-BR:
       developers_credit: "O próprio %{site_name} é construído por %{developers_link:essas pessoas} com a ajuda de todos aqueles que reportam bugs e sugerem melhorias."
       translators_credit: "O %{site_name} foi traduzido por %{translators_link:the Greasy Translation Force on Transifex}:"
       icons_credit: "Os ícones do navegador são do %{browserlogos}."
+      donors_credit: "%{site_name} tem sido apoiado financeiramente por %{donor_links}. Se você deseja fornecer apoio financeiro, %{admin_email_link:entre em contato}."
     help_with_greasymonkey: "Ajuda com o Greasemonkey"
     help_with_tampermonkey: "Ajuda com o Tampermonkey"
     help_with_violentmonkey: "Ajuda com Violentmonkey"
@@ -1389,6 +1395,7 @@ pt-BR:
     edit_message_header: Editar mensagem
     update_message_submit: Atualizar mensagem
     moderator_notice: Se você quiser denunciar uma violação das regras do %{site_name}, use o link Denunciar no script, usuário ou comentário em questão. Os moderadores não podem remover conteúdo com base em denúncias feitas por mensagens diretas.
+    rate_limited: Você atingiu o limite de conversas que pode iniciar. Tente novamente mais tarde.
   screenshots:
     requirements: "Máximo de %{number} imagens PNG, GIF, JPEG ou WebP, com tamanho inferior a %{size} cada."
   moderator_actions:
@@ -1527,6 +1534,8 @@ pt-BR:
       needs_description: "Os seguintes scripts precisam de uma descrição para serem importados:"
       existing: "Os seguintes scripts já haviam sido importados:"
       failure: "Os seguintes scripts não puderam ser importados:"
+      notuserscript: "Os seguintes scripts não puderam ser importados. Se forem bibliotecas JS que não devem ser instaladas diretamente, você pode clicar no link para adicioná-las dessa forma."
+      addlibrary: "Adicionar como biblioteca"
   mailers:
     script_report:
       report_created_offender:
