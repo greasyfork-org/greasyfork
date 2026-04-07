@@ -29,6 +29,7 @@ class Locale < ApplicationRecord
     begin
       I18nData.languages(in_locale)
     rescue I18nData::NoTranslationAvailable
+      in_locale = in_locale.to_s
       language_only_code = in_locale.split('-')[0]
       if language_only_code == in_locale
         in_locale = nil
