@@ -886,6 +886,17 @@ tr:
       comment: "%{user}tarafından yapılan yorumu raporla"
       message: "%{user} kullanıcısının mesajını şikayet et"
       script: "%{script} scriptini şikayet et"
+    new_script_report_notes_html: >
+        Bildirimde bulunmadan önce lütfen şunlara dikkat edin:
+
+        Betikler yalnızca %{rules_link:%{site_name}'deki kuralları} ihlal ettikleri
+        için kaldırılacaktır. Komut dosyası bozuk veya çalışmıyorsa, bunun yerine
+        %{feedback_link:geri bildirimde bulunun.}
+
+        Bir moderatör bildiriminizi inceleyecek ve buna göre işlem yapacaktır.
+
+        Bu bildirim özelliğinin kötüye kullanılması, hesabınızın engellenmesine yol
+        açabilir.
     reason:
       non_functional: "Script çalışmıyor"
       spam: "Spam"
@@ -896,6 +907,7 @@ tr:
       minified: "Sıkıştırılmış kod"
       external_code: "İzin verilmeyen harici kod"
       undisclosed_antifeature: "Belirtilmeyen %{antifeature_link:istenmeyen özellik} (örn. reklam, izleme, madencilik vs.)"
+      no_description: "Eksik, bilgi içermeyen veya yanıltıcı açıklama"
       wrong_category: "Yanlış kategori"
       other: "Diğer"
     report_intro: "%{reported_item}, %{report_date}tarihinde %{reporter}tarafından %{reason}sebebiyle raporlandı."
@@ -1087,6 +1099,7 @@ tr:
       must_be_greasy_fork_script: "%{site_name}'ta bulunan script URL'si olmalıdır"
       script_update_not_utf8: "yüklenen UTF-8 biçiminde olmalıdır"
       script_disallowed_require: "onaylanmamış harici script kullanıyor: %{code}"
+      script_malformed_require: "hatalı biçimlendirilmiş bir harici betik referansı kullanıyor:%{code}"
       script_rate_limit: "Yayınlama sınırını geçtiniz. Daha sonra tekrar deneyin."
   opensearch:
     short_name: "%{site_name} ara"
