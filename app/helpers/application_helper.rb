@@ -42,8 +42,9 @@ module ApplicationHelper
     return url_for(current_url_with_params(other_params.merge(only_path: true)))
   end
 
-  TOP_SCRIPTS_PERCENTAGE = 0.2
   TOP_SCRIPTS_COUNT = 5
+  TOP_SCRIPTS_EXPONENT = 0.75
+  TOP_SCRIPTS_CAP = 1000
 
   # Sample from the top scripts.
   def highlighted_script_ids_for_locale(locale:, script_subset:, restrict_to_ad_method: nil)
@@ -54,7 +55,7 @@ module ApplicationHelper
     locale_scripts = highlightable_scripts.joins(localized_attributes: :locale).references([:localized_attributes, :locale]).where('localized_script_attributes.attribute_key' => 'name').where('locales.code' => locale)
     locale_scripts = locale_scripts.select(:id)
     locale_script_count = locale_scripts.count
-    top_percentage_count = (locale_script_count * TOP_SCRIPTS_PERCENTAGE).to_i
+    top_percentage_count = [(locale_script_count**TOP_SCRIPTS_EXPONENT).to_i, TOP_SCRIPTS_CAP].min
     # If there are enough from the top percentage, then sample from that.
     highlighted_scripts = if top_percentage_count >= TOP_SCRIPTS_COUNT
                             Set.new + locale_scripts.order(daily_installs: :desc).limit(top_percentage_count).sample(TOP_SCRIPTS_COUNT).map(&:id)
@@ -65,8 +66,8 @@ module ApplicationHelper
 
     # If we don't have enough, use scripts that aren't in the passed locale.
     if highlighted_scripts.length < TOP_SCRIPTS_COUNT
-      total_script_count = highlightable_scripts.count
-      highlightable_scripts.order(daily_installs: :desc).limit((total_script_count * TOP_SCRIPTS_PERCENTAGE).to_i).pluck(:id).shuffle.each do |id|
+      other_locale_scripts_count = [(highlightable_scripts.count**TOP_SCRIPTS_EXPONENT).to_i, TOP_SCRIPTS_CAP].min
+      highlightable_scripts.order(daily_installs: :desc).limit(other_locale_scripts_count).pluck(:id).shuffle.each do |id|
         highlighted_scripts << id
         break if highlighted_scripts.length >= TOP_SCRIPTS_COUNT
       end
