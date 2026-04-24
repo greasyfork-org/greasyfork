@@ -116,7 +116,7 @@ module ScriptListings
         render layout: 'application'
       end
       format.json do
-        result = self.class.cache_with_log('applies_to_counts', expires_in: 1.hour) do
+        result = cache_with_log('applies_to_counts', expires_in: 1.hour) do
           ScriptAppliesTo.joins(:script, :site_application).where(scripts: { script_type: :public, delete_type: nil }, tld_extra: false).where.not(site_applications: { domain_text: nil }).group('site_applications.domain_text').count
         end
         cache_request(result.to_json)
