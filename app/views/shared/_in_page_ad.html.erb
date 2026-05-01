@@ -14,7 +14,8 @@
           (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
       <% elsif ad_method.ea? & !skip_ea %>
-        <div id="<%= ea_div_id %><%= "_#{ad_method.variant}" if ad_method.variant %>" class="flat ethical-ads adaptive" data-ea-publisher="greasyfork" data-ea-type="text-only-large-v1"></div>
+        <div id="<%= ea_div_id %>_image<%= "_#{ad_method.variant}" if ad_method.variant %>" class="flat ethical-ads adaptive" data-ea-publisher="greasyfork" data-ea-type="image" data-ea-priority="1"></div>
+        <div id="<%= ea_div_id %>_large<%= "_#{ad_method.variant}" if ad_method.variant %>" class="flat ethical-ads adaptive" data-ea-publisher="greasyfork" data-ea-type="logo-large-v1" data-ea-priority="10"></div>
       <% end %>
     </div>
   </div>
