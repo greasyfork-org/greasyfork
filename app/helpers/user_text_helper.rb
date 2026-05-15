@@ -180,7 +180,7 @@ module UserTextHelper
     msc = Sanitize::Config::BASIC.dup
     msc[:elements] = msc[:elements].dup
     msc[:elements].push('h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'img', 'hr', 'del', 'ins', 'table', 'tr', 'th', 'td', 'thead', 'tbody', 'tfoot', 'span', 'div', 'tt', 'center', 'ruby', 'rt', 'rp', 'video', 'details', 'summary')
-    msc[:attributes] = msc[:attributes].merge('img' => %w[src alt height width], 'video' => %w[src poster height width], 'details' => ['open'], :all => %w[title name style])
+    msc[:attributes] = msc[:attributes].merge('img' => %w[src alt height width], 'video' => %w[src poster height width], 'details' => ['open'], 'a' => %w[href name], :all => %w[title style])
     msc[:css] = { properties: %w[border background-color color] }
     msc[:protocols] = msc[:protocols].merge('img' => { 'src' => ['https'] }, 'video' => { 'src' => ['https'] })
     msc[:remove_contents] = %w[script style]
