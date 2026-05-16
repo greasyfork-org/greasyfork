@@ -20,6 +20,10 @@ class DiscussionsController < ApplicationController
   layout 'discussions', only: :index
   layout 'application', only: [:new, :create]
 
+  DISCUSSION_SORT_COMMENT_CREATED = 'comment_created'.freeze
+  DISCUSSION_SORT_DISCUSSION_CREATED = 'discussion_created'.freeze
+  DISCUSSION_SORT_LAST_COMMENT = 'discussion_last_comment'.freeze
+
   def index
     respond_to do |format|
       format.html do
@@ -60,9 +64,9 @@ class DiscussionsController < ApplicationController
             end
 
             param_to_search_option = {
-              'comment_created' => { created: :desc },
-              'discussion_created' => { discussion_created: :desc },
-              'last_comment' => { discussion_last_reply: :desc },
+              DISCUSSION_SORT_COMMENT_CREATED => { created: :desc },
+              DISCUSSION_SORT_DISCUSSION_CREATED => { discussion_created: :desc },
+              DISCUSSION_SORT_LAST_COMMENT => { discussion_last_reply: :desc },
             }
             order = param_to_search_option[params[:sort]]
 
@@ -82,7 +86,7 @@ class DiscussionsController < ApplicationController
           else
 
             order = case params[:sort]
-                    when 'discussion_created' then { id: :desc }
+                    when DISCUSSION_SORT_DISCUSSION_CREATED then { id: :desc }
                     else { stat_last_reply_date: :desc }
                     end
 

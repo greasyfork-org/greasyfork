@@ -50,10 +50,10 @@
             <%= discussion_list_link(t('users.listing_relevance'), sort: nil) %>
           <% end %>
           <% if params[:q].present? %>
-            <%= discussion_list_link(t('discussions.sort.comment_created'), sort: 'comment_created') %>
+            <%= discussion_list_link(t('discussions.sort.comment_created'), sort: DiscussionsController::DISCUSSION_SORT_COMMENT_CREATED) %>
           <% end %>
-          <%= discussion_list_link(t('discussions.sort.discussion_last_comment'), sort: params[:q].present? ? 'discussion_last_comment' : nil) %>
-          <%= discussion_list_link(t('discussions.sort.discussion_created'), sort: 'discussion_created') %>
+          <%= discussion_list_link(t('discussions.sort.discussion_last_comment'), sort: params[:q].present? ? DiscussionsController::DISCUSSION_SORT_LAST_COMMENT : nil) %>
+          <%= discussion_list_link(t('discussions.sort.discussion_created'), sort: DiscussionsController::DISCUSSION_SORT_DISCUSSION_CREATED) %>
         </ul>
       </div>
 
