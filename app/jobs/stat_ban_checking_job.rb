@@ -12,7 +12,7 @@ class StatBanCheckingJob
   def perform
     script_ids = nil
     DAYS_AGO_TO_CHECK.each do |days_ago|
-      script_ids = find_discrepancies(days_ago.days.ago.to_date, limit_to_script_ids: script_ids)
+      script_ids = self.class.find_discrepancies(days_ago.days.ago.to_date, limit_to_script_ids: script_ids)
     end
     Rails.logger.info("Found discrepancies for #{script_ids}")
 
@@ -23,21 +23,21 @@ class StatBanCheckingJob
     script_ids.each { |script_id| StatBan.add_next_ban!(script_id) }
   end
 
-  def find_discrepancies(date, limit_to_script_ids: nil)
-    install_data = combined_install_data(date, limit_to_script_ids:)
-    install_data.select { |_script_id, _gf_installs, _ga_installs, ratio| ratio && ratio > MIN_DISCREPANCY_MULTIPLIER }.map(&:first)
+  def self.find_discrepancies(date, limit_to_script_ids: nil, min_descrepancy_multiplier: MIN_DISCREPANCY_MULTIPLIER, min_install_count: MIN_INSTALL_COUNT)
+    install_data = combined_install_data(date, limit_to_script_ids:, min_install_count:)
+    install_data.select { |_script_id, _gf_installs, _ga_installs, ratio| ratio && ratio > min_descrepancy_multiplier }.map(&:first)
   end
 
-  def combined_install_data(date, limit_to_script_ids: nil)
+  def self.combined_install_data(date, limit_to_script_ids: nil, min_install_count: MIN_INSTALL_COUNT)
     return [] if limit_to_script_ids == []
 
-    gf_install_data = Script.connection.select_rows("select script_id, installs from install_counts where install_date = '#{date}' AND installs > #{MIN_INSTALL_COUNT} #{"AND script_id IN (#{limit_to_script_ids.join(',')})" if limit_to_script_ids} group by script_id order by installs").to_h
+    gf_install_data = Script.connection.select_rows("select script_id, installs from install_counts where install_date = '#{date}' AND installs > #{min_install_count} #{"AND script_id IN (#{limit_to_script_ids.join(',')})" if limit_to_script_ids} group by script_id order by installs").to_h
     ga_stats = ga_install_data(date)
 
     gf_install_data.map { |script_id, installs| [script_id, installs, ga_stats[script_id], ga_stats[script_id] ? installs / ga_stats[script_id] : nil] }
   end
 
-  def ga_install_data(date)
+  def self.ga_install_data(date)
     gf_install_data = GoogleAnalytics.report_installs(date)
     sf_install_data = GoogleAnalytics.report_installs(date, site: :sleazyfork)
     gf_install_data.merge(sf_install_data) { |_key, gf_v, sf_v| gf_v + sf_v }
