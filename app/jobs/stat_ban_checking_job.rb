@@ -3,9 +3,9 @@ require 'google_analytics'
 class StatBanCheckingJob
   include Sidekiq::Job
 
-  MIN_DISCREPANCY_MULTIPLIER = 5
+  MIN_DISCREPANCY_MULTIPLIER = 3
   MIN_INSTALL_COUNT = 100
-  DAYS_AGO_TO_CHECK = [2, 3, 4].freeze
+  DAYS_AGO_TO_CHECK = [2, 3].freeze
 
   sidekiq_options queue: 'background', lock: :until_executed, on_conflict: :log, lock_ttl: 1.hour.to_i
 
@@ -23,9 +23,9 @@ class StatBanCheckingJob
     script_ids.each { |script_id| StatBan.add_next_ban!(script_id) }
   end
 
-  def self.find_discrepancies(date, limit_to_script_ids: nil, min_descrepancy_multiplier: MIN_DISCREPANCY_MULTIPLIER, min_install_count: MIN_INSTALL_COUNT)
+  def self.find_discrepancies(date, limit_to_script_ids: nil, min_discrepancy_multiplier: MIN_DISCREPANCY_MULTIPLIER, min_install_count: MIN_INSTALL_COUNT)
     install_data = combined_install_data(date, limit_to_script_ids:, min_install_count:)
-    install_data.select { |_script_id, _gf_installs, _ga_installs, ratio| ratio && ratio > min_descrepancy_multiplier }.map(&:first)
+    install_data.select { |_script_id, _gf_installs, _ga_installs, ratio| ratio && ratio > min_discrepancy_multiplier }.map(&:first)
   end
 
   def self.combined_install_data(date, limit_to_script_ids: nil, min_install_count: MIN_INSTALL_COUNT)
