@@ -8,6 +8,7 @@ class DataCentreIps
   DATA_SOURCE_DBIP = URI.parse('https://download.db-ip.com/free/dbip-asn-lite-2026-05.csv.gz')
 
   DATA_CENTRE_ASN_NUMBERS = [
+    '16509', # Amazon.com, Inc.
     '18450', # WebNX, Inc.
   ].freeze
 
