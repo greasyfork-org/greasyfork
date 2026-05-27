@@ -108,7 +108,7 @@ class ScriptVersionsController < ApplicationController
       ensure_default_additional_info(@script_version, current_user.preferred_markup)
       @current_attachments = []
     else
-      @script = Script.find(params[:script_id])
+      @script = Script.find(params.expect(:script_id))
       @script_version.script = @script
       previous_script = @script.script_versions.last
       @script_version.code = params['script_version']['code'] if @prefill && params['script_version'].is_a?(ActionController::Parameters)
@@ -183,7 +183,7 @@ class ScriptVersionsController < ApplicationController
         @script.last_attempted_sync_date = @script.last_successful_sync_date = DateTime.now
       end
     else
-      @script = Script.find(params[:script_id])
+      @script = Script.find(params.expect(:script_id))
     end
 
     @script_version.script = @script
@@ -225,7 +225,7 @@ class ScriptVersionsController < ApplicationController
     end
 
     unless params[:code_upload].nil?
-      uploaded_content = params[:code_upload].read
+      uploaded_content = params.expect(:code_upload).read
       unless uploaded_content.force_encoding('UTF-8').valid_encoding?
         @script_version.script.errors.add(:code, I18n.t('errors.messages.script_update_not_utf8'))
 
@@ -318,7 +318,7 @@ class ScriptVersionsController < ApplicationController
   end
 
   def delete
-    @script_version = ScriptVersion.find(params[:script_version_id])
+    @script_version = ScriptVersion.find(params.expect(:script_version_id))
     @script = @script_version.script
     @bots = 'noindex'
   end

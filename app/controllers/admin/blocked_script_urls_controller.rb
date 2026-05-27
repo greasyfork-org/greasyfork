@@ -11,7 +11,7 @@ module Admin
     end
 
     def edit
-      @blocked_script_url = BlockedScriptUrl.find(params[:id])
+      @blocked_script_url = BlockedScriptUrl.find(params.expect(:id))
       render :new
     end
 
@@ -25,7 +25,7 @@ module Admin
     end
 
     def update
-      @blocked_script_url = BlockedScriptUrl.find(params[:id])
+      @blocked_script_url = BlockedScriptUrl.find(params.expect(:id))
       @blocked_script_url.assign_attributes(blocked_script_url_params)
       if @blocked_script_url.save
         redirect_to admin_blocked_script_urls_path
@@ -35,7 +35,7 @@ module Admin
     end
 
     def destroy
-      @blocked_script_url = BlockedScriptUrl.find(params[:id])
+      @blocked_script_url = BlockedScriptUrl.find(params.expect(:id))
       @blocked_script_url.destroy!
       redirect_to admin_blocked_script_urls_path
     end

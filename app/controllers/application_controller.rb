@@ -50,7 +50,7 @@ class ApplicationController < ActionController::Base
   def authorize_by_script_id
     return if params[:script_id].blank?
 
-    render_access_denied unless current_user && Script.find(params[:script_id]).users.include?(current_user)
+    render_access_denied unless current_user && Script.find(params.expect(:script_id)).users.include?(current_user)
   end
 
   def authorize_for_moderators_only

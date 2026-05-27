@@ -22,11 +22,11 @@ class ScriptsController < ApplicationController
   before_action do
     case action_name.to_sym
     when *MEMBER_AUTHOR_ACTIONS
-      @script = Script.find(params[:id])
+      @script = Script.find(params.expect(:id))
       render_access_denied unless @script.users.include?(current_user)
       @bots = 'noindex'
     when *MEMBER_AUTHOR_OR_MODERATOR_ACTIONS
-      @script = Script.find(params[:id])
+      @script = Script.find(params.expect(:id))
       render_access_denied unless @script.users.include?(current_user) || current_user&.moderator?
       @bots = 'noindex'
     when *MEMBER_MODERATOR_ACTIONS
@@ -34,10 +34,10 @@ class ScriptsController < ApplicationController
         render_access_denied
         next
       end
-      @script = Script.find(params[:id])
+      @script = Script.find(params.expect(:id))
       @bots = 'noindex'
     when *MEMBER_PUBLIC_ACTIONS
-      @script = Script.find(params[:id])
+      @script = Script.find(params.expect(:id))
       set_bots_directive unless handle_publicly_deleted(@script)
     when *MEMBER_PUBLIC_ACTIONS_WITH_SPECIAL_LOADING
       # Nothing
@@ -74,7 +74,7 @@ class ScriptsController < ApplicationController
 
     if cachable_request
       # We may not need everything. Put it off till later.
-      @script = Script.find(params[:id].to_i)
+      @script = Script.find(params.expect(:id).to_i)
     else
       @script, @script_version = versionned_script(params[:id], params[:version])
     end
@@ -846,7 +846,7 @@ class ScriptsController < ApplicationController
   end
 
   def remove_author
-    user = User.find(params[:user_id])
+    user = User.find(params.expect(:user_id))
     if @script.authors.count < 2 || @script.authors.where(user:).none?
       flash[:error] = t('.failure')
       return
@@ -1009,7 +1009,7 @@ class ScriptsController < ApplicationController
 
   def handle_meta_request(language)
     unless update_host?
-      script = Script.find(params[:id].to_i)
+      script = Script.find(params.expect(:id).to_i)
       redirect_to(script.code_url(sleazy: sleazy?, cn_greasy: cn_greasy?, format_override: (language == :css) ? 'meta.css' : 'meta.js', version_id: params[:version].presence), status: :moved_permanently, allow_other_host: true)
       return
     end

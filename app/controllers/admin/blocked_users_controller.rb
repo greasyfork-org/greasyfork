@@ -11,7 +11,7 @@ module Admin
     end
 
     def edit
-      @blocked_user = BlockedUser.find(params[:id])
+      @blocked_user = BlockedUser.find(params.expect(:id))
       render :new
     end
 
@@ -25,7 +25,7 @@ module Admin
     end
 
     def update
-      @blocked_user = BlockedUser.find(params[:id])
+      @blocked_user = BlockedUser.find(params.expect(:id))
       @blocked_user.assign_attributes(blocked_user_params)
       if @blocked_user.save
         redirect_to admin_blocked_users_path
@@ -35,7 +35,7 @@ module Admin
     end
 
     def destroy
-      @blocked_user = BlockedUser.find(params[:id])
+      @blocked_user = BlockedUser.find(params.expect(:id))
       @blocked_user.destroy!
       redirect_to admin_blocked_users_path
     end

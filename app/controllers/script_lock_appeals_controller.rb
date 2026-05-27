@@ -69,11 +69,11 @@ class ScriptLockAppealsController < ApplicationController
   protected
 
   def load_script
-    @script = Script.find(params[:script_id])
+    @script = Script.find(params.expect(:script_id))
   end
 
   def load_script_lock_appeal
-    @script_lock_appeal = @script.script_lock_appeals.find(params[:id])
+    @script_lock_appeal = @script.script_lock_appeals.find(params.expect(:id))
   end
 
   def ensure_locked

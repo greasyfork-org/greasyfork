@@ -174,7 +174,7 @@ class DiscussionsController < ApplicationController
   def new
     @discussion = Discussion.new(poster: current_user)
     if current_user&.moderator? && params[:report_id]
-      report = Report.find(params[:report_id])
+      report = Report.find(params.expect(:report_id))
       @discussion.report = report
       users_to_mention = case report.item
                          when User
@@ -243,7 +243,7 @@ class DiscussionsController < ApplicationController
   end
 
   def destroy
-    discussion = discussion_scope.find(params[:id])
+    discussion = discussion_scope.find(params.expect(:id))
     normally_deletable = discussion.deletable_by?(current_user)
     unless normally_deletable || current_user&.moderator?
       render_access_denied
@@ -261,7 +261,7 @@ class DiscussionsController < ApplicationController
   end
 
   def subscribe
-    discussion = discussion_scope.find(params[:id])
+    discussion = discussion_scope.find(params.expect(:id))
     DiscussionSubscription.find_or_create_by!(user: current_user, discussion:)
     respond_to do |format|
       format.js { head :ok }
@@ -270,7 +270,7 @@ class DiscussionsController < ApplicationController
   end
 
   def unsubscribe
-    discussion = discussion_scope.find(params[:id])
+    discussion = discussion_scope.find(params.expect(:id))
     DiscussionSubscription.find_by(user: current_user, discussion:)&.destroy
     respond_to do |format|
       format.js { head :ok }
@@ -279,7 +279,7 @@ class DiscussionsController < ApplicationController
   end
 
   def old_redirect
-    redirect_to Discussion.find_by!(migrated_from: params[:id]).path(locale: detect_locale_code), status: :moved_permanently
+    redirect_to Discussion.find_by!(migrated_from: params.expect(:id)).path(locale: detect_locale_code), status: :moved_permanently
   end
 
   def mark_all_read
@@ -304,7 +304,7 @@ class DiscussionsController < ApplicationController
 
   def discussion_scope(permissive: false)
     scope = if params[:script_id]
-              @script = Script.find(params[:script_id])
+              @script = Script.find(params.expect(:script_id))
               @script.discussions
             else
               Discussion
@@ -405,7 +405,7 @@ class DiscussionsController < ApplicationController
 
   def load_discussion
     # Allow mods and the poster to see discussions under review.
-    @discussion = discussion_scope(permissive: true).find(params[:id])
+    @discussion = discussion_scope(permissive: true).find(params.expect(:id))
   end
 
   def mark_notifications_read

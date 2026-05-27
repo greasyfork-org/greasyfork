@@ -11,7 +11,7 @@ module Admin
     end
 
     def edit
-      @spammy_email_domain = SpammyEmailDomain.find(params[:id])
+      @spammy_email_domain = SpammyEmailDomain.find(params.expect(:id))
       render :new
     end
 
@@ -25,7 +25,7 @@ module Admin
     end
 
     def update
-      @spammy_email_domain = SpammyEmailDomain.find(params[:id])
+      @spammy_email_domain = SpammyEmailDomain.find(params.expect(:id))
       @spammy_email_domain.assign_attributes(spammy_email_domain_params)
       if @spammy_email_domain.save
         redirect_to admin_spammy_email_domains_path
@@ -35,7 +35,7 @@ module Admin
     end
 
     def destroy
-      @spammy_email_domain = SpammyEmailDomain.find(params[:id])
+      @spammy_email_domain = SpammyEmailDomain.find(params.expect(:id))
       @spammy_email_domain.destroy!
       # rubocop:disable Rails/I18nLocaleTexts
       redirect_to admin_spammy_email_domains_path, notice: 'Spammy email domain deleted'

@@ -56,7 +56,7 @@ module ScriptListings
 
           is_search = params[:q].present?
 
-          @set = ScriptSet.find(params[:set]) unless params[:set].nil?
+          @set = ScriptSet.find(params.expect(:set)) unless params[:set].nil?
           @by_sites = TopSitesService.get_top_by_sites(script_subset:, locale_id: @search_locale)
 
           @sort_options = %w[relevance daily_installs total_installs ratings created updated name] if is_search
@@ -111,7 +111,7 @@ module ScriptListings
     respond_to do |format|
       format.html do
         @by_sites = TopSitesService.get_by_sites(script_subset:)
-        @by_sites = @by_sites.select { |k, _v| k.present? && k.include?(params[:q].downcase) } if params[:q].present?
+        @by_sites = @by_sites.select { |k, _v| k.present? && k.include?(params.expect(:q).downcase) } if params[:q].present?
         @by_sites = @by_sites.max_by(200) { |_k, v| v[:installs] }.sort_by { |k, _v| k || '' }.to_h
         render layout: 'application'
       end
@@ -377,7 +377,7 @@ module ScriptListings
 
   def load_scripts_for_index_without_es
     if params[:set]
-      set = ScriptSet.find(params[:set])
+      set = ScriptSet.find(params.expect(:set))
 
       unless current_user
         render_error(:forbidden, 'Script sets only available to logged in users.')

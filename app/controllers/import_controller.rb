@@ -20,7 +20,7 @@ class ImportController < ApplicationController
     importer = ScriptSyncer.choose_importer
     @results = { new: [], failure: [], needsdescription: [], existing: [], notuserscript: [] }
     sync_ids = if params[:sync_ids].nil?
-                 params[:sync_urls].split(/[\n\r]+/)
+                 params.expect(:sync_urls).split(/[\n\r]+/)
                else
                  params[:sync_ids]
                end

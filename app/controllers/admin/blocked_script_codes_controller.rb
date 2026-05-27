@@ -11,7 +11,7 @@ module Admin
     end
 
     def edit
-      @blocked_script_code = BlockedScriptCode.find(params[:id])
+      @blocked_script_code = BlockedScriptCode.find(params.expect(:id))
       render :new
     end
 
@@ -25,7 +25,7 @@ module Admin
     end
 
     def update
-      @blocked_script_code = BlockedScriptCode.find(params[:id])
+      @blocked_script_code = BlockedScriptCode.find(params.expect(:id))
       @blocked_script_code.assign_attributes(blocked_script_code_params)
       if @blocked_script_code.save
         redirect_to admin_blocked_script_codes_path
@@ -35,7 +35,7 @@ module Admin
     end
 
     def destroy
-      @blocked_script_code = BlockedScriptCode.find(params[:id])
+      @blocked_script_code = BlockedScriptCode.find(params.expect(:id))
       @blocked_script_code.destroy!
       # rubocop:disable Rails/I18nLocaleTexts
       flash[:notice] = 'Blocked Script Code deleted'

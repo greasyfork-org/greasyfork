@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     end
 
     if current_user&.moderator? && params[:same_ip]
-      other_user = User.find(params[:same_ip])
+      other_user = User.find(params.expect(:same_ip))
       with[:ip] = other_user.current_sign_in_ip
     end
 
@@ -89,7 +89,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find(params.expect(:id))
 
     return if redirect_to_slug(@user, :id)
 
@@ -159,7 +159,7 @@ class UsersController < ApplicationController
   end
 
   def webhook
-    user = User.find(params[:user_id])
+    user = User.find(params.expect(:user_id))
     changelog_markup = 'text'
     changes, git_url = if request.headers['User-Agent'] == 'Bitbucket-Webhooks/2.0'
                          process_bitbucket_webhook(user)
@@ -252,11 +252,11 @@ class UsersController < ApplicationController
   end
 
   def ban
-    @user = User.find(params[:user_id])
+    @user = User.find(params.expect(:user_id))
   end
 
   def do_ban
-    user = User.find(params[:user_id])
+    user = User.find(params.expect(:user_id))
 
     full_reason = t("reports.reason.#{params[:reason]}", locale: 'en')
     full_reason += ": #{params[:explanation]}" if params[:explanation].present?
@@ -269,18 +269,18 @@ class UsersController < ApplicationController
   end
 
   def unban
-    @user = User.find(params[:user_id])
+    @user = User.find(params.expect(:user_id))
   end
 
   def do_unban
-    user = User.find(params[:user_id])
+    user = User.find(params.expect(:user_id))
     user.unban!(moderator: current_user, reason: params[:reason], undelete_scripts: params[:undelete_scripts] == '1')
     flash[:notice] = "#{user.name} has been unbanned."
     redirect_to user
   end
 
   def ban_with_ip
-    other_user = User.find(params[:same_ip])
+    other_user = User.find(params.expect(:same_ip))
     ip = other_user.current_sign_in_ip
 
     reason = Report::REASON_SPAM
@@ -345,7 +345,7 @@ class UsersController < ApplicationController
   end
 
   def mark_email_as_confirmed
-    user = User.find(params[:id])
+    user = User.find(params.expect(:id))
     user.confirm
     user.save
     # rubocop:disable Rails/I18nLocaleTexts

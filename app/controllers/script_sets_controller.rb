@@ -16,23 +16,23 @@ class ScriptSetsController < ApplicationController
   end
 
   def new
-    @user = User.find(params[:user_id])
+    @user = User.find(params.expect(:user_id))
     @set = ScriptSet.new
     @set.user = @user
     @set.favorite = !params[:fav].nil?
-    @set.add_child(Script.find(params[:script_id]), exclusion: false) unless params[:script_id].nil?
+    @set.add_child(Script.find(params.expect(:script_id)), exclusion: false) unless params[:script_id].nil?
     @child_set_user = @user
   end
 
   def edit
-    @set = ScriptSet.find(params[:id])
-    @user = User.find(params[:user_id])
+    @set = ScriptSet.find(params.expect(:id))
+    @user = User.find(params.expect(:user_id))
     @child_set_user = @user
   end
 
   def create
     @set = ScriptSet.new
-    @set.user = User.find(params[:user_id])
+    @set.user = User.find(params.expect(:user_id))
     if params[:favorite] == '1'
       # check to make sure the user doesn't already have a favorite set
       unless @set.user.favorite_script_set.nil?
@@ -48,7 +48,7 @@ class ScriptSetsController < ApplicationController
   end
 
   def update
-    @set = ScriptSet.find(params[:id])
+    @set = ScriptSet.find(params.expect(:id))
 
     # blow away everything, the form will resubmit the info
     @set.set_inclusions.each(&:mark_for_destruction)
@@ -61,7 +61,7 @@ class ScriptSetsController < ApplicationController
   end
 
   def destroy
-    set = ScriptSet.find(params[:id])
+    set = ScriptSet.find(params.expect(:id))
     ScriptSetSetInclusion.where(child_id: set.id).destroy_all
     set.destroy
     redirect_to set.user
@@ -73,7 +73,7 @@ class ScriptSetsController < ApplicationController
     set.assign_attributes(script_set_params) unless set.favorite
 
     @child_set_user = nil
-    @child_set_user = User.find(params['child-set-user-id']) unless params['child-set-user-id'].nil?
+    @child_set_user = User.find(params.expect('child-set-user-id')) unless params['child-set-user-id'].nil?
     errors = []
 
     # Previously added scripts
@@ -116,7 +116,7 @@ class ScriptSetsController < ApplicationController
 
     # Add script
     if !params['script-action'].nil? && !params['add-script'].nil?
-      params['add-script'].split(/\s+/).each do |possible_script|
+      params.expect('add-script').split(/\s+/).each do |possible_script|
         script_id = nil
         # is it an ID?
         begin
@@ -148,7 +148,7 @@ class ScriptSetsController < ApplicationController
 
     # Add set
     if !params['set-action'].nil? && !params['add-child-set'].nil?
-      child_set = ScriptSet.find(params['add-child-set'])
+      child_set = ScriptSet.find(params.expect('add-child-set'))
       errors << I18n.t('script_sets.already_included', name: child_set.name) unless set.add_child(child_set, exclusion: params['set-action'] == 'e')
     end
 
@@ -161,7 +161,7 @@ class ScriptSetsController < ApplicationController
       ssasi = ScriptSetAutomaticSetInclusion.from_param_value("2-#{params['add-automatic-script-set-value-2']}", exclusion: params['add-automatic-script-set-2'] == 'e')
       i18n_key, i18n_params = ssasi.i18n_params
       errors << I18n.t('script_sets.already_included', name: I18n.t(i18n_key, **i18n_params)) unless set.add_automatic_child(ssasi)
-    elsif !params['add-automatic-script-set-3'].nil? && !params['add-automatic-script-set-value-3'].nil? && !params['add-automatic-script-set-value-3'].empty?
+    elsif !params['add-automatic-script-set-3'].nil? && !params['add-automatic-script-set-value-3'].nil? && !params.expect('add-automatic-script-set-value-3').empty?
       automatic_script_set_user = parse_user(params['add-automatic-script-set-value-3'])
       automatic_script_set_user = automatic_script_set_user&.id
       ssasi = ScriptSetAutomaticSetInclusion.from_param_value("3-#{automatic_script_set_user}", exclusion: params['add-automatic-script-set-3'] == 'e')
@@ -239,8 +239,8 @@ class ScriptSetsController < ApplicationController
   end
 
   def ensure_set_ownership
-    set = ScriptSet.find(params[:id])
-    user = User.find(params[:user_id])
+    set = ScriptSet.find(params.expect(:id))
+    user = User.find(params.expect(:user_id))
     render_404('Script set does not exist') if set.user != user
   end
 end

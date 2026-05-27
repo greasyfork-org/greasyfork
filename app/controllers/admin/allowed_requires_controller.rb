@@ -7,7 +7,7 @@ module Admin
     end
 
     def edit
-      @allowed_require = AllowedRequire.find(params[:id])
+      @allowed_require = AllowedRequire.find(params.expect(:id))
       render :new
     end
 
@@ -21,7 +21,7 @@ module Admin
     end
 
     def update
-      @allowed_require = AllowedRequire.find(params[:id])
+      @allowed_require = AllowedRequire.find(params.expect(:id))
       @allowed_require.assign_attributes(allowed_require_params)
       if @allowed_require.save
         redirect_to help_cdns_path
@@ -31,7 +31,7 @@ module Admin
     end
 
     def destroy
-      @allowed_require = AllowedRequire.find(params[:id])
+      @allowed_require = AllowedRequire.find(params.expect(:id))
       @allowed_require.destroy!
       redirect_to help_cdns_path
     end

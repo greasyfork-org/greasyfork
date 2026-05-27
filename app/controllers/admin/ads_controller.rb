@@ -37,12 +37,12 @@ module Admin
     end
 
     def approve
-      Script.find(params[:id]).update(adsense_approved: true)
+      Script.find(params.expect(:id)).update(adsense_approved: true)
       redirect_to params[:return_to] || pending_admin_ads_path
     end
 
     def reject
-      Script.find(params[:id]).update(adsense_approved: false)
+      Script.find(params.expect(:id)).update(adsense_approved: false)
       redirect_to pending_admin_ads_path
     end
 

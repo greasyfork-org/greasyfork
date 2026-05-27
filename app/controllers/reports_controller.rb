@@ -93,7 +93,7 @@ class ReportsController < ApplicationController
   end
 
   def dismiss
-    @report = Report.find(params[:id])
+    @report = Report.find(params.expect(:id))
 
     @report.dismiss!(moderator: current_user, moderator_notes: params[:moderator_notes].presence)
     if @report.item.is_a?(Script) && !@report.auto_reporter
@@ -108,7 +108,7 @@ class ReportsController < ApplicationController
   end
 
   def mark_fixed
-    @report = Report.find(params[:id])
+    @report = Report.find(params.expect(:id))
 
     if current_user.moderator? && !@report.resolvable_by_moderator?(current_user)
       @text = 'Cannot mark as fixed, you are involved in this report.'
@@ -129,7 +129,7 @@ class ReportsController < ApplicationController
   end
 
   def uphold
-    @report = Report.find(params[:id])
+    @report = Report.find(params.expect(:id))
 
     user_is_script_author = user_is_script_author?(@report)
 
@@ -184,7 +184,7 @@ class ReportsController < ApplicationController
   end
 
   def rebut
-    @report = Report.find(params[:id])
+    @report = Report.find(params.expect(:id))
     unless user_is_script_author?(@report) && @report.rebuttal.nil?
       render_access_denied
       return
@@ -203,7 +203,7 @@ class ReportsController < ApplicationController
   end
 
   def diff
-    report = Report.find(params[:id])
+    report = Report.find(params.expect(:id))
     render html: helpers.report_diff(report)
   end
 
@@ -216,16 +216,16 @@ class ReportsController < ApplicationController
   def item
     case params[:item_class]
     when 'user'
-      User.find(params[:item_id])
+      User.find(params.expect(:item_id))
     when 'comment'
-      Comment.find(params[:item_id])
+      Comment.find(params.expect(:item_id))
     when 'discussion'
-      Discussion.find(params[:item_id])
+      Discussion.find(params.expect(:item_id))
     when 'message'
       # Don't allow reporting a message in a conversation they're not involved in.
-      Message.where(conversation: current_user.conversations).find(params[:item_id])
+      Message.where(conversation: current_user.conversations).find(params.expect(:item_id))
     when 'script'
-      Script.find(params[:item_id])
+      Script.find(params.expect(:item_id))
     else
       render_404('Invalid parameters')
       nil
@@ -278,7 +278,7 @@ class ReportsController < ApplicationController
   end
 
   def load_report
-    @report = Report.find(params[:id])
+    @report = Report.find(params.expect(:id))
   end
 
   def mark_notifications_read

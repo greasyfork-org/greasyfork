@@ -99,7 +99,7 @@ class ConversationsController < ApplicationController
   private
 
   def find_user
-    @user = User.find(params[:user_id])
+    @user = User.find(params.expect(:user_id))
   end
 
   def ensure_user_current
@@ -107,7 +107,7 @@ class ConversationsController < ApplicationController
   end
 
   def find_conversation
-    @conversation = @user.conversations.find(params[:id])
+    @conversation = @user.conversations.find(params.expect(:id))
     return if @user == current_user || (Report.unresolved.where(item: @conversation.messages).any? && current_user&.moderator?) || current_user&.administrator?
 
     render_404('You can only view your own conversations.')

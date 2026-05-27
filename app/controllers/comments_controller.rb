@@ -45,7 +45,7 @@ class CommentsController < ApplicationController
   end
 
   def update
-    comment = @discussion.comments.not_deleted.find(params[:id])
+    comment = @discussion.comments.not_deleted.find(params.expect(:id))
     unless comment.editable_by?(current_user)
       render_access_denied
       return
@@ -74,7 +74,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    comment = @discussion.comments.not_deleted.find(params[:id])
+    comment = @discussion.comments.not_deleted.find(params.expect(:id))
     normally_deletable = comment.deletable_by?(current_user)
 
     unless normally_deletable || current_user&.moderator?
@@ -88,7 +88,7 @@ class CommentsController < ApplicationController
   end
 
   def old_redirect
-    redirect_to Discussion.find_by!(migrated_from: ForumComment.find(params[:id]).DiscussionID).path(locale: detect_locale_code), status: :moved_permanently
+    redirect_to Discussion.find_by!(migrated_from: ForumComment.find(params.expect(:id)).DiscussionID).path(locale: detect_locale_code), status: :moved_permanently
   end
 
   private

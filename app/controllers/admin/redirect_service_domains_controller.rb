@@ -11,7 +11,7 @@ module Admin
     end
 
     def edit
-      @redirect_service_domain = RedirectServiceDomain.find(params[:id])
+      @redirect_service_domain = RedirectServiceDomain.find(params.expect(:id))
       render :new
     end
 
@@ -25,7 +25,7 @@ module Admin
     end
 
     def update
-      @redirect_service_domain = RedirectServiceDomain.find(params[:id])
+      @redirect_service_domain = RedirectServiceDomain.find(params.expect(:id))
       @redirect_service_domain.assign_attributes(redirect_service_domain_params)
       if @redirect_service_domain.save
         redirect_to admin_redirect_service_domains_path
@@ -35,7 +35,7 @@ module Admin
     end
 
     def destroy
-      @redirect_service_domain = RedirectServiceDomain.find(params[:id])
+      @redirect_service_domain = RedirectServiceDomain.find(params.expect(:id))
       @redirect_service_domain.destroy!
       redirect_to admin_redirect_service_domains_path
     end
