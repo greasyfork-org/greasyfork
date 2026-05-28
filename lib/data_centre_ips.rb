@@ -10,6 +10,7 @@ class DataCentreIps
   DATA_CENTRE_ASN_NUMBERS = [
     '16509', # Amazon.com, Inc.
     '18450', # WebNX, Inc.
+    '20473', # ClearDocks LLC
   ].freeze
 
   def load_ip_ranges_ipcat(force: false)
