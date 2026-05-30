@@ -37,6 +37,7 @@ es_419:
     post_install:
       info_html: "Ahora debe tener %{script} instalado. Si ha tenido problemas con la instalación, %{help_link:read our help docs}. Sus comentarios son importantes para mantener la calidad de los scripts en %{site_name}. Una vez que haya probado %{script}, considere %{feedback_link:ldejar una reseña}."
       promoted_script_intro: "Puede que también te guste..."
+      similar_script_html: "%{name} - %{description}"
     library_instructions_html: "Este script no debería instalarse directamente. Es una biblioteca que utilizan otros scripts mediante la meta-directiva de inclusión %{code}"
     deleted_notice: "Este script ha sido eliminado."
     deleted_notice_with_reason: "Este script ha sido eliminado debido a %{report_link:this report}."
@@ -105,6 +106,7 @@ es_419:
         intro: Estas son sugerencias para mejorar tu script %{site_name}. Y estas no %{rules_link:rules}; tu script no será eliminado si no las sigues.
         license_html: Especifique una %{license_link:<code>@license</code>}. Esto permite que otros sepan si pueden compartir y modificar tu código y cómo hacerlo.
         globs_html: Evita el uso de expresiones regulares en la parte de dominio de %{include_link:<code>@include</code>} y %{match_link:<code>@match</code>}. Esto dificulta a %{site_name} para clasificar tu script.
+        globs_used_html: "Inclusiones no específicas de un dominio usadas: %{globs}"
         additional_info: Incluya información adicional - enumere sus funciones, proporcione capturas de pantalla, etc. para que los usuarios sepan exactamente qué hace su script.
     history_title: "%{script_name} - Historial de versiones"
     history_only_code_changes_info: "A continuación se muestran las versiones de este script en las que se actualizó el código."
@@ -234,10 +236,21 @@ es_419:
     type_3_html: "Biblioteca: un script diseñado para ser <code>@require</code>-d desde otros scripts y no instalado directamente."
     override_warning_checkbox_label: "Guardar de todos modos"
     warning_version_not_incremented_html: "Actualizaste el código, pero no aumentaste el<code>@version</code> número. Those who previously installed your script may not get the updated code."
+    warning_version_missing_html: "No has puesto ninguna <code>@version</code>. La metaclave <code>@version</code> permite que los gestores de scripts comprueben si hay nuevas versiones disponibles desde la última vez y se necesita para poder actualizar. Pon algo del estilo a: <code>// @version 1.0</code>."
+    warning_version_missing_generate_automatically_html: "Generar una <code>@version</code> automáticamente"
+    warning_namespace_missing_html: "No has especificado ningún <code>@namespace</code>. La metaclave <code>@namespace</code> evita problemas cuando los usuarios instalan otro script con el mismo nombre y haciendo que no se sobrescriban, puedes poner cualquier texto que sea único, se suele poner una dirección URL con el nombre del autor o su perfil."
+    warning_namespace_missing_generate_automatically_html: "Generar un <code>@namespace</code> automáticamente"
+    warning_namespace_changed_html: "Tu <code>@namespace</code> ha cambiado. Un <code>@namespace</code> constante permite a los usuarios reinstalar tu script para actualizarlo."
+    warning_potentially_minified_html: "Tu script parece contener código compactado (compriimida). Si estás usando una biblioteca compriimida, por favor, cárgala desde %{allowed_requires_link} con <code>@require</code>. Los scripts con código miniaturizado se terminarán eliminando."
+    warning_automatic_sensitive_html: "Tu script es para %{sensitive_domains} y por tanto se marcará como contenido para adultos."
     warning_potentially_minified_allowed_requires_link: "uno de estos lugares"
     warning_code_previously_posted_html: "Este código ya se ha publicado anteriormente en%{script_links}. Las publicaciones repetidas están sujetas a eliminación por parte de los moderadores."
+    warning_license_missing_html: "No has puesto ninguna <code>@license</code>. Al subir scripts a %{site_name} permites a otros usar tu código, pero utilizar una licencia también le dará una idea a los usuarios de cómo pueden modificar y redistribuir tu código. Por ejemplo, <code>// @license MIT</code> significa que cualquiera puede modificar y redistribuir tu código.\n%{license_chooser_link:Aquí tienes más información sobre las licencias disponible.} Si no pones una licencia %{site_name} asumirá que no permites a otros hacer modificaciones o redistribuir copias. Ten en cuenta que si no eres el único autor del código que publicas no se suele poder publicar versiones modificadas a no ser que tengas permiso de todos los demás autores."
     warning_license_missing_override_html: "Guardar sin permiso"
+    warning_meta_not_at_start_html: "Como tu código no empieza con <code>// ==UserScript==</code>, meter código, comentarios o espacios en blanco puede causar problemas de compatibilidad con algunos gestores de scripts de usuario."
     additional_info_locale_prompt: "(Elija una configuración regional)"
+    additional_info_add_localized: "Añadir información adicional en otros idiomas"
+    additional_info_locale_repeated: "Proporcione una sola información adicional para la configuración regional '%{locale_code}'."
     deleted_marker: "(Eliminado)"
   reports:
     new_report_title:

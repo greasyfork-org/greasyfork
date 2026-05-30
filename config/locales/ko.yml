@@ -954,6 +954,8 @@ ko:
       developers_credit: "%{site_name} 자체는 버그를 보고하고 개선 사항을 제안하는 모든 분들의 도움으로 %{developers_link:이 사람들}에 의해 구축되었습니다."
       translators_credit: "%{site_name}는 %{translators_link:Transifex의 Greasy 번역팀}에 의해 번역되었습니다:"
       icons_credit: "브라우저 아이콘 출처: %{browserlogos}."
+      donors_credit: "%{site_name}는 %{donor_links}에서 재정적 지원을 받아 왔습니다. 혹시 재정적 지원을 할 마음이 있으시면, %{admin_email_link:연락해주세요}."
+      ip_credit: "DB-IP에서 IP 지오로케이션 제공"
     help_with_greasymonkey: "Greasemonkey 도움말"
     help_with_tampermonkey: "Tampermonkey 도움말"
     help_with_violentmonkey: "Violentmonkey 도움말"
@@ -1337,6 +1339,7 @@ ko:
     edit_message_header: 메시지 수정
     update_message_submit: 메시지 업데이트
     moderator_notice: '%{site_name} 규칙 위반을 신고하려면 해당 스크립트, 사용자 또는 댓글의 신고 링크를 사용하세요. 관리자는 쪽지를 통한 신고로는 콘텐츠를 제거할 수 없습니다.'
+    rate_limited: 시작할 수 있는 대화의 제한에 도달했습니다. 나중에 다시 시도하세요.
   screenshots:
     requirements: "최대 %{number}개의 PNG, GIF, JPEG 또는 WebP 이미지, 각 %{size} 미만."
   moderator_actions:
@@ -1471,6 +1474,8 @@ ko:
       needs_description: "다음 스크립트는 가져오려면 설명이 필요합니다:"
       existing: "다음 스크립트는 이미 가져왔습니다:"
       failure: "다음 스크립트는 가져올 수 없습니다:"
+      notuserscript: "다음 스크립트들을 가져오지 못했습니다. 직접 설치하는 용도가 아닌 JS 라이브러리라면, 링크를 클릭하여 라이브러리로 추가할 수 있습니다."
+      addlibrary: "라이브러리로 추가"
   mailers:
     script_report:
       report_created_offender:
