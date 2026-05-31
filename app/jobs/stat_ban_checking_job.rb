@@ -5,7 +5,7 @@ class StatBanCheckingJob
 
   MIN_DISCREPANCY_MULTIPLIER = 3
   MIN_INSTALL_COUNT = 100
-  DAYS_AGO_TO_CHECK = [2, 3].freeze
+  DAYS_AGO_TO_CHECK = [1, 2].freeze
 
   sidekiq_options queue: 'background', lock: :until_executed, on_conflict: :log, lock_ttl: 1.hour.to_i
 

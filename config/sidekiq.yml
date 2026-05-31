@@ -43,7 +43,7 @@
       interval: '1h'
       class: AkismetSubmissionDeleteJob
     stat_ban_checking_job:
-      cron: '0 0 1 * * *'
+      cron: '0 0 15 * * *'
       class: StatBanCheckingJob
     cleaned_code_cleanup_job:
       cron: '0 0 2 * * *'
