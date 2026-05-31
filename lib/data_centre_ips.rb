@@ -11,6 +11,7 @@ class DataCentreIps
     '16509', # Amazon.com, Inc.
     '18450', # WebNX, Inc.
     '20473', # ClearDocks LLC
+    '33763', # Paratus Telecommunications Limited
   ].freeze
 
   def load_ip_ranges_ipcat(force: false)
