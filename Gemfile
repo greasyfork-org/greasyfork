@@ -61,6 +61,7 @@ gem 'omniauth-google-oauth2', '>= 0.4.1'
 gem 'active_storage_validations'
 gem 'aws-sdk-s3', require: false
 gem 'image_processing'
+gem 'ruby-vips'
 
 gem 'rails-observers'
 gem 'recaptcha', require: 'recaptcha/rails'
