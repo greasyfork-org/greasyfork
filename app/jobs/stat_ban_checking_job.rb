@@ -31,7 +31,11 @@ class StatBanCheckingJob
   def self.combined_install_data(date, limit_to_script_ids: nil, min_install_count: MIN_INSTALL_COUNT)
     return [] if limit_to_script_ids == []
 
-    gf_install_data = Script.connection.select_rows("select script_id, installs from install_counts where install_date = '#{date}' AND installs > #{min_install_count} #{"AND script_id IN (#{limit_to_script_ids.join(',')})" if limit_to_script_ids} group by script_id order by installs").to_h
+    gf_install_data = Script.connection.select_rows("select script_id, installs from install_counts where install_date = '#{date}' #{"AND script_id IN (#{limit_to_script_ids.join(',')})" if limit_to_script_ids} group by script_id order by installs").to_h
+    gf_daily_install_data = Script.connection.select_rows("SELECT script_id, COUNT(*) FROM daily_install_counts WHERE DATE(install_date) = '#{date}' #{"AND script_id IN (#{limit_to_script_ids.join(',')})" if limit_to_script_ids} GROUP BY script_id").to_h
+    gf_install_data.merge!(gf_daily_install_data) { |_key, gf_v, daily_v| gf_v || daily_v }
+    gf_install_data.select! { |_script_id, installs| installs >= min_install_count }
+
     ga_stats = ga_install_data(date)
 
     gf_install_data.map { |script_id, installs| [script_id, installs, ga_stats[script_id], ga_stats[script_id] ? installs / ga_stats[script_id] : nil] }
