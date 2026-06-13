@@ -235,7 +235,7 @@ ko:
     type_1_html: "공개 유저 스크립트 - 모든 사용자가 보고 사용할 수 있습니다."
     type_2_html: "비공개 사용자 스크립트 - 어느 곳에서도 링크되지 않은 사용자 스크립트입니다. 개발 중인 스크립트나 다른 사용자에게 일반적으로 유용하지 않은 스크립트에 사용됩니다. URL을 알고 있는 경우 다른 사용자가 접근하는 것을 막지는 않습니다. (greasy fork의 모든 스크립트는 숫자 색인으로 접근이 가능합니다)"
     type_3_html: "라이브러리 - 다른 스크립트에서 <code>@require</code>로 사용하며 직접 설치되지 않는 스크립트입니다."
-    override_warning_checkbox_label: "경고 무시하고 저장"
+    override_warning_checkbox_label: "경고 무시 및 저장"
     warning_version_not_incremented_html: "코드는 업데이트했지만 <code>@version</code> 번호를 올리지 않았습니다. 이전에 스크립트를 설치한 사용자는 업데이트된 코드를 받지 못할 수 있습니다."
     warning_version_missing_html: "<code>@version</code>을 지정하지 않았습니다. 사용자가 업데이트를 받으려면 <code>@version</code>이 필요합니다. 예: <code>// @version 1.0</code>"
     warning_version_missing_generate_automatically_html: "자동으로 <code>@version</code> 생성"
@@ -544,7 +544,8 @@ ko:
       browser_list_html: |
           <ul>
           <li>Safari: %{safari_tampermonkey_link:Tampermonkey} 또는 %{safari_userscripts_link:Userscripts}</li>
-          <li>%{gear_link:Gear}: (추가 소프트웨어 필요 없음)</li>
+          <li>%{gear_link:Gear}: (추가 소프트웨어 필요 없음)
+          <li>%{teak_link:Teak}: (추가 소프트웨어 필요 없음)
           </ul>
     installing_step2_header: "2단계: 유저 스크립트 설치"
     installing_step2_caption: "유저 스크립트 설치 버튼"
