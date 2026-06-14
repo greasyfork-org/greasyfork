@@ -22,6 +22,7 @@ class DataCentreIps
       Net::HTTP.get(DATA_SOURCE_IPCAT)
                .split("\n")
                .map { |row| row.split(',')[0..1].map { |ip| IPAddr.new(ip).to_i } }
+               .sort
     end
   end
 
@@ -33,7 +34,7 @@ class DataCentreIps
           next unless DATA_CENTRE_ASN_NUMBERS.include?(asn_number)
 
           [IPAddr.new(ip_start).to_i, IPAddr.new(ip_end).to_i]
-        end
+        end.sort
       end
     end
   end
@@ -44,16 +45,11 @@ class DataCentreIps
   end
 
   def data_centre_according_to_ipcat?(ip_int)
-    # Find the first one where we're before the end of the range.
-    first_range = load_ip_ranges_ipcat.find { |range| ip_int <= range[1] }
-    return false unless first_range
-
-    # Check the start of the range.
-    ip_int >= first_range[0]
+    binary_ip_search(load_ip_ranges_ipcat, ip_int)
   end
 
   def data_centre_according_to_dbip?(ip_int)
-    load_ip_ranges_dbip.any? { |ip_start, ip_end| ip_int.between?(ip_start, ip_end) }
+    binary_ip_search(load_ip_ranges_dbip, ip_int)
   end
 
   def analyze_ips_with_dbip(ips)
@@ -63,18 +59,17 @@ class DataCentreIps
       dbip_data = gz.read.each_line.map do |line|
         ip_start, ip_end, asn_number, asn_name = line.split(',')
         [IPAddr.new(ip_start).to_i, IPAddr.new(ip_end).to_i, asn_number, asn_name]
-      end
+      end.sort
     end
 
     ips.map do |ip|
       ip_int = IPAddr.new(ip).to_i
-      matching_entry = dbip_data.find { |ip_start, ip_end, _asn_number, _asn_name| ip_int.between?(ip_start, ip_end) }
-
-      if matching_entry
+      match = binary_ip_search(dbip_data, ip_int)
+      if match
         {
           ip: ip,
-          asn_number: matching_entry[2],
-          asn_name: matching_entry[3].strip,
+          asn_number: match[2],
+          asn_name: match[3].strip,
         }
       else
         {
@@ -84,5 +79,18 @@ class DataCentreIps
         }
       end
     end
+  end
+
+  # search_array needs to be an Array of Arrays whose first two elements are the start and end of the IP range (as integers), and it needs to be sorted by the starting IP.
+  def binary_ip_search(search_array, ip_int)
+    # With bsearch_index, we need to ensure the comparison's results for the rule is all falses first.
+    # So we find the first range whose start is greater than the IP, and then check the previous one for an actual match.
+    potential_match_index = search_array.bsearch_index { |ip_start, _ip_end| ip_int < ip_start }
+    return nil unless potential_match_index && potential_match_index > 0
+
+    potential_match = search_array[potential_match_index - 1]
+    return potential_match if potential_match && ip_int.between?(potential_match[0], potential_match[1])
+
+    nil
   end
 end
