@@ -56,6 +56,8 @@ class Locale < ApplicationRecord
       end
     end
 
+    return english_name if in_locale == 'en'
+
     native_name || english_name
   end
   memo_wise :best_name
