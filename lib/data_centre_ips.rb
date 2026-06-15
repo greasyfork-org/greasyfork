@@ -15,6 +15,10 @@ class DataCentreIps
     '18450', # WebNX, Inc.
     '20473', # ClearDocks LLC
     '33763', # Paratus Telecommunications Limited
+    '35830', # Ace Data Centers Inc.
+    '43444', # Trade Commodity Firm Ltd
+    '59651', # Address Limited
+    '213954', # Beyond Tomorrow Ltd
   ].freeze
 
   def load_ip_ranges_ipcat(force: false)
