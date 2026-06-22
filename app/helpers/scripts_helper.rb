@@ -19,7 +19,7 @@ module ScriptsHelper
     # sets can have a different default
     sort_param_to_use = (sort == default_sort) ? nil : sort
     rel ||= (set.present? || filter_locale.present?) ? :nofollow : nil
-    if sort == params[:sort] && site == params[:site] && set == params[:set].to_i && language == params[:language].presence && by == params[:by]
+    if sort == params[:sort] && site == params[:site] && set.to_i == params[:set].to_i && language == params[:language].presence && by == params[:by]
       l = label
       is_link = false
     elsif is_libraries
