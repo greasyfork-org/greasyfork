@@ -118,10 +118,14 @@ module ScriptImporter
         next unless url_text
         next if url_text.starts_with?('#')
 
-        new_url = base_url.join(url_text)
-        if url_text != new_url.to_s
-          changed = true
-          node[url_param] = new_url
+        begin
+          new_url = base_url.join(url_text)
+          if url_text != new_url.to_s
+            changed = true
+            node[url_param] = new_url
+          end
+        rescue Addressable::URI::InvalidURIError
+          # Leave as is
         end
       end
       return html unless changed
