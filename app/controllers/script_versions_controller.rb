@@ -94,13 +94,13 @@ class ScriptVersionsController < ApplicationController
         elsif params['import_url']
           # URL from the import process when users want to add it as a library
           begin
-            @script_version.code = ScriptImporter::ScriptSyncer.choose_importer.download(params['import_url'])
+            @script_version.code = ScriptImporter::ScriptSyncer.choose_importer.download(params.expect('import_url').strip)
           rescue StandardError => e
             raise e if Rails.env.local?
 
             Rails.logger.warn(e)
           else
-            @script.sync_identifier = params['import_url']
+            @script.sync_identifier = params.expect('import_url').strip
             @script.sync_type = params['sync_type'] || 'manual'
           end
         end
