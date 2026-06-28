@@ -752,6 +752,34 @@ class Script < ApplicationRecord
     delete_report || reports.upheld.last
   end
 
+  def install_stats(start_date:)
+    install_sql = "SELECT install_date, installs FROM install_counts where script_id = #{Script.connection.quote(id)}"
+    install_sql += " and install_date >= #{self.class.connection.quote(start_date)}" if start_date
+    install_values = self.class.connection.select_rows(install_sql).to_h
+
+    daily_install_sql = "SELECT DATE(install_date) d, COUNT(*) FROM daily_install_counts where script_id = #{Script.connection.quote(id)}"
+    daily_install_sql += " and install_date >= #{self.class.connection.quote(start_date)}" if start_date
+    daily_install_sql += ' GROUP BY d'
+    daily_install_values = self.class.connection.select_rows(daily_install_sql).to_h
+
+    update_check_sql = "SELECT update_check_date, update_checks FROM update_check_counts where script_id = #{id}"
+    update_check_sql += " and update_check_date >= #{self.class.connection.quote(start_date)}" if start_date
+    update_check_values = self.class.connection.select_rows(update_check_sql).to_h
+
+    stats = {}
+    update_check_start_date = Date.parse('2014-10-23')
+
+    ([start_date, created_at.to_date].compact.max..Time.now.utc.to_date).each do |d|
+      stat = {}
+      stat[:installs] = install_values[d] || daily_install_values[d] || 0
+      # this stat not available before that date
+      stat[:update_checks] = (d >= update_check_start_date) ? (update_check_values[d] || 0) : nil
+      stats[d] = stat
+    end
+
+    stats
+  end
+
   private
 
   def url_helpers

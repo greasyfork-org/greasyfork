@@ -12,6 +12,26 @@ class ScriptsControllerTest < ActionDispatch::IntegrationTest
     assert_response :ok
   end
 
+  test 'render script stats as json' do
+    get stats_script_url(Script.first, locale: :en, format: :json, host: 'api.greasyfork.local')
+    assert_response :ok
+  end
+
+  test 'render script stats as csv' do
+    get stats_script_url(Script.first, locale: :en, format: :csv, host: 'api.greasyfork.local')
+    assert_response :ok
+  end
+
+  test 'render library stats as json' do
+    get stats_script_url(scripts(:library), locale: :en, format: :json, host: 'api.greasyfork.local')
+    assert_response :ok
+  end
+
+  test 'render library stats as csv' do
+    get stats_script_url(scripts(:library), locale: :en, format: :csv, host: 'api.greasyfork.local')
+    assert_response :ok
+  end
+
   test '410 for code on script deleted' do
     script = Script.first
     script.destroy!

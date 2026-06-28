@@ -15,6 +15,6 @@ module Api
   end
 
   def api_request?
-    request.format.json? || request.format.jsonp? || request.format.atom?
+    request.format.json? || request.format.jsonp? || request.format.atom? || request.format.csv?
   end
 end
