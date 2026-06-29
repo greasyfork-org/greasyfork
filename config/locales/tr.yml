@@ -37,16 +37,16 @@ tr:
     update: "%{version} sürümüne yükselt"
     downgrade: "%{version} sürümüne düşür"
     reinstall: "%{version} sürümünü tekrar yükle"
-    old_version_warning: "Bu, scriptin en son sürümü değildir. Yüklediğiniz takdirde, daha yeni bir sürüme güncellenemeyeceksiniz. Yine de yüklemek istiyor musunuz?"
+    old_version_warning: "Bu, betiğin en son sürümü değildir. Bunu yüklediğiniz takdirde, daha yeni bir sürüme asla güncellenmeyeceksiniz. Yine de yüklemek istiyor musunuz?"
     post_install:
-      info_html: "Şu anda %{script} kurulumunuz tamamlanmış olmalıdır. Kurulum sırasında sorun yaşadıysanız, %{help_link:yardım belgelerimizi okuyun}. %{site_name} sitesindeki scriptlerin kalitesini korumak için geri bildiriminiz önemlidir. %{script}'i denedikten sonra, lütfen %{feedback_link:bir değerlendirme yazmayı düşünün}."
+      info_html: "Şu anda %{script} kurulu olmalıdır. Kurulumda sorun yaşadıysanız, %{help_link:yardım belgelerimizi okuyun}. Geri bildiriminiz, %{site_name} sitesi için yazılan betiklerin kalitesini korumak açısından önemlidir. %{script} adlı betiği denedikten sonra, lütfen %{feedback_link:bir değerlendirme bırakmayı} düşünün."
       promoted_script_intro: "Şunlar da ilginizi çekebilir…"
       similar_script_html: "%{name} - %{description}"
     library_instructions_html: "Bu script direkt olarak kurulamaz. Başka scriptler için bir kütüphanedir ve meta yönergeleri içerir %{code}"
     deleted_notice: "Bu script silinmiş."
-    deleted_notice_with_reason: "Bu script %{report_link:this report}. nedeniyle silindi."
-    deleted_notice_with_related: "İlgilendiğiniz betik şuan mevcut değil, fakat isterseniz buna benzer betik önerimiz:"
-    deleted_notice_with_related_and_reason: "İstediğiniz betik %{report_link:this report} nedeniyle silinmiştir, ancak buradan ilişkili diğer betikleri bulabilirsiniz."
+    deleted_notice_with_reason: "Bu betik, %{report_link:bu rapor} nedeniyle silinmiştir."
+    deleted_notice_with_related: "İstediğiniz betik silinmiştir, ancak işte size bazı benzer betikler."
+    deleted_notice_with_related_and_reason: "Talep ettiğiniz betik %{report_link:bu rapor} nedeniyle silinmiştir; ancak işte size bazı benzer betikler."
     deleted_undelete_notice_html: "Bu betik bir moderatör tarafından kilitlenmiş ve geri alınamaz.\nGerekçe: \"<i>%{delete_reason}</i>\"."
     deleted_locked_author_notice_html: "Bu betik bir moderatör tarafından %{report_link:this report} dolayısıyla silinmiş ve başkaları tarafından erişilemez. Sebebi ise: \"<i>%{delete_reason}</i>\". Lütfen %{code_rules_link: %{site_name} kurallarını} gözden geçirin. Eğer silinmenin bir hata olduğunu düşünüyorsanız, sorun hakkında %{appeal_link:başvuru yapabilirsiniz}. Lütfen betiği tekrar yüklemeyin; bu tip bir davranış %{site_name}'dan menedilmenize yol açabilir."
     self_deleted_locked_author_notice_html: "Bu betik bir moderatör tarafından %{report_link:this report} dolayısıyla silinmiş ve başkaları tarafından erişilemez. Eğer ki %{code_rules_link:'in kuralları} çerçevesinde scriptinizi güncellediyseniz,bu silinmeye %{appeal_link:itiraz edebilirsiniz}.  Lütfen betiği tekrar yüklemeyin; bu tip bir davranış %{site_name}'dan men edilmenize sebep olabilir."
@@ -117,7 +117,7 @@ tr:
     history_all_changes_info: "Bunlar scriptin tüm versiyonlarıdır."
     history_only_code_changes_link: "Versiyonların sadece değişen kodlarını göster."
     diff_button: "Seçilen versiyonların farklılıkları"
-    list_all_script_versions: "Tüm komut dosyası sürümlerini göster"
+    list_all_script_versions: "Tüm betik sürümlerini göster"
     code_title: "%{script_name} - Kaynak kodu"
     feedback_title: "%{script_name} - Geribildirim"
     feedback_no_discussions_html: "Henüz tartışmalar yapılmamış.  %{start_first_discussion_link}"
@@ -159,8 +159,8 @@ tr:
     derivatives_similar_none: "Sizinkine benzer hiçbir betik yok."
     derivatives_similar_item: "%{score}: %{diff_link:[Değişiklik]} %{script}"
     derivatives_similar_last_check_html: "En son %{date} tarihinde sizinkine benzer betikleri kontrol ettik."
-    derivatives_similar_last_check_soon: "Kısa süre içinde sizinkine benzer komut dosyalarını kontrol edeceğiz."
-    derivatives_similar_last_check_again_soon_html: "En son tarihinde %{date}sizinkine benzer komut dosyalarını kontrol ettik. Kısa süre sonra tekrar kontrol edeceğiz."
+    derivatives_similar_last_check_soon: "Kısa bir süre içinde sizinkine benzer betikleri kontrol edeceğiz."
+    derivatives_similar_last_check_again_soon_html: "Sizinkine benzer betikleri en son %{date} tarihinde kontrol ettik. Kısa bir süre sonra tekrar kontrol edeceğiz."
     derivatives_similar_check_now: "Şimdi tekrar kontrol edin"
     derivatives_similiar_queued: Benzerlik kontrolü birkaç dakika içinde tamamlanacaktır.
     listing_title_all_sites: "Tüm siteler için üye scriptleri"
@@ -207,7 +207,7 @@ tr:
     listing_advanced_search_applied: "Gelişmiş arama uygulandı"
     listing_advanced_search_clear: "Temizle"
     import: "Scriptleri içe aktar"
-    new: "Yazdığınız bir komut dosyasını yayınlayın"
+    new: "Yazdığınız bir betiği yayınlayın"
     new_css: "Yazdığınız bir stili yayınlayın"
     support_site: "Yazarın destek sitesini ziyaret et."
     support_email: "Destek için yazara e-posta gönder."
@@ -242,7 +242,7 @@ tr:
     warning_version_not_incremented_html: "Kodu güncelledin fakat <code>@version</code> numarasını arttırmadın. Önceden senin scriptini yüklemiş olanlar güncelleme alamayabilir."
     warning_version_missing_html: " <code>@version</code>'i belirtmediniz. <code>@version</code> kullanıcıların güncellemeleri alması için gereklidir. Bu şekilde belirtebilirsiniz: <code>// @version 1.0</code>."
     warning_version_missing_generate_automatically_html: "<code>@version</code> 'i otomatik oluştur"
-    warning_namespace_missing_html: "<code>@namespace</code> belirtmediniz. <code>@namespace</code>, kullanıcıların aynı ada sahip başka bir komut dosyası yüklemesi durumunda çakışmaları önlemeye yardımcı olur. <code>@namespace</code> sadece benzersiz bir dize olmalıdır; genellikle sizin kontrol ettiğiniz bir URL kullanılır."
+    warning_namespace_missing_html: "<code>@namespace</code> belirtmemişsiniz. <code>@namespace</code>, kullanıcıların aynı ada sahip başka bir betik yüklemesi durumunda çakışmaları önlemeye yardımcı olur. <code>@namespace</code>’in benzersiz bir dize olması yeterlidir; genellikle sizin kontrolünüz altındaki bir URL kullanılır."
     warning_namespace_missing_generate_automatically_html: "Otomatik bir <code>@namespace</code> oluştur"
     warning_namespace_changed_html: "Senin <code>@namespace</code> değişmiş.Tutarlı bir  <code>@namespace</code>  kullanıcıların scriptini güncellemek amaçlı yeniden yükleyebilmesi için gereklidir."
     warning_potentially_minified_html: "Senin script kodun küçültülmüş (kompreslenmiş) gibi görünüyor. Eğer küçültülmüş kütüphane kullanıyorsan, bunun yerine <code>@require</code> buradan %{allowed_requires_link}.  Scriptten küçültülmüş kodun çıkarılması gerekir."
@@ -276,8 +276,8 @@ tr:
     sync_failed_info_html: "Son senkronizasyon teşebbüsü %{date} oldu, %{error} ile sonuçlandı."
     sync_success_info_html: "Son başarılı senkronizasyon %{date} tarihinde yapıldı."
     sync_never_succeeded: "Hiç bir zaman başarılı senksonizasyon yapılmadı."
-    sync_additional_info: İsteğe bağlı olarak komut dosyanızın ek bilgilerini senkronize edebilirsiniz.
-    add_synced_additional_info: İsteğe bağlı olarak komut dosyanızın ek dökümantasyonunu açabilirsiniz.
+    sync_additional_info: İsterseniz, betiğin ek bilgilerini senkronize edebilirsiniz.
+    add_synced_additional_info: Yerelleştirilmiş ve senkronize edilmiş ek bilgi ekleyin
     update_and_sync: "Güncelle ve şimdi senkronize et"
     update_no_sync: "Güncelle"
     turn_off_syncing: "Bu script için senkronize olmayı kapat"
@@ -305,9 +305,9 @@ tr:
     write_your_own_html: "%{post_a_script_link} (ya da %{learn_to_write_scripts_link})"
     post_a_script_link_text: "Yazdığınız bir scripti gönderin"
     learn_to_write_scripts_link_text: "nasıl bir tane yazılır öğren"
-    feedback_or_report: "%{feedback_link: Bir soru sorun, yorum yayınlayın} veya %{report_link: komut dosyasını bildirin}."
-    support_feedback_or_report: "%{support_url: Destek için yazarın sitesini ziyaret edin}, %{feedback_link: bir soru sorun, yorum gönderin} veya %{report_link: komut dosyasını bildirin}."
-    support_email_feedback_or_report: "%{support_url: Destek için yazara e-posta gönderin}, %{feedback_link: bir soru sorun, yorum gönderin} veya %{report_link: komut dosyasını bildirin}."
+    feedback_or_report: "%{feedback_link:Bir soru sorun, yorum yazın} veya %{report_link:betiği bildirin}."
+    support_feedback_or_report: "%{support_url:Destek için yazarın sitesini ziyaret edin}, %{feedback_link:soru sorun, yorum yazın} veya %{report_link:betiği bildirin}."
+    support_email_feedback_or_report: "%{support_url:Destek için yazara e-posta gönderin}, %{feedback_link:soru sorun, yorum yazın} veya %{report_link:betiği bildirin}."
     adult_content: "Yetişkin içerik"
     adult_content_self_report: "Bu script içinde yetişkin içerikleri barındırıyor veya yetişkin içerik barındıran bir site için hazırlanmış."
     adult_content_self_report_explanation: "%{site_name} yetişkin içerikli scriptlere izin verir, ancak bunlar kullanıcıların görmek isteyip istemediklerini seçebileceği bir şekilde işaretlenmelidir. "
@@ -385,8 +385,8 @@ tr:
         opera: 'Bu betiği kurabilmeniz için %{tampermonkey_link:Tampermonkey} ya da %{violentmonkey_link:Violentmonkey} gibi bir kullanıcı betiği eklentisini kurmanız gerekmektedir. '
         safari: 'Bu betiği kurabilmeniz için %{tampermonkey_link:Tampermonkey} ya da %{userscripts_link:Userscripts} gibi bir kullanıcı betiği eklentisini kurmanız gerekmektedir. '
         edge: Bu betiği indirebilmeniz için ayrıca %{tampermonkey_link:Tampermonkey} gibi bir eklenti kurmanız gerekmektedir.
-        other: Bu komut dosyasını yüklemek için bir kullanıcı komut dosyası yöneticisi uzantısı yüklemeniz gerekecek.
-        bypass: (Zaten bir kullanıcı komut dosyası yöneticim var, kurmama izin verin!)
+        other: Bu betiği yüklemek için bir betik yöneticisi eklentisi yüklemeniz gerekecektir.
+        bypass: (Zaten bir betik yöneticim var, hadi yükleyelim!)
       css:
         firefox: Bu stili yüklemek için %{stylus_link:Stylus} gibi bir uzantı yüklemeniz gerekir.
         chrome: Bu stili yüklemek için %{stylus_link:Stylus} gibi bir uzantı kurmanız gerekir.
@@ -413,7 +413,7 @@ tr:
           description_html: Bu betik çalışırken <b>cihaz istemcilerini kulanarak bilgisayarınızda kripto madencilik</b> yapan bir kod içeriyor.
         referral-link:
           title: Referans bağlantıları
-          description_html: Bu komut dosyası, örneğin bağlantıları yeniden yazarak veya bir yönlendirme veya bağlı kuruluş kodu içerecek şekilde kupon kodları sağlayarak yazara <b>komisyon kazandırır</b>.
+          description_html: Bu betik, örneğin bağlantıları yeniden yazarak veya bir tavsiye ya da ortaklık kodunu eklemek üzere kupon kodları sunarak yazara komisyon kazandırır.
         membership:
           title: Üyelik
           description_html: Bu betiğin tüm özelliklerini kullanabilmek için <b>bir şey(ve şeylere) üye olmanızı istiyor</b>, yani bir gruba kattılmak bir yere abone olmak ve benzeri...
@@ -428,19 +428,19 @@ tr:
       css:
         short: CSS
         long: Kullanıcı görünümü
-    related_scripts: "Bu ilgili komut dosyalarını da deneyebilirsiniz:"
+    related_scripts: "Ayrıca şu benzer betikleri de deneyebilirsiniz:"
     integrity_hashes:
       user_notice_html:
         one: "Yanlış alt kaynak bütünlüğü hash değerlerine sahip komut dosyalarınız var: %{script_links}."
-        other: "Yanlış alt kaynak bütünlüğü hash değerlerine sahip komut dosyalarınız var: %{script_links}."
+        other: "Yanlış alt kaynak bütünlüğü hash değerlerine sahip betikleriniz var: %{script_links}."
       script_notice:
         text_html:
           one: "Bu betik, hatalı alt kaynak bütünlüğü karma değerleri kullanıyor: %{detail}."
-          other: "Bu komut dosyası, hatalı alt kaynak bütünlüğü karma değerleri kullanıyor: %{detail}."
+          other: "Bu betik, hatalı bir alt kaynak bütünlüğü hash'i kullanıyor: %{detail}."
         detail: "<code>%{url}</code> hash kullanmalıdır <code>%{expected_hash}</code> (son denetim tarihi %{last_checked_at}) "
   script_sets:
     heading: "Betik Setleri"
-    description: "Komut dizileri, Greasey Fork ile göz atmak için özelleştirilmiş bir komut listesi oluşturmanıza izin verir. Tek tek komut dosyalarını, diğer kullanıcıların kümelerini veya otomatik olarak oluşturulan setleri ekleyerek kümenize komut dosyaları ekleyebilirsiniz. Komut dosyalarını da kümenizden aynı yöntemlerle hariç tutabilirsiniz."
+    description: "Betik setleri, Greasy Fork'ta gezinmek için size özel bir betik listesi oluşturmanıza olanak tanır. Setinize tek tek betikler, diğer kullanıcıların setleri veya otomatik olarak oluşturulan setleri ekleyerek betik ekleyebilirsiniz. Aynı yöntemleri kullanarak setinizden betikleri de çıkarabilirsiniz."
     favorites_name: "Favoriler"
     delete: "Script setini sil"
     delete_confirmation: "Script setini silmek istediğinden emin misin?"
@@ -537,17 +537,6 @@ tr:
           </ul>
     android_browsers:
       title: Mobil (Android)
-      browser_list_html: |
-          <ul>
-          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, veya %{firefox_violentmonkey_link:Violentmonkey}</li>
-          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
-          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
-          <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
-          <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
-          <li>%{xbrowser_link:XBrowser}</li>
-          <li>%{einkbro_link:EinkBro}</li>
-          %{locale_specific_browsers}
-          </ul>
     ios_browsers:
       title: Mobil (iOS)
     installing_step2_header: "Adım 2: Bir kullanıcı skripti kur"
@@ -563,10 +552,9 @@ tr:
         yüklemeyi onaylamanızı isteyecektir.</p>
     installing_step3_header: "Adım 3: Kullanıcı scripti kullan"
     installing_step3_description_html: >
-        <p>Kullanıcı komut dosyasının etkilediği siteye gidin. İşini otomatik olarak
-        yapmalı. Kullanıcı komut dosyasını bir süre denedikten sonra, kullanıcı komut
-        dosyasını yüklediğiniz yere geri dönün ve kullanıcı komut dosyasının yazarı
-        için geri bildirim bırakın.</p>
+        <p>Betiğin etkili olduğu siteye gidin. Betik otomatik olarak çalışmaya başlamalıdır.
+        Betiği bir süre denedikten sonra, betiği yüklediğiniz sayfaya geri dönün ve
+        betiğin yazarına geri bildirim bırakın.</p>
   users:
     sign_in_title: "%{site_name}'ta oturum aç"
     sign_in_description: "Daha fazla..Daha fazla..%{site_name}'ta oturum aç%{site_name}'ta oturum aç%{site_name}'da scriptlerini göndermek ya da başa scriptlere geribesleme yapmak için oturum açılır. Script bulmak ya da kurmak için oturum açmana gerek yok."
