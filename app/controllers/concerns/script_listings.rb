@@ -88,6 +88,7 @@ module ScriptListings
                                  :set
                                end
           @ad_method = choose_ad_method_for_scripts(@scripts)
+          @bots = 'noindex' if is_search
           [render_to_string, status]
         end
       end
