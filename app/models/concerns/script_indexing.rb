@@ -3,7 +3,8 @@ module ScriptIndexing
 
   included do
     searchkick callbacks: false,
-               max_result_window: 10_000, # Refuse to load past this, as ES raises an error anyway
+               #max_result_window: 10_000, # Refuse to load past this, as ES raises an error anyway
+               max_result_window: 1_000, # Temporary (?) restriction to deal with bots
                searchable: [:name, :description, :additional_info, :author, :search_site_names],
                filterable: [],
                # Match anywhere in the word, not just the full word.
