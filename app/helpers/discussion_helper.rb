@@ -143,10 +143,11 @@ module DiscussionHelper
     is_link = current_options != new_options
 
     text = if is_link
+             html_options = new_options.except(:category).any? ? { rel: :nofollow } : {}
              if new_options[:category]
-               link_to(label, category_discussion_index_path(new_options))
+               link_to(label, category_discussion_index_path(new_options), html_options)
              else
-               link_to(label, discussions_path(new_options))
+               link_to(label, discussions_path(new_options), html_options)
              end
            else
              label

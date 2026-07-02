@@ -113,7 +113,7 @@ class DiscussionsController < ApplicationController
 
             @discussions = @filter_result.result
             @discussions = apply_pagination(@discussions, default_per_page: 25)
-            @bots = 'noindex' unless page_number == 1
+            @bots = 'noindex' if page_number != 1 || params.slice(:me, :user, :show_locale, :read, :visibility).present?
           end
 
           @discussion_ids_read = DiscussionRead.read_ids_for(@discussions, current_user) if current_user
