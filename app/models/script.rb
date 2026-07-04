@@ -691,39 +691,42 @@ class Script < ApplicationRecord
   def similar_scripts(script_subset:, locale:)
     return @_similar_scripts unless @_similar_scripts.nil?
 
-    sas = site_applications.domain.pluck(:id)
-    return Script.none if sas.none?
+    similar_script_ids = Rails.cache.fetch("similar_scripts/#{id}/#{script_subset}/#{locale}", expires_in: 1.hour) do
+      sas = site_applications.domain.pluck(:id)
+      break [] if sas.none?
 
-    locale = Locale.fetch_locale(locale) if locale.is_a?(String) || locale.is_a?(Symbol)
+      locale = Locale.fetch_locale(locale) if locale.is_a?(String) || locale.is_a?(Symbol)
 
-    with = {
-      script_type: Script.script_types[:public],
-      site_application_id: sas,
-      locale: locale.id,
-    }
+      with = {
+        script_type: Script.script_types[:public],
+        site_application_id: sas,
+        locale: locale.id,
+      }
 
-    case script_subset
-    when :greasyfork
-      with[:sensitive] = false
-    when :sleazyfork
-      with[:sensitive] = true
+      case script_subset
+      when :greasyfork
+        with[:sensitive] = false
+      when :sleazyfork
+        with[:sensitive] = true
+      end
+
+      @_similiar_scripts = Script
+                           .search(
+                             '*',
+                             where: with,
+                             includes: [:localized_attributes, :users],
+                             order: { daily_installs: :desc },
+                             per_page: 25
+                           )
+                           .reject { |script| script.id == id }
+                           .sort_by { |script| [(script.users & users).any? ? 0 : 1, script.daily_installs * -1] }
+                           .first(5)
+
+      @_similiar_scripts.select!(&:adsense_approved) if adsense_approved
+      @_similiar_scripts.map(&:id)
     end
 
-    @_similiar_scripts = Script
-                         .search(
-                           '*',
-                           where: with,
-                           includes: [:localized_attributes, :users],
-                           order: { daily_installs: :desc },
-                           per_page: 25
-                         )
-                         .reject { |script| script.id == id }
-                         .sort_by { |script| [(script.users & users).any? ? 0 : 1, script.daily_installs * -1] }
-                         .first(5)
-
-    @_similiar_scripts.select!(&:adsense_approved) if adsense_approved
-
-    @_similiar_scripts
+    @_similiar_scripts || Script.where(id: similar_script_ids)
   end
 
   def bad_integrity_hashes
