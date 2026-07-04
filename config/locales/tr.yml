@@ -777,7 +777,7 @@ tr:
       intro_html: "Bu, %{site_name} sitesinin okuyacağı bir <a href=\"http://wiki.greasespot.net/Metadata_Block\">kullanıcı betiği meta anahtarları </a> listesi. Bu listenin dışındaki anahtarlar, betiğe eklenmiş olabilir, ve yüklenmiş betikte bulunabilir, fakat %{site_name}sitesinin Kullanıcı Arayüzü'nde bulunmayabilir."
       name: "Scriptin ismi, başlıkta ve linklerde kullanılacak. Gerekli."
       description: "Script ne işe yarıyor açıklaması. Başlık altında gösterilecektir. Gerekli."
-      supportURL: "Kullanıcıların bir komut dosyasında destek alabileceği bir sayfanın URL'si (ör. Bir hata izleyici, bir forum, bir e-posta adresi). Destek URL'si bir komut dosyasının geribildirim sayfasında görüntülenir."
+      supportURL: "Kullanıcıların bir betikle ilgili destek alabilecekleri bir sayfanın URL'si (örneğin, bir hata izleme sistemi, bir forum, bir e-posta adresi). Destek URL'si, betiğin geri bildirim sayfasında görüntülenir."
       contributionAmount_html: "Önerilen bağış miktarı, <code>@contributionURL</code>'ya bağlı kullanılır"
     writing_user_scripts:
       title: "Nasıl kullanıcı scripti yazarım"
@@ -871,16 +871,20 @@ tr:
       message: "%{user} kullanıcısının mesajını şikayet et"
       script: "%{script} scriptini şikayet et"
     new_script_report_notes_html: >
-        Bildirimde bulunmadan önce lütfen şunlara dikkat edin:
+        <p>Bildirimde bulunmadan önce lütfen şunu unutmayın:</p> <ul>
 
-        Betikler yalnızca %{rules_link:%{site_name}'deki kuralları} ihlal ettikleri
-        için kaldırılacaktır. Komut dosyası bozuk veya çalışmıyorsa, bunun yerine
-        %{feedback_link:geri bildirimde bulunun.}
+        <li>Betikler yalnızca %{rules_link:%{site_name} adlı sitenin kurallarını}
+        ihlal ettikleri için kaldırılacaktır. Betik bozuk veya çalışmıyorsa, %{feedback_link:bunun
+        yerine geri bildirimde bulunun.}
 
-        Bir moderatör bildiriminizi inceleyecek ve buna göre işlem yapacaktır.
+        </li>
 
-        Bu bildirim özelliğinin kötüye kullanılması, hesabınızın engellenmesine yol
-        açabilir.
+        <li>Bir moderatör, bildiriminizi inceleyecek ve buna göre işlem yapacaktır.</li>
+
+        <li>Bu bildirim özelliğinin kötüye kullanılması, <i>hesabınızın</i> engellenmesine
+        yol açabilir.</li>
+
+        </ul>
     reason:
       non_functional: "Script çalışmıyor"
       spam: "Spam"
