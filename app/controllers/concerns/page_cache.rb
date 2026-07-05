@@ -6,7 +6,7 @@ module PageCache
   def cache_page(page_key, ttl: 1.minute)
     ttl = 0.seconds if Rails.env.test?
 
-    if page_key.nil? || current_user
+    if page_key.nil? || current_user || !request.format.html?
       html, status = yield
       render(html:, status: status || 200) unless performed?
       return
@@ -26,7 +26,26 @@ module PageCache
                  .html_safe, status: status || 200
   end
 
+  def cache_json(page_key, ttl: 1.minute)
+    ttl = 0.seconds if Rails.env.test?
+
+    if page_key.nil? || current_user
+      json, status = yield
+      render(json:, status: status || 200) unless performed?
+      return
+    end
+
+    json, status = Rails.cache.fetch("#{page_key}.json", expires_in: ttl) do
+      @caching_request = true
+      yield
+    end
+
+    response.set_header('X-Page-Cache', @caching_request ? 'write' : 'read')
+
+    render json:, status: status || 200
+  end
+
   def generally_cachable?
-    current_user.nil? && request.format.html? && flash.empty?
+    current_user.nil? && (request.format.html? || request.format.json?) && flash.empty?
   end
 end

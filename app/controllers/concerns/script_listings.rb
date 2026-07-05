@@ -37,10 +37,12 @@ module ScriptListings
     # won't match the route's definition. This regexp matches the one defined by the route, except with \A and \z.
     params.delete(:site) if params[:site] && !/\A[a-z0-9\-.*]*?\z/i.match?(params[:site])
 
+    should_cache_page = generally_cachable? && (params.keys - %w[locale controller action site page sort format]).none?
+    cache_key = should_cache_page ? "script_index/#{site_cache_key}/#{params.values.join('/')}" : nil
+
     respond_to do |format|
       format.html do
-        should_cache_page = generally_cachable? && (params.keys - %w[locale controller action site page sort]).none?
-        cache_page(should_cache_page ? "script_index/#{site_cache_key}/#{params.values.join('/')}" : nil) do
+        cache_page(cache_key) do
           status = 200
 
           begin
@@ -96,9 +98,11 @@ module ScriptListings
         load_scripts_for_index
       end
       format.json do
-        return if load_scripts_for_index(for_json: true)
+        cache_json(cache_key) do
+          return if load_scripts_for_index(for_json: true)
 
-        render json: (params[:meta] == '1') ? { count: @scripts.count } : scripts_as_json(@scripts)
+          [(params[:meta] == '1') ? { count: @scripts.count } : scripts_as_json(@scripts), 200]
+        end
       end
       format.jsonp do
         return if load_scripts_for_index
