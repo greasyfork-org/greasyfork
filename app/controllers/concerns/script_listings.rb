@@ -146,15 +146,17 @@ module ScriptListings
     with[:script_type] = Script.script_types[:library]
     with[:author_ids] = params[:by] unless params[:by].to_i.zero?
 
-    @scripts = apply_searchkick_pagination(Script.search(
-                                             params[:q].presence || '*',
-                                             fields: ['name^10', 'description^5', 'author^5', 'additional_info^1'],
-                                             where: with,
-                                             order: self.class.get_es_sort(params, default_sort: params[:q].present? ? 'relevance' : 'created'),
-                                             page: page_number,
-                                             per_page: per_page(default: 100),
-                                             includes: [:localized_attributes, :users]
-                                           ))
+    @scripts = PerformanceLogging.log_elasticsearch('Library search', data: request.url) do
+      apply_searchkick_pagination(Script.search(
+                                    params[:q].presence || '*',
+                                    fields: ['name^10', 'description^5', 'author^5', 'additional_info^1'],
+                                    where: with,
+                                    order: self.class.get_es_sort(params, default_sort: params[:q].present? ? 'relevance' : 'created'),
+                                    page: page_number,
+                                    per_page: per_page(default: 100),
+                                    includes: [:localized_attributes, :users]
+                                  ))
+    end
 
     respond_to do |format|
       format.html do
@@ -366,16 +368,18 @@ module ScriptListings
     includes = [:localized_attributes, :users]
     includes.push(:locale, :license) if for_json
 
-    @scripts = apply_searchkick_pagination(Script.search(
-                                             params[:q].presence || '*',
-                                             fields: ['name^10', 'search_site_names^9', 'description^5', 'author^5', 'additional_info^1'],
-                                             boost_by: [:fan_score],
-                                             where: with,
-                                             order: self.class.get_es_sort(params),
-                                             page: page_number,
-                                             per_page: per_page(default: 100),
-                                             includes:
-                                           ))
+    @scripts = PerformanceLogging.log_elasticsearch('Script search', data: request.url) do
+      apply_searchkick_pagination(Script.search(
+                                    params[:q].presence || '*',
+                                    fields: ['name^10', 'search_site_names^9', 'description^5', 'author^5', 'additional_info^1'],
+                                    boost_by: [:fan_score],
+                                    where: with,
+                                    order: self.class.get_es_sort(params),
+                                    page: page_number,
+                                    per_page: per_page(default: 100),
+                                    includes:
+                                  ))
+    end
 
     false
   end

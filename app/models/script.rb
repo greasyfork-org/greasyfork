@@ -710,18 +710,19 @@ class Script < ApplicationRecord
         with[:sensitive] = true
       end
 
-      @_similiar_scripts = Script
-                           .search(
-                             '*',
-                             where: with,
-                             includes: [:localized_attributes, :users],
-                             order: { daily_installs: :desc },
-                             per_page: 25
-                           )
-                           .reject { |script| script.id == id }
-                           .sort_by { |script| [(script.users & users).any? ? 0 : 1, script.daily_installs * -1] }
-                           .first(5)
-
+      @_similiar_scripts = PerformanceLogging.log_elasticsearch('Similar script search', data: id) do
+        Script
+          .search(
+            '*',
+            where: with,
+            includes: [:localized_attributes, :users],
+            order: { daily_installs: :desc },
+            per_page: 25
+          )
+          .reject { |script| script.id == id }
+          .sort_by { |script| [(script.users & users).any? ? 0 : 1, script.daily_installs * -1] }
+          .first(5)
+      end
       @_similiar_scripts.select!(&:adsense_approved) if adsense_approved
       @_similiar_scripts.map(&:id)
     end

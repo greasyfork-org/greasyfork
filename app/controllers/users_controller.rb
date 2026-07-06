@@ -65,14 +65,16 @@ class UsersController < ApplicationController
               end
             end
 
-    @users = apply_searchkick_pagination(User.search(
-                                           params[:q].presence || '*',
-                                           fields: [{ name: :word_middle }],
-                                           where: with,
-                                           order:,
-                                           page: page_number,
-                                           per_page: per_page(default: 100)
-                                         ))
+    @users = PerformanceLogging.log_elasticsearch('User search', data: request.url) do
+      apply_searchkick_pagination(User.search(
+                                    params[:q].presence || '*',
+                                    fields: [{ name: :word_middle }],
+                                    where: with,
+                                    order:,
+                                    page: page_number,
+                                    per_page: per_page(default: 100)
+                                  ))
+    end
 
     @user_script_counts = Script.listable(script_subset).joins(:authors).where(authors: { user_id: @users.map(&:id) }).group(:user_id).count
 
@@ -285,7 +287,10 @@ class UsersController < ApplicationController
 
     reason = Report::REASON_SPAM
     full_reason = t("reports.reason.#{reason}", locale: 'en')
-    User.search('*', where: { ip:, banned: false }).each do |user|
+    users_to_ban = PerformanceLogging.log_elasticsearch('User ban search', data: request.url) do
+      User.search('*', where: { ip:, banned: false }).load
+    end
+    users_to_ban.each do |user|
       next if user.banned?
 
       user.ban!(moderator: current_user, reason: full_reason)
