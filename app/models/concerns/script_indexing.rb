@@ -1,10 +1,13 @@
 module ScriptIndexing
   extend ActiveSupport::Concern
 
+  MAX_SCRIPT_RESULTS = 1_000
+  # MAX_SCRIPT_RESULTS = 10_000, # Refuse to load past this, as ES raises an error anyway
+
   included do
     searchkick callbacks: false,
-               # max_result_window: 10_000, # Refuse to load past this, as ES raises an error anyway
-               max_result_window: 1_000, # Temporary (?) restriction to deal with bots
+
+               max_result_window: MAX_SCRIPT_RESULTS,
                searchable: [:name, :description, :additional_info, :author, :search_site_names],
                filterable: [],
                # Match anywhere in the word, not just the full word.

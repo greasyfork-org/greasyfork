@@ -7,6 +7,7 @@ module ScriptListings
   COLLECTION_LOGGED_IN_ACTIONS = [:code_search].freeze
 
   DEFAULT_SORT = 'daily_installs'.freeze
+  DEFAULT_PER_PAGE = 100
 
   ADVANCED_SEARCH_FIELDS = {
     total_installs: { type: :integer },
@@ -153,9 +154,9 @@ module ScriptListings
                                     where: with,
                                     order: self.class.get_es_sort(params, default_sort: params[:q].present? ? 'relevance' : 'created'),
                                     page: page_number,
-                                    per_page: per_page(default: 100),
+                                    per_page: per_page(default: DEFAULT_PER_PAGE),
                                     includes: [:localized_attributes, :users]
-                                  ))
+                                  ), default_per_page: DEFAULT_PER_PAGE)
     end
 
     respond_to do |format|
@@ -376,9 +377,9 @@ module ScriptListings
                                     where: with,
                                     order: self.class.get_es_sort(params),
                                     page: page_number,
-                                    per_page: per_page(default: 100),
+                                    per_page: per_page(default: DEFAULT_PER_PAGE),
                                     includes:
-                                  ))
+                                  ), default_per_page: DEFAULT_PER_PAGE)
     end
 
     false

@@ -27,9 +27,21 @@ module Pagination
     relation
   end
 
-  def apply_searchkick_pagination(search)
+  def apply_searchkick_pagination(search, default_per_page: 50)
     # In contrast to ActiveRecord relations above in apply_pagination, Searchkick has a built-in 10,000 result limit, so we don't need
-    # to apply out own limit.
+    # to apply our own limit if we want something else.
+    max_results = search.model.searchkick_options[:max_result_window] || 10_000
+
+    if max_results
+      page = page_number
+      limit = per_page(default: default_per_page)
+      if (page - 1) * limit >= max_results
+        search = search.model.none
+        @pagy, = pagy(search)
+        return search
+      end
+    end
+
     @pagy = pagy(:searchkick, search)
     search
   end
