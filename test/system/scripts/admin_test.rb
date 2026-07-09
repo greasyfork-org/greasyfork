@@ -10,6 +10,8 @@ class ScriptAdminTest < ApplicationSystemTestCase
     click_on 'Set promoted script'
     assert_content 'Script updated'
     assert_equal 2, script.reload.promoted_script_id
+    # To clear the flash message
+    visit admin_script_url(script, locale: :en)
     fill_in 'URL of script to promote', with: ''
     click_on 'Set promoted script'
     assert_content 'Script updated'
