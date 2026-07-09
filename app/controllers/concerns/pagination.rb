@@ -42,7 +42,7 @@ module Pagination
       end
     end
 
-    @pagy = pagy(:searchkick, search)
+    @pagy = pagy(:searchkick, search, max_result_window: max_results)
     search
   end
 
