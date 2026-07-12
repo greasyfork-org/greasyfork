@@ -44,11 +44,11 @@ module ScriptsHelper
     by_sites = TopSitesService.script_counts_for_sites(sites: sats_with_domains.map(&:domain_text), script_subset:)
 
     return (
-    sats_with_domains.map do |sat|
-      content_for_script_applies_to_that_has_domain(sat, count_of_other_scripts_with_sat(sat, script, by_sites))
-    end +
-    sats_without_domains.map { |sat| tag.code(sat.text) }
-  )
+      sats_with_domains.map do |sat|
+        content_for_script_applies_to_that_has_domain(sat, count_of_other_scripts_with_sat(sat, script, by_sites))
+      end +
+      sats_without_domains.map { |sat| tag.code(sat.text) }
+    )
   end
 
   def license_display(script)
