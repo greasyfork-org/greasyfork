@@ -7,7 +7,7 @@ class DataCentreIps
 
   # This CSV has a range per row and supports IPV4 and IPV6, but it's not limited to data centres. We need to manually
   # identify data centres based on ASN.
-  DATA_SOURCE_DBIP = URI.parse('https://download.db-ip.com/free/dbip-asn-lite-2026-05.csv.gz')
+  DATA_SOURCE_DBIP = URI.parse('https://download.db-ip.com/free/dbip-asn-lite-2026-07.csv.gz')
 
   DATA_CENTRE_ASN_NUMBERS = [
     '8075',  # Microsoft Corporation
