@@ -1,7 +1,7 @@
 module ScriptIndexing
   extend ActiveSupport::Concern
 
-  MAX_SCRIPT_RESULTS = 1_000
+  MAX_SCRIPT_RESULTS = 2_000
   # MAX_SCRIPT_RESULTS = 10_000, # Refuse to load past this, as ES raises an error anyway
 
   included do
