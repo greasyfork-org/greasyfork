@@ -38,8 +38,8 @@
   <% if current_user && !@discussion.soft_deleted? %>
     <div class="discussion-actions">
       <div class="discussion-subscription-links <%= current_user.subscribed_to?(@discussion) ? 'discussion-subscribed' : 'discussion-not-subscribed' %>">
-        <%= link_to t('discussions.subscribe'), scoped_subscribe_path(@discussion), data: { turbo: true, turbo_method: :POST }, class: 'discussion-subscribe' %>
-        <%= link_to t('discussions.unsubscribe'), scoped_unsubscribe_path(@discussion), data: { turbo: true, turbo_method: :POST }, class: 'discussion-unsubscribe' %>
+        <%= button_to t('discussions.subscribe'), scoped_subscribe_path(@discussion), method: :post, form_class: 'inline-form', class: 'discussion-subscribe' %>
+        <%= button_to t('discussions.unsubscribe'), scoped_unsubscribe_path(@discussion), method: :post, form_class: 'inline-form', class: 'discussion-unsubscribe' %>
       </div>
     </div>
   <% end %>

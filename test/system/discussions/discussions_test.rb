@@ -121,13 +121,14 @@ class DiscussionsTest < ApplicationSystemTestCase
     login_as(user, scope: :user)
     discussion = discussions(:non_script_discussion)
     visit discussion.url
+    assert_selector '.discussion-subscription-links form[method="post"] button.discussion-subscribe', text: 'Subscribe'
     assert_difference -> { DiscussionSubscription.count } => 1 do
       click_on 'Subscribe'
-      assert_selector 'a', text: 'Unsubscribe'
+      assert_button 'Unsubscribe'
     end
     assert_difference -> { DiscussionSubscription.count } => -1 do
       click_on 'Unsubscribe'
-      assert_selector 'a', text: 'Subscribe'
+      assert_button 'Subscribe'
     end
   end
 
