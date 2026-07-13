@@ -171,6 +171,18 @@ a.discussion-title, .notification-list-item a {
 .discussion-actions, .notification-actions {
   font-size: smaller;
 }
+.discussion-subscription-links button {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background: none;
+  border: 0;
+  color: var(--link-color);
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+  text-decoration: underline;
+}
 .discussion-subscribed .discussion-subscribe {
   display: none;
 }
