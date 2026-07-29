@@ -108,6 +108,22 @@ module Webhooks
     return changed_files, params[:project][:git_http_url]
   end
 
+  # A sync identifier carrying a token can't be fetched by cloning the repository
+  # anonymously, so its contents have to come from the URL. Additional info
+  # attributes have their own sync identifiers, and a changed file can match only
+  # those, so both have to be considered.
+  def private_sync?(info)
+    (info[:scripts].to_a + info[:script_attributes].to_a).any? do |record|
+      record.sync_identifier&.include?('private_token')
+    end
+  end
+
+  # The identifier to download a changed file from. A file that matched only an
+  # additional info attribute has no scripts.
+  def sync_identifier_for(info)
+    (info[:scripts].first || info[:script_attributes].first).sync_identifier
+  end
+
   # Adds scripts and script_attributes keys to changed_files.
   # - user
   # - changed_files - a Hash of URL to Hash
@@ -141,12 +157,12 @@ module Webhooks
     end
 
     # Get the contents of the files. Some we will have to pull from the URL if it's a private repo.
-    pull_from_url, pull_from_git = changed_files.partition { |_k, v| v[:scripts].any? { |s| s.sync_identifier.include?('private_token') } }
+    pull_from_url, pull_from_git = changed_files.partition { |_k, v| private_sync?(v) }
     pull_from_url = pull_from_url.to_h
     pull_from_git = pull_from_git.to_h
 
     pull_from_url.values.each do |h|
-      h[:content] = ScriptImporter::BaseScriptImporter.download(h[:scripts].first.sync_identifier)
+      h[:content] = ScriptImporter::BaseScriptImporter.download(sync_identifier_for(h))
     end
 
     if pull_from_git.any?

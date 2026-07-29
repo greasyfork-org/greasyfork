@@ -41,7 +41,10 @@ class Gitlab
         "#{repo_url}/raw/#{branch}/#{file}",
         "#{repo_url}/-/raw/#{branch}/#{file}",
         { prefix: "https://gitlab.com/api/v4/projects/#{project_id}/repository/files/#{file}/raw?ref=#{branch}" },
-      ]
+        # The files API only serves a URL-encoded path, so anything in a
+        # subdirectory is stored with %2F separators and won't match the form above.
+        { prefix: "https://gitlab.com/api/v4/projects/#{project_id}/repository/files/#{ERB::Util.url_encode(file)}/raw?ref=#{branch}" },
+      ].uniq
     end
 
     def file_from_root_for_url(url, repo_url)

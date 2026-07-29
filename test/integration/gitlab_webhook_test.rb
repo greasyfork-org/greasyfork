@@ -131,6 +131,77 @@ class GitlabWebhookTest < ActionDispatch::IntegrationTest
     }
   JSON
 
+  PRIVATE_PUSH_BODY = <<~JSON.freeze
+    {
+    "object_kind": "push",
+    "event_name": "push",
+    "before": "c07b16267070314ee1da3d77f24c727378614125",
+    "after": "ea6c525a17d2c6f23ebd36b2acfbfb1eb7b36cd1",
+    "ref": "refs/heads/main",
+    "ref_protected": true,
+    "checkout_sha": "ea6c525a17d2c6f23ebd36b2acfbfb1eb7b36cd1",
+    "message": null,
+    "user_id": 123456,
+    "user_name": "MY NAME",
+    "user_username": "430i",
+    "user_email": "",
+    "user_avatar": "https://secure.gravatar.com/avatar/d1a4df204cd9d900bd92207459885b9d?s=80&d=identicon",
+    "project_id": 456789,
+    "project": {
+    "id": 456789,
+    "name": "repository",
+    "description": "",
+    "web_url": "https://gitlab.com/username-or-group/repository",
+    "avatar_url": null,
+    "git_ssh_url": "git@gitlab.com:username-or-group/repository.git",
+    "git_http_url": "https://gitlab.com/username-or-group/repository.git",
+    "namespace": "namespace",
+    "visibility_level": 0,
+    "path_with_namespace": "username-or-group/repository",
+    "default_branch": "main",
+    "ci_config_path": "",
+    "homepage": "https://gitlab.com/username-or-group/repository",
+    "url": "git@gitlab.com:username-or-group/repository.git",
+    "ssh_url": "git@gitlab.com:username-or-group/repository.git",
+    "http_url": "https://gitlab.com/username-or-group/repository.git"
+    },
+    "commits": [
+    {
+    "id": "ea6c525a17d2c6f23ebd36b2acfbfb1eb7b36cd1",
+    "message": "debug: update\\n",
+    "title": "debug: update",
+    "timestamp": "2024-01-06T00:43:53+01:00",
+    "url": "https://gitlab.com/username-or-group/repository/-/commit/ea6c525a17d2c6f23ebd36b2acfbfb1eb7b36cd1",
+    "author": {
+    "name": "MY NAME",
+    "email": "[REDACTED]"
+    },
+    "added": [
+
+    ],
+    "modified": [
+    "script.user.js"
+    ],
+    "removed": [
+
+    ]
+    }
+    ],
+    "total_commits_count": 1,
+    "push_options": {
+    },
+    "repository": {
+    "name": "repository",
+    "url": "git@gitlab.com:username-or-group/repository.git",
+    "description": "",
+    "homepage": "https://gitlab.com/username-or-group/repository",
+    "git_http_url": "https://gitlab.com/username-or-group/repository.git",
+    "git_ssh_url": "git@gitlab.com:username-or-group/repository.git",
+    "visibility_level": 0
+    }
+    }
+  JSON
+
   def push_webhook_request(user, secret: nil, body: CHANGE_BODY)
     post user_webhook_url(user_id: user.id),
          headers: { 'Content-Type' => 'application/json', 'X-Gitlab-Event' => 'Push Hook', 'X-Gitlab-Token' => secret || user.webhook_secret, 'Connection' => 'close', 'Host' => 'greasyfork.org', 'X-Forwarded-Proto' => 'https', 'X-Forwarded-For' => '35.231.231.98' },
@@ -178,76 +249,7 @@ class GitlabWebhookTest < ActionDispatch::IntegrationTest
   end
 
   def test_webhook_to_private_url
-    json = <<~JSON
-      {
-      "object_kind": "push",
-      "event_name": "push",
-      "before": "c07b16267070314ee1da3d77f24c727378614125",
-      "after": "ea6c525a17d2c6f23ebd36b2acfbfb1eb7b36cd1",
-      "ref": "refs/heads/main",
-      "ref_protected": true,
-      "checkout_sha": "ea6c525a17d2c6f23ebd36b2acfbfb1eb7b36cd1",
-      "message": null,
-      "user_id": 123456,
-      "user_name": "MY NAME",
-      "user_username": "430i",
-      "user_email": "",
-      "user_avatar": "https://secure.gravatar.com/avatar/d1a4df204cd9d900bd92207459885b9d?s=80&d=identicon",
-      "project_id": 456789,
-      "project": {
-      "id": 456789,
-      "name": "repository",
-      "description": "",
-      "web_url": "https://gitlab.com/username-or-group/repository",
-      "avatar_url": null,
-      "git_ssh_url": "git@gitlab.com:username-or-group/repository.git",
-      "git_http_url": "https://gitlab.com/username-or-group/repository.git",
-      "namespace": "namespace",
-      "visibility_level": 0,
-      "path_with_namespace": "username-or-group/repository",
-      "default_branch": "main",
-      "ci_config_path": "",
-      "homepage": "https://gitlab.com/username-or-group/repository",
-      "url": "git@gitlab.com:username-or-group/repository.git",
-      "ssh_url": "git@gitlab.com:username-or-group/repository.git",
-      "http_url": "https://gitlab.com/username-or-group/repository.git"
-      },
-      "commits": [
-      {
-      "id": "ea6c525a17d2c6f23ebd36b2acfbfb1eb7b36cd1",
-      "message": "debug: update\\n",
-      "title": "debug: update",
-      "timestamp": "2024-01-06T00:43:53+01:00",
-      "url": "https://gitlab.com/username-or-group/repository/-/commit/ea6c525a17d2c6f23ebd36b2acfbfb1eb7b36cd1",
-      "author": {
-      "name": "MY NAME",
-      "email": "[REDACTED]"
-      },
-      "added": [
-
-      ],
-      "modified": [
-      "script.user.js"
-      ],
-      "removed": [
-
-      ]
-      }
-      ],
-      "total_commits_count": 1,
-      "push_options": {
-      },
-      "repository": {
-      "name": "repository",
-      "url": "git@gitlab.com:username-or-group/repository.git",
-      "description": "",
-      "homepage": "https://gitlab.com/username-or-group/repository",
-      "git_http_url": "https://gitlab.com/username-or-group/repository.git",
-      "git_ssh_url": "git@gitlab.com:username-or-group/repository.git",
-      "visibility_level": 0
-      }
-      }
-    JSON
+    json = PRIVATE_PUSH_BODY
 
     script = Script.find_by(sync_identifier: 'https://github.com/JasonBarnabe/webhooktest/raw/master/test.user.js')
     script.update!(sync_identifier: 'https://gitlab.com/api/v4/projects/456789/repository/files/script.user.js/raw?ref=main&private_token=glpat-XXXX')
@@ -256,5 +258,38 @@ class GitlabWebhookTest < ActionDispatch::IntegrationTest
     push_webhook_request(user, body: json)
     assert_equal '200', response.code
     assert_equal({ 'updated_scripts' => ['https://greasyfork.org/en/scripts/18-mb-funkey-illustrated-records-15'], 'updated_failed' => [] }, response.parsed_body)
+  end
+
+  # A private repo's sync URL must use the API, which only serves a URL-encoded
+  # file path - so a script in a subdirectory is stored with %2F separators.
+  def test_webhook_to_private_url_in_subdirectory
+    json = PRIVATE_PUSH_BODY.sub('"script.user.js"', '"scripts/script.user.js"')
+
+    script = Script.find_by(sync_identifier: 'https://github.com/JasonBarnabe/webhooktest/raw/master/test.user.js')
+    script.update!(sync_identifier: 'https://gitlab.com/api/v4/projects/456789/repository/files/scripts%2Fscript.user.js/raw?ref=main&private_token=glpat-XXXX')
+    ScriptImporter::BaseScriptImporter.expects(:download).with(script.sync_identifier).returns(script.newest_saved_script_version.rewritten_code)
+    user = User.find(1)
+    push_webhook_request(user, body: json)
+    assert_equal '200', response.code
+    assert_equal({ 'updated_scripts' => ['https://greasyfork.org/en/scripts/18-mb-funkey-illustrated-records-15'], 'updated_failed' => [] }, response.parsed_body)
+  end
+
+  # Additional info has its own sync identifier, and a changed file can match only
+  # that - the contents still have to come from the URL rather than a clone.
+  def test_webhook_to_private_url_additional_info
+    json = PRIVATE_PUSH_BODY.sub('"script.user.js"', '"script.md"')
+
+    script = Script.find(18)
+    additional_info = LocalizedScriptAttribute.create!(
+      script:, attribute_key: 'additional_info', attribute_value: 'Old text', attribute_default: true,
+      locale_id: 1, value_markup: 'markdown',
+      sync_identifier: 'https://gitlab.com/api/v4/projects/456789/repository/files/script.md/raw?ref=main&private_token=glpat-XXXX'
+    )
+    ScriptImporter::BaseScriptImporter.expects(:download).with(additional_info.sync_identifier).returns('New text')
+    user = User.find(1)
+    push_webhook_request(user, body: json)
+    assert_equal '200', response.code
+    assert_equal({ 'updated_scripts' => ['https://greasyfork.org/en/scripts/18-a-test'], 'updated_failed' => [] }, response.parsed_body)
+    assert_equal 'New text', additional_info.reload.attribute_value
   end
 end
