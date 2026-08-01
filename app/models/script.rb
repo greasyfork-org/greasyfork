@@ -121,7 +121,7 @@ class Script < ApplicationRecord
       if LOCALIZED_ATTRIBUTES_FROM_META.include?(attr) && !script.library?
         script.errors.add(:base, :too_long, message: I18n.t('errors.messages.meta_too_long', count: len, key: "@#{attr}"))
       else
-        script.errors.add(attr, :too_long, message: I18n.t('errors.messages.too_long', count: len))
+        script.errors.add(attr, :too_long, message: I18n.t('errors.messages.too_long', count: len, attribute: I18n.t("activerecord.attributes.script.#{attr}")))
       end
     end
   end
