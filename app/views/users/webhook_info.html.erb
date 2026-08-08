@@ -34,7 +34,7 @@
 
 <dl>
   <dt>Payload URL</dt>
-  <dd><%= user_webhook_url(@user) %></dd>
+  <dd><%= @webhook_url %></dd>
   <dt>Content type</dt>
   <dd>application/json</dd>
   <dt>Secret</dt>
@@ -77,7 +77,7 @@
       <% if @user.webhook_secret.nil? %>
         <input type="submit" value="Generate">
       <% else %>
-        <textarea cols="64" rows="2" readonly><%= user_webhook_url(@user, secret: @user.webhook_secret) %></textarea> <input type="submit" value="Regenerate">
+        <textarea cols="64" rows="2" readonly><%= @webhook_url_with_secret %></textarea> <input type="submit" value="Regenerate">
       <% end %>
     <% end %>
   </dd>
@@ -105,7 +105,7 @@
 
 <dl>
   <dt>URL</dt>
-  <dd><%= user_webhook_url(@user) %></dd>
+  <dd><%= @webhook_url %></dd>
   <dt>Secret Token</dt>
   <dd>
     <%= form_tag do |f| %>

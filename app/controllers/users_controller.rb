@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   include BrowserCaching
 
   skip_before_action :verify_authenticity_token, only: [:webhook]
+  skip_before_action :handle_non_api_requests, only: [:webhook]
 
   before_action :authenticate_user!, except: [:show, :webhook, :index]
   before_action :authorize_for_moderators_only, only: [:ban, :do_ban, :unban, :do_unban, :mark_email_as_confirmed, :ban_with_ip]
@@ -157,6 +158,8 @@ class UsersController < ApplicationController
       @user.generate_webhook_secret
       @user.save!
     end
+    @webhook_url = user_webhook_url(@user, subdomain: 'api')
+    @webhook_url_with_secret = user_webhook_url(@user, secret: @user.webhook_secret, subdomain: 'api') if @user.webhook_secret.present?
     @webhook_scripts = Script.not_deleted.joins(:authors).where(authors: { user_id: @user.id }).where('sync_identifier LIKE "https://github.com/%" OR sync_identifier LIKE "https://raw.githubusercontent.com/%" OR sync_identifier LIKE "https://bitbucket.org/%" OR sync_identifier LIKE "https://gitlab.com/%"')
   end
 
