@@ -31,7 +31,7 @@ class Conversation < ApplicationRecord
   end
 
   def latest_url(user, locale: nil)
-    pages = (messages.count / 50) + 1
+    pages = ((messages.count - 1) / 50) + 1
     last_message_id = messages.order(:id).last.id
     locale = locale.code if locale.is_a?(Locale)
     Rails.application.routes.url_helpers.user_conversation_url(user, self, locale: locale || user.available_locale_code, page: (pages > 1) ? pages : nil, anchor: "message-#{last_message_id}")
