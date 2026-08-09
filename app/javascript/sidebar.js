@@ -38,7 +38,11 @@ onload(() => {
     openButton.classList.toggle('sidebar-collapsed', !expanded)
     openButton.setAttribute('aria-expanded', expanded.toString())
     closeButton.setAttribute('aria-expanded', expanded.toString())
-    ;(expanded ? closeButton : openButton).focus()
+    if (expanded) {
+      closeButton.focus()
+    } else {
+      openButton.focus()
+    }
   }
 
   const openSidebar = () => setExpanded(true)
