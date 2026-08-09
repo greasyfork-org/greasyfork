@@ -33,26 +33,26 @@ onload(() => {
     }
   }
 
-  const setExpanded = (expanded, focusTarget) => {
+  const setExpanded = (expanded) => {
     sidebar.classList.toggle('collapsed', !expanded)
     openButton.classList.toggle('sidebar-collapsed', !expanded)
     openButton.setAttribute('aria-expanded', expanded.toString())
     closeButton.setAttribute('aria-expanded', expanded.toString())
-    focusTarget?.focus()
+    ;(expanded ? closeButton : openButton).focus()
   }
 
-  const open = () => setExpanded(true, closeButton)
-  const close = () => setExpanded(false, openButton)
+  const openSidebar = () => setExpanded(true)
+  const closeSidebar = () => setExpanded(false)
 
-  openButton.addEventListener('click', open)
-  closeButton.addEventListener('click', close)
-  addKeyboardActivation(openButton, open)
-  addKeyboardActivation(closeButton, close)
+  openButton.addEventListener('click', openSidebar)
+  closeButton.addEventListener('click', closeSidebar)
+  addKeyboardActivation(openButton, openSidebar)
+  addKeyboardActivation(closeButton, closeSidebar)
   sidebar.addEventListener('keydown', (event) => {
     if (event.key !== 'Escape') {
       return
     }
     event.preventDefault()
-    close()
+    closeSidebar()
   })
 })
