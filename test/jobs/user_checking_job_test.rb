@@ -20,4 +20,12 @@ class UserCheckingJobTest < ActiveSupport::TestCase
       UserCheckingJob.perform_now(user)
     end
   end
+
+  test 'repeating detects three repeated groups' do
+    assert UserCheckingJob.new.repeating?('abcabcabc')
+  end
+
+  test 'repeating rejects a different third group' do
+    assert_not UserCheckingJob.new.repeating?('abcabcdef')
+  end
 end
