@@ -17,6 +17,12 @@ module ApplicationHelper
     tag.span(id: name) { link_to('§', { anchor: name }, { class: 'self-link' }) + text }
   end
 
+  def list_option(content, current: false)
+    html_options = { class: "list-option#{' list-current' if current}" }
+    html_options[:aria] = { current: 'true' } if current
+    tag.li(**html_options) { content }
+  end
+
   # Translates an array of keys and returns a hash.
   def translate_keys(keys)
     h = {}
