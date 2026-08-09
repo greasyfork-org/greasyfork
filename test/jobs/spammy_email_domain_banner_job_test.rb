@@ -18,6 +18,8 @@ class SpammyEmailDomainBannerJobTest < ActiveSupport::TestCase
     assert_difference -> { SpammyEmailDomain.count } do
       SpammyEmailDomainBannerJob.perform_inline('yahoo.com')
     end
+    sed = SpammyEmailDomain.find_by!(domain: 'yahoo.com')
+    assert_in_delta 1.month.from_now.to_f, sed.expires_at.to_f, 2
   end
 
   test 'matches but no ban if existing old user' do
@@ -59,7 +61,8 @@ class SpammyEmailDomainBannerJobTest < ActiveSupport::TestCase
     assert_no_difference -> { SpammyEmailDomain.count } do
       SpammyEmailDomainBannerJob.perform_inline('yahoo.com')
     end
-    assert sed.reload.expires_at.future?
+    assert_in_delta 2.months.from_now.to_f, sed.reload.expires_at.to_f, 2
+    assert sed.expires_at.future?
     assert sed.active?
     assert_equal 2, sed.block_count
   end
