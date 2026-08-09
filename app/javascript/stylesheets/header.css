@@ -90,7 +90,7 @@ nav nav li a {
   display: block;
   padding: 5px 15px;
 }
-nav a:hover + nav, nav nav:hover, nav a:focus + nav {
+nav a:hover + nav, nav nav:hover, nav a:focus + nav, nav .with-submenu:focus-within > nav {
   display: block;
 }
 .with-submenu {
@@ -157,6 +157,10 @@ nav .with-submenu > a::after {
   top: 0;
   font-size: 8.3vw;
   padding: 0 2vw;
+}
+.mobile-nav-opener:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
 }
 #mobile-nav .collapsed {
   display: none;

@@ -15,6 +15,10 @@
 .close-sidebar, .open-sidebar {
   cursor: pointer;
 }
+.close-sidebar:focus-visible, .open-sidebar:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
 .close-sidebar {
   display: none;
 }

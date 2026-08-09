@@ -5,8 +5,8 @@
 
 <form>
   <label for="filter-by-sites"><%= t('scripts.by_site_list_filter') %></label>
-  <input name="q" type="search" value="<%= params[:q] %>">
-  <input class="search-submit" type="submit" value="🔎">
+  <input id="filter-by-sites" name="q" type="search" value="<%= params[:q] %>">
+  <input class="search-submit" type="submit" value="🔎" aria-label="<%= t('scripts.by_site_list_filter') %>">
 </form>
 
 <ol id="by-site-list">

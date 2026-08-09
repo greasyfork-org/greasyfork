@@ -2,7 +2,7 @@
   <h3><%= t('search.script_search.title') %></h3>
   <p><%= it('search.script_search.description') %></p>
 
-  <p><input type="search" name="q" placeholder="Search terms" value="<%= params[:q]%>"></p>
+  <p><input type="search" name="q" placeholder="Search terms" value="<%= params[:q]%>" aria-label="<%= t('search.script_search.title') %>"></p>
 
   <% regular_search_params.except(:q, :site).each do |p, v| %>
     <input type="hidden" name="<%= p %>" value="<%= v %>">
@@ -69,17 +69,17 @@
 <%= form_tag(libraries_scripts_path, id: 'library-search', method: :get) do %>
   <h3><%= t('search.library_search.title') %></h3>
   <p><%= it('search.library_search.description') %></p>
-  <input type="search" name="q"><input class="search-submit" type="submit" value="🔎">
+  <input type="search" name="q" aria-label="<%= t('search.library_search.title') %>"><input class="search-submit" type="submit" value="🔎" aria-label="<%= t('search.library_search.title') %>">
 <% end %>
 
 <%= form_tag(code_search_scripts_path, id: 'code-search', method: :get) do %>
   <h3><%= t('search.code_search.title') %></h3>
   <p><%= t('search.code_search.description') %></p>
-  <input type="search" name="c"><% if current_user&.moderator? %><input id="code-search-include-deleted" type="checkbox" name="include_deleted" value="1"><label for="code-search-include-deleted">Include deleted</label> <% end %><input class="search-submit" type="submit" value="🔎">
+  <input type="search" name="c" aria-label="<%= t('search.code_search.title') %>"><% if current_user&.moderator? %><input id="code-search-include-deleted" type="checkbox" name="include_deleted" value="1"><label for="code-search-include-deleted">Include deleted</label> <% end %><input class="search-submit" type="submit" value="🔎" aria-label="<%= t('search.code_search.title') %>">
 <% end %>
 
 <%= form_tag(users_path, id: 'user-search', method: :get) do %>
   <h3><%= t('search.user_search.title') %></h3>
   <p><%= t('search.user_search.description') %></p>
-  <input type="search" name="q"><input class="search-submit" type="submit" value="🔎">
+  <input type="search" name="q" aria-label="<%= t('search.user_search.title') %>"><input class="search-submit" type="submit" value="🔎" aria-label="<%= t('search.user_search.title') %>">
 <% end %>
