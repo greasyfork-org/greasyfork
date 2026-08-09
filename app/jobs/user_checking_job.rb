@@ -14,6 +14,6 @@ class UserCheckingJob < ApplicationJob
   end
 
   def repeating?(text)
-    text.length == 9 && text[0..2] == text[3..5] && text[6..8]
+    text.length == 9 && text[0..2] == text[3..5] && text[3..5] == text[6..8]
   end
 end
