@@ -82,6 +82,6 @@ module UsersHelper
 
   def redacted_email(email)
     parts = email.split('@', 2)
-    "#{parts[0][0]}…#{parts[0][parts.length - 1]}@#{parts[1]}"
+    "#{parts[0][0]}…#{parts[0][-1]}@#{parts[1]}"
   end
 end
