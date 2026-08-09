@@ -302,7 +302,7 @@ class User < ApplicationRecord
 
     if ban_related
       User.not_banned.where(canonical_email:).find_each do |user|
-        user.ban!(moderator:, automod:, reason:, delete_comments: delete_scripts, delete_scripts:, private_reason:, ban_related: false, report:)
+        user.ban!(moderator:, automod:, reason:, delete_comments:, delete_scripts:, private_reason:, ban_related: false, report:)
       end
     end
 
