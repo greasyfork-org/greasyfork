@@ -35,9 +35,7 @@ module ScriptsHelper
     else
       l = link_to label, by_site_scripts_path(sort: sort_param_to_use, site:, set:, q: params[:q].presence, language:, filter_locale:, by:, **advanced_search_params), rel:
     end
-    html_options = { class: "list-option#{' list-current' unless is_link}" }
-    html_options[:aria] = { current: 'true' } unless is_link
-    tag.li(**html_options) { l }
+    list_option(l, current: !is_link)
   end
 
   def script_applies_to_list_contents(script)
@@ -154,7 +152,6 @@ module ScriptsHelper
       rv[operator_param] = params[operator_param] if params[operator_param].present?
       rv[:tz] ||= params[:tz] if options[:type] == :datetime && (!exclude_blank || params[:tz].present?)
     end
-
     rv
   end
 
