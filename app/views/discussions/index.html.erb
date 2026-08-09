@@ -41,7 +41,7 @@
           <input type="hidden" name="<%= p %>" value="<%= params[p] %>">
         <% end %>
         <%= render partial: 'shared/locale_override_field' %>
-        <input type="search" name="q" value="<%= params[:q] %>" placeholder="<%= t('discussions.search_placeholder') %>"><input class="search-submit" type="submit" value="🔎">
+        <input type="search" name="q" value="<%= params[:q] %>" placeholder="<%= t('discussions.search_placeholder') %>" aria-label="<%= t('discussions.search_placeholder') %>"><input class="search-submit" type="submit" value="🔎" aria-label="<%= t('discussions.search_placeholder') %>">
       </form>
 
       <div id="discussion-list-sort" class="list-option-group"><%= t('scripts.listing_sort_label') %>
@@ -109,8 +109,13 @@
         <ul>
           <%= discussion_list_link(t('discussions.locale_filter.all'), show_locale: nil) %>
           <%= discussion_list_link(request_locale.best_name(in_locale: request_locale), show_locale: request_locale.code) %>
-          <% showing_request_locale = @filter_result.locale && @filter_result.locale == request_locale %>
-          <li class="list-option <%= 'list-current' if @filter_result.locale && !showing_request_locale %>">
+          <% showing_request_locale = @filter_result.locale && @filter_result.locale == request_locale
+          custom_locale_current = @filter_result.locale && !showing_request_locale %>
+          <% if custom_locale_current %>
+            <li class="list-option list-current" aria-current="true">
+          <% else %>
+            <li class="list-option">
+          <% end %>
             <select id="discussion-locale">
               <option></option>
               <% @possible_locales.each do |l| %>

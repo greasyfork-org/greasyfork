@@ -9,7 +9,7 @@
     <% if params[:banned].present? %>
       <input type="hidden" name="banned" value="<%= params[:banned] %>">
     <% end %>
-    <input id="user-search-field" type="search" name="q" value="<%= params[:q] %>" placeholder="<%= t('users.search_placeholder') %>"><input class="search-submit" type="submit" value="🔎">
+    <input id="user-search-field" type="search" name="q" value="<%= params[:q] %>" placeholder="<%= t('users.search_placeholder') %>" aria-label="<%= t('users.search_placeholder') %>"><input class="search-submit" type="submit" value="🔎" aria-label="<%= t('users.search_placeholder') %>">
   <% end %>
 
   <div id="user-list-sort" class="list-option-group"><%= t('scripts.listing_sort_label') %>

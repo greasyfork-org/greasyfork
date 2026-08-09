@@ -153,6 +153,8 @@ module DiscussionHelper
              label
            end
 
-    tag.li(class: "list-option#{' list-current' unless is_link}") { text }
+    html_options = { class: "list-option#{' list-current' unless is_link}" }
+    html_options[:aria] = { current: 'true' } unless is_link
+    tag.li(**html_options) { text }
   end
 end

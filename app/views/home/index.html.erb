@@ -10,8 +10,8 @@
 <div id="home-script-nav">
   <%= form_tag(scripts_path, class: 'home-search', method: :get) do %>
     <%= render partial: 'shared/locale_override_field' %>
-    <input type="search" name="q" placeholder="<%= t('home.search_placeholder') %>">
-    <input type="submit" value="🔎" class="search-submit">
+    <input type="search" name="q" placeholder="<%= t('home.search_placeholder') %>" aria-label="<%= t('home.search_placeholder') %>">
+    <input type="submit" value="🔎" class="search-submit" aria-label="<%= t('home.search_placeholder') %>">
   <% end %>
   <div id="home-top-sites">
     <%= t('home.scripts_for_label') %>

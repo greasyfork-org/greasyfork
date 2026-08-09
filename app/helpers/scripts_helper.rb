@@ -6,7 +6,7 @@ module ScriptsHelper
   def script_tab_link(path, label, additional_current_check: false)
     label = "<span>#{h label}</span>".html_safe
 
-    return "<li class=\"current\">#{label}</li>".html_safe if current_page?(path) || additional_current_check
+    return "<li class=\"current\" aria-current=\"page\">#{label}</li>".html_safe if current_page?(path) || additional_current_check
 
     "<li>#{link_to(label, path, rel: (path.include?('version=') ? :nofollow : nil))}</li>".html_safe
   end
@@ -35,7 +35,9 @@ module ScriptsHelper
     else
       l = link_to label, by_site_scripts_path(sort: sort_param_to_use, site:, set:, q: params[:q].presence, language:, filter_locale:, by:, **advanced_search_params), rel:
     end
-    tag.li(class: "list-option#{' list-current' unless is_link}") { l }
+    html_options = { class: "list-option#{' list-current' unless is_link}" }
+    html_options[:aria] = { current: 'true' } unless is_link
+    tag.li(**html_options) { l }
   end
 
   def script_applies_to_list_contents(script)
