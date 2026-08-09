@@ -15,4 +15,12 @@ module HelpHelper
   def admin_email_url
     "mailto:#{admin_email}"
   end
+
+  def standalone_managers_html(managers)
+    capture do
+      managers.each do |browser_name, browser_link|
+        concat content_tag(:li, it('home.browser_no_additional_software_indicator', browser_name:, browser_link:))
+      end
+    end
+  end
 end

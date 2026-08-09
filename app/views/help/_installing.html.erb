@@ -23,22 +23,34 @@
   </p>
 
   <div id="desktop-browser-list" class="browser-list">
-    <%= it('home.desktop_browsers.browser_list_html', chrome_tampermonkey_link: 'https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo', chrome_violentmonkey_link: 'https://chrome.google.com/webstore/detail/violent-monkey/jinjaccalgkegednnccohejagnlnfdag', firefox_greasemonkey_link: 'https://addons.mozilla.org/firefox/addon/greasemonkey/', firefox_tampermonkey_link: 'https://addons.mozilla.org/firefox/addon/tampermonkey/', firefox_violentmonkey_link: 'https://addons.mozilla.org/firefox/addon/violentmonkey/', safari_tampermonkey_link: 'https://www.tampermonkey.net/?browser=safari', edge_tampermonkey_link: 'https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd', edge_violentmonkey_link: 'https://microsoftedge.microsoft.com/addons/detail/violentmonkey/eeagobfjdenkkddmbclomhiblgggliao', opera_tampermonkey_link: 'https://addons.opera.com/extensions/details/tampermonkey-beta/', opera_violentmonkey_link: 'https://violentmonkey.github.io/get-it/', maxthon_violentmonkey_link: 'http://extension.maxthon.com/detail/index.php?view_id=1680', dolphin_tampermonkey_link: 'https://play.google.com/store/apps/details?id=net.tampermonkey.dolphin', uc_tampermonkey_link: 'https://www.tampermonkey.net/?browser=ucweb&ext=dhdg', safari_userscripts_link: 'https://apps.apple.com/app/userscripts/id1463298887', adguard_link: 'https://adguard.com/') %>
+    <% standalone_managers_desktop = {
+      'AdGuard' => 'https://adguard.com/'
+    }
+    %>
+    <%= it('home.desktop_browsers.browser_list_html', chrome_tampermonkey_link: 'https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo', chrome_violentmonkey_link: 'https://chrome.google.com/webstore/detail/violent-monkey/jinjaccalgkegednnccohejagnlnfdag', firefox_greasemonkey_link: 'https://addons.mozilla.org/firefox/addon/greasemonkey/', firefox_tampermonkey_link: 'https://addons.mozilla.org/firefox/addon/tampermonkey/', firefox_violentmonkey_link: 'https://addons.mozilla.org/firefox/addon/violentmonkey/', safari_tampermonkey_link: 'https://www.tampermonkey.net/?browser=safari', edge_tampermonkey_link: 'https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd', edge_violentmonkey_link: 'https://microsoftedge.microsoft.com/addons/detail/violentmonkey/eeagobfjdenkkddmbclomhiblgggliao', opera_tampermonkey_link: 'https://addons.opera.com/extensions/details/tampermonkey-beta/', opera_violentmonkey_link: 'https://violentmonkey.github.io/get-it/', maxthon_violentmonkey_link: 'http://extension.maxthon.com/detail/index.php?view_id=1680', dolphin_tampermonkey_link: 'https://play.google.com/store/apps/details?id=net.tampermonkey.dolphin', uc_tampermonkey_link: 'https://www.tampermonkey.net/?browser=ucweb&ext=dhdg', safari_userscripts_link: 'https://apps.apple.com/app/userscripts/id1463298887', standalone_managers_html: standalone_managers_html(standalone_managers_desktop)) %>
   </div>
 
   <div id="android-browser-list" class="browser-list">
-    <% locale_specific_android_browsers = nil
+    <% standalone_managers_android = {
+      'XBrowser' => 'https://www.xbext.com',
+      'EinkBro' => 'https://plateaukao.github.io/einkbro/'
+    }
+    locale_specific_android_browsers = nil
     if request_locale.code == 'zh-CN'
       locale_specific_android_browsers = <<~HTML.html_safe
         <li><a href="https://viayoo.com/">Via 浏览器</a></li>
         <li><a href="https://www.lemurbrowser.com/">狐猴浏览器</a>：<a href="https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd">Tampermonkey</a></li>
       HTML
     end %>
-    <%= it('home.android_browsers.browser_list_html', firefox_greasemonkey_link: 'https://addons.mozilla.org/firefox/addon/greasemonkey/', firefox_tampermonkey_link: 'https://addons.mozilla.org/firefox/addon/tampermonkey/', firefox_violentmonkey_link: 'https://addons.mozilla.org/firefox/addon/violentmonkey/', maxthon_violentmonkey_link: 'http://extension.maxthon.com/detail/index.php?view_id=1680', dolphin_tampermonkey_link: 'https://play.google.com/store/apps/details?id=net.tampermonkey.dolphin', uc_tampermonkey_link: 'https://www.tampermonkey.net/?browser=ucweb&ext=dhdg', safari_userscripts_link: 'https://apps.apple.com/app/userscripts/id1463298887', xbrowser_link: 'https://www.xbext.com', einkbro_link: 'https://plateaukao.github.io/einkbro/', edge_tampermonkey_link: 'https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd', locale_specific_browsers: locale_specific_android_browsers) %>
+    <%= it('home.android_browsers.browser_list_html', firefox_greasemonkey_link: 'https://addons.mozilla.org/firefox/addon/greasemonkey/', firefox_tampermonkey_link: 'https://addons.mozilla.org/firefox/addon/tampermonkey/', firefox_violentmonkey_link: 'https://addons.mozilla.org/firefox/addon/violentmonkey/', maxthon_violentmonkey_link: 'http://extension.maxthon.com/detail/index.php?view_id=1680', dolphin_tampermonkey_link: 'https://play.google.com/store/apps/details?id=net.tampermonkey.dolphin', uc_tampermonkey_link: 'https://www.tampermonkey.net/?browser=ucweb&ext=dhdg', safari_userscripts_link: 'https://apps.apple.com/app/userscripts/id1463298887', edge_tampermonkey_link: 'https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd', locale_specific_browsers: locale_specific_android_browsers, standalone_managers_html: standalone_managers_html(standalone_managers_android)) %>
   </div>
 
   <div id="ios-browser-list" class="browser-list">
-    <%= it('home.ios_browsers.browser_list_html', safari_tampermonkey_link: 'https://www.tampermonkey.net/?browser=safari', safari_userscripts_link: 'https://apps.apple.com/app/userscripts/id1463298887', gear_link: 'https://gear4.app/', teak_link: 'https://teakbrowser.app/') %>
+    <% standalone_managers_ios = {
+      'Gear' => 'https://gear4.app/',
+      'Teak' => 'https://teakbrowser.app/'
+    } %>
+    <%= it('home.ios_browsers.browser_list_html', safari_tampermonkey_link: 'https://www.tampermonkey.net/?browser=safari', safari_userscripts_link: 'https://apps.apple.com/app/userscripts/id1463298887', standalone_managers_html: standalone_managers_html(standalone_managers_ios)) %>
   </div>
 </section>
 

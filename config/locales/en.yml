@@ -730,6 +730,7 @@ en:
     explain_user_scripts_html: "User scripts put you in control of your browsing experience. Once installed, they automatically make the sites you visit better by adding features, making them easier to use, or taking out the annoying bits. The user scripts on %{site_name} were written by other users and posted to share with the world. They're free to install and easy to use."
     # header for step 1 - how to install a user script manager
     installing_step1_header: "Step 1: install a user script manager"
+    browser_no_additional_software_indicator: "%{browser_link:%{browser_name}} (no additional software required)"
     # caption in step 1 - screenshot of tampermonkey on chrome
     installing_step1_caption: "Tampermonkey on Chrome"
     # text for step 1, listing options for user script managers based on browsers
@@ -745,7 +746,7 @@ en:
           <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
           <li>Opera: %{opera_tampermonkey_link:Tampermonkey} or %{opera_violentmonkey_link:Violentmonkey}</li>
           <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
-          <li>%{adguard_link:AdGuard}: (no additional software required)</li>
+          %{standalone_managers_html}
         </ul>
     android_browsers:
       title: Mobile (Android)
@@ -756,8 +757,7 @@ en:
           <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
           <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
           <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
-          <li>%{xbrowser_link:XBrowser}</li>
-          <li>%{einkbro_link:EinkBro}</li>
+          %{standalone_managers_html}
           %{locale_specific_browsers}
         </ul>
     ios_browsers:
@@ -765,8 +765,7 @@ en:
       browser_list_html: |
         <ul>
           <li>Safari: %{safari_tampermonkey_link:Tampermonkey} or %{safari_userscripts_link:Userscripts}</li>
-          <li>%{gear_link:Gear}: (no additional software required)
-          <li>%{teak_link:Teak}: (no additional software required)
+          %{standalone_managers_html}
         </ul>
     # header for step 2 - how to install a user script
     installing_step2_header: "Step 2: install a user script"
