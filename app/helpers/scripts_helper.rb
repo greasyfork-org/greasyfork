@@ -152,6 +152,7 @@ module ScriptsHelper
       rv[operator_param] = params[operator_param] if params[operator_param].present?
       rv[:tz] ||= params[:tz] if options[:type] == :datetime && (!exclude_blank || params[:tz].present?)
     end
+
     rv
   end
 
