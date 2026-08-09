@@ -30,7 +30,7 @@ class SpammyEmailDomainBannerJob
       sed = SpammyEmailDomain.new(domain:, block_type: SpammyEmailDomain::BLOCK_TYPE_REGISTER, block_count: 1)
     end
 
-    sed.expires_at = (REBLOCKED_MULTIPLIER ^ (sed.block_count - 1)).months.from_now
+    sed.expires_at = (REBLOCKED_MULTIPLIER**(sed.block_count - 1)).months.from_now
     sed.save!
 
     SpammyEmailDomainBannerMailer.banned_confirm(domain, sed.expires_at).deliver_later
