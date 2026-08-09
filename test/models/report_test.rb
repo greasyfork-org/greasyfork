@@ -30,4 +30,30 @@ class ReportTest < ActiveSupport::TestCase
     end
     assert_nil comment.reload.review_reason
   end
+
+  test 'upholding a comment report logs the moderator deletion' do
+    comment = comments(:non_script_comment_2)
+    report = Report.create!(item: comment, reason: Report::REASON_SPAM, reporter: users(:one))
+
+    assert_difference -> { ModeratorAction.where(comment:).count }, 1 do
+      report.uphold!(moderator: users(:mod))
+    end
+
+    action = ModeratorAction.find_by!(comment:)
+    assert_equal report, action.report
+    assert action.action_taken_delete?
+  end
+
+  test 'upholding a discussion report logs the moderator deletion' do
+    discussion = discussions(:non_script_discussion)
+    report = Report.create!(item: discussion, reason: Report::REASON_SPAM, reporter: users(:consumer))
+
+    assert_difference -> { ModeratorAction.where(discussion:).count }, 1 do
+      report.uphold!(moderator: users(:mod))
+    end
+
+    action = ModeratorAction.find_by!(discussion:)
+    assert_equal report, action.report
+    assert action.action_taken_delete?
+  end
 end
