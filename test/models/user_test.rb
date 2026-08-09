@@ -29,6 +29,32 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
+  test 'banning related users propagates comment deletion' do
+    user = users(:one)
+    related_user = users(:geoff)
+    related_user.update_columns(canonical_email: user.canonical_email)
+    related_comment = comments(:script_comment)
+    SpammyEmailDomainBannerJob.stubs(:perform_async)
+
+    user.ban!(moderator: users(:mod), delete_comments: true, delete_scripts: false)
+
+    assert related_user.reload.banned?
+    assert related_comment.reload.soft_deleted?
+  end
+
+  test 'banning related users does not derive comment deletion from script deletion' do
+    user = users(:one)
+    related_user = users(:geoff)
+    related_user.update_columns(canonical_email: user.canonical_email)
+    related_comment = comments(:script_comment)
+    SpammyEmailDomainBannerJob.stubs(:perform_async)
+
+    user.ban!(moderator: users(:mod), delete_comments: false, delete_scripts: true)
+
+    assert related_user.reload.banned?
+    assert_not related_comment.reload.soft_deleted?
+  end
+
   test 'blocked_from_reporting_until with no reports' do
     user = users(:one)
     assert_nil user.blocked_from_reporting_until
