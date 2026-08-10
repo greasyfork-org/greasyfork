@@ -383,7 +383,7 @@ ru:
     install_help_dialog:
       js:
         firefox: Чтобы установить этот скрипт, вы сначала должны установить расширение браузера, например %{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} или %{violentmonkey_link:Violentmonkey}.
-        chrome: Для установки этого скрипта вам необходимо установить расширение, такое как %{tampermonkey_link:Tampermonkey}.
+        chrome: Вам потребуется установить расширение, например %{tampermonkey_link:Tampermonkey} или %{violentmonkey_link:Violentmonkey}, чтобы установить этот скрипт.
         opera: Чтобы установить этот скрипт, вы сначала должны установить расширение браузера, например %{tampermonkey_link:Tampermonkey} или %{violentmonkey_link:Violentmonkey}.
         safari: Чтобы установить этот скрипт, вы сначала должны установить расширение браузера, например %{tampermonkey_link:Tampermonkey} или %{userscripts_link:Userscripts}.
         edge: Чтобы установить этот скрипт, сначала вы должны установить расширение браузера, например %{tampermonkey_link:Tampermonkey}.
@@ -526,16 +526,42 @@ ru:
     explain_user_scripts_heading: "Что такое пользовательские скрипты?"
     explain_user_scripts_html: "Пользовательские скрипты делают путешествие по интернету более комфортным. Будучи установленными, скрипты улучшают определённые сайты, меняя их внешний вид, добавляя новые функции или скрывая нежелательные вещи. Любой человек может опубликовать написанные им скрипты на %{site_name}. Опубликованные скрипты может установить любой желающий, бесплатно и быстро."
     installing_step1_header: "Шаг 1: установить менеджер скриптов"
+    browser_no_additional_software_indicator: "%{browser_link:%{browser_name}} (не требуется дополнительное ПО)"
     installing_step1_caption: "Tampermonkey для Chrome"
     installing_step1_description_html: >
         <p>Для использования скриптов необходимо сначала установить менеджер скриптов.
         Для браузеров доступны следующие менеджеры скриптов.</p>
     desktop_browsers:
       title: Для ПК
+      browser_list_html: |
+          <ul>
+          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} или %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey} или %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} или %{safari_userscripts_link:Userscripts}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} или %{edge_violentmonkey_link:Violentmonkey}</li>
+          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} или %{opera_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          %{standalone_managers_html}
+          </ul>
     android_browsers:
       title: Для Android
+      browser_list_html: |
+          <ul>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey} или %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+          <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+          %{standalone_managers_html}
+          %{locale_specific_browsers}
+          </ul>
     ios_browsers:
       title: Для iOS
+      browser_list_html: |
+          <ul>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} или %{safari_userscripts_link:Userscripts}</li>
+          %{standalone_managers_html}
+          </ul>
     installing_step2_header: "Шаг 2: установить скрипт"
     installing_step2_caption: "Кнопка установки скрипта"
     installing_step2_description_html: >

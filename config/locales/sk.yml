@@ -382,7 +382,7 @@ sk:
     install_help_dialog:
       js:
         firefox: Na nainštalovanie skriptu si budete musieť nainštalovať rozšírenie, ako napríklad %{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} alebo %{violentmonkey_link:Violentmonkey}.
-        chrome: Na inštaláciu tohto skriptu je potrebné nainštalovať rozšírenie, ako napríklad %{tampermonkey_link:Tampermonkey}.
+        chrome: Na inštaláciu tohto skriptu budete musieť nainštalovať rozšírenie, ako je napríklad %{tampermonkey_link:Tampermonkey} alebo %{violentmonkey_link:Violentmonkey}.
         opera: Na nainštalovanie skriptu si budete musieť nainštalovať rozšírenie, ako napríklad %{tampermonkey_link:Tampermonkey}, % alebo %{violentmonkey_link:Violentmonkey}.
         safari: Na nainštalovanie skriptu si budete musieť nainštalovať rozšírenie, ako napríklad %{tampermonkey_link:Tampermonkey} alebo %{userscripts_link:Userscripts}.
         edge: Na inštaláciu tohto skriptu je potrebné nainštalovať rozšírenie, ako napríklad %{tampermonkey_link:Tampermonkey}.
@@ -525,6 +525,7 @@ sk:
     explain_user_scripts_heading: "Čo sú to používateľské skripty?"
     explain_user_scripts_html: "Používateľské skripty vám dávajú kontrolu nad vašim webovým prehliadačom. Akonáhle sa nainštalujú, automaticky vylepšujú stránky, ktoré navštevujete a pridávajú im funkcie, zjednodušujú ich ovládanie alebo odstraňujú zbytočné prvky. Používateľské skripty na %{site_name} boli napísané ďalšími používateľmi a odoslané na zdieľanie pre celý svet. Sú zadarmo a ich inštalácia a používanie je jednoduché."
     installing_step1_header: "1. krok: Inštalácia správcu používateľských skriptov"
+    browser_no_additional_software_indicator: "%{browser_link:%{browser_name}} (nevyžaduje sa žiadny ďalší softvér)"
     installing_step1_caption: "Tampermonkey pre Chrome"
     installing_step1_description_html: >
         <p>Na používanie skriptov potrebujete najprv nainštalovať správcu používateľských
@@ -532,10 +533,35 @@ sk:
         používate.</p>
     desktop_browsers:
       title: Stolný počítač
+      browser_list_html: |
+          <ul>
+          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} alebo %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, alebo %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} alebo %{safari_userscripts_link:Userscripts}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} alebo %{edge_violentmonkey_link:Violentmonkey}</li>
+          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} alebo %{opera_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          %{standalone_managers_html}
+          </ul>
     android_browsers:
       title: Mobil (Android)
+      browser_list_html: |
+          <ul>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, alebo %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+          <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+          %{standalone_managers_html}
+          %{locale_specific_browsers}
+          </ul>
     ios_browsers:
       title: Mobil (iOS)
+      browser_list_html: |
+          <ul>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} alebo %{safari_userscripts_link:Userscripts}</li>
+          %{standalone_managers_html}
+          </ul>
     installing_step2_header: "2. krok: Inštalácia používateľského skriptu"
     installing_step2_caption: "Tlačidlo pre nainštalovanie používateľského skriptu"
     installing_step2_description_html: >
