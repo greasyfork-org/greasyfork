@@ -8,6 +8,15 @@ class ScriptSetTest < ActiveSupport::TestCase
     assert_equal [script], set.scripts(:all).to_a
   end
 
+  test 'favorite include returns ids when requested' do
+    set = ScriptSet.new(favorite: true)
+    script = Script.new(id: 123)
+    set.add_child(script)
+
+    assert_equal [script], set.scripts(:all).to_a
+    assert_equal [123], set.scripts(:all, as_ids: true).to_a
+  end
+
   test 'nested include' do
     set1 = ScriptSet.new
     set2 = ScriptSet.new
