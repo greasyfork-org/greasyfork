@@ -117,6 +117,7 @@ current_options[:rel] = rel if rel
       <ul>
         <li class="list-option list-current" aria-current="true"><%= link_to t('scripts.listing_advanced_search_applied'), search_path(**all_search_params) %></li>
         <li class="list-option"><%= link_to t('scripts.listing_advanced_search_clear'), current_script_listing_path(**regular_search_params.except(:site)) %></li>
+      </ul>
     </div>
   <% end %>
 </div>
