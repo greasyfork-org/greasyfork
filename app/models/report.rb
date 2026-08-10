@@ -82,6 +82,13 @@ class Report < ApplicationRecord
   validates :discussion_category, presence: true, if: -> { reason == REASON_WRONG_CATEGORY }
   validates :private_explanation, length: { maximum: 65_535 }
 
+  def self.reporting_blocked_until
+    recent_reports = self.resolved.where(created_at: 1.week.ago..).order(created_at: :desc, id: :desc).limit(5).to_a
+    return unless recent_reports.size == 5 && recent_reports.all?(&:dismissed?)
+
+    recent_reports.last.created_at + 1.week
+  end
+
   def dismiss!(moderator:, moderator_notes:)
     update!(result: RESULT_DISMISSED, moderator_notes:, resolver: moderator)
     if item.is_a?(Discussion) || item.is_a?(Comment)

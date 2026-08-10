@@ -247,7 +247,7 @@ class ReportsController < ApplicationController
     return false if current_user.trusted_reports || current_user.moderator?
 
     # If lots of people have reported the item and it's always dismissed, then block reports on that item for a week.
-    date = item_reporting_blocked_until
+    date = Report.where(item:).reporting_blocked_until
     if date
       render_error(200, It.it('reports.reported_temporarily_blocked', date: I18n.l(date.to_date), rules_link: help_code_rules_path, site_name:))
       return true
@@ -270,11 +270,6 @@ class ReportsController < ApplicationController
     end
 
     false
-  end
-
-  def item_reporting_blocked_until
-    recent_reports = Report.resolved.where(item:, created_at: 1.week.ago..).order(:created_at)
-    recent_reports.first.created_at + 1.week if recent_reports.count(&:dismissed?) == 5
   end
 
   def load_report
