@@ -56,4 +56,27 @@ class ReportTest < ActiveSupport::TestCase
     assert_equal report, action.report
     assert action.action_taken_delete?
   end
+
+  test 'reporting_blocked_until remains blocked after more than five dismissed reports' do
+    user = users(:one)
+    6.times { Report.create!(reporter: user, result: Report::RESULT_DISMISSED, item: Script.first, reason: Report::REASON_SPAM) }
+
+    assert_not_nil user.reports_as_reporter.reporting_blocked_until
+  end
+
+  test 'reporting_blocked_until only considers the last five resolved reports' do
+    user = users(:one)
+    5.times { Report.create!(reporter: user, result: Report::RESULT_DISMISSED, item: Script.first, reason: Report::REASON_SPAM) }
+    Report.create!(reporter: user, result: Report::RESULT_UPHELD, item: Script.first, reason: Report::REASON_SPAM)
+
+    assert_nil user.reports_as_reporter.reporting_blocked_until
+  end
+
+  test 'reporting_blocked_until requires five reports from the last week' do
+    user = users(:one)
+    Report.create!(reporter: user, result: Report::RESULT_DISMISSED, item: Script.first, reason: Report::REASON_SPAM, created_at: 8.days.ago)
+    4.times { Report.create!(reporter: user, result: Report::RESULT_DISMISSED, item: Script.first, reason: Report::REASON_SPAM) }
+
+    assert_nil user.reports_as_reporter.reporting_blocked_until
+  end
 end
