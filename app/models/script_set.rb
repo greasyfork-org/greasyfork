@@ -18,7 +18,7 @@ class ScriptSet < ApplicationRecord
 
     # favorites can only directly include scripts
     if favorite
-      r.merge(child_script_inclusions)
+      r.merge(as_ids ? child_script_inclusions.map(&:id) : child_script_inclusions)
       return r
     end
 
