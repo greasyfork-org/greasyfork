@@ -88,9 +88,7 @@ class TopSitesService
                       when :sleazyfork
                         'AND `sensitive` = true'
                       end
-      locale_clause = if locale_id
-                        "AND s.id IN (#{([0] + LocalizedScriptAttribute.where(locale_id:).distinct.pluck(:script_id)).join(',')})"
-                      end
+      locale_clause = "AND s.id IN (#{([0] + LocalizedScriptAttribute.where(locale_id:).distinct.pluck(:script_id)).join(',')})" if locale_id
       user_clause = ("AND s.id IN (#{([0] + User.find(user_id).script_ids).join(',')})" if user_id)
       [subset_clause, locale_clause, user_clause].compact.join(' ')
     end
