@@ -1,10 +1,6 @@
 require 'test_helper'
 
 class TopSitesServiceTest < ActiveSupport::TestCase
-  setup do
-    Rails.cache.clear
-  end
-
   test 'get_by_sites' do
     assert_no_error_reported do
       TopSitesService.get_by_sites(script_subset: :greasyfork)
