@@ -24,7 +24,7 @@ class TopSitesService
         SQL
         Rails.logger.warn('Loading by_sites') if Greasyfork::Application.config.log_cache_misses
         by_sites = Script.connection.select_rows(sql)
-        all_sites = all_sites_count(script_subset:, locale_id:, user_id:).values.to_a
+        all_sites = all_sites_count(script_subset:, locale_id:, user_id:, force: cache_options[:force]).values.to_a
         Rails.logger.warn('Combining by_sites and all_sites') if Greasyfork::Application.config.log_cache_misses
         # combine with "All sites" number
         a = ([[nil] + all_sites] + by_sites)
@@ -44,8 +44,8 @@ class TopSitesService
       end
     end
 
-    def all_sites_count(script_subset: :all, locale_id: nil, user_id: nil)
-      return CachingService.cache_with_log("all_sites_count/#{script_subset}/#{locale_id}/#{user_id}", expires_in: 10.minutes) do
+    def all_sites_count(script_subset: :all, locale_id: nil, user_id: nil, force: false)
+      return CachingService.cache_with_log("all_sites_count/#{script_subset}/#{locale_id}/#{user_id}", expires_in: 10.minutes, force:) do
         filter_clauses = script_filter_clauses(script_subset:, locale_id:, user_id:)
         sql = <<~SQL.squish
           SELECT
