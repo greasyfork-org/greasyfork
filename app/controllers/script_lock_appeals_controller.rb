@@ -7,6 +7,7 @@ class ScriptLockAppealsController < ApplicationController
   before_action :load_script_lock_appeal, only: [:show, :dismiss, :unlock]
   before_action :authorize_by_script_id, only: [:new, :create]
   before_action :ensure_locked, only: [:new, :create]
+  before_action :ensure_no_open_appeal, only: [:new, :create]
   before_action :authorize_for_moderators_only, only: [:dismiss, :unlock]
 
   before_action do
@@ -20,18 +21,11 @@ class ScriptLockAppealsController < ApplicationController
   def show; end
 
   def new
-    open_appeal = @script.script_lock_appeals.unresolved.first
-    if open_appeal
-      flash[:notice] = t('appeals.already_open')
-      redirect_to script_script_lock_appeal_path(@script, open_appeal)
-      return
-    end
-
-    @script_lock_appeal = @script.script_lock_appeals.build(report_id: @script.report_that_deleted&.id)
+    @script_lock_appeal = @script.script_lock_appeals.build
   end
 
   def create
-    @script_lock_appeal = @script.script_lock_appeals.create!(script_lock_appeal_params)
+    @script_lock_appeal = @script.script_lock_appeals.create!(script_lock_appeal_params.merge(report: @script.report_that_deleted))
     redirect_to script_path(@script), flash: { notice: t('appeals.submitted') }
   end
 
@@ -80,7 +74,14 @@ class ScriptLockAppealsController < ApplicationController
     render_404('Script is not locked.') unless @script.locked?
   end
 
+  def ensure_no_open_appeal
+    open_appeal = @script.script_lock_appeals.unresolved.first
+    return unless open_appeal
+
+    redirect_to script_script_lock_appeal_path(@script, open_appeal), flash: { notice: t('appeals.already_open') }
+  end
+
   def script_lock_appeal_params
-    params.expect(script_lock_appeal: [:text, :text_markup, :report_id])
+    params.expect(script_lock_appeal: [:text, :text_markup])
   end
 end
