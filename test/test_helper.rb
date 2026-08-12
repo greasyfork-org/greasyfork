@@ -14,6 +14,11 @@ module ActiveSupport
 
     parallelize_setup do |i|
       ActiveStorage::Blob.service.root = "#{ActiveStorage::Blob.service.root}-#{i}"
+      Rails.cache.options[:namespace] = "test_cache_worker_#{i}"
+    end
+
+    parallelize_teardown do
+      Rails.cache.clear
     end
 
     # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
