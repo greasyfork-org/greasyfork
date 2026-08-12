@@ -5,20 +5,7 @@ class TopSitesService
     # Returns a hash, key: site name, value: hash with keys installs, scripts
     def get_by_sites(script_subset:, locale_id: nil, user_id: nil, **cache_options)
       return CachingService.cache_with_log("scripts/get_by_sites/#{script_subset}/#{locale_id}/#{user_id}", cache_options) do
-        subset_clause = case script_subset
-                        when :greasyfork
-                          'AND `sensitive` = false'
-                        when :sleazyfork
-                          'AND `sensitive` = true'
-                        else
-                          ''
-                        end
-        locale_clause = if locale_id
-                          "AND s.id IN (#{([0] + LocalizedScriptAttribute.where(locale_id:).distinct.pluck(:script_id)).join(',')})"
-                        else
-                          ''
-                        end
-        user_clause = ("AND s.id IN (#{([0] + User.find(user_id).script_ids).join(',')})" if user_id)
+        filter_clauses = script_filter_clauses(script_subset:, locale_id:, user_id:)
         sql = <<~SQL.squish
           SELECT
             domain_text, SUM(daily_installs) install_count, COUNT(s.id) script_count
@@ -31,15 +18,13 @@ class TopSitesService
             AND script_type = 1
             AND delete_type IS NULL
             AND !tld_extra
-            #{subset_clause}
-            #{locale_clause}
-            #{user_clause}
+            #{filter_clauses}
           GROUP BY domain_text
           ORDER BY domain_text
         SQL
         Rails.logger.warn('Loading by_sites') if Greasyfork::Application.config.log_cache_misses
         by_sites = Script.connection.select_rows(sql)
-        all_sites = all_sites_count.values.to_a
+        all_sites = all_sites_count(script_subset:, locale_id:, user_id:, force: cache_options[:force]).values.to_a
         Rails.logger.warn('Combining by_sites and all_sites') if Greasyfork::Application.config.log_cache_misses
         # combine with "All sites" number
         a = ([[nil] + all_sites] + by_sites)
@@ -59,16 +44,18 @@ class TopSitesService
       end
     end
 
-    def all_sites_count
-      return CachingService.cache_with_log('all_sites_count', expires_in: 10.minutes) do
+    def all_sites_count(script_subset: :all, locale_id: nil, user_id: nil, force: false)
+      return CachingService.cache_with_log("all_sites_count/#{script_subset}/#{locale_id}/#{user_id}", expires_in: 10.minutes, force:) do
+        filter_clauses = script_filter_clauses(script_subset:, locale_id:, user_id:)
         sql = <<~SQL.squish
           SELECT
-            sum(daily_installs) install_count, count(distinct scripts.id) script_count
-          FROM scripts
+            sum(daily_installs) install_count, count(distinct s.id) script_count
+          FROM scripts s
           WHERE
             script_type = 1
             AND delete_type is null
-            AND NOT EXISTS (SELECT * FROM script_applies_tos WHERE script_id = scripts.id)
+            #{filter_clauses}
+            AND NOT EXISTS (SELECT * FROM script_applies_tos WHERE script_id = s.id)
         SQL
         Script.connection.select_all(sql).first
       end
@@ -90,6 +77,20 @@ class TopSitesService
           TopSitesService.get_by_sites(script_subset:, locale_id:, force: true)
         end
       end
+    end
+
+    private
+
+    def script_filter_clauses(script_subset:, locale_id:, user_id:)
+      subset_clause = case script_subset
+                      when :greasyfork
+                        'AND `sensitive` = false'
+                      when :sleazyfork
+                        'AND `sensitive` = true'
+                      end
+      locale_clause = "AND s.id IN (#{([0] + LocalizedScriptAttribute.where(locale_id:).distinct.pluck(:script_id)).join(',')})" if locale_id
+      user_clause = ("AND s.id IN (#{([0] + User.find(user_id).script_ids).join(',')})" if user_id)
+      [subset_clause, locale_clause, user_clause].compact.join(' ')
     end
   end
 end
