@@ -83,7 +83,7 @@ class Report < ApplicationRecord
   validates :private_explanation, length: { maximum: 65_535 }
 
   def self.reporting_blocked_until
-    recent_reports = self.resolved.where(created_at: 1.week.ago..).order(created_at: :desc, id: :desc).limit(5).to_a
+    recent_reports = resolved.where(created_at: 1.week.ago..).order(created_at: :desc, id: :desc).limit(5).to_a
     return unless recent_reports.size == 5 && recent_reports.all?(&:dismissed?)
 
     recent_reports.last.created_at + 1.week
