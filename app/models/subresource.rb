@@ -1,5 +1,5 @@
 require 'digest'
-require 'open-uri'
+require 'public_http_fetcher'
 
 class Subresource < ApplicationRecord
   has_many :script_subresource_usages
@@ -15,7 +15,7 @@ class Subresource < ApplicationRecord
 
     begin
       contents = download
-    rescue OpenURI::HTTPError, Timeout::Error, Errno::ECONNREFUSED, Errno::ECONNRESET, Socket::ResolutionError, Zlib::DataError, OpenSSL::SSL::SSLError => e
+    rescue ArgumentError, OpenURI::HTTPError, Timeout::Error, Errno::ECONNREFUSED, Errno::ECONNRESET, Socket::ResolutionError, Zlib::DataError, OpenSSL::SSL::SSLError => e
       Rails.logger.warn(e)
       return
     end
@@ -51,11 +51,6 @@ class Subresource < ApplicationRecord
   end
 
   def download
-    raise ArgumentError, 'URL must be http or https' unless url&.match?(URI::DEFAULT_PARSER.make_regexp(%w[http https]))
-
-    uri = URI.parse(url)
-    Timeout.timeout(11) do
-      return uri.read({ read_timeout: 10 })
-    end
+    PublicHttpFetcher.get(url)
   end
 end

@@ -24,7 +24,18 @@ class SubresourceTest < ActiveSupport::TestCase
 
   test 'failed check' do
     subresource = Subresource.create!(url: 'https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js')
-    URI::HTTPS.any_instance.expects(:read).raises(OpenURI::HTTPError.new(nil, nil))
+    PublicHttpFetcher.expects(:get).with(subresource.url).raises(OpenURI::HTTPError.new(nil, nil))
+
+    assert_changes -> { subresource.last_attempt_at } do
+      assert_no_changes -> { subresource.last_success_at } do
+        subresource.calculate_hashes!
+      end
+    end
+  end
+
+  test 'blocked destination fails without raising' do
+    subresource = Subresource.create!(url: 'https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js')
+    PublicHttpFetcher.expects(:get).with(subresource.url).raises(ArgumentError, 'private address')
 
     assert_changes -> { subresource.last_attempt_at } do
       assert_no_changes -> { subresource.last_success_at } do
