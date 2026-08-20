@@ -24,7 +24,36 @@ class SubresourceTest < ActiveSupport::TestCase
 
   test 'failed check' do
     subresource = Subresource.create!(url: 'https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js')
-    URI::HTTPS.any_instance.expects(:read).raises(OpenURI::HTTPError.new(nil, nil))
+    PublicHttpFetcher.expects(:get).with(subresource.url).raises(OpenURI::HTTPError.new(nil, nil))
+
+    assert_changes -> { subresource.last_attempt_at } do
+      assert_no_changes -> { subresource.last_success_at } do
+        subresource.calculate_hashes!
+      end
+    end
+  end
+
+  test 'blocked destination fails without raising' do
+    subresource = Subresource.create!(url: 'https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js')
+    PublicHttpFetcher.expects(:get).with(subresource.url).raises(PublicHttpFetcher::FetchError, 'private address')
+
+    assert_changes -> { subresource.last_attempt_at } do
+      assert_no_changes -> { subresource.last_success_at } do
+        subresource.calculate_hashes!
+      end
+    end
+  end
+
+  test 'invalid URL is rejected on create' do
+    subresource = Subresource.new(url: 'http:missing-host')
+
+    assert_not subresource.valid?
+    assert_includes subresource.errors[:url], 'URL must have a host'
+  end
+
+  test 'historical invalid URL fails without raising' do
+    subresource = Subresource.new(url: 'http:missing-host')
+    subresource.save!(validate: false)
 
     assert_changes -> { subresource.last_attempt_at } do
       assert_no_changes -> { subresource.last_success_at } do
