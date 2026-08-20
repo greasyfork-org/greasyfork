@@ -8,6 +8,8 @@ class Subresource < ApplicationRecord
 
   scope :with_integrity_hash_usages, -> { joins(:script_subresource_usages).where.not(script_subresource_usages: { integrity_hash: nil }) }
 
+  validate :url_must_be_fetchable, on: :create
+
   def calculate_hashes!
     now = Time.zone.now
 
@@ -15,7 +17,7 @@ class Subresource < ApplicationRecord
 
     begin
       contents = download
-    rescue ArgumentError, OpenURI::HTTPError, Timeout::Error, Errno::ECONNREFUSED, Errno::ECONNRESET, Socket::ResolutionError, Zlib::DataError, OpenSSL::SSL::SSLError => e
+    rescue PublicHttpFetcher::Error, OpenURI::HTTPError, Timeout::Error, Errno::ECONNREFUSED, Errno::ECONNRESET, Socket::ResolutionError, Zlib::DataError, OpenSSL::SSL::SSLError => e
       Rails.logger.warn(e)
       return
     end
@@ -52,5 +54,13 @@ class Subresource < ApplicationRecord
 
   def download
     PublicHttpFetcher.get(url)
+  end
+
+  private
+
+  def url_must_be_fetchable
+    PublicHttpFetcher.validate_url!(url)
+  rescue PublicHttpFetcher::InvalidUrl => e
+    errors.add(:url, e.message)
   end
 end

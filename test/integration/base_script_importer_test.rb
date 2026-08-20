@@ -23,13 +23,13 @@ class BaseScriptImporterTest < ActiveSupport::TestCase
   end
 
   test 'download disallows bad urls' do
-    assert_raises(ArgumentError, 'URL must be http or https') do
+    assert_raises(PublicHttpFetcher::InvalidUrl, 'URL must be http or https') do
       ScriptImporter::BaseScriptImporter.download('fjdk jfjkld')
     end
   end
 
   test 'download disallows more urls' do
-    assert_raises(ArgumentError, 'URL must be http or https') do
+    assert_raises(PublicHttpFetcher::InvalidUrl, 'URL must be http or https') do
       ScriptImporter::BaseScriptImporter.download('blob:https://example.com')
     end
   end

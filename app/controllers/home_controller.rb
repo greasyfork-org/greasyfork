@@ -13,7 +13,7 @@ class HomeController < ApplicationController
         text = ScriptImporter::BaseScriptImporter.download(params[:text])
         absolute_text = ScriptImporter::BaseScriptImporter.absolutize_references(text, params[:text])
         text = absolute_text unless absolute_text.nil?
-      rescue ArgumentError => e
+      rescue PublicHttpFetcher::Error => e
         @text = e
         render 'home/error'
         return
