@@ -19,6 +19,7 @@ de:
     ratings: "Bewertungen"
     author_name: "Autor"
     version_number: "Version"
+    version_abbreviation: "v%{number}"
     license: "Lizenz"
     no_license: "n/a"
     compatibility: "Kompatibilität"
@@ -37,6 +38,10 @@ de:
     downgrade: "Auf Version %{version} zurückstufen"
     reinstall: "Version %{version} erneut installieren"
     old_version_warning: "Dies ist nicht die neueste Version dieses Skripts. Wenn Sie es installieren, werden Sie nie eine Aktualisierung auf eine neuere Version erhalten. Trotzdem installieren?"
+    post_install:
+      info_html: "Es sollte nun %{script} installiert sein. Falls bei der Installation Probleme aufgetreten sind, %{help_link:lesen Sie bitte unsere Hilfe-Dokumente}. Ihr Feedback ist wichtig, um die Qualität der Skripte auf %{site_name} aufrechtzuerhalten. Nachdem Sie %{script} ausprobiert haben, denken Sie bitte daran, %{feedback_link:eine Rezension abzugeben}."
+      promoted_script_intro: "Das könnte Sie auch interessieren…"
+      similar_script_html: "%{name} - %{description}"
     library_instructions_html: "Dieses Skript sollte nicht direkt installiert werden. Es handelt sich hier um eine Bibliothek für andere Skripte, welche über folgenden Befehl in den Metadaten eines Skriptes eingebunden wird %{code}"
     deleted_notice: "Dieses Skript wurde gelöscht."
     deleted_notice_with_reason: "Dieses Skript wurde gelöscht wegen %{report_link:this report}."
@@ -45,13 +50,14 @@ de:
     deleted_undelete_notice_html: "Das Skript wurde von einem Moderator gesperrt kann nicht wiederhergestellt werden. Mit der Begründung: \"<i>%{delete_reason}</i>\"."
     deleted_locked_author_notice_html: "Dieses Skript wurde von einem Moderator als Reaktion auf %{report_link:diesen Bericht} gelöscht und ist für andere nicht zugänglich. Der angegebene Grund lautet: \"%{delete_reason}\". Bitte überprüfen Sie %{code_rules_link:%{site_name}'s rules}. Wenn Sie glauben, dass die Löschung fehlerhaft ist, können Sie %{appeal_link:submit an appeal}. Veröffentlichen Sie dieses Skript nicht erneut; dies kann zu einem Bann von %{site_name}."
     self_deleted_locked_author_notice_html: "Dieses Skript wurde von Ihnen als Antwort auf %{report_link:this report} gelöscht und ist für andere nicht zugänglich. Wenn Sie Ihr Skript aktualisiert haben, um es mit %{code_rules_link:%{site_name}'s rules} in Einklang zu bringen, können Sie %{appeal_link:submit an appeal} von dieser Löschung in Kenntnis setzen. Veröffentlichen Sie dieses Skript nicht erneut; dies kann zu einem Bann von %{site_name}."
-    deleted_author_notice: "Das Skript wurde gelöscht und ist nicht mehr öffentlich. Es kann über den Gelöscht-Tab wiederhergestellt werden."
+    deleted_author_notice: "Das Skript wurde gelöscht und ist nicht mehr öffentlich. Sie können es über den Gelöscht-Tab wiederhergestellen."
     version_notice_html: "Version vom %{date}. %{latest_version_link}"
     version_notice_latest_version_link: "Aktuellste Version"
     reported_notice: "%{script_name}wurde gemeldet und steht zur Prüfung durch einen Moderator aus."
     reported_notice_for_author: "Dieses Skript ist für andere Nutzer nicht verfügbar, bis es durch einen Moderator geprüft wurde."
     info_page: "Info"
     code_page: "Quelltext"
+    wrap_lines: "Zeilen umbrechen"
     history_page: "Versionen"
     feedback_page: "Rückmeldungen (%{count})"
     stats_page: "Statistiken"
@@ -66,9 +72,9 @@ de:
       redirect: "Sie werden weitergeleitet und aktualisiert auf ein Script das Sie unten angeben."
     delete_permanently_heading: "Endgültige Löschung"
     delete_permanently_explanation_html: >-
-        <p>Das endgültige Löschen Ihres Skripts löscht alle zugehörigen Daten, mit
-        Ausnahme der Forumsdiskussionen und dem Protokoll der Moderatoren Aktionen.
-        </p> <p> Ihr Skript wird 7 Tage nach Ihrer Anfrage endgültig gelöscht. Sie
+        <p>Das endgültig Löschen Ihres Skripts löscht alle zugehörigen Daten, mit
+        Ausnahme der Forumsdiskussionen und dem Protokoll der Moderator Aktionen.
+        </p> <p> Ihr Skript wird 7 Tage nach Ihrer Anfrage endgültig gelöscht.Sie
         können die endgültige Löschung in dieser Zeitraum zurücknehmen. Wenn Sie dies
         nicht tun, wird niemand, auch nicht die Moderatoren, in der Lage sein, Ihr
         Skript wiederherzustellen.</p>
@@ -98,6 +104,12 @@ de:
       compare_to: "Skript auf %{site_name} für den Vergleich mit (URL)"
       compare_button: "Vergleichen"
       compare_must_be_local_url: "Vergleichsskript muss auf %{site_name} liegen"
+      compare_cleaned_code_unavailable: "Der Quelltext des Vergleichsskripts ist noch nicht verfügbar."
+      checkup:
+        title: Überprüfung
+        intro: Dies sind Vorschläge zur Verbesserung Ihres Skripts auf %{site_name}. Es handelt sich hierbei nicht um %{rules_link:rules}; Ihr Skript wird nicht gelöscht, wenn Sie diese Vorschläge nicht befolgen.
+        globs_used_html: "Verwendete domänenunabhängige Funktionen: %{globs}"
+        additional_info: Fügen Sie zusätzliche Informationen hinzu – listen Sie die Funktionen auf, fügen Sie Screenshots hinzu usw., damit Ihre Nutzer genau wissen, was Ihr Skript leistet.
     history_title: "%{script_name} - Versionsverlauf"
     history_only_code_changes_info: "Das sind Skriptversionen, bei denen der Quelltext aktualisiert wurde."
     history_all_changes_link: "Alle Versionen anzeigen."
@@ -127,6 +139,8 @@ de:
       month: Letzte 30 Tage
       year: Letzte 365 Tage
       all: Ganze Zeit
+    stats_library_usages_intro_html: "Die folgenden Skripte verwenden die URL %{site_name} dieser Bibliothek in einem <code>@require</code>:"
+    stats_library_usages_script_column: Skript
     derivatives_title: "%{script_name} - Derivate"
     derivatives_intro: "Diese Skripte könnten auf Ihren Skripten basieren (oder Ihre Skripte auf diesen). Falls Sie eine nicht genehmigte Nutzung ihres Quelltextes feststellen, können Sie es vom Feedback-Tab des Skripts melden."
     derivatives_script_html: "%{script} von %{user}, Lizenz: %{license} %{diff_link:[Diff]}"
@@ -154,6 +168,7 @@ de:
     listing_description_for_site: "Benutzerskripte, welche auf %{site} Funktionen hinzufügen und Fehler beheben"
     listing_title_for_search: "»%{search_string}« Benutzerskripte"
     listing_title_for_code_search: "»%{search_string}« Benutzerskripte"
+    listing_description_for_code_search_html: "Quelltext-Suche nach <code>%{search_string}</code>"
     listing_title_generic: "Benutzerskripte"
     listing_title_for_favorites: "%{set_name} von %{user_name}"
     listing_description_generic: "Benutzerskripte, welche auf den Seiten, die Sie benutzen, Funktionen hinzufügen und Fehler beheben"
@@ -165,11 +180,13 @@ de:
     listing_sort_created: "Erstelldatum"
     listing_sort_updated: "Letzte Aktualisierung"
     listing_sort_name: "Name"
+    listing_sort_entry_locales: 'Sprachen'
     listing_filter_by_site_label: "Skripte anzeigen für:"
     listing_filter_by_site_disable: "Alle Skripte"
     listing_filter_by_site_all_sites: "(Alle Seiten)"
     listing_filter_by_language_label: "Sprache:"
     listing_filter_by_site_more_sites: "Mehr …"
+    listing_filter_by_authorship_label: "Urheberschaft:"
     listing_no_scripts: "Es wurden keine Skripte gefunden."
     listing_created_feed: "Neue Skripte"
     listing_updated_feed: "Aktualisierte Skripte"
@@ -180,8 +197,14 @@ de:
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
     listing_author:
+      all: Alle Autoren
       me: Meine Skripte
+      user: Skripte von %{author_name}
     search_failed: Beim Laden Ihrer Ergebnisse ist ein Fehler aufgetreten. Einige Suchfunktionen funktionieren möglicherweise nicht. Wir wurden auf das Problem aufmerksam gemacht.
+    listing_ratings_explanation: Die Wahrscheinlichkeit, dass die nächste eingehende Rezension eine gute Bewertung von 0 bis 1 erhält.
+    listing_locale_explanation: Das Skript ist in jeder der ausgewählten Sprachen verfügbar.
+    listing_advanced_search_applied: "Erweiterte Suche angewendet"
+    listing_advanced_search_clear: "Löschen"
     import: "Skripte importieren"
     new: "Veröffentliche ein Skript, welches Du geschrieben hast"
     new_css: "Veröffentliche einen Style, den Du geschrieben hast"
@@ -216,7 +239,9 @@ de:
     type_3_html: "Bibliothek - ein Skript, welches per <code>@require</code> in anderen Skripten eingebunden und nicht direkt installiert werden soll."
     override_warning_checkbox_label: "Trotzdem speichern"
     warning_version_not_incremented_html: "Sie haben den Quelltext geändert, aber die <code>@version</code> Nummer nicht erhöht. Diejenigen, die Ihr Skript vorher installiert hatten, werden den aktualisierten Quelltext möglicherweise nicht erhalten."
+    warning_version_missing_html: "Sie haben <code>@version</code>nicht angegeben. Damit Benutzer Updates erhalten können, ist <code>@version</code>erforderlich. Sie können dies wie folgt angeben: <code>// @version 1.0</code>."
     warning_version_missing_generate_automatically_html: "Automatish<code>@version</code> generiern"
+    warning_namespace_missing_html: "Sie haben <code>@namespace</code> nicht angegeben. <code>@namespace</code> hilft dabei, Konflikte zu vermeiden, falls Benutzer ein anderes Skript mit demselben Namen installieren. <code>@namespace</code> muss lediglich eine eindeutige Zeichenfolge sein; häufig wird hierfür eine URL verwendet, die Sie selbst verwalten."
     warning_namespace_missing_generate_automatically_html: "Automatisch <code>@namespace</code> generieren"
     warning_namespace_changed_html: "Ihr <code>@namespace</code> hat sich geändert. Ein konsistenter <code>@namespace</code> erlaubt es ihren Nutzern, das Script erneut zu installieren oder es zu aktualisieren."
     warning_potentially_minified_html: "Ihr Skriptquelltext sieht aus, als enthielte er verkürzten (komprimierten) Quelltext. Falls Sie eine verkleinerte Bibliothek benutzen, binden Sie diese bitte mit <code>@require</code> von %{allowed_requires_link} ein. Skripte mit verkleinertem Quelltext können entfernt werden."
@@ -303,6 +328,14 @@ de:
     preview_additional_info: "Vorschau"
     must_confirm: "Sie müssen Ihr Konto bestätigen, bevor Sie Skripte hochladen können. Sie haben zwei Bestätigungsmöglichkeiten - Eine externe Anmeldung hinzufügen oder eine Bestätigungsemail senden."
     must_confirm_email_button: "Bestätigungslink an %{email} senden"
+    needs_secure_login:
+      intro: "Sie müssen Ihr Konto mit einer sicheren Anmeldemethode einrichten, bevor Sie Skripte Beitrag können."
+      secure_internal_heading: "Option 1: Sichern Sie Ihren %{site_name} Zugang"
+      confirm_email: "Bestätigen Sie Ihre E-Mail-Adresse"
+      enable_2fa: "Zwei-Faktor-Authentifizierung (2FA) aktivieren"
+      add_external_heading: "Option 2: Nur externe Anmeldung verwenden"
+      add_external: "Externe Anmeldung hinzufügen"
+      remove_password: "Entfernen Sie Ihr Passwort für %{site_name}"
     authors_heading: "Autoren"
     error_unauthorized_copy: "Dieser Quelltext scheint eine unautorisierte Kopie von %{script} zu sein. Bitte nehmen Sie Notiz von %{site_name}s %{rules_link:Regeln} zum Veröffentlichen von Skripten."
     invitations:
@@ -339,8 +372,20 @@ de:
     install_help_dialog:
       js:
         firefox: Du musst eine Erweiterung wie %{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} oder %{violentmonkey_link:Violentmonkey} installieren, um dieses Skript zu installieren.
+        chrome: Um dieses Skript zu installieren, müssen Sie eine Erweiterung wie %{tampermonkey_link:Tampermonkey} oder %{violentmonkey_link:Violentmonkey} installieren.
+        opera: Um dieses Skript zu installieren, müssen Sie eine Erweiterung wie %{tampermonkey_link:Tampermonkey} oder %{violentmonkey_link:Violentmonkey} installieren.
+        safari: Um dieses Skript zu installieren, müssen Sie eine Erweiterung wie %{tampermonkey_link:Tampermonkey} oder %{userscripts_link:Userscripts} installieren.
+        edge: Um dieses Skript zu installieren, müssen Sie eine Erweiterung wie %{tampermonkey_link:Tampermonkey} installieren.
         other: 'Sie müssten eine Skript Manager Erweiterung installieren damit sie dieses Skript installieren können '
         bypass: (Ich habe schon ein Skript Manager, Lass mich es installieren!)
+      css:
+        firefox: Um dieses Design zu installieren, müssen Sie eine Erweiterung wie %{stylus_link:Stylus} installieren.
+        chrome: Um dieses Design zu installieren, müssen Sie eine Erweiterung wie %{stylus_link:Stylus} installieren.
+        opera: Um dieses Design zu installieren, müssen Sie eine Erweiterung wie %{stylus_link:Stylus} installieren.
+        safari: Um diesen Stil zu installieren, müssen Sie eine Erweiterung für den Benutzerstil Verwaltung installieren.
+        edge: Um diesen Stil zu installieren, müssen Sie eine Erweiterung für den Benutzerstil Verwaltung installieren.
+        other: Um diesen Stil zu installieren, müssen Sie eine Erweiterung für den Benutzerstil Verwaltung installieren.
+        bypass: (Ich habe bereits einen Benutzerstil Verwaltung, ich möchte ihn installieren!)
       close_dialog: OK
     antifeatures:
       label: Antifeatures
@@ -451,10 +496,34 @@ de:
     explain_user_scripts_html: "Benutzerskripte erlauben die vollständige Kontrolle des Interneterlebnisses. Einmal installiert werten sie automatisch die besuchten Seiten auf, indem sie diesen Funktionen hinzufügen, deren Verwendung vereinfachen oder störende Kleinigkeiten entfernen. Die Benutzerskripte auf %{site_name} wurden von anderen Benutzern geschrieben und veröffentlicht um sie mit der ganzen Welt zu teilen. Sie sind frei verwendbar und einfach zu benutzen."
     installing_step1_header: "Schritt 1: Eine Benutzerskriptverwaltung installieren"
     installing_step1_caption: "Tampermonkey in Chrome"
+    installing_step1_description_html: >
+        <p>Um Benutzerskripte nutzen zu können, müssen Sie zunächst einen Skript Verwaltung
+        installieren. Welchen Skript Verwaltung Sie verwenden können, hängt davon
+        ab, welchen Browser Sie nutzen.</p>
     desktop_browsers:
       title: Desktop
+      browser_list_html: |
+          <ul>
+          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} oder %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, oder %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} oder %{safari_userscripts_link:Userscripts}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} oder %{edge_violentmonkey_link:Violentmonkey}</li>
+          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} oder %{opera_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          %{standalone_managers_html}
+          </ul>
     android_browsers:
       title: Mobile (Android)
+      browser_list_html: |
+          <ul>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, oder %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+          <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+          %{standalone_managers_html}
+          %{locale_specific_browsers}
+          </ul>
     ios_browsers:
       title: Mobile (iOS)
     installing_step2_header: "Schritt 2: Ein Benutzerskript installieren"
@@ -487,6 +556,7 @@ de:
     sign_in_email_missing: "%{site_name} benötigt eine E-Mail-Adresse, um ein neues Konto zu erstellen, aber %{provider} stellt für Sie keine bereit. Sie können entweder Ihr %{provider}-Konto aktualisieren, um eine E-Mail-Adresse zu erhalten und danach versuchen sich erneut anzumelden oder eine normales »%{site_name}«-Konto mit E-Mail und Passwort erstellen und diesem anschließend Ihr %{provider}-Konto hinzufügen."
     sign_in_name_used: "Der Name »%{name}« wird schon benutzt. Bitte einen anderen auswählen."
     sign_in_name_used_submit: "Absenden"
+    sign_in_github_unavailable: "Die Anmeldung über GitHub ist auf Sleazy Fork nicht verfügbar, aber Sie können sich %{sign_in_url:auf Greasy Fork über GitHub anmelden}."
     control_panel: "Optionen"
     discussions_on_scripts: "Diskussionen über Ihre Skripte"
     discussions_on_scripts_feed_alt: "RSS Feed"
@@ -505,6 +575,10 @@ de:
     edit_sign_in: "Anmeldeverfahren bearbeiten"
     edit_sign_in_title: "Anmeldeverfahren bearbeiten"
     edit_sign_in_password: "Passwort"
+    edit_sign_in_2fa_enabled: Die Zwei-Faktor-Authentifizierung (2FA) ist für Sie eingerichtet. Falls Sie Ihren 2FA-Code verloren haben, können Sie ihn neu generieren.
+    edit_sign_in_2fa_enabled_and_required: Die Zwei-Faktor-Authentifizierung (2FA) ist für Sie eingerichtet. Bei der Anmeldung mit einem Passwort ist die 2FA für Ihr Konto erforderlich. Falls Sie Ihren 2FA-Code verloren haben, können Sie ihn neu generieren.
+    edit_sign_in_disable_2fa: 2FA deaktivieren
+    edit_sign_in_2fa_disabled: Sie können die Zwei-Faktor-Authentifizierung (2FA) aktivieren, um die Sicherheit Ihres %{site_name} Kontos zu erhöhen.
     edit_notifications: "Benachrichtigungseinstellungen bearbeiten"
     view_notifications: "Benachrichtigungen ansehen"
     no_password_set_info: "Ihr Konto ist nicht mit einem Passwort konfiguriert."
@@ -596,7 +670,7 @@ de:
       with_report: "Ihr Konto wurde aufgrund %{report_link:dieser Meldung} gebannt. Sie können %{delete_link:Ihr Konto löschen}, wenn Sie wollen."
       with_reason: "Ihr Konto wurde gebannt. Ein Moderator hat folgenden Grund angegeben: \"%{reason}\". Sie können %{delete_link:Ihr Konto löschen}, wenn Sie wollen."
     banned_delete:
-      intro: "Wenn Sie Ihr Konto löschen werden auch alle Ihre Skripte gelöscht. Alle Forumsbeiträge, die Sie erstellt haben, bleiben bestehen, aber Ihre Benutzername wird anonymisiert. Selbst nach der Löschung können Sie sich nicht mehr mit derselben Emailadresse registrieren. Melden Sie sich unten an um Ihr Konto zu löschen."
+      intro: "Durch das Löschen Ihres Konto werden auch alle von Ihnen veröffentlichten Skripte gelöscht. Ihre Beiträge im Forum bleiben erhalten, Ihr Benutzername wird jedoch anonymisiert. Auch nach der Löschung können Sie sich nicht erneut mit derselben E-Mail Adresse registrieren. Melden Sie sich unten an, um Ihr Konto zu löschen."
       complete: "Ihr Konto wurde gelöscht."
     badges:
       banned:
@@ -660,6 +734,8 @@ de:
       contributionAmount_html: "Vorgeschlagener Spendenbetrag; genutzt in Verbindung mit <code>@contributionURL</code>."
       compatible_html: "Markiert das Skript als kompatibel mit einem Browser. Kompatibilitätsinformationen werden auf der Seite eines Skriptes angezeigt. Kommentare zu der Kompatibilität können im Format <code>@compatible firefox Popup-Blocker muss deaktiviert werden</code> eingebunden werden. Erkannte Browser sind: %{browsers}"
       incompatible_html: "Markiert das Skript als inkompatibel mit einem Browser. Kompatibilitätsinformationen werden auf der Seite eines Skriptes angezeigt. Optionale Kommentare zu der Kompatibilität können im Format <code>@incompatible firefox Kaputt seit Firefox 23</code> eingebunden werden. Erkannte Browser sind: %{browsers}"
+      antifeature_html: |
+          Gibt Funktionen in einem Skript an, die dem Autor und nicht dem Benutzer zugutekommen. Das Format dieses Schlüssels lautet <code>@antifeature Typ Beschreibung</code>. <i>Typ</i> ist erforderlich, <i>Beschreinbung</i> ist optional. %{antifeatures_link:Hier lesen} ür Informationen zu den <i>Typ</i>die von %{site_name} gelesen werden.
       antifeature_localized_html: "Ein <code>@antifeature</code>, das in einem bestimmten Gebietsschema beschrieben ist, wobei XX ein <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1-Code</a> mit zwei Buchstaben und YY ein optionaler <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166-Ländercode</a> ist. Überschreibt <code>@antifeature</code>s desselben Typs, wenn der Benutzer in einem passenden Gebietsschema browst."
     writing_user_scripts:
       title: "Wie Benutzerskripte geschrieben werden"
@@ -769,6 +845,7 @@ de:
       description: "Suche nach Skript-Quelltext. Dies ist eine von Groß-/Kleinschreibung unabhängige Klartextsuche ohne Stellvertretersymbole."
     user_search:
       title: "Benutzersuche"
+      description: "Benutzer nach Namen suchen."
   moderator_logs:
     date_column: "Datum"
     moderator_column: "Moderator"
@@ -1098,6 +1175,7 @@ de:
         subject: "Deine Meldung zu %{script_name} auf %{site_name} wurde zurückgewiesen."
       report_fixed_reporter:
         subject: "Dein Bericht zu %{script_name} auf %{site_name} wurde als gelöst markiert"
+      reported_outro: "Sie haben diese Benachrichtigung erhalten, da es sich um eine Bericht zu einem Skript handelt, das Sie bei %{site_name} eingereicht haben %{notification_preferences_link:Verwalten Sie Ihre Benachrichtigungs Einstellungen.}"
     consecutive_bad_ratings:
       notify:
         subject: "Ihr Skript %{script_name} auf %{site_name} hat mehrere \"Schlechte\" Bewertungen erhalten."

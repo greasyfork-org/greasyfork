@@ -517,6 +517,7 @@ tr:
     explain_user_scripts_heading: "Kullanıcı scriptleri nedir?"
     explain_user_scripts_html: "Kullanıcı scriptleri göz atma deneyiminizi kontrol etmenizi sağlar. Yüklendikten sonra, özellikler ekleyerek, onları daha kolay kullanmanızı sağlayarak veya rahatsız edici bitleri çıkartarak ziyaret ettiğiniz siteleri otomatik olarak daha iyi hale getirirler. %{site_name} alanındaki kullanıcı scriptler diğer kullanıcılar tarafından yazılmış ve dünyayla paylaşımda bulunmak için gönderilmiştir. Kurulumu kolay ve kullanımı kolaydır."
     installing_step1_header: "Adım 1: Bir kullanıcı script yöneticisi kur"
+    browser_no_additional_software_indicator: "%{browser_link: 1%{browser_name} } (ek yazılıma gerek yoktur)"
     installing_step1_caption: "Chrome için Tampermonkey "
     installing_step1_description_html: >
         <p>Kullanıcı scriptlerini kullanabilmek için ilk önce bir script yöneticisi
@@ -524,6 +525,16 @@ tr:
         bağlıdır.</p>
     desktop_browsers:
       title: Masaüstü
+      browser_list_html: |
+          <ul>
+          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} veya %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, veya %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} veya %{safari_userscripts_link:Userscripts}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} or %{edge_violentmonkey_link:Violentmonkey}</li>
+          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} veya %{opera_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          %{standalone_managers_html}
+          </ul>
     android_browsers:
       title: Mobil (Android)
     ios_browsers:
@@ -736,11 +747,14 @@ tr:
         intro: Kullanıcılar, %{site_name}'in kurallarına aykırı olan içerikleri işaretlemek için bildirimler oluşturur. Moderatörler bu bildirimleri inceler ve gerekirse içeriği kaldırır.
         title: Rapor bildirimleri
         as_reporter: Oluşturduğunuz bir rapor çözüldüğünde bildirim alın
+        as_reported_filed: Paylaştığınız bir öğe hakkında rapor oluşturulduğunda bildirim alın
       save_button: Bildirim ayarlarını güncelle
       title: Bildirimler
       save_success: Bildirim tercihleriniz güncellendi.
       unsubscribe_all: Tüm bildirim aboneliklerinden ayrıl
       unsubscribe_all_success: Tüm bildirim aboneliklerinden ayrıldınız.
+      list:
+        header: Bildirimler
   webhooks:
     info:
       title: Web kancası kurma
