@@ -784,6 +784,13 @@ class Script < ApplicationRecord
     stats
   end
 
+  def self.human_attribute_name(attribute, options = {})
+    # Override to not #humanize meta keys
+    return attribute if attribute.starts_with?('@')
+
+    super
+  end
+
   private
 
   def url_helpers
@@ -812,7 +819,9 @@ class Script < ApplicationRecord
                                         .index_by(&:code)
 
     localized_meta_keys.each do |n, v|
-      locale_code = n.split(':', 2).last
+      # Allow use of different capitalization in meta keys, as script managers don't seem to care.
+      locale_code = Locale.normalize_code(n.split(':', 2).last)
+
       meta_locale = localized_meta_keys_locales[locale_code]
       if meta_locale.nil?
         Rails.logger.warn "Unknown locale code - #{locale_code}"

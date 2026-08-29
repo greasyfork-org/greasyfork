@@ -343,4 +343,33 @@ class ScriptLocalizationTest < ActiveSupport::TestCase
     assert_equal 1, script.localized_names.count
     assert_equal 'My script name', script.localized_value_for(:name, 'en')
   end
+
+  test 'localization capitalization differences' do
+    script = valid_script
+    sv = ScriptVersion.new
+    sv.script = script
+    sv.code = <<~JS
+      // ==UserScript==
+      // @name		A Test!
+      // @name:zh-TW	本地化
+      // @description Unit test
+      // @description:zh-tw	本地化測試腳本
+      // @namespace http://greasyfork.local/users/1
+      // @version 1.0
+      // @include *
+      // @license MIT
+      // ==/UserScript==
+      var foo = "bar";
+    JS
+    sv.calculate_all
+    script.apply_from_script_version(sv)
+    assert script.valid?, script.errors.full_messages.inspect
+    assert_equal 'A Test!', script.name
+    assert_equal 'Unit test', script.description
+    available_locale_codes = script.available_locales.map(&:code)
+    assert_equal 2, available_locale_codes.length, available_locale_codes
+    assert_includes available_locale_codes, 'zh-TW'
+    assert_equal '本地化', script.localized_value_for(:name, 'zh-TW')
+    assert_equal '本地化測試腳本', script.localized_value_for(:description, 'zh-TW')
+  end
 end

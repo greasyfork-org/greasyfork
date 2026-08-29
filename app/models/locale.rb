@@ -126,4 +126,13 @@ class Locale < ApplicationRecord
   def self.ui_available
     where(code: Rails.application.config.available_locales)
   end
+
+  def self.normalize_code(code)
+    return code if code.blank?
+
+    code = code.to_s
+    code = code.downcase if code.length == 2
+    code = code.split('-').map.with_index { |part, index| index.zero? ? part.downcase : part.upcase }.join('-') if code.include?('-')
+    code
+  end
 end
