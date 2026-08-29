@@ -300,9 +300,8 @@ class UsersController < ApplicationController
       user.delete_all_comments!(by_user: current_user, spam: true)
     end
 
-    # rubocop:disable Rails/I18nLocaleTexts
+    # rubocop:disable-next Rails/I18nLocaleTexts
     redirect_to users_path(same_ip: params[:same_ip]), notice: 'Users with this IP have been banned.'
-    # rubocop:enable Rails/I18nLocaleTexts
   end
 
   def delete_info
@@ -356,9 +355,8 @@ class UsersController < ApplicationController
     user = User.find(params.expect(:id))
     user.confirm
     user.save
-    # rubocop:disable Rails/I18nLocaleTexts
+    # rubocop:disable-next Rails/I18nLocaleTexts
     redirect_to user_path(user), notice: 'Email marked as confirmed'
-    # rubocop:enable Rails/I18nLocaleTexts
   end
 
   def dismiss_announcement

@@ -37,9 +37,8 @@ module Admin
     def destroy
       @spammy_email_domain = SpammyEmailDomain.find(params.expect(:id))
       @spammy_email_domain.destroy!
-      # rubocop:disable Rails/I18nLocaleTexts
+      # rubocop:disable-next Rails/I18nLocaleTexts
       redirect_to admin_spammy_email_domains_path, notice: 'Spammy email domain deleted'
-      # rubocop:enable Rails/I18nLocaleTexts
     end
 
     private
