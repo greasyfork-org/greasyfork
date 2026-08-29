@@ -9,13 +9,13 @@ class PublicHttpFetcher
 
   def self.get(url, read_timeout: 10, timeout: 11)
     uri = validate_url!(url)
-    scheme_whitelist = uri.scheme == 'https' ? ['https'] : %w[http https]
+    scheme_whitelist = (uri.scheme == 'https') ? ['https'] : %w[http https]
 
     response = Timeout.timeout(timeout) do
       SsrfFilter.get(
         uri.to_s,
         scheme_whitelist:,
-        http_options: { read_timeout: },
+        http_options: { read_timeout: }
       )
     end
 
