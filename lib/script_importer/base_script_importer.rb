@@ -1,4 +1,4 @@
-require 'open-uri'
+require 'public_http_fetcher'
 
 module ScriptImporter
   class BaseScriptImporter
@@ -93,13 +93,7 @@ module ScriptImporter
     end
 
     def self.download(url)
-      # make_regexp seems to allow some non http(s) URLs, so explicitly check the scheme too
-      raise ArgumentError, 'URL must be http or https' unless url&.match?(URI::DEFAULT_PARSER.make_regexp(%w[http https])) && (url.starts_with?('http:') || url.starts_with?('https:'))
-
-      uri = URI.parse(url)
-      Timeout.timeout(11) do
-        return uri.read({ read_timeout: 10 })
-      end
+      PublicHttpFetcher.get(url)
     end
 
     # updates the URL to the working version

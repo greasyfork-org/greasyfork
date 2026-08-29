@@ -1,5 +1,5 @@
 require 'digest'
-require 'open-uri'
+require 'public_http_fetcher'
 
 class Subresource < ApplicationRecord
   has_many :script_subresource_usages
@@ -8,6 +8,8 @@ class Subresource < ApplicationRecord
 
   scope :with_integrity_hash_usages, -> { joins(:script_subresource_usages).where.not(script_subresource_usages: { integrity_hash: nil }) }
 
+  validate :url_must_be_fetchable, on: :create
+
   def calculate_hashes!
     now = Time.zone.now
 
@@ -15,7 +17,7 @@ class Subresource < ApplicationRecord
 
     begin
       contents = download
-    rescue OpenURI::HTTPError, Timeout::Error, Errno::ECONNREFUSED, Errno::ECONNRESET, Socket::ResolutionError, Zlib::DataError, OpenSSL::SSL::SSLError => e
+    rescue PublicHttpFetcher::Error, OpenURI::HTTPError, Timeout::Error, Errno::ECONNREFUSED, Errno::ECONNRESET, Socket::ResolutionError, Zlib::DataError, OpenSSL::SSL::SSLError => e
       Rails.logger.warn(e)
       return
     end
@@ -51,11 +53,14 @@ class Subresource < ApplicationRecord
   end
 
   def download
-    raise ArgumentError, 'URL must be http or https' unless url&.match?(URI::DEFAULT_PARSER.make_regexp(%w[http https]))
+    PublicHttpFetcher.get(url)
+  end
 
-    uri = URI.parse(url)
-    Timeout.timeout(11) do
-      return uri.read({ read_timeout: 10 })
-    end
+  private
+
+  def url_must_be_fetchable
+    PublicHttpFetcher.validate_url!(url)
+  rescue PublicHttpFetcher::InvalidUrl => e
+    errors.add(:url, e.message)
   end
 end
