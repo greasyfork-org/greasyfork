@@ -56,6 +56,11 @@ module ScriptImporter
 
         begin
           ai = ScriptSyncer.choose_importer.download(la.sync_identifier)
+          # PublicHttpFetcher returns ASCII-8BIT strings. Normalize to UTF-8 like the script
+          # code above, or UTF-8 regexps in validations will refuse to match the value.
+          ai = ai.dup if ai.frozen?
+          ai = ai.force_encoding(Encoding::UTF_8)
+          next unless ai.valid_encoding?
           # We don't have the ability to adjust the Markdown to absolutize the references, so we do that at render time.
           if la.value_markup == 'html'
             absolute_ai = absolutize_references(ai, la.sync_identifier)
