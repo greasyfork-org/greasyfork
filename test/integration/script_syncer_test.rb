@@ -108,6 +108,27 @@ class ScriptSyncerTest < ActiveSupport::TestCase
     assert_not_nil fr_ai.sync_identifier
   end
 
+  test 'synced additional info is treated as UTF-8' do
+    script = Script.find(14)
+    assert_equal 1, script.script_versions.length
+
+    # PublicHttpFetcher returns ASCII-8BIT strings, unlike the open-uri downloader it
+    # replaced. A binary-tagged additional info used to crash sync with
+    # "incompatible encoding regexp match (UTF-8 regexp with BINARY (ASCII-8BIT) string)"
+    # in the Private Use Area validation. Tag the sync identifier as binary to mimic
+    # what PublicHttpFetcher hands to generate_script; TestImporter returns it unchanged.
+    en_la = script.localized_attributes_for('additional_info')
+                  .find { |la| la.locale == Locale.where(code: 'en').first }
+    en_la.sync_identifier = en_la.sync_identifier.dup.force_encoding(Encoding::ASCII_8BIT)
+
+    assert_equal :success, ScriptSyncer.sync(script), script.sync_error
+
+    en_ai = script.localized_attributes_for('additional_info').find { |la| la.locale == Locale.where(code: 'en').first }
+    assert_not_nil en_ai
+    assert_equal 'MyNewText', en_ai.attribute_value
+    assert_equal Encoding::UTF_8, en_ai.attribute_value.encoding
+  end
+
   test 'additional info sync retain unsynced' do
     script = Script.find(14)
     assert script.valid?, script.errors.full_messages
