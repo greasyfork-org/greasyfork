@@ -383,6 +383,7 @@ fr:
     install_help_dialog:
       js:
         firefox: Vous devrez installer une extension telle que %{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} ou %{violentmonkey_link:Violentmonkey} pour installer ce script.
+        chrome: Vous devrez installer une extension telle que  %{tampermonkey_link:Tampermonkey} ou  %{violentmonkey_link:Violentmonkey} pour installer ce script.
         opera: Vous devrez installer une extension telle que %{tampermonkey_link:Tampermonkey} ou %{violentmonkey_link:Violentmonkey} pour installer ce script.
         safari: Vous devrez installer une extension telle que %{tampermonkey_link:Tampermonkey} ou %{userscripts_link:Userscripts} pour installer ce script.
         edge: Vous devrez installer une extension telle que %{tampermonkey_link:Tampermonkey} pour installer ce script.
@@ -522,6 +523,7 @@ fr:
     explain_user_scripts_heading: "Que sont les scripts utilisateurs ?"
     explain_user_scripts_html: "Les scripts utilisateurs vous permettent d'être le maître de votre expérience de navigation. Une fois installés, ils améliorent automatiquement les sites que vous visitez en ajoutant des fonctionnalités, qui permettent de faciliter leur utilisation, ou en supprimant les éléments ennuyeux. Les scripts utilisateurs sur %{site_name} sont écrits par d'autres utilisateurs et postés pour être partagés avec tout le monde. Ils sont installables gratuitement et sont faciles à utiliser."
     installing_step1_header: "Étape 1: installer un gestionnaire de script utilisateur"
+    browser_no_additional_software_indicator: "%{browser_link:%{browser_name}} (aucun logiciel supplémentaire requis)"
     installing_step1_caption: "Tampermonkey sur Chrome"
     installing_step1_description_html: >
         <p>Pour utiliser les scripts utilisateur, vous devez d'abord installer un
@@ -529,10 +531,35 @@ fr:
         que vous pouvez utiliser dépend du navigateur que vous utilisez.</p>
     desktop_browsers:
       title: Bureau
+      browser_list_html: |
+          <ul>
+          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} ou %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, ou %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} ou %{safari_userscripts_link:Userscripts}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} ou %{edge_violentmonkey_link:Violentmonkey}</li>
+          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} ou %{opera_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          %{standalone_managers_html}
+          </ul>
     android_browsers:
       title: Mobile (Android)
+      browser_list_html: |
+          <ul>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, ou %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+          <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+          %{standalone_managers_html}
+          %{locale_specific_browsers}
+          </ul>
     ios_browsers:
       title: Mobile (iOS)
+      browser_list_html: |
+          <ul>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} ou %{safari_userscripts_link:Userscripts}</li>
+          %{standalone_managers_html}
+          </ul>
     installing_step2_header: "Étape 2: installer un script utilisateur"
     installing_step2_caption: "Un bouton d'installation d'un script utilisateur"
     installing_step2_description_html: >
