@@ -26,7 +26,7 @@ module LocalizedRequest
     if !(request.get? || request.head?) ||
        %w[omniauth_callback omniauth_failure sso webhook user_js meta_js user_css meta_css].include?(params[:action]) ||
        action_name == 'routing_error' ||
-       %w[js json jsonp].include?(params[:format])
+       %w[js json jsonp csv].include?(params[:format])
       params[:locale] = I18n.locale_available?(params[:locale]) ? params[:locale] : 'en'
       Pagy::I18n.locale = I18n.locale = params[:locale]
       return

@@ -68,5 +68,5 @@ end
     <% end %>
   </tbody>
 </table>
-<% links = [:json, :csv].map{|f| link_to f.to_s.upcase, { format: f }, rel: :nofollow } %>
+<% links = [:json, :csv].map{|f| link_to f.to_s.upcase, { host: api_domain, locale: nil, controller: 'scripts', action: 'stats', id: @script.id, format: f }, rel: :nofollow } %>
 <%= t('scripts.stats_download_raw_data_html', links: links.join(' ').html_safe) %>

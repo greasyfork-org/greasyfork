@@ -48,6 +48,10 @@ module ApplicationHelper
     return url_for(current_url_with_params(other_params.merge(only_path: true)))
   end
 
+  def api_domain
+    (request.subdomain == 'api') ? request.domain : "api.#{request.domain}"
+  end
+
   TOP_SCRIPTS_COUNT = 5
   TOP_SCRIPTS_EXPONENT = 0.75
   TOP_SCRIPTS_CAP = 1000

@@ -943,7 +943,7 @@ class ScriptsController < ApplicationController
   def handle_wrong_url(resource, id_param_name)
     raise ActiveRecord::RecordNotFound if resource.nil?
     return true if handle_wrong_site(resource)
-    return true if params[:format] != 'json' && redirect_to_slug(resource, id_param_name)
+    return true if %w[json jsonp csv].exclude?(params[:format]) && redirect_to_slug(resource, id_param_name)
 
     return false
   end
