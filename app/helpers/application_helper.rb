@@ -41,7 +41,7 @@ module ApplicationHelper
   end
 
   def current_api_url_with_params(other_params = {})
-    return url_for(**safe_params(other_params), subdomain: 'api')
+    return url_for(**safe_params(other_params), subdomain: 'api', locale: nil)
   end
 
   def current_path_with_params(other_params = {})
