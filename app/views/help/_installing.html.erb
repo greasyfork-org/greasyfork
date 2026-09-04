@@ -55,6 +55,17 @@
   </div>
 </section>
 
+<% if greasy? && general_ads_setting.nil? %>
+  <div class="ad serp-ad">
+      <%= link_to 'https://www.serpapi.com/', target: '_blank', rel: 'noopener' do %>
+      <picture>
+        <source media="(max-width: 620px)" srcset="<%= vite_asset_path('images/ads/serp/620x196.png') %>">
+        <%= vite_image_tag('images/ads/serp/1456x180.png') %>
+      </picture>
+    <% end %>
+  </div>
+<% end %>
+
 <section id="home-step-2">
   <h3><%= t('home.installing_step2_header') %></h3>
 
