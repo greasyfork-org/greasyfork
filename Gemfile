@@ -45,8 +45,6 @@ gem 'redis'
 gem 'elasticsearch', '~> 8.0'
 gem 'searchkick'
 
-gem 'stackprof'
-
 gem 'sentry-rails'
 gem 'sentry-ruby'
 
