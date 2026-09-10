@@ -185,13 +185,14 @@ GEM
     diffy (3.4.4)
     drb (2.2.3)
     dry-cli (1.4.1)
-    elastic-transport (8.4.1)
+    elastic-transport (8.5.3)
       faraday (< 3)
       multi_json
-    elasticsearch (8.19.1)
+    elasticsearch (8.19.3)
       elastic-transport (~> 8.3)
-      elasticsearch-api (= 8.19.1)
-    elasticsearch-api (8.19.1)
+      elasticsearch-api (= 8.19.3)
+      ostruct
+    elasticsearch-api (8.19.3)
       multi_json
     email_address (0.2.9)
       base64
@@ -321,7 +322,7 @@ GEM
     mocha (3.1.0)
       ruby2_keywords (>= 0.0.5)
     msgpack (1.8.3)
-    multi_json (1.21.1)
+    multi_json (1.21.2)
     multi_xml (0.9.1)
       bigdecimal (>= 3.1, < 5)
     mutex_m (0.3.0)
@@ -745,9 +746,9 @@ CHECKSUMS
   diffy (3.4.4) sha256=79384ab5ca82d0e115b2771f0961e27c164c456074bd2ec46b637ebf7b6e47e3
   drb (2.2.3) sha256=0b00d6fdb50995fe4a45dea13663493c841112e4068656854646f418fda13373
   dry-cli (1.4.1) sha256=b8015bb76c708aa8705a36faf694973e75eeeffca39b89c8e172dc6f66a7d874
-  elastic-transport (8.4.1) sha256=b6300d41f26b0a9886b79e3119052ca829ef596d40a96a706d42596d23843306
-  elasticsearch (8.19.1) sha256=a0869c1427ef077032d456dcb2fdd527a2270d95898b6a9b342ab627657770ae
-  elasticsearch-api (8.19.1) sha256=13253f983c11281ee5616ed71e70f1c2981e7a15eb99a92d718075fd3fa471db
+  elastic-transport (8.5.3) sha256=3bf036afb10728a58591593bc48fd736ea9fe2bf7b1252810e774340dcfe58c4
+  elasticsearch (8.19.3) sha256=3fe0275073a93730778bce33ceb76dd098d2feea499d3ecf7984790c474deb98
+  elasticsearch-api (8.19.3) sha256=dc8029b596cc82f9a3a8c9dcc8a1286b4485288c8e62f5ed540eb0540ce474f2
   email_address (0.2.9) sha256=d6767d6b7168d60e9a3906d635f557a5a93083f4441a4019700b8110880928ea
   erb (6.0.7) sha256=c5ca6dc25b0ef974a44dc8f59fe847577122483b1968a38dec305c60bf91ee92
   erb_lint (0.9.0) sha256=dfb5e40ad839e8d1f0d56ca85ec9a7ac4c9cd966ec281138282f35b323ca7c31
@@ -801,7 +802,7 @@ CHECKSUMS
   minitest-around (0.6.0) sha256=b0348f1c6bfd8d64b0f9423af468f0f717fff4a4afd08cb279fd2b3b5453000d
   mocha (3.1.0) sha256=75f42d69ebfb1f10b32489dff8f8431d37a418120ecdfc07afe3bc183d4e1d56
   msgpack (1.8.3) sha256=8bda4a6428d3244e50d6bd55854d354edbada88a4e1f4f5731a39a0f86bee6a1
-  multi_json (1.21.1) sha256=e6126a31808e3b4d19f483c775ceac34df190dffa62adfb63a165ee14ba68080
+  multi_json (1.21.2) sha256=245531eaf54bdba57aba515ff08b4503505c5e09911daa89c5a561e2f85bea8e
   multi_xml (0.9.1) sha256=7ce766b59c17241ed62976caeae1fae9b2431b263398c35396239a68c4a64e57
   mutex_m (0.3.0) sha256=cfcb04ac16b69c4813777022fdceda24e9f798e48092a2b817eb4c0a782b0751
   mysql2 (0.5.7) sha256=ba09ede515a0ae8a7192040a1b778c0fb0f025fa5877e9be895cd325fa5e9d7b

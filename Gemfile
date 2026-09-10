@@ -14,6 +14,7 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'devise-two-factor'
 gem 'diffy'
+gem 'elasticsearch', '~> 8.0' # Need to stick to the same major version as the es server per https://github.com/ankane/searchkick/issues/1713#issuecomment-2829261681
 gem 'email_address'
 gem 'ffi-icu'
 gem 'google-analytics-data'
@@ -41,6 +42,7 @@ gem 'regexp_parser'
 gem 'rqrcode'
 gem 'ruby-vips'
 gem 'sanitize'
+gem 'searchkick'
 gem 'sentry-rails'
 gem 'sentry-ruby'
 gem 'sidekiq', '< 8'
@@ -51,10 +53,6 @@ gem 'ssrf_filter', '~> 1.5.0'
 gem 'strip_attributes'
 gem 'user_agent_parser'
 gem 'vite_rails'
-
-# Need to stick to the same major version as the es server per https://github.com/ankane/searchkick/issues/1713#issuecomment-2829261681
-gem 'elasticsearch', '~> 8.0'
-gem 'searchkick'
 
 # These need to be after the main block otherwise "Error during failsafe response: uncaught throw :warden"
 gem 'omniauth', '>= 1.6.0'
