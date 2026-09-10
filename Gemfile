@@ -34,6 +34,8 @@ gem 'redcarpet'
 gem 'regexp_parser'
 gem 'rqrcode'
 gem 'sanitize'
+gem 'sentry-rails'
+gem 'sentry-ruby'
 gem 'sidekiq', '< 8'
 gem 'sidekiq-scheduler'
 gem 'sidekiq-unique-jobs'
@@ -49,9 +51,6 @@ gem 'redis'
 # Need to stick to the same major version as the es server per https://github.com/ankane/searchkick/issues/1713#issuecomment-2829261681
 gem 'elasticsearch', '~> 8.0'
 gem 'searchkick'
-
-gem 'sentry-rails'
-gem 'sentry-ruby'
 
 # These need to be after the main block otherwise "Error during failsafe response: uncaught throw :warden"
 gem 'omniauth', '>= 1.6.0'
