@@ -40,6 +40,10 @@ class DataCentreIps
           [IPAddr.new(ip_start).to_i, IPAddr.new(ip_end).to_i]
         end.sort
       end
+    rescue OpenURI::HTTPError => e
+      # Log the error but continue as with no data as otherwise we will fail everything until it's fixed.
+      Sentry.capture_exception(e, extra: { message: 'Failed to load DBIP data centre data' })
+      []
     end
   end
 
