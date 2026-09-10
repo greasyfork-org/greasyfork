@@ -7,6 +7,7 @@ class Script < ApplicationRecord
   include LocalizingModel
   include DetectsLocale
   include ScriptIndexing
+  include ScriptFileCaching
 
   CONSECUTIVE_BAD_RATINGS_COUNT = 3
   CONSECUTIVE_BAD_RATINGS_GRACE_PERIOD = 2.weeks
@@ -861,15 +862,5 @@ class Script < ApplicationRecord
     end
     # Anything left in the search array, mark for destruction
     existing_children.each(&:mark_for_destruction)
-  end
-
-  def clear_latest_cached_code
-    %w[greasyfork sleazyfork cn-greasyfork].each do |site_name|
-      Dir.glob(Rails.application.config.cached_code_path.join(site_name, 'latest', 'scripts', "#{id}.*")).each do |path|
-        File.delete(path)
-      rescue Errno::ENOENT
-        # Already gone
-      end
-    end
   end
 end
