@@ -2,7 +2,9 @@ source 'https://rubygems.org'
 
 ruby '4.0.1'
 
+gem 'active_storage_validations'
 gem 'akismet'
+gem 'aws-sdk-s3', require: false
 gem 'bootsnap'
 gem 'connection_pool', '< 3.0' # https://github.com/mperham/connection_pool/issues/211
 gem 'csv'
@@ -18,6 +20,7 @@ gem 'google-analytics-data'
 gem 'hiredis'
 gem 'i18n'
 gem 'i18n_data'
+gem 'image_processing'
 gem 'it'
 gem 'json', '< 3.0' # Remove when Rails 8.1.4 is released - https://github.com/rails/rails/pull/58601
 gem 'levenshtein'
@@ -31,10 +34,12 @@ gem 'puma_worker_killer'
 gem 'rack-attack'
 gem 'rails', '~> 8.1.0'
 gem 'rails-i18n'
+gem 'recaptcha', require: 'recaptcha/rails'
 gem 'redcarpet'
 gem 'redis'
 gem 'regexp_parser'
 gem 'rqrcode'
+gem 'ruby-vips'
 gem 'sanitize'
 gem 'sentry-rails'
 gem 'sentry-ruby'
@@ -56,13 +61,6 @@ gem 'omniauth', '>= 1.6.0'
 gem 'omniauth-github'
 gem 'omniauth-gitlab'
 gem 'omniauth-google-oauth2', '>= 0.4.1'
-
-gem 'active_storage_validations'
-gem 'aws-sdk-s3', require: false
-gem 'image_processing'
-gem 'ruby-vips'
-
-gem 'recaptcha', require: 'recaptcha/rails'
 
 group :development, :test do
   gem 'byebug'
