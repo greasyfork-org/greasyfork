@@ -1301,20 +1301,31 @@ en:
         <p>Do you have a private question or comment you would like only the admin to see? %{admin_email_link:Send an e-mail.}</p>
     privacy_policy:
       title: "Privacy policy"
-      content_html: >
+      intro_html: >
         <p>This page describes how %{site_name} will record or track users. If you have any concerns, %{admin_email_link:e-mail the admin}.</p>
+      server_logs_html: >
         <h2>Server logs</h2>
         <p>%{site_name} logs all requests in a typical server log fashion. Information logged includes pages visited, IP address, and user agent string. These logs are for debugging and server analysis. The data is retained for one week. This data is not shared or made publicly available.</p>
+      script_statistics_html: >
         <h2>Script statistics</h2>
         <p>For the purposes of generating statistics, %{site_name} records install and update requests with IP address information. This information is retained for one day, and then is aggregated to no longer include the IP address. The IP-address-specific data is not shared or made publicly available, but the aggregated data is.</p>
+      cookies_html: >
         <h2>Cookies (when not logged in)</h2>
         <p>%{site_name} may set temporary session cookies to allow for some site features. These cookies are not set to persist and may cleared when the browser is closed (depending on browser settings).</p>
+      user_accounts_html: >
         <h2>User accounts</h2>
-        <p>%{site_name} requires users to create an account to post scripts, take part in discussions, and access some other site features. When creating an account, information such as IP address, e-mail address, and user agent may be permanently stored. Some of this information may be made visible to other users.</p>
+        <p>%{site_name} requires users to create an account to post scripts, take part in discussions, and access some other site features. When creating an account, information such as user name, IP address, e-mail address, and user agent may be stored. User name will be displayed publicly. No other data will be displayed publicly or shared with third parties. This data may be removed by way of deleting the account.</p>
+        <p>%{site_name} will use the e-mail address provided when creating an account to send important information such as password reset requests. In special situations, the admin of %{site_name} may also use this e-mail address to contact users.</p>
+        <p>%{site_name} will by default send notification emails to the address provided when creating an account. These notification emails cover topics such as new comments on subscribed discussions and new reviews posted on scripts authored. These notifications can be turned off from the user's profile settings.</p>
         <p>Actions performed when logged in, for example posting scripts and comments, will be made viewable to other users.</p>
         <p>If the "Remember me" option is checked when logging in to an account, %{site_name} will set a persistent cookie to retain login state.</p>
+      external_logins_html: >
+        <h2>External logins</h2>
+        <p>%{site_name} allows users to log in using external services such as Google, GitHub, and GitLab. When logging in with an external service, %{site_name} will receive user name and email information from that service and use it to create an account. This information will be used as described in the "User accounts" section.</p>
+      posted_scripts_html: >
         <h2>Scripts posted on %{site_name}</h2>
         <p>%{site_name} contains user-generated content, and scripts posted may be able to track users if they install that script.</p>
+      third_party_libraries_html: >
         <h2>Third party libraries</h2>
         <p>%{site_name} may include third party code to collect statistics or display advertisements on the site. These libraries may include tracking logic.</p>
     user_css_to_user_js:
