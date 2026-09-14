@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '4.0.1'
+ruby '4.0.6'
 
 gem 'active_storage_validations'
 gem 'akismet'
