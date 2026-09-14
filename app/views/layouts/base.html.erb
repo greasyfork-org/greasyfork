@@ -137,6 +137,7 @@
               <li><%= link_to t('layouts.application.user_list'), users_path %></li>
               <li><%= link_to t('layouts.application.libraries'), libraries_scripts_path %></li>
               <li><%= link_to t('layouts.application.moderator_log'), moderator_actions_path %></li>
+              <li><%= link_to t('layouts.application.privacy'), help_privacy_path %></li>
             </nav>
           </li>
         </nav>
@@ -152,6 +153,7 @@
           <li><%= link_to t('layouts.application.user_list'), users_path %></li>
           <li><%= link_to t('layouts.application.libraries'), libraries_scripts_path %></li>
           <li><%= link_to t('layouts.application.moderator_log'), moderator_actions_path %></li>
+          <li><%= link_to t('layouts.application.privacy'), help_privacy_path %></li>
           <% if user_signed_in? %>
             <li class="multi-link-nav">
               <% if current_user.moderator? %>
