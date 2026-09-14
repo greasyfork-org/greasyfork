@@ -1393,6 +1393,26 @@ en:
         <p>The script performs some action that earns the author commission on purchases. This includes the script containing referral/affiliate links, rewriting existing links to be referral/affiliate links, or providing coupon codes that earn the script author commission.</p>
       tracking_html: |
         <p>The script includes code to track user activity. This includes trackers such as Google Analytics or custom tracking code that reports user activity to the script author.</p>
+    api:
+      title: "%{site_name} API"
+      json_api_html: |
+        <h3>JSON API</h3>
+        <p>%{site_name} provides a read-only JSON and JSONP API for accessing data. In the HTML source of pages on %{site_name}, look for %{json_reference} and %{jsonp_reference} for the URLs.</p>
+      prefilled_updates_html: |
+        <h3>Prefilled updates</h3>
+
+        <p>While there is no API for updates, you can use a special prefill URL to populate the update form. The user can then review and submit the update. This URL bypasses the normal anti-XSS protections on POST requests.</p>
+
+        <ul>
+          <li>URL: %{new_script_prefill_snippet} (for new scripts), %{existing_script_prefill_snippet} (for updating existing scripts)</li>
+          <li>Method: %{method_snippet}</li>
+          <li>Code parameter: %{code_parameter_snippet}</li>
+          <li>Content type: %{content_type_snippet}</li>
+          <li>The request must include the user's session cookie.</li>
+        </ul>
+      webhook_notifications_html: |
+        <h3>Webhook notifications</h3>
+        <p>%{site_name} can check for updates based on push and release webhook notifications from GitHub, GitLab, and Bitbucket. %{webhook_info_link:Read more info on webhooks.}</p>
   search:
     script_search:
       title: "Script Search"

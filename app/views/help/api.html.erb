@@ -1,21 +1,7 @@
-<%= title "#{site_name} API" %>
+<%= title t('help.api.title', site_name: site_name) %>
 
-<h3>JSON API</h3>
+<%= t('help.api.json_api_html', site_name: site_name, json_reference: '<code>&lt;link rel="alternate" type="application/json"&gt;</code>'.html_safe, jsonp_reference: '<code>&lt;link rel="alternate" type="application/javascript"&gt;</code>'.html_safe) %>
 
-<p><%= site_name %> provides a read-only JSON and JSONP API for accessing data. In the HTML source of pages on <%= site_name %>, look for <code>&lt;link rel="alternate" type="application/json"&gt;</code> and <code>&lt;link rel="alternate" type="application/javascript"&gt;</code> for the URLs.</p>
+<%= t('help.api.prefilled_updates_html', site_name: site_name, new_script_prefill_snippet: "<code>#{prefill_script_versions_url}</code>".html_safe, existing_script_prefill_snippet: "<code>#{prefill_script_script_versions_url(script_id: 'SCRIPTID')}</code>".html_safe, method_snippet: '<code>POST</code>'.html_safe, code_parameter_snippet: '<code>script_version[code]</code>'.html_safe, content_type_snippet: '<code>multipart/form-data</code>'.html_safe) %>
 
-<h3>Prefilled updates</h3>
-
-<p>While there is no API for updates, you can use a special prefill URL to populate the update form. The user can then review and submit the update. This URL bypasses the normal anti-XSS protections on POST requests.</p>
-
-<ul>
-  <li>URL: <code><%= prefill_script_versions_url %></code> (for new scripts), <code><%= prefill_script_script_versions_url(script_id: 'SCRIPTID') %></code> (for updating existing scripts)</li>
-  <li>Method: <code>POST</code></li>
-  <li>Code parameter: <code>script_version[code]</code></li>
-  <li>Content type: <code>multipart/form-data</code></li>
-  <li>The request must include the user's session cookie.</li>
-</ul>
-
-<h3>Webhook notifications</h3>
-
-<p><%= site_name %> can check for updates based on push and release webhook notifications from GitHub, GitLab, and Bitbucket. <%= link_to 'Read more info on webhooks.', user_webhook_info_path %>.</p>
+<%= it('help.api.webhook_notifications_html', site_name: site_name, webhook_info_link: user_webhook_info_path) %>
