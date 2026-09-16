@@ -10,6 +10,7 @@ sk:
       user_list: "Zoznam používateľov"
       libraries: "Knižnice"
       moderator_log: "Záznam moderátora"
+      privacy: "Zásady ochrany osobných údajov"
   scripts:
     created_date: "Vytvorené"
     updated_date: "Aktualizované"
@@ -1022,35 +1023,65 @@ sk:
           by mal vidieť iba administrátor? %{admin_email_link:Poslať email.}</p>
     privacy_policy:
       title: "Zásady ochrany osobných údajov"
-      content_html: >
-          <p>Táto stránka popisuje ako %{site_name} zaznamenáva alebo sleduje používateľov.
-          Ak máte akékoľvek obavy, %{admin_email_link:napíšte administrátorovi}.</p>
-          <h2>Záznamy servera</h2> <p>%{site_name} zaznamenáva všetky požiadavky v
-          typickom tvare protokolov servera. Zaznamenané informácie obsahujú navštívené
-          stránky, IP adresu a identifikátor prehliadača. Tieto záznamy slúžia na
-          ladenie a analýzu servera. Dáta sú uchovávané po dobu jedného týždňa. Tieto
-          dáta nie sú zdieľané ani sprístupnené verejnosti.</p> <h2>Štatistiky skriptov</h2>
-          <p>Na účely generovania štatistík, %{site_name} zaznamenáva inštalačné a
-          aktualizačné požiadavky s informáciou o IP adrese. Tieto informácie sú uchovávané
-          po dobu jedného dňa, a potom sú zhromaždené bez uvedenia IP adresy. Špecifické
-          dáta o IP adrese nie sú zdieľané alebo sprístupnené verejnosti , ale zhromaždené
-          dáta áno
-
-          .</p> <h2>Cookies (bez prihlásenia)</h2> <p>%{site_name} môže nastaviť dočasnú
-          reláciu cookies na povolenie niektorých funkcií stránky. Tieto cookies nie
-          sú trvalé a môžu byť vymazané po ukončení prehliadača (v závislosti na nastavení
-          prehliadača).</p> <h2>Používateľské účty</h2> <p>%{site_name} vyžaduje vytvorenie
-          používateľského účtu na pridávanie skriptov, zúčastňovaní sa na diskusii
-          a na prístup k niektorým funkciám stránky. Pri vytváraní účtu, informácie
-          ako sú IP adresy, emailové adresy a identifikátor prehliadača môžu byť trvalo
-          uložené. Niektoré z týchto informácií môžu byť viditeľné pre iných používateľom.</p>
-          <p>Akcie vykonávané po prihlásení, napríklad pridávanie skriptov a komentárov,
-          budú viditeľné ostatným používateľom.</p> <p>Ak možnosť "Zapamätať si ma"
-          je vybraná pri prihlasovaní účtu, %{site_name} nastaví trvalé cookie na
-          udržanie prihlásenia.</p> <h2>Skripty pridané na %{site_name}</h2> <p>%{site_name}
-          obsahujú používateľsky generovaný obsah, a tieto skripty môžu sledovať používateľov,
-          ktorí si skript nainštalovali.</p> <h2>Knižnice tretích strán</h2> <p>%{site_name}
-          môžu obsahovať kód tretích strán za účelom štatistiky alebo zobrazenia reklamy
+      intro_html: >
+          <p>Na tejto stránke je popísané, ako %{site_name} zaznamenáva alebo sleduje
+          používateľov. Ak máte akékoľvek obavy, %{admin_email_link:napíšte e-mail
+          správcovi}.</p>
+      server_logs_html: >
+          <h2>Záznamy servera</h2> stránky<p>%{site_name} zaznamenávajú všetky požiadavky
+          bežným spôsobom typickým pre záznamy servera. Medzi zaznamenávané informácie
+          patria navštívené stránky, IP adresa a reťazec používateľského agenta. Tieto
+          záznamy slúžia na odstraňovanie chýb a analýzu servera. Údaje sa uchovávajú
+          jeden týždeň. Tieto údaje sa nezdieľajú ani nezverejňujú.</p>
+      script_statistics_html: >
+          <h2>Štatistiky skriptu</h2> <p>Na účely vytvárania štatistík zaznamenáva
+          %{site_name} požiadavky na inštaláciu a aktualizáciu spolu s informáciami
+          o IP adresách. Tieto informácie sa uchovávajú jeden deň a následne sa agregujú
+          tak, aby už neobsahovali IP adresu. Údaje týkajúce sa konkrétnych IP adries
+          sa nezdieľajú ani nezverejňujú, avšak agregované údaje áno.</p>
+      cookies_html: >
+          <h2>Cookies (ak nie ste prihlásení) <p>%{site_name} môže ukladať dočasné
+          relácie cookies, aby mohli fungovať niektoré funkcie stránky. Tieto cookies
+          nie sú trvalo uložené a môžu sa odstrániť pri zatvorení prehliadača (v závislosti
+          od nastavení prehliadača).</p>
+      user_accounts_html: >
+          <h2>Používateľské účty</h2> <p>%{site_name} vyžaduje, aby si používatelia
+          vytvorili účet, ak chcú zverejňovať skripty, zúčastňovať sa diskusií a využívať
+          niektoré ďalšie funkcie stránky. Pri vytváraní účtu môžu byť uložené informácie,
+          ako je používateľské meno, IP adresa, e-mailová adresa a user agent. Používateľské
+          meno bude verejne zobrazené. Žiadne ďalšie údaje nebudú verejne zobrazené
+          ani zdieľané s tretími stranami. Tieto údaje je možné vymazať odstránením
+          účtu.</p> <p>%{site_name} bude používať e-mailovú adresu zadanú pri vytváraní
+          účtu na zasielanie dôležitých informácií, ako sú žiadosti o obnovenie hesla.
+          V mimoriadnych situáciách môže správca %{site_name} túto e-mailovú adresu
+          použiť aj na kontaktovanie používateľov.</p> <p>%{site_name} bude štandardne
+          zasielať oznamovacie e-maily na adresu uvedenú pri vytváraní účtu. Tieto
+          oznamovacie e-maily sa týkajú tém, ako sú nové komentáre k odoberaným diskusiám
+          a nové recenzie zverejnené k napísaným skriptom. Tieto upozornenia je možné
+          vypnúť v nastaveniach profilu používateľa.</p> <p>Akcie vykonané po prihlásení,
+          napríklad zverejňovanie skriptov a komentárov, budú viditeľné pre ostatných
+          používateľov.</p> <p>Ak je pri prihlásení do účtu začiarknutá možnosť "Zapamätať
+          si ma", %{site_name} nastaví trvalý súbor cookie na zachovanie stavu prihlásenia.</p>
+      external_logins_html: >
+          <h2>Externé prihlásenia</h2> <p>%{site_name} umožňuje používateľom prihlásiť
+          sa pomocou externých služieb, ako sú Google, GitHub a GitLab. Keď sa prihlásite
+          pomocou externej služby, %{site_name} získa používateľské meno a e-mailové
+          informácie z tejto služby a použije ich na vytvorenie účtu. Tieto informácie
+          sa použijú tak, ako je popísané v časti "Používateľské účty".</p>
+      posted_scripts_html: >
+          <h2>Skripty uverejnené na %{site_name}</h2> <p>%{site_name} obsahuje obsah
+          generovaný používateľmi a odoslané skripty môžu byť schopné sledovať používateľov,
+          ak si tento skript nainštalujú.</p>
+      data_retention_html: >
+          <h2>Uchovávanie údajov</h2> <p>%{site_name} uchováva údaje o používateľských
+          účtoch a obsah zverejnený používateľmi (napríklad skripty a komentáre) na
+          dobu neurčitú. Používatelia môžu svoje účty a zverejnené údaje kedykoľvek
+          odstrániť %{delete_user_link:tu}.</p> <p>Údaje o anonymnom prehliadaní,
+          ako sú IP adresa, user agent a navštívené stránky, sa uchovávajú jeden týždeň
+          po prístupe.</p>
+      third_party_libraries_html: >
+          <h2>Knižnice tretích strán</h2> <p>%{site_name} môže obsahovať kód tretích
+          strán slúžiaci na zbieranie štatistických údajov alebo zobrazovanie reklám
           na stránke. Tieto knižnice môžu obsahovať sledovaciu logiku.</p>
     user_css_to_user_js:
       title: Prevod používateľského CSS na JS
@@ -1112,6 +1143,26 @@ sk:
           <p>Skript vykoná určitú akciu, ktorá autorovi prinesie províziu z nákupov. To zahŕňa skript obsahujúci referral/affiliate odkazy, prepísanie existujúcich odkazov na referral/affiliate odkazy alebo poskytnutie kupónových kódov, ktoré autorovi skriptu prinášajú províziu.</p>
       tracking_html: |
           <p>Skript obsahuje kód na sledovanie aktivity používateľa. Patria sem sledovacie nástroje, ako napríklad Google Analytics, alebo vlastný sledovací kód, ktorý autorovi skriptu hlási aktivitu používateľa.</p>
+    api:
+      title: "API %{site_name}"
+      json_api_html: |
+          <h3>JSON API</h3>
+          <p>%{site_name} poskytuje rozhranie JSON a API JSONP určené výlučne na čítanie údajov. V zdrojovom kóde HTML stránok na %{site_name} vyhľadajte %{json_reference} a %{jsonp_reference}, kde sú uvedené príslušné URL adresy.</p>
+      prefilled_updates_html: |
+          <h3>Predvyplnené aktualizácie</h3>
+
+          <p>Hoci neexistuje žiadne API pre aktualizácie, môžete použiť špeciálnu URL na predvyplnenie, aby ste vyplnili formulár aktualizácie. Používateľ môže následne aktualizáciu skontrolovať a odoslať. Táto URL adresa obchádza bežné ochrany proti XSS pri požiadavkách typu POST.</p>
+
+          <ul>
+          <li>URL: %{new_script_prefill_snippet} (pre nové skripty), %{existing_script_prefill_snippet} (pre aktualizáciu existujúcich skriptov)</li>
+          <li>Metóda: %{method_snippet}</li>
+          <li>Parameter kódu: %{code_parameter_snippet}</li>
+          <li>Typ obsahu: %{content_type_snippet}</li>
+          <li>Žiadosť musí obsahovať cookie relácie používateľa.</li>
+          </ul>
+      webhook_notifications_html: |
+          <h3>Upozornenia cez webhook</h3>
+          <p>%{site_name} môže kontrolovať dostupnosť aktualizácií na základe push a release notifikácií cez webhook z GitHubu, GitLabu a Bitbucketu. %{webhook_info_link:Viac informácií o webhookoch.}</p>
   search:
     script_search:
       title: "Vyhľadávanie skriptov"
