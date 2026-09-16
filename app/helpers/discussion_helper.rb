@@ -13,7 +13,9 @@ module DiscussionHelper
   end
 
   def comment_snippet(comment)
-    comment.plain_text&.truncate(200)
+    # Note plain_text is generated from format_user_text_as_plain, which is run through sanitize, so should be safe. We still need to
+    # html_safe if to properly show the HTML entities.
+    comment.plain_text&.truncate(200)&.html_safe
   end
 
   def scoped_comment_create_path(discussion, anchor: nil)

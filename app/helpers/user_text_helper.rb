@@ -77,12 +77,12 @@ module UserTextHelper
 
   # Returns the plain text representation of the passed markup
   def format_user_text_as_plain(text, markup_type, use_line_breaks: false)
-    Sanitize.fragment(format_user_text(text, markup_type), use_line_breaks ? USE_LINE_BREAK_OPTIONS : {}).strip
+    Sanitize.fragment(format_user_text(text, markup_type), use_line_breaks ? USE_LINE_BREAK_OPTIONS : {}).strip.html_safe
   end
 
   # Returns an inline-only representation of the passed markup.
   def format_user_text_as_inline(text, markup_type)
-    Sanitize.fragment(format_user_text(text, markup_type), Sanitize::Config::RESTRICTED)
+    Sanitize.fragment(format_user_text(text, markup_type), Sanitize::Config::RESTRICTED).html_safe
   end
 
   def detect_possible_mentions(text, markup_type)

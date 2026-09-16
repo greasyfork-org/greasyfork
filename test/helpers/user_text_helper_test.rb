@@ -76,6 +76,13 @@ class UserTextHelperTest < ActionView::TestCase
     assert_equal('<p>p1</p>', format_user_text(text, 'html'))
   end
 
+  test 'format_user_text_as_plain html entities' do
+    text = 'A&W'
+    user_text = format_user_text_as_plain(text, 'html')
+    assert_equal('A&amp;W', user_text)
+    assert user_text.html_safe?
+  end
+
   test 'detect_possible_user_references simple' do
     user_references = detect_possible_mentions(<<~TEXT, 'markdown')
       @user1 @user2 @user1 @"user 3" @"too long to be a real user name too long to be a real user name"
