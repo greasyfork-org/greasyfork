@@ -118,8 +118,9 @@
           <% end %>
             <select id="discussion-locale">
               <option></option>
+              <% alternate_url_without_locale = current_path_with_params(show_locale: 'XXUNIQUESTRINGXX', page: nil) %>
               <% @possible_locales.each do |l| %>
-                <option data-url="<%= current_path_with_params(show_locale: l.code, page: nil) %>" value="<%= l.code %>" <%= 'selected' if !showing_request_locale && @filter_result.locale && @filter_result.locale.id == l.id %>><%= l.display_text(in_locale: request_locale) %></option>
+                <option data-url="<%= alternate_url_without_locale.sub('XXUNIQUESTRINGXX', l.code) %>" value="<%= l.code %>" <%= 'selected' if !showing_request_locale && @filter_result.locale && @filter_result.locale.id == l.id %>><%= l.display_text(in_locale: request_locale) %></option>
               <% end %>
             </select>
           </li>
