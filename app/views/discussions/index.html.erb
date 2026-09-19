@@ -15,7 +15,7 @@
       <% end %>
     </div>
 
-    <% if @discussions.empty? %>
+    <% if @discussions.load.empty? %>
       <p><%= t('discussions.no_discussions') %></p>
     <% else %>
       <div class="discussion-list <%= 'discussion-list-logged-in' if current_user %>">
