@@ -168,7 +168,7 @@
       <% end %>
     <% elsif @user.comments.not_deleted.any? %>
       <p>
-        <%= link_to t('discussions.user_activity.see_all_activity'), discussions_path(user: @user.id) %>
+        <%= link_to t('discussions.user_activity.see_all_activity'), discussions_path(user: @user.id), rel: :nofollow %>
       </p>
     <% end %>
   </section>
