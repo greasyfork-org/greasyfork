@@ -14,6 +14,14 @@ class DiscussionCategory < ApplicationRecord
     where.not(category_key: SCRIPT_DISCUSSIONS_KEY)
   end
 
+  def self.queryable_categories_for_user(user)
+    moderator = user&.moderator? || false
+    Rails.cache.fetch("discussion_categories/queryable_categories_for_user/#{moderator}") do
+      scope = moderator ? all : where(moderators_only: false)
+      scope.pluck(:category_key)
+    end
+  end
+
   def to_param
     category_key
   end

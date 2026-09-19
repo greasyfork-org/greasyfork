@@ -86,7 +86,7 @@
         <%= t('discussions.category_filter.label') %>
         <ul>
           <%= discussion_list_link(t('discussions.category_filter.all'), category: nil) %>
-          <% DiscussionCategory.visible_to_user(current_user).pluck(:category_key).each do |dc| %>
+          <% DiscussionCategory.queryable_categories_for_user(current_user).each do |dc| %>
             <%= discussion_list_link(t("discussions.categories.#{dc}.name"), category: dc) %>
           <% end %>
           <%= discussion_list_link(t('discussions.categories.no-scripts.name'), category: DiscussionCategory::NO_SCRIPTS_KEY) %>
