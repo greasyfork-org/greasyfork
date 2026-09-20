@@ -62,7 +62,6 @@ class Report < ApplicationRecord
   belongs_to :rebuttal_by_user, class_name: 'User', optional: true
   belongs_to :discussion_category, optional: true
 
-  has_many :discussions
   has_many :script_lock_appeals
   has_many :notifications, inverse_of: :item, dependent: :destroy
 

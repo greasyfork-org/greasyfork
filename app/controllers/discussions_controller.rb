@@ -175,22 +175,8 @@ class DiscussionsController < ApplicationController
 
   def new
     @discussion = Discussion.new(poster: current_user)
-    if current_user&.moderator? && params[:report_id]
-      report = Report.find(params.expect(:report_id))
-      @discussion.report = report
-      users_to_mention = case report.item
-                         when User
-                           [report.item]
-                         when Comment, Discussion
-                           [report.item.poster]
-                         else
-                           report.item&.users || []
-                         end
-      text = users_to_mention.map { |user| user.name.match?(/\s+/) ? "@\"#{user.name}\"" : "@#{user.name}" }.join(' ')
-    elsif params[:category] && params[:category] != DiscussionCategory::SCRIPT_DISCUSSIONS_KEY
-      @discussion.discussion_category = DiscussionCategory.find_by(category_key: params[:category])
-    end
-    @discussion.comments.build(poster: current_user, text_markup: current_user&.preferred_markup, text:)
+    @discussion.discussion_category = DiscussionCategory.find_by(category_key: params[:category]) if params[:category] && params[:category] != DiscussionCategory::SCRIPT_DISCUSSIONS_KEY
+    @discussion.comments.build(poster: current_user, text_markup: current_user&.preferred_markup)
     @subscribe = current_user.subscribe_on_discussion
   end
 
@@ -203,19 +189,13 @@ class DiscussionsController < ApplicationController
       @discussion.rating = Discussion::RATING_QUESTION if @discussion.by_script_author?
     end
 
-    if @discussion.report && @discussion.report.item.is_a?(Script)
-      @discussion.script = @discussion.report.item
-      @discussion.rating = Discussion::RATING_QUESTION
-      @discussion.discussion_category = DiscussionCategory.script_discussions
-    end
-
     comment = @discussion.comments.first
     comment.first_comment = true
     @subscribe = params[:subscribe] == '1'
 
     recaptcha_ok = current_user.needs_to_recaptcha? ? verify_recaptcha : true
     unless recaptcha_ok && @discussion.valid?
-      if @discussion.script && !@discussion.report
+      if @discussion.script
         render :new, layout: 'scripts'
       else
         render :new

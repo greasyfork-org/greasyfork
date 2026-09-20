@@ -216,16 +216,6 @@
   </ul>
 <% end %>
 
-<% if report.discussions.any? %>
-  <p>
-    <b><%= link_to t('reports.view_discussion'), report.discussions.first.path(locale: request_locale.code) %></b>
-  </p>
-<% elsif current_user&.moderator? %>
-  <p>
-    <%= link_to('Start a discussion', new_discussion_path(report_id: report.id)) %>
-  </p>
-<% end %>
-
 <% if report.upheld? %>
   <p>
     <% if report.self_upheld %>

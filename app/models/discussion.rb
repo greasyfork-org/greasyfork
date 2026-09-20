@@ -1,4 +1,6 @@
 class Discussion < ApplicationRecord
+  self.ignored_columns += %w[report_id]
+
   include SoftDeletable
   include MentionsUsers
   include DetectsLocale
@@ -15,7 +17,6 @@ class Discussion < ApplicationRecord
   # Optional because the user may no longer exist.
   belongs_to :poster, class_name: 'User', optional: true
   belongs_to :script, optional: true
-  belongs_to :report, optional: true
   belongs_to :stat_first_comment, class_name: 'Comment', optional: true
   belongs_to :stat_last_replier, class_name: 'User', optional: true
   belongs_to :discussion_category
@@ -34,8 +35,6 @@ class Discussion < ApplicationRecord
                                  all
                                elsif user
                                  # This is like .visible but with exceptions if the user is related to the discussion.
-                                 # We should check report_id as well but that's not easy to join to the user due to
-                                 # polymoprhism.
                                  not_deleted
                                    .where('discussions.review_reason IS NULL OR discussions.poster_id = ?', user.id)
                                    .left_joins(:script).where('scripts.delete_type IS NULL OR scripts.id IN (?)', user.script_ids)
@@ -190,7 +189,7 @@ class Discussion < ApplicationRecord
   end
 
   def calculate_publicly_visible
-    self.publicly_visible = !soft_deleted? && review_reason.nil? && report_id.nil? && (script.nil? || !script.deleted?)
+    self.publicly_visible = !soft_deleted? && review_reason.nil? && (script.nil? || !script.deleted?)
   end
 
   def poster_deleted?
