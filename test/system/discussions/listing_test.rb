@@ -13,5 +13,12 @@ module Discussions
       click_link 'Discussion start date'
       assert_no_link 'Discussion start date'
     end
+
+    test 'discussion search' do
+      stub_es(Comment)
+      assert_no_error_reported do
+        visit discussions_path(q: 'test')
+      end
+    end
   end
 end

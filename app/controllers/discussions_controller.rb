@@ -115,6 +115,8 @@ class DiscussionsController < ApplicationController
 
             @discussions = @filter_result.result
             @discussions = apply_pagination(@discussions, default_per_page: 25)
+            # Load to avoid 2 queries in the view - one on empty? and one to enumerate.
+            @discussions = @discussions.load
             @bots = 'noindex' if page_number != 1 || params.slice(:me, :user, :show_locale, :read, :visibility).present?
           end
 
