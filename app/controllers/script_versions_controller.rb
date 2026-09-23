@@ -28,7 +28,7 @@ class ScriptVersionsController < ApplicationController
     page_key = "#{site_cache_key}/script/versions/#{params[:script_id]}/#{request_locale.id}" if cachable_request
 
     cache_page(page_key) do
-      @script, @script_version = versionned_script(params[:script_id], params[:version])
+      @script = Script.find(params.expect(:script_id))
       return if handle_publicly_deleted(@script)
       return if redirect_to_slug(@script, :script_id)
 

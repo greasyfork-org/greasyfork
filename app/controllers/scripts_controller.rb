@@ -165,7 +165,7 @@ class ScriptsController < ApplicationController
     respond_to do |format|
       format.html do
         cache_page(page_key) do
-          @script, @script_version = versionned_script(params[:id], params[:version])
+          @script = Script.find(params.expect(:id))
 
           return if handle_publicly_deleted(@script)
 
@@ -608,7 +608,7 @@ class ScriptsController < ApplicationController
     page_key = "#{site_cache_key}/script/stats/#{params[:id].to_i}/#{request_locale.id}" if cachable_request
 
     cache_page(page_key) do
-      @script, @script_version = versionned_script(params[:id], params[:version])
+      @script = Script.find(params.expect(:id))
 
       return if handle_publicly_deleted(@script)
 
