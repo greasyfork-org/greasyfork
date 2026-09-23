@@ -449,27 +449,4 @@ class UsersController < ApplicationController
     flash[:notice] = t('users.2fa_enabled')
     redirect_to clean_redirect_param(:return_to) || user_edit_sign_in_path
   end
-
-  def self.apply_sort(finder, sort:)
-    case sort
-    when 'name'
-      finder.order(:name, :id) if sort == 'name'
-    when 'scripts'
-      finder.order('stats_script_count DESC, users.id')
-    when 'total_installs'
-      finder.order('stats_script_total_installs DESC, users.id')
-    when 'created_script'
-      finder.order('stats_script_last_created DESC, users.id')
-    when 'updated_script'
-      finder.order('stats_script_last_updated DESC, users.id')
-    when 'daily_installs'
-      finder.order('stats_script_daily_installs DESC, users.id')
-    when 'fans'
-      finder.order('stats_script_fan_score DESC, users.id')
-    when 'ratings'
-      finder.order('stats_script_ratings DESC, users.id')
-    else
-      finder.order(id: :desc)
-    end
-  end
 end
