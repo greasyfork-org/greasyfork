@@ -104,7 +104,7 @@ module DiscussionHelper
     elsif user == :unchanged
       # unchanged!
     else
-      new_options[:user] = user
+      new_options[:user] = user.id.to_s
     end
 
     if category.nil?
