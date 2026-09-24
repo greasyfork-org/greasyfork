@@ -16,7 +16,7 @@ module Middleware
           "X-Forwarded-For=#{env['HTTP_X_FORWARDED_FOR'].inspect} " \
           "IP=#{request.ip} " \
           "Remote-IP=#{request.remote_ip} " \
-          "X-CF-Request=#{env['HTTP_X_CF_REQUEST_ID'].inspect} "
+          "X-CF-Request=#{env['HTTP_X_CF_REQUEST'].inspect} "
         )
       end
 
