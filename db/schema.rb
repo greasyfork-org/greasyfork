@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_24_141618) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_24_142255) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.text "Attributes"
     t.text "Body", null: false
@@ -767,13 +767,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_24_141618) do
     t.boolean "show_ads", default: true, null: false
     t.boolean "show_sensitive", default: false
     t.integer "sign_in_count", default: 0, null: false
-    t.integer "stats_script_count", default: 0, null: false
-    t.integer "stats_script_daily_installs", default: 0, null: false
-    t.decimal "stats_script_fan_score", precision: 6, scale: 1, default: "0.0", null: false
-    t.datetime "stats_script_last_created", precision: nil
-    t.datetime "stats_script_last_updated", precision: nil
-    t.integer "stats_script_ratings", default: 0, null: false
-    t.integer "stats_script_total_installs", default: 0, null: false
     t.boolean "subscribe_on_comment", default: true, null: false
     t.boolean "subscribe_on_conversation_receiver", default: true, null: false
     t.boolean "subscribe_on_conversation_starter", default: true, null: false

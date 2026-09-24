@@ -6,8 +6,6 @@ class User < ApplicationRecord
   include MentionsUsers
   include UserIndexing
 
-  self.ignored_columns += %w[stats_script_count stats_script_daily_installs stats_script_fan_score stats_script_last_created stats_script_last_updated stats_script_ratings stats_script_total_installs]
-
   serialize :announcements_seen, type: Array, coder: YAML
 
   scope :moderators, -> { joins(:roles).where(roles: { name: 'moderator' }) }
