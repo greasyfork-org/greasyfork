@@ -43,7 +43,7 @@ module Greasyfork
     config.exceptions_app = routes
 
     config.ip_address_tracking = true
-    config.middleware.insert_before 0, UserRequestLogger
+    config.middleware.insert_before 0, Middleware::UserRequestLogger
   end
 end
 
