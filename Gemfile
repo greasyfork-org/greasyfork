@@ -23,7 +23,6 @@ gem 'i18n'
 gem 'i18n_data'
 gem 'image_processing'
 gem 'it'
-gem 'json', '< 3.0' # Remove when Rails 8.1.4 is released - https://github.com/rails/rails/pull/58601
 gem 'levenshtein'
 gem 'memo_wise'
 gem 'mini_racer'
