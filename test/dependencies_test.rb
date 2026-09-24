@@ -1,9 +1,16 @@
+require 'test_helper'
 require 'bundler/audit/database'
 require 'bundler/audit/scanner'
 require 'fileutils'
 
 class DependenciesTest < ActiveSupport::TestCase
   IGNORED_VULNERABILITIES = [].freeze
+
+  test 'application code is compatible with Zeitwerk' do
+    assert_nothing_raised do
+      Rails.application.autoloaders.each(&:eager_load)
+    end
+  end
 
   test 'for gem vulnerabilities' do
     FileUtils.mkdir_p(Bundler::Audit::Database::USER_PATH)
