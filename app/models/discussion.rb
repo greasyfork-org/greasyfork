@@ -1,6 +1,4 @@
 class Discussion < ApplicationRecord
-  self.ignored_columns += %w[report_id]
-
   include SoftDeletable
   include MentionsUsers
   include DetectsLocale

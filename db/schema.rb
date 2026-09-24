@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_20_143535) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_24_141618) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.text "Attributes"
     t.text "Body", null: false
@@ -294,7 +294,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_20_143535) do
     t.bigint "poster_id", null: false
     t.boolean "publicly_visible", default: true, null: false
     t.integer "rating"
-    t.bigint "report_id"
     t.string "review_reason", limit: 10
     t.bigint "script_id"
     t.boolean "spam_deleted", default: false, null: false
@@ -309,7 +308,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_20_143535) do
     t.index ["migrated_from"], name: "index_discussions_on_migrated_from"
     t.index ["poster_id"], name: "index_discussions_on_poster_id"
     t.index ["publicly_visible"], name: "index_discussions_on_publicly_visible"
-    t.index ["report_id"], name: "index_discussions_on_report_id"
     t.index ["script_id", "publicly_visible"], name: "index_discussions_on_script_id_and_publicly_visible"
     t.index ["stat_last_reply_date"], name: "index_discussions_on_stat_last_reply_date"
   end
@@ -818,7 +816,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_20_143535) do
   add_foreign_key "discussion_subscriptions", "users", on_delete: :cascade
   add_foreign_key "discussions", "discussion_categories"
   add_foreign_key "discussions", "locales"
-  add_foreign_key "discussions", "reports", on_delete: :cascade
   add_foreign_key "discussions", "scripts", on_delete: :cascade
   add_foreign_key "identities", "users", on_delete: :cascade
   add_foreign_key "install_counts", "scripts", on_delete: :cascade
