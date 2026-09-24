@@ -13,6 +13,7 @@ if Rails.env.production?
   require 'sidekiq/worker_killer'
 
   Sidekiq.configure_server do |config|
+    config.logger.level = Logger::WARN
     config.on(:startup) do
       config.server_middleware do |chain|
         chain.add Sidekiq::WorkerKiller,
