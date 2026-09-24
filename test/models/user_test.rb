@@ -88,4 +88,8 @@ class UserTest < ActiveSupport::TestCase
     new_user = User.new(name: "i like weird\ufff7chars", email: 'test@myexample.com', password: 'password')
     assert_not new_user.valid?, new_user.errors.messages
   end
+
+  test '#search_data' do
+    assert_not_empty User.first.search_data
+  end
 end

@@ -1,6 +1,29 @@
 module UserIndexing
   extend ActiveSupport::Concern
 
+  SCRIPT_STAT_MAPPINGS = [:all, :greasyfork, :sleazyfork].map do |subset|
+    {
+      "#{subset}_script_count" => {
+        type: 'integer',
+      },
+      "#{subset}_script_daily_installs" => {
+        type: 'integer',
+      },
+      "#{subset}_script_total_installs" => {
+        type: 'integer',
+      },
+      "#{subset}_script_ratings" => {
+        type: 'integer',
+      },
+      "#{subset}_script_last_created" => {
+        type: 'date',
+      },
+      "#{subset}_script_last_updated" => {
+        type: 'date',
+      },
+    }
+  end.reduce({}, :merge)
+
   included do
     searchkick callbacks: false,
                max_result_window: 10_000, # Refuse to load past this, as ES raises an error anyway
@@ -29,34 +52,17 @@ module UserIndexing
                      type: 'keyword',
                      normalizer: 'case_insensitive_sort',
                    },
-                   script_count: {
-                     type: 'integer',
-                   },
-                   script_daily_installs: {
-                     type: 'integer',
-                   },
-                   script_total_installs: {
-                     type: 'integer',
-                   },
-                   script_ratings: {
-                     type: 'integer',
-                   },
                    created_at: {
-                     type: 'date',
-                   },
-                   script_last_created: {
-                     type: 'date',
-                   },
-                   script_last_updated: {
                      type: 'date',
                    },
                    banned: {
                      type: 'boolean',
                    },
+                   **SCRIPT_STAT_MAPPINGS,
                  },
                }
 
-    after_commit if: ->(model) { model.previous_changes.keys.intersect?(%w[name created_at script_count banned_at stats_script_daily_installs script_total_installs script_last_created script_last_updated script_ratings email_domain ip]) } do
+    after_commit if: ->(model) { model.previous_changes.keys.intersect?(%w[name created_at banned_at email_domain ip]) } do
       reindex(mode: :async) if Searchkick.callbacks?
     end
   end
@@ -65,15 +71,10 @@ module UserIndexing
     {
       name:,
       created_at:,
-      script_count: stats_script_count,
       banned: banned?,
-      script_daily_installs: stats_script_daily_installs,
-      script_total_installs: stats_script_total_installs,
-      script_last_created: stats_script_last_created,
-      script_last_updated: stats_script_last_updated,
-      script_ratings: stats_script_ratings,
       email_domain:,
       ip: current_sign_in_ip,
+      **calculate_stats,
     }
   end
 end

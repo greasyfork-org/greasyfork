@@ -6,11 +6,12 @@ class User < ApplicationRecord
   include MentionsUsers
   include UserIndexing
 
+  self.ignored_columns += %w[stats_script_count stats_script_daily_installs stats_script_fan_score stats_script_last_created stats_script_last_updated stats_script_ratings stats_script_total_installs]
+
   serialize :announcements_seen, type: Array, coder: YAML
 
   scope :moderators, -> { joins(:roles).where(roles: { name: 'moderator' }) }
   scope :administrators, -> { joins(:roles).where(roles: { name: 'administrator' }) }
-  scope :script_authors, -> { where(stats_script_count: 1..) }
 
   scope :banned, -> { where.not(banned_at: nil) }
   scope :not_banned, -> { where(banned_at: nil) }
@@ -394,36 +395,38 @@ class User < ApplicationRecord
   end
 
   def update_stats!
-    update_columns(calculate_stats)
-  end
-
-  def assign_stats
-    assign_attributes(calculate_stats)
+    reindex(mode: :async) if Searchkick.callbacks?
   end
 
   SCRIPT_STAT_QUERIES = [
     [:count, 'count(scripts.id)'],
     [:total_installs, 'coalesce(sum(scripts.total_installs), 0)'],
     [:daily_installs, 'coalesce(sum(scripts.daily_installs), 0)'],
-    [:fan_score, 'coalesce(sum(scripts.fan_score), 0)'],
     [:last_created, 'max(scripts.created_at)'],
     [:last_updated, 'max(scripts.code_updated_at)'],
     [:ratings, 'coalesce(sum(scripts.good_ratings + scripts.ok_ratings + scripts.bad_ratings), 0)'],
   ].freeze
   SCRIPT_STAT_COLUMNS = %w[total_installs daily_installs fan_score created_at code_updated_at good_ratings ok_ratings bad_ratings].freeze
 
-  def calculate_stats
-    script_stat_results = scripts.listable(:all).pick(*SCRIPT_STAT_QUERIES.map(&:last).map { |v| Arel.sql(v) })
-    script_stat_results = SCRIPT_STAT_QUERIES.map(&:first).each_with_index.to_h { |k, i| [k, script_stat_results[i]] }
+  NO_SCRIPT_STATS_TEMPLATE = [:all, :greasyfork, :sleazyfork].map do |subset|
     {
-      stats_script_count: script_stat_results[:count],
-      stats_script_total_installs: script_stat_results[:total_installs],
-      stats_script_daily_installs: script_stat_results[:daily_installs],
-      stats_script_fan_score: script_stat_results[:fan_score],
-      stats_script_ratings: script_stat_results[:ratings],
-      stats_script_last_created: script_stat_results[:last_created],
-      stats_script_last_updated: script_stat_results[:last_updated],
+      "#{subset}_script_count": 0,
+      "#{subset}_script_daily_installs": 0,
+      "#{subset}_script_total_installs": 0,
+      "#{subset}_script_ratings": 0,
+      "#{subset}_script_last_created": nil,
+      "#{subset}_script_last_updated": nil,
     }
+  end.reduce(:merge)
+
+  def calculate_stats
+    # If the user has no scripts, return the blank template. This is the most common case and so we avoid further, more expensive queries.
+    return NO_SCRIPT_STATS_TEMPLATE if scripts.listable(:all).none?
+
+    [:all, :greasyfork, :sleazyfork].map do |subset|
+      script_stat_results = scripts.listable(subset).pick(*SCRIPT_STAT_QUERIES.map(&:last).map { |v| Arel.sql(v) })
+      SCRIPT_STAT_QUERIES.map(&:first).each_with_index.to_h { |k, i| [k, script_stat_results[i]] }.map { |key, result| [:"#{subset}_script_#{key}", result] }
+    end.reduce(:concat).to_h
   end
 
   def subscribed_to_anything?

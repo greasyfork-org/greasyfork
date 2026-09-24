@@ -45,17 +45,13 @@ class UsersController < ApplicationController
             when 'name'
               { name: :asc }
             when 'scripts'
-              { script_count: :desc }
-            when 'total_installs'
-              { script_total_installs: :desc }
+              { "#{script_subset}_script_count": :desc }
+            when 'total_installs', 'daily_installs', 'ratings'
+              { "#{script_subset}_script_#{params[:sort]}": :desc }
             when 'created_script'
-              { script_last_created: :desc }
+              { "#{script_subset}_script_last_created": :desc }
             when 'updated_script'
-              { script_last_updated: :desc }
-            when 'daily_installs'
-              { script_daily_installs: :desc }
-            when 'ratings'
-              { script_ratings: :desc }
+              { "#{script_subset}_script_last_updated": :desc }
             when 'created'
               { created_at: :desc }
             else
