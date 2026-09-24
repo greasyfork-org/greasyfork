@@ -8,13 +8,14 @@ module Middleware
     end
 
     def call(env)
-      request = Rack::Request.new(env)
+      request = ActionDispatch::Request.new(env)
 
       if request.get? && request.params.key?('user')
         @logger.info(
           "URL=#{request.url} " \
           "X-Forwarded-For=#{env['HTTP_X_FORWARDED_FOR'].inspect} " \
-          "IP=#{request.ip}"
+          "IP=#{request.ip} " \
+          "Remote-IP=#{request.remote_ip}"
         )
       end
 
