@@ -2,6 +2,7 @@ if Rails.env.production?
   require 'sidekiq-unique-jobs'
 
   Sidekiq.configure_client do |config|
+    config.logger.level = Logger::WARN
     config.redis = { url: 'redis://192.168.166.212:6379/0' }
     config.client_middleware do |chain|
       chain.add SidekiqUniqueJobs::Middleware::Client
