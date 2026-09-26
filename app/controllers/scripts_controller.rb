@@ -124,7 +124,7 @@ class ScriptsController < ApplicationController
   end
 
   def show_code
-    @script, @script_version = versionned_script(params[:id], params[:version])
+    @script, @script_version = versionned_script(params[:id], params[:version], with_includes_for_show: false)
 
     return if handle_publicly_deleted(@script)
 

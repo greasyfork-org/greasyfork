@@ -52,11 +52,13 @@ module ScriptAndVersions
     return false
   end
 
-  def versionned_script(script_id, version_id)
+  def versionned_script(script_id, version_id, with_includes_for_show: true)
     return nil if script_id.nil?
 
     script_id = script_id.to_i
-    current_script = Script.with_includes_for_show.find(script_id)
+    current_script = Script
+    current_script = current_script.with_includes_for_show if with_includes_for_show
+    current_script = current_script.find(script_id)
     return [current_script, current_script.newest_saved_script_version] if version_id.nil?
 
     version_id = version_id.to_i
