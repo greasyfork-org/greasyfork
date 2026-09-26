@@ -21,6 +21,31 @@ class ReportsResolvingTest < ApplicationSystemTestCase
     end
   end
 
+  test 'involved moderator cannot dismiss a report' do
+    moderator = users(:mod)
+    report = reports(:derivative_with_same_name_report)
+    report.update!(reporter: moderator)
+    login_as(moderator, scope: :user)
+
+    visit report_url(report, locale: :en)
+
+    assert_text "You're involved in this report, you can't resolve it yourself."
+    assert_no_button 'Dismiss report'
+  end
+
+  test 'administrator can dismiss their own report' do
+    administrator = users(:admin)
+    report = reports(:derivative_with_same_name_report)
+    report.update!(reporter: administrator)
+    login_as(administrator, scope: :user)
+
+    visit report_url(report, locale: :en)
+
+    assert_button 'Dismiss report'
+    click_on 'Dismiss report'
+    assert_text 'There are currently no actionable reports.'
+  end
+
   test 'marking a report as fixed for a script' do
     report = reports(:derivative_with_same_name_report)
     moderator = users(:mod)

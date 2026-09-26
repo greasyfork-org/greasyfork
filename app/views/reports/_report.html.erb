@@ -293,13 +293,13 @@
     <%= submit_tag(t('reports.delete_script')) %>
   <% end %>
 <% elsif current_user&.moderator? %>
-  <%= form_tag(dismiss_report_path(report, index: i), method: 'POST', class: 'report-resolution-options') do %>
-    <%= text_area_tag :moderator_notes, nil, rows: 3, placeholder: 'Moderator notes (optional)' %>
-    <br>
-
-    <%= submit_tag 'Dismiss report' %>
-  <% end %>
   <% if report.resolvable_by_moderator?(current_user) %>
+    <%= form_tag(dismiss_report_path(report, index: i), method: 'POST', class: 'report-resolution-options') do %>
+      <%= text_area_tag :moderator_notes, nil, rows: 3, placeholder: 'Moderator notes (optional)' %>
+      <br>
+
+      <%= submit_tag 'Dismiss report' %>
+    <% end %>
     <%= render partial: 'reports/moderator_controls', locals: { report: report, i: i } %>
   <% elsif report.admin_only? %>
     <p class="report-resolution-options">(This report can only be resolved by admin.)</p>
