@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_26_220000) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_26_230000) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -696,12 +696,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_26_220000) do
     t.index ["url"], name: "index_subresources_on_url", unique: true, using: :hash
   end
 
-  create_table "syntax_highlighted_codes", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
-    t.bigint "script_id", null: false
-    t.text "html", size: :medium, null: false
-    t.index ["script_id"], name: "index_syntax_highlighted_codes_on_script_id"
-  end
-
   create_table "update_check_counts", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.bigint "script_id", null: false
     t.date "update_check_date", null: false
@@ -840,7 +834,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_26_220000) do
   add_foreign_key "scripts", "scripts", column: "promoted_script_id", on_delete: :nullify
   add_foreign_key "scripts", "scripts", column: "replaced_by_script_id", on_delete: :nullify
   add_foreign_key "stat_bans", "scripts"
-  add_foreign_key "syntax_highlighted_codes", "scripts", on_delete: :cascade
   add_foreign_key "update_check_counts", "scripts", on_delete: :cascade
   add_foreign_key "user_notification_settings", "users", on_delete: :cascade
   add_foreign_key "users", "locales"
