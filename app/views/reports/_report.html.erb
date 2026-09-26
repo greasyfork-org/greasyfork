@@ -65,13 +65,15 @@
     </blockquote>
   <% end %>
 <% when Message %>
-  <div><%= t('common.quote.prefix_html', user: render_user(report.reported_users.first, report.reported_user_id)) %></div>
-  <blockquote>
-    <div class="user-content">
-      <%= format_user_text(report.item.content, report.item.content_markup) %>
-      <%= render partial: 'screenshots/show', locals: { attachable: report.item } %>
-    </div>
-  </blockquote>
+  <% if current_user&.moderator? || (current_user && report.item.conversation.users.exists?(id: current_user.id)) %>
+    <div><%= t('common.quote.prefix_html', user: render_user(report.reported_users.first, report.reported_user_id)) %></div>
+    <blockquote>
+      <div class="user-content">
+        <%= format_user_text(report.item.content, report.item.content_markup) %>
+        <%= render partial: 'screenshots/show', locals: { attachable: report.item } %>
+      </div>
+    </blockquote>
+  <% end %>
 <% end %>
 
 <% if report.explanation.present? %>

@@ -62,6 +62,41 @@ class ReportsFilingTest < ApplicationSystemTestCase
     assert_equal conversation.messages.first, Report.last.item
   end
 
+  test 'message report content is hidden from anonymous viewers' do
+    report = create_message_report
+
+    visit report_url(report, locale: :en)
+
+    assert_no_text 'This is my message'
+  end
+
+  test 'message report content is hidden from unrelated users' do
+    report = create_message_report
+    login_as(users(:one), scope: :user)
+
+    visit report_url(report, locale: :en)
+
+    assert_no_text 'This is my message'
+  end
+
+  test 'conversation parties can view message report content' do
+    report = create_message_report
+    login_as(users(:junior), scope: :user)
+
+    visit report_url(report, locale: :en)
+
+    assert_text 'This is my message'
+  end
+
+  test 'moderators can view message report content' do
+    report = create_message_report
+    login_as(users(:mod), scope: :user)
+
+    visit report_url(report, locale: :en)
+
+    assert_text 'This is my message'
+  end
+
   test 'reporting a script' do
     user = users(:one)
     login_as(user, scope: :user)
@@ -80,5 +115,11 @@ class ReportsFilingTest < ApplicationSystemTestCase
       end
     end
     assert_equal script, Report.last.item
+  end
+
+  private
+
+  def create_message_report
+    Report.create!(item: messages(:geoff_and_junior_1), reporter: users(:junior), reason: Report::REASON_SPAM)
   end
 end
