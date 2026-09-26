@@ -201,7 +201,7 @@ class ScriptsController < ApplicationController
     unless update_host?
       script = Script.find(script_id)
       meta_request = request.headers['Accept']&.include?('text/x-userscript-meta')
-      redirect_to(script.code_url(sleazy: sleazy?, cn_greasy: cn_greasy?, version_id: script_version_id, format_override: meta_request ? 'meta.js' : 'js'), status: :moved_permanently, allow_other_host: true)
+      redirect_to(script.code_url(sleazy: sleazy?, version_id: script_version_id, format_override: meta_request ? 'meta.js' : 'js'), status: :moved_permanently, allow_other_host: true)
       return
     end
 
@@ -238,8 +238,8 @@ class ScriptsController < ApplicationController
       meta_changes = if script_version_id == 0
                        # Set canonical update URLs.
                        {
-                         downloadURL: script.code_url(sleazy: sleazy?, cn_greasy: cn_greasy?, format_override: 'js'),
-                         updateURL: script.code_url(sleazy: sleazy?, cn_greasy: cn_greasy?, format_override: 'meta.js'),
+                         downloadURL: script.code_url(sleazy: sleazy?, format_override: 'js'),
+                         updateURL: script.code_url(sleazy: sleazy?, format_override: 'meta.js'),
                        }
                      else
                        # If the request specifies a specific version, the code will never change, so inform the manager not to check for updates.
@@ -262,7 +262,7 @@ class ScriptsController < ApplicationController
 
     unless update_host?
       script = Script.find(script_id)
-      redirect_to(script.code_url(sleazy: sleazy?, cn_greasy: cn_greasy?, version_id: script_version_id), status: :moved_permanently, allow_other_host: true)
+      redirect_to(script.code_url(sleazy: sleazy?, version_id: script_version_id), status: :moved_permanently, allow_other_host: true)
       return
     end
 
@@ -1004,7 +1004,7 @@ class ScriptsController < ApplicationController
   def handle_meta_request(language)
     unless update_host?
       script = Script.find(params.expect(:id).to_i)
-      redirect_to(script.code_url(sleazy: sleazy?, cn_greasy: cn_greasy?, format_override: (language == :css) ? 'meta.css' : 'meta.js', version_id: params[:version].presence), status: :moved_permanently, allow_other_host: true)
+      redirect_to(script.code_url(sleazy: sleazy?, format_override: (language == :css) ? 'meta.css' : 'meta.js', version_id: params[:version].presence), status: :moved_permanently, allow_other_host: true)
       return
     end
 
@@ -1020,7 +1020,7 @@ class ScriptsController < ApplicationController
     end
 
     if script_info.replaced_by_script_id && script_info.delete_type == Script.delete_types[:redirect]
-      redirect_to(Script.find(script_info.replaced_by_script_id).code_url(sleazy: sleazy?, cn_greasy: cn_greasy?, format_override: (language == :css) ? 'meta.css' : 'meta.js'), status: :moved_permanently, allow_other_host: true)
+      redirect_to(Script.find(script_info.replaced_by_script_id).code_url(sleazy: sleazy?, format_override: (language == :css) ? 'meta.css' : 'meta.js'), status: :moved_permanently, allow_other_host: true)
       return
     end
 

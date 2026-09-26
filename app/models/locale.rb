@@ -63,7 +63,7 @@ class Locale < ApplicationRecord
   memo_wise :best_name
 
   # Returns the matching locales for the passed locale code, with locales with UI available first.
-  def self.matching_locales(locale_code, chinese_only: false)
+  def self.matching_locales(locale_code)
     locale_codes_to_look_up = [locale_code]
     if locale_code.include?('-')
       language_part_only = locale_code.split('-').first
@@ -73,7 +73,6 @@ class Locale < ApplicationRecord
     end
 
     locale_scope = all
-    locale_scope = locale_scope.where("code LIKE 'zh%'") if chinese_only
 
     # The dashed one is last alphabetically but first in our hearts.
     locales = locale_scope.where(code: locale_codes_to_look_up).order(code: :desc).load

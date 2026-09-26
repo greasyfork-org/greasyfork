@@ -13,7 +13,6 @@ class DiscussionsController < ApplicationController
   before_action :check_ip, only: :create
   before_action :load_discussion, only: :show
   before_action :mark_notifications_read, only: :show
-  before_action :cn_greasy_404!, only: :index
   before_action :check_user_restrictions, only: [:new, :create]
   skip_before_action :set_locale, only: [:old_redirect]
 
@@ -130,11 +129,6 @@ class DiscussionsController < ApplicationController
   end
 
   def show
-    if cn_greasy? && !params[:script_id]
-      render_404('404')
-      return
-    end
-
     @canonical_params = [:id, :script_id, :category, :page, :per_page]
 
     if @discussion.script

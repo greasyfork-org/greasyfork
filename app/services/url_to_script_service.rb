@@ -31,8 +31,8 @@ class UrlToScriptService
     return script
   end
 
-  ALLOWED_HOSTS = ['greasyfork.org', 'sleazyfork.org', 'cn-greasyfork.org'].freeze
-  ADDITIONAL_DEV_HOSTS = ['greasyfork.local', 'sleazyfork.local', 'cn-greasyfork.local'].freeze
+  ALLOWED_HOSTS = ['greasyfork.org', 'sleazyfork.org'].freeze
+  ADDITIONAL_DEV_HOSTS = ['greasyfork.local', 'sleazyfork.local'].freeze
 
   def self.gf_url?(url)
     url = URI.parse(url)

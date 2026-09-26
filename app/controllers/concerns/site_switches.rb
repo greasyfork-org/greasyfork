@@ -2,7 +2,7 @@ module SiteSwitches
   extend ActiveSupport::Concern
 
   included do
-    helper_method :greasy?, :sleazy?, :cn_greasy?, :script_subset, :site_name, :greasyfork_host, :available_locales_for_domain
+    helper_method :greasy?, :sleazy?, :script_subset, :site_name, :greasyfork_host
   end
 
   def greasy?
@@ -11,10 +11,6 @@ module SiteSwitches
 
   def sleazy?
     site_code_cache_key == 'sleazyfork'
-  end
-
-  def cn_greasy?
-    site_code_cache_key == 'cn-greasyfork'
   end
 
   def site_name
@@ -42,19 +38,8 @@ module SiteSwitches
     request.subdomain == 'update' || (Rails.env.test? && request.domain == 'localhost')
   end
 
-  def available_locales_for_domain
-    return Rails.application.config.available_locales unless cn_greasy?
-
-    %w[zh-CN zh-TW]
-  end
-
-  def cn_greasy_404!
-    render_404('404') if cn_greasy?
-  end
-
   def site_cache_key
     return 'greasy' if greasy?
-    return 'cn-greasy' if cn_greasy?
     return 'sleazy' if sleazy?
   end
 
@@ -63,7 +48,6 @@ module SiteSwitches
 
     case request.domain
     when 'greasyfork.org', 'greasyfork.local' then 'greasyfork'
-    when 'cn-greasyfork.org', 'cn-greasyfork.local' then 'cn-greasyfork'
     when 'sleazyfork.org', 'sleazyfork.local' then 'sleazyfork'
     end
   end

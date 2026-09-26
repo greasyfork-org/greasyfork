@@ -28,7 +28,7 @@
     # https://support.google.com/webmasters/answer/189077
     alternate_url_without_locale = current_path_with_params(locale: 'XX').sub(/\A\/XX/, '') %>
     <link rel="alternate" hreflang="x-default" href="<%= current_path_with_params(locale: nil) %>">
-    <% available_locales_for_domain.each do |code| %>
+    <% Rails.application.config.available_locales.each do |code| %>
       <link rel="alternate" hreflang="<%= code %>" href="/<%= code %><%= alternate_url_without_locale %>">
     <% end
   end %>
@@ -42,13 +42,7 @@
   <link rel="search" href="<%= opensearch_description_path %>" type="application/opensearchdescription+xml" title="<%= t('opensearch.short_name', site_name: site_name, default: t('opensearch.short_name', site_name: site_name, locale: 'en')) %>" hreflang="<%= I18n.locale %>">
 
   <% if Rails.env.production? %>
-    <% gtm_id = if sleazy?
-                  'G-ZB1G3ZKC89'
-                elsif cn_greasy?
-                  'G-49Z8J2WT6B'
-                else
-                  'G-7NMRNRYW7C'
-                end %>
+    <% gtm_id = sleazy? ? 'G-ZB1G3ZKC89' : 'G-7NMRNRYW7C' %>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=<%= gtm_id %>"></script>
     <script>
@@ -126,9 +120,7 @@
         </div>
         <nav>
           <li class="scripts-index-link"><%= link_to(t('layouts.application.script_list'), scripts_path) %></li>
-          <% unless cn_greasy? %>
-            <li class="forum-link"><%= link_to(t('layouts.application.forum'), discussions_path) %></li>
-          <% end %>
+          <li class="forum-link"><%= link_to(t('layouts.application.forum'), discussions_path) %></li>
           <li class="help-link"><%= link_to(t('layouts.application.help'), help_path) %></li>
           <li class="with-submenu">
             <a href="#" onclick="return false"><%= t('layouts.application.submenu') %></a>
