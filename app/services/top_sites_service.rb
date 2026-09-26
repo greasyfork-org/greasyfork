@@ -6,6 +6,8 @@ class TopSitesService
     def get_by_sites(script_subset:, locale_id: nil, user_id: nil, **cache_options)
       return CachingService.cache_with_log("scripts/get_by_sites/#{script_subset}/#{locale_id}/#{user_id}", cache_options) do
         filter_clauses = script_filter_clauses(script_subset:, locale_id:, user_id:)
+        next {} if filter_clauses.nil?
+
         sql = <<~SQL.squish
           SELECT
             domain_text, SUM(daily_installs) install_count, COUNT(s.id) script_count
@@ -47,6 +49,8 @@ class TopSitesService
     def all_sites_count(script_subset: :all, locale_id: nil, user_id: nil, force: false)
       return CachingService.cache_with_log("all_sites_count/#{script_subset}/#{locale_id}/#{user_id}", expires_in: 10.minutes, force:) do
         filter_clauses = script_filter_clauses(script_subset:, locale_id:, user_id:)
+        next {} if filter_clauses.nil?
+
         sql = <<~SQL.squish
           SELECT
             sum(daily_installs) install_count, count(distinct s.id) script_count
@@ -81,6 +85,7 @@ class TopSitesService
 
     private
 
+    # This will return nil if we know there will be no results (e.g. user without scripts)
     def script_filter_clauses(script_subset:, locale_id:, user_id:)
       subset_clause = case script_subset
                       when :greasyfork
@@ -88,8 +93,18 @@ class TopSitesService
                       when :sleazyfork
                         'AND `sensitive` = true'
                       end
-      locale_clause = "AND s.id IN (#{([0] + LocalizedScriptAttribute.where(locale_id:).distinct.pluck(:script_id)).join(',')})" if locale_id
-      user_clause = ("AND s.id IN (#{([0] + User.find(user_id).script_ids).join(',')})" if user_id)
+      if locale_id
+        locale_script_ids = LocalizedScriptAttribute.where(locale_id:).distinct.pluck(:script_id)
+        return nil if locale_script_ids.empty?
+
+        locale_clause = "AND s.id IN (#{locale_script_ids.join(',')})"
+      end
+      if user_id
+        user_script_ids = User.find(user_id).script_ids
+        return nil if user_script_ids.empty?
+
+        user_clause = ("AND s.id IN (#{user_script_ids.join(',')})" if user_id)
+      end
       [subset_clause, locale_clause, user_clause].compact.join(' ')
     end
   end

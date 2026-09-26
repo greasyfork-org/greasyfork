@@ -1,10 +1,12 @@
 require 'securerandom'
 require 'devise'
 require 'digest'
+require 'memo_wise'
 
 class User < ApplicationRecord
   include MentionsUsers
   include UserIndexing
+  prepend MemoWise
 
   serialize :announcements_seen, type: Array, coder: YAML
 
@@ -252,8 +254,13 @@ class User < ApplicationRecord
   end
 
   def confirmed_or_identidied?
-    confirmed? || identities.any? || scripts.any?
+    confirmed? || any_scripts? || identities.any?
   end
+
+  def any_scripts?
+    scripts.any?
+  end
+  memo_wise :any_scripts?
 
   def in_confirmation_period?
     created_at > 5.minutes.ago

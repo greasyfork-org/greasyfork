@@ -96,20 +96,24 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html do
-        @by_sites = TopSitesService.get_top_by_sites(script_subset:, user_id: @user.id)
+        if @user.any_scripts?
+          @by_sites = TopSitesService.get_top_by_sites(script_subset:, user_id: @user.id)
 
-        @scripts = (@same_user || (!current_user.nil? && current_user.moderator?)) ? @user.scripts : @user.scripts.listable_including_libraries(script_subset)
-        @scripts = @scripts.includes(:users, :localized_attributes)
-        @user_has_scripts = !@scripts.empty?
+          @scripts = (@same_user || (!current_user.nil? && current_user.moderator?)) ? @user.scripts : @user.scripts.listable_including_libraries(script_subset)
+          @scripts = @scripts.includes(:users, :localized_attributes)
+          @user_has_scripts = !@scripts.empty?
 
-        @libraries = @scripts.not_deleted.where(script_type: :library)
-        @unlisted_scripts = @scripts.not_deleted.where(script_type: :unlisted)
-        @deleted_scripts = @scripts.deleted
-        @scripts = @scripts.not_deleted.where(script_type: :public)
+          @libraries = @scripts.not_deleted.where(script_type: :library)
+          @unlisted_scripts = @scripts.not_deleted.where(script_type: :unlisted)
+          @deleted_scripts = @scripts.deleted
 
-        all_displayable_scripts = ScriptsController.apply_filters(@scripts, params.reverse_merge(language: 'all'), script_subset)
-        @scripts = apply_pagination(all_displayable_scripts, default_per_page: 50)
-        @other_site_scripts = (script_subset == :sleazyfork) ? @user.scripts.listable(:greasyfork).count : 0
+          all_displayable_scripts = ScriptsController.apply_filters(@scripts, params.reverse_merge(language: 'all'), script_subset)
+          @scripts = apply_pagination(all_displayable_scripts, default_per_page: 50)
+          @other_site_script_count = (script_subset == :sleazyfork) ? @user.scripts.listable(:greasyfork).count : 0
+        else
+          @scripts = @libraries = @unlisted_scripts = @deleted_scripts = @scripts = all_displayable_scripts = Script.none
+          @other_site_script_count = 0
+        end
 
         if @user.banned?
           @bots = 'noindex'
@@ -131,7 +135,7 @@ class UsersController < ApplicationController
           flash.now[:alert] ||= t('scripts.integrity_hashes.user_notice_html', script_links: scripts_with_bad_hashes.map { |script| view_context.render_script(script) }.join(', ').html_safe, count: scripts_with_bad_hashes.count) if scripts_with_bad_hashes.any?
         end
 
-        @show_profile = !@user.banned? && UserRestrictionService.new(@user).allow_posting_profile?
+        @show_profile = @user.profile.present? && !@user.banned? && UserRestrictionService.new(@user).allow_posting_profile?
 
         @ad_method = choose_ad_method_for_user(displayed_scripts: all_displayable_scripts)
 
