@@ -1,4 +1,11 @@
+require 'net/smtp'
+
 class InactiveUserMailer < ApplicationMailer
+  rescue_from Net::SMTPSyntaxError do |exception|
+    Rails.logger.error("InactiveUserMailer delivery failed: #{exception.message}")
+    nil
+  end
+
   def notify(user)
     set_locale_for_user(user)
     @user = user
