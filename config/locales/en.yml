@@ -1974,3 +1974,9 @@ en:
         intro_html: Your appeal of the deletion of %{script} has been upheld by a moderator. The script is now undeleted and accessible publicly again.
         moderator_notes: "The moderator has commented:"
         outro: Please review %{rules_link:%{site_name}'s rules} to prevent further deletions in the future.
+    inactive_user:
+      subject: "Your account on Greasy Fork"
+      intro: "You are receiving this email because you created %{user_link:an account on Greasy Fork} on %{signup_date} but have not signed in to it for 5 years. To reduce the amount of data stored on Greasy Fork, we would like to delete your account if you do not intend on using it."
+      option_retain: "If you want to keep your account, please %{login_link:log in to it} and it will be preserved."
+      option_delete: "If you are OK with your account being deleted, do nothing, and it will be deleted automatically on %{deletion_date}. After this, if you choose to use Greasy Fork again, you will be able to create a new account."
+      outro: "In either case, we will send no further emails about this account deletion. If you have any questions, %{contact_link:please contact us}."

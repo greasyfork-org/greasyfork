@@ -39,6 +39,12 @@
     delete_old_notifications_job:
       interval: '1h'
       class: DeleteOldNotificationsJob
+    inactive_user_notification_job:
+      interval: '1h'
+      class: InactiveUserNotificationJob
+    inactive_user_delete_job:
+      interval: '1h'
+      class: InactiveUserDeleteJob
     akismet_submission_delete_job:
       interval: '1h'
       class: AkismetSubmissionDeleteJob

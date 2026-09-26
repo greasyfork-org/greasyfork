@@ -1,0 +1,4 @@
+<p><%= it('mailers.inactive_user.intro', user_link: user_url(@user, locale: @locale), signup_date: l(@user.created_at.to_date)) %></p>
+<p><%= it('mailers.inactive_user.option_retain', login_link: new_user_session_url(locale: @locale, return_to: Rails.application.routes.url_helpers.user_path(@user, locale: @locale))) %></p>
+<p><%= it('mailers.inactive_user.option_delete', deletion_date: l(@user.inactive_deletion_at.to_date)) %></p>
+<p><%= it('mailers.inactive_user.outro', contact_link: help_contact_url(locale: @locale)) %></p>

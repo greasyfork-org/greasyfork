@@ -6,6 +6,7 @@ require 'memo_wise'
 class User < ApplicationRecord
   include MentionsUsers
   include UserIndexing
+  include InactiveUser
   prepend MemoWise
 
   serialize :announcements_seen, type: Array, coder: YAML
