@@ -246,16 +246,18 @@
 
     <section>
       <h3><%= t('script_sets.calculated_list') %></h3>
-      <% script_count = @set.scripts(script_subset).count
-      if script_count == 0 %>
+      <% calculated_scripts = calculated_scripts_for_set(@set) %>
+      <% if calculated_scripts.nil? %>
+        <%= t('script_sets.calculated_list_timeout') %>
+      <% elsif calculated_scripts.empty? %>
         <%= t('script_sets.calculated_list_none') %>
       <% else %>
         <ul>
-          <% @set.scripts(script_subset).take(100).each do |script| %>
+          <% calculated_scripts.take(100).each do |script| %>
             <li><%= link_to script.name(request_locale), script %></li>
           <% end
-          if script_count > 100 %>
-            <li><%= t('script_sets.calculated_list_more', count: script_count - 100) %></li>
+          if calculated_scripts.length > 100 %>
+            <li><%= t('script_sets.calculated_list_more', count: calculated_scripts.length - 100) %></li>
           <% end %>
         </ul>
       <% end %>
