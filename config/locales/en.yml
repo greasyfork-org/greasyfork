@@ -1808,6 +1808,12 @@ en:
         content: Message
       script_lock_appeal:
         text: Appeal
+    errors:
+      models:
+        report:
+          attributes:
+            reference_script:
+              language_mismatch: "must be the same language as the reported script"
   errors:
     messages:
       # validation for when a script name is not provided

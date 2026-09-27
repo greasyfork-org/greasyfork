@@ -80,6 +80,14 @@ class Report < ApplicationRecord
   validates :explanation_markup, inclusion: { in: %w[html markdown text] }, presence: true
   validates :discussion_category, presence: true, if: -> { reason == REASON_WRONG_CATEGORY }
   validates :private_explanation, length: { maximum: 65_535 }
+  validate :reference_script_matches_item_language
+
+  def reference_script_matches_item_language
+    return unless item.is_a?(Script) && reference_script
+    return if item.language == reference_script.language
+
+    errors.add(:reference_script, :language_mismatch)
+  end
 
   def self.reporting_blocked_until
     recent_reports = resolved.where(created_at: 1.week.ago..).order(created_at: :desc, id: :desc).limit(5).to_a

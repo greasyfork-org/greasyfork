@@ -3,6 +3,33 @@ require 'test_helper'
 class ReportTest < ActiveSupport::TestCase
   include ActiveJob::TestHelper
 
+  test 'reference script must have the same language as the reported script' do
+    report = Report.new(
+      item: scripts(:style),
+      reference_script: scripts(:one),
+      reporter: users(:one),
+      reason: Report::REASON_UNAUTHORIZED_CODE,
+      script_url: 'https://example.com/original.user.css',
+      explanation_markup: 'text'
+    )
+
+    assert_not report.valid?
+    assert_equal ['must be the same language as the reported script'], report.errors[:reference_script]
+  end
+
+  test 'reference script with the same language is valid' do
+    report = Report.new(
+      item: scripts(:style),
+      reference_script: scripts(:style_antifeatures),
+      reporter: users(:one),
+      reason: Report::REASON_UNAUTHORIZED_CODE,
+      script_url: 'https://example.com/original.user.css',
+      explanation_markup: 'text'
+    )
+
+    assert report.valid?, report.errors.full_messages
+  end
+
   test 'move report on script discussion' do
     discussion = discussions(:script_discussion)
     category = discussion_categories(:greasyfork)
