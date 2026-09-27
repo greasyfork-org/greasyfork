@@ -500,6 +500,7 @@ sk:
       for_language_exclude: "Vylúčiť"
     calculated_list: "Vypočítaný zoznam skriptov"
     calculated_list_none: "(Žiadne)"
+    calculated_list_timeout: "Načítanie vygenerovaného zoznamu skriptov trvá príliš dlho. Túto zbierku si síce môžete uložiť, ale pri jej používaní môžu nastať problémy."
     calculated_list_more:
       one: "A %{count} ďalší..."
       few: "A %{count} ďalšie..."
@@ -1553,6 +1554,12 @@ sk:
         content: Správa
       script_lock_appeal:
         text: Odvolanie
+    errors:
+      models:
+        report:
+          attributes:
+            reference_script:
+              language_mismatch: "musí byť v tom istom jazyku ako nahlásený skript"
   errors:
     messages:
       script_missing_name: "potrebné - uveďte v @name"
@@ -1706,3 +1713,9 @@ sk:
         intro_html: Vaše odvolanie proti odstráneniu skriptu %{script} bolo potvrdené moderátorom. Skript bol obnovený a je znova prístupný verejnosti.
         moderator_notes: "Moderátor napísal:"
         outro: Prečítajte si %{rules_link:pravidlá %{site_name}} aby ste v budúcnosti zabránili ďalšiemu odstráneniu.
+    inactive_user:
+      subject: "Váš účet na Greasy Fork"
+      intro: "Tento e-mail ste dostali, pretože ste si %{user_link:vytvorili účet na Greasy Fork} dňa %{signup_date}, ale už 5 rokov ste sa do neho neprihlásili. S cieľom znížiť objem údajov uložených na Greasy Fork by sme radi váš účet odstránili, ak ho nemáte v úmysle používať."
+      option_retain: "Ak si chcete svoj účet ponechať, prosím, %{login_link:prihláste sa do neho} a účet zostane zachovaný."
+      option_delete: "Ak súhlasíte s odstránením vášho účtu, nemusíte robiť nič – účet bude automaticky odstránený dňa %{deletion_date}. Ak sa neskôr rozhodnete opäť používať Greasy Fork, budete si môcť vytvoriť nový účet."
+      outro: "V oboch prípadoch už nebudeme posielať žiadne ďalšie e-maily týkajúce sa zrušenia tohto účtu. Ak máte akékoľvek otázky, %{contact_link:kontaktujte nás}."
