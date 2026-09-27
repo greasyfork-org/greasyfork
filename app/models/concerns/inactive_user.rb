@@ -7,7 +7,7 @@ module InactiveUser
   included do
     scope :no_content, -> { where.missing(:scripts, :discussions, :comments, :reports_as_reporter) }
     scope :inactive_notifiable, -> { no_content.where(current_sign_in_at: ...INACTIVE_PERIOD.ago, inactive_notification_sent_at: nil).order(:current_sign_in_at) }
-    scope :inactive_deletable, -> { where(current_sign_in_at: ...INACTIVE_PERIOD.ago, inactive_notification_sent_at: ...DELETE_AFTER_NOTIFICATION.ago).order(:inactive_notification_sent_at) }
+    scope :inactive_deletable, -> { where('current_sign_in_at < inactive_notification_sent_at').where(inactive_notification_sent_at: ...DELETE_AFTER_NOTIFICATION.ago).order(:inactive_notification_sent_at) }
   end
 
   def inactive_deletion_at
