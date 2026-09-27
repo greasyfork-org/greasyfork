@@ -31,9 +31,9 @@ class UsersController < ApplicationController
 
     case params[:author]
     when '1'
-      with[:script_count] = { gte: 1 }
+      with[:"#{script_subset}_script_count"] = { gte: 1 }
     when '0'
-      with[:script_count] = 0
+      with[:"#{script_subset}_script_count"] = 0
     end
 
     if current_user&.moderator? && params[:same_ip]
