@@ -99,15 +99,15 @@ class UsersController < ApplicationController
         if @user.any_scripts?
           @by_sites = TopSitesService.get_top_by_sites(script_subset:, user_id: @user.id)
 
-          @scripts = (@same_user || (!current_user.nil? && current_user.moderator?)) ? @user.scripts : @user.scripts.listable_including_libraries(script_subset)
-          @scripts = @scripts.includes(:users, :localized_attributes)
-          @user_has_scripts = !@scripts.empty?
+          scripts = (@same_user || (!current_user.nil? && current_user.moderator?)) ? @user.scripts : @user.scripts.listable_including_libraries(script_subset)
+          scripts = scripts.includes(:users, :localized_attributes)
+          @user_has_scripts = !scripts.empty?
 
-          @libraries = @scripts.not_deleted.where(script_type: :library)
-          @unlisted_scripts = @scripts.not_deleted.where(script_type: :unlisted)
-          @deleted_scripts = @scripts.deleted
+          @libraries = scripts.not_deleted.where(script_type: :library)
+          @unlisted_scripts = scripts.not_deleted.where(script_type: :unlisted)
+          @deleted_scripts = scripts.deleted
 
-          all_displayable_scripts = ScriptsController.apply_filters(@scripts, params.reverse_merge(language: 'all'), script_subset)
+          all_displayable_scripts = ScriptsController.apply_filters(scripts.not_deleted.where(script_type: :public), params.reverse_merge(language: 'all'), script_subset)
           @scripts = apply_pagination(all_displayable_scripts, default_per_page: 50)
           @other_site_script_count = (script_subset == :sleazyfork) ? @user.scripts.listable(:greasyfork).count : 0
         else

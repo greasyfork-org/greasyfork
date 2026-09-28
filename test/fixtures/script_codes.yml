@@ -317,3 +317,17 @@ library_with_partial_meta:
     var foo = 'z';
     var bar = 'y';
   code_hash: 27e969ebfb2c56e9daf4ab45bf3782c592125c78
+
+unlisted:
+  id: 101
+  code: |
+    // ==UserScript==
+    // @name		A Test!
+    // @description		Unit test.
+    // @version 1.1
+    // @namespace http://greasyfork.local/users/1
+    // @include *
+    // @license MIT
+    // ==/UserScript==
+    var foo = 1;
+  code_hash: 27e969ebfb2c16e9daf4ab45bf3782c592125c78
