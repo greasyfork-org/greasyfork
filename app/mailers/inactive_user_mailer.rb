@@ -1,7 +1,7 @@
 require 'net/smtp'
 
 class InactiveUserMailer < ApplicationMailer
-  rescue_from Net::SMTPSyntaxError do |exception|
+  rescue_from Net::SMTPSyntaxError, Net::SMTPFatalError do |exception|
     Rails.logger.error("InactiveUserMailer delivery failed: #{exception.message}")
     nil
   end
