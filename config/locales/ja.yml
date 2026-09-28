@@ -10,6 +10,7 @@ ja:
       user_list: "ユーザー一覧"
       libraries: "ライブラリ"
       moderator_log: "管理担当者による対処の履歴"
+      privacy: "プライバシーポリシー"
   scripts:
     created_date: "作成日"
     updated_date: "更新日"
@@ -37,6 +38,10 @@ ja:
     downgrade: "バージョン%{version}へダウングレード"
     reinstall: "バージョン%{version}を再インストール"
     old_version_warning: "これはこのスクリプトの最新バージョンではありません。最新バージョンへの自動更新は行われませんが、インストールを続行しますか?"
+    post_install:
+      info_html: "%{script}がインストールされました。インストールで問題が発生した場合は %{help_link:ヘルプを確認}。%{site_name}のスクリプトの品質を維持するためには、皆様からのフィードバックが重要です。%{script}を使ってみたら、評価をご検討ください %{feedback_link:評価を投稿}."
+      promoted_script_intro: "こちらもおすすめ…"
+      similar_script_html: "%{name} - %{description}"
     library_instructions_html: "このスクリプトは単体で利用できません。右のようなメタデータを含むスクリプトから、ライブラリとして読み込まれます: %{code}"
     deleted_notice: "このスクリプトは削除されました"
     deleted_notice_with_reason: "このスクリプトは、%{report_link:こちらの通報}のため削除されました"
@@ -131,6 +136,7 @@ ja:
       month: 直近30日
       year: 直近365日
       all: 全期間
+    stats_library_usages_script_column: スクリプト
     derivatives_title: "%{script_name} に似ているスクリプト"
     derivatives_intro: "以下のスクリプトは、あなたのスクリプトを基にしている可能性があります（あるいはその逆）。ライセンス上の許可なくあなたのコードが使われている場合、そのスクリプトのフィードバックタブから通報してください。"
     derivatives_script_html: "%{script} 作者:%{user} ライセンス: %{license} %{diff_link:[差分]}"
@@ -170,6 +176,7 @@ ja:
     listing_sort_created: "作成日"
     listing_sort_updated: "更新日"
     listing_sort_name: "名前"
+    listing_sort_entry_locales: '言語'
     listing_filter_by_site_label: "対象サイト:"
     listing_filter_by_site_disable: "すべて"
     listing_filter_by_site_all_sites: "(すべてのサイト用)"
@@ -190,6 +197,10 @@ ja:
       me: 自分のスクリプト
       user: 作者 %{author_name}
     search_failed: 結果を読み込めませんでした。検索機能の一部が動作していない可能性があります。私たちはこの問題について通知を受けています。
+    listing_ratings_explanation: 次に受け取るレビューが良い評価になる確率（0～1）
+    listing_locale_explanation: スクリプトは、選択された言語で利用できます
+    listing_advanced_search_applied: "詳細検索が適用されました"
+    listing_advanced_search_clear: "クリア"
     import: "スクリプトのインポート"
     new: "スクリプトを投稿する"
     new_css: "スタイルを投稿する"
@@ -220,6 +231,7 @@ ja:
     post_new_script: "スクリプトを投稿"
     post_updated_script: "更新"
     type_1_html: "公開スクリプト – 誰でも閲覧・利用できるユーザースクリプト"
+    type_2_html: "限定公開スクリプト – %{site_name} のどこからもリンクされません。開発中のスクリプトや、他の人にとって役に立たないスクリプト向けです。URLを知っていれば、他の人でもアクセスできます。"
     type_3_html: "ライブラリ – <code>@require</code> によって他のスクリプトから読み込まれるスクリプト。インストールボタンは表示されません"
     override_warning_checkbox_label: "強制的に保存する"
     warning_version_not_incremented_html: "コードが更新されていますが、<code>@version</code> の値が大きくなっていません。すでにスクリプトをインストールしている人が、更新されたコードを取得できない可能性があります"
@@ -364,6 +376,7 @@ ja:
     install_help_dialog:
       js:
         firefox: スクリプトをインストールするには、%{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} や %{violentmonkey_link:Violentmonkey} のような拡張機能のインストールが必要です。
+        chrome: スクリプトをインストールするには、 %{tampermonkey_link:Tampermonkey} や %{violentmonkey_link:Violentmonkey}  のような拡張機能のインストールが必要です。
         opera: スクリプトをインストールするには、%{tampermonkey_link:Tampermonkey} や %{violentmonkey_link:Violentmonkey} のような拡張機能のインストールが必要です。
         safari: スクリプトをインストールするには、%{tampermonkey_link:Tampermonkey} や %{userscripts_link:Userscripts} のような拡張機能のインストールが必要です。
         edge: このスクリプトをインストールするには、%{tampermonkey_link:Tampermonkey}などの拡張機能をインストールする必要があります。
@@ -911,8 +924,10 @@ ja:
       developers_credit: "衆力は城を成す。%{site_name}は、多くの方々からのバグ報告や改善提案という礎の上に、%{developers_link:開発の匠}たちによって築き上げられてまいりました"
       translators_credit: "言葉は世の架け橋。%{site_name} の多言語化は、%{translators_link:Transifex 上の「Greasy Translation Force」}の手により成されております："
       icons_credit: " ブラウザーのアイコンは%{browserlogos} を使用しています"
+      ip_credit: "DB‑IPによるIP位置情報"
     help_with_greasymonkey: "Greasemonkey のヘルプ"
     help_with_tampermonkey: "Tampermonkey のヘルプ"
+    help_with_violentmonkey: "Tampermonkey のヘルプ"
     contact:
       title: "連絡を行う"
       content_html: >
@@ -983,6 +998,8 @@ ja:
           スクリプトは、ページからの購入時に作者が手数料を得るための何らかの操作を実行します。スクリプトの作者が手数料を得るような、紹介/アフィリエイトのリンクが含まれている、既存のリンクを紹介/アフィリエイトのリンクに書き換える、またはクーポンコードを提供する操作がそのスクリプトに含まれている。
       tracking_html: |
           <p>スクリプトに、ユーザーの活動を追跡するコードが含まれている。Google アナリティクスやユーザーの活動をスクリプトの作者に報告するような、独自の追跡コードが含まれます。</p>
+    api:
+      title: "%{site_name} API"
   search:
     script_search:
       title: "スクリプトの検索"
@@ -1272,6 +1289,7 @@ ja:
     edit_message_header: メッセージの編集
     update_message_submit: メッセージの更新
     moderator_notice: '%{site_name}の規則への侵害を通報したければ、そのスクリプト、ユーザー、コメントにある通報用のリンクを押してください。ダイレクトメッセージからの通報では、管理担当者はコンテンツを削除できません'
+    rate_limited: 開始できる会話の上限に達しました。しばらくしてからもう一度お試しください。
   screenshots:
     requirements: "画像は最大%{number}枚、PNG、GIF、JPEG、WebP に対応、それぞれ%{size}までです"
   moderator_actions:
@@ -1353,6 +1371,12 @@ ja:
         content: メッセージ
       script_lock_appeal:
         text: 異議
+    errors:
+      models:
+        report:
+          attributes:
+            reference_script:
+              language_mismatch: "報告されたスクリプトと同じ言語でなければなりません"
   errors:
     messages:
       script_missing_name: "は必須です – @name メタキーで指定"
@@ -1385,6 +1409,11 @@ ja:
     title: スクリプトのインポート
     intro: "%{site_name} には、どこかで既に公開されているスクリプトをインポートすることができます。例えば、バージョン管理システム（GitHubなど）、あなたのサーバー、他のユーザースクリプト管理サイトなどです"
     url_entry_label: インポートされるURLを、改行で区切って入力します。そのままの JS または CSS ファイルへのURLにしてください。
+    language:
+      label: 上記のURLは何語ですか？
+      detect: 拡張子に基づいて検出します。デフォルトはJavaScriptです。
+      js: JavaScript
+      css: CSS
     sync_type_label: "最初のインポート後、スクリプトを同期する必要があります:"
     additional_info_html: |
         <p>ソース管理システムのスクリプトを使う場合、特定のコミットではなくブランチを参照する URL になっているか確認してください。そうしないと更新されません。例: <code>https://bitbucket.org/username/reponame/raw/<b>ブランチ名</b>/script.user.js</code>にします。<code>https://bitbucket.org/username/reponame/raw/<b>コミットのハッシュ</b>/script.user.js</code>ではありません。</p>
@@ -1401,6 +1430,7 @@ ja:
       needs_description: "以下のスクリプトをインポートするには説明が必要:"
       existing: "以下のスクリプトは既にインポート済み:"
       failure: "以下のスクリプトをインポートできませんでした:"
+      addlibrary: "ライブラリとして追加"
   mailers:
     script_report:
       report_created_offender:
