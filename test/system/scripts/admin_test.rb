@@ -55,6 +55,16 @@ class ScriptAdminTest < ApplicationSystemTestCase
     assert_equal 2, script.reload.promoted_script_id
   end
 
+  test 'previewing synced additional info preserves UTF-8' do
+    script = Script.find(1)
+    login_as(script.users.first, scope: :user)
+    visit admin_script_url(script, locale: :en)
+    fill_in 'additional_info_sync[0][sync_identifier]', with: 'https://www.cogsci.ed.ac.uk/~richard/unicode-sample.html'
+    click_button 'preview-sync-additional-info-0'
+
+    assert_selector '#preview-sync-additional-info-results-0', text: '豈 更 車 賈 滑 串 句'
+  end
+
   test 'setting a sync URL using the wrong kind of GitHub URL' do
     ScriptImporter::TestImporter.expects(:download).returns(<<~JS)
       // ==UserScript==

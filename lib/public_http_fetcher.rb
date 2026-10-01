@@ -16,7 +16,9 @@ class PublicHttpFetcher
         uri.to_s,
         scheme_whitelist:,
         http_options: { read_timeout: }
-      )
+      ) do |res|
+        res.body_encoding = :response
+      end
     end
 
     return response.body.to_s if response.code.to_i.between?(200, 299)
