@@ -136,6 +136,7 @@ ja:
       month: 直近30日
       year: 直近365日
       all: 全期間
+    stats_library_usages_intro_html: "以下のスクリプトは、このライブラリの %{site_name} URLを使用しています。<code>@require</code>:"
     stats_library_usages_script_column: スクリプト
     derivatives_title: "%{script_name} に似ているスクリプト"
     derivatives_intro: "以下のスクリプトは、あなたのスクリプトを基にしている可能性があります（あるいはその逆）。ライセンス上の許可なくあなたのコードが使われている場合、そのスクリプトのフィードバックタブから通報してください。"
@@ -487,6 +488,7 @@ ja:
       for_language_exclude: "除外に登録"
     calculated_list: "登録された条件に合致するスクリプト一覧"
     calculated_list_none: "(なし)"
+    calculated_list_timeout: "計算されたスクリプト一覧の読み込みに時間がかかりすぎています。このセットは保存できますが、使用時に問題が生じる可能性があります。"
     calculated_list_more:
       other: "(以下%{count}件省略)"
     already_included: "「%{name}」はすでに登録されています"
@@ -510,15 +512,41 @@ ja:
     explain_user_scripts_heading: "ユーザースクリプトについて"
     explain_user_scripts_html: "ユーザースクリプトは、あなたにサイト閲覧時の主導権を与えます。サイトを使いやすく。機能を追加する。余分なものを消す、など。いったんインストールすれば自動でサイトを改善します。%{site_name} は、ユーザーが作成し投稿したスクリプトを共有しています。自由にインストールでき使うのも簡単です"
     installing_step1_header: "1. ユーザースクリプト管理ツールをインストール"
+    browser_no_additional_software_indicator: "%{browser_link:%{browser_name}} (追加のソフトウェアは必要ありません)"
     installing_step1_caption: "Tampermonkey (Chrome 版)"
     installing_step1_description_html: >
         <p>ユーザースクリプトを使うには、まずユーザースクリプト管理ツールをインストールする必要があります。使用できるスクリプト管理ツールの種類はブラウザにより異なります。</p>
     desktop_browsers:
       title: デスクトップ
+      browser_list_html: |
+          <ul>
+          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} or %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, or %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} or %{safari_userscripts_link:Userscripts}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} or %{edge_violentmonkey_link:Violentmonkey}</li>
+          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} or %{opera_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          %{standalone_managers_html}
+          </ul>
     android_browsers:
       title: モバイル (Android)
+      browser_list_html: |
+          <ul>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, or %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+          <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+          %{standalone_managers_html}
+          %{locale_specific_browsers}
+          </ul>
     ios_browsers:
       title: モバイル (iOS)
+      browser_list_html: |
+          <ul>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} or %{safari_userscripts_link:Userscripts}</li>
+          %{standalone_managers_html}
+          </ul>
     installing_step2_header: "2. スクリプトをインストール"
     installing_step2_caption: "ユーザースクリプトのインストールボタン"
     installing_step2_description_html: >
@@ -924,6 +952,7 @@ ja:
       developers_credit: "衆力は城を成す。%{site_name}は、多くの方々からのバグ報告や改善提案という礎の上に、%{developers_link:開発の匠}たちによって築き上げられてまいりました"
       translators_credit: "言葉は世の架け橋。%{site_name} の多言語化は、%{translators_link:Transifex 上の「Greasy Translation Force」}の手により成されております："
       icons_credit: " ブラウザーのアイコンは%{browserlogos} を使用しています"
+      donors_credit: "%{site_name} は %{donor_links} の寄付によって運営されています。 寄付を検討していただけると幸いです。%{admin_email_link:寄付をする} "
       ip_credit: "DB‑IPによるIP位置情報"
     help_with_greasymonkey: "Greasemonkey のヘルプ"
     help_with_tampermonkey: "Tampermonkey のヘルプ"
@@ -937,6 +966,26 @@ ja:
           に投稿できます。}</p> <p>管理者だけが読めるようにしたい質問やコメントがあれば、%{admin_email_link:メールを送ってください}。</p>
     privacy_policy:
       title: "プライバシーポリシー"
+      intro_html: >
+          <p>このページでは、%{site_name} がユーザーをどのように記録または追跡するかについて説明しています。何かご不明な点がございましたら、%{admin_email_link:メールを送ってください}</p>
+      server_logs_html: >
+          <h2>サーバーログ</h2><p>%{site_name} では、一般的なサーバーログの形式に従って、すべてのリクエストを記録しています。記録される情報には、閲覧したページ、IPアドレス、ユーザーエージェント文字列が含まれます。これらのログは、デバッグおよびサーバー分析のために使用し、データは1週間保存されます。これらデータは、第三者に共有したり、一般に公開されたりすることはありません。</p>
+      script_statistics_html: >
+          <h2>スクリプトの統計情報</h2><p>%{site_name}では統計情報の作成を目的として、インストールおよび更新のリクエストをIPアドレス情報とともに記録しています。この情報は1日間保持され、その後、IPアドレスが含まれないよう集計され公開されます。
+          IPアドレスに紐づく個別のデータは共有されたり公開されたりするこはありません。</p>
+      cookies_html: >
+          <h2>Cookie（ログインしていない場合）</h2><p>%{site_name} では、一部の機能を利用するために、一時的なセッションCookieが使用されることがあります。これらのCookieは永続的に保存されるようには設定されておらず、ブラウザを閉じると削除される場合があります。（ブラウザの設定によって異なります）</p>
+      user_accounts_html: >
+          <h2>ユーザーアカウント</h2><p>%{site_name} では、スクリプトの投稿、ディスカッションへの参加、およびその他のサイトの機能を利用を行うには、アカウントの作成が必要です。アカウント作成の際、ユーザー名、IPアドレス、メールアドレス、ユーザーエージェントなどの情報が保存されます。ユーザー名は公開されます。その他のデータは公開されることも、第三者と共有されることもありません。保存したデータは、アカウントを削除することで削除されます。</p><p>%{site_name}では、アカウント作成時にご登録いただいたメールアドレス宛に、パスワードの再設定依頼などの重要な情報をお送りいたします。特別な状況においては、%{site_name}の管理者がこのメールアドレスを使用してユーザーに連絡する場合もあります。</p><p>%{site_name}では、既定で、アカウント作成時に登録されたメールアドレス宛に通知メールが送信されます。これらの通知メールには、購読しているディスカッションへの新しいコメントや、自身が作成したスクリプトに投稿された新しいレビューなどが含まれます。これらの通知は、ユーザーのプロフィール設定からオフにすることができます。</p><p>ログイン中に実行された操作（スクリプトの投稿やコメントの投稿など）は、他のユーザーにも表示されます。</p><p>アカウントにログインする際に「ログインを記憶する」オプションがチェックされている場合、%{site_name}はログイン状態を維持するために永続的なCookieが設定されます。</p>
+      external_logins_html: >
+          <h2>外部ログイン</h2>%{site_name}では、Google、GitHub、GitLabなどの外部サービスを利用してログインすることができます。外部サービスを利用してログインする場合、%{site_name}はそのサービスからユーザー名とメールアドレスの情報を受け取り、それを用いてアカウントを作成します。この情報は、「ユーザーアカウント」の項に記載されているとおりに利用されます。<p>
+      posted_scripts_html: >
+          <h2>%{site_name} に投稿されているスクリプト</h2><p>%{site_name}にはユーザーが生成したコンテンツが含まれており、そのスクリプトをインストールすると、ユーザーが追跡される可能性があります。</p>
+      data_retention_html: >
+          <h2>データの保存期間</h2><p>%{site_name} では、ユーザーアカウントのデータおよびユーザーが投稿したコンテンツ（スクリプトやコメントなど）を無期限に保存します。
+          ユーザーは、%{delete_user_link:ここ} からいつでも自分のアカウントや投稿したデータを削除することができます。</p><p>IPアドレス、ユーザーエージェント、閲覧したページなどの匿名化された閲覧データは、アクセス後1週間保存されます。</p>
+      third_party_libraries_html: >
+          <h2>サードパーティ製ライブラリ</h2><p>%{site_name} には、アクセス統計の収集や広告の表示を目的として、外部のコードが組み込まれている場合があります。これらのライブラリには、追跡ロジックが含まれている場合があります。</p>
     user_css_to_user_js:
       title: ユーザーCSSのユーザーJSへの変換
       content_html: |
@@ -1000,6 +1049,24 @@ ja:
           <p>スクリプトに、ユーザーの活動を追跡するコードが含まれている。Google アナリティクスやユーザーの活動をスクリプトの作者に報告するような、独自の追跡コードが含まれます。</p>
     api:
       title: "%{site_name} API"
+      json_api_html: |
+          <h3>JSON API</h3>
+          <p> %{site_name}では、データにアクセスするための読み取り専用のJSONおよびJSONP APIを提供しています。%{site_name}のページのHTMLソースにある %{json_reference} または %{jsonp_reference} を探すことで確認できます。</p>
+      prefilled_updates_html: |
+          <h3>事前入力された更新情報</h3>
+
+          <p>更新用のAPIは提供されていませんが、専用の事前入力URLを使えば、更新フォームに内容をあらかじめ入力できます。ユーザーは内容を確認してから更新を送信できます。このURLを使用すると、POSTリクエストに通常適用されるXSS対策を回避できます。</p>
+
+          <ul>
+          <li>URL:  %{new_script_prefill_snippet}（新規スクリプトの場合）、%{existing_script_prefill_snippet}  （既存のスクリプトを更新する場合）</li>
+          <li>メソッド: %{method_snippet} </li>
+          <li>コードパラメータ: %{code_parameter_snippet}</li>
+          <li>コンテンツタイプ： %{content_type_snippet}</li>
+          <li>リクエストには、ユーザーのセッション Cookie を必ず含める必要があります。</li>
+          </ul>
+      webhook_notifications_html: |
+          <h3>ウェブフック通知</h3>
+          <p>%{site_name} では、GitHub、GitLab、Bitbucketからのプッシュ通知やリリースのウェブフック通知に基づいて、更新を確認することができます。%{webhook_info_link:ウェブフックに関する情報を確認}</p>
   search:
     script_search:
       title: "スクリプトの検索"
@@ -1430,6 +1497,7 @@ ja:
       needs_description: "以下のスクリプトをインポートするには説明が必要:"
       existing: "以下のスクリプトは既にインポート済み:"
       failure: "以下のスクリプトをインポートできませんでした:"
+      notuserscript: "以下のスクリプトをインポートできませんでした。直接インストールすることを想定していないJSライブラリである場合は、リンクをクリックして追加することができます。"
       addlibrary: "ライブラリとして追加"
   mailers:
     script_report:
@@ -1528,3 +1596,9 @@ ja:
         intro_html: '%{script}の削除に対するあなたの異議は、管理担当者により承認されました。このスクリプトの削除は取り消され、再び公開されており誰でもアクセスできます'
         moderator_notes: "管理担当者がコメントしました:"
         outro: 今後も削除されないためには、%{rules_link:%{site_name} の規則}をご確認ください。
+    inactive_user:
+      subject: "あなたのGreasy Forkアカウント"
+      intro: "このメールは、あなたが %{signup_date} で %{user_link:Greasy Forkアカウント} を5年間ログインされていないためです。Greasy Forkに保存されているデータ量を削減するため、今後ご利用の予定がない場合は、アカウントを削除させていただきたいと考えております。"
+      option_retain: "アカウントを引き続きご利用になりたい場合は  %{login_link:ログイン} していただくことでアカウントが保持されます。"
+      option_delete: "アカウントの削除に問題がなければ、何も操作を行わないでください。%{deletion_date}    に自動的に削除されます。削除後、Greasy Forkを再度ご利用になる場合は、新しいアカウントを作成することができます。"
+      outro: "いずれの場合も、このアカウントの削除に関するメールはこれ以降送信いたしません。ご不明な点がございましたら %{contact_link:こちらからお問い合わせください}."
