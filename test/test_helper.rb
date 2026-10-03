@@ -4,7 +4,7 @@ require 'rails/test_help'
 require 'minitest/autorun'
 require 'mocha/minitest'
 require 'application_system_test_case'
-require 'sidekiq/testing'
+Sidekiq.testing!(:fake)
 
 module ActiveSupport
   class TestCase

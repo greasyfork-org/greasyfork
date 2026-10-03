@@ -206,7 +206,7 @@ GEM
       rubocop (>= 1)
       smart_properties
     erubi (1.13.1)
-    et-orbi (1.4.0)
+    et-orbi (1.4.2)
       tzinfo
     faraday (2.14.3)
       faraday-net_http (>= 2.0, < 3.5)
@@ -219,7 +219,7 @@ GEM
     ffi (1.17.4-x86_64-linux-gnu)
     ffi-icu (0.5.3)
       ffi (~> 1.0, >= 1.0.9)
-    fugit (1.12.0)
+    fugit (1.14.0)
       et-orbi (~> 1.4)
       raabro (~> 1.4)
     gapic-common (1.3.0)
@@ -398,7 +398,7 @@ GEM
       bigdecimal (>= 2.0)
       get_process_mem (>= 0.2)
       puma (>= 2.7)
-    raabro (1.4.0)
+    raabro (1.5.0)
     racc (1.8.1)
     rack (3.2.7)
     rack-attack (6.8.0)
@@ -540,16 +540,16 @@ GEM
       bigdecimal
       concurrent-ruby (~> 1.0, >= 1.0.2)
       logger
-    sidekiq (7.3.9)
-      base64
-      connection_pool (>= 2.3.0)
-      logger
-      rack (>= 2.2.4)
-      redis-client (>= 0.22.2)
-    sidekiq-scheduler (6.0.1)
+    sidekiq (8.1.7)
+      connection_pool (>= 3.0.0)
+      json (>= 2.16.0)
+      logger (>= 1.7.0)
+      rack (>= 3.2.0)
+      redis-client (>= 0.29.0)
+    sidekiq-scheduler (6.0.2)
       rufus-scheduler (~> 3.2)
       sidekiq (>= 7.3, < 9)
-    sidekiq-unique-jobs (8.0.11)
+    sidekiq-unique-jobs (8.1.0)
       concurrent-ruby (~> 1.0, >= 1.0.5)
       sidekiq (>= 7.0.0, < 9.0.0)
       thor (>= 1.0, < 3.0)
@@ -678,7 +678,7 @@ DEPENDENCIES
   selenium-webdriver
   sentry-rails
   sentry-ruby
-  sidekiq (< 8)
+  sidekiq
   sidekiq-scheduler
   sidekiq-unique-jobs
   sidekiq-worker-killer
@@ -751,13 +751,13 @@ CHECKSUMS
   erb (6.0.7) sha256=c5ca6dc25b0ef974a44dc8f59fe847577122483b1968a38dec305c60bf91ee92
   erb_lint (0.9.0) sha256=dfb5e40ad839e8d1f0d56ca85ec9a7ac4c9cd966ec281138282f35b323ca7c31
   erubi (1.13.1) sha256=a082103b0885dbc5ecf1172fede897f9ebdb745a4b97a5e8dc63953db1ee4ad9
-  et-orbi (1.4.0) sha256=6c7e3c90779821f9e3b324c5e96fda9767f72995d6ae435b96678a4f3e2de8bc
+  et-orbi (1.4.2) sha256=bb555dae668419cb24caa2a293a170e58be6d4df1e017c51f5030bdc133cd20c
   faraday (2.14.3) sha256=1882247e6766615c8220b4392bf1d27f6ebb63d8e28267587cef1fb0bf37f278
   faraday-net_http (3.4.4) sha256=0e78af151747ed1b00f33e25973b4bc220d7f16c00c39676817c8b12331eb588
   faraday-retry (2.4.0) sha256=7b79c48fb7e56526faf247b12d94a680071ff40c9fda7cf1ec1549439ad11ebe
   ffi (1.17.4-x86_64-linux-gnu) sha256=9d3db14c2eae074b382fa9c083fe95aec6e0a1451da249eab096c34002bc752d
   ffi-icu (0.5.3) sha256=9881e8a60a45c79d22fc78b0ea817873589a9c0dd452e39ce6ff075ee83bf11c
-  fugit (1.12.0) sha256=033ddf76b3b0149519be6e53ed83954a4df304b8588bafd48284b2a383ff6503
+  fugit (1.14.0) sha256=e311a9cc85a54bb67649df45060e721282a1e2c8ebad40e41874a3a7d576f37e
   gapic-common (1.3.0) sha256=4e5d9be1effb7366e2cda13c0f44922285d5613ac8de8b9b18c2c835fe4faa91
   get_process_mem (0.2.7) sha256=4afd3c3641dd6a817c09806c7d6d509d8a9984512ac38dea8b917426bbf77eba
   globalid (1.4.0) sha256=037f12fbf1d9d7a014d501c2d5c77356fd4ddd96d7a7991d6700bba96706f427
@@ -833,7 +833,7 @@ CHECKSUMS
   public_suffix (7.0.5) sha256=1a8bb08f1bbea19228d3bed6e5ed908d1cb4f7c2726d18bd9cadf60bc676f623
   puma (8.0.2) sha256=c8ed871dfbbe66448ea9ffd46692342d9804d4071522b52b5331b7b6e7b686fb
   puma_worker_killer (1.0.0) sha256=12dc54feecb1758df70d9f4788841423c5416aa370feda4e51e2112a5ff909e9
-  raabro (1.4.0) sha256=d4fa9ff5172391edb92b242eed8be802d1934b1464061ae5e70d80962c5da882
+  raabro (1.5.0) sha256=3f998a7bc84f9c84df3ab580634d2e0a5bda4f0841168d56035f529c9877440a
   racc (1.8.1) sha256=4a7f6929691dbec8b5209a0b373bc2614882b55fc5d2e447a21aaa691303d62f
   rack (3.2.7) sha256=93e13e1c24f93556671d85d2d79fa228c3485815c50d7e2f265b5330c6528fb7
   rack-attack (6.8.0) sha256=f2499fdebf85bcc05573a22dff57d24305ac14ec2e4156cd3c28d47cafeeecf2
@@ -882,9 +882,9 @@ CHECKSUMS
   selenium-webdriver (4.49.0) sha256=b430f091a3cababb356b6f6132e0e4f385b017819355f563557e1537819edc89
   sentry-rails (7.0.0) sha256=6ac6a010e088632e46710ce42db75aa5281a6b52a547efee10568cc2ed80605a
   sentry-ruby (7.0.0) sha256=e9616ff521355a983fad404ca575d8bb1f1949a8cac42a7a893dd02156bcdb1a
-  sidekiq (7.3.9) sha256=1108712e1def89002b28e3545d5ae15d4a57ffd4d2c25d97bb1360988826b5a7
-  sidekiq-scheduler (6.0.1) sha256=e1fc04e851a3e2d9896bc6ab00f03d790fef8923bb56915e5b141804bca34062
-  sidekiq-unique-jobs (8.0.11) sha256=63461bb943645d106f8e6eb10c773c231a53cf3781858158425c775484f1e181
+  sidekiq (8.1.7) sha256=91ad48c7e6c32e1846bf1d5b74c27948758049b93fed0cb539f8d586c7de3415
+  sidekiq-scheduler (6.0.2) sha256=1065f1a989e750849de1d23d1f34338c104ed6ec5a6dc22a2620c5af54a2d6fc
+  sidekiq-unique-jobs (8.1.0) sha256=6a7eaa61ac408197a542350df905687b506acae2f485da03b11d28b1c367dc35
   sidekiq-worker-killer (1.1.0) sha256=454b7e51f7241fef11e6541f490d8a9c79d0f5294e12f906962fd1511ff68df3
   signet (0.22.0) sha256=b76d495ccb07ad35dbc89f3e920665a9d8ed717141955034005d7843dcfe4780
   simple_po_parser (1.1.6) sha256=122687d44d3de516a0e69e2f383a4180f5015e8c5ed5a7f2258f2b376f64cbf3
