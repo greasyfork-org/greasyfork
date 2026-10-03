@@ -6,7 +6,6 @@ gem 'active_storage_validations'
 gem 'akismet'
 gem 'aws-sdk-s3', require: false
 gem 'bootsnap'
-gem 'connection_pool', '< 3.0' # https://github.com/mperham/connection_pool/issues/211
 gem 'csv'
 gem 'daemons'
 gem 'detect_language'
