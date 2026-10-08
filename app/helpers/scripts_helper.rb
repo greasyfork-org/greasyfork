@@ -3,6 +3,9 @@ require 'memo_wise'
 module ScriptsHelper
   prepend MemoWise
 
+  BY_SITE_PARAM_PATTERN = /[a-z0-9\-.*]+/i
+  BY_SITE_PARAM_FULL_STRING_PATTERN = /\A#{BY_SITE_PARAM_PATTERN}\z/
+
   def script_tab_link(path, label, additional_current_check: false)
     label = "<span>#{h label}</span>".html_safe
 
@@ -169,6 +172,6 @@ module ScriptsHelper
   end
 
   def current_script_listing_path(**args)
-    (params[:site].present? && /[a-z0-9\-.*]*?/i.match?(params[:site])) ? by_site_scripts_path(params[:site], **args) : scripts_path(**args)
+    (params[:site].present? && BY_SITE_PARAM_FULL_STRING_PATTERN.match?(params[:site])) ? by_site_scripts_path(params[:site], **args) : scripts_path(**args)
   end
 end
