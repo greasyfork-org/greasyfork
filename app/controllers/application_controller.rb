@@ -194,6 +194,14 @@ class ApplicationController < ActionController::Base
 
   # Modified params to ensure the passed param names are Integers or nil.
   def ensure_integer_params(*param_names)
+    ensure_params_of_type(*param_names, conversion_method: :to_i, default_conversion: 0)
+  end
+
+  def ensure_float_params(*param_names)
+    ensure_params_of_type(*param_names, conversion_method: :to_f, default_conversion: 0.0)
+  end
+
+  def ensure_params_of_type(*param_names, conversion_method:, default_conversion:)
     param_names.each do |param_name|
       pv = params[param_name]
       next if pv.nil?
@@ -203,14 +211,16 @@ class ApplicationController < ActionController::Base
         next
       end
 
-      # to_i below will give 0 for non-numbery things, but we still want to allow a 0.
-      if pv == '0'
-        params[param_name] = 0
+      # Some conversion methods will return a certain value for things out of type, for example
+      # .to_i returns 0 for non-numeric strings. If we get that value, we want to keep it as is,
+      # while making the out-of-type values nil.
+      if pv == default_conversion.to_s
+        params[param_name] = default_conversion
         next
       end
 
-      pv = pv.to_i
-      if pv == 0
+      pv = pv.send(conversion_method)
+      if pv == default_conversion
         params[param_name] = nil
         next
       end

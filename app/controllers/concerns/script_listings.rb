@@ -430,6 +430,7 @@ module ScriptListings
       es_field_name = field_data[:index_name] || field
       case field_data[:type]
       when :integer
+        ensure_integer_params(field)
         field_value = params[field].to_i
         case params["#{field}_operator"]
         when 'eq'
@@ -442,6 +443,7 @@ module ScriptListings
           # Ignore any other operator
         end
       when :float
+        ensure_float_params(field)
         field_value = params[field].to_f
         case params["#{field}_operator"]
         when 'eq'
@@ -460,7 +462,7 @@ module ScriptListings
           Time.zone
         end
         field_value = begin
-          time_zone.parse(params[field])
+          time_zone.parse(params[field]) if params[field].is_a?(String)
         rescue ArgumentError
           nil
         end
