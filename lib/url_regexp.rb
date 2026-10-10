@@ -34,7 +34,7 @@ class UrlRegexp
       group.char
     when Regexp::Expression::Literal
       group.to_s
-    when Regexp::Expression::CharacterType::Any, Regexp::Expression::CharacterType::NonSpace, Regexp::Expression::CharacterType::Word, Regexp::Expression::CharacterType::NonDigit
+    when Regexp::Expression::CharacterType::Any, Regexp::Expression::CharacterType::NonSpace, Regexp::Expression::CharacterType::Word, Regexp::Expression::CharacterType::NonDigit, Regexp::Expression::CharacterType::Hex
       'a'
     when Regexp::Expression::CharacterType::NonWord
       '-'

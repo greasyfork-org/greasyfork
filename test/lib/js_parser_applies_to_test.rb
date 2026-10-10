@@ -204,4 +204,8 @@ class JsParserAppliesToTest < ActiveSupport::TestCase
   test 'atomic' do
     assert_equal [{ text: 'greasyfork.org', domain: true, tld_extra: false }], get_applies_to(['/https?\:\/\/(?>greasyfork)\.org/'])
   end
+
+  test '\h' do
+    assert_equal [{ text: 'greasyfork.org', domain: true, tld_extra: false }], get_applies_to(['/https:\/\/greasyfork\.org\/\h/'])
+  end
 end
