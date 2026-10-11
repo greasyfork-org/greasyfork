@@ -21,8 +21,6 @@ end
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-require_relative '../lib/middleware/user_request_logger'
-
 module Greasyfork
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
@@ -43,7 +41,6 @@ module Greasyfork
     config.exceptions_app = routes
 
     config.ip_address_tracking = true
-    config.middleware.insert_after ActionDispatch::RemoteIp, Middleware::UserRequestLogger
   end
 end
 

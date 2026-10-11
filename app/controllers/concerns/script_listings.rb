@@ -329,8 +329,8 @@ module ScriptListings
   def load_scripts_for_index_with_es(for_json: false)
     with = es_options_for_request
 
-    if params[:entry_locales].present?
-      with[:locale] = params[:entry_locales].map(&:to_i)
+    if params[:entry_locales].is_a?(Array)
+      with[:locale] = params[:entry_locales]
     elsif @search_locale
       with[:locale] = @search_locale
     end
