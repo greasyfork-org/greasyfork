@@ -499,6 +499,7 @@ fr:
       for_language_exclude: "Exclure"
     calculated_list: "Liste des scripts calculés"
     calculated_list_none: "(Aucun)"
+    calculated_list_timeout: "Le chargement de la liste de scripts calculée prend trop de temps. Vous pouvez toujours enregistrer cet ensemble, mais vous pourriez rencontrer des problèmes pour l'utiliser."
     calculated_list_more:
       one: "Et %{count} de plus"
       many: "Et %{count} de plus"
@@ -1017,6 +1018,74 @@ fr:
           seul l'administrateur peut voir? %{admin_email_link:Envoyer un e-mail.}</p>
     privacy_policy:
       title: "Politique de confidentialité"
+      intro_html: >
+          <p>Cette page décrit comment  %{site_name} enregistrera ou suivra les utilisateurs.
+          Si vous avez des inquiétudes,  %{admin_email_link:envoyez un e-mail à l'administrateur}.</p>
+      server_logs_html: >
+          <h2>Server logs</h2> <p>%{site_name} enregistre toutes les requêtes de la
+          manière typique d'un journal de serveur. Les informations enregistrées incluent
+          les pages visitées, l'adresse IP et la chaîne de l'agent utilisateur. Ces
+          journaux sont destinés au débogage et à l'analyse du serveur. Les données
+          sont conservées pendant une semaine. Ces données ne sont ni partagées ni
+          rendues publiques.</p>
+      script_statistics_html: >
+          <h2>Statistiques de script</h2> <p>Afin de générer des statistiques,  %{site_name}
+          enregistre les demandes d'installation et de mise à jour avec les informations
+          d'adresse IP. Ces informations sont conservées pendant une journée, puis
+          sont agrégées pour ne plus inclure l'adresse IP. Les données spécifiques
+          à l'adresse IP ne sont pas partagées ni rendues publiques, contrairement
+          aux données agrégées.</p>
+      cookies_html: >
+          <h2>Cookies (lorsque vous n'êtes pas connecté)</h2> <p>%{site_name}  peut
+          définir des cookies de session temporaires pour permettre certaines fonctionnalités
+          du site. Ces cookies ne sont pas configurés pour persister et peuvent être
+          effacés à la fermeture du navigateur (en fonction des paramètres du navigateur).</p>
+      user_accounts_html: >
+          <h2>Comptes d'utilisateurs</h2> <p>%{site_name} oblige les utilisateurs
+          à créer un compte pour publier des scripts, participer à des discussions
+          et accéder à certaines autres fonctionnalités du site.  Lors de la création
+          d'un compte, des informations telles que le nom d'utilisateur, l'adresse
+          IP, l'adresse e-mail et l'agent utilisateur peuvent être stockées.  Le nom
+          d'utilisateur sera affiché publiquement.  Aucune autre donnée ne sera affichée
+          publiquement ou partagée avec des tiers.  Ces données peuvent être supprimées
+          en supprimant le compte.</p> <p>%{site_name} utilisera l'adresse e-mail
+          fournie lors de la création d'un compte pour envoyer des informations importantes
+          telles que des demandes de réinitialisation de mot de passe.  Dans des situations
+          particulières, l'administrateur de %{site_name} peut également utiliser
+          cette adresse e-mail pour contacter les utilisateurs.</p> <p>%{site_name}
+          enverra par défaut des e-mails de notification à l'adresse fournie lors
+          de la création d'un compte.  Ces e-mails de notification couvrent des sujets
+          tels que les nouveaux commentaires sur les discussions auxquelles vous êtes
+          abonné et les nouvelles critiques publiées sur les scripts créés.  Ces notifications
+          peuvent être désactivées à partir des paramètres du profil de l'utilisateur.</p>
+          <p>Les actions effectuées lors de la connexion, par exemple la publication
+          de scripts et de commentaires, seront rendues visibles aux autres utilisateurs.</p>
+          <p>Si l'option "Se souvenir de moi" est cochée lors de la connexion à un
+          compte, %{site_name} définira un cookie persistant pour conserver l'état
+          de connexion. </p>
+      external_logins_html: >
+          <h2>Connexions externes</h2> <p>%{site_name}  permet aux utilisateurs de
+          se connecter à l'aide de services externes tels que Google, GitHub et GitLab.
+          Lors de la connexion avec un service externe, %{site_name} recevra le nom
+          d'utilisateur et les informations de l'email de ce service et les utilisera
+          pour créer un compte. Ces informations seront utilisées comme décrit dans
+          la section « Comptes d'utilisateurs ».</p>
+      posted_scripts_html: >
+          <h2>Les scripts publiés sur %{site_name}</h2> <p>%{site_name}  contiennent
+          du contenu généré par les utilisateurs, et les scripts publiés peuvent être
+          en mesure de suivre les utilisateurs s'ils installent ce script.</p>
+      data_retention_html: >
+          <h2>Rétention des données</h2> <p>%{site_name}  conserve indéfiniment les
+          données du compte utilisateur et le contenu publié par l'utilisateur (tel
+          que les scripts et les commentaires). Les utilisateurs peuvent supprimer
+          leurs comptes et les données publiées à tout moment  %{delete_user_link:ici}.</p>
+          <p>Les données de navigation anonymes, telles que l'adresse IP, l'agent
+          utilisateur et les pages visitées, sont conservées pendant une semaine après
+          l'accès.</p>
+      third_party_libraries_html: >
+          <h2>Bibliothèques tierces</h2> <p>%{site_name}  peuvent inclure du code
+          tiers pour collecter des statistiques ou afficher des publicités sur le
+          site. Ces bibliothèques peuvent inclure une logique de suivi.</p>
     user_css_to_user_js:
       title: 'Conversion du CSS en JS '
       content_html: |
@@ -1079,6 +1148,24 @@ fr:
           <p>Le script comprend du code pour suivre l'activité des utilisateurs. Cela inclut des trackers tels que Google Analytics ou un code de suivi personnalisé qui signale l'activité de l'utilisateur à l'auteur du script.</p>
     api:
       title: "%{site_name} API"
+      json_api_html: |
+          <h3>JSON API</h3>
+          <p>%{site_name} fournit une API JSON et JSONP en lecture seule pour accéder aux données. Dans la source HTML des pages sur %{site_name}, recherchez %{json_reference} et %{jsonp_reference} pour les URL.</p>
+      prefilled_updates_html: |
+          <h3>Mises à jour pré-remplies</h3>
+
+          <p>Bien qu'il n'y ait pas d'API pour les mises à jour, vous pouvez utiliser une URL de pré-remplissage spéciale pour remplir le formulaire de mise à jour. L'utilisateur peut ensuite examiner et soumettre la mise à jour. Cette URL contourne les protections anti-XSS normales sur les requêtes POST.</p>
+
+          <ul>
+          <li>URL: %{new_script_prefill_snippet} (pour les nouveaux scripts),  %{existing_script_prefill_snippet} (pour la mise à jour des scripts existants)</li>
+          <li>Méthode: %{method_snippet}</li>
+          <li>Paramètre de code: %{code_parameter_snippet}</li>
+          <li>Type de contenu: %{content_type_snippet}</li>
+          <li>La demande doit inclure le cookie de session de l'utilisateur.</li>
+          </ul>
+      webhook_notifications_html: |
+          <h3>Notifications Webhook</h3>
+          <p>%{site_name} peut rechercher des mises à jour en fonction des notifications push et publier des webhooks de GitHub, GitLab et Bitbucket.  %{webhook_info_link:Lire plus d'informations sur les webhooks.}</p>
   search:
     script_search:
       title: "Recherche de script"
@@ -1465,6 +1552,12 @@ fr:
         content: Message
       script_lock_appeal:
         text: Faire appel
+    errors:
+      models:
+        report:
+          attributes:
+            reference_script:
+              language_mismatch: "doit être la même langue que le script rapporté"
   errors:
     messages:
       script_missing_name: "est nécessaire - spécifiez-le avec @name"
@@ -1617,3 +1710,9 @@ fr:
         intro_html: Votre demande de la suppression de %{script} a été accepté par un modérateur. Le script est maintenant restaurer et accessible publiquement de nouveau.
         moderator_notes: "Le modérateur a commenté:"
         outro: Veuillez consulter les règles de %{rules_link:%{site_name}} pour éviter d'autres suppressions à l'avenir.
+    inactive_user:
+      subject: "Votre compte sur Greasy Fork"
+      intro: "Vous recevez cet e-mail car vous avez créé  %{user_link:un compte sur Greasy Fork} le %{signup_date} mais vous n'y êtes pas connecté depuis 5 ans. Pour réduire la quantité de données stockées sur Greasy Fork, nous souhaitons supprimer votre compte si vous n'avez pas l'intention de l'utiliser."
+      option_retain: "Si vous souhaitez conserver votre compte, veuillez  %{login_link:vous-y connectez} pour le préservé."
+      option_delete: "Si vous acceptez la suppression de votre compte, ne faites rien et il sera automatiquement supprimé le  %{deletion_date}. Après cela, si vous choisissez d’utiliser à nouveau Greasy Fork, vous pourrez créer un nouveau compte."
+      outro: "Dans les deux cas, nous n’enverrons plus d’e-mails concernant la suppression de ce compte. Si vous avez des questions,  %{contact_link:veuillez nous contacter}."
