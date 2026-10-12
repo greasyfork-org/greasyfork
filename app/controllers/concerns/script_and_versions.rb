@@ -153,4 +153,8 @@ module ScriptAndVersions
       end
     end
   end
+
+  def forbid_version
+    redirect_to version: nil, status: :moved_permanently if params[:version]
+  end
 end

@@ -12,6 +12,7 @@ class ScriptVersionsController < ApplicationController
   before_action :check_read_only_mode, except: :index
   before_action :check_ip, only: :create
   before_action :handle_api_request, only: :index
+  before_action :forbid_version, only: :index
 
   skip_before_action :verify_authenticity_token, only: :prefill
 
