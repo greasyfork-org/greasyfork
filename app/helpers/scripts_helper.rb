@@ -86,12 +86,12 @@ module ScriptsHelper
   end
   memo_wise :promoted_script
 
-  def render_script(script, locale: nil, full_url: false, skip_link: false)
-    name = script.name(locale || request_locale)
-    return name if skip_link
+  def render_script(script, locale: nil, full_url: false, skip_link: false, precomputed_name: nil)
+    precomputed_name ||= script.name(locale || request_locale)
+    return precomputed_name if skip_link
 
     href = full_url ? script_url(script, locale: locale || request_locale.code) : script_path(script, locale: locale || request_locale.code)
-    link_to(name, href, class: 'script-link')
+    link_to(precomputed_name, href, class: 'script-link')
   end
 
   private
