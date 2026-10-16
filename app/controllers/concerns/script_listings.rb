@@ -491,7 +491,7 @@ module ScriptListings
   end
 
   def scripts_as_json(scripts)
-    scripts = scripts.load if scripts.is_a?(Searchkick::Relation)
+    scripts = scripts.to_a if scripts.is_a?(Searchkick::Relation)
     scripts.as_json(include: { users: { sleazy: sleazy? } }, sleazy: sleazy?)
   end
 end
