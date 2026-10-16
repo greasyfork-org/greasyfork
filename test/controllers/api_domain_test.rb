@@ -21,4 +21,11 @@ class ApiDomainTest < ActionDispatch::IntegrationTest
     get scripts_url(locale: :en, domain: 'api.greasyfork.local')
     assert_response :not_acceptable
   end
+
+  test 'parse the format separately from the site on site listings' do
+    route = Rails.application.routes.recognize_path('/en/scripts/by-site/greasyfork.org.json', method: :get)
+
+    assert_equal 'greasyfork.org', route[:site]
+    assert_equal 'json', route[:format]
+  end
 end

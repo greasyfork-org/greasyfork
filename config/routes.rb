@@ -141,8 +141,8 @@ Rails.application.routes.draw do
 
       collection do
         get 'by-site(.:format)', action: 'by_site', as: 'site_list'
-        # :site can contain a dot, make sure site doesn't eat format or vice versa
-        get 'by-site/:site(.:format)', action: 'index', as: 'by_site', constraints: { site: ScriptsHelper::BY_SITE_PARAM_PATTERN, format: /|html|atom|json|jsonp/ }
+        get 'by-site/:site.:format', action: 'index', as: 'by_site_with_format', constraints: { site: ScriptsHelper::BY_SITE_PARAM_PATTERN, format: /html|atom|json|jsonp/ }
+        get 'by-site/:site', action: 'index', as: 'by_site', constraints: { site: ScriptsHelper::BY_SITE_PARAM_PATTERN }
         get 'reported_not_adult(.:format)', action: 'reported_not_adult', as: 'reported_not_adult'
         get 'libraries(.:format)', action: 'libraries', as: 'libraries'
         get 'search(.:format)', action: 'search', as: 'search'
