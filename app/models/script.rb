@@ -587,13 +587,14 @@ class Script < ApplicationRecord
 
   def serializable_hash(options = nil)
     sleazy = options&.[](:sleazy)
+    display_locale = options&.[](:locale)
     super(
       {
         only: [:id, :daily_installs, :total_installs, :fan_score, :good_ratings, :ok_ratings, :bad_ratings, :created_at, :code_updated_at, :namespace, :support_url, :contribution_url, :contribution_amount],
       }.merge(options || {}))
       .merge({
-               name: default_name,
-               description: default_localized_value_for('description'),
+               name: localized_value_for(:name, display_locale),
+               description: localized_value_for(:description, display_locale),
                url: url(sleazy:),
                code_url: code_url(sleazy:),
                code_size:,
