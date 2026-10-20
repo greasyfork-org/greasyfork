@@ -10,6 +10,7 @@ es:
       user_list: "Listado de usuarios"
       libraries: "Bibliotecas"
       moderator_log: "Registro del moderador"
+      privacy: "Política de privacidad"
   scripts:
     created_date: "Creado"
     updated_date: "Actualizado"
@@ -39,6 +40,10 @@ es:
     downgrade: "Degradar a la versión %{version}"
     reinstall: "Reinstalar versión %{version}"
     old_version_warning: "Esta no es la versión reciente de este script, si la instalas no se actualizará a una versión más nueva. ¿Quieres instalarla de todos modos?"
+    post_install:
+      info_html: "Ahora debe tener %{script} instalado. Si ha tenido problemas con la instalación, %{help_link:lea los documentos de ayuda}. Sus comentarios son importantes para mantener la calidad de los scripts en %{site_name}. Una vez que haya probado %{script}, considere %{feedback_link:ldejar una reseña}."
+      promoted_script_intro: "Puede que también te guste..."
+      similar_script_html: "%{name} - %{description}"
     library_instructions_html: "Este script no debería instalarse directamente. Es una biblioteca que utilizan otros scripts mediante la meta-directiva de inclusión %{code}"
     deleted_notice: "Este script ha sido borrado."
     deleted_notice_with_reason: "Este script ha sido eliminado debido a %{report_link:this report}."
@@ -138,6 +143,8 @@ es:
       month: Últimos 30 días
       year: Últimos 365 días
       all: Cualquier día
+    stats_library_usages_intro_html: "Los siguientes scripts usan estas librerias: %{site_name} URL en un <code>@require</code>:"
+    stats_library_usages_script_column: Script
     derivatives_title: "%{script_name} - Derivados"
     derivatives_intro: "Estos scripts pueden basarse en el tuyo (o viceversa). Si detectas un uso no autorizado de tu código, denuncia el script desde su pestaña de «comentarios y opiniones»."
     derivatives_script_html: "%{script} por %{user}, licencia: %{license} %{diff_link:[Diferencias]}"
@@ -177,6 +184,7 @@ es:
     listing_sort_created: "Fecha de creación"
     listing_sort_updated: "Fecha de actualización"
     listing_sort_name: "Nombre"
+    listing_sort_entry_locales: 'Idiomas'
     listing_filter_by_site_label: "Mostrando scripts para:"
     listing_filter_by_site_disable: "Todos"
     listing_filter_by_site_all_sites: "(Todos los sitios)"
@@ -197,6 +205,10 @@ es:
       me: Mis scripts
       user: Scripts de %{author_name}
     search_failed: Algo a salido mal cargando los resultados. Algunas funcionalidades de búsqueda pueden no funcionar. Hemos sido notificados sobre el asunto
+    listing_ratings_explanation: Probabilidad de que la próxima reseña recibida tenga una calificación positiva, de 0 a 1.
+    listing_locale_explanation: El script está disponible en cualquiera de los idiomas seleccionados.
+    listing_advanced_search_applied: "Búsqueda avanzada aplicada"
+    listing_advanced_search_clear: "Borrar"
     import: "Importar scripts"
     new: "Publica tu propio script"
     new_css: "Publica tu propio estilo"
@@ -509,16 +521,42 @@ es:
     explain_user_scripts_heading: "¿Qué son los scripts de usuario?"
     explain_user_scripts_html: "Los scripts de usuario son pequeñas porciones de código que añaden funcionalidad, eliminan molestias y en general mejoran las páginas que visitas. Los scripts de usuario alojados en %{site_name} son gratuitos y creados por una comunidad global de voluntarios. %{site_name} aloja miles de scripts escritos por cientos de autores."
     installing_step1_header: "Primer paso: Instala un administrador de scripts de usuario"
+    browser_no_additional_software_indicator: "%{browser_link:%{browser_name}} (no requiere programa adicional)"
     installing_step1_caption: "Tampermonkey en Chrome"
     installing_step1_description_html: >
         <p>Para usar scripts de usuario primero tienes que instalar un administrador
         de scripts. La opción a elegir depende del navegador que utilices.</p>
     desktop_browsers:
       title: Navegadores de escritorio
+      browser_list_html: |
+          <ul>
+          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} or %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, or %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} or %{safari_userscripts_link:Userscripts}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} or %{edge_violentmonkey_link:Violentmonkey}</li>
+          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} or %{opera_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          %{standalone_managers_html}
+          </ul>
     android_browsers:
       title: Para Android
+      browser_list_html: |
+          <ul>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, or %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+          <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+          %{standalone_managers_html}
+          %{locale_specific_browsers}
+          </ul>
     ios_browsers:
       title: Para iOS
+      browser_list_html: |
+          <ul>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} or %{safari_userscripts_link:Userscripts}</li>
+          %{standalone_managers_html}
+          </ul>
     installing_step2_header: "Segundo paso: Elige e instala un script"
     installing_step2_caption: "Botón de instalación de un script de usuario"
     installing_step2_description_html: >
@@ -602,6 +640,8 @@ es:
     2fa_enable_code_incorrect: El código 2FA no es correcto, vuelve a intentarlo.
     2fa_disabled: Hemos desactivado 2FA.
     2fa_disabled_already: La autenticación de dos pasos (2FA) ya está desactivada.
+    2fa_entry:
+      intro_html: "Logueando como <b>%{email}</b>. Introduce el código generado por tu aplicación de autentificicación en dos factores (2FA)."
     enable_2fa:
       intro: "Añade %{site_name} a tu aplicación de autenticación de dos pasos (2FA) mediante uno de estos métodos y luego escribe el código que te salga."
       qr_heading: Mediante un código QR
@@ -722,11 +762,14 @@ es:
         new_conversation_notification: Cuando se publique un comentario en una conversación a la que estés suscrito, recibe la notificación
       report_defaults:
         title: Informar notificaciones
+      script:
+        title: Notificaciones de Script
       save_button: Actualizar ajustes de notificaciones
       title: Notificaciones
       save_success: Se han actualizado tus preferencias de notificaciones
       unsubscribe_all: Anular la suscripción para todas las notificaciones
       unsubscribe_all_success: Se ha cancelado la suscripción de todas las notificaciones.
+      unsubscribe_email_success: Se ha cancelado la suscripción de todas las notificaciones por correo.
   webhooks:
     info:
       title: Configurar un «webhook»
