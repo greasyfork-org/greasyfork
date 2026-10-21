@@ -38,15 +38,20 @@ class Github
       release_name = params[:release][:name]
       ref = params[:release][:tag_name]
       default_branch = params[:repository][:default_branch]
+      assets = params[:release][:assets]
 
-      urls = possible_sync_urls_for_repo_url(repo_url, release: true)
+      urls = possible_sync_url_prefixes_for_repo_url(repo_url, release: true)
       sync_identifiers = Script.where((['sync_identifier LIKE ?'] * urls.count).join(' OR '), *urls.map { |url| "#{Script.sanitize_sql_like(url)}%" }).pluck(:sync_identifier)
-      sync_identifiers.map { |file| file_from_root_for_url(file, repo_url) }.index_with { |file| { messages: [release_name], urls: urls_for_ref(repo_url, ref, file, release: true) + urls_for_ref(repo_url, default_branch, file, release: true), ref: } }
+
+      rv = sync_identifiers.map { |file| file_from_root_for_url(file, repo_url) }.index_with { |file| { messages: [release_name], urls: urls_for_ref(repo_url, ref, file, release: true) + urls_for_ref(repo_url, default_branch, file, release: true), ref: } }
+      rv.each do |file, info|
+        info[:asset_url] = assets.find { |asset| asset[:name] == file }&.[](:browser_download_url)
+      end
     end
 
     def urls_for_ref(repo_url, ref, file, release: false)
       # construct the raw URLs from the provided info. This will be used to find the related scripts. Need handle spaces as %20 and +.
-      urls = possible_sync_urls_for_repo_url(repo_url, release:).map do |url|
+      urls = possible_sync_url_prefixes_for_repo_url(repo_url, release:).map do |url|
         next ["#{url}#{file.tr(' ', '+')}", "#{url}#{CGI.escape(file).tr(' ', '+').gsub('%2F', '/')}"] if url.ends_with?('latest/download/')
 
         [
@@ -58,7 +63,7 @@ class Github
       (urls + urls.map { |url| url.gsub('+', '%20') }).uniq
     end
 
-    def possible_sync_urls_for_repo_url(repo_url, release: false)
+    def possible_sync_url_prefixes_for_repo_url(repo_url, release: false)
       # Raw URLs are in the format:
       # - (repository url)/raw/(branch)/(path)
       # - (repository url)/raw/refs/heads/(branch)/(path)

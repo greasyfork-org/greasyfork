@@ -156,13 +156,13 @@ module Webhooks
       return
     end
 
-    # Get the contents of the files. Some we will have to pull from the URL if it's a private repo.
-    pull_from_url, pull_from_git = changed_files.partition { |_k, v| private_sync?(v) }
+    # Get the contents of the files. For assets loaded as part of a release, and for private repos, pull from the URL instead of git.
+    pull_from_url, pull_from_git = changed_files.partition { |_k, v| private_sync?(v) || v[:asset_url] }
     pull_from_url = pull_from_url.to_h
     pull_from_git = pull_from_git.to_h
 
     pull_from_url.values.each do |h|
-      h[:content] = ScriptImporter::BaseScriptImporter.download(sync_identifier_for(h))
+      h[:content] = ScriptImporter::BaseScriptImporter.download(h[:asset_url] || sync_identifier_for(h))
     end
 
     if pull_from_git.any?
