@@ -33,4 +33,11 @@ class BaseScriptImporterTest < ActiveSupport::TestCase
       ScriptImporter::BaseScriptImporter.download('blob:https://example.com')
     end
   end
+
+  test 'download forces encoding' do
+    PublicHttpFetcher.expects(:get).with('https://example.com').returns('abc'.force_encoding('ASCII-8BIT'))
+    result = ScriptImporter::BaseScriptImporter.download('https://example.com')
+    assert_equal 'abc', result
+    assert_equal Encoding::UTF_8, result.encoding
+  end
 end

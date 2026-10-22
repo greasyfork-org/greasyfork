@@ -29,9 +29,7 @@ module ScriptImporter
       rescue StandardError => e
         return [:failure, nil, "Could not download source. #{e.message}"]
       end
-      # Tests use frozen strings, and can't use force_encoding on those.
-      code = code.dup if code.frozen?
-      code = code.force_encoding(Encoding::UTF_8)
+
       return [:failure, nil, 'Source contains invalid UTF-8 characters.'] unless code.valid_encoding?
 
       sv = ScriptVersion.new
@@ -94,7 +92,11 @@ module ScriptImporter
     end
 
     def self.download(url)
-      PublicHttpFetcher.get(url)
+      body = PublicHttpFetcher.get(url)
+
+      # Tests use frozen strings, and can't use force_encoding on those.
+      body = body.dup if body.frozen?
+      body.force_encoding(Encoding::UTF_8)
     end
 
     # updates the URL to the working version
