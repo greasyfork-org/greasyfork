@@ -34,6 +34,12 @@ module ScriptListings
       @bots = 'noindex'
     end
 
+    # To avoid performance issues, don't allow searches longer than 100 characters.
+    if params[:q] && params.expect(:q).length > 100
+      render status: :unprocessable_content, plain: 'Search query too long'
+      return
+    end
+
     # Make sure the site param is something valid otherwise the listing option links will break because the param
     # won't match the route's definition. This regexp matches the one defined by the route, except with \A and \z.
     params.delete(:site) if params[:site] && !/\A[a-z0-9\-.*]*?\z/i.match?(params[:site])
