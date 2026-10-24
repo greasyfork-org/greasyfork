@@ -22,7 +22,7 @@ current_options[:rel] = rel if rel
         <% end %>
       <% end %>
       <%= render partial: 'shared/locale_override_field' %>
-      <input type="search" name="q" value="<%= params[:q] %>" placeholder="<%= t('scripts.search_placeholder') %>" aria-label="<%= t('scripts.search_placeholder') %>"><input class="search-submit" type="submit" value="🔎" aria-label="<%= t('scripts.search_placeholder') %>">
+      <input type="search" name="q" maxlength="<%= ScriptListings::MAX_SEARCH_QUERY_LENGTH %>" value="<%= params[:q] %>" placeholder="<%= t('scripts.search_placeholder') %>" aria-label="<%= t('scripts.search_placeholder') %>"><input class="search-submit" type="submit" value="🔎" aria-label="<%= t('scripts.search_placeholder') %>">
     </form>
   <% end %>
 

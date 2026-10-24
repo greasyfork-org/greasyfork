@@ -2,7 +2,7 @@
   <h3><%= t('search.script_search.title') %></h3>
   <p><%= it('search.script_search.description') %></p>
 
-  <p><input type="search" name="q" placeholder="Search terms" value="<%= params[:q]%>" aria-label="<%= t('search.script_search.title') %>"></p>
+  <p><input type="search" name="q" maxlength="<%= ScriptListings::MAX_SEARCH_QUERY_LENGTH %>" placeholder="Search terms" value="<%= params[:q]%>" aria-label="<%= t('search.script_search.title') %>"></p>
 
   <% regular_search_params.except(:q, :site).each do |p, v| %>
     <input type="hidden" name="<%= p %>" value="<%= v %>">

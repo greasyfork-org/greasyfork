@@ -8,6 +8,7 @@ module ScriptListings
 
   DEFAULT_SORT = 'daily_installs'.freeze
   DEFAULT_PER_PAGE = 100
+  MAX_SEARCH_QUERY_LENGTH = 100
 
   ADVANCED_SEARCH_FIELDS = {
     total_installs: { type: :integer },
@@ -34,8 +35,8 @@ module ScriptListings
       @bots = 'noindex'
     end
 
-    # To avoid performance issues, don't allow searches longer than 100 characters.
-    if params[:q] && params.expect(:q).length > 100
+    # To avoid performance issues, don't allow searches longer than the limit.
+    if params[:q] && params.expect(:q).length > MAX_SEARCH_QUERY_LENGTH
       render status: :unprocessable_content, plain: 'Search query too long'
       return
     end
