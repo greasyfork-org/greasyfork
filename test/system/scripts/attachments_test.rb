@@ -22,8 +22,18 @@ class AttachmentsTest < ApplicationSystemTestCase
     assert_selector 'h2', text: 'A Test!'
     assert_includes(Script.last.users, user)
     assert_selector '.user-screenshots img', count: 2
+    visit "#{current_path}?locale=en&page_param=attachment-test"
+    assert_no_selector '.user-screenshots a[href*="locale="]'
+    assert_no_selector '.user-screenshots a[href*="page_param="]'
+    assert_no_selector '.user-screenshots img[src*="locale="]'
+    assert_no_selector '.user-screenshots img[src*="page_param="]'
 
     click_on 'Update'
+    visit "#{current_path}?locale=en&page_param=attachment-test"
+    assert_no_selector '.remove-attachments a[href*="locale="]'
+    assert_no_selector '.remove-attachments a[href*="page_param="]'
+    assert_no_selector '.remove-attachments img[src*="locale="]'
+    assert_no_selector '.remove-attachments img[src*="page_param="]'
     within '.remove-attachment-selecter', match: :first do
       check 'Remove'
     end

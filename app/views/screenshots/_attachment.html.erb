@@ -1,0 +1,6 @@
+<%# locals: (attachment:)  %>
+
+<% variant = attachment.variant(resize_to_limit: [200, 200]) %>
+<%# Avoid using url_for because it will call default_url_options, which will include the page locale. %>
+<%# variant.url will be the AWS URL if we've created the variant already. %>
+<%= link_to rails_blob_path(attachment.blob, only_path: true, locale: nil, locale_override: nil) do %><%= image_tag variant.url || rails_representation_path(variant, only_path: true, locale: nil, locale_override: nil) %><% end %>
