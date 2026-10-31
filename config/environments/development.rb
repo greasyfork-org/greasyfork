@@ -56,7 +56,7 @@ Rails.application.configure do
   config.enable_detect_locale = true
   config.log_cache_misses = true
 
-  config.active_job.queue_adapter = :inline
+  config.active_job.queue_adapter = :sidekiq
 
   config.hosts += %w[greasyfork.local update.greasyfork.local api.greasyfork.local test.greasyfork.org sleazyfork.local update.sleazyfork.local api.greasyfork.local test.sleazyfork.org]
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_03_170732) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_30_181000) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -187,6 +187,22 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_03_170732) do
     t.bigint "script_id", null: false
     t.text "code", size: :long, null: false
     t.index ["script_id"], name: "index_cleaned_codes_on_script_id", unique: true
+  end
+
+  create_table "code_similarity_fingerprint_hashes", id: false, charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+    t.bigint "script_id", null: false
+    t.binary "fingerprint_hash", limit: 8, null: false
+    t.index ["fingerprint_hash"], name: "index_similarity_fingerprint_hashes_on_hash"
+    t.index ["script_id", "fingerprint_hash"], name: "index_similarity_fingerprint_hashes_on_script_and_hash", unique: true
+  end
+
+  create_table "code_similarity_fingerprints", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+    t.bigint "script_id", null: false
+    t.binary "fingerprint", null: false
+    t.integer "token_count", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["script_id"], name: "index_code_similarity_fingerprints_on_script_id", unique: true
   end
 
   create_table "comment_check_results", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
@@ -696,6 +712,17 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_03_170732) do
     t.index ["url"], name: "index_subresources_on_url", unique: true, using: :hash
   end
 
+  create_table "token_shingle_similarities", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+    t.bigint "script_id", null: false
+    t.bigint "other_script_id", null: false
+    t.decimal "similarity", precision: 4, scale: 3, null: false
+    t.datetime "checked_at", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["other_script_id", "script_id"], name: "index_token_shingle_similarities_on_other_script"
+    t.index ["script_id", "other_script_id"], name: "token_shingle_similarity_pair", unique: true
+  end
+
   create_table "update_check_counts", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.bigint "script_id", null: false
     t.date "update_check_date", null: false
@@ -777,6 +804,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_03_170732) do
   add_foreign_key "authors", "users", on_delete: :cascade
   add_foreign_key "blocked_script_codes", "scripts", column: "originating_script_id", on_delete: :nullify
   add_foreign_key "cleaned_codes", "scripts", on_delete: :cascade
+  add_foreign_key "code_similarity_fingerprint_hashes", "code_similarity_fingerprints", column: "script_id", primary_key: "script_id", on_delete: :cascade
+  add_foreign_key "code_similarity_fingerprints", "scripts", on_delete: :cascade
   add_foreign_key "comment_check_results", "comments", on_delete: :cascade
   add_foreign_key "comments", "discussions", on_delete: :cascade
   add_foreign_key "compatibilities", "browsers", on_delete: :cascade
@@ -834,6 +863,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_03_170732) do
   add_foreign_key "scripts", "scripts", column: "promoted_script_id", on_delete: :nullify
   add_foreign_key "scripts", "scripts", column: "replaced_by_script_id", on_delete: :nullify
   add_foreign_key "stat_bans", "scripts"
+  add_foreign_key "token_shingle_similarities", "scripts", column: "other_script_id", on_delete: :cascade
+  add_foreign_key "token_shingle_similarities", "scripts", on_delete: :cascade
   add_foreign_key "update_check_counts", "scripts", on_delete: :cascade
   add_foreign_key "user_notification_settings", "users", on_delete: :cascade
   add_foreign_key "users", "locales"

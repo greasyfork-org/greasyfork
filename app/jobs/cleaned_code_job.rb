@@ -7,7 +7,10 @@ class CleanedCodeJob < ApplicationJob
   BASE_DIRTY_PATH = Rails.root.join('tmp/dirtycode').to_s
 
   def perform(script)
-    return unless script.js?
+    unless script.js?
+      self.class.delete_for_script(script)
+      return
+    end
 
     unclean_code = script.current_code
     self.class.write_dirty_for_script(script, unclean_code)

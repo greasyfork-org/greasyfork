@@ -123,6 +123,7 @@ class ScriptVersion < ApplicationRecord
     next if previous_changes.none?
 
     CleanedCodeJob.perform_later_unless_will_run(script) if script.js?
+    CodeSimilarityFingerprintJob.perform_later_unless_will_run(script)
   end
 
   after_commit do

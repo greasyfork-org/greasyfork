@@ -117,6 +117,19 @@ module ScriptsHelper
     t("scripts.similarity_score.#{key}")
   end
 
+  def token_shingle_similarity_string(score)
+    key = if score >= ScriptsController::DERIVATIVE_SCORES.first.last
+            :high
+          elsif score >= ScriptsController::DERIVATIVE_SCORES.second.last
+            :medium
+          elsif score >= TokenShingleSimilarityScorer::MIN_DISPLAYED_SIMILARITY
+            :low
+          else
+            :none
+          end
+    t("scripts.similarity_score.#{key}")
+  end
+
   def render_script_badge(key)
     text = t("scripts.badges.#{key}.short")
     title = t("scripts.badges.#{key}.long")

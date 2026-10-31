@@ -57,3 +57,52 @@
     <%= button_to t('scripts.derivatives_similar_check_now'), request_duplicate_check_script_path(@script), method: :POST %>
   <% end %>
 </p>
+
+<h3>Token-shingle similarity</h3>
+
+<% if @token_shingle_similarities.any? %>
+  <ul>
+    <% @token_shingle_similarities.each do |other_script, score| %>
+      <li title="<%= score %>">
+        <%= it('scripts.derivatives_similar_item', score: token_shingle_similarity_string(score), diff_link: admin_script_path(@script, compare: script_url(other_script), anchor: 'script-comparison'), script: render_script(other_script)) %>
+        <%= t('scripts.deleted_marker') if other_script.deleted? %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No precomputed token-shingle matches are currently available.</p>
+<% end %>
+
+<% if current_user&.moderator? %>
+  <h3>Similarity method comparison (moderators only)</h3>
+
+  <div id="compression-only-matches">
+    <h4>Compression-only matches</h4>
+    <% if @compression_only_similarities.any? %>
+      <ul>
+      <% @compression_only_similarities.each do |other_script, score| %>
+        <li data-script-id="<%= other_script.id %>" title="<%= score %>">
+          <%= it('scripts.derivatives_similar_item', score: similarity_string(score), diff_link: admin_script_path(@script, compare: script_url(other_script), anchor: 'script-comparison'), script: render_script(other_script)) %>
+        </li>
+      <% end %>
+      </ul>
+    <% else %>
+      <p>None</p>
+    <% end %>
+  </div>
+
+  <div id="token-shingle-only-matches">
+    <h4>Token-shingle-only matches</h4>
+    <% if @token_shingle_only_similarities.any? %>
+      <ul>
+      <% @token_shingle_only_similarities.each do |other_script, score| %>
+        <li data-script-id="<%= other_script.id %>" title="<%= score %>">
+          <%= it('scripts.derivatives_similar_item', score: token_shingle_similarity_string(score), diff_link: admin_script_path(@script, compare: script_url(other_script), anchor: 'script-comparison'), script: render_script(other_script)) %>
+        </li>
+      <% end %>
+      </ul>
+    <% else %>
+      <p>None</p>
+    <% end %>
+  </div>
+<% end %>

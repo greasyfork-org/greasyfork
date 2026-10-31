@@ -36,6 +36,12 @@ class Script < ApplicationRecord
   has_many :compatibilities, autosave: true, dependent: :destroy
   has_many :script_invitations, dependent: :destroy
   has_many :script_similarities, dependent: :destroy
+  has_many :token_shingle_similarities, dependent: :delete_all
+  has_many :token_shingle_similarities_as_other_script,
+           class_name: 'TokenShingleSimilarity',
+           foreign_key: :other_script_id,
+           inverse_of: :other_script,
+           dependent: :delete_all
   has_many :forum_discussions, foreign_key: 'ScriptID', inverse_of: :script
   has_many :antifeatures, dependent: :destroy, autosave: true
   has_many :reports, as: :item, dependent: :destroy
@@ -49,6 +55,7 @@ class Script < ApplicationRecord
   has_many :library_usages_as_library, class_name: 'LibraryUsage', foreign_key: :library_script_id, inverse_of: :library_script, dependent: :destroy
 
   has_one :cleaned_code, dependent: :delete
+  has_one :code_similarity_fingerprint, dependent: :delete
 
   belongs_to :license, optional: true
   belongs_to :locale

@@ -683,18 +683,26 @@ class ScriptsController < ApplicationController
   def derivatives
     return if redirect_to_slug(@script, :id)
 
-    # Include the inverse as well so that we can notice new/updated scripts that are similar to this. If we have the
-    # relation both forward and backward, take the higher score.
-    @similarities = []
-    @script.script_similarities.includes(:other_script).where(similarity: DERIVATIVE_SCORES.map(&:last).min..).order(similarity: :desc, id: :asc).each do |ss|
-      @similarities << [ss.other_script, ss.similarity] if current_user&.moderator? || !ss.other_script.deleted?
-    end
-    # If we haven't run the forward, don't bother with the backward.
-    if @similarities.any?
-      ScriptSimilarity.where(other_script: @script).where(similarity: DERIVATIVE_SCORES.map(&:last).min..).order(similarity: :desc, id: :asc).each do |ss|
-        @similarities << [ss.script, ss.similarity] if current_user&.moderator? || !ss.script.deleted?
+    @similarities = ScriptSimilarity.other_scripts_and_similarities_for(
+      @script,
+      min_similarity: DERIVATIVE_SCORES.map(&:last).min,
+      include_deleted: current_user&.moderator?
+    )
+
+    @token_shingle_similarities = TokenShingleSimilarity.other_scripts_and_similarities_for(
+      @script,
+      include_deleted: current_user&.moderator?
+    )
+
+    if current_user&.moderator?
+      compression_script_ids = @similarities.map { |similar_script, _score| similar_script.id }
+      token_shingle_script_ids = @token_shingle_similarities.map { |similar_script, _score| similar_script.id }
+      @compression_only_similarities = @similarities.reject do |similar_script, _score|
+        token_shingle_script_ids.include?(similar_script.id)
       end
-      @similarities = @similarities.sort_by(&:last).reverse.uniq(&:first).first(100)
+      @token_shingle_only_similarities = @token_shingle_similarities.reject do |similar_script, _score|
+        compression_script_ids.include?(similar_script.id)
+      end
     end
 
     @canonical_params = [:id]
