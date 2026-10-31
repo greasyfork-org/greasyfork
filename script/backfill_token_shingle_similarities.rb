@@ -19,9 +19,9 @@ if File.exist?(checkpoint_path)
   checkpoint = JSON.parse(File.read(checkpoint_path))
   raise 'Checkpoint was created for a different backfill order' unless checkpoint['order'] == 'descending'
 
-  last_script_id = Integer(checkpoint.fetch('last_script_id'), 10)
-  processed_count = Integer(checkpoint.fetch('processed_count', 0), 10)
-  fingerprint_count = Integer(checkpoint.fetch('fingerprint_count', 0), 10)
+  last_script_id = Integer(checkpoint.fetch('last_script_id'))
+  processed_count = Integer(checkpoint.fetch('processed_count', 0))
+  fingerprint_count = Integer(checkpoint.fetch('fingerprint_count', 0))
 else
   last_script_id = start_before_id || (Script.maximum(:id).to_i + 1)
   processed_count = 0
