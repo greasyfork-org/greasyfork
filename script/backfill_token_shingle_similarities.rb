@@ -2,7 +2,7 @@ require 'json'
 
 checkpoint_path = Rails.root.join(ENV.fetch('CHECKPOINT_PATH', 'tmp/token_shingle_similarity_backfill.json'))
 pause_seconds = Float(ENV.fetch('PAUSE_SECONDS', '0.1'))
-max_queue_size = Integer(ENV.fetch('MAX_SIDEKIQ_QUEUE_SIZE', '0'), 10)
+max_queue_size = Integer(ENV.fetch('MAX_SIDEKIQ_QUEUE_SIZE', '100'), 10)
 queue_poll_seconds = Float(ENV.fetch('QUEUE_POLL_SECONDS', '30'))
 limit = ENV['LIMIT']&.then { |value| Integer(value, 10) }
 start_before_id = ENV['START_BEFORE_ID']&.then { |value| Integer(value, 10) }
@@ -60,16 +60,7 @@ scripts.find_each(order: :desc) do |script|
     fingerprint_count += 1
   end
 
-  deadlock_attempts = 0
-  begin
-    TokenShingleSimilarityJob.perform_now(script.id, only_higher_ids: true)
-  rescue ActiveRecord::Deadlocked
-    deadlock_attempts += 1
-    raise if deadlock_attempts >= 5
-
-    sleep([0.5 * (2**(deadlock_attempts - 1)), 8.0].min + rand)
-    retry
-  end
+  TokenShingleSimilarityJob.perform_later(script.id, only_higher_ids: true)
 
   last_script_id = script.id
   processed_count += 1
@@ -85,9 +76,9 @@ scripts.find_each(order: :desc) do |script|
   File.write(temporary_checkpoint_path, JSON.pretty_generate(checkpoint))
   File.rename(temporary_checkpoint_path, checkpoint_path)
 
-  puts "Processed #{processed_count} scripts through ID #{last_script_id}." if (processed_count % 100).zero?
+  puts "Enqueued jobs for #{processed_count} scripts through ID #{last_script_id}." if (processed_count % 100).zero?
   sleep(pause_seconds) if pause_seconds.positive?
 end
 
-puts "Backfill run complete: processed #{processed_this_run} scripts; #{processed_count} total processed."
+puts "Backfill run complete: enqueued #{processed_this_run} jobs; #{processed_count} total enqueued."
 puts "Fingerprints built during backfill: #{fingerprint_count}."
