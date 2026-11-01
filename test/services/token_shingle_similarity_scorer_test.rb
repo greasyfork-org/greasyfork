@@ -8,7 +8,7 @@ class TokenShingleSimilarityScorerTest < ActiveSupport::TestCase
     base_fingerprint = TokenShingleSimilarityScorer.build_fingerprint(base)
     formatted_fingerprint = TokenShingleSimilarityScorer.build_fingerprint(formatted)
 
-    assert_equal base_fingerprint, formatted_fingerprint
+    assert_equal base_fingerprint.except(:locations), formatted_fingerprint.except(:locations)
     assert_in_delta 0.999, score(base_fingerprint, formatted_fingerprint)
   end
 
@@ -36,6 +36,92 @@ class TokenShingleSimilarityScorerTest < ActiveSupport::TestCase
     assert_includes tokens, '/a+/g'
   end
 
+  test 'fingerprint locations use byte offsets into the original source' do
+    code = "const greeting = '你好'; // comment\nreturn greeting;"
+    tokens = TokenShingleSimilarityScorer.tokenize_with_locations(code)
+
+    tokens.each do |token|
+      source = code.byteslice(token.fetch('start'), token.fetch('end') - token.fetch('start'))
+      assert_equal token.fetch('value'), source
+    end
+
+    fingerprint = TokenShingleSimilarityScorer.build_fingerprint(code)
+    assert(
+      fingerprint.fetch(:locations).values.flatten(1).all? do |start_offset, end_offset|
+        start_offset < end_offset
+      end
+    )
+  end
+
+  test 'fingerprint locations include every occurrence of each selected hash' do
+    code = (0...300).map { |index| "const value#{index} = #{index};" }.join("\n")
+    tokens = TokenShingleSimilarityScorer.tokenize_with_locations(code)
+    fingerprint = TokenShingleSimilarityScorer.build_fingerprint(code)
+    selected_hashes = fingerprint.fetch(:fingerprint).unpack('Q>*').to_h { |hash| [hash.to_s, []] }
+    all_hashes = []
+
+    tokens.each_cons(TokenShingleSimilarityScorer::SHINGLE_SIZE) do |shingle|
+      hash = TokenShingleSimilarityScorer.hash_for_tokens(shingle).to_s
+      all_hashes << hash
+      selected_hashes[hash] << [shingle.first.fetch('start'), shingle.last.fetch('end')] if selected_hashes.key?(hash)
+    end
+
+    assert_operator all_hashes.uniq.size, :>, 256
+    assert_equal 256, selected_hashes.size
+    assert_equal selected_hashes, fingerprint.fetch(:locations)
+  end
+
+  test 'common source locations require current fingerprints with location data' do
+    script = scripts(:one)
+    other_script = scripts(:two)
+    code = "one\n two\n three\n four\n five\n six\n seven\n eight\n nine\n ten\n"
+    location_data = { '1' => [[0, 3]], '2' => [[code.index('ten'), code.index('ten') + 3]] }
+    fingerprint = { fingerprint: [1, 2].pack('Q>*'), token_count: 10, locations: location_data }
+    fingerprint[:source_version_id] = script.newest_saved_script_version.id
+    CodeSimilarityFingerprint.store_fingerprint!(script.id, fingerprint)
+    fingerprint[:source_version_id] = other_script.newest_saved_script_version.id
+    CodeSimilarityFingerprint.store_fingerprint!(other_script.id, fingerprint)
+
+    locations = TokenShingleSimilarityScorer.common_source_locations_for(
+      script,
+      other_script,
+      script_version_id: script.newest_saved_script_version.id,
+      other_script_version_id: other_script.newest_saved_script_version.id,
+      code:,
+      other_code: code
+    )
+
+    assert_equal 2, locations.fetch(:similarity_count)
+    assert_equal 2, locations.fetch(:maximum_similarity_count)
+    assert_equal 2, locations.fetch(:matches).size
+    first_section = locations.fetch(:matches).first.fetch(:script).first
+    snippet = code.byteslice(*first_section.fetch(:source_range))
+    assert_equal 3, snippet.lines.size
+    assert_equal 1, first_section.fetch(:first_line_number)
+    assert_equal [0, 3], first_section.fetch(:highlight)
+    assert_nil TokenShingleSimilarityScorer.common_source_locations_for(
+      script,
+      other_script,
+      script_version_id: script.newest_saved_script_version.id + 1,
+      other_script_version_id: other_script.newest_saved_script_version.id,
+      code:,
+      other_code: code
+    )
+
+    legacy_fingerprint = fingerprint.except(:locations).merge(
+      source_version_id: script.newest_saved_script_version.id
+    )
+    CodeSimilarityFingerprint.store_fingerprint!(script.id, legacy_fingerprint)
+    assert_nil TokenShingleSimilarityScorer.common_source_locations_for(
+      script,
+      other_script,
+      script_version_id: script.newest_saved_script_version.id,
+      other_script_version_id: other_script.newest_saved_script_version.id,
+      code:,
+      other_code: code
+    )
+  end
+
   test 'fingerprints find shared code after more than 32 KB of different code' do
     shared_code = declarations('common')
     base = "#{shared_code}#{declarations('left')}function shared(){return \"shared\";}"
@@ -56,7 +142,11 @@ class TokenShingleSimilarityScorerTest < ActiveSupport::TestCase
 
     fingerprint = CodeSimilarityFingerprint.find_by!(script_id: script.id)
     raw = TokenShingleSimilarityScorer.build_fingerprint(script.current_code)
-    assert_equal raw, { fingerprint: fingerprint.fingerprint, token_count: fingerprint.token_count }
+    assert_equal raw, {
+      fingerprint: fingerprint.fingerprint,
+      token_count: fingerprint.token_count,
+      locations: fingerprint.locations,
+    }
     assert_equal raw.fetch(:fingerprint).bytesize / TokenShingleSimilarityScorer::HASH_BYTES,
                  CodeSimilarityFingerprintHash.where(script_id: script.id).count
   end
@@ -69,7 +159,12 @@ class TokenShingleSimilarityScorerTest < ActiveSupport::TestCase
 
     fingerprint = CodeSimilarityFingerprint.find_by!(script_id: script.id)
     raw = TokenShingleSimilarityScorer.build_fingerprint(script.current_code)
-    assert_equal raw, { fingerprint: fingerprint.fingerprint, token_count: fingerprint.token_count }
+    assert_equal raw, {
+      fingerprint: fingerprint.fingerprint,
+      token_count: fingerprint.token_count,
+      locations: fingerprint.locations,
+    }
+    assert_equal script.newest_saved_script_version.id, fingerprint.source_version_id
   end
 
   test 'fingerprint job removes fingerprints for non-JavaScript scripts' do

@@ -40,3 +40,51 @@
 .diff li:hover{
   background: var(--highlight-background-color);
 }
+
+.common-source-comparison {
+  margin-top: 1em;
+}
+.common-source-comparison-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1em;
+}
+.common-source-comparison-columns pre {
+  overflow: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  margin: 0.5em 0;
+  max-height: none;
+}
+.common-source-match {
+  border-top: 1px solid var(--content-border-color);
+  padding: 0.5em 0;
+}
+.common-source-match h4 {
+  margin: 0.5em 0;
+}
+.common-source-match h5 {
+  margin: 0.25em 0;
+}
+.common-source-line {
+  display: block;
+}
+.common-source-line-number {
+  display: inline-block;
+  width: 5ch;
+  margin-right: 1ch;
+  color: var(--overall-text-color);
+  opacity: 0.7;
+  text-align: right;
+  user-select: none;
+}
+.common-source-location {
+  background-color: var(--highlight-background-color);
+  color: inherit;
+}
+
+@media (max-width: 700px) {
+  .common-source-comparison-columns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

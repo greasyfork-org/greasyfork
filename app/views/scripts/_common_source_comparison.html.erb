@@ -1,0 +1,31 @@
+<details class="common-source-comparison">
+  <summary>Show common snippets</summary>
+  <p>
+    We found <%= common_source_locations.fetch(:similarity_count) %> matches in a sample of <%= common_source_locations.fetch(:maximum_similarity_count) %> code snippets.
+  </p>
+  <% common_source_locations.fetch(:matches).each_with_index do |match, index| %>
+    <section class="common-source-match">
+      <h4>Snippet <%= index + 1 %></h4>
+      <div class="common-source-comparison-columns">
+        <div>
+          <h5>
+            <%= render_script(other_script) %>
+            by <%= other_script.users.map { |user| link_to(user.name, user) }.to_sentence.html_safe %>
+          </h5>
+          <% match.fetch(:other_script).each do |section| %>
+            <pre><code><%= source_with_highlights(other_code, section) %></code></pre>
+          <% end %>
+        </div>
+        <div>
+          <h5>
+            <%= render_script(script) %>
+            by <%= script.users.map { |user| link_to(user.name, user) }.to_sentence.html_safe %>
+          </h5>
+          <% match.fetch(:script).each do |section| %>
+            <pre><code><%= source_with_highlights(this_code, section) %></code></pre>
+          <% end %>
+        </div>
+      </div>
+    </section>
+  <% end %>
+</details>

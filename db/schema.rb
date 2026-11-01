@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_30_181000) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_01_120000) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -202,7 +202,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_30_181000) do
     t.integer "token_count", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "locations", size: :long, collation: "utf8mb4_bin"
+    t.bigint "source_version_id"
     t.index ["script_id"], name: "index_code_similarity_fingerprints_on_script_id", unique: true
+    t.check_constraint "json_valid(`locations`)", name: "locations"
   end
 
   create_table "comment_check_results", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|

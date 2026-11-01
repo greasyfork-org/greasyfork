@@ -3,8 +3,12 @@ import jsTokens from 'js-tokens';
 
 const code = readFileSync(0, 'utf8');
 const tokens = [];
+let byteOffset = 0;
 
 for (const token of jsTokens(code)) {
+  const start = byteOffset;
+  byteOffset += Buffer.byteLength(token.value, 'utf8');
+
   if (
     token.type !== 'WhiteSpace' &&
     token.type !== 'LineTerminatorSequence' &&
@@ -12,7 +16,7 @@ for (const token of jsTokens(code)) {
     token.type !== 'MultiLineComment' &&
     token.type !== 'HashbangComment'
   ) {
-    tokens.push(token.value);
+    tokens.push({ value: token.value, start, end: byteOffset });
   }
 }
 

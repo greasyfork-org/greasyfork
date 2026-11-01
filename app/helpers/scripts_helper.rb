@@ -130,6 +130,42 @@ module ScriptsHelper
     t("scripts.similarity_score.#{key}")
   end
 
+  def source_with_highlights(code, section)
+    source_start, source_end = section.fetch(:source_range)
+    highlighted_source = ''.html_safe
+    line_number = section.fetch(:first_line_number)
+    line_start = source_start
+    highlight_start, highlight_end = section.fetch(:highlight)
+
+    while line_start < source_end
+      newline_position = code.b.index("\n".b, line_start)
+      line_end = [newline_position ? newline_position + 1 : code.bytesize, source_end].min
+      content_end = (line_end > line_start && code.getbyte(line_end - 1) == 10) ? line_end - 1 : line_end
+      line_content = code.byteslice(line_start, content_end - line_start).to_s.force_encoding(code.encoding)
+      line_highlight_start = [highlight_start, line_start].max
+      line_highlight_end = [highlight_end, content_end].min
+
+      highlighted_source << tag.span(class: 'common-source-line') do
+        number = tag.span(line_number, class: 'common-source-line-number', 'aria-hidden': true)
+        content = if line_highlight_start < line_highlight_end
+                    before = h(code.byteslice(line_start, line_highlight_start - line_start).to_s.force_encoding(code.encoding))
+                    match = tag.mark(
+                      h(code.byteslice(line_highlight_start, line_highlight_end - line_highlight_start).to_s.force_encoding(code.encoding)),
+                      class: 'common-source-location'
+                    )
+                    after = h(code.byteslice(line_highlight_end, content_end - line_highlight_end).to_s.force_encoding(code.encoding))
+                    before + match + after
+                  else
+                    h(line_content)
+                  end
+        number + content
+      end
+      line_start = line_end
+      line_number += 1
+    end
+    highlighted_source
+  end
+
   def render_script_badge(key)
     text = t("scripts.badges.#{key}.short")
     title = t("scripts.badges.#{key}.long")

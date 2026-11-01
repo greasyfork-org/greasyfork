@@ -1,4 +1,6 @@
 class CodeSimilarityFingerprint < ApplicationRecord
+  serialize :locations, coder: JSON, type: Hash
+
   belongs_to :script
   has_many :hashes, class_name: 'CodeSimilarityFingerprintHash', foreign_key: :script_id, primary_key: :script_id,
                     inverse_of: :code_similarity_fingerprint, dependent: :delete_all
@@ -14,6 +16,8 @@ class CodeSimilarityFingerprint < ApplicationRecord
             script_id:,
             fingerprint: fingerprint.fetch(:fingerprint),
             token_count: fingerprint.fetch(:token_count),
+            locations: fingerprint[:locations],
+            source_version_id: fingerprint[:source_version_id],
           }
         )
         CodeSimilarityFingerprintHash.where(script_id:).delete_all

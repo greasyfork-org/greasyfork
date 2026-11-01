@@ -7,7 +7,9 @@ class CodeSimilarityFingerprintJob < ApplicationJob
       return
     end
 
-    fingerprint = TokenShingleSimilarityScorer.build_fingerprint(script.current_code)
+    version = script.newest_saved_script_version
+    fingerprint = TokenShingleSimilarityScorer.build_fingerprint(version.code)
+    fingerprint[:source_version_id] = version.id
     CodeSimilarityFingerprint.store_fingerprint!(script.id, fingerprint)
     TokenShingleSimilarityJob.perform_later_unless_will_run(script.id)
   end

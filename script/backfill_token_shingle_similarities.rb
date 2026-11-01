@@ -17,7 +17,7 @@ if File.exist?(checkpoint_path)
   raise 'START_BEFORE_ID cannot be combined with an existing checkpoint' if start_before_id
 
   checkpoint = JSON.parse(File.read(checkpoint_path))
-  raise 'Checkpoint was created for a different backfill order' unless checkpoint['order'] == 'descending'
+  raise 'Checkpoint was created for a different backfill order' unless %w[descending descending_with_locations].include?(checkpoint['order'])
 
   last_script_id = Integer(checkpoint.fetch('last_script_id'))
   processed_count = Integer(checkpoint.fetch('processed_count', 0))
@@ -54,8 +54,11 @@ scripts.find_each(order: :desc) do |script|
     end
   end
 
-  if !CodeSimilarityFingerprint.exists?(script_id: script.id) && script.current_code.present?
-    fingerprint = TokenShingleSimilarityScorer.build_fingerprint(script.current_code)
+  version = script.newest_saved_script_version
+  stored_fingerprint = CodeSimilarityFingerprint.find_by(script_id: script.id)
+  if version && stored_fingerprint.nil?
+    fingerprint = TokenShingleSimilarityScorer.build_fingerprint(version.code)
+    fingerprint[:source_version_id] = version.id
     CodeSimilarityFingerprint.store_fingerprint!(script.id, fingerprint)
     fingerprint_count += 1
   end
@@ -67,7 +70,7 @@ scripts.find_each(order: :desc) do |script|
   processed_this_run += 1
 
   checkpoint = {
-    order: 'descending',
+    order: 'descending_with_locations',
     last_script_id:,
     processed_count:,
     fingerprint_count:,

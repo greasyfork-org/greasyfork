@@ -730,10 +730,24 @@ class ScriptsController < ApplicationController
         other_code = @other_script.cleaned_code.code
         this_code = @script.cleaned_code.code
       else
-        other_code = @other_script.newest_saved_script_version.code
-        this_code = @script.newest_saved_script_version.code
+        @other_script_version = @other_script.newest_saved_script_version
+        @script_version = @script.newest_saved_script_version
+        other_code = @other_script_version.code
+        this_code = @script_version.code
       end
       @diff = Diffy::Diff.new(other_code, this_code, include_plus_and_minus_in_html: true, include_diff_info: true, diff: diff_options)
+      if params[:terser] != '1' && @script.js? && @other_script.js?
+        @common_source_locations = TokenShingleSimilarityScorer.common_source_locations_for(
+          @script,
+          @other_script,
+          script_version_id: @script_version.id,
+          other_script_version_id: @other_script_version.id,
+          code: this_code,
+          other_code:
+        )
+        @this_code = this_code
+        @other_code = other_code
+      end
     else
       @diff_error = flash.now[:notice] = t('.compare_must_be_local_url', site_name:)
     end

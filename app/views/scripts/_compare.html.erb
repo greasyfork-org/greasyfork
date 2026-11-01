@@ -36,5 +36,13 @@
     <% else %>
       <%= @diff.to_s(:html).html_safe %>
     <% end %>
+
+    <%= render partial: 'common_source_comparison', locals: {
+      common_source_locations: @common_source_locations,
+      other_script: @other_script,
+      other_code: @other_code,
+      script: @script,
+      this_code: @this_code,
+    } if @common_source_locations&.fetch(:similarity_count, 0)&.positive? %>
   <% end %>
 </section>
