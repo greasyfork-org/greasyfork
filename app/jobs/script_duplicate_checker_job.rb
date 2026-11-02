@@ -9,7 +9,7 @@ require 'sidekiq/max_concurrency_exception'
 class ScriptDuplicateCheckerJob
   include Sidekiq::Job
 
-  DESIRED_RUN_COUNT = 3
+  DESIRED_RUN_COUNT = 1
   RUN_COUNTER_KEY = 'ScriptDuplicateCheckerJob-executing-count'.freeze
   RUN_PROCESS_KEY_PREFIX = 'ScriptDuplicateCheckerJob-executing-process-'.freeze
 
