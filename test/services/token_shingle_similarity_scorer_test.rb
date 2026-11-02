@@ -53,9 +53,21 @@ class TokenShingleSimilarityScorerTest < ActiveSupport::TestCase
     )
   end
 
+  test 'fingerprint shingles skip punctuation-only tokens' do
+    compact = TokenShingleSimilarityScorer.build_fingerprint('a.b();c.d();e.f();g.h();')
+    spaced = TokenShingleSimilarityScorer.build_fingerprint("a . b ( ) ;\nc . d ( ) ;\ne . f ( ) ;\ng . h ( ) ;")
+    shingle_tokens = TokenShingleSimilarityScorer.shingle_tokens_for(
+      TokenShingleSimilarityScorer.tokenize_with_locations('a.b();c.d();')
+    )
+
+    assert_equal %w[a b c d], shingle_tokens.pluck('value')
+    assert_operator compact.fetch(:fingerprint).bytesize, :>, 0
+    assert_in_delta 0.999, score(compact, spaced)
+  end
+
   test 'fingerprint locations include every occurrence of each selected hash' do
     code = (0...300).map { |index| "const value#{index} = #{index};" }.join("\n")
-    tokens = TokenShingleSimilarityScorer.tokenize_with_locations(code)
+    tokens = TokenShingleSimilarityScorer.shingle_tokens_for(TokenShingleSimilarityScorer.tokenize_with_locations(code))
     fingerprint = TokenShingleSimilarityScorer.build_fingerprint(code)
     selected_hashes = fingerprint.fetch(:fingerprint).unpack('Q>*').to_h { |hash| [hash.to_s, []] }
     all_hashes = []

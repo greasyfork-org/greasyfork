@@ -5,6 +5,8 @@ require 'open3'
 class TokenShingleSimilarityScorer
   SHINGLE_SIZE = 5
   FINGERPRINT_SIZE = 256
+  # Punctuation-only tokens are excluded from shingles so that each shingle is mostly meaningful code.
+  STRUCTURAL_TOKEN_PATTERN = /\A[{}()\[\];,.]+\z/
   HASH_BYTES = 8
   FINGERPRINT_BYTES = FINGERPRINT_SIZE * HASH_BYTES
   DATABASE_BATCH_SIZE = 1_000
@@ -97,9 +99,20 @@ class TokenShingleSimilarityScorer
     tokens = tokenize_with_locations(code)
     return { fingerprint: ''.b, token_count: 0, locations: {} } if tokens.empty?
 
-    shingle_size = [SHINGLE_SIZE, tokens.size].min
-    hashes = bottom_hashes_for_tokens(tokens, shingle_size)
-    { fingerprint: hashes.pack('Q>*'), token_count: tokens.size, locations: locations_for_hashes(tokens, shingle_size, hashes) }
+    shingle_tokens = shingle_tokens_for(tokens)
+    return { fingerprint: ''.b, token_count: tokens.size, locations: {} } if shingle_tokens.empty?
+
+    shingle_size = [SHINGLE_SIZE, shingle_tokens.size].min
+    hashes = bottom_hashes_for_tokens(shingle_tokens, shingle_size)
+    {
+      fingerprint: hashes.pack('Q>*'),
+      token_count: tokens.size,
+      locations: locations_for_hashes(shingle_tokens, shingle_size, hashes),
+    }
+  end
+
+  def self.shingle_tokens_for(tokens)
+    tokens.grep_v(->(token) { STRUCTURAL_TOKEN_PATTERN.match?(token.fetch('value')) })
   end
 
   def self.bottom_hashes_for_tokens(tokens, shingle_size)
