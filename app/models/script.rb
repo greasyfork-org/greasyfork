@@ -458,6 +458,11 @@ class Script < ApplicationRecord
     newest_saved_script_version&.code
   end
 
+  def enqueue_code_processing_jobs
+    CleanedCodeJob.perform_later_unless_will_run(self) if js?
+    CodeSimilarityFingerprintJob.perform_later_unless_will_run(self)
+  end
+
   def self.record_install(id, ip)
     Script.connection.execute("INSERT IGNORE INTO daily_install_counts (script_id, ip) VALUES (#{Script.connection.quote(id)}, '#{Script.connection.quote_string(ip)}');")
   end

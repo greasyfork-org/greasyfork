@@ -331,6 +331,10 @@ class ScriptVersionsController < ApplicationController
       return
     end
 
+    latest_version = @script.newest_saved_script_version
+    deleting_latest_version = latest_version&.id == @script_version.id
+    deleted_latest_version_code = @script_version.code if deleting_latest_version
+
     ma = ModeratorAction.new
     ma.moderator = current_user
     ma.script = @script
@@ -340,9 +344,12 @@ class ScriptVersionsController < ApplicationController
     ma.save!
 
     @script_version.destroy
-    # That might have been the latest version, recalculate
-    @script.apply_from_script_version(@script.newest_saved_script_version)
+    latest_version = @script.newest_saved_script_version
+    @script.code_updated_at = [Time.current, @script.code_updated_at + 1.second].max if deleting_latest_version && deleted_latest_version_code != latest_version&.code
+    # Recalculate if the latest version was deleted.
+    @script.apply_from_script_version(latest_version)
     @script.save!
+    @script.enqueue_code_processing_jobs if deleting_latest_version
 
     flash[:notice] = 'Version deleted.' # rubocop:disable Rails/I18nLocaleTexts
 
