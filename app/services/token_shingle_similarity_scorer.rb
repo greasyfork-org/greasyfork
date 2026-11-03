@@ -12,6 +12,9 @@ class TokenShingleSimilarityScorer
   DATABASE_BATCH_SIZE = 1_000
   MIN_SHARED_HASH_COUNT = 1
   SOURCE_LOCATION_CONTEXT_LINES = 2
+  MAX_OCCURRENCE_PAIRS_PER_HASH = 10
+  MAX_SNIPPET_LINES = 100
+  MAX_SNIPPET_BYTES = 10 * 1024
   MIN_DISPLAYED_SIMILARITY_NUMERATOR = 1
   MIN_DISPLAYED_SIMILARITY_DENOMINATOR = 2
   MIN_DISPLAYED_SIMILARITY = MIN_DISPLAYED_SIMILARITY_NUMERATOR.to_f / MIN_DISPLAYED_SIMILARITY_DENOMINATOR
@@ -186,37 +189,129 @@ class TokenShingleSimilarityScorer
                               [script_hashes.size, other_hashes.size].min
                             end
 
-    script_sections = source_sections(code, script_fingerprint.locations, shared_hashes)
-    other_script_sections = source_sections(other_code, other_fingerprint.locations, shared_hashes)
+    regions = common_regions(code, other_code, script_fingerprint.locations, other_fingerprint.locations, shared_hashes)
+    script_line_starts = line_starts_for(code)
+    other_line_starts = line_starts_for(other_code)
     {
       similarity_count: shared_hashes.size,
       maximum_similarity_count: comparable_hash_count,
-      matches: shared_hashes.map do |hash|
+      matches: regions.map do |script_range, other_range|
         {
-          script: script_sections.fetch(hash),
-          other_script: other_script_sections.fetch(hash),
+          script: [source_section(code, script_line_starts, script_range)],
+          other_script: [source_section(other_code, other_line_starts, other_range)],
         }
       end,
     }
   end
 
-  def self.source_sections(code, locations, shared_hashes)
+  # Returns [script_byte_range, other_script_byte_range] pairs. Each shared shingle occurrence is expanded
+  # in both directions while the surrounding tokens are identical, and regions that touch on both sides are merged.
+  def self.common_regions(code, other_code, locations, other_locations, shared_hashes)
+    tokens = tokenize_with_locations(code)
+    other_tokens = tokenize_with_locations(other_code)
+    first_token_by_start = tokens.each_with_index.to_h { |token, index| [token.fetch('start'), index] }
+    last_token_by_end = tokens.each_with_index.to_h { |token, index| [token.fetch('end'), index] }
+    other_first_token_by_start = other_tokens.each_with_index.to_h { |token, index| [token.fetch('start'), index] }
+    other_last_token_by_end = other_tokens.each_with_index.to_h { |token, index| [token.fetch('end'), index] }
+
+    regions = []
+    unaligned_regions = []
+    shared_hashes.each do |hash|
+      ranges = locations.fetch(hash.to_s, [])
+      other_ranges = other_locations.fetch(hash.to_s, [])
+      ranges.product(other_ranges).first(MAX_OCCURRENCE_PAIRS_PER_HASH).each do |range, other_range|
+        first = first_token_by_start[range.first]
+        last = last_token_by_end[range.last]
+        other_first = other_first_token_by_start[other_range.first]
+        other_last = other_last_token_by_end[other_range.last]
+        unless first && last && other_first && other_last
+          # Stored ranges that do not line up with tokens cannot be expanded; show them as they are.
+          unaligned_regions << [range, other_range]
+          next
+        end
+
+        while first.positive? && other_first.positive? && tokens[first - 1].fetch('value') == other_tokens[other_first - 1].fetch('value')
+          first -= 1
+          other_first -= 1
+        end
+        while last + 1 < tokens.size && other_last + 1 < other_tokens.size &&
+              tokens[last + 1].fetch('value') == other_tokens[other_last + 1].fetch('value')
+          last += 1
+          other_last += 1
+        end
+        regions << [first, last, other_first, other_last]
+      end
+    end
+
+    expanded_regions = merge_regions(regions).map do |first, last, other_first, other_last|
+      [
+        [tokens[first].fetch('start'), tokens[last].fetch('end')],
+        [other_tokens[other_first].fetch('start'), other_tokens[other_last].fetch('end')],
+      ]
+    end
+    (expanded_regions + unaligned_regions.uniq).sort
+  end
+
+  def self.merge_regions(regions)
+    merged = []
+    regions.sort.each do |region|
+      region = region.dup
+      loop do
+        touching = merged.find { |other| regions_touch?(region, other) }
+        break unless touching
+
+        merged.delete(touching)
+        region = [
+          [region[0], touching[0]].min, [region[1], touching[1]].max,
+          [region[2], touching[2]].min, [region[3], touching[3]].max
+        ]
+      end
+      merged << region
+    end
+    merged.sort
+  end
+
+  def self.regions_touch?(region, other)
+    region[0] <= other[1] + 1 && other[0] <= region[1] + 1 &&
+      region[2] <= other[3] + 1 && other[2] <= region[3] + 1
+  end
+
+  def self.line_starts_for(code)
     line_starts = [0]
     code.b.to_enum(:scan, /\n/n).each { line_starts << Regexp.last_match.end(0) }
-    shared_hashes.to_h do |hash|
-      sections = locations.fetch(hash.to_s, []).map do |range|
-        first_line = line_number_for_offset(line_starts, range.first)
-        last_line = line_number_for_offset(line_starts, range.last)
-        start_line = [first_line - SOURCE_LOCATION_CONTEXT_LINES, 0].max
-        end_line = [last_line + SOURCE_LOCATION_CONTEXT_LINES, line_starts.size - 1].min
-        {
-          source_range: [line_starts.fetch(start_line), line_starts[end_line + 1] || code.bytesize],
-          highlight: range,
-          first_line_number: start_line + 1,
-        }
-      end
-      [hash, sections]
+    line_starts
+  end
+
+  def self.source_section(code, line_starts, range)
+    first_line = line_number_for_offset(line_starts, range.first)
+    last_line = line_number_for_offset(line_starts, range.last)
+    start_line = [first_line - SOURCE_LOCATION_CONTEXT_LINES, 0].max
+    end_line = [last_line + SOURCE_LOCATION_CONTEXT_LINES, line_starts.size - 1].min
+    source_start = line_starts.fetch(start_line)
+    source_end = line_starts[end_line + 1] || code.bytesize
+    capped_end = capped_snippet_end(code, line_starts, start_line, source_start, source_end)
+    {
+      source_range: [source_start, capped_end],
+      highlight: range,
+      first_line_number: start_line + 1,
+      omitted_lines: code.byteslice(capped_end, source_end - capped_end).to_s.lines.size,
+      omitted_bytes: source_end - capped_end,
+    }
+  end
+
+  # Limits a snippet to MAX_SNIPPET_LINES lines and MAX_SNIPPET_BYTES bytes, cutting at a line boundary if possible.
+  def self.capped_snippet_end(code, line_starts, start_line, source_start, source_end)
+    capped_end = source_end
+    line_limit_start = line_starts[start_line + MAX_SNIPPET_LINES]
+    capped_end = [capped_end, line_limit_start].min if line_limit_start
+
+    byte_limit = source_start + MAX_SNIPPET_BYTES
+    if capped_end > byte_limit
+      capped_end = line_starts.select { |line_start| line_start > source_start && line_start <= byte_limit }.max || byte_limit
+      # Do not cut in the middle of a multibyte character.
+      capped_end -= 1 while capped_end > source_start && (code.getbyte(capped_end) & 0xC0) == 0x80
     end
+    capped_end
   end
 
   def self.line_number_for_offset(line_starts, offset)

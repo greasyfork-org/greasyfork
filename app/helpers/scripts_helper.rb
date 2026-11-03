@@ -130,15 +130,27 @@ module ScriptsHelper
     t("scripts.similarity_score.#{key}")
   end
 
+  # A single note per compared snippet. When both sides are cut, the larger omission is reported.
+  def common_source_truncation_note(match, **)
+    omissions = [match.fetch(:other_script), match.fetch(:script)].map do |sections|
+      [sections.sum { |section| section.fetch(:omitted_lines) }, sections.sum { |section| section.fetch(:omitted_bytes) }]
+    end
+    lines, bytes = omissions.max_by(&:last)
+    return if bytes.zero?
+
+    "#{pluralize(lines, 'line')} (#{number_to_human_size(bytes)}) omitted."
+  end
+
   def source_with_highlights(code, section)
     source_start, source_end = section.fetch(:source_range)
     highlighted_source = ''.html_safe
     line_number = section.fetch(:first_line_number)
     line_start = source_start
     highlight_start, highlight_end = section.fetch(:highlight)
+    binary_code = code.b
 
     while line_start < source_end
-      newline_position = code.b.index("\n".b, line_start)
+      newline_position = binary_code.index("\n".b, line_start)
       line_end = [newline_position ? newline_position + 1 : code.bytesize, source_end].min
       content_end = (line_end > line_start && code.getbyte(line_end - 1) == 10) ? line_end - 1 : line_end
       line_content = code.byteslice(line_start, content_end - line_start).to_s.force_encoding(code.encoding)

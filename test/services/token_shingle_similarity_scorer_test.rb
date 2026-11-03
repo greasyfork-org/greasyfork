@@ -94,13 +94,14 @@ class TokenShingleSimilarityScorerTest < ActiveSupport::TestCase
     fingerprint[:source_version_id] = other_script.newest_saved_script_version.id
     CodeSimilarityFingerprint.store_fingerprint!(other_script.id, fingerprint)
 
+    other_code = code.sub('five', 'FIVE')
     locations = TokenShingleSimilarityScorer.common_source_locations_for(
       script,
       other_script,
       script_version_id: script.newest_saved_script_version.id,
       other_script_version_id: other_script.newest_saved_script_version.id,
       code:,
-      other_code: code
+      other_code:
     )
 
     assert_equal 2, locations.fetch(:similarity_count)
@@ -108,9 +109,13 @@ class TokenShingleSimilarityScorerTest < ActiveSupport::TestCase
     assert_equal 2, locations.fetch(:matches).size
     first_section = locations.fetch(:matches).first.fetch(:script).first
     snippet = code.byteslice(*first_section.fetch(:source_range))
-    assert_equal 3, snippet.lines.size
+    assert_equal 6, snippet.lines.size
     assert_equal 1, first_section.fetch(:first_line_number)
-    assert_equal [0, 3], first_section.fetch(:highlight)
+    assert_equal [0, code.index('four') + 4], first_section.fetch(:highlight)
+    assert_equal [0, other_code.index('four') + 4], locations.fetch(:matches).first.fetch(:other_script).first.fetch(:highlight)
+
+    second_section = locations.fetch(:matches).last.fetch(:script).first
+    assert_equal [code.index('six'), code.bytesize - 1], second_section.fetch(:highlight)
     assert_nil TokenShingleSimilarityScorer.common_source_locations_for(
       script,
       other_script,
@@ -132,6 +137,53 @@ class TokenShingleSimilarityScorerTest < ActiveSupport::TestCase
       code:,
       other_code: code
     )
+  end
+
+  test 'common source locations merge expanded regions that meet' do
+    script = scripts(:one)
+    other_script = scripts(:two)
+    code = "one\n two\n three\n four\n five\n six\n seven\n eight\n nine\n ten\n"
+    location_data = { '1' => [[0, 3]], '2' => [[code.index('ten'), code.index('ten') + 3]] }
+    fingerprint = { fingerprint: [1, 2].pack('Q>*'), token_count: 10, locations: location_data }
+    fingerprint[:source_version_id] = script.newest_saved_script_version.id
+    CodeSimilarityFingerprint.store_fingerprint!(script.id, fingerprint)
+    fingerprint[:source_version_id] = other_script.newest_saved_script_version.id
+    CodeSimilarityFingerprint.store_fingerprint!(other_script.id, fingerprint)
+
+    locations = TokenShingleSimilarityScorer.common_source_locations_for(
+      script,
+      other_script,
+      script_version_id: script.newest_saved_script_version.id,
+      other_script_version_id: other_script.newest_saved_script_version.id,
+      code:,
+      other_code: code
+    )
+
+    assert_equal 2, locations.fetch(:similarity_count)
+    assert_equal 1, locations.fetch(:matches).size
+    assert_equal [0, code.bytesize - 1], locations.fetch(:matches).first.fetch(:script).first.fetch(:highlight)
+  end
+
+  test 'source sections are capped by line count and size' do
+    code = (1..300).map { |index| "line#{index}\n" }.join
+    line_starts = TokenShingleSimilarityScorer.line_starts_for(code)
+
+    section = TokenShingleSimilarityScorer.source_section(code, line_starts, [0, code.bytesize - 1])
+    assert_equal 200, section.fetch(:omitted_lines)
+    assert_equal code.bytesize - section.fetch(:source_range).last, section.fetch(:omitted_bytes)
+    assert_equal 100, code.byteslice(*section.fetch(:source_range)).lines.size
+
+    small = TokenShingleSimilarityScorer.source_section(code, line_starts, [0, 10])
+    assert_equal 0, small.fetch(:omitted_bytes)
+
+    long_code = "#{'é' * 20_000}\nshort\n"
+    long_section = TokenShingleSimilarityScorer.source_section(
+      long_code, TokenShingleSimilarityScorer.line_starts_for(long_code), [0, long_code.bytesize - 1]
+    )
+    assert_operator long_section.fetch(:omitted_bytes), :>, 0
+    snippet = long_code.byteslice(*long_section.fetch(:source_range))
+    assert_operator snippet.bytesize, :<=, TokenShingleSimilarityScorer::MAX_SNIPPET_BYTES
+    assert snippet.dup.force_encoding('UTF-8').valid_encoding?
   end
 
   test 'fingerprints find shared code after more than 32 KB of different code' do

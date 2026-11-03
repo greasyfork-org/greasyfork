@@ -26,6 +26,10 @@
           <% end %>
         </div>
       </div>
+      <% truncation_note = common_source_truncation_note(match) %>
+      <% if truncation_note %>
+        <p class="common-source-truncated"><em><%= truncation_note %></em></p>
+      <% end %>
     </section>
   <% end %>
 </details>
