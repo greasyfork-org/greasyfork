@@ -119,9 +119,9 @@ class ScriptVersion < ApplicationRecord
     script.reset_consecutive_bad_ratings!
   end
 
-  after_commit on: [:create, :update] do
-    next if previous_changes.none?
-
+  # Versions are immutable once created, so only creation needs processing. Don't check previous_changes: when the script
+  # is saved first and autosaves this version, a nested save can leave it empty.
+  after_create_commit do
     script.enqueue_code_processing_jobs
   end
 
