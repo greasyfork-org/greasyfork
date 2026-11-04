@@ -3,14 +3,6 @@ require 'application_system_test_case'
 class DerivativesTest < ApplicationSystemTestCase
   include ActiveJob::TestHelper
 
-  test 'script derivatives' do
-    script = Script.find(1)
-    login_as(script.users.first, scope: :user)
-    visit derivatives_script_url(script, locale: :en)
-    click_on 'Recheck now'
-    assert_content 'Similarity check will be completed in a few minutes.'
-  end
-
   test 'script derivatives show precomputed token-shingle similarities' do
     script = scripts(:one)
     other_script = scripts(:two)
@@ -24,36 +16,42 @@ class DerivativesTest < ApplicationSystemTestCase
 
     visit derivatives_script_url(script, locale: :en)
 
-    assert_content 'Token-shingle similarity'
-    assert_no_content 'Similarity method comparison'
     assert_content 'Somewhat similar'
     assert_content 'A Test!'
     assert_link 'Diff'
   end
 
-  test 'moderators can compare compression-only and token-shingle-only matches' do
+  test 'script comparison highlights common fingerprint source locations when available' do
     script = scripts(:one)
-    compression_only_script = scripts(:two)
-    token_only_script = scripts(:three)
-    ScriptSimilarity.delete_all
-    ScriptSimilarity.create!(
-      script:,
-      other_script: compression_only_script,
-      similarity: 0.9,
-      checked_at: Time.current
-    )
-    TokenShingleSimilarity.create!(
-      script:,
-      other_script: token_only_script,
-      similarity: 0.6,
-      checked_at: Time.current
-    )
-    login_as(users(:mod), scope: :user)
+    other_script = scripts(:two)
+    script_version = script.newest_saved_script_version
+    other_script_version = other_script.newest_saved_script_version
+    shared_code = 'function shared(){return 42;}'
+    shared_fingerprint = TokenShingleSimilarityScorer.build_fingerprint(shared_code)
+    shared_hash = shared_fingerprint.fetch(:fingerprint).unpack1('Q>')
+    [script, other_script].zip([script_version, other_script_version]).each do |candidate, version|
+      source = candidate.current_code
+      fingerprint = {
+        fingerprint: [shared_hash].pack('Q>*'),
+        token_count: shared_fingerprint.fetch(:token_count),
+        locations: { shared_hash.to_s => [[0, [source.bytesize, 5].min]] },
+        source_version_id: version.id,
+      }
+      CodeSimilarityFingerprint.store_fingerprint!(candidate.id, fingerprint)
+    end
 
-    visit derivatives_script_url(script, locale: :en)
+    login_as(script.users.first, scope: :user)
+    visit derivatives_script_url(script, locale: :en, compare: other_script.id)
 
-    assert_content 'Similarity method comparison (moderators only)'
-    assert_selector "#compression-only-matches li[data-script-id='#{compression_only_script.id}']", text: 'Moderately similar'
-    assert_selector "#token-shingle-only-matches li[data-script-id='#{token_only_script.id}']", text: 'Somewhat similar'
+    assert_selector '.common-source-comparison'
+    find('.common-source-comparison summary').click
+    assert_text 'We found 1 matches in a sample of 1 code snippets.'
+    assert_selector 'mark.common-source-location', minimum: 2
+    assert_selector '.common-source-line-number'
+    assert_selector ".common-source-comparison a[href='#{script_path(other_script, locale: :en)}']"
+    assert_selector ".common-source-comparison a[href='#{script_path(script, locale: :en)}']"
+    other_script.users.each do |author|
+      assert_selector '.common-source-match h5 a', text: author.name
+    end
   end
 end

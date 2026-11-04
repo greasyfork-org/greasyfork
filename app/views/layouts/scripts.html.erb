@@ -10,7 +10,7 @@
         <% same_user = current_user && @script.user_ids.include?(current_user.id)
         user_is_mod = !current_user.nil? && current_user.moderator? %>
         <% if same_user || user_is_mod %>
-          <%= script_tab_link(derivatives_script_path(@script, version: params[:version]), t('scripts.derivatives_page')) %>
+          <%= script_tab_link(derivatives_script_path(@script, version: params[:version]), t('scripts.diff_page')) %>
         <% end %>
         <% if same_user %>
           <%= script_tab_link(new_script_script_version_path(@script.id), t('scripts.update_page')) %>

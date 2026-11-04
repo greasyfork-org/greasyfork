@@ -136,7 +136,6 @@ Rails.application.routes.draw do
         post 'invite'
         get 'accept_invitation'
         post 'remove_author'
-        post 'request_duplicate_check'
       end
 
       collection do

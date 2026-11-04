@@ -14,7 +14,7 @@ class ScriptsController < ApplicationController
   include FileCaching
 
   MEMBER_AUTHOR_ACTIONS = [:sync_update, :update_promoted, :request_permanent_deletion, :unrequest_permanent_deletion, :update_promoted, :invite, :remove_author].freeze
-  MEMBER_AUTHOR_OR_MODERATOR_ACTIONS = [:delete, :do_delete, :undelete, :do_undelete, :derivatives, :admin, :update_locale, :request_duplicate_check].freeze
+  MEMBER_AUTHOR_OR_MODERATOR_ACTIONS = [:delete, :do_delete, :undelete, :do_undelete, :derivatives, :admin, :update_locale].freeze
   MEMBER_MODERATOR_ACTIONS = [:mark, :do_mark, :approve].freeze
   MEMBER_PUBLIC_ACTIONS = [:diff, :report, :accept_invitation, :post_install].freeze
   MEMBER_PUBLIC_ACTIONS_WITH_SPECIAL_LOADING = [:show, :show_code, :user_js, :meta_js, :user_css, :meta_css, :feedback, :install_ping, :stats, :sync_additional_info_form].freeze
@@ -683,27 +683,12 @@ class ScriptsController < ApplicationController
   def derivatives
     return if redirect_to_slug(@script, :id)
 
-    @similarities = ScriptSimilarity.other_scripts_and_similarities_for(
-      @script,
-      min_similarity: DERIVATIVE_SCORES.map(&:last).min,
-      include_deleted: current_user&.moderator?
-    )
+    load_diff
 
     @token_shingle_similarities = TokenShingleSimilarity.other_scripts_and_similarities_for(
       @script,
       include_deleted: current_user&.moderator?
     )
-
-    if current_user&.moderator?
-      compression_script_ids = @similarities.map { |similar_script, _score| similar_script.id }
-      token_shingle_script_ids = @token_shingle_similarities.map { |similar_script, _score| similar_script.id }
-      @compression_only_similarities = @similarities.reject do |similar_script, _score|
-        token_shingle_script_ids.include?(similar_script.id)
-      end
-      @token_shingle_only_similarities = @token_shingle_similarities.reject do |similar_script, _score|
-        compression_script_ids.include?(similar_script.id)
-      end
-    end
 
     @canonical_params = [:id]
   end
@@ -711,46 +696,6 @@ class ScriptsController < ApplicationController
   def admin
     # For sync section
     @script.localized_attributes.build({ attribute_key: 'additional_info', attribute_default: true }) if @script.localized_attributes_for('additional_info').empty?
-
-    @context = 3
-    @context = params[:context].to_i if !params[:context].nil? && params[:context].to_i.between?(0, 10_000)
-
-    return if params[:compare].blank?
-
-    diff_options = ["-U #{@context}"]
-    diff_options << '-w' if !params[:w].nil? && params[:w] == '1'
-    @other_script = get_script_from_input(params[:compare], allow_deleted: true)
-
-    if @other_script.is_a?(Script)
-      if params[:terser] == '1'
-        unless @script.cleaned_code && @other_script.cleaned_code
-          @diff_error = flash.now[:notice] = t('.compare_cleaned_code_unavailable')
-          return
-        end
-        other_code = @other_script.cleaned_code.code
-        this_code = @script.cleaned_code.code
-      else
-        @other_script_version = @other_script.newest_saved_script_version
-        @script_version = @script.newest_saved_script_version
-        other_code = @other_script_version.code
-        this_code = @script_version.code
-      end
-      @diff = Diffy::Diff.new(other_code, this_code, include_plus_and_minus_in_html: true, include_diff_info: true, diff: diff_options)
-      if params[:terser] != '1' && @script.js? && @other_script.js?
-        @common_source_locations = TokenShingleSimilarityScorer.common_source_locations_for(
-          @script,
-          @other_script,
-          script_version_id: @script_version.id,
-          other_script_version_id: @other_script_version.id,
-          code: this_code,
-          other_code:
-        )
-        @this_code = this_code
-        @other_code = other_code
-      end
-    else
-      @diff_error = flash.now[:notice] = t('.compare_must_be_local_url', site_name:)
-    end
   end
 
   def update_promoted
@@ -878,13 +823,6 @@ class ScriptsController < ApplicationController
     @script.update!(review_state: 'approved')
     flash[:notice] = 'Marked as approved.' # rubocop:disable Rails/I18nLocaleTexts
     redirect_to clean_redirect_param(:return_to) || script_path(@script)
-  end
-
-  def request_duplicate_check
-    ScriptDuplicateCheckerJob.set(queue: 'user_low').perform_async(@script.id)
-    flash[:notice] = t('scripts.derivatives_similiar_queued')
-    flash[:duplicates_enqueued] = true
-    redirect_to derivatives_script_path(@script)
   end
 
   # Returns IP and script ID. They will be nil if not valid.
@@ -1102,5 +1040,47 @@ class ScriptsController < ApplicationController
     return unless bih.any?
 
     flash.now[:alert] ||= t('scripts.integrity_hashes.script_notice.text_html', detail: bih.map { |b| t('scripts.integrity_hashes.script_notice.detail', url: b[:url], expected_hash: b[:expected_hash], last_checked_at: view_context.markup_date(b[:last_success_at])) }.join(', ').html_safe, count: bih.count)
+  end
+
+  def load_diff
+    @context = 3
+    @context = params[:context].to_i if !params[:context].nil? && params[:context].to_i.between?(0, 10_000)
+
+    return if params[:compare].blank?
+
+    diff_options = ["-U #{@context}"]
+    diff_options << '-w' if !params[:w].nil? && params[:w] == '1'
+    @other_script = get_script_from_input(params[:compare], allow_deleted: true)
+
+    if @other_script.is_a?(Script)
+      if params[:terser] == '1'
+        unless @script.cleaned_code && @other_script.cleaned_code
+          @diff_error = flash.now[:notice] = t('.compare_cleaned_code_unavailable')
+          return
+        end
+        other_code = @other_script.cleaned_code.code
+        this_code = @script.cleaned_code.code
+      else
+        @other_script_version = @other_script.newest_saved_script_version
+        @script_version = @script.newest_saved_script_version
+        other_code = @other_script_version.code
+        this_code = @script_version.code
+      end
+      @diff = Diffy::Diff.new(other_code, this_code, include_plus_and_minus_in_html: true, include_diff_info: true, diff: diff_options)
+      if params[:terser] != '1' && @script.js? && @other_script.js?
+        @common_source_locations = TokenShingleSimilarityScorer.common_source_locations_for(
+          @script,
+          @other_script,
+          script_version_id: @script_version.id,
+          other_script_version_id: @other_script_version.id,
+          code: this_code,
+          other_code:
+        )
+        @this_code = this_code
+        @other_code = other_code
+      end
+    else
+      @diff_error = flash.now[:notice] = t('.compare_must_be_local_url', site_name:)
+    end
   end
 end

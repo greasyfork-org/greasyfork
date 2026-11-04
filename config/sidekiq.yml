@@ -18,9 +18,6 @@
     subresource_check_queueing_job:
       interval: '1m'
       class: SubresourceCheckQueueingJob
-    script_duplicate_checker_queueing_job:
-      interval: '1m'
-      class: ScriptDuplicateCheckerQueueingJob
     banned_user_delete_job:
       cron: '0 0 0 * * *'
       class: BannedUserDeleteJob
