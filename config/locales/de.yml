@@ -60,7 +60,6 @@ de:
     history_page: "Versionen"
     feedback_page: "Rückmeldungen (%{count})"
     stats_page: "Statistiken"
-    derivatives_page: "Derivate"
     update_page: "Aktualisieren"
     delete_page: "Löschen"
     delete_explanation: "Löschen des Skripts verbirgt es vor allen Nutzern mit Ausnahme des Autors und der Moderatoren. Ein Wiederherstellen ist jederzeit möglich."
@@ -140,27 +139,18 @@ de:
       all: Ganze Zeit
     stats_library_usages_intro_html: "Die folgenden Skripte verwenden die URL %{site_name} dieser Bibliothek in einem <code>@require</code>:"
     stats_library_usages_script_column: Skript
-    derivatives_title: "%{script_name} - Derivate"
     derivatives_intro: "Diese Skripte könnten auf Ihren Skripten basieren (oder Ihre Skripte auf diesen). Falls Sie eine nicht genehmigte Nutzung ihres Quelltextes feststellen, können Sie es vom Feedback-Tab des Skripts melden."
     derivatives_script_html: "%{script} von %{user}, Lizenz: %{license} %{diff_link:[Diff]}"
     derivatives_exact_copies_heading: "Exakte Kopien"
     derivatives_exact_copies_list_intro: "Die folgenden Skripte haben exakt den gleichen Quelltext wie Ihre:"
     derivatives_exact_copies_item_html: "%{script_link} von %{author_links} - Versionen: %{version_list}"
-    derivatives_exact_copes_none: "Es gibt keine anderen Skripte auf %{site_name} die den genau gleichen Quelltext wie dieses Skript haben."
     derivatives_similar_heading: "Ähnliche Skripte"
-    derivatives_similar_info: "Wir überprüfen regelmäßig die neueste Version aller anderen Skripte, um diejenigen zu finden, die den Ihren am ähnlichsten sind. Wir überprüfen auch immer dann, wenn Sie eine Aktualisierung Ihres Skripts veröffentlichen und auf Ihre Anfrage hin."
     similarity_score:
       high: Sehr ähnlich
       medium: Mäßig ähnlich
       low: Etwas ähnlich
       none: Nicht ähnlich
-    derivatives_similar_none: "Es gibt keine Skripte, die Ihrem ähnlich sind."
     derivatives_similar_item: "%{score}: %{diff_link:[Diff]} %{script}"
-    derivatives_similar_last_check_html: "Wir haben zuletzt am %{date} nach Skripten, die Ihrem ähneln, gesucht."
-    derivatives_similar_last_check_soon: "Wir werden in Kürze nach ähnlichen Skripten wie Ihrem suchen."
-    derivatives_similar_last_check_again_soon_html: "Wir haben zuletzt am %{date} nach Skripten, die ihrem ähneln gesucht. Wir werden bald erneut suchen."
-    derivatives_similar_check_now: "erneut überprüfen"
-    derivatives_similiar_queued: Die Übereinstimmungsprüfung wird in wenigen Minuten abgeschlossen sein.
     listing_title_all_sites: "Benutzerskripte für alle Seiten"
     listing_description_all_sites: "Benutzerskripte, welche auf allen Seiten Funktionen hinzufügen und Fehler beheben"
     listing_title_for_site: "Benutzerskripte für %{site}"
@@ -283,7 +273,6 @@ de:
     screenshots_add: "Hinzufügen:"
     screenshots_remove: "Entfernen"
     replacement_script_explanation: "(Optional) Wählen Sie ein anderes Skript, welches dieses Skript ersetzt. Geben Sie die URL des Ersatzskripts an:"
-    diff_title: "%{script} - Versionsunterschiede"
     diff_old_version: "Alt:"
     diff_new_version: "Neu:"
     diff_lines_of_context: "Kontextzeilen:"

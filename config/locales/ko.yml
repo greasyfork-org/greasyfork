@@ -60,7 +60,6 @@ ko:
     history_page: "변경 내역"
     feedback_page: "피드백 (%{count})"
     stats_page: "통계"
-    derivatives_page: "파생 스크립트"
     update_page: "업데이트"
     delete_page: "삭제"
     delete_explanation: "스크립트를 삭제하면 작성자 본인과 Greasy Fork 관리자를 제외한 모든 사용자가 접근할 수 없게 됩니다. 언제든지 삭제를 취소할 수 있습니다."
@@ -139,27 +138,18 @@ ko:
       all: 전체 기간
     stats_library_usages_intro_html: "<code>@require</code>문에서 이 라이브러리의 %{site_name} URL을 이용하는 스크립트:"
     stats_library_usages_script_column: 스크립트
-    derivatives_title: "%{script_name} - 파생 스크립트"
     derivatives_intro: "이 스크립트들은 사용자 스크립트를 기반으로 하거나(혹은 그 반대일 수 있습니다), 코드가 유사할 수 있습니다. 코드 무단 사용을 발견하면 해당 스크립트의 피드백 탭에서 신고해 주세요."
     derivatives_script_html: "%{script} (작성자: %{user}), 라이선스: %{license} %{diff_link:[Diff 보기]}"
     derivatives_exact_copies_heading: "완전히 동일한 코드"
     derivatives_exact_copies_list_intro: "다음 스크립트들의 코드는 현재 스크립트와 완전히 동일합니다."
     derivatives_exact_copies_item_html: "%{script_link} (작성자: %{author_links}) - 버전: %{version_list}"
-    derivatives_exact_copes_none: "%{site_name}에 이 스크립트와 코드가 완전히 동일한 다른 스크립트가 없습니다."
     derivatives_similar_heading: "유사한 스크립트"
-    derivatives_similar_info: "다른 모든 스크립트의 최신 버전을 주기적으로 확인하여 현재 스크립트와 가장 유사한 스크립트를 찾습니다. 스크립트 업데이트 시 또는 요청 시에도 확인합니다."
     similarity_score:
       high: 매우 유사함
       medium: 상당히 유사함
       low: 약간 유사함
       none: 유사하지 않음
-    derivatives_similar_none: "이 스크립트와 유사한 다른 스크립트가 없습니다."
     derivatives_similar_item: "%{score}: %{diff_link:[Diff 보기]} %{script}"
-    derivatives_similar_last_check_html: "%{date}에 마지막으로 유사한 스크립트를 확인했습니다."
-    derivatives_similar_last_check_soon: "곧 유사한 스크립트를 확인할 예정입니다."
-    derivatives_similar_last_check_again_soon_html: "%{date}에 마지막으로 유사한 스크립트를 확인했습니다. 곧 다시 확인할 예정입니다."
-    derivatives_similar_check_now: "지금 다시 확인"
-    derivatives_similiar_queued: 유사성 검사가 몇 분 안에 완료될 예정입니다.
     listing_title_all_sites: "모든 사이트용 유저 스크립트"
     listing_description_all_sites: "모든 사이트에서 기능을 추가하고 버그를 수정하는 유저 스크립트"
     listing_title_for_site: "%{site}용 유저 스크립트"
@@ -288,7 +278,6 @@ ko:
     screenshots_add: "추가:"
     screenshots_remove: "제거"
     replacement_script_explanation: "(선택 사항) 이 스크립트를 대체할 다른 스크립트를 선택하세요. 대체 스크립트의 URL 입력:"
-    diff_title: "%{script} - 버전 비교"
     diff_old_version: "이전 버전:"
     diff_new_version: "새 버전:"
     diff_lines_of_context: "변경 내용 주변 줄 수:"

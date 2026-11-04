@@ -60,7 +60,6 @@ ja:
     history_page: "履歴"
     feedback_page: "フィードバック (%{count})"
     stats_page: "統計"
-    derivatives_page: "派生"
     update_page: "更新"
     delete_page: "削除"
     delete_explanation: "スクリプトを削除すると、自分と管理担当者以外はアクセスできなくなります。スクリプトの削除はいつでも取り消すことができます"
@@ -137,27 +136,18 @@ ja:
       all: 全期間
     stats_library_usages_intro_html: "以下のスクリプトは、このライブラリの %{site_name} URLを使用しています。<code>@require</code>:"
     stats_library_usages_script_column: スクリプト
-    derivatives_title: "%{script_name} に似ているスクリプト"
     derivatives_intro: "以下のスクリプトは、あなたのスクリプトを基にしている可能性があります（あるいはその逆）。ライセンス上の許可なくあなたのコードが使われている場合、そのスクリプトのフィードバックタブから通報してください。"
     derivatives_script_html: "%{script} 作者:%{user} ライセンス: %{license} %{diff_link:[差分]}"
     derivatives_exact_copies_heading: "正確なコピー"
     derivatives_exact_copies_list_intro: "以下のスクリプトは、このスクリプトと全く同じコードです"
     derivatives_exact_copies_item_html: "%{script_link} by %{author_links} -バージョン：%{version_list}　"
-    derivatives_exact_copes_none: "%{site_name} には、このスクリプトとまったく同じコードのスクリプトはありません"
     derivatives_similar_heading: "似ているスクリプト"
-    derivatives_similar_info: "他のスクリプトの最新版を定期的に確認して、このスクリプトと最も類似しているものを探します。また、あなたがスクリプトの更新を投稿した際や、あなたの要望に応じて確認します。"
     similarity_score:
       high: かなり似ている
       medium: まあまあ似ている
       low: 少し似ている
       none: 類似性はない
-    derivatives_similar_none: "このスクリプトに類似したものはありません"
     derivatives_similar_item: "%{score}: %{diff_link:[差分]} %{script}"
-    derivatives_similar_last_check_html: "%{date}、似たスクリプトがないか確認しました"
-    derivatives_similar_last_check_soon: "似たスクリプトがないかまもなく確認します"
-    derivatives_similar_last_check_again_soon_html: "最後に確認したのは%{date}です。まもなく再確認します"
-    derivatives_similar_check_now: "今すぐ再確認"
-    derivatives_similiar_queued: 類似性の確認は数分で完了します。
     listing_title_all_sites: "すべてのサイトで実行されるユーザースクリプト"
     listing_description_all_sites: "すべてのサイトに機能を追加し、バグを取り除くユーザースクリプト"
     listing_title_for_site: "%{site} で実行されるユーザースクリプト"
@@ -286,7 +276,6 @@ ja:
     screenshots_add: "添付:"
     screenshots_remove: "削除"
     replacement_script_explanation: "(任意) このスクリプトを置き換える他のスクリプトのURLを入力:"
-    diff_title: "%{script} のバージョン差分"
     diff_old_version: "旧:"
     diff_new_version: "新:"
     diff_lines_of_context: "前後の行数:"

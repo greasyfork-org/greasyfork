@@ -61,7 +61,6 @@ cs:
     history_page: "Historie"
     feedback_page: "Zpětná vazba (%{count})"
     stats_page: "Statistiky"
-    derivatives_page: "Odvozené skripty"
     update_page: "Aktualizovat"
     delete_page: "Smazat"
     delete_explanation: "Smazaný skript bude nedostupný pro všechny uživatele kromě vás a moderátorů Greasy Fork. Skript můžete kdykoliv obnovit."
@@ -131,27 +130,18 @@ cs:
       month: Posledních 30 dní
       year: Posledních 365 dní
       all: Celkem
-    derivatives_title: "%{script_name} - Odvozené skripty"
     derivatives_intro: "Tyto skripty mohou být založeny na vašem (nebo váš může být založen na nich). Pokud zaznamenáte neautorizované použití vašeho kódu, nahlašte ho na tabu zpětné vazby daného skriptu."
     derivatives_script_html: "%{script} od %{user}, licence: %{license} %{diff_link:[Rozdíl]}"
     derivatives_exact_copies_heading: "Přesné kopie"
     derivatives_exact_copies_list_intro: "Následující skripty mají přesně stejný kód, jako váš skript:"
     derivatives_exact_copies_item_html: "%{script_link} od %{author_links} - verze: %{version_list}"
-    derivatives_exact_copes_none: "Na %{site_name} nejsou žádné další skripty, které mají přesně stejný kód jako tento skript."
     derivatives_similar_heading: "Podobné skripty"
-    derivatives_similar_info: "Pravidelně kontrolujeme nejnovější verze všech ostatních skriptů abychom nalezli ty, které jsou vašim skriptům nejpodobnější. Kontrolu také provádíme vždy když zveřejníte aktualizaci vašeho skriptu, nebo na Váš požadavek."
     similarity_score:
       high: Velmi podobné
       medium: Středně podobné
       low: Trochu podobné
       none: Nepodobné
-    derivatives_similar_none: "Žádné skripty nejsou podobné vašemu."
     derivatives_similar_item: "%{score}: %{diff_link:[Rozdíl]} %{script}"
-    derivatives_similar_last_check_html: "Poslední kontrola na podobnost s vaším skriptem proběhla %{date}."
-    derivatives_similar_last_check_soon: "Brzy provedeme kontrolu na podobnost s vaším skriptem."
-    derivatives_similar_last_check_again_soon_html: "Poslední kontrola na podobnost s vaším skriptem proběhla %{date}. Další kontrolu provedeme brzy."
-    derivatives_similar_check_now: "Zkontrolovat nyní."
-    derivatives_similiar_queued: Kontrola podobnosti bude dokončena za pár minut.
     listing_title_all_sites: "Uživatelské skripty pro všechny stránky"
     listing_description_all_sites: "Uživatelské skripty, které přidávají funkcionality a řeší chyby na všech stránkách"
     listing_title_for_site: "Uživatelské skripty pro %{site}"
@@ -262,7 +252,6 @@ cs:
     screenshots_add: "Přidat:"
     screenshots_remove: "Odebrat"
     replacement_script_explanation: "(Volitelné) Vyberte jiný skript, který nahradí tento skript. Zadejte URL náhradního skriptu:"
-    diff_title: "%{script} - Rozdíl verzí"
     diff_old_version: "Stará:"
     diff_new_version: "Nová:"
     diff_lines_of_context: "Řádky kontextu:"

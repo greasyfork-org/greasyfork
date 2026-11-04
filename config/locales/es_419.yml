@@ -56,7 +56,6 @@ es_419:
     history_page: "Historial"
     feedback_page: "Comentarios (%{count})"
     stats_page: "Estadísticas"
-    derivatives_page: "Scripts derivados "
     update_page: "Actualizar"
     delete_page: "Eliminar"
     delete_explanation: "Eliminar tu script lo hace inaccesible para todos excepto para ti y a los moderadores de Greasy Fork. Pero puedes restaurarlo en cualquier momento."
@@ -138,27 +137,18 @@ es_419:
       all: Todo el tiempo
     stats_library_usages_intro_html: "Los siguientes scripts usan esta biblioteca: %{site_name} URL en un <code>@require</code>:"
     stats_library_usages_script_column: Script
-    derivatives_title: "%{script_name} - Derivados"
     derivatives_intro: "Estos scripts pueden basarse en el tuyo (o viceversa). Si detectas un uso no autorizado de tu código, denuncia el script desde su pestaña de «comentarios y opiniones»."
     derivatives_script_html: "%{script} por %{user}, licencia: %{license} %{diff_link:[Diff]}"
     derivatives_exact_copies_heading: "Copias exactas"
     derivatives_exact_copies_list_intro: "Los siguientes scripts tienen el mismo codigo que el tuyo:"
     derivatives_exact_copies_item_html: "%{script_link} por %{author_links} - versiones: %{version_list}"
-    derivatives_exact_copes_none: "No parece que haya ningún otro script en %{site_name} que coincida exactamente con el tuyo."
     derivatives_similar_heading: "Scripts similares"
-    derivatives_similar_info: "Comprobamos de forma periódica las últimas versiones de todos los otros scripts alojados en la página para encontrar coincidencias con el tuyo. También lo comprobamos cuando actualizas tu script o lo solicitas."
     similarity_score:
       high: Casi iguales
       medium: Parecidos
       low: Algo similar
       none: No similar
-    derivatives_similar_none: "No hay scripts similares al tuyo."
     derivatives_similar_item: "%{score}: %{diff_link:[Diferencias]} %{script}"
-    derivatives_similar_last_check_html: "La última vez que verificamos guiones similares al tuyo fue el %{date}."
-    derivatives_similar_last_check_soon: "Empezaremos a escanear scripts parecidos a los tuyos en breve."
-    derivatives_similar_last_check_again_soon_html: "La última vez que se hizo la comprobación de coincidencias fue el %{date}. Y lo volveremos a comprobar otra vez en breve."
-    derivatives_similar_check_now: "Revisar ahora"
-    derivatives_similiar_queued: La verificación de similitudes se completará en unos minutos.
     listing_title_all_sites: "Scripts de usuario para todos los sitios web"
     listing_description_all_sites: "Scripts de usuario que añaden características y corrigen errores en todos los sitios"
     listing_title_for_site: "Scripts de usuario para %{site}"

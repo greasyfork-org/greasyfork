@@ -61,7 +61,6 @@ el:
     history_page: "Ιστορικό"
     feedback_page: "Συζήτηση (%{count})"
     stats_page: "Στατιστικά"
-    derivatives_page: "Παράγωγα"
     update_page: "Ενημέρωση"
     delete_page: "Διαγραφή"
     delete_explanation: "Διαγράφοντας τον κώδικά σας, τον κάνετε μη προσβάσιμο στον οποιοδήποτε εκτός από εσάς και τους διαχειριστές του Grease Fork. Μπορείτε να αναιρέσετε τη διαγραφή οποτεδήποτε."
@@ -138,27 +137,18 @@ el:
       year: Τελευταίες 365 ημέρες
       all: Οποτεδήποτε
     stats_library_usages_script_column: Κώδικας
-    derivatives_title: "%{script_name} - Παράγωγα"
     derivatives_intro: "Αυτοί οι κώδικες μπορούν να βασίζονται σε δικούς σας (ή οι δικοί σας μπορεί να βασίζονται σε αυτούς). Αν βρείτε μια μη εξουσιοδοτημένη χρήση του κώδικά σας, αναφέρετε το μέσω της καρτέλας συζητήσεων του κώδικα."
     derivatives_script_html: "%{script} από %{user}, άδεια: %{license} %{diff_link:[Διαφορές]}"
     derivatives_exact_copies_heading: "Ακριβή αντίγραφα"
     derivatives_exact_copies_list_intro: "Οι ακόλουθοι κώδικες έχουν τον ίδιο ακριβώς κώδικα με τον δικό σας:"
     derivatives_exact_copies_item_html: "%{script_link} από %{author_links} - εκδόσεις : %{version_list}"
-    derivatives_exact_copes_none: "Δεν υπάρχουν άλλοι κώδικες στο %{site_name} που να έχουν ακριβώς τον ίδιο κώδικα με αυτόν τον κώδικα. "
     derivatives_similar_heading: "Παρόμοιοι κώδικες"
-    derivatives_similar_info: "Περιοδικά ελέγχουμε την τελευταία έκδοση από όλους τους κώδικες για να βρούμε αυτούς που είναι παρόμοιοι με τους δικούς σας. Επίσης, ελέγχουμε κάθε πότε αναρτάτε μια αναβάθμιση του κώδικά σας και κατόπιν αιτήματος σας."
     similarity_score:
       high: Μεγάλη ομοιότητα
       medium: Μέση ομοιότητα
       low: Μικρή ομοιότητα
       none: Καμία ομοιότητα
-    derivatives_similar_none: "Δεν υπάρχουν κώδικες όμοιοι με τον δικό σας."
     derivatives_similar_item: "%{score}: %{diff_link:[Διαφορές]} %{script}"
-    derivatives_similar_last_check_html: "Ο τελευταίος έλεγχος για παρόμοιους κώδικες με το δικό σας έγινε την %{date}."
-    derivatives_similar_last_check_soon: "Σύντομα θα ελέγξουμε για παρόμοιο κώδικα με τον δικό σας"
-    derivatives_similar_last_check_again_soon_html: "Ελέγξαμε πρόσφατα για παρόμοιους κώδικες με το δικό σας %{date}. Θα ελέγξουμε ξανά σύντομα."
-    derivatives_similar_check_now: "Επανέλεγχος τώρα"
-    derivatives_similiar_queued: Ο έλεγχος ομοιότητας θα ολοκληρωθεί σε λίγα λεπτά.
     listing_title_all_sites: "Κώδικες χρηστών για όλους τους ιστοχώρους"
     listing_description_all_sites: "Κώδικες χρηστών που προσθέτουν χαρακτηριστικά και απομακρύνουν σφάλματα σε όλους τους ιστοχώρους"
     listing_title_for_site: "Κώδικες χρηστών για τον ιστοχώρο %{site}"
@@ -280,7 +270,6 @@ el:
     screenshots_add: "Προσθήκη:"
     screenshots_remove: "Απομάκρυνση"
     replacement_script_explanation: "(Προαιρετικό) Επιλογή άλλου κώδικα που αντικαθιστά τον κώδικα. Εισάγετε το URL του κώδικα αντικατάστασης:"
-    diff_title: "%{script} - Διαφορές έκδοσης"
     diff_old_version: "Παλαιά:"
     diff_new_version: "Νέα:"
     diff_lines_of_context: "Γραμμές περιεχομένου:"

@@ -59,7 +59,6 @@ zh-CN:
     history_page: "历史"
     feedback_page: "反馈（%{count}）"
     stats_page: "统计"
-    derivatives_page: "相似"
     update_page: "更新"
     delete_page: "删除"
     delete_explanation: "将您的脚本标为删除会使其对除了您和 Greasy Fork 管理员之外的任何人都不可见，您可以随时撤销此删除。"
@@ -135,27 +134,18 @@ zh-CN:
       month: 最近 30 日
       year: 最近 365 日
       all: 所有时间
-    derivatives_title: "%{script_name} - 相似"
     derivatives_intro: "这些脚本可能基于您的脚本开发（或者您的代码是基于他们的代码开发）。如果您发现有人未经授权使用了您的代码，请从其脚本的反馈选项卡进行举报。"
     derivatives_script_html: "%{script}，作者 %{user}，许可证：%{license} %{diff_link:[Diff]}"
     derivatives_exact_copies_heading: "完全相同"
     derivatives_exact_copies_list_intro: "以下脚本代码与您的脚本代码完全相同："
     derivatives_exact_copies_item_html: "%{author_links}发布的%{script_link}，版本：%{version_list}"
-    derivatives_exact_copes_none: "%{site_name} 上没有其他脚本与这个脚本的代码完全相同。"
     derivatives_similar_heading: "相似脚本"
-    derivatives_similar_info: "我们会定期检查所有其他脚本的最新版本，以找出与您的脚本最相似的脚本。每当您发布脚本更新时，我们也会进行检查，此外，您也可以在需要时请求检查。"
     similarity_score:
       high: 非常相似
       medium: 比较相似
       low: 略微相似
       none: 并不相似
-    derivatives_similar_none: "没有与您的脚本相似的脚本。"
     derivatives_similar_item: "%{score}: %{diff_link:[查看差别]} %{script}"
-    derivatives_similar_last_check_html: "上一次对您的脚本查重的时间为 %{date}。"
-    derivatives_similar_last_check_soon: "我们将搜索与您的脚本相似的脚本。"
-    derivatives_similar_last_check_again_soon_html: "我们在 %{date} 查询了与您的脚本相似的脚本。稍后我们会再次检查。"
-    derivatives_similar_check_now: "再检查一次"
-    derivatives_similiar_queued: 相似脚本检查将在几分钟内完成。
     listing_title_all_sites: "适用于所有网站的用户脚本"
     listing_description_all_sites: "针对所有网站添加功能或解决问题的用户脚本"
     listing_title_for_site: "适用于 %{site} 的用户脚本"
@@ -283,7 +273,6 @@ zh-CN:
     screenshots_add: "添加："
     screenshots_remove: "移除"
     replacement_script_explanation: "（可选）选择另一个替代的脚本。用户将被更新并重定向至此脚本。请输入替代脚本的网址："
-    diff_title: "%{script} - 版本差异"
     diff_old_version: "旧版："
     diff_new_version: "新版："
     diff_lines_of_context: "上下文显示行数："

@@ -64,7 +64,6 @@ ru:
     history_page: "История"
     feedback_page: "Обсуждения (%{count})"
     stats_page: "Статистика"
-    derivatives_page: "Похожие скрипты"
     update_page: "Обновить"
     delete_page: "Удалить"
     delete_explanation: "Удаление вашего скрипта делает его недоступным всем кроме вас и модераторов. Вы можете в любое время отменить удаление."
@@ -145,27 +144,18 @@ ru:
       all: За всё время
     stats_library_usages_intro_html: "В следующих скриптах используется URL-адрес этой библиотеки %{site_name} в <code>@require</code>:"
     stats_library_usages_script_column: Скрипт
-    derivatives_title: "%{script_name} – похожие скрипты"
     derivatives_intro: "Эти скрипты могут быть основаны на вашем (или наоборот). Если код используется без вашего разрешения, сообщите об этом на вкладке скрипта «Обсуждения»."
     derivatives_script_html: "%{script} от %{user}, лицензия: %{license} %{diff_link:[Различия]}"
     derivatives_exact_copies_heading: "Точные копии"
     derivatives_exact_copies_list_intro: "У следующих скриптов точно такой же код, как и у вашего:"
     derivatives_exact_copies_item_html: "%{script_link} от %{author_links} – версии: %{version_list}"
-    derivatives_exact_copes_none: "На сайте %{site_name} нет скриптов с точно таким же кодом, как и у вашего."
     derivatives_similar_heading: "Похожие скрипты"
-    derivatives_similar_info: "Мы периодически проверяем последние версии скриптов, похожи ли они на ваш. Мы также проводим эту проверку после размещения вами обновления скрипта и по вашему запросу."
     similarity_score:
       high: Очень сильно похож
       medium: Сильно похож
       low: Немного похож
       none: Не похож
-    derivatives_similar_none: "Нет скриптов похожих на ваш."
     derivatives_similar_item: "%{score}: %{diff_link:[Различия]} %{script}"
-    derivatives_similar_last_check_html: "Последний раз мы искали похожие скрипты %{date}."
-    derivatives_similar_last_check_soon: "Мы проведём поиск похожих скриптов в ближайшее время."
-    derivatives_similar_last_check_again_soon_html: "Последний раз мы искали похожие скрипты %{date}. Мы повторим проверку в ближайшее время."
-    derivatives_similar_check_now: "Проверить сейчас"
-    derivatives_similiar_queued: Проверка будет завершена через несколько минут.
     listing_title_all_sites: "Пользовательские скрипты для всех сайтов"
     listing_description_all_sites: "Пользовательские скрипты, которые добавляют функциональность и устраняют ошибки на всех сайтах"
     listing_title_for_site: "Пользовательские скрипты для %{site}"
@@ -294,7 +284,6 @@ ru:
     screenshots_add: "Добавить:"
     screenshots_remove: "Удалить"
     replacement_script_explanation: "(необязательно) Укажите адрес другого скрипта, который заменит этот скрипт:"
-    diff_title: "%{script} – сравнение версий"
     diff_old_version: "Старая:"
     diff_new_version: "Новая:"
     diff_lines_of_context: "Строки из контекста:"

@@ -60,7 +60,6 @@ tr:
     history_page: "Geçmiş"
     feedback_page: "Geribildirim (%{count})"
     stats_page: "İstatistikler"
-    derivatives_page: "Türevleri"
     update_page: "Güncelle"
     delete_page: "Sil"
     delete_explanation: "Scriptinizi silmek bu scripti siz ve Greasy Fork yöneticileri dışındaki herkes için erişilmez yapar. Dilerseniz istediğiniz zaman silme işlemini geri alabilirsiniz."
@@ -141,27 +140,18 @@ tr:
       all: Tüm zamanlar
     stats_library_usages_intro_html: "Aşağıdaki betikler, bu kütüphanenin %{site_name} URL’sini bir <code>@require:</code> içinde kullanmaktadır:"
     stats_library_usages_script_column: Betik
-    derivatives_title: "%{script_name} - Türevleri"
     derivatives_intro: "Bu betikler sizinkine dayalı olabilir (veya sizin betiğiniz onların betiğine dayalı olabilir). Eğer kodunuzun izinsiz kullanıldığını düşünüyorsanız, betiğin Geribildirim menüsünden rapor edebilirsiniz."
     derivatives_script_html: "%{user}tarafından %{script}, lisans: %{license}%{diff_link:[Diff]}"
     derivatives_exact_copies_heading: "Tam kopyalar"
     derivatives_exact_copies_list_intro: "Aşağıdaki betikler, sizinkiyle tam olarak aynı koda sahiptir:"
     derivatives_exact_copies_item_html: "%{author_links}tarafından %{script_link}-versions: %{version_list} "
-    derivatives_exact_copes_none: "%{site_name} sitesinde bu betik ile tam olarak aynı koda sahip başka bir betik bulunmuyor."
     derivatives_similar_heading: "Benzer betikler"
-    derivatives_similar_info: "Sizinkine en çok benzeyen betikleri bulmak için düzenli olarak diğer betiklerin en son sürümlerini gözden geçiriyoruz. Bu gözden geçirmeyi aynı zamanda güncelleme gönderdiğinizde ve gözetleme isteğinde bulunduğunuzda da yapıyoruz."
     similarity_score:
       high: Çok benzer
       medium: Orta derecede benzer
       low: Biraz benzer
       none: Benzer değil
-    derivatives_similar_none: "Sizinkine benzer hiçbir betik yok."
     derivatives_similar_item: "%{score}: %{diff_link:[Değişiklik]} %{script}"
-    derivatives_similar_last_check_html: "En son %{date} tarihinde sizinkine benzer betikleri kontrol ettik."
-    derivatives_similar_last_check_soon: "Kısa bir süre içinde sizinkine benzer betikleri kontrol edeceğiz."
-    derivatives_similar_last_check_again_soon_html: "Sizinkine benzer betikleri en son %{date} tarihinde kontrol ettik. Kısa bir süre sonra tekrar kontrol edeceğiz."
-    derivatives_similar_check_now: "Şimdi tekrar kontrol edin"
-    derivatives_similiar_queued: Benzerlik kontrolü birkaç dakika içinde tamamlanacaktır.
     listing_title_all_sites: "Tüm siteler için üye scriptleri"
     listing_description_all_sites: "Tüm sitelerde özellikler ekleyen ve bugları kaldıran scriptler."
     listing_title_for_site: "%{site} için kullanıcı scriptleri"
@@ -290,7 +280,6 @@ tr:
     screenshots_add: "Ekle:"
     screenshots_remove: "Kaldır"
     replacement_script_explanation: "(İsteğe bağlı) Bu script yerine başka bir script seçin. Yerine gelecek scriptin URL'sini giriniz:"
-    diff_title: "%{script} - Versiyon farkı"
     diff_old_version: "Eski:"
     diff_new_version: "Yeni:"
     diff_lines_of_context: "Context hataları:"

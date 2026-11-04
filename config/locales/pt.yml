@@ -61,7 +61,6 @@ pt:
     history_page: "Histórico"
     feedback_page: "Feedback (%{count})"
     stats_page: "Estatísticas"
-    derivatives_page: "Scripts derivados"
     update_page: "Atualizar"
     delete_page: "Eliminar"
     delete_explanation: "Eliminar o seu script torna-o inacessível para qualquer pessoa, exceto para si e para os moderadores do Greasy Fork. Pode recuperá-lo a qualquer momento."
@@ -143,27 +142,18 @@ pt:
       all: Todo o período
     stats_library_usages_intro_html: "Os seguintes scripts utilizam o URL desta biblioteca em %{site_name} num <code>@require</code>:"
     stats_library_usages_script_column: Script
-    derivatives_title: "%{script_name} - Scripts derivados"
     derivatives_intro: "Estes scripts podem basear-se no seu (ou o seu pode basear-se neles). Se encontrar uma utilização não autorizada do seu código, denuncie-a no separador de feedback desse script."
     derivatives_script_html: "%{script} por %{user}, licença: %{license} %{diff_link:[Diff]}"
     derivatives_exact_copies_heading: "Cópias exatas"
     derivatives_exact_copies_list_intro: "Os seguintes scripts têm exatamente o mesmo código que o seu:"
     derivatives_exact_copies_item_html: "%{script_link} por %{author_links} - versões: %{version_list}"
-    derivatives_exact_copes_none: "Não existem outros scripts em %{site_name} com exatamente o mesmo código que este script."
     derivatives_similar_heading: "Scripts semelhantes"
-    derivatives_similar_info: "Verificamos periodicamente a versão mais recente de todos os outros scripts para encontrar os mais semelhantes ao seu. Também verificamos sempre que publica uma atualização do seu script e quando o solicita."
     similarity_score:
       high: Muito semelhante
       medium: Moderadamente semelhante
       low: Algo semelhante
       none: Não semelhante
-    derivatives_similar_none: "Não existem scripts semelhantes ao seu."
     derivatives_similar_item: "%{score}: %{diff_link:[Diff]} %{script}"
-    derivatives_similar_last_check_html: "A última verificação de scripts semelhantes ao seu foi em %{date}."
-    derivatives_similar_last_check_soon: "Vamos verificar em breve se existem scripts semelhantes ao seu."
-    derivatives_similar_last_check_again_soon_html: "A última verificação de scripts semelhantes ao seu foi em %{date}. Vamos voltar a verificar em breve."
-    derivatives_similar_check_now: "Verificar novamente agora"
-    derivatives_similiar_queued: A verificação de semelhança será concluída dentro de alguns minutos.
     listing_title_all_sites: "Scripts de utilizador para todos os sites"
     listing_description_all_sites: "Scripts de utilizador que acrescentam funcionalidades e corrigem erros em todos os sites"
     listing_title_for_site: "Scripts de utilizador para %{site}"
@@ -292,7 +282,6 @@ pt:
     screenshots_add: "Adicionar:"
     screenshots_remove: "Remover"
     replacement_script_explanation: "(Opcional) Escolha outro script que substitua este script. Introduza o URL do script de substituição:"
-    diff_title: "%{script} - Diferenças entre versões"
     diff_old_version: "Antiga:"
     diff_new_version: "Nova:"
     diff_lines_of_context: "Linhas de contexto:"

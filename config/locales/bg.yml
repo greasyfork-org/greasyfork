@@ -61,7 +61,6 @@ bg:
     history_page: "История"
     feedback_page: "Отзиви (%{count})"
     stats_page: "Статистика"
-    derivatives_page: "Производни"
     update_page: "Обновяване"
     delete_page: "Изтриване"
     delete_explanation: "Изтриването на вашия скрипт ще го направи недостъпен за потребителите. Ще можете да го виждате вие и модераторите. Скриптът може да бъде възстановен по всяко време."
@@ -142,27 +141,18 @@ bg:
       all: Цялото време
     stats_library_usages_intro_html: "Скриптовете, които използват тази библиотека от %{site_name} чрез <code>@require</code> са:"
     stats_library_usages_script_column: Скрипт
-    derivatives_title: "%{script_name} - Производни"
     derivatives_intro: "Тези скриптове може да са базирани на вашия (или вашите може да са базирани на тях). Ако намерите не оторизирана употреба на ваш код, докладвайте го чрез обратната връзка за скрипта."
     derivatives_script_html: "%{script} от %{user}, лиценз: %{license} %{diff_link:[Diff]}"
     derivatives_exact_copies_heading: "Точни копия"
     derivatives_exact_copies_list_intro: "Тези скриптове имат точно същия код както вашия:"
     derivatives_exact_copies_item_html: "%{script_link} от %{author_links} - версии: %{version_list}"
-    derivatives_exact_copes_none: "Няма други скриптове на %{site_name}, които имат същия код както вашия скрипт."
     derivatives_similar_heading: "Подобни скриптове"
-    derivatives_similar_info: "Ние периодично проверяваме последните версии на другите скриптове, за да намерим тези, които са подобни на вашия Проверката се извършва когато публикувате обновена версия на скрипта или при заявка."
     similarity_score:
       high: Много сходни
       medium: Средно сходни
       low: Приличат си
       none: Нямат нищо общо
-    derivatives_similar_none: "Няма скриптове, сходни с вашите."
     derivatives_similar_item: "%{score}: %{diff_link:[Diff]} %{script}"
-    derivatives_similar_last_check_html: "Последно проверихме за подобни на вашия скрипт на %{date}."
-    derivatives_similar_last_check_soon: "След малко започва проверка за сходни скриптове на вашия."
-    derivatives_similar_last_check_again_soon_html: "Последно проверихме за подобни на вашия скрипт на %{date}. След малко започва нова проверка."
-    derivatives_similar_check_now: "Провери отново сега"
-    derivatives_similiar_queued: Проверката за сходност ще приключи след минути.
     listing_title_all_sites: "Скриптове, работещи на всички сайтове"
     listing_description_all_sites: "Скриптове, добавящи екстри или отстраняващи бъгове за всички сайтове"
     listing_title_for_site: "Скриптове за %{site}"
@@ -291,7 +281,6 @@ bg:
     screenshots_add: "Добави:"
     screenshots_remove: "Премахни"
     replacement_script_explanation: "(По желание) Изберете друг скрипт, който заменя този. Въведете адреса (URL) на заменящия скрипт."
-    diff_title: "%{script} - Разлики във версиите"
     diff_old_version: "Стара:"
     diff_new_version: "Нова:"
     diff_lines_of_context: "Контекст, редове:"
