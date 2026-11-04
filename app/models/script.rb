@@ -449,8 +449,8 @@ class Script < ApplicationRecord
   end
 
   def enqueue_code_processing_jobs
-    CleanedCodeJob.perform_later_unless_will_run(self) if js?
-    CodeSimilarityFingerprintJob.perform_later_unless_will_run(self)
+    CleanedCodeJob.perform_later(self) if js?
+    CodeSimilarityFingerprintJob.perform_later(self)
   end
 
   def self.record_install(id, ip)

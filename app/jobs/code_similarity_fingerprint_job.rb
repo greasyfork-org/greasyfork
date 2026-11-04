@@ -11,7 +11,7 @@ class CodeSimilarityFingerprintJob < ApplicationJob
     fingerprint = TokenShingleSimilarityScorer.build_fingerprint(version.code)
     fingerprint[:source_version_id] = version.id
     CodeSimilarityFingerprint.store_fingerprint!(script.id, fingerprint)
-    TokenShingleSimilarityJob.perform_later_unless_will_run(script.id)
+    TokenShingleSimilarityJob.perform_later(script.id)
   end
 
   def self.delete_for_script_id(script_id)
