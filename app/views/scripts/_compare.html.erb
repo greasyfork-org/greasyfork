@@ -3,46 +3,51 @@
 <section id="script-comparison" class="multiform-page">
   <h3><%= t('scripts.admin.compare_title') %></h3>
 
-  <%= form_with(url: derivatives_script_path(@script), method: :GET, html: { class: 'diff_options' }) do |f| %>
+  <%= form_with(url: derivatives_script_path(@script, anchor: 'comparison-result'), method: :GET, html: { class: 'diff_options' }) do |f| %>
     <div class="form-control">
       <%= f.label :compare, t('scripts.admin.compare_to', site_name: site_name) %>
       <%= f.url_field :compare, required: true, value: params[:compare], placeholder: 'https://greasyfork.org/…' %>
     </div>
-    <%= render partial: 'diff_options', locals: { context: @context} %>
+    <% selected_view = @compare_view || 'diff' %>
+    <div class="form-control compare-view-options">
+      <span class="compare-view-title"><%= t('scripts.diff_view_title') %></span>
+      <% %w[diff clean snippets].each do |view| %>
+        <div class="compare-view-option">
+          <%= f.label "view_#{view}", class: 'radio-label' do %>
+            <%= f.radio_button :view, view, checked: selected_view == view %>
+            <%= t("scripts.diff_view_#{view}") %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <%= render partial: 'diff_options', locals: { context: @context, ignore_whitespace: false } %>
     <%= f.submit t('scripts.admin.compare_button') %>
   <% end %>
 
   <% if @diff_error %>
     <p class="notice"><%= @diff_error %></p>
-  <% elsif @diff %>
-    <p>
-      <%= link_to(@other_script.name(request_locale), show_code_script_path(@other_script)) %><br>
+  <% elsif @diff || @common_source_locations || @this_code %>
+    <p id="comparison-result">
+      <%= render_script(@other_script) %>
+      by <%= @other_script.users.map { |user| link_to(user.name, user) }.to_sentence.html_safe %>
     </p>
 
-    <% if current_user.moderator? %>
-      <p>
-        <%= link_to delete_script_path(@script, delete_type: 'keep', replaced_by_script_id: script_url(@other_script)) do %>
-          Mark <i><%= @script.name(request_locale) %></i> as a copy of <i><%= @other_script.name(request_locale) %></i>
-        <% end %>
-        <br>
-        <%= link_to delete_script_path(@other_script, delete_type: 'keep', replaced_by_script_id: script_url(@script)) do %>
-          Mark <i><%= @other_script.name(request_locale) %></i> as a copy of <i><%= @script.name(request_locale) %></i>
-        <% end %>
-      </p>
-    <% end %>
-
-    <% if @diff.diff.empty? %>
+    <% if @compare_view == 'snippets' %>
+      <% if @common_source_locations&.fetch(:similarity_count, 0)&.positive? %>
+        <%= render partial: 'common_source_comparison', locals: {
+          common_source_locations: @common_source_locations,
+          other_script: @other_script,
+          other_code: @other_code,
+          script: @script,
+          this_code: @this_code,
+        } %>
+      <% else %>
+        <p class="notice"><%= t('scripts.common_snippets_none') %></p>
+      <% end %>
+    <% elsif @diff.diff.empty? %>
       <p class="notice"><%= t('scripts.diff_no_change') %></p>
     <% else %>
       <%= @diff.to_s(:html).html_safe %>
     <% end %>
-
-    <%= render partial: 'common_source_comparison', locals: {
-      common_source_locations: @common_source_locations,
-      other_script: @other_script,
-      other_code: @other_code,
-      script: @script,
-      this_code: @this_code,
-    } if @common_source_locations&.fetch(:similarity_count, 0)&.positive? %>
   <% end %>
 </section>

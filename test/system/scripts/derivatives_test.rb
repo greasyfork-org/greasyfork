@@ -41,10 +41,9 @@ class DerivativesTest < ApplicationSystemTestCase
     end
 
     login_as(script.users.first, scope: :user)
-    visit derivatives_script_url(script, locale: :en, compare: other_script.id)
+    visit derivatives_script_url(script, locale: :en, compare: other_script.id, view: 'snippets')
 
     assert_selector '.common-source-comparison'
-    find('.common-source-comparison summary').click
     assert_text 'We found 1 matches in a sample of 1 code snippets.'
     assert_selector 'mark.common-source-location', minimum: 2
     assert_selector '.common-source-line-number'

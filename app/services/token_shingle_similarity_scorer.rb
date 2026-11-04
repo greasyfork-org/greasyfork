@@ -167,7 +167,7 @@ class TokenShingleSimilarityScorer
     digest.digest.unpack1('Q>')
   end
 
-  def self.common_source_locations_for(script, other_script, script_version_id:, other_script_version_id:, code:, other_code:)
+  def self.common_source_locations_for(script, other_script, script_version_id:, other_script_version_id:, code:, other_code:, context_lines: SOURCE_LOCATION_CONTEXT_LINES)
     fingerprints = CodeSimilarityFingerprint.where(script_id: [script.id, other_script.id]).index_by(&:script_id)
     script_fingerprint = fingerprints[script.id]
     other_fingerprint = fingerprints[other_script.id]
@@ -197,8 +197,8 @@ class TokenShingleSimilarityScorer
       maximum_similarity_count: comparable_hash_count,
       matches: regions.map do |script_range, other_range|
         {
-          script: [source_section(code, script_line_starts, script_range)],
-          other_script: [source_section(other_code, other_line_starts, other_range)],
+          script: [source_section(code, script_line_starts, script_range, context_lines)],
+          other_script: [source_section(other_code, other_line_starts, other_range, context_lines)],
         }
       end,
     }
@@ -282,11 +282,11 @@ class TokenShingleSimilarityScorer
     line_starts
   end
 
-  def self.source_section(code, line_starts, range)
+  def self.source_section(code, line_starts, range, context_lines = SOURCE_LOCATION_CONTEXT_LINES)
     first_line = line_number_for_offset(line_starts, range.first)
     last_line = line_number_for_offset(line_starts, range.last)
-    start_line = [first_line - SOURCE_LOCATION_CONTEXT_LINES, 0].max
-    end_line = [last_line + SOURCE_LOCATION_CONTEXT_LINES, line_starts.size - 1].min
+    start_line = [first_line - context_lines, 0].max
+    end_line = [last_line + context_lines, line_starts.size - 1].min
     source_start = line_starts.fetch(start_line)
     source_end = line_starts[end_line + 1] || code.bytesize
     capped_end = capped_snippet_end(code, line_starts, start_line, source_start, source_end)

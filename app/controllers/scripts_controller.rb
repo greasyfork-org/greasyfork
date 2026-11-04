@@ -674,6 +674,8 @@ class ScriptsController < ApplicationController
     end
   end
 
+  COMPARE_VIEWS = %w[diff clean snippets].freeze
+
   DERIVATIVE_SCORES = [
     [:high, 0.95],
     [:medium, 0.85],
@@ -1049,11 +1051,11 @@ class ScriptsController < ApplicationController
     return if params[:compare].blank?
 
     diff_options = ["-U #{@context}"]
-    diff_options << '-w' if !params[:w].nil? && params[:w] == '1'
+    @compare_view = COMPARE_VIEWS.include?(params[:view]) ? params[:view] : 'diff'
     @other_script = get_script_from_input(params[:compare], allow_deleted: true)
 
     if @other_script.is_a?(Script)
-      if params[:terser] == '1'
+      if @compare_view == 'clean'
         unless @script.cleaned_code && @other_script.cleaned_code
           @diff_error = flash.now[:notice] = t('.compare_cleaned_code_unavailable')
           return
@@ -1066,18 +1068,22 @@ class ScriptsController < ApplicationController
         other_code = @other_script_version.code
         this_code = @script_version.code
       end
-      @diff = Diffy::Diff.new(other_code, this_code, include_plus_and_minus_in_html: true, include_diff_info: true, diff: diff_options)
-      if params[:terser] != '1' && @script.js? && @other_script.js?
-        @common_source_locations = TokenShingleSimilarityScorer.common_source_locations_for(
-          @script,
-          @other_script,
-          script_version_id: @script_version.id,
-          other_script_version_id: @other_script_version.id,
-          code: this_code,
-          other_code:
-        )
+      if @compare_view == 'snippets'
+        if @script.js? && @other_script.js?
+          @common_source_locations = TokenShingleSimilarityScorer.common_source_locations_for(
+            @script,
+            @other_script,
+            script_version_id: @script_version.id,
+            other_script_version_id: @other_script_version.id,
+            code: this_code,
+            other_code:,
+            context_lines: @context
+          )
+        end
         @this_code = this_code
         @other_code = other_code
+      else
+        @diff = Diffy::Diff.new(other_code, this_code, include_plus_and_minus_in_html: true, include_diff_info: true, diff: diff_options)
       end
     else
       @diff_error = flash.now[:notice] = t('.compare_must_be_local_url', site_name:)
