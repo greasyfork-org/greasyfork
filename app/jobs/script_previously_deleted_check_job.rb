@@ -1,6 +1,6 @@
 require 'levenshtein'
 
-class ScriptPreviouslyDeletedChecker < ApplicationJob
+class ScriptPreviouslyDeletedCheckJob < ApplicationJob
   include Rails.application.routes.url_helpers
 
   def perform(script_id)
@@ -45,21 +45,16 @@ class ScriptPreviouslyDeletedChecker < ApplicationJob
   end
 
   def check_by_code(script)
-    other_scripts = ScriptSimilarity
-                    .where(script_id: script.id)
-                    .joins(:other_script)
-                    .where(scripts: { locked: true })
+    other_script_ids = TokenShingleSimilarity
+                       .where(script_id: script.id)
+                       .where('similarity >= 0.8')
+                       .pluck(:other_script_id)
+    other_script_ids += TokenShingleSimilarity
+                        .where(other_script_id: script.id)
+                        .where('similarity >= 0.8')
+                        .pluck(:script_id)
 
-    clean_length = CleanedCode.find_by(script_id: script.id)&.code&.length
-
-    # Be more lenient if it's a very short (code-wise) script.
-    other_scripts = if clean_length && clean_length < 250
-                      other_scripts.where('(similarity >= 0.8 AND !tersed) OR (similarity >= 0.9 AND tersed)')
-                    else
-                      other_scripts.where('similarity >= 0.8')
-                    end
-
-    other_scripts.map(&:other_script).uniq
+    Script.locked.where(id: other_script_ids.uniq)
   end
 
   def check_by_name(script)

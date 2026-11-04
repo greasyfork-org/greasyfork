@@ -282,7 +282,6 @@ Rails.application.routes.draw do
       resources :blocked_script_urls, only: [:index, :new, :create, :edit, :update, :destroy]
       resources :blocked_users, only: [:index, :new, :create, :edit, :update, :destroy]
       resources :redirect_service_domains, only: [:index, :new, :create, :edit, :update, :destroy]
-      resources :script_similarities, only: :index
       resources :spammy_email_domains, only: [:index, :new, :create, :edit, :update, :destroy]
       resources :comment_check_results, only: [:index] do
         collection do

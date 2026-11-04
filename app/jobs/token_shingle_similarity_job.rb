@@ -32,6 +32,8 @@ class TokenShingleSimilarityJob < ApplicationJob
       end
       TokenShingleSimilarity.upsert_all(rows) if rows.any?
     end
+
+    ScriptPreviouslyDeletedCheckJob.perform_later(script.id) if script.script_versions.one? && script.created_at > 1.hour.ago
   end
 
   def self.delete_for_script_id(script_id)

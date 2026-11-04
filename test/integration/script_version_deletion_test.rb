@@ -10,7 +10,6 @@ class ScriptVersionDeletionTest < ActionDispatch::IntegrationTest
 
     CleanedCodeJob.expects(:perform_later_unless_will_run).with { |job_script| job_script.id == script.id }
     CodeSimilarityFingerprintJob.expects(:perform_later_unless_will_run).with { |job_script| job_script.id == script.id }
-    ScriptDuplicateCheckerJob.expects(:perform_async).with(script.id)
     token = delete_confirmation_token(script, latest_version)
 
     post script_script_version_do_delete_path(script_id: script.id, script_version_id: latest_version.id, locale: :en),
@@ -27,7 +26,6 @@ class ScriptVersionDeletionTest < ActionDispatch::IntegrationTest
 
     CleanedCodeJob.expects(:perform_later_unless_will_run).never
     CodeSimilarityFingerprintJob.expects(:perform_later_unless_will_run).never
-    ScriptDuplicateCheckerJob.expects(:perform_async).never
     token = delete_confirmation_token(script, older_version)
 
     post script_script_version_do_delete_path(script_id: script.id, script_version_id: older_version.id, locale: :en),

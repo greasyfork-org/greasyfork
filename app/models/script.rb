@@ -35,7 +35,6 @@ class Script < ApplicationRecord
   has_many :localized_additional_infos, -> { where(attribute_key: 'additional_info') }, class_name: 'LocalizedScriptAttribute', inverse_of: :script
   has_many :compatibilities, autosave: true, dependent: :destroy
   has_many :script_invitations, dependent: :destroy
-  has_many :script_similarities, dependent: :destroy
   has_many :token_shingle_similarities, dependent: :delete_all
   has_many :token_shingle_similarities_as_other_script,
            class_name: 'TokenShingleSimilarity',
@@ -250,9 +249,7 @@ class Script < ApplicationRecord
   end
 
   after_update_commit do
-    if @_code_changed
-      clear_latest_cached_code
-    end
+    clear_latest_cached_code if @_code_changed
     @_code_changed = false
   end
 

@@ -26,6 +26,41 @@ class CreateTest < ApplicationSystemTestCase
     assert_includes(Script.last.users, user)
   end
 
+  test 'previously deleted check runs on creation but not on update' do
+    user = User.first
+    login_as(user, scope: :user)
+    visit new_script_version_url
+    fill_in 'Code', with: <<~JS
+      // ==UserScript==
+      // @name Previously Deleted Check
+      // @description Unit test.
+      // @version 1.1
+      // @namespace http://greasyfork.local/users/1
+      // @include *
+      // @license MIT
+      // ==/UserScript==
+      var foo = 1;
+    JS
+    click_on 'Post script'
+    assert_selector 'h2', text: 'Previously Deleted Check'
+    script = Script.last
+
+    perform_enqueued_jobs(only: [CodeSimilarityFingerprintJob, TokenShingleSimilarityJob])
+    perform_enqueued_jobs(only: TokenShingleSimilarityJob)
+    assert_enqueued_with(job: ScriptPreviouslyDeletedCheckJob, args: [script.id])
+    clear_enqueued_jobs
+
+    visit new_script_script_version_url(script_id: script.id)
+    fill_in 'Code', with: script.newest_saved_script_version.code.sub('1.1', '1.2')
+    click_on 'Post new version'
+    assert_selector 'dd', text: '1.2'
+
+    assert_equal 2, script.reload.script_versions.count
+    perform_enqueued_jobs(only: [CodeSimilarityFingerprintJob, TokenShingleSimilarityJob])
+    perform_enqueued_jobs(only: TokenShingleSimilarityJob)
+    assert_no_enqueued_jobs(only: ScriptPreviouslyDeletedCheckJob)
+  end
+
   test 'css script creation' do
     stub_es(Script) do
       user = User.first

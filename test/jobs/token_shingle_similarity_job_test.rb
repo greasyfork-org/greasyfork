@@ -45,6 +45,31 @@ class TokenShingleSimilarityJobTest < ActiveJob::TestCase
     end
   end
 
+  test 'previously deleted check is enqueued only for recent scripts with a single version' do
+    script = scripts(:one)
+    other_script = scripts(:two)
+    fingerprint = TokenShingleSimilarityScorer.build_fingerprint('function run(){return 1;}')
+    [script, other_script].each { |candidate| CodeSimilarityFingerprint.store_fingerprint!(candidate.id, fingerprint) }
+    ScriptVersion.where(script_id: script.id).where.not(id: script.script_versions.first.id).delete_all
+
+    script.update_columns(created_at: 30.minutes.ago)
+    assert_enqueued_with(job: ScriptPreviouslyDeletedCheckJob, args: [script.id]) do
+      TokenShingleSimilarityJob.perform_now(script.id)
+    end
+
+    clear_enqueued_jobs
+    script.update_columns(created_at: 2.hours.ago)
+    assert_no_enqueued_jobs(only: ScriptPreviouslyDeletedCheckJob) do
+      TokenShingleSimilarityJob.perform_now(script.id)
+    end
+
+    script.update_columns(created_at: 30.minutes.ago)
+    script.script_versions.first.dup.save!(validate: false)
+    assert_no_enqueued_jobs(only: ScriptPreviouslyDeletedCheckJob) do
+      TokenShingleSimilarityJob.perform_now(script.id)
+    end
+  end
+
   test 'higher-ID mode preserves results owned by lower-ID scripts' do
     lower_script = scripts(:one)
     script = scripts(:two)

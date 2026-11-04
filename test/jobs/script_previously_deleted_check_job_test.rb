@@ -1,12 +1,21 @@
 require 'test_helper'
 
-class ScriptPreviouslyDeletedCheckerTest < ActiveSupport::TestCase
+class ScriptPreviouslyDeletedCheckTest < ActiveSupport::TestCase
   include Rails.application.routes.url_helpers
+
+  def create_token_similarity(script, other_script, similarity: 0.9)
+    TokenShingleSimilarity.create!(
+      script_id: [script.id, other_script.id].min,
+      other_script_id: [script.id, other_script.id].max,
+      similarity:,
+      checked_at: Time.zone.now
+    )
+  end
 
   test 'when there are no similar scripts, does nothing' do
     script = Script.first
     assert_no_difference -> { Report.count } do
-      ScriptPreviouslyDeletedChecker.perform_now(script.id)
+      ScriptPreviouslyDeletedCheckJob.perform_now(script.id)
     end
   end
 
@@ -14,11 +23,10 @@ class ScriptPreviouslyDeletedCheckerTest < ActiveSupport::TestCase
     script = Script.first
     script_2 = Script.second
     script_3 = Script.third
-    ScriptSimilarity.delete_all
-    ScriptSimilarity.create!(script:, other_script: script_2, similarity: 0.9, checked_at: Time.zone.now)
-    ScriptSimilarity.create!(script:, other_script: script_3, similarity: 0.9, checked_at: Time.zone.now)
+    create_token_similarity(script, script_2)
+    create_token_similarity(script, script_3)
     assert_no_difference -> { Report.count } do
-      ScriptPreviouslyDeletedChecker.perform_now(script.id)
+      ScriptPreviouslyDeletedCheckJob.perform_now(script.id)
     end
   end
 
@@ -26,14 +34,13 @@ class ScriptPreviouslyDeletedCheckerTest < ActiveSupport::TestCase
     script = Script.first
     script_2 = Script.second
     script_3 = Script.third
-    ScriptSimilarity.delete_all
-    ScriptSimilarity.create!(script:, other_script: script_2, similarity: 0.9, checked_at: Time.zone.now)
-    ScriptSimilarity.create!(script:, other_script: script_3, similarity: 0.9, checked_at: Time.zone.now)
+    create_token_similarity(script, script_2)
+    create_token_similarity(script, script_3)
     initial_report = Report.create!(item: script_2, result: Report::RESULT_UPHELD, reason: Report::REASON_MALWARE, reporter: User.first, explanation: 'virus')
     script_2.update!(locked: true)
     script_3.update!(locked: true)
     assert_difference -> { Report.count } => 1 do
-      ScriptPreviouslyDeletedChecker.perform_now(script.id)
+      ScriptPreviouslyDeletedCheckJob.perform_now(script.id)
     end
     new_report = Report.last
     assert_equal Report::REASON_MALWARE, new_report.reason
@@ -46,14 +53,13 @@ class ScriptPreviouslyDeletedCheckerTest < ActiveSupport::TestCase
     script = Script.first
     script_2 = Script.second
     script_3 = Script.third
-    ScriptSimilarity.delete_all
-    ScriptSimilarity.create!(script:, other_script: script_2, similarity: 0.9, checked_at: Time.zone.now)
-    ScriptSimilarity.create!(script:, other_script: script_3, similarity: 0.9, checked_at: Time.zone.now)
+    create_token_similarity(script, script_2)
+    create_token_similarity(script, script_3)
     Report.create!(item: script_2, result: Report::RESULT_UPHELD, reason: Report::REASON_MALWARE, auto_reporter: 'hardy', explanation: 'virus')
     script_2.update!(locked: true)
     script_3.update!(locked: true)
     assert_no_difference -> { Report.count } do
-      ScriptPreviouslyDeletedChecker.perform_now(script.id)
+      ScriptPreviouslyDeletedCheckJob.perform_now(script.id)
     end
   end
 
@@ -61,14 +67,13 @@ class ScriptPreviouslyDeletedCheckerTest < ActiveSupport::TestCase
     script = Script.first
     script_2 = Script.second
     script_3 = Script.third
-    ScriptSimilarity.delete_all
-    ScriptSimilarity.create!(script:, other_script: script_2, similarity: 0.9, checked_at: Time.zone.now)
-    ScriptSimilarity.create!(script:, other_script: script_3, similarity: 0.9, checked_at: Time.zone.now)
+    create_token_similarity(script, script_2)
+    create_token_similarity(script, script_3)
     Report.create!(item: script_2, result: Report::RESULT_UPHELD, reason: Report::REASON_NO_DESCRIPTION, reporter: User.first)
     script_2.update!(locked: true)
     script_3.update!(locked: true)
     assert_no_difference -> { Report.count } do
-      ScriptPreviouslyDeletedChecker.perform_now(script.id)
+      ScriptPreviouslyDeletedCheckJob.perform_now(script.id)
     end
   end
 
@@ -78,15 +83,14 @@ class ScriptPreviouslyDeletedCheckerTest < ActiveSupport::TestCase
     script_3 = Script.third
     reference_script = scripts(:derivative_with_same_name)
 
-    ScriptSimilarity.delete_all
-    ScriptSimilarity.create!(script:, other_script: script_2, similarity: 0.9, checked_at: Time.zone.now)
-    ScriptSimilarity.create!(script:, other_script: script_3, similarity: 0.9, checked_at: Time.zone.now)
+    create_token_similarity(script, script_2)
+    create_token_similarity(script, script_3)
 
     Report.create!(item: script_2, result: Report::RESULT_UPHELD, reason: Report::REASON_UNAUTHORIZED_CODE, reporter: User.first, reference_script:, script_url: 'https://example.com')
     script_2.update!(locked: true)
     script_3.update!(locked: true)
     assert_difference -> { Report.count } => 1 do
-      ScriptPreviouslyDeletedChecker.perform_now(script.id)
+      ScriptPreviouslyDeletedCheckJob.perform_now(script.id)
     end
     assert_equal reference_script, Report.last.reference_script
   end
@@ -98,16 +102,27 @@ class ScriptPreviouslyDeletedCheckerTest < ActiveSupport::TestCase
     original_script = scripts(:derivative_with_same_name)
     script.authors.create!(user: original_script.users.first)
 
-    ScriptSimilarity.delete_all
-    ScriptSimilarity.create!(script:, other_script: script_2, similarity: 0.9, checked_at: Time.zone.now)
-    ScriptSimilarity.create!(script:, other_script: script_3, similarity: 0.9, checked_at: Time.zone.now)
+    create_token_similarity(script, script_2)
+    create_token_similarity(script, script_3)
 
     Report.create!(item: script_2, result: Report::RESULT_UPHELD, reason: Report::REASON_UNAUTHORIZED_CODE, reporter: User.first, reference_script: original_script, script_url: 'https://example.com')
     script_2.update!(locked: true)
     script_3.update!(locked: true)
     assert_no_difference -> { Report.count } do
-      ScriptPreviouslyDeletedChecker.perform_now(script.id)
+      ScriptPreviouslyDeletedCheckJob.perform_now(script.id)
     end
+  end
+
+  test 'finds token-similar locked scripts from either canonical pair direction' do
+    script = Script.third
+    similar_script = Script.first
+    below_threshold_script = Script.second
+    similar_script.update!(locked: true)
+    below_threshold_script.update!(locked: true)
+    create_token_similarity(script, similar_script)
+    create_token_similarity(script, below_threshold_script, similarity: 0.79)
+
+    assert_equal [similar_script], ScriptPreviouslyDeletedCheckJob.new.check_by_code(script)
   end
 
   test 'when there similar locked by name, it matches' do
@@ -123,7 +138,7 @@ class ScriptPreviouslyDeletedCheckerTest < ActiveSupport::TestCase
     Report.create!(item: script_3, result: Report::RESULT_UPHELD, reason: Report::REASON_MALWARE, reporter: User.first, explanation: 'virus')
 
     assert_difference -> { Report.count } => 1 do
-      ScriptPreviouslyDeletedChecker.perform_now(script.id)
+      ScriptPreviouslyDeletedCheckJob.perform_now(script.id)
     end
   end
 
@@ -140,7 +155,7 @@ class ScriptPreviouslyDeletedCheckerTest < ActiveSupport::TestCase
     Report.create!(item: script_3, result: Report::RESULT_UPHELD, reason: Report::REASON_MALWARE, reporter: User.first, explanation: 'virus')
 
     assert_no_difference -> { Report.count } do
-      ScriptPreviouslyDeletedChecker.perform_now(script.id)
+      ScriptPreviouslyDeletedCheckJob.perform_now(script.id)
     end
   end
 
@@ -159,7 +174,7 @@ class ScriptPreviouslyDeletedCheckerTest < ActiveSupport::TestCase
     end
 
     assert_difference -> { Report.count } => 1 do
-      ScriptPreviouslyDeletedChecker.perform_now(script.id)
+      ScriptPreviouslyDeletedCheckJob.perform_now(script.id)
     end
   end
 end
