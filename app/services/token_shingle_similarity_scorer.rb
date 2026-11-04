@@ -195,13 +195,28 @@ class TokenShingleSimilarityScorer
     {
       similarity_count: shared_hashes.size,
       maximum_similarity_count: comparable_hash_count,
-      matches: regions.map do |script_range, other_range|
+      matches: group_regions(regions).map do |script_ranges, other_ranges|
         {
-          script: [source_section(code, script_line_starts, script_range, context_lines)],
-          other_script: [source_section(other_code, other_line_starts, other_range, context_lines)],
+          script: script_ranges.map { |range| source_section(code, script_line_starts, range, context_lines) },
+          other_script: other_ranges.map { |range| source_section(other_code, other_line_starts, range, context_lines) },
         }
       end,
     }
+  end
+
+  # Regions sharing an identical range on either side are combined into a single
+  # [script_ranges, other_script_ranges] group.
+  def self.group_regions(regions)
+    groups = []
+    regions.each do |script_range, other_range|
+      related, groups = groups.partition do |script_ranges, other_ranges|
+        script_ranges.include?(script_range) || other_ranges.include?(other_range)
+      end
+      script_ranges = related.flat_map(&:first) << script_range
+      other_ranges = related.flat_map(&:last) << other_range
+      groups << [script_ranges.uniq.sort, other_ranges.uniq.sort]
+    end
+    groups.sort
   end
 
   # Returns [script_byte_range, other_script_byte_range] pairs. Each shared shingle occurrence is expanded
