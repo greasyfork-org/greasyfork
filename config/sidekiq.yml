@@ -43,9 +43,6 @@
     stat_ban_checking_job:
       cron: '0 0 15 * * *'
       class: StatBanCheckingJob
-    cleaned_code_cleanup_job:
-      cron: '0 0 2 * * *'
-      class: CleanedCodeCleanupJob
     library_usage_statistics_refresh_job:
       cron: '0 0 4 * * *'
       class: LibraryUsageStatisticsRefreshJob
