@@ -213,6 +213,11 @@ class ReportsController < ApplicationController
     render html: helpers.report_diff(report)
   end
 
+  def similarity
+    report = Report.find(params.expect(:id))
+    render html: helpers.report_similarity(report)
+  end
+
   private
 
   def report_params

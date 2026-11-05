@@ -258,6 +258,7 @@ Rails.application.routes.draw do
         post :uphold
         post :rebut
         get :diff
+        get :similarity
       end
     end
 

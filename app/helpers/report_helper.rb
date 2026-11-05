@@ -54,4 +54,35 @@ module ReportHelper
 
     diff.to_s(:html).html_safe
   end
+
+  def report_similarity(report)
+    script = report.item
+    other_script = report.reference_script
+    return tag.p(t('reports.similarity_unavailable')) unless script.is_a?(Script) && other_script && script.js? && other_script.js?
+
+    script_version = script.newest_saved_script_version
+    other_script_version = other_script.newest_saved_script_version
+    return tag.p(t('reports.similarity_unavailable')) unless script_version && other_script_version
+
+    this_code = script_version.code
+    other_code = other_script_version.code
+    common_source_locations = TokenShingleSimilarityScorer.common_source_locations_for(
+      script,
+      other_script,
+      script_version_id: script_version.id,
+      other_script_version_id: other_script_version.id,
+      code: this_code,
+      other_code:
+    )
+    return tag.p(t('reports.similarity_unavailable')) unless common_source_locations
+    return tag.p(t('scripts.common_snippets_none')) if common_source_locations.fetch(:matches).empty?
+
+    render partial: 'scripts/common_source_comparison', locals: {
+      common_source_locations:,
+      other_script:,
+      other_code:,
+      script:,
+      this_code:,
+    }
+  end
 end

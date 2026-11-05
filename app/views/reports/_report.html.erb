@@ -147,10 +147,16 @@
 
   <% if report.reference_script %>
     <div class="report-diff">
-      <%= button_tag t('reports.load_diff'), class: 'lazy-load-diff', data: { url: diff_report_path(report), disable_with: t('reports.loading_diff') } %>
-      <% if report.reference_script.cleaned_code %>
-        <%= button_tag t('reports.load_cleaned_diff'), class: 'lazy-load-diff', data: { url: diff_report_path(report, tersed: 1), disable_with: t('reports.loading_diff') } %>
-      <% end %>
+      <div class="report-diff-buttons">
+        <%= button_tag t('reports.load_diff'), class: 'lazy-load-diff', data: { url: diff_report_path(report), disable_with: t('reports.loading_diff') } %>
+        <% if report.reference_script.cleaned_code %>
+          <%= button_tag t('reports.load_cleaned_diff'), class: 'lazy-load-diff', data: { url: diff_report_path(report, tersed: 1), disable_with: t('reports.loading_diff') } %>
+        <% end %>
+        <% if report.item.is_a?(Script) && report.item.js? && report.reference_script.js? %>
+          <%= button_tag t('reports.load_similarity_comparison'), class: 'lazy-load-diff', data: { url: similarity_report_path(report), disable_with: t('reports.loading_diff') } %>
+        <% end %>
+      </div>
+      <div class="report-diff-content"></div>
     </div>
   <% end %>
 <% end %>

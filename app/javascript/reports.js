@@ -16,7 +16,7 @@ async function replaceDiff(button, response) {
   let diffSection = button.closest('.report-diff')
   let html = await response.text()
   let doc = new DOMParser().parseFromString(html, "text/html")
-  diffSection.replaceChild(doc.body.firstElementChild, diffSection.firstChild)
+  diffSection.querySelector('.report-diff-content').replaceChildren(doc.body.firstElementChild)
   button.textContent = button.dataset.originalText
   button.disabled = false
 }
