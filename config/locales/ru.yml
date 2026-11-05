@@ -64,6 +64,7 @@ ru:
     history_page: "История"
     feedback_page: "Обсуждения (%{count})"
     stats_page: "Статистика"
+    diff_page: "Различия"
     update_page: "Обновить"
     delete_page: "Удалить"
     delete_explanation: "Удаление вашего скрипта делает его недоступным всем кроме вас и модераторов. Вы можете в любое время отменить удаление."
@@ -144,17 +145,22 @@ ru:
       all: За всё время
     stats_library_usages_intro_html: "В следующих скриптах используется URL-адрес этой библиотеки %{site_name} в <code>@require</code>:"
     stats_library_usages_script_column: Скрипт
+    diff_title: "%{script} – различия"
+    derivatives_heading: "Производные"
     derivatives_intro: "Эти скрипты могут быть основаны на вашем (или наоборот). Если код используется без вашего разрешения, сообщите об этом на вкладке скрипта «Обсуждения»."
     derivatives_script_html: "%{script} от %{user}, лицензия: %{license} %{diff_link:[Различия]}"
     derivatives_exact_copies_heading: "Точные копии"
     derivatives_exact_copies_list_intro: "У следующих скриптов точно такой же код, как и у вашего:"
     derivatives_exact_copies_item_html: "%{script_link} от %{author_links} – версии: %{version_list}"
+    derivatives_exact_copes_none: "На %{site_name} нет других скриптов, которые в какой-либо версии имели бы точно такой же код, как в этом."
     derivatives_similar_heading: "Похожие скрипты"
+    derivatives_similar_info: "Последние версии этих скриптов совпадают с данной версией как минимум на %{threshold}."
     similarity_score:
       high: Очень сильно похож
       medium: Сильно похож
       low: Немного похож
       none: Не похож
+    derivatives_similar_none: "Нет скриптов, последняя версия которых идентична этой как минимум на %{threshold}. \U0001F984"
     derivatives_similar_item: "%{score}: %{diff_link:[Различия]} %{script}"
     listing_title_all_sites: "Пользовательские скрипты для всех сайтов"
     listing_description_all_sites: "Пользовательские скрипты, которые добавляют функциональность и устраняют ошибки на всех сайтах"
@@ -284,11 +290,16 @@ ru:
     screenshots_add: "Добавить:"
     screenshots_remove: "Удалить"
     replacement_script_explanation: "(необязательно) Укажите адрес другого скрипта, который заменит этот скрипт:"
+    version_diff_title: "%{script} – различия версий"
     diff_old_version: "Старая:"
     diff_new_version: "Новая:"
     diff_lines_of_context: "Строки из контекста:"
     diff_ignore_whitespace: "Игнорировать пробелы и табуляции"
-    diff_terser: "Очистить код перед сравнением"
+    common_snippets_none: "Общих фрагментов кода не найдено."
+    diff_view_title: "Метод сравнения"
+    diff_view_diff: "Различие"
+    diff_view_clean: "Оформленное различие"
+    diff_view_snippets: "Общие фрагменты кода"
     diff_refresh: "Обновить"
     diff_no_change: "Различий не найдено."
     good_rating_explanation: "Число людей, давших оценку «хорошо» или добавивших скрипт в избранное."
