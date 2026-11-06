@@ -61,6 +61,7 @@ el:
     history_page: "Ιστορικό"
     feedback_page: "Συζήτηση (%{count})"
     stats_page: "Στατιστικά"
+    diff_page: "Διαφορές"
     update_page: "Ενημέρωση"
     delete_page: "Διαγραφή"
     delete_explanation: "Διαγράφοντας τον κώδικά σας, τον κάνετε μη προσβάσιμο στον οποιοδήποτε εκτός από εσάς και τους διαχειριστές του Grease Fork. Μπορείτε να αναιρέσετε τη διαγραφή οποτεδήποτε."
@@ -137,6 +138,8 @@ el:
       year: Τελευταίες 365 ημέρες
       all: Οποτεδήποτε
     stats_library_usages_script_column: Κώδικας
+    diff_title: "%{script} - Διαφορές"
+    derivatives_heading: "Παράγωγα"
     derivatives_intro: "Αυτοί οι κώδικες μπορούν να βασίζονται σε δικούς σας (ή οι δικοί σας μπορεί να βασίζονται σε αυτούς). Αν βρείτε μια μη εξουσιοδοτημένη χρήση του κώδικά σας, αναφέρετε το μέσω της καρτέλας συζητήσεων του κώδικα."
     derivatives_script_html: "%{script} από %{user}, άδεια: %{license} %{diff_link:[Διαφορές]}"
     derivatives_exact_copies_heading: "Ακριβή αντίγραφα"
@@ -270,10 +273,16 @@ el:
     screenshots_add: "Προσθήκη:"
     screenshots_remove: "Απομάκρυνση"
     replacement_script_explanation: "(Προαιρετικό) Επιλογή άλλου κώδικα που αντικαθιστά τον κώδικα. Εισάγετε το URL του κώδικα αντικατάστασης:"
+    version_diff_title: "%{script} - Διαφορές έκδοσης"
     diff_old_version: "Παλαιά:"
     diff_new_version: "Νέα:"
     diff_lines_of_context: "Γραμμές περιεχομένου:"
     diff_ignore_whitespace: "Αγνόηση αλλαγών λευκών διαστημάτων"
+    common_snippets_none: "Δεν βρέθηκαν κοινά αποσπάσματα."
+    diff_view_title: "Μέθοδος σύγκρισης"
+    diff_view_diff: "Διαφορές"
+    diff_view_clean: "Μορφοποιημένες διαφορές"
+    diff_view_snippets: "Κοινά αποσπάσματα"
     diff_refresh: "Ανανέωση"
     diff_no_change: "Δεν βρέθηκαν διαφορές."
     good_rating_explanation: "Αριθμός ατόμων που το βαθμολόγησαν Καλό ή το πρόσθεσαν στα Αγαπημένα."
@@ -836,8 +845,10 @@ el:
   search:
     script_search:
       title: "Αναζήτηση κώδικα"
+      description: "Αναζήτηση για κώδικες. Αναζητά ονόματα κωδίκων, περιγραφές, πρόσθετες πληροφορίες και ονόματα δημιουργών."
     library_search:
       title: "Αναζήτηση Βιβλιοθήκης"
+      description: "Αναζήτηση για βιβλιοθήκες. Αναζητά ονόματα βιβλιοθηκών, περιγραφές, πρόσθετες πληροφορίες και ονόματα δημιουργών."
     code_search:
       title: "Αναζήτηση κώδικα"
       description: "Αναζήτηση κωδικού κώδικα. Δεν γίνεται έλεγχος πεζών-κεφαλαίων, αναζήτηση απλού κειμένου χωρίς χαρακτήρες μπαλαντέρ."
@@ -905,7 +916,9 @@ el:
     view_discussion: "Προβολή συζήτησης"
     load_diff: "Φόρτωση διαφορών"
     load_cleaned_diff: "Φόρτωση διαφορών εκκαθαρισμένου κώδικα"
+    load_similarity_comparison: "Φόρτωση σύγκρισης ομοιότητας"
     loading_diff: "Φόρτωση..."
+    similarity_unavailable: "Σύγκριση ομοιότητας δεν είναι διαθέσιμη για αυτούς τους κώδικες."
     reported_user_activity_html: "%{user} (ο αναφερόμενος χρήστης) έχει κάνει:"
     script_updated_since_report: "Ο κώδικας έχει ενημερωθεί πριν τη συμπλήρωση της αναφοράς."
     script_previous_reports:
@@ -1154,6 +1167,12 @@ el:
         content: Μήνυμα
       script_lock_appeal:
         text: Έφεση
+    errors:
+      models:
+        report:
+          attributes:
+            reference_script:
+              language_mismatch: "πρέπει να είναι η ίδια γλώσσα όπως ο αναφερόμενος κώδικας"
   errors:
     messages:
       script_missing_name: "απαιτείται - ορίστε ένα με την ετικέτα @name"
@@ -1167,6 +1186,7 @@ el:
       must_be_greasy_fork_script: "Πρέπει να είναι το URL για έναν κώδικα στο %{site_name}"
       script_update_not_utf8: "ο κώδικας που στέλνετε πρέπει να είναι κείμενο UTF-8"
       script_disallowed_require: "χρησιμοποιείται ένας μη αποδεκτός εξωτερικός κώδικας: %{code}"
+      script_disallowed_resource: "χρησιμοποιεί μη εγκυρη προέλευση @resource: %{code}. Οι προελεύσεις πρέπει να είναι: http, https, ή URLs δεδομένων"
       script_disallowed_base_64_require: "χρησιμοποιεί ένα @require με κωδικοποίηση base-64"
       script_malformed_require: "χρησιμοποιείται μια δύσμορφη αναφορά εξωτερικού κώδικα: %{code}"
       script_rate_limit: "Έχετε υπερβεί το όριο δημοσιεύσεων. Δοκιμάστε ξανά αργότερα."

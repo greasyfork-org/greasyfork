@@ -10,6 +10,7 @@ zh-CN:
       user_list: "用户列表"
       libraries: "库"
       moderator_log: "管理日志"
+      privacy: "隐私政策"
   scripts:
     created_date: "创建于"
     updated_date: "更新于"
@@ -38,6 +39,7 @@ zh-CN:
     reinstall: "重新安装 %{version} 版本"
     old_version_warning: "这不是此脚本的最新版本。如果您选择安装，您将永远不会收到新版本的更新。仍要安装吗？"
     post_install:
+      info_html: "现在您应该已经安装了 %{script}。如果您在安装过程中遇到问题，请%{help_link:阅读帮助文档}。您的反馈对于维护 %{site_name} 脚本的质量至关重要，在试用 %{script} 后，请考虑%{feedback_link:提供反馈}。"
       promoted_script_intro: "您可能也喜欢…"
       similar_script_html: "%{name} - %{description}"
     library_instructions_html: "此脚本不应直接安装。它是供其他脚本使用的外部库，要使用该库请加入元指令 %{code}"
@@ -134,12 +136,16 @@ zh-CN:
       month: 最近 30 日
       year: 最近 365 日
       all: 所有时间
+    stats_library_usages_script_column: 脚本
+    derivatives_heading: "相似"
     derivatives_intro: "这些脚本可能基于您的脚本开发（或者您的代码是基于他们的代码开发）。如果您发现有人未经授权使用了您的代码，请从其脚本的反馈选项卡进行举报。"
     derivatives_script_html: "%{script}，作者 %{user}，许可证：%{license} %{diff_link:[Diff]}"
     derivatives_exact_copies_heading: "完全相同"
     derivatives_exact_copies_list_intro: "以下脚本代码与您的脚本代码完全相同："
     derivatives_exact_copies_item_html: "%{author_links}发布的%{script_link}，版本：%{version_list}"
+    derivatives_exact_copes_none: "%{site_name} 上没有其他脚本与这个脚本的代码完全相同。"
     derivatives_similar_heading: "相似脚本"
+    derivatives_similar_info: "最新版本脚本与%{threshold}具有相似度。"
     similarity_score:
       high: 非常相似
       medium: 比较相似
