@@ -1,15 +1,14 @@
 <div class="common-source-comparison">
   <p>
-    We found <%= common_source_locations.fetch(:similarity_count) %> matches in a sample of <%= common_source_locations.fetch(:maximum_similarity_count) %> code snippets.
+    <%= t('scripts.common_source_summary', count: common_source_locations.fetch(:similarity_count), sample_count: common_source_locations.fetch(:maximum_similarity_count)) %>
   </p>
   <% common_source_locations.fetch(:matches).each_with_index do |match, index| %>
     <section class="common-source-match">
-      <h4>Snippet <%= index + 1 %></h4>
+      <h4><%= t('scripts.common_source_snippet', index: index + 1) %></h4>
       <div class="common-source-comparison-columns">
         <div>
           <h5>
-            <%= render_script(script) %>
-            by <%= script.users.map { |user| link_to(user.name, user) }.to_sentence.html_safe %>
+            <%= t('scripts.by_author', script: render_script(script), authors: script.users.map { |user| link_to(user.name, user) }.to_sentence.html_safe) %>
           </h5>
           <% match.fetch(:script).each do |section| %>
             <pre><code><%= source_with_highlights(this_code, section) %></code></pre>
@@ -17,8 +16,7 @@
         </div>
         <div>
           <h5>
-            <%= render_script(other_script) %>
-            by <%= other_script.users.map { |user| link_to(user.name, user) }.to_sentence.html_safe %>
+            <%= t('scripts.by_author', script: render_script(other_script), authors: other_script.users.map { |user| link_to(user.name, user) }.to_sentence.html_safe) %>
           </h5>
           <% match.fetch(:other_script).each do |section| %>
             <pre><code><%= source_with_highlights(other_code, section) %></code></pre>

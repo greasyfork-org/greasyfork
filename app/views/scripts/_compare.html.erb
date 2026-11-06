@@ -28,8 +28,7 @@
     <p class="notice"><%= @diff_error %></p>
   <% elsif @diff || @common_source_locations || @this_code %>
     <p id="comparison-result">
-      <%= render_script(@other_script) %>
-      by <%= @other_script.users.map { |user| link_to(user.name, user) }.to_sentence.html_safe %>
+      <%= t('scripts.by_author', script: render_script(@other_script), authors: @other_script.users.map { |user| link_to(user.name, user) }.to_sentence.html_safe) %>
     </p>
 
     <% if @compare_view == 'snippets' %>
