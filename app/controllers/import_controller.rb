@@ -36,12 +36,19 @@ class ImportController < ApplicationController
         @results[:notuserscript] << sync_id
       when :success
         existing_scripts = current_user.scripts.where(sync_identifier: sync_id)
-        if !existing_scripts.empty?
-          @results[:existing] << existing_scripts.first
-        elsif script.save
-          @results[:new] << script
+        if existing_scripts.empty?
+          if sleazy? && !script.sensitive?
+            script.marked_adult_by_user = current_user
+            script.adult_content_self_report = true
+          end
+
+          if script.save
+            @results[:new] << script
+          else
+            @results[:failure] << 'Could not save.'
+          end
         else
-          @results[:failure] << 'Could not save.'
+          @results[:existing] << existing_scripts.first
         end
       end
     end
