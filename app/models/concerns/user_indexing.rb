@@ -1,6 +1,8 @@
 module UserIndexing
   extend ActiveSupport::Concern
 
+  attr_accessor :searchkick_script_stats
+
   SCRIPT_STAT_MAPPINGS = [:all, :greasyfork, :sleazyfork].map do |subset|
     {
       "#{subset}_script_count" => {
@@ -74,7 +76,7 @@ module UserIndexing
       banned: banned?,
       email_domain:,
       ip: current_sign_in_ip,
-      **calculate_stats,
+      **(searchkick_script_stats || calculate_stats),
     }
   end
 end

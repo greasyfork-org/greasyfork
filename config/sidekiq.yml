@@ -49,3 +49,6 @@
     update_fan_counts_job:
       cron: '0 3 * * * *'
       class: UpdateFanCountsJob
+    user_stats_refresh_job:
+      cron: '0 25 * * * *'
+      class: UserStatsRefreshJob
