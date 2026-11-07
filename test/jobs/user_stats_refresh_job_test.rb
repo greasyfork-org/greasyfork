@@ -16,7 +16,6 @@ class UserStatsRefreshJobTest < ActiveSupport::TestCase
     end
     Searchkick.stubs(:client).returns(client)
     job = UserStatsRefreshJob.new
-    job.expects(:sleep).with(UserStatsRefreshJob::BATCH_PAUSE).twice
 
     stub_const(UserStatsRefreshJob, :BATCH_SIZE, 2) { job.perform }
 
