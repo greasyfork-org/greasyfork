@@ -39,12 +39,20 @@ class UpdateInstallCountsJobTest < ActiveSupport::TestCase
   test 'rollup and deletion roll back together on failure' do
     add_install(@script, '1.1.1.1', 'DATE_SUB(CURDATE(), INTERVAL 2 DAY)')
     job = UpdateInstallCountsJob.new
-    job.stubs(:update_script_counts).raises('failed to update counts')
-    Script.expects(:reindex).never
+    roll_up = job.method(:roll_up_installs)
+    job.define_singleton_method(:roll_up_installs) do |*args|
+      roll_up.call(*args)
+      raise 'failed after rollup'
+    end
+    Script.expects(:reindex).once
 
     assert_raises(RuntimeError) { job.perform }
     assert_equal 1, @connection.select_value("SELECT COUNT(*) FROM daily_install_counts WHERE script_id = #{@script.id}")
     assert_equal 0, @connection.select_value("SELECT COUNT(*) FROM install_counts WHERE script_id = #{@script.id}")
+    assert_equal [0, 0], @script.reload.attributes.values_at('daily_installs', 'total_installs')
+
+    UpdateInstallCountsJob.new.perform
+    assert_equal [0, 1], @script.reload.attributes.values_at('daily_installs', 'total_installs')
   end
 
   test 'uses inclusive daily and exclusive historical cutoffs' do
@@ -75,16 +83,55 @@ class UpdateInstallCountsJobTest < ActiveSupport::TestCase
     assert_equal 1, @connection.select_value("SELECT installs FROM install_counts WHERE script_id = #{@script.id}")
   end
 
-  test 'processes multiple batches' do
-    add_install(@script, '1.1.1.1', 'NOW()')
-    add_install(@expired, '3.3.3.3', 'NOW()')
+  test 'retry after a later batch fails preserves committed rollups' do
+    first, second = Script.order(:id).limit(2).to_a
+    add_install(first, '1.1.1.1', 'DATE_SUB(CURDATE(), INTERVAL 3 DAY)')
+    add_install(second, '1.1.1.2', 'DATE_SUB(CURDATE(), INTERVAL 3 DAY)')
+    job = UpdateInstallCountsJob.new
+    roll_up = job.method(:roll_up_installs)
+    batches = 0
+    job.define_singleton_method(:roll_up_installs) do |*args|
+      roll_up.call(*args)
+      batches += 1
+      raise 'failed after second rollup' if batches == 2
+    end
     Script.expects(:reindex).once
 
-    stub_const(UpdateInstallCountsJob, :BATCH_SIZE, 2) do
+    stub_const(UpdateInstallCountsJob, :BATCH_SIZE, 1) do
+      assert_raises(RuntimeError) { job.perform }
+      assert_equal 1, @connection.select_value("SELECT COUNT(*) FROM install_counts WHERE script_id = #{first.id}")
+      assert_equal 1, @connection.select_value("SELECT COUNT(*) FROM daily_install_counts WHERE script_id = #{second.id}")
       UpdateInstallCountsJob.new.perform
     end
-    assert_equal [1, 1], @script.reload.attributes.values_at('daily_installs', 'total_installs')
+
+    assert_equal [0, 1], first.reload.attributes.values_at('daily_installs', 'total_installs')
+    assert_equal [0, 1], second.reload.attributes.values_at('daily_installs', 'total_installs')
+    assert_equal 2, @connection.select_value("SELECT SUM(installs) FROM install_counts WHERE script_id IN (#{first.id}, #{second.id})")
+  end
+
+  test 'processes multiple batches' do
+    @connection.execute("INSERT INTO install_counts (script_id, install_date, installs) VALUES (#{@script.id}, DATE_SUB(CURDATE(), INTERVAL 3 DAY), 7)")
+    add_install(@script, '1.1.1.1', 'NOW()')
+    add_install(@script, '1.1.1.2', 'DATE_SUB(CURDATE(), INTERVAL 3 DAY)')
+    add_install(@expired, '3.3.3.3', 'NOW()')
+    add_install(@banned, '2.2.2.2', 'NOW()')
+    StatBan.create!(script: @banned, expires_at: 1.day.from_now)
+    Script.expects(:reindex).once
+
+    statements = []
+    subscriber = ->(_name, _start, _finish, _id, payload) { statements << payload[:sql] }
+    ActiveSupport::Notifications.subscribed(subscriber, 'sql.active_record') do
+      stub_const(UpdateInstallCountsJob, :BATCH_SIZE, 2) do
+        UpdateInstallCountsJob.new.perform
+      end
+    end
+    assert_equal [1, 9], @script.reload.attributes.values_at('daily_installs', 'total_installs')
     assert_equal [1, 1], @expired.reload.attributes.values_at('daily_installs', 'total_installs')
+    assert_equal [0, 0], @banned.reload.attributes.values_at('daily_installs', 'total_installs')
+    historical_queries = statements.count { |sql| sql.include?('FROM install_counts IGNORE INDEX') }
+    ban_deletions = statements.count { |sql| sql.start_with?('DELETE daily_install_counts FROM') }
+    assert_equal 1, historical_queries
+    assert_equal 1, ban_deletions
   end
 
   private
