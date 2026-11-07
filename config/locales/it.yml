@@ -10,6 +10,7 @@ it:
       user_list: "Lista utenti"
       libraries: "Librerie"
       moderator_log: "Log moderatore"
+      privacy: "Politica sulla privacy"
   scripts:
     created_date: "Creato il"
     updated_date: "Aggiornato il"
@@ -39,6 +40,10 @@ it:
     downgrade: "Riporta alla versione %{version}"
     reinstall: "Reinstalla la versione %{version}"
     old_version_warning: "Questa non è la versione più recente di questo script. Se la installi, non sarà mai aggiornata ad una versione successiva. Installare comunque?"
+    post_install:
+      info_html: "Ora dovresti avere %{script} installato. Se hai riscontrato problemi con l'installazione, %{help_link:leggi la nostra guida}. Il tuo feedback è importante per mantenere la qualità degli script su %{site_name}. Una volta provato %{script}, ti invitiamo a %{feedback_link:lasciare una recensione}."
+      promoted_script_intro: "Potrebbero interessarti anche…"
+      similar_script_html: "%{name} - %{description}"
     library_instructions_html: "Questo script non dovrebbe essere installato direttamente. È una libreria per altri script da includere con la chiave %{code}"
     deleted_notice: "Questo script è stato rimosso."
     deleted_notice_with_reason: "Questo script è stato eliminato a causa : %{report_link:this report}."
@@ -58,6 +63,7 @@ it:
     history_page: "Storia"
     feedback_page: "Feedback (%{count})"
     stats_page: "Statistiche"
+    diff_page: "Diff"
     update_page: "Aggiorna"
     delete_page: "Elimina"
     delete_explanation: "Eliminando il tuo script lo rendi inaccessibile a tutti ad eccezione di te e dei moderatori di Greasy Fork. Puoi annullare l'eliminazione in qualsiasi momento."
@@ -137,17 +143,24 @@ it:
       month: Ultimi 30 giorni
       year: Ultimi 365 giorni
       all: Di sempre
+    stats_library_usages_intro_html: "I seguenti script utilizzano l'URL di %{site_name} di questa libreria in un <code>@require</code>:"
+    stats_library_usages_script_column: Script
+    diff_title: "%{script} - Diff"
+    derivatives_heading: "Derivati"
     derivatives_intro: "Questi script potrebbero essere basati sui tuoi (o i tuoi su di loro). Se trovi un utilizzo illecito del tuo codice segnalalo dal tab dei feedback di quello script."
     derivatives_script_html: "%{script}di %{user}, licenza: %{license} %{diff_link:[Diff]}"
     derivatives_exact_copies_heading: "Copie esatte"
     derivatives_exact_copies_list_intro: "I seguenti script hanno esattamente lo stesso codice del tuo:"
     derivatives_exact_copies_item_html: "%{script_link} di %{author_links} - versioni: %{version_list}"
+    derivatives_exact_copes_none: "Non ci sono altri script su %{site_name} che abbiano esattamente lo stesso codice di questo script in alcuna versione."
     derivatives_similar_heading: "Script simili"
+    derivatives_similar_info: "L'ultima versione di questi script è identica almeno per il %{threshold} a questo."
     similarity_score:
       high: Molto simile
       medium: Moderatamente simile
       low: Grossomodo simile
       none: Non simile
+    derivatives_similar_none: "Non ci sono script la cui ultima versione sia identica almeno per il %{threshold} a questo. \U0001F984"
     derivatives_similar_item: "%{score}: %{diff_link:[Diff]} %{script}"
     listing_title_all_sites: "Script utente per tutti i siti"
     listing_description_all_sites: "Script che aggiungono funzioni e rimuovono bug in tutti i siti"
@@ -167,6 +180,7 @@ it:
     listing_sort_created: "Creato il"
     listing_sort_updated: "Data aggiornamento"
     listing_sort_name: "Nome"
+    listing_sort_entry_locales: 'Lingue'
     listing_filter_by_site_label: "Visualizza script per:"
     listing_filter_by_site_disable: "Tutti"
     listing_filter_by_site_all_sites: "(tutti i siti)"
@@ -187,6 +201,10 @@ it:
       me: I miei script
       user: Script di %{author_name}
     search_failed: Qualcosa è andato storto nel caricamento dei tuoi risultati. Alcune delle funzioni di ricerca potrebbero non funzionare correttamente. Siamo stati notificati del problema.
+    listing_ratings_explanation: La probabilità che la prossima recensione ricevuta abbia una valutazione positiva, da 0 a 1.
+    listing_locale_explanation: Lo script è disponibile in una qualsiasi delle lingue selezionate.
+    listing_advanced_search_applied: "Ricerca avanzata applicata"
+    listing_advanced_search_clear: "Cancella"
     import: "Importa script"
     new: "Pubblica uno script che hai creato"
     new_css: "Pubblica uno stile che hai creato"
@@ -217,6 +235,7 @@ it:
     post_new_script: "Posta uno script"
     post_updated_script: "Posta la nuova versione"
     type_1_html: "Script pubblico - script che tutti posso vedere e usare"
+    type_2_html: "Script utente non in elenco - uno script utente non collegato da alcuna parte su %{site_name}. Per script in fase di sviluppo o che non sarebbero generalmente utili ad altri. Non impedisce ad altri di accedervi se ne conoscono l'URL."
     type_3_html: "Libreria - uno script creato con lo scopo di essere usato con il tag <code>@require</code> da altri script e non per essere installato drettamente."
     override_warning_checkbox_label: "Salva comunque"
     warning_version_not_incremented_html: "Hai modificato il codice ma non hai incrementato il numero di <code>@version</code>. Coloro che hanno installato precedentemente il tuo script potrebbero non ricevere il codice aggiornato."
@@ -271,10 +290,19 @@ it:
     screenshots_add: "Aggiungi:"
     screenshots_remove: "Rimuovi"
     replacement_script_explanation: "(Opzionale) Scegli un altro script che sostituisce questo script. Inserisci l'URL dello script sostitutivo:"
+    version_diff_title: "%{script} - Differenze di versione"
     diff_old_version: "Precedente:"
     diff_new_version: "Nuova:"
     diff_lines_of_context: "Linee di contesto:"
     diff_ignore_whitespace: "Ignora i cambiamenti sugli spazi bianchi"
+    common_snippets_none: "Non sono stati trovati snippet comuni."
+    by_author_html: "%{script} di %{authors}"
+    common_source_summary: "Abbiamo trovato %{count} corrispondenze in un campione di %{sample_count} snippet di codice."
+    common_source_snippet: "Snippet %{index}"
+    diff_view_title: "Metodo di confronto"
+    diff_view_diff: "Diff"
+    diff_view_clean: "Diff formattato"
+    diff_view_snippets: "Snippet comuni"
     diff_refresh: "Aggiorna"
     diff_no_change: "Nessuna differenza trovata."
     good_rating_explanation: "Numero di persone che lo hanno giudicato Buono o che lo hanno aggiunto ai preferiti."
@@ -359,6 +387,7 @@ it:
     install_help_dialog:
       js:
         firefox: Dovrai installare un'estensione come %{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} o %{violentmonkey_link:Violentmonkey} per installare questo script.
+        chrome: Dovrai installare un'estensione come %{tampermonkey_link:Tampermonkey} o %{violentmonkey_link:Violentmonkey} per installare questo script.
         opera: Dovrai installare un'estensione come %{tampermonkey_link:Tampermonkey} o %{violentmonkey_link:Violentmonkey} per installare questo script.
         safari: Dovrai installare un'estensione come %{tampermonkey_link:Tampermonkey} o %{userscripts_link:Userscripts} per installare questo script.
         edge: Dovrai installare un'estensione come ad esempio %{tampermonkey_link:Tampermonkey} per installare questo script.
@@ -473,6 +502,7 @@ it:
       for_language_exclude: "Escludi"
     calculated_list: "Lista di script calcolata"
     calculated_list_none: "(Nessuno)"
+    calculated_list_timeout: "Il caricamento dell'elenco degli script calcolato sta richiedendo troppo tempo. Puoi comunque salvare questa raccolta, ma potresti riscontrare problemi durante il suo utilizzo."
     calculated_list_more:
       one: "E %{count} altro..."
       many: "E %{count} altri..."
@@ -498,6 +528,7 @@ it:
     explain_user_scripts_heading: "Cosa sono gli user script?"
     explain_user_scripts_html: "Gli script ti mettono al comando della tua esperienza di navigazione. Appena saranno installati aggiungeranno funzionalità ai siti su cui navighi, li renderanno più semplici da usare,oppure rimuoveranno cose che non ti piacciono. Gli script su %{site_name} sono stati prodotti da altri utenti e pubblicati per essere condivisi con tutti. Sono gratuiti e facili da usare."
     installing_step1_header: "Step 1: installa un gestore di script utente"
+    browser_no_additional_software_indicator: "%{browser_link:%{browser_name}} (nessun software aggiuntivo richiesto)"
     installing_step1_caption: "Tampermonkey su Chrome"
     installing_step1_description_html: >
         <p>Per usare gli script utente hai prima bisogno di installare un gestore
@@ -505,10 +536,35 @@ it:
         browser utilizzi.</p>
     desktop_browsers:
       title: Desktop
+      browser_list_html: |
+          <ul>
+          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} o %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey} o %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} o %{safari_userscripts_link:Userscripts}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} o %{edge_violentmonkey_link:Violentmonkey}</li>
+          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} o %{opera_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          %{standalone_managers_html}
+          </ul>
     android_browsers:
       title: Mobile (Android)
+      browser_list_html: |
+          <ul>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey} o %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+          <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+          %{standalone_managers_html}
+          %{locale_specific_browsers}
+          </ul>
     ios_browsers:
       title: Mobile (iOS)
+      browser_list_html: |
+          <ul>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} o %{safari_userscripts_link:Userscripts}</li>
+          %{standalone_managers_html}
+          </ul>
     installing_step2_header: "Step 2: installa uno script utente"
     installing_step2_caption: "Il tasto di installazione di uno script utente"
     installing_step2_description_html: >
@@ -593,6 +649,8 @@ it:
     2fa_enable_code_incorrect: Il codice 2FA non è corretto. Per favore riprova.
     2fa_disabled: 2FA è stata disabilitata.
     2fa_disabled_already: 2FA è già disabilitata.
+    2fa_entry:
+      intro_html: "Accesso come <b>%{email}</b>. Inserisci il codice fornito dalla tua app di autenticazione a due fattori (2FA)."
     enable_2fa:
       intro: "Aggiungi %{site_name} alla tua applicazione per l'autenticazione a due fattori (2FA) usando uno di questi metodi, poi inserisci il codice sottostante."
       qr_heading: Tramite codice QR
@@ -940,8 +998,11 @@ it:
       developers_credit: "%{site_name} esiste grazie a %{developers_link:queste persone} le quali con l'aiuto di tutti quelli che segnalano bug e suggeriscono miglioramenti rendono %{site_name} unico."
       translators_credit: "%{site_name} è stato tradotto da %{translators_link:Greasy Translation Force su Transifex}:"
       icons_credit: "Le icone dei browser provengono da %{browserlogos}."
+      donors_credit: "%{site_name} è stato sostenuto economicamente da %{donor_links}. Se desideri fornire supporto finanziario, %{admin_email_link:contattaci}."
+      ip_credit: "Geolocalizzazione IP di DB-IP"
     help_with_greasymonkey: "Aiuto con Greasemonkey"
     help_with_tampermonkey: "Aiuto con Tampermonkey"
+    help_with_violentmonkey: "Aiuto con Violentmonkey"
     contact:
       title: "Contatta qualcuno"
       content_html: >
@@ -960,6 +1021,71 @@ it:
           %{admin_email_link:Invia un'e-mail.}</p>
     privacy_policy:
       title: "Politica sulla privacy"
+      intro_html: >
+          <p>Questa pagina descrive il modo in cui %{site_name} registra o traccia
+          gli utenti. Se hai dubbi o domande, %{admin_email_link:invia un'email all'amministratore}.</p>
+      server_logs_html: >
+          <h2>Log del server</h2> <p>%{site_name} registra tutte le richieste secondo
+          le consuete modalità dei log del server. Le informazioni registrate includono
+          le pagine visitate, l'indirizzo IP e la stringa user agent. Questi log vengono
+          utilizzati per il debug e l'analisi del server. I dati vengono conservati
+          per una settimana. Questi dati non vengono condivisi né resi accessibili
+          al pubblico.</p>
+      script_statistics_html: >
+          <h2>Statistiche degli script</h2> <p>Al fine di generare statistiche, %{site_name}
+          registra le richieste di installazione e di aggiornamento con le relative
+          informazioni sull'indirizzo IP. Queste informazioni vengono conservate per
+          un giorno, dopodiché vengono aggregate in modo da non includere più l'indirizzo
+          IP. I dati specifici relativi all'indirizzo IP non vengono condivisi né
+          resi accessibili al pubblico, mentre i dati aggregati lo sono.</p>
+      cookies_html: >
+          <h2>Cookie (quando non connesso)</h2> <p>%{site_name} potrebbe impostare
+          cookie di sessione temporanei per consentire alcune funzionalità del sito.
+          Questi cookie non sono impostati per persistere e potrebbero essere cancellati
+          alla chiusura del browser (a seconda delle impostazioni del browser).</p>
+      user_accounts_html: >
+          <h2>Account utente</h2> <p>%{site_name} richiede agli utenti di creare un
+          account per pubblicare script, partecipare alle discussioni e accedere ad
+          altre funzionalità del sito. Durante la creazione di un account, possono
+          essere memorizzate informazioni quali nome utente, indirizzo IP, indirizzo
+          email e user agent. Il nome utente sarà visualizzato pubblicamente. Nessun
+          altro dato sarà mostrato in pubblico o condiviso con terze parti. Questi
+          dati possono essere rimossi eliminando l'account.</p> <p>%{site_name} utilizzerà
+          l'indirizzo email fornito al momento della creazione dell'account per inviare
+          informazioni importanti, come le richieste di reimpostazione della password.
+          In situazioni particolari, l'amministratore di %{site_name} potrebbe utilizzare
+          tale indirizzo email anche per contattare gli utenti.</p> <p>Per impostazione
+          predefinita, %{site_name} invierà email di notifica all'indirizzo fornito
+          alla registrazione. Tali email riguardano novità come nuovi commenti nelle
+          discussioni sottoscritte e nuove recensioni ricevute per gli script di cui
+          si è autori. Queste notifiche possono essere disattivate nelle impostazioni
+          del profilo dell'utente.</p> <p>Le azioni eseguite dopo aver effettuato
+          l'accesso, ad esempio la pubblicazione di script e commenti, saranno visibili
+          agli altri utenti.</p> <p>Se l'opzione "Ricordami" è selezionata durante
+          l'accesso a un account, %{site_name} imposterà un cookie persistente per
+          mantenere lo stato di accesso.</p>
+      external_logins_html: >
+          <h2>Accessi esterni</h2> <p>%{site_name} consente agli utenti di accedere
+          utilizzando servizi esterni come Google, GitHub e GitLab. Quando si accede
+          tramite un servizio esterno, %{site_name} riceverà da tale servizio il nome
+          utente e le informazioni sull'email e le utilizzerà per creare un account.
+          Queste informazioni saranno utilizzate come descritto nella sezione "Account
+          utente".</p>
+      posted_scripts_html: >
+          <h2>Script pubblicati su %{site_name}</h2> <p>%{site_name} contiene contenuti
+          generati dagli utenti e gli script pubblicati potrebbero essere in grado
+          di tracciare gli utenti qualora questi installino lo script.</p>
+      data_retention_html: >
+          <h2>Conservazione dei dati</h2> <p>%{site_name} conserva i dati dell'account
+          utente e i contenuti pubblicati dagli utenti (come script e commenti) a
+          tempo indeterminato. Gli utenti possono eliminare il proprio account e i
+          dati pubblicati in qualsiasi momento %{delete_user_link:qui}.</p> <p>I dati
+          di navigazione anonimi, quali indirizzo IP, user agent e pagine visitate,
+          vengono conservati per una settimana dall'accesso.</p>
+      third_party_libraries_html: >
+          <h2>Librerie di terze parti</h2> <p>%{site_name} potrebbe includere codice
+          di terze parti per raccogliere statistiche o mostrare annunci pubblicitari
+          sul sito. Queste librerie potrebbero contenere logiche di tracciamento.</p>
     user_css_to_user_js:
       title: Conversione da user CSS a user JS
       content_html: |
@@ -1020,6 +1146,26 @@ it:
           <p>Lo script esegue determinate azioni che assicurano all'autore delle commissioni sugli acquisti. Questo include il fatto che lo script contenga collegamenti di referenza/affiliazione, riscriva i collegamenti esistenti per farli diventare collegamenti di referenza/affiliazione, o che fornisca codici coupon che garantiscano una commissione all'autore dello script.</p>
       tracking_html: |
           <p>Lo script include codice per tracciare l'attività dell'utente. Questo include tracciatori come Google Analytics o codice di tracciamento personalizzato che riporta l'attività dell'utente all'autore dello script.</p>
+    api:
+      title: "API di %{site_name}"
+      json_api_html: |
+          <h3>API JSON</h3>
+          <p>%{site_name} fornisce un'API di sola lettura in formato JSON e JSONP per l'accesso ai dati. Nel codice sorgente HTML delle pagine su %{site_name}, cerca %{json_reference} e %{jsonp_reference} per i relativi URL.</p>
+      prefilled_updates_html: |
+          <h3>Aggiornamenti precompilati</h3>
+
+          <p>Anche se non è presente un'API per gli aggiornamenti, è possibile utilizzare uno speciale URL di precompilazione per popolare il modulo di aggiornamento. L'utente potrà quindi rivedere e inviare l'aggiornamento. Questo URL elude le normali protezioni anti-XSS sulle richieste POST.</p>
+
+          <ul>
+          <li>URL: %{new_script_prefill_snippet} (per i nuovi script), %{existing_script_prefill_snippet} (per aggiornare gli script esistenti)</li>
+          <li>Metodo: %{method_snippet}</li>
+          <li>Parametro del codice: %{code_parameter_snippet}</li>
+          <li>Tipo di contenuto: %{content_type_snippet}</li>
+          <li>La richiesta deve includere il cookie di sessione dell'utente.</li>
+          </ul>
+      webhook_notifications_html: |
+          <h3>Notifiche webhook</h3>
+          <p>%{site_name} può verificare la presenza di aggiornamenti basandosi sulle notifiche webhook di push e release da GitHub, GitLab e Bitbucket. %{webhook_info_link:Maggiori informazioni sui webhook.}</p>
   search:
     script_search:
       title: "Cerca script"
@@ -1146,7 +1292,9 @@ it:
     view_discussion: "Visualizza discussione"
     load_diff: "Carica diff"
     load_cleaned_diff: "Carica codice pulito diff"
+    load_similarity_comparison: "Carica il confronto delle somiglianze"
     loading_diff: "Caricamento..."
+    similarity_unavailable: "Il confronto delle somiglianze non è disponibile per questi script."
     reported_user_activity_html: "%{user} (l'utente segnalato) ha fatto:"
     script_updated_since_report: "Questo script è stato aggiornato da quando è stato inoltrata la segnalazione."
     script_previous_reports:
@@ -1322,6 +1470,7 @@ it:
     edit_message_header: Modifica messaggio
     update_message_submit: Aggiorna messaggio
     moderator_notice: Se vuoi segnalare un'infrazione delle regole di %{site_name}, usa il collegamento Segnalazione su quello script, utente o commento. I moderatori non possono eliminare contenuti basandosi su segnalazioni inviate via messaggio diretto.
+    rate_limited: Hai raggiunto il limite per il numero di conversazioni che puoi avviare. Riprova più tardi.
   screenshots:
     requirements: "Massimo %{number} immagini PNG, GIF, JPEG o WebP, più piccole di %{size} ciascuna."
   moderator_actions:
@@ -1407,6 +1556,12 @@ it:
         content: Messaggio
       script_lock_appeal:
         text: Ricorso
+    errors:
+      models:
+        report:
+          attributes:
+            reference_script:
+              language_mismatch: "deve essere nella stessa lingua dello script segnalato"
   errors:
     messages:
       script_missing_name: "è richiesto - specificane uno con @name"
@@ -1439,6 +1594,11 @@ it:
     title: Importa scripts
     intro: "%{site_name} può importare scripts che sono già caricati da altre parti, per esempio in un sistema di controllo di versione (come GitHub), un tuo server, o un altro sito che ospita scripts."
     url_entry_label: Fornisci gli URL da cui importare, separati andando a capo. Questi dovrebbero essere URL che puntano al puro file JS o CSS.
+    language:
+      label: In che linguaggio sono gli URL sopra indicati?
+      detect: Rileva in base all'estensione, con JavaScript come valore predefinito
+      js: JavaScript
+      css: CSS
     sync_type_label: "Dopo l'importazione iniziale, lo/gli script(s) dovrebbero essere sincronizzati:"
     additional_info_html: |
         <p>Per gli script dal controllo sorgente, assicurati che l'URL che usi si riferisca a un branch e non a uno specifico commit, alrimenti non verrà mai aggiornato. Per esempio, <code>https://bitbucket.org/username/reponame/raw/<b>branch-name</b>/script.user.js</code> piuttosto che <code>https://bitbucket.org/username/reponame/raw/<b>commit-hash</b>/script.user.js</code>.</p>
@@ -1455,6 +1615,8 @@ it:
       needs_description: "I seguenti scripts hanno bisogno di una descrizione per essere importati:"
       existing: "I seguenti scripts sono già stati importati:"
       failure: "Non è stato possibile importare i seguenti scripts:"
+      notuserscript: "Non è stato possibile importare i seguenti script. Se si tratta di librerie JS non destinate all'installazione diretta, puoi fare clic sul collegamento per aggiungerle come tali."
+      addlibrary: "Aggiungi come libreria"
   mailers:
     script_report:
       report_created_offender:
@@ -1552,3 +1714,9 @@ it:
         intro_html: Il tuo ricorso all'eliminazione di %{script} è stato accolto da un moderatore. Lo script è ora ripristinato e di nuovo pubblicamente accessibile.
         moderator_notes: "Il moderatore ha commentato:"
         outro: Per favore ricontrolla le %{rules_link:regole di %{site_name}} per prevenire ulteriori eliminazioni in futuro.
+    inactive_user:
+      subject: "Il tuo account su Greasy Fork"
+      intro: "Ricevi questa email perché hai creato %{user_link:un account su Greasy Fork} in data %{signup_date}, ma non hai effettuato l'accesso per 5 anni. Per ridurre la quantità di dati archiviati su Greasy Fork, vorremmo eliminare il tuo account se non intendi utilizzarlo."
+      option_retain: "Se desideri mantenere il tuo account, %{login_link:accedi al tuo profilo} e verrà conservato."
+      option_delete: "Se acconsenti all'eliminazione dell'account, non fare nulla: verrà cancellato automaticamente in data %{deletion_date}. Successivamente, se deciderai di utilizzare nuovamente Greasy Fork, potrai creare un nuovo account."
+      outro: "In entrambi i casi, non invieremo ulteriori email relative a questa eliminazione dell'account. Se hai domande, %{contact_link:non esitare a contattarci}."
