@@ -1,0 +1,2 @@
+class ScriptStatsRefreshProgress < ApplicationRecord
+end

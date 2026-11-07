@@ -46,15 +46,9 @@
     library_usage_statistics_refresh_job:
       cron: '0 0 4 * * *'
       class: LibraryUsageStatisticsRefreshJob
-    update_fan_counts_job:
-      cron: '0 3 * * * *'
-      class: UpdateFanCountsJob
-    user_stats_refresh_job:
-      cron: '0 25 * * * *'
-      class: UserStatsRefreshJob
-    update_check_counts_aggregate_job:
-      cron: '0 15 * * * *'
-      class: UpdateCheckCountsAggregateJob
-    update_install_counts_job:
+    script_stats_refresh_job:
       cron: '0 0 * * * *'
-      class: UpdateInstallCountsJob
+      class: ScriptStatsRefreshJob
+    update_check_counts_aggregate_job:
+      cron: '0 3 * * * *'
+      class: UpdateCheckCountsAggregateJob

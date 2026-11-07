@@ -42,7 +42,7 @@ class UpdateFanCountsJob
     UPDATE scripts JOIN (SELECT script_id, ((positive + 1.9208) / (positive + negative) - 1.96 * SQRT((positive * negative) / (positive + negative) + 0.9604) / (positive + negative)) / (1 + 3.8416 / (positive + negative)) AS ci_lower_bound FROM fan_aggregate) a ON a.script_id = scripts.id SET fan_score = ci_lower_bound * 100;
   SQL
 
-  # Does not reindex; the next hourly install-count job reindexes scripts.
+  # Does not reindex; the following install-count step reindexes scripts.
   def perform
     # Temporary tables are per-connection, so everything must run on one.
     ApplicationRecord.connection_pool.with_connection do |connection|

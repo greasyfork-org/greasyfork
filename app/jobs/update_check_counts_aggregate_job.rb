@@ -1,16 +1,20 @@
 class UpdateCheckCountsAggregateJob
   include Sidekiq::Job
 
-  sidekiq_options queue: 'low', lock: :until_executed, on_conflict: :log, lock_ttl: 1.hour.to_i
+  sidekiq_options queue: 'low', lock: :until_executed, on_conflict: :log
+
+  sidekiq_retries_exhausted do |job, _exception|
+    SidekiqUniqueJobs::Digests.new.delete_by_digest(job.fetch('lock_digest'))
+  end
 
   BATCH_SIZE = 500
 
   # Rolls up the rows loaded from the nginx logs (by update_counts_from_log.sh) into per-day counts.
   def perform
-    # Anything older than the day of an hour ago has been fully loaded and aggregated.
+    # Imports for the preceding hour are assumed complete before this job runs.
     cutoff = 1.hour.ago.utc.to_date
 
-    # A plain read with no locks. The join skips deleted scripts, as update_check_counts has a foreign key.
+    # A plain read with no locks. The join skips deleted scripts.
     counts = DailyUpdateCheckCount
              .joins('JOIN scripts ON scripts.id = daily_update_check_counts.script_id')
              .group(:script_id, :update_day)
