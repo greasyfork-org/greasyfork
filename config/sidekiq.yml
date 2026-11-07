@@ -55,3 +55,6 @@
     update_check_counts_aggregate_job:
       cron: '0 15 * * * *'
       class: UpdateCheckCountsAggregateJob
+    update_install_counts_job:
+      cron: '0 0 * * * *'
+      class: UpdateInstallCountsJob
