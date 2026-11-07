@@ -46,3 +46,6 @@
     library_usage_statistics_refresh_job:
       cron: '0 0 4 * * *'
       class: LibraryUsageStatisticsRefreshJob
+    update_fan_counts_job:
+      cron: '0 3 * * * *'
+      class: UpdateFanCountsJob
