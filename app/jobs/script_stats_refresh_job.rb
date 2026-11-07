@@ -11,18 +11,18 @@ class ScriptStatsRefreshJob
     progress = ScriptStatsRefreshProgress.find_or_create_by!(id: 1)
 
     if progress.next_step == 'fan'
-      UpdateFanCountsJob.new.perform
+      ScriptStatsTiming.measure('ScriptStatsRefreshJob fan') { UpdateFanCountsJob.new.perform }
       progress.update!(next_step: 'install')
     end
 
     if progress.next_step == 'install'
-      UpdateInstallCountsJob.new.perform
+      ScriptStatsTiming.measure('ScriptStatsRefreshJob install') { UpdateInstallCountsJob.new.perform }
       progress.update!(next_step: 'user')
     end
 
     raise "Unknown script stats refresh step: #{progress.next_step}" unless progress.next_step == 'user'
 
-    UserStatsRefreshJob.new.perform
+    ScriptStatsTiming.measure('ScriptStatsRefreshJob user') { UserStatsRefreshJob.new.perform }
     progress.update!(next_step: 'fan')
   end
 end
