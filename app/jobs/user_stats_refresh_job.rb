@@ -7,7 +7,7 @@ class UserStatsRefreshJob
     SidekiqUniqueJobs::Digests.new.delete_by_digest(job.fetch('lock_digest'))
   end
 
-  BATCH_SIZE = 100
+  BATCH_SIZE = 1000
   BATCH_PAUSE = 1.second
 
   def perform
