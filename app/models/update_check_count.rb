@@ -1,0 +1,2 @@
+class UpdateCheckCount < ApplicationRecord
+end

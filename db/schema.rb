@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_01_120000) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_06_130000) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -278,7 +278,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_01_120000) do
     t.bigint "script_id", null: false
     t.datetime "update_date", precision: nil, null: false
     t.string "ip", limit: 45, null: false
-    t.index ["script_id", "ip"], name: "update_script_id_and_ip", unique: true
+    t.virtual "update_day", type: :date, as: "cast(`update_date` as date)", stored: true
+    t.index ["script_id", "ip", "update_day"], name: "update_script_id_and_ip_and_day", unique: true
+    t.index ["update_day"], name: "index_daily_update_check_counts_on_update_day"
   end
 
   create_table "discussion_categories", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
@@ -817,7 +819,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_01_120000) do
   add_foreign_key "conversation_subscriptions", "users", on_delete: :cascade
   add_foreign_key "conversations_users", "conversations", on_delete: :cascade
   add_foreign_key "daily_install_counts", "scripts", on_delete: :cascade
-  add_foreign_key "daily_update_check_counts", "scripts", on_delete: :cascade
   add_foreign_key "discussion_reads", "discussions", on_delete: :cascade
   add_foreign_key "discussion_reads", "users", on_delete: :cascade
   add_foreign_key "discussion_subscriptions", "discussions", on_delete: :cascade
@@ -868,7 +869,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_01_120000) do
   add_foreign_key "stat_bans", "scripts"
   add_foreign_key "token_shingle_similarities", "scripts", column: "other_script_id", on_delete: :cascade
   add_foreign_key "token_shingle_similarities", "scripts", on_delete: :cascade
-  add_foreign_key "update_check_counts", "scripts", on_delete: :cascade
   add_foreign_key "user_notification_settings", "users", on_delete: :cascade
   add_foreign_key "users", "locales"
 end

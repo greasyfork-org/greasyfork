@@ -52,3 +52,6 @@
     user_stats_refresh_job:
       cron: '0 25 * * * *'
       class: UserStatsRefreshJob
+    update_check_counts_aggregate_job:
+      cron: '0 15 * * * *'
+      class: UpdateCheckCountsAggregateJob
