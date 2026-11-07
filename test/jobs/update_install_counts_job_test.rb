@@ -21,7 +21,7 @@ class UpdateInstallCountsJobTest < ActiveSupport::TestCase
     StatBan.create!(script: @banned, expires_at: 1.day.from_now)
     StatBan.create!(script: @expired, expires_at: 1.day.ago)
     @empty.update_columns(daily_installs: 10, total_installs: 20)
-    Script.expects(:reindex).twice
+    Script.expects(:reindex).with(:install_counts_search_data, scope: :indexable, ignore_missing: true).twice
 
     UpdateInstallCountsJob.new.perform
     assert_equal [1, 11], @script.reload.attributes.values_at('daily_installs', 'total_installs')
@@ -45,7 +45,7 @@ class UpdateInstallCountsJobTest < ActiveSupport::TestCase
       roll_up.call(*args)
       raise 'failed after rollup'
     end
-    Script.expects(:reindex).once
+    Script.expects(:reindex).with(:install_counts_search_data, scope: :indexable, ignore_missing: true).once
 
     assert_raises(RuntimeError) { job.perform }
     assert_equal 1, @connection.select_value("SELECT COUNT(*) FROM daily_install_counts WHERE script_id = #{@script.id}")
@@ -66,7 +66,7 @@ class UpdateInstallCountsJobTest < ActiveSupport::TestCase
       'daily_cutoff' => Time.utc(2026, 11, 6, 12),
       'historical_cutoff' => Date.new(2026, 11, 6)
     )
-    Script.expects(:reindex).once
+    Script.expects(:reindex).with(:install_counts_search_data, scope: :indexable, ignore_missing: true).once
 
     UpdateInstallCountsJob.new.perform
     assert_equal [1, 4], @script.reload.attributes.values_at('daily_installs', 'total_installs')
@@ -76,7 +76,7 @@ class UpdateInstallCountsJobTest < ActiveSupport::TestCase
 
   test 'retry after a reindex failure does not count rolled-up installs twice' do
     add_install(@script, '1.1.1.1', 'DATE_SUB(CURDATE(), INTERVAL 3 DAY)')
-    Script.expects(:reindex).twice.raises('reindex failed').then.returns(nil)
+    Script.expects(:reindex).with(:install_counts_search_data, scope: :indexable, ignore_missing: true).twice.raises('reindex failed').then.returns(nil)
 
     assert_raises(RuntimeError) { UpdateInstallCountsJob.new.perform }
     UpdateInstallCountsJob.new.perform
@@ -98,7 +98,7 @@ class UpdateInstallCountsJobTest < ActiveSupport::TestCase
       batches += 1
       raise 'failed after second rollup' if batches == 2
     end
-    Script.expects(:reindex).once
+    Script.expects(:reindex).with(:install_counts_search_data, scope: :indexable, ignore_missing: true).once
 
     stub_const(UpdateInstallCountsJob, :BATCH_SIZE, 1) do
       assert_raises(RuntimeError) { job.perform }
@@ -124,7 +124,7 @@ class UpdateInstallCountsJobTest < ActiveSupport::TestCase
     add_install(@expired, '3.3.3.3', 'NOW()')
     add_install(@banned, '2.2.2.2', 'NOW()')
     StatBan.create!(script: @banned, expires_at: 1.day.from_now)
-    Script.expects(:reindex).once
+    Script.expects(:reindex).with(:install_counts_search_data, scope: :indexable, ignore_missing: true).once
 
     statements = []
     subscriber = ->(_name, _start, _finish, _id, payload) { statements << payload[:sql] }

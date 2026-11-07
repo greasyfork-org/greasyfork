@@ -134,6 +134,15 @@ module ScriptIndexing
     }
   end
 
+  # Partial update for UpdateInstallCountsJob, which only changes these fields (and fan_score via UpdateFanCountsJob).
+  def install_counts_search_data
+    {
+      total_installs:,
+      daily_installs:,
+      fan_score:,
+    }
+  end
+
   def search_value_from_localized_attributes(key)
     values = localized_attributes.select { |la| la.attribute_key == key }
     if key == 'additional_info'

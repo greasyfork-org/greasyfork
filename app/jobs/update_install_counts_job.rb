@@ -38,7 +38,7 @@ class UpdateInstallCountsJob
       end
     end
 
-    ScriptStatsTiming.measure('UpdateInstallCountsJob reindex') { Script.reindex }
+    ScriptStatsTiming.measure('UpdateInstallCountsJob reindex') { Script.reindex(:install_counts_search_data, scope: :indexable, ignore_missing: true) }
   end
 
   private
