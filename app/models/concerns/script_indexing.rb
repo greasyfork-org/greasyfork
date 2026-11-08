@@ -134,7 +134,7 @@ module ScriptIndexing
     }
   end
 
-  # Partial update for UpdateInstallCountsJob, which only changes these fields (and fan_score via UpdateFanCountsJob).
+  # Partial update for UpdateInstallCounts, which only changes these fields (and fan_score via UpdateFanCounts).
   def install_counts_search_data
     {
       total_installs:,

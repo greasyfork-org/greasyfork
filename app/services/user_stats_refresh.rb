@@ -1,12 +1,4 @@
-class UserStatsRefreshJob
-  include Sidekiq::Job
-
-  sidekiq_options queue: 'background', lock: :until_executed, on_conflict: :log
-
-  sidekiq_retries_exhausted do |job, _exception|
-    SidekiqUniqueJobs::Digests.new.delete_by_digest(job.fetch('lock_digest'))
-  end
-
+class UserStatsRefresh
   BATCH_SIZE = 1000
 
   def perform

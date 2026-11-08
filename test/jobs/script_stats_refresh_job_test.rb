@@ -7,9 +7,9 @@ class ScriptStatsRefreshJobTest < ActiveSupport::TestCase
     output = StringIO.new
     ScriptStatsTiming.stubs(:logger).returns(Logger.new(output))
     order = sequence('refresh order')
-    UpdateFanCountsJob.any_instance.expects(:perform).in_sequence(order)
-    UpdateInstallCountsJob.any_instance.expects(:perform).in_sequence(order)
-    UserStatsRefreshJob.any_instance.expects(:perform).in_sequence(order)
+    UpdateFanCounts.any_instance.expects(:perform).in_sequence(order)
+    UpdateInstallCounts.any_instance.expects(:perform).in_sequence(order)
+    UserStatsRefresh.any_instance.expects(:perform).in_sequence(order)
 
     ScriptStatsRefreshJob.new.perform
 
@@ -22,9 +22,9 @@ class ScriptStatsRefreshJobTest < ActiveSupport::TestCase
   test 'resumes from a failed step without repeating completed steps' do
     output = StringIO.new
     ScriptStatsTiming.stubs(:logger).returns(Logger.new(output))
-    UpdateFanCountsJob.any_instance.expects(:perform).once
-    UpdateInstallCountsJob.any_instance.expects(:perform).twice.raises('install failed').then.returns(nil)
-    UserStatsRefreshJob.any_instance.expects(:perform).once
+    UpdateFanCounts.any_instance.expects(:perform).once
+    UpdateInstallCounts.any_instance.expects(:perform).twice.raises('install failed').then.returns(nil)
+    UserStatsRefresh.any_instance.expects(:perform).once
 
     assert_raises(RuntimeError) { ScriptStatsRefreshJob.new.perform }
     assert_equal 'install', ScriptStatsRefreshProgress.find(1).next_step
@@ -34,9 +34,9 @@ class ScriptStatsRefreshJobTest < ActiveSupport::TestCase
   end
 
   test 'resumes user refresh without repeating script updates' do
-    UpdateFanCountsJob.any_instance.expects(:perform).once
-    UpdateInstallCountsJob.any_instance.expects(:perform).once
-    UserStatsRefreshJob.any_instance.expects(:perform).twice.raises('user failed').then.returns(nil)
+    UpdateFanCounts.any_instance.expects(:perform).once
+    UpdateInstallCounts.any_instance.expects(:perform).once
+    UserStatsRefresh.any_instance.expects(:perform).twice.raises('user failed').then.returns(nil)
 
     assert_raises(RuntimeError) { ScriptStatsRefreshJob.new.perform }
     assert_equal 'user', ScriptStatsRefreshProgress.find(1).next_step

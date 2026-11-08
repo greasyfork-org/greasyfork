@@ -1,8 +1,4 @@
-class UpdateFanCountsJob
-  include Sidekiq::Job
-
-  sidekiq_options queue: 'low', lock: :until_executed, on_conflict: :log, lock_ttl: 1.hour.to_i
-
+class UpdateFanCounts
   SQL = <<~SQL.freeze # rubocop:disable Rails/SquishedSQLHeredocs
     # Find valid good/bad/ok ratings. Fans count as good. Remove people who rated themselves or rated twice.
     CREATE TEMPORARY TABLE fan_score (script_id BIGINT NOT NULL, fan_id BIGINT NOT NULL, score INT NOT NULL, UNIQUE script_fan (script_id, fan_id));

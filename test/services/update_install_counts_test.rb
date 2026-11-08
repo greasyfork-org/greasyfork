@@ -1,7 +1,7 @@
 require 'test_helper'
 require 'stringio'
 
-class UpdateInstallCountsJobTest < ActiveSupport::TestCase
+class UpdateInstallCountsTest < ActiveSupport::TestCase
   setup do
     @connection = ApplicationRecord.connection
     @script = scripts(:one)
@@ -23,7 +23,7 @@ class UpdateInstallCountsJobTest < ActiveSupport::TestCase
     @empty.update_columns(daily_installs: 10, total_installs: 20)
     Script.expects(:reindex).with(:install_counts_search_data, scope: :indexable, ignore_missing: true).twice
 
-    UpdateInstallCountsJob.new.perform
+    UpdateInstallCounts.new.perform
     assert_equal [1, 11], @script.reload.attributes.values_at('daily_installs', 'total_installs')
     assert_equal [0, 5], @banned.reload.attributes.values_at('daily_installs', 'total_installs')
     assert_equal [1, 1], @expired.reload.attributes.values_at('daily_installs', 'total_installs')
@@ -32,14 +32,14 @@ class UpdateInstallCountsJobTest < ActiveSupport::TestCase
     assert_equal 0, @connection.select_value("SELECT COUNT(*) FROM daily_install_counts WHERE script_id = #{@banned.id}")
     assert_equal 0, @connection.select_value('SELECT COUNT(*) FROM daily_install_counts WHERE install_date < DATE_SUB(CURDATE(), INTERVAL 1 DAY)')
 
-    UpdateInstallCountsJob.new.perform
+    UpdateInstallCounts.new.perform
     assert_equal [1, 11], @script.reload.attributes.values_at('daily_installs', 'total_installs')
     assert_equal 9, @connection.select_value("SELECT installs FROM install_counts WHERE script_id = #{@script.id} AND install_date = DATE_SUB(CURDATE(), INTERVAL 3 DAY)")
   end
 
   test 'rollup and deletion roll back together on failure' do
     add_install(@script, '1.1.1.1', 'DATE_SUB(CURDATE(), INTERVAL 2 DAY)')
-    job = UpdateInstallCountsJob.new
+    job = UpdateInstallCounts.new
     roll_up = job.method(:roll_up_installs)
     job.define_singleton_method(:roll_up_installs) do |*args|
       roll_up.call(*args)
@@ -52,7 +52,7 @@ class UpdateInstallCountsJobTest < ActiveSupport::TestCase
     assert_equal 0, @connection.select_value("SELECT COUNT(*) FROM install_counts WHERE script_id = #{@script.id}")
     assert_equal [0, 0], @script.reload.attributes.values_at('daily_installs', 'total_installs')
 
-    UpdateInstallCountsJob.new.perform
+    UpdateInstallCounts.new.perform
     assert_equal [0, 1], @script.reload.attributes.values_at('daily_installs', 'total_installs')
   end
 
@@ -68,7 +68,7 @@ class UpdateInstallCountsJobTest < ActiveSupport::TestCase
     )
     Script.expects(:reindex).with(:install_counts_search_data, scope: :indexable, ignore_missing: true).once
 
-    UpdateInstallCountsJob.new.perform
+    UpdateInstallCounts.new.perform
     assert_equal [1, 4], @script.reload.attributes.values_at('daily_installs', 'total_installs')
     assert_equal 1, @connection.select_value("SELECT installs FROM install_counts WHERE script_id = #{@script.id} AND install_date = '2026-11-05'")
     assert_equal 3, @connection.select_value("SELECT COUNT(*) FROM daily_install_counts WHERE script_id = #{@script.id}")
@@ -78,8 +78,8 @@ class UpdateInstallCountsJobTest < ActiveSupport::TestCase
     add_install(@script, '1.1.1.1', 'DATE_SUB(CURDATE(), INTERVAL 3 DAY)')
     Script.expects(:reindex).with(:install_counts_search_data, scope: :indexable, ignore_missing: true).twice.raises('reindex failed').then.returns(nil)
 
-    assert_raises(RuntimeError) { UpdateInstallCountsJob.new.perform }
-    UpdateInstallCountsJob.new.perform
+    assert_raises(RuntimeError) { UpdateInstallCounts.new.perform }
+    UpdateInstallCounts.new.perform
     assert_equal [0, 1], @script.reload.attributes.values_at('daily_installs', 'total_installs')
     assert_equal 1, @connection.select_value("SELECT installs FROM install_counts WHERE script_id = #{@script.id}")
   end
@@ -90,7 +90,7 @@ class UpdateInstallCountsJobTest < ActiveSupport::TestCase
     first, second = Script.order(:id).limit(2).to_a
     add_install(first, '1.1.1.1', 'DATE_SUB(CURDATE(), INTERVAL 3 DAY)')
     add_install(second, '1.1.1.2', 'DATE_SUB(CURDATE(), INTERVAL 3 DAY)')
-    job = UpdateInstallCountsJob.new
+    job = UpdateInstallCounts.new
     roll_up = job.method(:roll_up_installs)
     batches = 0
     job.define_singleton_method(:roll_up_installs) do |*args|
@@ -100,14 +100,14 @@ class UpdateInstallCountsJobTest < ActiveSupport::TestCase
     end
     Script.expects(:reindex).with(:install_counts_search_data, scope: :indexable, ignore_missing: true).once
 
-    stub_const(UpdateInstallCountsJob, :BATCH_SIZE, 1) do
+    stub_const(UpdateInstallCounts, :BATCH_SIZE, 1) do
       assert_raises(RuntimeError) { job.perform }
-      assert_match(/UpdateInstallCountsJob batch #{second.id}-#{second.id} status=failed elapsed=\d+\.\d{3}s/, output.string)
-      assert_match(/UpdateInstallCountsJob process batches status=failed elapsed=\d+\.\d{3}s/, output.string)
-      assert_match(/UpdateInstallCountsJob drop temporary table status=completed elapsed=\d+\.\d{3}s/, output.string)
+      assert_match(/UpdateInstallCounts batch #{second.id}-#{second.id} status=failed elapsed=\d+\.\d{3}s/, output.string)
+      assert_match(/UpdateInstallCounts process batches status=failed elapsed=\d+\.\d{3}s/, output.string)
+      assert_match(/UpdateInstallCounts drop temporary table status=completed elapsed=\d+\.\d{3}s/, output.string)
       assert_equal 1, @connection.select_value("SELECT COUNT(*) FROM install_counts WHERE script_id = #{first.id}")
       assert_equal 1, @connection.select_value("SELECT COUNT(*) FROM daily_install_counts WHERE script_id = #{second.id}")
-      UpdateInstallCountsJob.new.perform
+      UpdateInstallCounts.new.perform
     end
 
     assert_equal [0, 1], first.reload.attributes.values_at('daily_installs', 'total_installs')
@@ -129,8 +129,8 @@ class UpdateInstallCountsJobTest < ActiveSupport::TestCase
     statements = []
     subscriber = ->(_name, _start, _finish, _id, payload) { statements << payload[:sql] }
     ActiveSupport::Notifications.subscribed(subscriber, 'sql.active_record') do
-      stub_const(UpdateInstallCountsJob, :BATCH_SIZE, 2) do
-        UpdateInstallCountsJob.new.perform
+      stub_const(UpdateInstallCounts, :BATCH_SIZE, 2) do
+        UpdateInstallCounts.new.perform
       end
     end
     assert_equal [1, 9], @script.reload.attributes.values_at('daily_installs', 'total_installs')
@@ -145,10 +145,10 @@ class UpdateInstallCountsJobTest < ActiveSupport::TestCase
       'select historical totals', 'insert historical totals', 'delete banned installs',
       'process batches', 'drop temporary table', 'reindex'
     ].each do |step|
-      assert_match(/UpdateInstallCountsJob #{step} status=completed elapsed=\d+\.\d{3}s/, output.string)
+      assert_match(/UpdateInstallCounts #{step} status=completed elapsed=\d+\.\d{3}s/, output.string)
     end
     ['update script counts', 'roll up installs', 'insert rollups', 'delete rolled-up installs'].each do |step|
-      assert_operator output.string.scan(/UpdateInstallCountsJob batch \d+-\d+ #{step} status=completed elapsed=\d+\.\d{3}s/).size, :>=, 2
+      assert_operator output.string.scan(/UpdateInstallCounts batch \d+-\d+ #{step} status=completed elapsed=\d+\.\d{3}s/).size, :>=, 2
     end
   end
 
