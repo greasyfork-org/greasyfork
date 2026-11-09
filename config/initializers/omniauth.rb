@@ -25,5 +25,6 @@ OmniAuth.config.before_request_phase = lambda { |env|
 }
 
 OmniAuth.config.allowed_request_methods = [:post]
+OmniAuth.config.allowed_hosts = Rails.application.config.hosts.select { |h| h.is_a?(String) && h.count('.') == 1 }
 
 OmniAuth.config.request_validation_phase = OmniAuth::AuthenticityTokenProtection.new(key: :_csrf_token)
