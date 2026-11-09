@@ -40,7 +40,12 @@ module UserTextHelper
       text = ScriptImporter::BaseScriptImporter.absolutize_references(text, relative_url_base) if relative_url_base
     end
 
-    Sanitize.clean(text, sanitize_config).html_safe
+    begin
+      Sanitize.clean(text, sanitize_config).html_safe
+    rescue ArgumentError => e
+      Rails.logger.warn("Failed to sanitize user text: #{e}")
+      '(Could not render this content)'
+    end
   end
 
   # Same as sanitize's default, but line breaks rather than spaces.
