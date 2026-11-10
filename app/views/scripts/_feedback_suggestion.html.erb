@@ -12,4 +12,5 @@
   <% else %>
     <%= it('scripts.feedback_or_report', report_link: It.link(report_script_path, rel: :nofollow), feedback_link: It.link(feedback_link, rel: :nofollow)) %>
   <% end %>
+  <%= render partial: 'scripts/contribution', locals: { script: script } %>
 </div>

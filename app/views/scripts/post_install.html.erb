@@ -7,6 +7,7 @@
       help_link: @script.js? ? help_installing_user_scripts_path : help_installing_user_styles_path,
       site_name: site_name,
       feedback_link: feedback_script_path(@script, anchor: 'post-discussion')) %>
+  <%= render partial: 'scripts/contribution', locals: { script: @script } %>
 </p>
 
 <% if promoted_script(@script) %>
