@@ -188,14 +188,21 @@ module ScriptListings
   end
 
   def code_search
-    if params[:c].blank?
+    query = params[:c]
+    query = params.expect(:c) if query.present?
+    if query.is_a?(String) && query.match?(/[\r\n]/)
+      render status: :unprocessable_content, plain: 'Code search query must be a single line'
+      return
+    end
+
+    if query.blank?
       redirect_to search_path(anchor: 'code-search'), status: :moved_permanently
       return
     end
 
     limit_to_ids = User.find_by(id: params[:by])&.script_ids if params[:by].presence
 
-    script_ids = ScriptCodeSearch.search(params[:c], limit_to_ids:)
+    script_ids = ScriptCodeSearch.search(query, limit_to_ids:)
     @scripts = Script.order(self.class.get_sort(params)).includes(:users, :localized_attributes).where(id: script_ids)
     @scripts = @scripts.where(language: (params[:language] == 'css') ? 'css' : 'js') unless params[:language] == 'all'
     include_deleted = current_user&.moderator? && params[:include_deleted] == '1'

@@ -1,6 +1,38 @@
 require 'test_helper'
 
 class ScriptsControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+
+  test 'code search rejects multiline queries' do
+    sign_in users(:one)
+    ScriptCodeSearch.expects(:search).never
+
+    ["first\nsecond", "first\rsecond", "first\r\nsecond", "\n"].each do |query|
+      get code_search_scripts_url(locale: :en), params: { c: query }
+      assert_response :unprocessable_content
+      assert_equal 'Code search query must be a single line', response.body
+    end
+  end
+
+  test 'code search accepts a single-line dash-prefixed query' do
+    sign_in users(:one)
+    ScriptCodeSearch.expects(:search).with('--example', limit_to_ids: nil).returns([])
+
+    get code_search_scripts_url(locale: :en, format: :json, host: 'api.greasyfork.local'), params: { c: '--example', meta: '1' }
+    assert_response :ok
+    assert_equal({ 'count' => 0 }, response.parsed_body)
+  end
+
+  test 'code search redirects blank queries' do
+    sign_in users(:one)
+    ScriptCodeSearch.expects(:search).never
+
+    [nil, '', ' '].each do |query|
+      get code_search_scripts_url(locale: :en), params: { c: query }
+      assert_response :moved_permanently
+    end
+  end
+
   test 'render scripts as json' do
     stub_es(Script)
     get scripts_url(locale: :en, format: :json, host: 'api.greasyfork.local')

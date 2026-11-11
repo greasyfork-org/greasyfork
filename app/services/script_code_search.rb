@@ -37,13 +37,13 @@ class ScriptCodeSearch
     end
 
     def search(text, limit_to_ids: nil)
-      content, _stderr, _status = if limit_to_ids.nil?
-                                    Open3.capture3('grep', '-R', '-F', '-l', text, BASE_PATH)
-                                  elsif limit_to_ids.none?
-                                    ['', nil, nil]
-                                  else
-                                    Open3.capture3('grep', '-R', '-F', '-l', text, *limit_to_ids.map { |id| "#{BASE_PATH}/#{id}" })
-                                  end
+      raise ArgumentError, 'Code search query must be a single line' if text.match?(/[\r\n]/)
+      return [] if limit_to_ids&.none?
+
+      paths = limit_to_ids.nil? ? [BASE_PATH] : limit_to_ids.map { |id| path_for(id) }
+      content, stderr, status = Open3.capture3('grep', '-R', '-F', '-l', '--', text, *paths)
+      raise "Code search failed (#{status.inspect}): #{stderr.strip}" unless [0, 1].include?(status.exitstatus)
+
       content.split("\n").map { |line| line.delete_prefix("#{BASE_PATH}/") }.map(&:to_i)
     end
 
