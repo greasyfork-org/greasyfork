@@ -68,7 +68,7 @@ module ScriptChecking
 
         begin
           res = Net::HTTP.get_response(URI(url))
-        rescue Errno::ECONNREFUSED, URI::InvalidURIError, Socket::ResolutionError, Net::OpenTimeout
+        rescue Errno::ECONNREFUSED, URI::InvalidURIError, Socket::ResolutionError, Net::OpenTimeout, OpenSSL::SSL::SSLError
           return url
         end
 
