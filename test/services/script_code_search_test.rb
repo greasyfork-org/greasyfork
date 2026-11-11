@@ -2,6 +2,28 @@ require 'test_helper'
 require 'tmpdir'
 
 class ScriptCodeSearchTest < ActiveSupport::TestCase
+  test 'index all writes the latest rewritten code and removes stale files' do
+    script = scripts(:one)
+    rewritten_code = ScriptCode.create!(code: 'latest rewritten code')
+    ScriptVersion.insert_all!([{
+                                script_id: script.id,
+                                version: '2',
+                                script_code_id: script_codes(:two).id,
+                                rewritten_script_code_id: rewritten_code.id,
+                              }])
+
+    Dir.mktmpdir do |dir|
+      File.write(File.join(dir, '999999999'), 'stale')
+      stub_const(ScriptCodeSearch, :BASE_PATH, dir) do
+        ScriptCodeSearch.index_all
+
+        assert_equal rewritten_code.code, File.read(File.join(dir, script.id.to_s))
+        assert_equal script_codes(:five).code, File.read(File.join(dir, scripts(:with_namespace).id.to_s))
+        assert_not File.exist?(File.join(dir, '999999999'))
+      end
+    end
+  end
+
   test 'search treats dash-prefixed queries as literal text' do
     Dir.mktmpdir do |dir|
       File.write(File.join(dir, '1'), 'contains --example')

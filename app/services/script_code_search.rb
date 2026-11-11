@@ -19,9 +19,16 @@ class ScriptCodeSearch
     def index_all
       ensure_directory
 
-      Rails.logger.info('Determining latest script version IDs')
-      latest_script_version_ids = Script.connection.select_rows('SELECT MAX(id) FROM script_versions GROUP BY script_id')
-      code_to_script = Script.connection.select_rows("SELECT rewritten_script_code_id, script_id FROM script_versions WHERE id IN (#{latest_script_version_ids.join(',')})").to_h
+      Rails.logger.info('Determining latest script code IDs')
+      code_to_script = Script.connection.select_rows(<<~SQL.squish).to_h
+        SELECT sv.rewritten_script_code_id, sv.script_id
+        FROM script_versions sv
+        INNER JOIN (
+          SELECT script_id, MAX(id) AS latest_id
+          FROM script_versions
+          GROUP BY script_id
+        ) latest ON latest.latest_id = sv.id
+      SQL
 
       Rails.logger.info('Writing files')
       code_to_script.keys.sort.in_groups_of(1000, false) do |batch|
