@@ -2,13 +2,14 @@ require 'test_helper'
 require 'tmpdir'
 
 class ScriptCodeSearchTest < ActiveSupport::TestCase
-  test 'index all writes the latest rewritten code and removes stale files' do
+  test 'index all and incremental indexing use the latest original code' do
     script = scripts(:one)
+    original_code = ScriptCode.create!(code: 'latest original code')
     rewritten_code = ScriptCode.create!(code: 'latest rewritten code')
     ScriptVersion.insert_all!([{
                                 script_id: script.id,
                                 version: '2',
-                                script_code_id: script_codes(:two).id,
+                                script_code_id: original_code.id,
                                 rewritten_script_code_id: rewritten_code.id,
                               }])
 
@@ -17,9 +18,17 @@ class ScriptCodeSearchTest < ActiveSupport::TestCase
       stub_const(ScriptCodeSearch, :BASE_PATH, dir) do
         ScriptCodeSearch.index_all
 
-        assert_equal rewritten_code.code, File.read(File.join(dir, script.id.to_s))
-        assert_equal script_codes(:five).code, File.read(File.join(dir, scripts(:with_namespace).id.to_s))
+        assert_equal original_code.code, File.read(File.join(dir, script.id.to_s))
+        assert_equal script_codes(:four).code, File.read(File.join(dir, scripts(:with_namespace).id.to_s))
         assert_not File.exist?(File.join(dir, '999999999'))
+
+        assert_equal [script.id], ScriptCodeSearch.search('latest original code', limit_to_ids: [script.id])
+        assert_empty ScriptCodeSearch.search('latest rewritten code', limit_to_ids: [script.id])
+
+        ScriptCodeSearch.index(script.id)
+        assert_equal original_code.code, File.read(File.join(dir, script.id.to_s))
+        assert_equal [script.id], ScriptCodeSearch.search('latest original code', limit_to_ids: [script.id])
+        assert_empty ScriptCodeSearch.search('latest rewritten code', limit_to_ids: [script.id])
       end
     end
   end

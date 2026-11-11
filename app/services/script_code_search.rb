@@ -21,7 +21,7 @@ class ScriptCodeSearch
 
       Rails.logger.info('Determining latest script code IDs')
       code_to_script = Script.connection.select_rows(<<~SQL.squish).to_h
-        SELECT sv.rewritten_script_code_id, sv.script_id
+        SELECT sv.script_code_id, sv.script_id
         FROM script_versions sv
         INNER JOIN (
           SELECT script_id, MAX(id) AS latest_id
