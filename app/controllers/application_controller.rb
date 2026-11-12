@@ -119,6 +119,8 @@ class ApplicationController < ActionController::Base
       p = u.path
       q = u.query
       f = u.fragment
+      return nil if p.blank? || p.start_with?('//')
+
       return p + (q.nil? ? '' : "?#{q}") + (f.nil? ? '' : "##{f}")
     rescue URI::InvalidURIError
       # forget it...
