@@ -1,4 +1,4 @@
-require 'open-uri'
+require 'uri'
 require 'ssrf_filter'
 require 'timeout'
 
@@ -23,7 +23,7 @@ class PublicHttpFetcher
 
     return response.body.to_s if response.code.to_i.between?(200, 299)
 
-    raise OpenURI::HTTPError.new("#{response.code} #{response.message}", response)
+    raise FetchError, "#{response.code} #{response.message}"
   rescue SsrfFilter::Error => e
     raise FetchError, e.message
   end

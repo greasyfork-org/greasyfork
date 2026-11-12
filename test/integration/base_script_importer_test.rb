@@ -40,4 +40,14 @@ class BaseScriptImporterTest < ActiveSupport::TestCase
     assert_equal 'abc', result
     assert_equal Encoding::UTF_8, result.encoding
   end
+
+  test 'generate script reports HTTP errors' do
+    response = stub(code: '404', message: 'Not Found')
+    SsrfFilter.expects(:get).returns(response)
+
+    result, script, message = ScriptImporter::BaseScriptImporter.generate_script('https://example.com/missing', nil, users(:one))
+    assert_equal :failure, result
+    assert_nil script
+    assert_equal 'Could not download source. 404 Not Found', message
+  end
 end

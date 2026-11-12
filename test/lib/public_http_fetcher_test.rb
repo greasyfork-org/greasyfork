@@ -41,14 +41,29 @@ class PublicHttpFetcherTest < ActiveSupport::TestCase
     assert_equal 'script contents', PublicHttpFetcher.get('http://source.example/source.user.js')
   end
 
-  test 'preserves OpenURI HTTP errors' do
-    response = stub(code: '404', body: 'missing', message: 'Not Found')
-    SsrfFilter.stubs(:get).returns(response)
+  test '2xx responses return their body' do
+    { '200' => 'OK', '201' => 'Created', '204' => nil, '299' => 'Other success' }.each do |code, body|
+      SsrfFilter.stubs(:get).returns(stub(code:, body:))
 
-    error = assert_raises(OpenURI::HTTPError) do
-      PublicHttpFetcher.get('https://source.example/missing')
+      assert_equal body.to_s, PublicHttpFetcher.get('https://source.example/source.user.js')
     end
+  end
 
-    assert_equal '404 Not Found', error.message
+  test 'non-2xx responses raise fetch errors with the HTTP status' do
+    {
+      '199' => 'Informational',
+      '300' => 'Multiple Choices',
+      '404' => 'Not Found',
+      '500' => 'Internal Server Error',
+    }.each do |code, message|
+      response = stub(code:, body: 'response body', message:)
+      SsrfFilter.stubs(:get).returns(response)
+
+      error = assert_raises(PublicHttpFetcher::FetchError) do
+        PublicHttpFetcher.get('https://source.example/missing')
+      end
+
+      assert_equal "#{code} #{message}", error.message
+    end
   end
 end

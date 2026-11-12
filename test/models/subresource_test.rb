@@ -24,7 +24,7 @@ class SubresourceTest < ActiveSupport::TestCase
 
   test 'failed check' do
     subresource = Subresource.create!(url: 'https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js')
-    PublicHttpFetcher.expects(:get).with(subresource.url).raises(OpenURI::HTTPError.new(nil, nil))
+    PublicHttpFetcher.expects(:get).with(subresource.url).raises(PublicHttpFetcher::FetchError, '404 Not Found')
 
     assert_changes -> { subresource.last_attempt_at } do
       assert_no_changes -> { subresource.last_success_at } do
