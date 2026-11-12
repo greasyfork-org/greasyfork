@@ -17,6 +17,10 @@ class Git
   def self.get_files_changed(repo_url, commits)
     with_repo(repo_url) do |directory|
       commits.each do |commit|
+        if commit.blank?
+          Rails.logger.warn("Blank commit provided for repo #{repo_url}")
+          next
+        end
         files, stderr, status = Open3.capture3(GIT_PATH, 'diff-tree', '--no-commit-id', '--name-only', '-r', commit, chdir: directory)
         raise stderr unless status.success?
 
