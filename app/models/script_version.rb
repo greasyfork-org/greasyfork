@@ -125,6 +125,10 @@ class ScriptVersion < ApplicationRecord
     script.enqueue_code_processing_jobs
   end
 
+  after_commit on: [:create, :update, :destroy] do
+    ElasticsearchCodeSearchJob.perform_later(script_id)
+  end
+
   after_commit do
     script.reindex(mode: :async) if script.should_index? && Searchkick.callbacks?
   end

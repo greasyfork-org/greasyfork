@@ -75,7 +75,7 @@
 <%= form_tag(code_search_scripts_path, id: 'code-search', method: :get) do %>
   <h3><%= t('search.code_search.title') %></h3>
   <p><%= t('search.code_search.description') %></p>
-  <input type="search" name="c" aria-label="<%= t('search.code_search.title') %>"><% if current_user&.moderator? %><input id="code-search-include-deleted" type="checkbox" name="include_deleted" value="1"><label for="code-search-include-deleted">Include deleted</label> <% end %><input class="search-submit" type="submit" value="🔎" aria-label="<%= t('search.code_search.title') %>">
+  <input type="search" name="c" aria-label="<%= t('search.code_search.title') %>"><% if current_user&.moderator? %><input id="code-search-include-deleted" type="checkbox" name="include_deleted" value="1"><label for="code-search-include-deleted">Include deleted</label> <input id="code-search-elasticsearch" type="checkbox" name="elasticsearch" value="1"><label for="code-search-elasticsearch">Use experimental Elasticsearch search</label> <% end %><input class="search-submit" type="submit" value="🔎" aria-label="<%= t('search.code_search.title') %>">
 <% end %>
 
 <%= form_tag(users_path, id: 'user-search', method: :get) do %>

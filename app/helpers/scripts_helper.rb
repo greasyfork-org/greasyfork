@@ -30,7 +30,7 @@ module ScriptsHelper
     elsif is_minified
       l = link_to(label, minified_scripts_path(sort: sort_param_to_use), rel:)
     elsif is_code_search
-      l = link_to(label, code_search_scripts_path(sort: sort_param_to_use, c: params[:c], language:, by:), rel:)
+      l = link_to(label, code_search_scripts_path(sort: sort_param_to_use, c: params[:c], language:, by:, elasticsearch: params[:elasticsearch], include_deleted: params[:include_deleted]), rel:)
     elsif site.nil?
       l = link_to(label, { sort: sort_param_to_use, site: nil, set:, q: params[:q].presence, language:, filter_locale:, by:, **advanced_search_params }, rel:)
     elsif params[:controller] == 'users'

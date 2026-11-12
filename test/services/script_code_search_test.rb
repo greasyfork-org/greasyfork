@@ -34,6 +34,7 @@ class ScriptCodeSearchTest < ActiveSupport::TestCase
   end
 
   test 'search treats dash-prefixed queries as literal text' do
+    Rails.logger.expects(:info).with(regexp_matches(/\Agrep code search status=completed elapsed=\d+\.\d{3}s\z/)).times(3)
     Dir.mktmpdir do |dir|
       File.write(File.join(dir, '1'), 'contains --example')
       File.write(File.join(dir, '2'), 'other code')
@@ -47,12 +48,14 @@ class ScriptCodeSearchTest < ActiveSupport::TestCase
   end
 
   test 'search rejects multiline queries even when no ids are supplied' do
+    Rails.logger.expects(:info).never
     ["first\nsecond", "first\rsecond", "first\r\nsecond"].each do |query|
       assert_raises(ArgumentError) { ScriptCodeSearch.search(query, limit_to_ids: []) }
     end
   end
 
   test 'search reports grep errors even when some files match' do
+    Rails.logger.expects(:info).with(regexp_matches(/\Agrep code search status=failed elapsed=\d+\.\d{3}s\z/))
     Dir.mktmpdir do |dir|
       File.write(File.join(dir, '1'), 'matching code')
       stub_const(ScriptCodeSearch, :BASE_PATH, dir) do

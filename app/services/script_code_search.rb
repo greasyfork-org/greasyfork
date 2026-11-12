@@ -48,8 +48,12 @@ class ScriptCodeSearch
       return [] if limit_to_ids&.none?
 
       paths = limit_to_ids.nil? ? [BASE_PATH] : limit_to_ids.map { |id| path_for(id) }
-      content, stderr, status = Open3.capture3('grep', '-R', '-F', '-l', '--', text, *paths)
-      raise "Code search failed (#{status.inspect}): #{stderr.strip}" unless [0, 1].include?(status.exitstatus)
+      content = CodeSearchTiming.measure('grep') do
+        output, stderr, status = Open3.capture3('grep', '-R', '-F', '-l', '--', text, *paths)
+        raise "Code search failed (#{status.inspect}): #{stderr.strip}" unless [0, 1].include?(status.exitstatus)
+
+        output
+      end
 
       content.split("\n").map { |line| line.delete_prefix("#{BASE_PATH}/") }.map(&:to_i)
     end

@@ -202,7 +202,8 @@ module ScriptListings
 
     limit_to_ids = User.find_by(id: params[:by])&.script_ids if params[:by].presence
 
-    script_ids = ScriptCodeSearch.search(query, limit_to_ids:)
+    search_service = (current_user&.moderator? && params[:elasticsearch] == '1') ? ElasticsearchCodeSearch : ScriptCodeSearch
+    script_ids = search_service.search(query, limit_to_ids:)
     @scripts = Script.order(self.class.get_sort(params)).includes(:users, :localized_attributes).where(id: script_ids)
     @scripts = @scripts.where(language: (params[:language] == 'css') ? 'css' : 'js') unless params[:language] == 'all'
     include_deleted = current_user&.moderator? && params[:include_deleted] == '1'

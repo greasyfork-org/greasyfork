@@ -33,6 +33,44 @@ class ScriptsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test 'only moderators can enable elasticsearch code search' do
+    sign_in users(:one)
+    ScriptCodeSearch.expects(:search).with('test', limit_to_ids: nil).returns([])
+    ElasticsearchCodeSearch.expects(:search).never
+    get code_search_scripts_url(locale: :en, format: :json, host: 'api.greasyfork.local'), params: { c: 'test', elasticsearch: '1' }
+    assert_response :ok
+  end
+
+  test 'moderators can enable elasticsearch code search' do
+    sign_in users(:mod)
+    ScriptCodeSearch.expects(:search).never
+    ElasticsearchCodeSearch.expects(:search).with('test', limit_to_ids: nil).returns([])
+    get code_search_scripts_url(locale: :en, format: :json, host: 'api.greasyfork.local'), params: { c: 'test', elasticsearch: '1' }
+    assert_response :ok
+  end
+
+  test 'code search options retain experimental and deleted filters' do
+    sign_in users(:mod)
+    ElasticsearchCodeSearch.expects(:search).with('test', limit_to_ids: nil).returns([])
+    get code_search_scripts_url(locale: :en), params: { c: 'test', elasticsearch: '1', include_deleted: '1' }
+    assert_response :ok
+    assert_select '#script-list-sort a[href*="elasticsearch=1"][href*="include_deleted=1"]'
+    assert_select '#script-language-filter a[href*="elasticsearch=1"][href*="include_deleted=1"]'
+  end
+
+  test 'only moderators see the experimental code search option' do
+    sign_in users(:one)
+    get search_url(locale: :en)
+    assert_response :ok
+    assert_select '#code-search-elasticsearch', count: 0
+
+    sign_out users(:one)
+    sign_in users(:mod)
+    get search_url(locale: :en)
+    assert_response :ok
+    assert_select '#code-search-elasticsearch[name=elasticsearch][value="1"]', count: 1
+  end
+
   test 'render scripts as json' do
     stub_es(Script)
     get scripts_url(locale: :en, format: :json, host: 'api.greasyfork.local')
