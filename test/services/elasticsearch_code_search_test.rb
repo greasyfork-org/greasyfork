@@ -95,7 +95,7 @@ class ElasticsearchCodeSearchTest < ActiveSupport::TestCase
     Script.connection.stubs(:select_value).returns(0)
     Searchkick.expects(:client).never
 
-    error = assert_raises(RuntimeError) { ElasticsearchCodeSearch.index_all }
+    error = assert_raises(ElasticsearchCodeSearch::AlreadyRunningError) { ElasticsearchCodeSearch.index_all }
     assert_includes error.message, 'already running'
   end
 

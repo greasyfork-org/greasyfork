@@ -1,6 +1,8 @@
 require 'securerandom'
 
 class ElasticsearchCodeSearch
+  class AlreadyRunningError < RuntimeError; end
+
   BATCH_SIZE = 100
   MAX_BATCH_BYTES = 4.megabytes
   SCROLL_SIZE = 10_000
@@ -51,7 +53,7 @@ class ElasticsearchCodeSearch
       connection = Script.connection
       lock_name = connection.quote(index_name)
       acquired = connection.uncached { connection.select_value("SELECT GET_LOCK(#{lock_name}, #{timeout})") }
-      raise 'Elasticsearch code search rebuild or update is already running' unless acquired == 1
+      raise AlreadyRunningError, 'Elasticsearch code search rebuild or update is already running' unless acquired == 1
 
       begin
         yield

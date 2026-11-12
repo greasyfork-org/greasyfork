@@ -30,4 +30,12 @@ class ElasticsearchCodeSearchJobTest < ActiveJob::TestCase
     ElasticsearchCodeSearch.expects(:index_script).with(123)
     ElasticsearchCodeSearchJob.perform_now(123)
   end
+
+  test 'job retries lock contention after a delay' do
+    ElasticsearchCodeSearch.expects(:index_script).with(123).raises(ElasticsearchCodeSearch::AlreadyRunningError)
+
+    assert_enqueued_with(job: ElasticsearchCodeSearchJob, args: [123], at: ->(at) { at && at > 4.minutes.from_now }) do
+      ElasticsearchCodeSearchJob.perform_now(123)
+    end
+  end
 end
