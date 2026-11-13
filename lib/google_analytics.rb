@@ -27,6 +27,7 @@ class GoogleAnalytics
     date_range = Google::Analytics::Data::V1beta::DateRange.new(start_date: 30.days.ago.to_date.iso8601, end_date: Time.zone.today.iso8601)
     metric = Google::Analytics::Data::V1beta::Metric.new(name: 'screenPageViews')
     dimension = Google::Analytics::Data::V1beta::Dimension.new(name: 'pageLocation')
+    order_by = Google::Analytics::Data::V1beta::OrderBy.new(metric: Google::Analytics::Data::V1beta::OrderBy::MetricOrderBy.new(metric_name: 'screenPageViews'), desc: true)
 
     results = []
 
@@ -38,7 +39,7 @@ class GoogleAnalytics
     minimum_to_query = 10
 
     loop do
-      request = Google::Analytics::Data::V1beta::RunReportRequest.new(property: SITE_TO_PROPERTY[site], date_ranges: [date_range], metrics: [metric], dimensions: [dimension], limit:, offset:)
+      request = Google::Analytics::Data::V1beta::RunReportRequest.new(property: SITE_TO_PROPERTY[site], date_ranges: [date_range], metrics: [metric], dimensions: [dimension], order_bys: [order_by], limit:, offset:)
 
       # Call the run_report method.
       result = client.run_report request
