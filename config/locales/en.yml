@@ -1427,6 +1427,8 @@ en:
     code_search:
       title: "Code Search"
       description: "Search script code. This is a case-insensitive, plain-text search with no wildcards."
+      minimum_length: "Code search requires at least %{count} characters."
+      timed_out: "Code search timed out. Please try a more specific search or try again later."
     user_search:
       title: "User Search"
       description: "Search for users by name."

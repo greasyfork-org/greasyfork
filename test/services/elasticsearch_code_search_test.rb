@@ -2,9 +2,11 @@ require 'test_helper'
 
 class ElasticsearchCodeSearchTest < ActiveSupport::TestCase
   test 'search escapes wildcard characters and retrieves every page' do
+    Rails.logger.stubs(:info)
     Rails.logger.expects(:info).with(regexp_matches(/\AElasticsearch code search status=completed elapsed=\d+\.\d{3}s\z/)).once
+    Rails.logger.expects(:info).with('Elasticsearch code search query_length=7 filter_ids=2 pages=2 hits=2').once
     client = mock
-    Searchkick.stubs(:client).returns(client)
+    ElasticsearchCodeSearch.stubs(:search_client).returns(client)
     client.expects(:search).with do |arguments|
       assert_equal ElasticsearchCodeSearch.index_name, arguments[:index]
       assert_equal '*a\\*b\\?c\\\\d*', arguments.dig(:body, :query, :bool, :filter, 0, :wildcard, :code, :value)
@@ -23,31 +25,119 @@ class ElasticsearchCodeSearchTest < ActiveSupport::TestCase
   end
 
   test 'search reports incomplete results and releases the scroll' do
+    Rails.logger.stubs(:info)
     Rails.logger.expects(:info).with(regexp_matches(/\AElasticsearch code search status=failed elapsed=\d+\.\d{3}s\z/))
     client = mock
-    Searchkick.stubs(:client).returns(client)
+    ElasticsearchCodeSearch.stubs(:search_client).returns(client)
     client.expects(:search).returns({ '_scroll_id' => 'first', 'timed_out' => true })
     client.expects(:clear_scroll).with(body: { scroll_id: ['first'] })
 
-    assert_raises(RuntimeError) { ElasticsearchCodeSearch.search('test') }
+    assert_raises(ElasticsearchCodeSearch::SearchTimeoutError) { ElasticsearchCodeSearch.search('test') }
   end
 
   test 'search rejects multiline queries and skips empty filters' do
     Rails.logger.expects(:info).never
-    Searchkick.expects(:client).never
+    ElasticsearchCodeSearch.expects(:search_client).never
     assert_raises(ArgumentError) { ElasticsearchCodeSearch.search("a\nb", limit_to_ids: []) }
+    assert_raises(ArgumentError) { ElasticsearchCodeSearch.search('ab', limit_to_ids: []) }
+    assert_raises(ArgumentError) { ElasticsearchCodeSearch.search('é字', limit_to_ids: []) }
     assert_empty ElasticsearchCodeSearch.search('test', limit_to_ids: [])
   end
 
   test 'search logs failures from the initial Elasticsearch request' do
+    Rails.logger.stubs(:info)
     Rails.logger.expects(:info).with(regexp_matches(/\AElasticsearch code search status=failed elapsed=\d+\.\d{3}s\z/))
     client = mock
-    Searchkick.stubs(:client).returns(client)
+    ElasticsearchCodeSearch.stubs(:search_client).returns(client)
     client.expects(:search).raises('connection failed')
     client.expects(:clear_scroll).never
 
     error = assert_raises(RuntimeError) { ElasticsearchCodeSearch.search('test') }
     assert_equal 'connection failed', error.message
+  end
+
+  test 'search client uses an isolated timeout and no retries' do
+    options = nil
+    client = mock
+    shared_options = {
+      request_timeout: 10,
+      retry_on_failure: 2,
+      transport_options: { request: { timeout: 10, open_timeout: 4 }, ssl: { verify: false } },
+    }
+    Searchkick.stubs(:client_options).returns(shared_options)
+    Elasticsearch::Client.expects(:new).with do |arguments|
+      options = arguments
+      true
+    end.returns(client)
+
+    assert_same client, ElasticsearchCodeSearch.send(:search_client)
+    assert_equal 35, options.dig(:transport_options, :request, :timeout)
+    assert_equal 35, options.dig(:transport_options, :request, :read_timeout)
+    assert_equal 4, options.dig(:transport_options, :request, :open_timeout)
+    assert_not options.key?(:request_timeout)
+    assert_not options[:reload_on_failure]
+    assert_equal 0, options[:retry_on_failure]
+    assert_empty options[:retry_on_status]
+    assert_equal shared_options.dig(:transport_options, :ssl), options.dig(:transport_options, :ssl)
+    assert_equal 10, shared_options[:request_timeout]
+    assert_equal 10, shared_options.dig(:transport_options, :request, :timeout)
+    assert_equal 2, shared_options[:retry_on_failure]
+  ensure
+    ElasticsearchCodeSearch.remove_instance_variable(:@search_client) if ElasticsearchCodeSearch.instance_variable_defined?(:@search_client)
+  end
+
+  test 'search reports transport read timeouts and retains the cause' do
+    client = mock
+    ElasticsearchCodeSearch.stubs(:search_client).returns(client)
+    client.expects(:search).raises(transport_timeout)
+    client.expects(:clear_scroll).never
+
+    error = assert_raises(ElasticsearchCodeSearch::SearchTimeoutError) { ElasticsearchCodeSearch.search('test') }
+    assert_instance_of Elastic::Transport::Transport::Error, error.cause
+    assert_instance_of Faraday::TimeoutError, error.cause.cause
+  end
+
+  test 'search does not misclassify other transport failures as timeouts' do
+    client = mock
+    ElasticsearchCodeSearch.stubs(:search_client).returns(client)
+    client.expects(:search).raises(Elastic::Transport::Transport::Error.new('connection refused'))
+
+    error = assert_raises(Elastic::Transport::Transport::Error) { ElasticsearchCodeSearch.search('test') }
+    assert_equal 'connection refused', error.message
+  end
+
+  test 'scroll cleanup errors do not hide the search timeout' do
+    client = mock
+    ElasticsearchCodeSearch.stubs(:search_client).returns(client)
+    client.expects(:search).returns({ '_scroll_id' => 'first', 'hits' => { 'hits' => [{ '_id' => '2' }] } })
+    client.expects(:scroll).raises(transport_timeout)
+    cleanup_error = RuntimeError.new('cleanup failed')
+    client.expects(:clear_scroll).with(body: { scroll_id: ['first'] }).raises(cleanup_error)
+    Sentry.expects(:capture_exception).with(cleanup_error)
+    Rails.logger.expects(:error).with(regexp_matches(/scroll cleanup failed/))
+
+    error = assert_raises(ElasticsearchCodeSearch::SearchTimeoutError) { ElasticsearchCodeSearch.search('test') }
+    assert_instance_of Faraday::TimeoutError, error.cause.cause
+  end
+
+  test 'scroll cleanup errors are raised after a successful search' do
+    client = mock
+    ElasticsearchCodeSearch.stubs(:search_client).returns(client)
+    client.expects(:search).returns({ '_scroll_id' => 'first', 'hits' => { 'hits' => [] } })
+    client.expects(:clear_scroll).raises(Elastic::Transport::Transport::Error.new('cleanup failed'))
+
+    error = assert_raises(Elastic::Transport::Transport::Error) { ElasticsearchCodeSearch.search('test') }
+    assert_equal 'cleanup failed', error.message
+  end
+
+  test 'scroll cleanup timeouts are reported after a successful search' do
+    client = mock
+    ElasticsearchCodeSearch.stubs(:search_client).returns(client)
+    client.expects(:search).returns({ '_scroll_id' => 'first', 'hits' => { 'hits' => [] } })
+    client.expects(:clear_scroll).raises(transport_timeout)
+
+    error = assert_raises(ElasticsearchCodeSearch::SearchTimeoutError) { ElasticsearchCodeSearch.search('test') }
+    assert_instance_of Faraday::TimeoutError, error.cause.cause
   end
 
   test 'rebuild publishes only after all original code has been indexed' do
@@ -73,6 +163,17 @@ class ElasticsearchCodeSearchTest < ActiveSupport::TestCase
 
     ElasticsearchCodeSearch.index_all
   end
+
+  def transport_timeout
+    raise Faraday::TimeoutError, 'read timed out'
+  rescue Faraday::TimeoutError
+    begin
+      raise Elastic::Transport::Transport::Error, 'read timed out'
+    rescue Elastic::Transport::Transport::Error => e
+      e
+    end
+  end
+  private :transport_timeout
 
   test 'failed rebuild removes only the unpublished index' do
     client = mock

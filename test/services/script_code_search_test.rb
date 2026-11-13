@@ -54,6 +54,12 @@ class ScriptCodeSearchTest < ActiveSupport::TestCase
     end
   end
 
+  test 'search rejects queries shorter than three characters even with an empty filter' do
+    assert_raises(ArgumentError) { ScriptCodeSearch.search('ab', limit_to_ids: []) }
+    assert_raises(ArgumentError) { ScriptCodeSearch.search('é字', limit_to_ids: []) }
+    assert_empty ScriptCodeSearch.search('é字a', limit_to_ids: [])
+  end
+
   test 'search reports grep errors even when some files match' do
     Rails.logger.expects(:info).with(regexp_matches(/\Agrep code search status=failed elapsed=\d+\.\d{3}s\z/))
     Dir.mktmpdir do |dir|

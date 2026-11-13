@@ -200,10 +200,26 @@ module ScriptListings
       return
     end
 
+    if query.length < CodeSearchQuery::MIN_LENGTH
+      render status: :unprocessable_content, plain: t('search.code_search.minimum_length', count: CodeSearchQuery::MIN_LENGTH)
+      return
+    end
+
     limit_to_ids = User.find_by(id: params[:by])&.script_ids if params[:by].presence
 
     search_service = (current_user&.moderator? && params[:elasticsearch] == '1') ? ElasticsearchCodeSearch : ScriptCodeSearch
-    script_ids = search_service.search(query, limit_to_ids:)
+    begin
+      script_ids = search_service.search(query, limit_to_ids:)
+    rescue ElasticsearchCodeSearch::SearchTimeoutError => e
+      Sentry.capture_exception(e)
+      message = t('search.code_search.timed_out')
+      respond_to do |format|
+        format.html { render status: :gateway_timeout, plain: message }
+        format.json { render status: :gateway_timeout, json: { error: message } }
+        format.jsonp { render status: :gateway_timeout, json: { error: message }, callback: clean_json_callback_param }
+      end
+      return
+    end
     @scripts = Script.order(self.class.get_sort(params)).includes(:users, :localized_attributes).where(id: script_ids)
     @scripts = @scripts.where(language: (params[:language] == 'css') ? 'css' : 'js') unless params[:language] == 'all'
     include_deleted = current_user&.moderator? && params[:include_deleted] == '1'

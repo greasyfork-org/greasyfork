@@ -44,7 +44,7 @@ class ScriptCodeSearch
     end
 
     def search(text, limit_to_ids: nil)
-      raise ArgumentError, 'Code search query must be a single line' if text.match?(/[\r\n]/)
+      CodeSearchQuery.validate!(text)
       return [] if limit_to_ids&.none?
 
       paths = limit_to_ids.nil? ? [BASE_PATH] : limit_to_ids.map { |id| path_for(id) }

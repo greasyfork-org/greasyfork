@@ -1,12 +1,15 @@
 require 'securerandom'
+require 'English'
 
 class ElasticsearchCodeSearch
   class AlreadyRunningError < RuntimeError; end
+  class SearchTimeoutError < RuntimeError; end
 
   BATCH_SIZE = 100
   MAX_BATCH_BYTES = 4.megabytes
   SCROLL_SIZE = 10_000
   SCROLL_KEEPALIVE = '2m'.freeze
+  SEARCH_TIMEOUT = 35
 
   class << self
     def index_name
@@ -129,44 +132,102 @@ class ElasticsearchCodeSearch
     public
 
     def search(text, limit_to_ids: nil)
-      raise ArgumentError, 'Code search query must be a single line' if text.match?(/[\r\n]/)
+      CodeSearchQuery.validate!(text)
       return [] if limit_to_ids&.none?
 
       pattern = text.gsub(/[\\*?]/) { |character| "\\#{character}" }
       query = { wildcard: { code: { value: "*#{pattern}*" } } }
       query = { bool: { filter: [query, { ids: { values: limit_to_ids } }] } } unless limit_to_ids.nil?
-      client = Searchkick.client
+      client = search_client
       scroll_id = nil
+      page_count = 0
+      ids = []
       begin
         CodeSearchTiming.measure('Elasticsearch') do
-          response = client.search(index: index_name, scroll: SCROLL_KEEPALIVE, body: {
-                                     size: SCROLL_SIZE,
-                                     sort: ['_doc'],
-                                     _source: false,
-                                     query:,
-                                   })
+          response = measure_request('initial') do
+            client.search(index: index_name, scroll: SCROLL_KEEPALIVE, body: {
+                            size: SCROLL_SIZE,
+                            sort: ['_doc'],
+                            _source: false,
+                            query:,
+                          })
+          end
           scroll_id = response['_scroll_id']
-          ids = []
           loop do
-            raise "Elasticsearch code search failed: #{response.inspect}" if response['timed_out'] || response.dig('_shards', 'failed').to_i.positive?
+            raise SearchTimeoutError, 'Elasticsearch code search timed out' if response['timed_out']
+            raise "Elasticsearch code search failed: #{response.inspect}" if response.dig('_shards', 'failed').to_i.positive?
 
             hits = response.fetch('hits').fetch('hits')
             break if hits.empty?
 
+            page_count += 1
             hits.each { |hit| ids << Integer(hit.fetch('_id')) }
             raise 'Elasticsearch code search did not return a scroll ID' if scroll_id.blank?
 
-            response = client.scroll(scroll_id:, scroll: SCROLL_KEEPALIVE)
+            response = measure_request('scroll') { client.scroll(scroll_id:, scroll: SCROLL_KEEPALIVE) }
             scroll_id = response['_scroll_id'] || scroll_id
           end
           ids
+        ensure
+          Rails.logger.info("Elasticsearch code search query_length=#{text.length} filter_ids=#{limit_to_ids&.length || 'none'} pages=#{page_count} hits=#{ids.length}")
         end
+      rescue Elastic::Transport::Transport::Error => e
+        raise SearchTimeoutError, 'Elasticsearch code search timed out' if timeout_error?(e)
+
+        raise
       ensure
-        client.clear_scroll(body: { scroll_id: [scroll_id] }) if scroll_id.present?
+        if scroll_id.present?
+          original_error = $ERROR_INFO
+          begin
+            client.clear_scroll(body: { scroll_id: [scroll_id] })
+          rescue StandardError => e
+            unless original_error
+              raise SearchTimeoutError, 'Elasticsearch code search timed out' if timeout_error?(e)
+
+              raise
+            end
+            Rails.logger.error("Elasticsearch code search scroll cleanup failed: #{e.class}: #{e.message}")
+            Sentry.capture_exception(e)
+          end
+        end
       end
     end
 
     private
+
+    def timeout_error?(error)
+      while error
+        return true if error.is_a?(Faraday::TimeoutError) || error.is_a?(Net::ReadTimeout)
+
+        error = error.cause
+      end
+      false
+    end
+
+    def search_client
+      @search_client ||= begin
+        options = { url: ENV['ELASTICSEARCH_URL'] }.deep_merge(Searchkick.client_options)
+        options.delete(:request_timeout)
+        options.deep_merge!(
+          retry_on_failure: 0,
+          retry_on_status: [],
+          reload_on_failure: false,
+          transport_options: { request: { timeout: SEARCH_TIMEOUT, read_timeout: SEARCH_TIMEOUT } }
+        )
+        Elasticsearch::Client.new(options) do |faraday|
+          faraday.use Searchkick::Middleware
+          faraday.request :aws_sigv4, Searchkick.signer_middleware_aws_params if Searchkick.aws_credentials
+        end
+      end
+    end
+
+    def measure_request(phase)
+      CodeSearchTiming.measure("Elasticsearch #{phase}") do
+        response = yield
+        Rails.logger.info("Elasticsearch code search phase=#{phase} took_ms=#{response['took']} hits=#{response.dig('hits', 'hits')&.length}")
+        response
+      end
+    end
 
     def index_batch(client, index, body)
       response = client.bulk(index:, body:)
