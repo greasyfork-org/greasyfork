@@ -10,9 +10,11 @@ sv:
       user_list: "Användarlista"
       libraries: "Bibliotek"
       moderator_log: "Moderatorlogg"
+      privacy: "Integritetspolicy"
   scripts:
     created_date: "Skapad"
     updated_date: "Uppdaterad"
+    code_size: Storlek
     total_installs: "Totala installationer"
     daily_installs: "Dagliga installationer"
     ratings: "Betyg"
@@ -42,12 +44,13 @@ sv:
     deleted_notice_with_related: "Skripten du har viljat ha har blivit raderad, men här är några relaterade skripter"
     deleted_notice_with_related_and_reason: "Skriptet du vill ha har blivit borttaget på grund av %{report_link:denna rapport}, men här är några relaterade skripter."
     deleted_undelete_notice_html: "Skripten har blivit låst av en moderator och kan inte bli avraderad. Anledningen till detta: \"<i>%{delete_reason}</i>\"."
-    deleted_locked_author_notice_html: "Detta skript har blivit raderat av en moderator som svar på %{report_link:denna rapporten} och är inte tillgänglig till andra. Angiven anledning är: <i>%{delete_reason}</i>\". Var god granska %{code_rules_link:%{site_name}s regler}. Om du anser att detta är felaktigt kan du %{appeal_link:överklaga beslutet}. Posta inte om detta skriptet; att göra det kan leda till avstängning från %{site_name}."
+    deleted_locked_author_notice_html: "Detta skript har raderats av en moderator som svar på %{report_link:denna rapport} och är inte tillgängligt för andra. Angiven anledning är: \"<i>%{delete_reason}</i>\". Läs igenom %{code_rules_link:%{site_name}s regler}. Om du anser att raderingen är felaktig kan du %{appeal_link:överklaga beslutet}. Publicera inte detta skript på nytt; att göra det kan leda till avstängning från %{site_name}."
     version_notice_html: "Från och med %{date}. Se %{latest_version_link}."
     version_notice_latest_version_link: "den senaste versionen"
     reported_notice_for_author: "Detta skript är inte tillgängligt till andra användare förrän det är granskat av en moderator. "
     info_page: "Info"
     code_page: "Kod"
+    wrap_lines: "radbrytning"
     history_page: "Historik"
     feedback_page: "Feedback"
     stats_page: "Statistik"
@@ -68,7 +71,10 @@ sv:
     admin_page: "Administrartör"
     admin:
       title: "%{script_name} - Administratör"
+      compare_title: "Jämför med annan skript"
       compare_button: "Jämföra"
+      checkup:
+        title: Granskning
     history_title: "%{script_name} - Versionshistorik"
     history_only_code_changes_info: "Detta är versioner av skriptet där koden uppdaterats."
     history_all_changes_link: "Visa alla versioner."
@@ -120,11 +126,13 @@ sv:
     listing_sort_created: "Skapandedatum"
     listing_sort_updated: "Uppdateringsdatum"
     listing_sort_name: "Namn"
+    listing_sort_entry_locales: 'Språk'
     listing_filter_by_site_label: "Visar skript för:"
     listing_filter_by_site_disable: "Alla"
     listing_filter_by_site_all_sites: "(Alla Sidor)"
     listing_filter_by_language_label: "Språk:"
     listing_filter_by_site_more_sites: "Mer..."
+    listing_filter_by_authorship_label: "Upphovsman:"
     listing_no_scripts: "Inga skript hittades."
     listing_created_feed: "Nya skript"
     listing_updated_feed: "Uppdaterade skript"
@@ -136,6 +144,7 @@ sv:
       all: Alla upphovsmän
       me: Mina skript
       user: Skript av %{author_name}
+    listing_ratings_explanation: Sannolikheten att nästa recension kommer ge ett bra betyg, från 0 till 1.
     import: "Viktiga skripts"
     support_site: "Besök upphovsmannens supportsida."
     support_email: "E-posta upphovsmannen för support."
@@ -180,6 +189,8 @@ sv:
       name: Manuell
     sync_type_2:
       name: Automatiskt
+    sync_type_3:
+      name: Webhook
     sync_failed_info_html: "Försökte synka senast %{date}, vilket resulterade i %{error}."
     sync_success_info_html: "Senaste lyckade synkningen skedde %{date}."
     sync_never_succeeded: "Synkning lyckades aldrig."
@@ -189,6 +200,8 @@ sv:
     additional_info_default_sync_html: "Standard ytterligare info (språkvariant matchar <code>@name</code>)"
     additional_info_localized_sync_html: "För språkvariant (matchar <code>@name:XX</code>)"
     sync_url_placeholder: "(URL)"
+    sync_successful: Synkning av skript lyckades.
+    sync_turned_off: Synkning av skript är avstängt.
     screenshots_add: "Lägg till:"
     screenshots_remove: "Radera"
     diff_old_version: "Gammal:"
@@ -211,6 +224,7 @@ sv:
     adult_content_on_greasy_logged_in_error: "Detta skript är inte längre tillgängligt på denna sidan med dina nuvarande %{edit_account_link:Greasy Fork-kontoinställningar}."
     adult_content_on_greasy_not_logged_in_error: "Detta skript är inte längre anonymt tillgängligt på denna sidan. %{login_link:Logga in} och kontrollera dina Greasy Fork-kontoinställningar."
     non_adult_content_on_sleazy: "Detta skript är inte tillgängligt på denna sidan."
+    not_js_convertible_override_header: "Konvertering till JS"
     adult_marker: "(Vuxet)"
     deleted_marker: "(Borttaget)"
     locked_marker: "(Låst)"
@@ -222,8 +236,17 @@ sv:
     by_site_list_description: "Detta är webbsidorna påverkade av de populäraste användarskripten. Större teckenstorlek betyder mer populärt användarskript."
     by_site_list_filter: "Filtrera efter sidnamn:"
     search_placeholder: "Sök skript"
+    updated: "Skript uppdaterad."
+    preview_additional_info: "Förhandsvisning"
+    must_confirm_email_button: "Skicka en bekräftelse till %{email}"
     invitations:
+      form_title: "Bjud in andra upphovspersoner."
       invited_user_url_label: "Användare att bjuda in"
+      submit: "Skicka inbjudan"
+      sent: "Inbjudan har skickats."
+      subject: "Inbjudan till %{script_name}"
+      invitation_not_found: "Kunde inte hitta inbjudan."
+      invitation_expired: "Inbjudan har löpt ut."
     install_help_dialog:
       close_dialog: OK
     antifeatures:
@@ -245,6 +268,7 @@ sv:
       css:
         short: CSS
         long: Användarstil
+    related_scripts: "Du kan även prova dessa relaterade skript:"
   script_sets:
     favorites_name: "Favoriter"
     delete: "Radera skriptuppsättning"
@@ -356,6 +380,7 @@ sv:
     edit_sign_in: "Ändra inloggningsmetoder."
     edit_sign_in_title: "Redigera inloggningsmetoder."
     edit_sign_in_password: "Lösenord"
+    edit_sign_in_regenerate_2fa: Återskapa 2FA
     no_password_set_info: "Ditt konto är inte inställt med ett lösenord."
     set_password: "Sätt lösenord"
     update_password: "Uppdatera lösenord"
@@ -379,6 +404,11 @@ sv:
     disable_syncing: "Stäng av synkning"
     remove_external_sign_in: "Ta bort"
     add_external_sign_in_info: "Lägg till en inloggningsmetod:"
+    enable_2fa:
+      qr_heading: Via QR-kod
+      url_heading: Via länk
+      manual_heading: Manuellt
+      code_entry_heading: Ange kod
     list_display_html:
       one: "%{user_link} - %{count} skript"
       other: "%{user_link} - %{count} skript"
@@ -386,6 +416,7 @@ sv:
     listing_new_scripts: "Nya skript"
     listing_updated_scripts: "Uppdaterade skript"
     listing_registration_date: "Registreringsdatum"
+    listing_relevance: "Relevans"
     listing_title: "Användare"
     listing_banned_filter:
       banned: "Bannade"
@@ -404,13 +435,30 @@ sv:
     delete_link: "Radera konto"
     delete:
       password_effect: "Du kommer inte längre kunna logga in med ditt lösenord."
+    deleted_user_with_id: "(Borttagen användare %{id})"
+    deleted_user_without_id: "(Borttagen användare)"
     badges:
       banned:
         short: Bannade
         long: Bannade
+      moderator:
+        short: Moderator
+        long: Moderator
       author:
         short: Upphovsman
         long: Detta skripts upphovsman
+    notifications:
+      discussion_defaults:
+        discussion_subscription_defaults:
+          start: Du startar diskussionen
+          comment: Du kommenterar på diskussionen
+      conversation_defaults:
+        title: Notifikationsaviseringar
+      report_defaults:
+        title: Rapportera avisering
+        as_reporter: Du får en avisering när rapporter som du har skapat åtgärdas
+      script:
+        title: Skriptaviseringar
   help:
     sections:
       usage: Användning
@@ -433,7 +481,9 @@ sv:
       post_new_script_link_text: 'publicera ett nytt skript'
     code_rules:
       title: "%{site_name}s regler för publicerade skript"
+      copyright_header: Upphovsrätt
       miscellaneous_header: Övrigt
+      reposting_deleted: Ladda inte upp skript på nytt som har tagits bort på grund av regelbrott; använd överklagandefunktionen istället. Att ladda upp borttagna skript på nytt kan leda till avstängning.
     external_scripts:
       title: "%{site_name}s integritetspolicy om externa skript"
     cdns:
@@ -454,6 +504,8 @@ sv:
       title: "Integritetspolicy"
     user_css_to_user_js:
       title: Konvertering av användar-CSS till användar-JS
+    antifeatures:
+      title: Anti-egenskaper
   search:
     script_search:
       title: "Skriptsökning"
@@ -469,12 +521,42 @@ sv:
       description: "Sök användare efter namn."
   moderator_logs:
     date_column: "Datum"
+    moderator_column: "Moderator"
+    item_column: "Artikel"
     action_column: "Åtgärd"
     reason_column: "Orsak"
+    item_deleted_script: "Borttaget skript %{id}"
+    item_user_html: "Användare: %{user_link}"
   reports:
+    new_report_title:
+      message: "Rapportera ett meddelande från %{user}"
+      script: "Rapportera %{script}"
     reason:
+      non_functional: "Skriptet fungerar inte"
+      unauthorized_code: "Otillåten kopiering"
+      malware: "Skadlig programvara"
+      minified: "Minifierad kod"
+      external_code: "Otillåten kod från tredjepart"
       wrong_category: "Fel kategori"
       wrong_category_with_suggestion: "Fel kategori (förslag: %{suggested_category})"
+      no_code: 'Ingen kod/hello world'
+      other: "Annat"
+    unauthorized_code_original_placeholder: "URL:en av originalkoden"
+    result_dismissed: "Användaren har blivit nekad av en moderator."
+    rebuttal_placeholder: 'Förklara för en moderator varför ditt skript borde få vara kvar.'
+    submit_rebuttal: "Lämna in motbevis"
+    delete_script: "Radera skript"
+    view_discussion: "Visa diskussion."
+    load_diff: "Ladda diff"
+    load_cleaned_diff: "Ladda in kod-diff"
+    load_similarity_comparison: "Ladda likhetsjämförelse"
+    loading_diff: "Laddar..."
+    reported_user_activity_html: "%{user} (användaren som rapporterats) har gjort:"
+    report_item:
+      discussion: "Diskussion %{title} av %{user}"
+      comment_description: "En kommentar på %{discussion_title}"
+      message: "Ett meddelande av %{user}"
+      deleted: "Borttagit %{type} #%{id}"
   appeals:
     new:
       submit: Lämna in överklagande
@@ -486,7 +568,26 @@ sv:
   discussions:
     title: Diskussioner
     last_comment: "Senaste: %{user} %{date}"
+    edit_comment_link: "Redigera"
+    delete_comment: "Radera"
+    delete_discussion: "Radera"
     update_comment_submit: "Uppdateringskommentar"
+    quote_comment: "Citat"
+    review_heading_html: "Betyg: %{rating}"
+    badges:
+      deleted:
+        short: Borttagen
+        long: Borttagen
+    sign_in_to_post_discussion: "Logga in för att publicera en recension, kommentar, eller fråga."
+    user_filter:
+      label: "Diskussioner där jag har deltagit"
+      all: "Alla diskussioner"
+      comment_by_me: "Mina kommentarer"
+      on_my_scripts: "På mina skript"
+      subscribed: "Prenumererar"
+    other_user_filter:
+      all: "Alla diskussioner"
+      comments_by: "Kommentarer av %{user}"
     category_filter:
       label: Kategori
       all: Alla kategorier
@@ -496,6 +597,14 @@ sv:
       comment_created: Datum
       discussion_last_comment: Senaste kommentarsdatum
       discussion_created: Diskussionens startdatum
+    user_activity:
+      title: "Senaste kommentarer"
+      see_all_activity: "Se all aktivitet från användaren."
+      script_review:
+        posted_html: "Lämnade en recension på <i>%{script}</i>"
+        replied_html: "Svara på en recension av <i>%{script}</i>"
+    review_title: "En granskning av %{script_name}"
+    question_title: "En fråga gällande %{script_name}"
     subscribe: Prenumerera
     unsubscribe: Avsluta prenumerationen
     notify: Meddela mig vid varje svar
@@ -510,16 +619,28 @@ sv:
         name: Allt förutom skriptdiskussioner
     new_title: Ny diskussion
     new_button: Ny diskussion
+    blocked_pending_review: Kommentarer är blockerade i avvaktan på granskning av din aktivitet av en moderator. Försök igen senare.
     search_placeholder: Sök diskussioner
   conversations:
     new_button: skapa konverstation
     send_message: skicka medelande
     conversation_list_title: konverstationer
+    no_recent_conversations: Du har inga senaste konversationer
+    recent:
+      title: Senaste konversationer
+      more: Visa alla konversationer
   moderator_actions:
     action_taken:
+      ban: 'Förbud'
+      delete: 'Ta bort'
       delete_and_lock: 'Ta bort och lås'
+      delete_version: 'Ta bort version %{version}, ID %{id}'
       mark_adult: 'Markera som vuxeninnehåll'
+      permanent_deletion: 'Permanent borttagning'
+      unban: 'Ångra bannlysning'
+      undelete: 'Ångra borttagning'
       undelete_and_unlock: 'Återställ och lås upp'
+      update_locale: 'Ändra språkkod'
   common:
     allowed_elements_link: "(Se tillåten kod.)"
     allowed_elements_and_attributes_title: "Tillåtna element för HTML-innehåll"
@@ -530,7 +651,18 @@ sv:
     not_found_link_home: "Gå hem."
     suggest_locale: "%{site_name} är tillgänglig i %{locale_name}."
     incomplete_locale: "%{site_name}s %{locale_name} översättning är bara %{percent} färdigt. Du kan ändra på det."
+    preview_tab: Förhandsvisning
+    listing_options_title: "Sökalternativ"
+    quote:
+      prefix_html: "%{user} sa:"
   activerecord:
+    models:
+      script:
+        one: "%{count} skript"
+        other: "%{count} skript"
+      comment:
+        one: "%{count} kommentar"
+        other: "%{count} kommentarer"
     attributes:
       user:
         name: "Namn"
@@ -578,8 +710,27 @@ sv:
       must_be_greasy_fork_script: "måste vara URL:en för ett skript på %{site_name}"
       script_update_not_utf8: "uppladdat måste vara UTF-8 text"
       script_disallowed_require: "använder ett icke godkänt externt skript: %{code}"
+      script_malformed_require: "använder en dåligt utformad skriptreferens från tredjepart: %{code}"
   opensearch:
     short_name: "%{site_name}-sökning"
     description: "Sök efter användarskript på %{site_name}."
     long_name: "%{site_name} användarskriptsökning"
     attribution: "Ge copyright till skriptens upphovsman, se individuella skript för licensering"
+  importing:
+    language:
+      js: JavaScript
+      css: CSS
+    results:
+      addlibrary: "Lägg till som bibliotek"
+  mailers:
+    consecutive_bad_ratings:
+      notify:
+        subject: "Din skript %{script_name} på %{site_name} har mottagit flera \"Dåliga\" recensioner."
+    new_message:
+      subject: "%{user} skicka ett meddelande till dig på %{site_name}"
+    script_lock_appeal:
+      dismiss:
+        moderator_notes: "Moderatorn har kommenterat:"
+      unlock:
+        moderator_notes: "Moderatorn har kommenterat:"
+        outro: Vänligen granska %{rules_link:%{site_name}s regler} för att slippa framtida borttagningar.
