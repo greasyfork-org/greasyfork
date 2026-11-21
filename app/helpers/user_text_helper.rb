@@ -104,7 +104,11 @@ module UserTextHelper
     mentions
   end
 
-  MENTIONLESS_ELEMENTS = %w[a pre code].freeze
+  # Sanitize discards the content of these, and removes any element added inside them. A transformer that adds elements
+  # in them makes sanitize's traversal loop forever, so text transformers must leave them alone.
+  REMOVED_CONTENT_ELEMENTS = %w[script style iframe].freeze
+
+  MENTIONLESS_ELEMENTS = (%w[a pre code] + REMOVED_CONTENT_ELEMENTS).freeze
 
   private
 
@@ -148,7 +152,7 @@ module UserTextHelper
     fix_whitespace = lambda do |env|
       node = env[:node]
       return unless node.text?
-      return if node_has_ancestor?(node, 'pre')
+      return if node_has_ancestor?(node, ['pre', *REMOVED_CONTENT_ELEMENTS])
 
       node.content = node.content.lstrip if element_is_block(node.previous_sibling)
       node.content = node.content.rstrip if element_is_block(node.next_sibling)
@@ -246,8 +250,7 @@ module UserTextHelper
     linkify_urls = lambda do |env|
       node = env[:node]
       return unless node.text?
-      return if node_has_ancestor?(node, 'a')
-      return if node_has_ancestor?(node, 'pre')
+      return if node_has_ancestor?(node, ['a', 'pre', *REMOVED_CONTENT_ELEMENTS])
 
       url_reference = node.text.match(%r{(\s|^|\()(https?://[^\s)\]]+)}i)
       return if url_reference.nil?

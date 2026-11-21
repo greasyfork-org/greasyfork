@@ -129,7 +129,6 @@ class DiscussionsController < ApplicationController
   end
 
   def show
-    Rails.logger.warn "Rendering discussion #{@discussion.id}"
     @canonical_params = [:id, :script_id, :category, :page, :per_page]
 
     if @discussion.script

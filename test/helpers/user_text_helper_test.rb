@@ -51,6 +51,15 @@ class UserTextHelperTest < ActionView::TestCase
     end
   end
 
+  test 'format_user_text no hang on urls inside style, script, or removed nodes' do
+    texts = ['<style> https://example.com</style>', "<script>a\nhttps://example.com</script>", '<svg><style> https://example.com</style></svg>', '<svg><script><desc><iframe src="https://www.youtube.com/embed/x">(https://example.com)']
+    %w[html markdown].product(texts).each do |markup, text|
+      Timeout.timeout(2) do
+        assert_equal '', format_user_text(text, markup).gsub(%r{</?p>|\n}, ''), "#{markup}: #{text}"
+      end
+    end
+  end
+
   test 'format_user_text markdown paragraphs' do
     text = "p1\n\np2"
     assert_equal("<p>p1</p>\n\n<p>p2</p>\n", format_user_text(text, 'markdown'))
