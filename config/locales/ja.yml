@@ -1080,6 +1080,8 @@ ja:
     code_search:
       title: "コードの検索"
       description: "スクリプトのコードを検索します。大文字と小文字は区別しません (ワイルドカードは使用不可)"
+      minimum_length: "コード検索には %{count} 文字以上が必要です。"
+      timed_out: "コード検索がタイムアウトしました。検索条件を絞るか、しばらくしてから再試行してください。"
     user_search:
       title: "ユーザーの検索"
       description: "名前からユーザーを検索"
