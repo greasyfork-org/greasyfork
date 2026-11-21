@@ -114,15 +114,16 @@ class ScriptPreviouslyDeletedCheckTest < ActiveSupport::TestCase
   end
 
   test 'finds token-similar locked scripts from either canonical pair direction' do
-    script = Script.third
-    similar_script = Script.first
-    below_threshold_script = Script.second
-    similar_script.update!(locked: true)
-    below_threshold_script.update!(locked: true)
-    create_token_similarity(script, similar_script)
-    create_token_similarity(script, below_threshold_script, similarity: 0.79)
+    script = Script.second
+    lower_id_script = Script.first
+    higher_id_script = Script.third
+    below_threshold_script = Script.fourth
+    [lower_id_script, higher_id_script, below_threshold_script].each { |candidate| candidate.update!(locked: true) }
+    create_token_similarity(script, lower_id_script, similarity: 0.75)
+    create_token_similarity(script, higher_id_script, similarity: 0.75)
+    create_token_similarity(script, below_threshold_script, similarity: 0.749)
 
-    assert_equal [similar_script], ScriptPreviouslyDeletedCheckJob.new.check_by_code(script)
+    assert_equal [lower_id_script.id, higher_id_script.id].sort, ScriptPreviouslyDeletedCheckJob.new.check_by_code(script).pluck(:id).sort
   end
 
   test 'when there similar locked by name, it matches' do

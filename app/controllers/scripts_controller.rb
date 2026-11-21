@@ -677,9 +677,9 @@ class ScriptsController < ApplicationController
   COMPARE_VIEWS = %w[diff clean snippets].freeze
 
   DERIVATIVE_SCORES = [
-    [:high, 0.95],
-    [:medium, 0.85],
-    [:low, 0.75],
+    [:high, 0.75],
+    [:medium, 0.5],
+    [:low, 0.25],
   ].freeze
 
   def derivatives

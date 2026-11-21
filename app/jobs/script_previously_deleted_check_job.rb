@@ -45,13 +45,14 @@ class ScriptPreviouslyDeletedCheckJob < ApplicationJob
   end
 
   def check_by_code(script)
+    high_threshold = ScriptsController::DERIVATIVE_SCORES.assoc(:high).last
     other_script_ids = TokenShingleSimilarity
                        .where(script_id: script.id)
-                       .where('similarity >= 0.8')
+                       .where(similarity: high_threshold..)
                        .pluck(:other_script_id)
     other_script_ids += TokenShingleSimilarity
                         .where(other_script_id: script.id)
-                        .where('similarity >= 0.8')
+                        .where(similarity: high_threshold..)
                         .pluck(:script_id)
 
     Script.locked.where(id: other_script_ids.uniq)

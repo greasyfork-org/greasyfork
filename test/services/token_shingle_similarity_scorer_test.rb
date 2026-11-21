@@ -317,10 +317,10 @@ class TokenShingleSimilarityScorerTest < ActiveSupport::TestCase
     fingerprint = TokenShingleSimilarityScorer.build_fingerprint('function run(){return 1;}')
     {
       base_script => 100,
-      below_lower_bound => 49,
-      at_lower_bound => 50,
-      at_upper_bound => 200,
-      above_upper_bound => 201,
+      below_lower_bound => 24,
+      at_lower_bound => 25,
+      at_upper_bound => 400,
+      above_upper_bound => 401,
     }.each do |script, token_count|
       CodeSimilarityFingerprint.store_fingerprint!(
         script.id,

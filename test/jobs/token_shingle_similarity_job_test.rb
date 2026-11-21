@@ -16,6 +16,30 @@ class TokenShingleSimilarityJobTest < ActiveJob::TestCase
     assert_not_nil similarity.checked_at
   end
 
+  test 'stores similarities at and above 25 percent but not below' do
+    script = scripts(:one)
+    at_threshold = scripts(:two)
+    above_threshold = scripts(:three)
+    below_threshold = scripts(:script_with_generated_version)
+    {
+      script => [1, 2],
+      at_threshold => [1, 3, 4],
+      above_threshold => [1, 2, 3, 4, 5],
+      below_threshold => [1, 5, 6, 7, 8],
+    }.each do |candidate, hashes|
+      CodeSimilarityFingerprint.store_fingerprint!(candidate.id, { fingerprint: hashes.pack('Q>*'), token_count: 100 })
+    end
+
+    TokenShingleSimilarityJob.perform_now(script.id)
+
+    [at_threshold, above_threshold].zip([0.25, 0.4]).each do |other_script, score|
+      ids = [script.id, other_script.id].sort
+      assert_in_delta score, TokenShingleSimilarity.find_by!(script_id: ids.first, other_script_id: ids.last).similarity.to_f
+    end
+    ids = [script.id, below_threshold.id].sort
+    assert_not TokenShingleSimilarity.exists?(script_id: ids.first, other_script_id: ids.last)
+  end
+
   test 'replaces stale similarities when a script is rechecked' do
     script = scripts(:one)
     other_script = scripts(:two)

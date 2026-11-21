@@ -117,19 +117,6 @@ module ScriptsHelper
     t("scripts.similarity_score.#{key}")
   end
 
-  def token_shingle_similarity_string(score)
-    key = if score >= ScriptsController::DERIVATIVE_SCORES.first.last
-            :high
-          elsif score >= ScriptsController::DERIVATIVE_SCORES.second.last
-            :medium
-          elsif score >= TokenShingleSimilarityScorer::MIN_DISPLAYED_SIMILARITY
-            :low
-          else
-            :none
-          end
-    t("scripts.similarity_score.#{key}")
-  end
-
   # A single note per compared snippet. When both sides are cut, the larger omission is reported.
   def common_source_truncation_note(match, **)
     omissions = [match.fetch(:other_script), match.fetch(:script)].map do |sections|

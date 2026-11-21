@@ -16,7 +16,8 @@ class DerivativesTest < ApplicationSystemTestCase
 
     visit derivatives_script_url(script, locale: :en)
 
-    assert_content 'Somewhat similar'
+    assert_content 'Moderately similar'
+    assert_content 'at least 25% identical'
     assert_content 'A Test!'
     assert_link 'Diff'
   end
