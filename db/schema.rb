@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_07_120000) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_21_150613) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -576,16 +576,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_07_120000) do
     t.index ["user_id"], name: "index_script_sets_on_user_id"
   end
 
-  create_table "script_similarities", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
-    t.bigint "script_id", null: false
-    t.bigint "other_script_id", null: false
-    t.decimal "similarity", precision: 4, scale: 3, null: false
-    t.datetime "checked_at", precision: nil, null: false
-    t.boolean "tersed", default: false, null: false
-    t.index ["other_script_id"], name: "fk_rails_3fba862a5b"
-    t.index ["script_id", "other_script_id", "tersed"], name: "script_similarity_search", unique: true
-  end
-
   create_table "script_stats_refresh_progresses", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "next_step", default: "fan", null: false
   end
@@ -859,8 +849,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_07_120000) do
   add_foreign_key "script_set_set_inclusions", "script_sets", column: "child_id", on_delete: :cascade
   add_foreign_key "script_set_set_inclusions", "script_sets", column: "parent_id", on_delete: :cascade
   add_foreign_key "script_sets", "users", on_delete: :cascade
-  add_foreign_key "script_similarities", "scripts", column: "other_script_id", on_delete: :cascade
-  add_foreign_key "script_similarities", "scripts", on_delete: :cascade
   add_foreign_key "script_subresource_usages", "scripts", on_delete: :cascade
   add_foreign_key "script_subresource_usages", "subresources", on_delete: :cascade
   add_foreign_key "script_versions", "script_codes"
