@@ -25,6 +25,9 @@ class Github
         c[:modified].each do |m|
           changed_files[m] ||= {}
           changed_files[m][:commit] = c[:id]
+          changed_files[m][:revision] = params[:after]
+          changed_files[m][:previous_revision] = params[:before]
+          changed_files[m][:ref] = params[:ref]
           (changed_files[m][:messages] ||= []) << c[:message]
           changed_files[m][:urls] ||= urls_for_ref(repo_url, ref, m)
         end

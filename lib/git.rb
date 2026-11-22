@@ -6,11 +6,26 @@ class Git
   def self.get_contents(repo_url, file_paths_and_commits)
     with_repo(repo_url) do |directory|
       file_paths_and_commits.each do |file_path, commit|
-        content, stderr, status = Open3.capture3(GIT_PATH, 'show', "#{commit}:#{file_path}", chdir: directory)
+        revision, stderr, status = Open3.capture3(GIT_PATH, 'rev-parse', '--verify', "#{commit}^{commit}", chdir: directory)
         raise Git::Exception, stderr.strip unless status.success?
 
-        yield [file_path, commit, content]
+        revision = revision.strip
+        content, stderr, status = Open3.capture3(GIT_PATH, 'show', "#{revision}:#{file_path}", chdir: directory)
+        raise Git::Exception, stderr.strip unless status.success?
+
+        yield [file_path, revision, content]
       end
+    end
+  end
+
+  def self.revision_order(repo_url, current_revision, incoming_revision)
+    return :same if current_revision == incoming_revision
+
+    with_repo(repo_url) do |directory|
+      return :incoming_newer if ancestor?(directory, current_revision, incoming_revision)
+      return :incoming_older if ancestor?(directory, incoming_revision, current_revision)
+
+      :diverged
     end
   end
 
@@ -42,6 +57,15 @@ class Git
       system('rm', '-rf', directory)
     end
   end
+
+  def self.ancestor?(directory, older_revision, newer_revision)
+    _output, stderr, status = Open3.capture3(GIT_PATH, 'merge-base', '--is-ancestor', older_revision, newer_revision, chdir: directory)
+    return true if status.success?
+    return false if status.exitstatus == 1
+
+    raise Git::Exception, stderr.strip
+  end
+  private_class_method :ancestor?
 
   class Exception < StandardError
   end

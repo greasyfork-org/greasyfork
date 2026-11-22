@@ -165,16 +165,18 @@ class UsersController < ApplicationController
 
   def webhook
     user = User.find(params.expect(:user_id))
-    changelog_markup = 'text'
-    changes, git_url = if request.headers['User-Agent'] == 'Bitbucket-Webhooks/2.0'
-                         process_bitbucket_webhook(user)
-                       elsif request.headers['X-Gitlab-Token'].present?
-                         process_gitlab_webhook(user)
-                       else
-                         changelog_markup = 'markdown'
-                         process_github_webhook(user)
-                       end
-    process_webhook_changes(changes, git_url, changelog_markup:) if changes
+    user.with_lock do
+      changelog_markup = 'text'
+      changes, git_url = if request.headers['User-Agent'] == 'Bitbucket-Webhooks/2.0'
+                           process_bitbucket_webhook(user)
+                         elsif request.headers['X-Gitlab-Token'].present?
+                           process_gitlab_webhook(user)
+                         else
+                           changelog_markup = 'markdown'
+                           process_github_webhook(user)
+                         end
+      process_webhook_changes(changes, git_url, changelog_markup:) if changes
+    end
   end
 
   def edit_sign_in; end

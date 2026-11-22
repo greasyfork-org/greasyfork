@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_21_150613) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_22_123000) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -655,6 +655,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_21_150613) do
     t.bigint "delete_report_id"
     t.text "deletion_message"
     t.integer "code_size", default: 0, null: false
+    t.string "webhook_repository", limit: 500
+    t.string "webhook_ref", limit: 500
+    t.string "webhook_previous_revision", limit: 64
+    t.string "webhook_revision", limit: 64
     t.index ["delete_report_id"], name: "fk_rails_98da13b1a3"
     t.index ["delete_type"], name: "index_scripts_on_delete_type"
     t.index ["license_id"], name: "fk_rails_45570d785a"

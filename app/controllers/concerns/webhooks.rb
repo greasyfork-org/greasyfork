@@ -167,8 +167,9 @@ module Webhooks
 
     if pull_from_git.any?
       begin
-        Git.get_contents(repo_url, pull_from_git.transform_values { |info| info[:commit] || info[:ref] }) do |file_path, _commit, content|
+        Git.get_contents(repo_url, pull_from_git.transform_values { |info| info[:commit] || info[:ref] }) do |file_path, revision, content|
           changed_files[file_path][:content] = content
+          changed_files[file_path][:revision] ||= revision
         end
       rescue Git::Exception => e
         render json: { 'updated_scripts' => [], 'updated_failed' => changed_files.values.pluck(:scripts).flatten.map(&:url), message: "Could not pull contents from git: #{e}" }
@@ -184,24 +185,45 @@ module Webhooks
     changed_files.each do |_filename, info|
       contents = info[:content]
       info[:scripts].each do |script|
-        # update sync type to webhook, now that we know this script is affected by it
-        script.sync_type = 'webhook'
-        sv = script.script_versions.build(code: contents, changelog: info[:messages].join((changelog_markup == 'markdown') ? "\n\n" : ', '), changelog_markup:)
+        script.with_lock do
+          # update sync type to webhook, now that we know this script is affected by it
+          script.sync_type = 'webhook'
+          incoming_revision = info[:revision] || info[:commit] || info[:ref]
+          revision_order = webhook_revision_order(script, repo_url, info, incoming_revision)
+          if revision_order == :incoming_older
+            if script.changed? && !script.save
+              update_failed_scripts << script
+            else
+              updated_scripts << script
+            end
+            next
+          end
 
-        # Copy previous additional infos and screenshots
-        last_saved_sv = script.newest_saved_script_version
-        script.localized_attributes_for('additional_info').each do |la|
-          sv.build_localized_attribute(la)
-        end
-        last_saved_sv.attachments.each { |a| sv.attachments << a.dup }
+          last_saved_sv = script.newest_saved_script_version
+          sv = ScriptVersion.new(script:, code: contents, changelog: info[:messages].join((changelog_markup == 'markdown') ? "\n\n" : ', '), changelog_markup:)
+          sv.do_lenient_saving
+          sv.calculate_all(script.description)
 
-        sv.do_lenient_saving
-        sv.calculate_all(script.description)
-        script.apply_from_script_version(sv)
-        if script.save
-          updated_scripts << script
-        else
-          update_failed_scripts << script
+          same_code = last_saved_sv && sv.code == last_saved_sv.code
+          # Copy previous additional infos and screenshots
+          script.localized_attributes_for('additional_info').each do |la|
+            sv.build_localized_attribute(la)
+          end
+          last_saved_sv&.attachments&.each { |a| sv.attachments << a.dup }
+
+          script.apply_from_script_version(sv)
+          script.script_versions << sv unless same_code
+          if incoming_revision.present?
+            script.webhook_repository = repo_url
+            script.webhook_ref = info[:ref]
+            script.webhook_previous_revision = info[:previous_revision]
+            script.webhook_revision = incoming_revision
+          end
+          if script.save
+            updated_scripts << script
+          else
+            update_failed_scripts << script
+          end
         end
       end
       info[:script_attributes].each do |script_attribute|
@@ -222,5 +244,20 @@ module Webhooks
     result[:message] = update_failed_scripts.map { |s| "#{script_url(s)}: #{(s.errors.full_messages + s.script_versions.last.errors.full_messages).join(', ')}" }.join('. ') if update_failed_scripts.any?
 
     render json: result
+  end
+
+  def webhook_revision_order(script, repo_url, info, incoming_revision)
+    return nil if incoming_revision.blank? || script.webhook_repository != repo_url || script.webhook_revision.blank?
+
+    return :same if incoming_revision == script.webhook_revision
+
+    if script.webhook_ref == info[:ref]
+      return :incoming_newer if info[:previous_revision].present? && info[:previous_revision] == script.webhook_revision
+      return :incoming_older if incoming_revision == script.webhook_previous_revision
+    end
+
+    return nil if private_sync?(info)
+
+    Git.revision_order(repo_url, script.webhook_revision, incoming_revision)
   end
 end

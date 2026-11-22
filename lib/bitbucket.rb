@@ -6,7 +6,13 @@ class Bitbucket
       commits = {}
       params[:push][:changes].each do |change|
         change[:commits].each do |commit|
-          (commits[commit[:hash]] ||= []) << commit[:summary][:raw]
+          commit_details = (commits[commit[:hash]] ||= {
+            messages: [],
+            previous_revision: change[:old]&.dig(:target, :hash),
+            revision: change[:new]&.dig(:target, :hash),
+            ref: change[:new]&.dig(:name),
+          })
+          commit_details[:messages] << commit[:summary][:raw]
         end
       end
 
@@ -18,7 +24,10 @@ class Bitbucket
         files.each do |file|
           changed_files[file] ||= { messages: [] }
           changed_files[file][:commit] = commit
-          changed_files[file][:messages].concat(commits[commit])
+          changed_files[file][:messages].concat(commits[commit][:messages])
+          changed_files[file][:previous_revision] = commits[commit][:previous_revision]
+          changed_files[file][:revision] = commits[commit][:revision]
+          changed_files[file][:ref] = commits[commit][:ref]
           changed_files[file][:urls] ||= urls_for_ref(repo_url, branch, file)
         end
       end
