@@ -45,6 +45,9 @@ jobs:
           name: Copy test config
           command: |
             cp .circleci/application.yml .circleci/database.yml config/
+      - run:
+          name: Link Git executable
+          command: ln -s "$(command -v git)" bin/git
       - run: bundle exec rake db:create
       - run: bin/rails db:schema:load
       - run:
