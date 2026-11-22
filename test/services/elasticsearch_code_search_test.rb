@@ -201,6 +201,7 @@ class ElasticsearchCodeSearchTest < ActiveSupport::TestCase
   end
 
   test 'the database lock excludes concurrent rebuilds and updates' do
+    ElasticsearchCodeSearch.stubs(:index_name).returns("script_code_search_test_#{SecureRandom.hex(8)}")
     options = Script.connection_db_config.configuration_hash.slice(:host, :username, :password, :database, :port, :socket)
     other_connection = Mysql2::Client.new(options)
     lock_name = Script.connection.quote(ElasticsearchCodeSearch.index_name)
