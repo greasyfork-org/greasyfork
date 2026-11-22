@@ -180,6 +180,9 @@ class ScriptVersionsController < ApplicationController
       raise ActionController::BadRequest, 'Attachments are required when updating a script with screenshots'
     end
 
+    script_params = params.expect(script: [:script_type, :locale_id, :adult_content_self_report, :not_adult_content_self_report])
+    script_type = script_params.expect(:script_type).to_i
+
     svp['attachments'] = (svp['attachments'] || []).reject { |signed_id| params["remove-attachment-#{signed_id}"] == '1' }
 
     @script_version = ScriptVersion.new
@@ -198,15 +201,15 @@ class ScriptVersionsController < ApplicationController
     end
 
     @script_version.script = @script
-    @script.script_type = params['script']['script_type'].to_i
-    @script.locale_id = params['script']['locale_id'] if params['script'].key?('locale_id')
+    @script.script_type = script_type
+    @script.locale_id = script_params['locale_id'] if script_params.key?('locale_id')
 
-    if !@script.sensitive? && (params['script']['adult_content_self_report'] == '1' || sleazy?)
+    if !@script.sensitive? && (script_params['adult_content_self_report'] == '1' || sleazy?)
       @script.marked_adult_by_user = current_user
       @script.adult_content_self_report = true
     end
 
-    @script.not_adult_content_self_report_date = Time.current if @script.sensitive? && params['script']['not_adult_content_self_report'] == '1'
+    @script.not_adult_content_self_report_date = Time.current if @script.sensitive? && script_params['not_adult_content_self_report'] == '1'
 
     save_record = !preview && params['add-additional-info'].nil?
 
@@ -298,7 +301,7 @@ class ScriptVersionsController < ApplicationController
         # get the original script for display within the scripts layout
         @script.reload
         # but retain the script type!
-        @script.script_type = params['script']['script_type'].to_i
+        @script.script_type = script_type
         render :new, layout: 'scripts'
       end
       return
