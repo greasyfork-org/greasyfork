@@ -28,7 +28,11 @@ jobs:
     steps:
       - checkout
       - ruby/install-deps
-      - browser-tools/install-chrome
+      # Chrome 158 breaks Capybara's session reset: https://github.com/teamcapybara/capybara/issues/2865
+      - browser-tools/install-chrome:
+          replace-existing: true
+          chrome-version: "157.0.8103.78"
+      - browser-tools/install-chromedriver
       - run: sudo apt update
       - run: sudo apt install mariadb-client libvips brotli
       - run:
