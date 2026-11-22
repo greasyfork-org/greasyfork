@@ -1,10 +1,16 @@
+if ENV['HEADED'] == '1' && ENV['XDG_DATA_DIRS_VSCODE_SNAP_ORIG'] &&
+   ENV['GSETTINGS_SCHEMA_DIR']&.match?(%r{/snap/code/[^/]+/\.local/share/glib-2\.0/schemas\z})
+  # VS Code's Snap schemas can prevent the system Chrome from starting on Wayland.
+  ENV['XDG_DATA_DIRS'] = ENV['XDG_DATA_DIRS_VSCODE_SNAP_ORIG']
+  ENV.delete('GSETTINGS_SCHEMA_DIR')
+end
+
 require 'test_helper'
 require 'minitest/around/unit'
 require_relative 'support/inspector_error_retry'
 
 class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   include InspectorErrorRetry
-
   driven_by :headless_chrome
   include Warden::Test::Helpers
 
@@ -53,6 +59,7 @@ Capybara.register_driver :headless_chrome do |app|
     args: ['verbose', 'disable-gpu', 'no-sandbox', 'disable-dev-shm-usage', 'window-size=1400,1400', (ENV['HEADED'] == '1') ? nil : 'headless=new'].compact
   )
   options.add_preference('download.default_directory', File::NULL)
+  options.add_preference('profile.password_manager_leak_detection', false)
 
   Capybara::Selenium::Driver.new app,
                                  browser: :chrome,
