@@ -139,17 +139,20 @@ de:
       all: Ganze Zeit
     stats_library_usages_intro_html: "Die folgenden Skripte verwenden die URL %{site_name} dieser Bibliothek in einem <code>@require</code>:"
     stats_library_usages_script_column: Skript
+    diff_title: "Unterschiede"
     derivatives_intro: "Diese Skripte könnten auf Ihren Skripten basieren (oder Ihre Skripte auf diesen). Falls Sie eine nicht genehmigte Nutzung ihres Quelltextes feststellen, können Sie es vom Feedback-Tab des Skripts melden."
     derivatives_script_html: "%{script} von %{user}, Lizenz: %{license} %{diff_link:[Diff]}"
     derivatives_exact_copies_heading: "Exakte Kopien"
     derivatives_exact_copies_list_intro: "Die folgenden Skripte haben exakt den gleichen Quelltext wie Ihre:"
     derivatives_exact_copies_item_html: "%{script_link} von %{author_links} - Versionen: %{version_list}"
     derivatives_similar_heading: "Ähnliche Skripte"
+    derivatives_similar_info: "Die letzte Version des Skripts ist %{threshold}identisch zu dieser."
     similarity_score:
       high: Sehr ähnlich
       medium: Mäßig ähnlich
       low: Etwas ähnlich
       none: Nicht ähnlich
+    derivatives_similar_none: "Keine Skripts die zu %{threshold}identisch sind zu dieser Version sind."
     derivatives_similar_item: "%{score}: %{diff_link:[Diff]} %{script}"
     listing_title_all_sites: "Benutzerskripte für alle Seiten"
     listing_description_all_sites: "Benutzerskripte, welche auf allen Seiten Funktionen hinzufügen und Fehler beheben"
@@ -238,10 +241,12 @@ de:
     warning_potentially_minified_allowed_requires_link: "einer dieser Seiten"
     warning_code_previously_posted_html: "Dieser Code wurde bereits in %{script_links} veröffentlicht. Reposts werden von Moderatoren gelöscht."
     warning_license_missing_override_html: "Ohne Lizenz speichern"
+    warning_meta_not_at_start_html: "Ihr Code beginnt nicht mit <code>// ==UserScript==</code>. Code, Kommentare oder Leerzeichen können bei einigen Benutzerskript-Verwaltungsprogrammen zu Kompatibilitätsproblemen führen."
     additional_info_locale_prompt: "(Wählen Sie eine Sprache)"
     additional_info_add_localized: "Lokalisierte zusätzliche Informationen hinzufügen"
     additional_info_locale_repeated: "Zusätzliche Informationen für Sprache »%{locale_code}« nur einmal hinzufügen"
     localized_additional_info_with_no_name: "Zusätzliche Informationen sind für Sprache »%{locale_code}« angegeben, @name:%{locale_code} wird aber nicht bereitgestellt."
+    invalid_matchers: "Verwendete ungültige Übereinstimmungen: %{matches}"
     code_syncing_from_url_html: "Der Quelltext des Skripts ist eingestellt für Synchronisation von: %{field}"
     provide_code_syncing_from_url_html: "%{site_name} kann Skripte importieren, welche schon an anderer Stelle gespeichert sind, wie beispielsweise in einer Versionskontrolle (wie GitHub), Ihrem eigenen Server oder einer anderen Benutzerskript Seite. Geben Sie bitte eine Internetadresse an, um die Synchronisierung für Ihr Skript einzurichten: %{field}"
     sync_type_intro: "Das Skript wird synchronisiert:"
@@ -277,6 +282,14 @@ de:
     diff_new_version: "Neu:"
     diff_lines_of_context: "Kontextzeilen:"
     diff_ignore_whitespace: "Leerzeichenänderungen vernachlässigen"
+    common_snippets_none: "Es wurden keine gängigen Snippets gefunden."
+    by_author_html: "%{script} von %{authors}"
+    common_source_summary: "Wir haben %{count} in einer Stichprobe von %{sample_count} Code-Schnipseln Übereinstimmungen gefunden."
+    common_source_snippet: "Ausschnitt %{index}"
+    diff_view_title: "Übereinstimmungsmethode"
+    diff_view_diff: "Unterschiede"
+    diff_view_clean: "Aufgehübschte Unterschiede"
+    diff_view_snippets: "Häufig verwendete Code-Ausschnitte"
     diff_refresh: "Auffrischen"
     diff_no_change: "Keine Unterschiede gefunden."
     good_rating_explanation: "Anzahl an Nutzern, die es mit »Gut« bewertet oder ihren Favoriten hinzugefügt haben."
@@ -294,6 +307,7 @@ de:
     not_adult_content_self_report_html: "Dieses Skript enthält <strong>keine</strong> nicht-jugendfreien Inhalte und es ist <strong>nicht</strong> für eine Seite die nicht-jugendfreie Inhalte enthält."
     not_adult_content_self_report_explanation: "%{site_name} erlaubt Skripte mit nicht-jugendfreien Inhalten. Diese müssen jedoch entsprechend gekennzeichnet sein, damit Nutzer entscheiden können ob sie diese Inhalte sehen möchten. Ihr Skript wurde als nicht-jugendfrei gekennzeichnet. Sie können erklären dass es dies nicht ist. Ihre Erklärung wird von einem Moderator überprüft."
     not_adult_content_self_report_explanation_automatic: "%{site_name} erlaubt Skripte mit nicht-jugendfreiem Inhalt. Sie müssen aber als solche markiert sein, damit Benutzer auswählen können, ob sie sie sehen. Ihr Skript wurde als nicht-jugendfrei markiert, weil es für %{domain_list} ist."
+    adult_content_notice_from_sleazy: Da du dieses Skript auf %{site_name} veröffentlichst, ist davon auszugehen, dass es jugendgefährdende Inhalte enthält oder für eine Website mit solchen Inhalten bestimmt ist. Sollte dies nicht der Fall sein, veröffentliche dein Skript bitte stattdessen auf %{greasyfork_link:Greasy Fork}.
     adult_content_on_greasy_logged_in_error: "Dieses Skript ist mit Ihren derzeitigen %{edit_account_link:Greasy Fork Kontoeinstellungen} nicht länger auf dieser Seite verfügbar."
     adult_content_on_greasy_not_logged_in_error: "Dieses Skript ist auf dieser Seite nicht länger anonym verfügbar.  %{login_link:Loggen Sie sich ein} und prüfen Sie Ihre Greasy Fork Kontoeinstellungen."
     non_adult_content_on_sleazy: "Dieses Skript ist nicht auf dieser Webseite verfügbar."
@@ -327,6 +341,7 @@ de:
     error_unauthorized_copy: "Dieser Quelltext scheint eine unautorisierte Kopie von %{script} zu sein. Bitte nehmen Sie Notiz von %{site_name}s %{rules_link:Regeln} zum Veröffentlichen von Skripten."
     invitations:
       form_title: "Laden Sie weitere Autoren ein"
+      explanation: "Du kannst weitere Greasy Fork-Nutzer als Autoren dieses Skripts hinzufügen. Sie erhalten dieselben Rechte an diesem Skript wie du – einschließlich der Befugnis, weitere Autoren hinzuzufügen oder zu entfernen (sogar dich selbst)."
       invited_user_url_label: "Einzuladender Benutzer"
       invited_user_placeholder: "URL des Benutzerprofils auf %{site_name}"
       submit: "Sende Einladung"
@@ -377,6 +392,7 @@ de:
     antifeatures:
       label: Antifeatures
       warning_title: Dieses Skript enthält Antifeatures
+      intro: Vor der Installation möchte dich %{site_name} darauf hinweisen, dass dieses Skript sogenannte „Antifeatures“ enthält – Funktionen, die eher dem Autor des Skripts dienen als dir.
       author_explanation_intro: "Der Autor dieses Skriptes erklärt:"
       types:
         ads:
