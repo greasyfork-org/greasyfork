@@ -1,5 +1,0 @@
-class AddCategoryToBlockedScriptCode < ActiveRecord::Migration[8.0]
-  def change
-    add_column :blocked_script_codes, :category, :integer
-  end
-end
