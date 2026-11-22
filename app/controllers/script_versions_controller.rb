@@ -170,7 +170,17 @@ class ScriptVersionsController < ApplicationController
 
     # We will not purge these as they can be used by prior versions.
     svp = script_version_params
-    svp['attachments'] = svp['attachments'].reject { |signed_id| params["remove-attachment-#{signed_id}"] == '1' }
+    if params['script_version'].key?('attachments') &&
+       (!svp.key?('attachments') || !svp['attachments'].all? { |attachment| attachment.is_a?(String) || attachment.is_a?(ActionDispatch::Http::UploadedFile) })
+      raise ActionController::BadRequest, 'Invalid attachments'
+    end
+
+    if !svp.key?('attachments') && params[:script_id].present? &&
+       Script.find(params.expect(:script_id)).newest_saved_script_version&.attachments&.attached?
+      raise ActionController::BadRequest, 'Attachments are required when updating a script with screenshots'
+    end
+
+    svp['attachments'] = (svp['attachments'] || []).reject { |signed_id| params["remove-attachment-#{signed_id}"] == '1' }
 
     @script_version = ScriptVersion.new
     @script_version.assign_attributes(svp)
