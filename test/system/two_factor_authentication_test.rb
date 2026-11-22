@@ -95,6 +95,7 @@ class TwoFactorAuthenticationTest < ApplicationSystemTestCase
 
     visit user_path(user, locale: :en)
     click_link 'Edit sign in methods'
+    assert_title 'Edit sign in methods'
     assert_no_button 'Disable 2FA'
     assert_content '2FA is required on your account when using password-based logins.'
   end
