@@ -159,15 +159,25 @@ module Webhooks
 
     updated_scripts = []
     update_failed_scripts = []
+    revision_comparison_failed = false
 
     changed_files.each do |_filename, info|
       contents = info.content
       info.scripts.each do |script|
         script.with_lock do
+          incoming_revision = info.revision || info.commit || info.ref
+          begin
+            revision_order = webhook_revision_order(script, repo_url, info, incoming_revision)
+          rescue Git::Exception => e
+            message = "Could not determine webhook revision order for repository #{repo_url.inspect}, ref #{info.ref.inspect}, saved revision #{script.webhook_revision.inspect}, incoming revision #{incoming_revision.inspect}: #{e.message}"
+            Rails.logger.warn("Script #{script.id}: #{message}")
+            script.errors.add(:base, message)
+            update_failed_scripts << script
+            revision_comparison_failed = true
+            next
+          end
           # update sync type to webhook, now that we know this script is affected by it
           script.sync_type = 'webhook'
-          incoming_revision = info.revision || info.commit || info.ref
-          revision_order = webhook_revision_order(script, repo_url, info, incoming_revision)
           if revision_order == :incoming_older
             if script.changed? && !script.save
               update_failed_scripts << script
@@ -219,9 +229,9 @@ module Webhooks
       updated_failed: update_failed_scripts.map { |s| script_url(s) },
     }
 
-    result[:message] = update_failed_scripts.map { |s| "#{script_url(s)}: #{(s.errors.full_messages + s.script_versions.last.errors.full_messages).join(', ')}" }.join('. ') if update_failed_scripts.any?
+    result[:message] = update_failed_scripts.map { |s| "#{script_url(s)}: #{(s.errors.full_messages + s.script_versions.last&.errors&.full_messages.to_a).join(', ')}" }.join('. ') if update_failed_scripts.any?
 
-    render json: result
+    render json: result, status: revision_comparison_failed ? :unprocessable_content : :ok
   end
 
   def webhook_revision_order(script, repo_url, info, incoming_revision)

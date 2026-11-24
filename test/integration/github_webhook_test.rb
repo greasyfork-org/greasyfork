@@ -209,6 +209,40 @@ class GithubWebhookTest < ActionDispatch::IntegrationTest
     assert_equal revision_b, script.webhook_revision
   end
 
+  def test_webhook_reports_revision_comparison_failure_without_updating_script
+    script = Script.find_by(sync_identifier: 'https://github.com/JasonBarnabe/webhooktest/raw/master/test.user.js')
+    repo_url = 'https://github.com/JasonBarnabe/webhooktest.git'
+    saved_revision = 'a' * 40
+    incoming_revision = 'b' * 40
+    script.update!(webhook_repository: repo_url, webhook_ref: 'refs/heads/master',
+                   webhook_revision: saved_revision, webhook_previous_revision: 'c' * 40)
+    assert_nil script.sync_type
+    original_code = script.newest_saved_script_version.code
+    version_count = script.script_versions.count
+
+    Git.expects(:get_contents)
+       .with(repo_url, { 'test.user.js' => incoming_revision })
+       .yields('test.user.js', incoming_revision, code_with_version(script, '999999999'))
+    Git.expects(:revision_order)
+       .with(repo_url, saved_revision, incoming_revision)
+       .raises(Git::Exception.new("fatal: Not a valid commit name #{saved_revision}"))
+
+    push_webhook_request(User.find(1), body: push_body_with_revision(incoming_revision, 'd' * 40))
+
+    assert_response :unprocessable_content
+    assert_empty response.parsed_body['updated_scripts']
+    assert_equal ['https://greasyfork.org/en/scripts/18-mystring'], response.parsed_body['updated_failed']
+    assert_includes response.parsed_body['message'], 'Could not determine webhook revision order'
+    assert_includes response.parsed_body['message'], saved_revision
+    assert_includes response.parsed_body['message'], incoming_revision
+    assert_includes response.parsed_body['message'], 'fatal: Not a valid commit name'
+    script.reload
+    assert_equal saved_revision, script.webhook_revision
+    assert_nil script.sync_type
+    assert_equal version_count, script.script_versions.count
+    assert_equal original_code, script.newest_saved_script_version.code
+  end
+
   def test_webhook_push_with_no_commits
     user = User.find(1)
     push_webhook_request_with_no_commits(user)
