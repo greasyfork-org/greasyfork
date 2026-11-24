@@ -81,6 +81,22 @@ class GithubWebhookTest < ActionDispatch::IntegrationTest
     assert_equal '406', response.code
   end
 
+  def test_webhook_without_provider_event_is_not_assumed_to_be_github
+    user = User.find(1)
+    post user_webhook_url(user_id: user.id),
+         headers: { 'Content-Type' => 'application/json', 'User-Agent' => 'GitHub-Hookshot/8e03811' },
+         params: '{}'
+    assert_equal '406', response.code
+  end
+
+  def test_webhook_malformed_push_payload
+    user = User.find(1)
+    Sentry.expects(:capture_message).with('Invalid webhook payload', level: :warning, extra: { provider: :github })
+    push_webhook_request(user, body: '{"commits":[{}]}')
+    assert_equal '400', response.code
+    assert_equal({ 'message' => 'Invalid webhook payload.' }, response.parsed_body)
+  end
+
   def test_webhook_unpublished_release
     body = release_body.sub('"action":"published"', '"action":"unpublished"')
     user = User.find(1)

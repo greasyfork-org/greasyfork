@@ -303,10 +303,10 @@ class BitbucketWebhookTest < ActionDispatch::IntegrationTest
     }
   JSON
 
-  def webhook_request(user, secret: nil)
+  def webhook_request(user, secret: nil, user_agent: 'Bitbucket-Webhooks/2.0')
     secret ||= user.webhook_secret
     post user_webhook_url(user_id: user.id, secret:),
-         headers: { 'Host' => 'greasyfork.org', 'X-Forwarded-Proto' => 'https', 'X-Request-UUID' => 'cbb57380-2da5-4efa-9a69-fa61182bbccb', 'X-Event-Key' => 'repo:push', 'User-Agent' => 'Bitbucket-Webhooks/2.0', 'X-Attempt-Number' => '1', 'X-Hook-UUID' => '61bb6549-54df-4f62-81fe-350a0335d847', 'Content-Type' => 'application/json' },
+         headers: { 'Host' => 'greasyfork.org', 'X-Forwarded-Proto' => 'https', 'X-Request-UUID' => 'cbb57380-2da5-4efa-9a69-fa61182bbccb', 'X-Event-Key' => 'repo:push', 'User-Agent' => user_agent, 'X-Attempt-Number' => '1', 'X-Hook-UUID' => '61bb6549-54df-4f62-81fe-350a0335d847', 'Content-Type' => 'application/json' },
          params: CHANGE_BODY
   end
 
@@ -361,7 +361,7 @@ class BitbucketWebhookTest < ActionDispatch::IntegrationTest
     user = User.find(1)
     Script.find_by(sync_identifier: 'https://github.com/JasonBarnabe/webhooktest/raw/master/test.user.js').update!(sync_identifier: nil)
     Git.expects(:get_files_changed).yields('12245dbfb00de399a3108828b5aa2dc8bdbc4107', ['test.user.js'])
-    webhook_request(user)
+    webhook_request(user, user_agent: 'Bitbucket-Webhooks/3.0')
     assert_equal '200', response.code
     assert_equal({ 'updated_scripts' => [], 'updated_failed' => [], 'message' => 'No scripts found.' }, response.parsed_body)
   end

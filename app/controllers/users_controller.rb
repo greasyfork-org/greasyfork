@@ -166,16 +166,25 @@ class UsersController < ApplicationController
   def webhook
     user = User.find(params.expect(:user_id))
     user.with_lock do
-      changelog_markup = 'text'
-      changes, git_url = if request.headers['User-Agent'] == 'Bitbucket-Webhooks/2.0'
-                           process_bitbucket_webhook(user)
-                         elsif request.headers['X-Gitlab-Token'].present?
-                           process_gitlab_webhook(user)
-                         else
-                           changelog_markup = 'markdown'
-                           process_github_webhook(user)
-                         end
-      process_webhook_changes(changes, git_url, changelog_markup:) if changes
+      provider = webhook_provider
+      result = case provider
+               when :bitbucket then process_bitbucket_webhook(user)
+               when :gitlab then process_gitlab_webhook(user)
+               when :github then process_github_webhook(user)
+               else WebhookResult.respond(status: :not_acceptable)
+               end
+
+      if result.response?
+        Sentry.capture_message('Invalid webhook payload', level: :warning, extra: { provider: }) if result.response.status == :bad_request
+
+        if result.response.body
+          render json: result.response.body, status: result.response.status
+        else
+          head result.response.status
+        end
+      else
+        process_webhook_changes(result.changed_files, result.repository_url, changelog_markup: result.changelog_markup)
+      end
     end
   end
 
