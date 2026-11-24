@@ -20,9 +20,9 @@ class Github
       # We will keep all commit messages but only the most recent commit.
       changed_files = {}
       params[:commits].each do |c|
-        next if c[:modified].nil?
+        changed_paths = (c[:added].to_a + c[:modified].to_a).uniq
 
-        c[:modified].each do |m|
+        changed_paths.each do |m|
           changed_files[m] ||= {}
           changed_files[m][:commit] = c[:id]
           changed_files[m][:revision] = params[:after]

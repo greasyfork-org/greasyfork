@@ -1,11 +1,12 @@
 class Bitbucket
   class << self
     def info_from_push_event(params)
-      return {}, [] if params[:push][:changes].empty?
+      changes = params[:push][:changes]
+      return {} if changes.empty?
 
       commits = {}
-      params[:push][:changes].each do |change|
-        change[:commits].each do |commit|
+      changes.each do |change|
+        change[:commits].to_a.each do |commit|
           commit_details = (commits[commit[:hash]] ||= {
             messages: [],
             previous_revision: change[:old]&.dig(:target, :hash),
@@ -17,7 +18,8 @@ class Bitbucket
       end
 
       repo_url = "https://bitbucket.org/#{params[:repository][:full_name]}"
-      branch = params[:push][:changes].first[:new][:name]
+      branch = changes.filter_map { |change| change[:new]&.dig(:name) }.first
+      return {} if branch.nil?
 
       changed_files = {}
       Git.get_files_changed(repo_url, commits.keys.uniq) do |commit, files|

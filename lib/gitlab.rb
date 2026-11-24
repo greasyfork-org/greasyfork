@@ -1,7 +1,7 @@
 class Gitlab
   class << self
     def info_from_push_event(params)
-      return {}, [] if params[:commits].nil?
+      return {} if params[:commits].nil?
 
       repo_url = params[:repository][:git_http_url].delete_suffix('.git')
       ref = params[:ref]
@@ -11,9 +11,9 @@ class Gitlab
       # We will keep all commit messages but only the most recent commit.
       changed_files = {}
       params[:commits].each do |c|
-        next if c[:modified].nil?
+        changed_paths = (c[:added].to_a + c[:modified].to_a).uniq
 
-        c[:modified].each do |m|
+        changed_paths.each do |m|
           changed_files[m] ||= {}
           changed_files[m][:commit] = c[:id]
           changed_files[m][:revision] = params[:after]

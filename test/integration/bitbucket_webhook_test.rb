@@ -316,6 +316,47 @@ class BitbucketWebhookTest < ActionDispatch::IntegrationTest
     assert_equal '403', response.code
   end
 
+  def test_webhook_unsupported_event
+    user = User.find(1)
+    body = '{"repository":{"full_name":"JasonBarnabe/webhookstest"},"actor":{"nickname":"JasonBarnabe"},"fork":{"full_name":"OtherUser/webhookstest"}}'
+    post user_webhook_url(user_id: user.id, secret: user.webhook_secret),
+         headers: { 'Content-Type' => 'application/json', 'X-Event-Key' => 'repo:fork', 'User-Agent' => 'Bitbucket-Webhooks/2.0' },
+         params: body
+    assert_equal '406', response.code
+  end
+
+  def test_webhook_branch_deletion
+    body = <<~JSON
+      {
+        "push": {
+          "changes": [
+            {
+              "old": {
+                "type": "branch",
+                "name": "feature",
+                "target": {
+                  "hash": "12245dbfb00de399a3108828b5aa2dc8bdbc4107"
+                }
+              },
+              "new": null,
+              "commits": [],
+              "closed": true,
+              "created": false
+            }
+          ]
+        },
+        "repository": {
+          "full_name": "JasonBarnabe/webhookstest"
+        }
+      }
+    JSON
+    user = User.find(1)
+    post user_webhook_url(user_id: user.id, secret: user.webhook_secret),
+         headers: { 'Content-Type' => 'application/json', 'X-Event-Key' => 'repo:push', 'User-Agent' => 'Bitbucket-Webhooks/2.0' },
+         params: body
+    assert_equal '200', response.code
+  end
+
   def test_webook_no_script_match
     user = User.find(1)
     Script.find_by(sync_identifier: 'https://github.com/JasonBarnabe/webhooktest/raw/master/test.user.js').update!(sync_identifier: nil)

@@ -92,6 +92,10 @@ module Webhooks
     when 'Push Hook'
       changed_files = Gitlab.info_from_push_event(params)
     when 'Release Hook'
+      if request.request_parameters[:action] == 'delete'
+        render json: { message: 'Nothing to do on action delete.' }
+        return nil, nil
+      end
       changed_files = Gitlab.info_from_release_event(params)
     else
       head :not_acceptable

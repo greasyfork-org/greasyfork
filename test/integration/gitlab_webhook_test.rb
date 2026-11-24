@@ -177,9 +177,6 @@ class GitlabWebhookTest < ActionDispatch::IntegrationTest
     "email": "[REDACTED]"
     },
     "added": [
-
-    ],
-    "modified": [
     "script.user.js"
     ],
     "removed": [
@@ -220,12 +217,37 @@ class GitlabWebhookTest < ActionDispatch::IntegrationTest
     assert_equal '403', response.code
   end
 
+  def test_webhook_unsupported_event
+    user = User.find(1)
+    body = '{"object_kind":"tag_push","event_name":"tag_push","before":"0000000000000000000000000000000000000000","after":"1489b5cc37a6bf1f28c33cf25bf2d2dd2965d56d","ref":"refs/tags/v1.0.0","checkout_sha":"1489b5cc37a6bf1f28c33cf25bf2d2dd2965d56d","project":{"id":9515242,"git_http_url":"https://gitlab.com/jason.barnabe/glwebhookstest.git"},"repository":{"git_http_url":"https://gitlab.com/jason.barnabe/glwebhookstest.git"}}'
+    post user_webhook_url(user_id: user.id),
+         headers: { 'Content-Type' => 'application/json', 'X-Gitlab-Event' => 'Tag Push Hook', 'X-Gitlab-Token' => user.webhook_secret },
+         params: body
+    assert_equal '406', response.code
+  end
+
+  def test_webhook_release_delete
+    body = RELEASE_BODY.sub('"action": "create"', '"action": "delete"')
+    user = User.find(1)
+    post user_webhook_url(user_id: user.id),
+         headers: { 'Content-Type' => 'application/json', 'X-Gitlab-Event' => 'Release Hook', 'X-Gitlab-Token' => user.webhook_secret },
+         params: body
+    assert_equal '200', response.code
+    assert_equal({ 'message' => 'Nothing to do on action delete.' }, response.parsed_body)
+  end
+
   def test_webook_no_script_match
     user = User.find(1)
     Script.find_by(sync_identifier: 'https://github.com/JasonBarnabe/webhooktest/raw/master/test.user.js').update!(sync_identifier: nil)
     push_webhook_request(user)
     assert_equal '200', response.code
     assert_equal({ 'updated_scripts' => [], 'updated_failed' => [], 'message' => 'No scripts found.' }, response.parsed_body)
+  end
+
+  def test_webhook_push_with_no_commits
+    body = '{"object_kind":"push","ref":"refs/heads/master","before":"0000000000000000000000000000000000000000","after":"1489b5cc37a6bf1f28c33cf25bf2d2dd2965d56d","commits":[],"project":{"id":9515242,"git_http_url":"https://gitlab.com/jason.barnabe/glwebhookstest.git"},"repository":{"git_http_url":"https://gitlab.com/jason.barnabe/glwebhookstest.git"}}'
+    push_webhook_request(User.find(1), body:)
+    assert_equal '200', response.code
   end
 
   def test_webhook_change
