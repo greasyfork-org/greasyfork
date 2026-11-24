@@ -58,6 +58,8 @@ Capybara.register_driver :headless_chrome do |app|
   options = Selenium::WebDriver::Options.chrome(
     args: ['verbose', 'disable-gpu', 'no-sandbox', 'disable-dev-shm-usage', 'window-size=1400,1400', (ENV['HEADED'] == '1') ? nil : 'headless=new'].compact
   )
+  # Chrome 158 breaks Capybara's session reset: https://github.com/teamcapybara/capybara/issues/2865
+  options.browser_version = '157.0.8103.78'
   options.add_preference('download.default_directory', File::NULL)
   options.add_preference('profile.password_manager_leak_detection', false)
 
