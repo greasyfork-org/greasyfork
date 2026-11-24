@@ -10,6 +10,7 @@ zh-TW:
       user_list: "使用者列表"
       libraries: "函式庫"
       moderator_log: "管理員操作記錄"
+      privacy: "隱私權政策"
   scripts:
     created_date: "建立日期"
     updated_date: "更新日期"
@@ -37,6 +38,8 @@ zh-TW:
     downgrade: "降級至版本 %{version}"
     reinstall: "重新安裝版本 %{version}"
     old_version_warning: "這不是此腳本的最新版本，安裝此版本後將不會自動更新。仍要安裝嗎？"
+    post_install:
+      promoted_script_intro: "你可能也喜歡"
     library_instructions_html: "此腳本不應該直接安裝，它是一個供其他腳本使用的函式庫。欲使用本函式庫，請在腳本 metadata 寫上： %{code}"
     deleted_notice: "此腳本已被刪除。"
     deleted_notice_with_reason: "此腳本已因%{report_link:此檢舉}被刪除"
@@ -130,6 +133,8 @@ zh-TW:
       month: 最近 30 天
       year: 最近 365 天
       all: 所有時間
+    stats_library_usages_script_column: 腳本
+    diff_title: "%{script} - 差異"
     derivatives_intro: "這些腳本可能衍生自您的腳本（或您的腳本可能衍生自他們的腳本）。如果您發現了未經授權使用您的程式碼的情況，請在該腳本的意見回饋分頁中檢舉該腳本。"
     derivatives_script_html: "%{script}，作者 %{user}，授權條款：%{license} %{diff_link:[Diff]}"
     derivatives_exact_copies_heading: "完全相同的腳本"
@@ -160,6 +165,7 @@ zh-TW:
     listing_sort_created: "建立日期"
     listing_sort_updated: "更新日期"
     listing_sort_name: "腳本名稱"
+    listing_sort_entry_locales: '語言 (Language)'
     listing_filter_by_site_label: "依網站篩選："
     listing_filter_by_site_disable: "所有腳本"
     listing_filter_by_site_all_sites: "(全域執行)"
@@ -180,6 +186,7 @@ zh-TW:
       me: 我的腳本清單
       user: '%{author_name} 的腳本'
     search_failed: 載入結果時出現問題，部分搜尋功能可能無法正常運作，我們已收到此問題。
+    listing_advanced_search_clear: "清除"
     import: "匯入腳本"
     new: "發佈您撰寫的腳本"
     new_css: "發佈您撰寫的樣式表"
@@ -264,6 +271,7 @@ zh-TW:
     screenshots_add: "新增："
     screenshots_remove: "移除"
     replacement_script_explanation: "(可選)選擇另一個可替代此腳本的腳本。使用者將被更新並生成到此腳本。請輸入替代腳本的網址："
+    version_diff_title: "%{script} - 版本差異"
     diff_old_version: "之前:"
     diff_new_version: "之後:"
     diff_lines_of_context: "上下文行數:"
@@ -352,6 +360,7 @@ zh-TW:
     install_help_dialog:
       js:
         firefox: 您需要先安裝使用者腳本管理器擴展，如 %{tampermonkey_link:Tampermonkey}、%{greasemonkey_link:Greasemonkey} 或 %{violentmonkey_link:Violentmonkey} 之後才能安裝該腳本。
+        chrome: 您需要先安裝使用者腳本管理器擴充功能，如 %{tampermonkey_link:Tampermonkey} 或 %{violentmonkey_link:Violentmonkey} 後才能安裝該腳本。
         opera: 您需要先安裝使用者腳本管理器擴充功能，如 %{tampermonkey_link:Tampermonkey}或 %{violentmonkey_link:Violentmonkey} 後才能安裝該腳本。
         safari: 您需要先安裝使用者腳本管理器擴充功能，如 %{tampermonkey_link:Tampermonkey}或 %{userscripts_link:Userscripts} 後才能安裝該腳本。
         edge: 你需要先安裝一款使用者腳本管理器擴展，比如 %{tampermonkey_link:Tampermonkey}，才能安裝此腳本
@@ -490,6 +499,16 @@ zh-TW:
         <p>要使用使用者腳本，您首先要安裝使用者腳本管理器。您可以根據目前使用的瀏覽器來選擇一個使用者腳本管理器。</p>
     desktop_browsers:
       title: 桌面
+      browser_list_html: |
+          <ul>
+          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} or %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, or %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} or %{safari_userscripts_link:Userscripts}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} or %{edge_violentmonkey_link:Violentmonkey}</li>
+          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} or %{opera_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          %{standalone_managers_html}
+          </ul>
     android_browsers:
       title: 手機（安卓）
     ios_browsers:
@@ -960,6 +979,8 @@ zh-TW:
           <p>此腳本的部分行為會使作者在使用者購買時獲得傭金抽成，包括但不限於內置推薦或聯盟連結、重寫現有連結到推薦或聯盟連結、或能為腳本作者提供傭金抽成的優惠券代碼的腳本</p>
       tracking_html: |
           <p>此腳本含有追蹤使用者信息的代碼，包括但不限於Google Analytics在內的服務商與其他使用自定義代碼來報告使用者資訊給腳本作者的代碼</p>
+    api:
+      title: "%{site_name} API"
   search:
     script_search:
       title: "腳本搜尋"
@@ -970,6 +991,8 @@ zh-TW:
     code_search:
       title: "程式碼搜尋"
       description: "搜尋腳本代碼。區分大小寫的純文字搜尋，不支持萬用字元。"
+      minimum_length: "程式碼搜尋至少需要%{count}字元。"
+      timed_out: "程式碼搜尋逾時。請嘗試更具體的搜尋或稍後再試。"
     user_search:
       title: "使用者搜尋"
       description: "按名稱搜尋使用者"
@@ -1245,6 +1268,7 @@ zh-TW:
     edit_message_header: 編輯訊息
     update_message_submit: 更新訊息
     moderator_notice: 如果你想檢舉違反 %{site_name} 規則的行為，請使用該腳本、使用者或回覆上的檢舉連結。管理員無法根據直接訊息中的報告刪除內容
+    rate_limited: 您已達到可發動會話數量的上限。請稍後再試。
   screenshots:
     requirements: "最多上傳 %{number} 張 PNG、GIF 、 JPEG 、或 WEBP 圖片，且每張圖片不得超過 %{size}。"
   moderator_actions:
@@ -1358,6 +1382,9 @@ zh-TW:
     title: 匯入腳本
     intro: "%{site_name} 可以從其他網站匯入腳本，比如代碼版本控制系統 （例如 GitHub）、你自己的伺服器或其他的使用者腳本網站。"
     url_entry_label: 提供要匯入的URL，以新行分隔。這些URL應該指向原始的JavaScript或CSS文件。
+    language:
+      js: JavaScript
+      css: CSS
     sync_type_label: "初次匯入後，腳本應進行同步："
     additional_info_html: |
         <p>對於來自原始程式碼管理的腳本，請確保你使用的連結指向一個分支，而不是特定的提交，否則腳本將永遠不會更新。 例如，使用 <code>https://bitbucket.org/username/reponame/raw/<b>branch-name</b>/script.user.js</code>，而不是 <code>https://bitbucket.org/username/reponame/raw/<b>commit-hash</b>/script.user.js</code></p>
