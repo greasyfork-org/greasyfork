@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_22_123000) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_25_095452) do
   create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
     t.integer "DiscussionID", null: false
     t.integer "InsertUserID"
@@ -31,48 +31,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_22_123000) do
     t.index ["DiscussionID", "DateInserted"], name: "IX_Comment_1"
     t.index ["InsertUserID"], name: "FK_Comment_InsertUserID"
     t.index ["Score"], name: "IX_Comment_Score"
-  end
-
-  create_table "GDN_Discussion", primary_key: "DiscussionID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
-    t.string "Type", limit: 10
-    t.string "ForeignID", limit: 32
-    t.integer "CategoryID", null: false
-    t.integer "InsertUserID", null: false
-    t.integer "UpdateUserID"
-    t.integer "FirstCommentID"
-    t.integer "LastCommentID"
-    t.string "Name", limit: 100, null: false
-    t.text "Body", null: false
-    t.string "Format", limit: 20
-    t.text "Tags"
-    t.integer "CountComments", default: 0, null: false
-    t.integer "CountBookmarks"
-    t.integer "CountViews", default: 1, null: false
-    t.integer "Closed", limit: 1, default: 0, null: false
-    t.integer "Announce", limit: 1, default: 0, null: false
-    t.integer "Sink", limit: 1, default: 0, null: false
-    t.datetime "DateInserted", precision: nil, null: false
-    t.datetime "DateUpdated", precision: nil
-    t.binary "InsertIPAddress", limit: 16
-    t.binary "UpdateIPAddress", limit: 16
-    t.datetime "DateLastComment", precision: nil
-    t.integer "LastCommentUserID"
-    t.float "Score"
-    t.text "Attributes"
-    t.integer "RegardingID"
-    t.integer "ScriptID"
-    t.integer "Rating", default: 0, null: false
-    t.index ["CategoryID", "DateInserted"], name: "IX_Discussion_CategoryInserted"
-    t.index ["CategoryID", "DateLastComment"], name: "IX_Discussion_CategoryPages"
-    t.index ["CategoryID"], name: "FK_Discussion_CategoryID"
-    t.index ["DateInserted"], name: "IX_Discussion_DateInserted"
-    t.index ["DateLastComment"], name: "IX_Discussion_DateLastComment"
-    t.index ["ForeignID"], name: "IX_Discussion_ForeignID"
-    t.index ["InsertUserID"], name: "FK_Discussion_InsertUserID"
-    t.index ["Name", "Body"], name: "TX_Discussion", type: :fulltext
-    t.index ["RegardingID"], name: "IX_Discussion_RegardingID"
-    t.index ["ScriptID"], name: "index_GDN_Discussion_on_ScriptID"
-    t.index ["Type"], name: "IX_Discussion_Type"
   end
 
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
