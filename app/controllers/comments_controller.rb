@@ -88,7 +88,7 @@ class CommentsController < ApplicationController
   end
 
   def old_redirect
-    redirect_to Discussion.find_by!(migrated_from: ForumComment.find(params.expect(:id)).DiscussionID).path(locale: detect_locale_code), status: :moved_permanently
+    redirect_to Discussion.find_by!(migrated_from: LegacyComment.find(params.expect(:id)).discussion_id).path(locale: detect_locale_code), status: :moved_permanently
   end
 
   private

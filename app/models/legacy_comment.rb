@@ -1,0 +1,2 @@
+class LegacyComment < ApplicationRecord
+end

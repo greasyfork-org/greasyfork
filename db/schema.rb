@@ -10,29 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_25_095452) do
-  create_table "GDN_Comment", primary_key: "CommentID", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=MyISAM", force: :cascade do |t|
-    t.integer "DiscussionID", null: false
-    t.integer "InsertUserID"
-    t.integer "UpdateUserID"
-    t.integer "DeleteUserID"
-    t.text "Body", null: false
-    t.string "Format", limit: 20
-    t.datetime "DateInserted", precision: nil
-    t.datetime "DateDeleted", precision: nil
-    t.datetime "DateUpdated", precision: nil
-    t.binary "InsertIPAddress", limit: 16
-    t.binary "UpdateIPAddress", limit: 16
-    t.integer "Flag", limit: 1, default: 0, null: false
-    t.float "Score"
-    t.text "Attributes"
-    t.index ["Body"], name: "TX_Comment", type: :fulltext
-    t.index ["DateInserted"], name: "IX_Comment_DateInserted"
-    t.index ["DiscussionID", "DateInserted"], name: "IX_Comment_1"
-    t.index ["InsertUserID"], name: "FK_Comment_InsertUserID"
-    t.index ["Score"], name: "IX_Comment_Score"
-  end
-
+ActiveRecord::Schema[8.1].define(version: 2026_11_25_100500) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -306,6 +284,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_25_095452) do
     t.date "install_date", null: false
     t.integer "installs", null: false
     t.index ["script_id", "install_date"], name: "index_install_counts_on_script_id_and_install_date", unique: true
+  end
+
+  create_table "legacy_comments", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+    t.integer "discussion_id", null: false
   end
 
   create_table "library_usages", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
