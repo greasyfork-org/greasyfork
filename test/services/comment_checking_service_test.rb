@@ -8,10 +8,58 @@ class CommentCheckingServiceTest < ActiveSupport::TestCase
     assert_no_changes -> { Report.count } do
       CommentCheckingService.check(comment, ip: '127.0.0.1', referrer: nil, user_agent: 'Bot')
     end
-
     assert_not comment.reload.soft_deleted?
     assert_nil comment.discussion.review_reason
     assert_equal CommentCheckingService::STRATEGIES.count, comment.comment_check_results.count
+  end
+
+  test 'rechecking a reported discussion updates its results without creating another report' do
+    mock_comment_spam_results(CommentChecking::CustomChecker)
+    comment = comments(:script_comment)
+    report = Report.create!(item: comment.discussion, auto_reporter: 'rainman', reason: Report::REASON_SPAM)
+
+    assert_no_difference -> { Report.count } do
+      CommentCheckingService.check(comment, ip: '127.0.0.1', referrer: nil, user_agent: 'Bot')
+    end
+    assert report.reload.pending?
+    assert_equal 1, comment.comment_check_results.spam.count
+  end
+
+  test 'rechecking an item with a pending human report retains that report' do
+    mock_comment_spam_results(CommentChecking::CustomChecker)
+    comment = comments(:script_comment)
+    report = Report.create!(item: comment.discussion, reporter: users(:one), reason: Report::REASON_ABUSE)
+
+    assert_no_difference -> { Report.count } do
+      CommentCheckingService.check(comment, ip: '127.0.0.1', referrer: nil, user_agent: 'Bot')
+    end
+    assert_equal Report::REASON_ABUSE, report.reload.reason
+    assert report.pending?
+    assert_equal 1, comment.comment_check_results.spam.count
+  end
+
+  test 'does not check a stale queued version' do
+    comment = comments(:script_comment)
+    digest = comment.spam_check_digest
+    comment.update!(text: 'new version')
+    CommentChecking::AkismetChecker.any_instance.expects(:check).never
+
+    assert_no_difference -> { Report.count } do
+      CommentCheckingService.check(comment, ip: '127.0.0.1', referrer: nil, user_agent: 'Bot', content_digest: digest)
+    end
+    assert_empty comment.comment_check_results
+  end
+
+  test 'does not check a stale discussion title' do
+    comment = comments(:non_script_comment)
+    digest = comment.spam_check_digest
+    comment.discussion.update!(title: 'new title')
+    CommentChecking::AkismetChecker.any_instance.expects(:check).never
+
+    assert_no_difference -> { Report.count } do
+      CommentCheckingService.check(comment, ip: '127.0.0.1', referrer: nil, user_agent: 'Bot', content_digest: digest)
+    end
+    assert_empty comment.comment_check_results
   end
 
   test 'when one matches' do
@@ -97,6 +145,7 @@ class CommentCheckingServiceTest < ActiveSupport::TestCase
     comment.update!(text: 'totally unique content', deleted_at: Time.zone.now)
     repeated_comment = comment.dup
     repeated_comment.poster = users(:one)
+    repeated_comment.deleted_at = nil
     repeated_comment.poster.update!(created_at: 1.day.ago)
     repeated_comment.save!
     mock_comment_checkers_except(CommentChecking::DeletedRepeatedTextChecker)
@@ -111,6 +160,7 @@ class CommentCheckingServiceTest < ActiveSupport::TestCase
     comment.update!(text: 'totally unique content', deleted_at: Time.zone.now)
     comment.poster.update!(created_at: 1.day.ago)
     repeated_comment = comment.dup
+    repeated_comment.deleted_at = nil
     repeated_comment.save!
     mock_comment_checkers_except(CommentChecking::DeletedRepeatedTextChecker)
 

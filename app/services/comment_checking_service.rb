@@ -12,9 +12,16 @@ class CommentCheckingService
     CommentChecking::DataCentreChecker,
   ].freeze
 
-  def self.check(comment, ip:, user_agent:, referrer:)
-    return if comment.reports.any?
+  def self.check(comment, ip:, user_agent:, referrer:, content_digest: nil)
+    comment.with_lock do
+      return if comment.soft_deleted?
+      return if content_digest && comment.spam_check_digest != content_digest
 
+      check_locked(comment, ip:, user_agent:, referrer:)
+    end
+  end
+
+  def self.check_locked(comment, ip:, user_agent:, referrer:)
     strategies = STRATEGIES.map { |s| s.new(comment, ip:, user_agent:, referrer:) }
     skipped_strategies, strategies_to_run = strategies.partition(&:skip?)
     spam_results, ham_results = strategies_to_run.map(&:check).partition(&:spam?)
@@ -30,7 +37,11 @@ class CommentCheckingService
 
     reason = spam_results.any?(&:duplicate?) ? Report::REASON_DUPLICATE : Report::REASON_SPAM
     report_attributes = { auto_reporter: 'rainman', reason:, private_explanation: spam_results.map(&:text).map { |t| "- #{t}" }.join("\n").truncate_bytes(65_535) }
-    report = Report.create!(item: comment.reportable_item, **report_attributes)
+    existing_report = comment.reportable_item.reports.unresolved.first
+    return if existing_report && existing_report.auto_reporter != 'rainman'
+
+    report = existing_report || Report.create!(item: comment.reportable_item, **report_attributes)
+    report.update!(reason:, private_explanation: report_attributes[:private_explanation]) if existing_report
 
     if spam_results.sum(&:weight) >= 3 && strict_results?(comment)
       report.uphold!(moderator_notes: 'Blatant comment spam', ban_user: true, delete_comments: true, delete_scripts: true, automod: true)

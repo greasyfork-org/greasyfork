@@ -120,6 +120,18 @@ class Comment < ApplicationRecord
     first_comment? ? discussion : self
   end
 
+  def spam_check_eligible?
+    if first_comment?
+      poster.discussions.where(id: ..discussion_id).count <= 3
+    else
+      poster.comments.where(id: ..id).count <= 3
+    end
+  end
+
+  def spam_check_digest
+    Digest::SHA256.hexdigest([text, text_markup, (discussion.title if first_comment?)].to_json)
+  end
+
   INTERNAL_LINK_PREFIXES = ['https://greasyfork.org/', 'https://sleazyfork.org/'].freeze
 
   def text_as_doc

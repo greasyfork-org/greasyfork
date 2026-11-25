@@ -1,5 +1,5 @@
 class CommentCheckingStats
-  STAT_TYPES = [:skips, :true_positives, :false_positives, :true_negatives, :false_negatives].freeze
+  STAT_TYPES = [:skips, :true_positives, :false_positives, :true_negatives, :false_negatives, :pending, :unreviewed].freeze
 
   def initialize(from: 1.month.ago, to: Time.zone.tomorrow)
     @from = from
@@ -24,10 +24,27 @@ class CommentCheckingStats
   end
 
   def spam_comment_ids
-    @spam_comment_ids ||= date_scope.joins(comment: :reports).where(reports: { reason: Report::REASON_SPAM, result: Report::RESULT_UPHELD }).pluck(:comment_id) +
-                          date_scope.joins(comment: { discussion: :reports }).where(comment: { first_comment: true }, reports: { reason: Report::REASON_SPAM, result: Report::RESULT_UPHELD }).pluck(:comment_id) +
-                          date_scope.where(comment: { spam_deleted: true }).pluck(:comment_id) +
-                          date_scope.joins(comment: :discussion).where(comment: { first_comment: true, discussions: { spam_deleted: true } }).pluck(:comment_id)
+    @spam_comment_ids ||= report_comment_ids(Report.where(result: Report::RESULT_UPHELD, automod_resolved: false).where.not(resolver_id: nil).where('COALESCE(moderator_reason_override, reason) = ?', Report::REASON_SPAM), after_edit: true)
+  end
+
+  def pending_comment_ids
+    @pending_comment_ids ||= report_comment_ids(Report.unresolved) - spam_comment_ids
+  end
+
+  def ham_comment_ids
+    @ham_comment_ids ||= report_comment_ids(Report.where(reason: Report::REASON_SPAM, result: Report::RESULT_DISMISSED).where.not(resolver_id: nil), after_edit: true) - spam_comment_ids - pending_comment_ids
+  end
+
+  def report_comment_ids(reports, after_edit: false)
+    ids = reports.select(:id)
+    comment_reports = date_scope.joins(comment: :reports).where(reports: { id: ids })
+    discussion_reports = date_scope.joins(comment: { discussion: :reports }).where(comment: { first_comment: true }, reports: { id: ids })
+    if after_edit
+      condition = 'comment.edited_at IS NULL OR reports.updated_at >= comment.edited_at'
+      comment_reports = comment_reports.where(condition)
+      discussion_reports = discussion_reports.where(condition)
+    end
+    (comment_reports.distinct.pluck(:comment_id) + discussion_reports.distinct.pluck(:comment_id)).uniq
   end
 
   def records(strategy: nil, result: nil)
@@ -43,11 +60,15 @@ class CommentCheckingStats
     when :true_positives
       scope.spam.where(comment_id: spam_comment_ids)
     when :false_positives
-      scope.spam.where.not(comment_id: spam_comment_ids)
+      scope.spam.where(comment_id: ham_comment_ids)
     when :true_negatives
-      scope.ham.where.not(comment_id: spam_comment_ids)
+      scope.ham.where(comment_id: ham_comment_ids)
     when :false_negatives
       scope.ham.where(comment_id: spam_comment_ids)
+    when :pending
+      scope.where(result: [:spam, :ham], comment_id: pending_comment_ids)
+    when :unreviewed
+      scope.where(result: [:spam, :ham]).where.not(comment_id: spam_comment_ids + pending_comment_ids + ham_comment_ids)
     else
       raise "Unknown result type: #{result}"
     end

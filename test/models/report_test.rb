@@ -76,6 +76,50 @@ class ReportTest < ActiveSupport::TestCase
     assert_nil comment.reload.review_reason
   end
 
+  test 'dismissed spam discussion reports send ham feedback for the first comment' do
+    discussion = discussions(:script_discussion)
+    comment = discussion.first_comment
+    submission = AkismetSubmission.create!(item: comment, akismet_params: ['127.0.0.1', 'Bot', { text: comment.text }], result_spam: true, result_blatant: false)
+    report = Report.create!(item: discussion, reason: Report::REASON_SPAM, reporter: users(:one))
+
+    assert_enqueued_with(job: AkismetHamJob, args: [submission]) do
+      report.dismiss!(moderator: users(:mod), moderator_notes: '')
+    end
+  end
+
+  test 'human upheld spam report sends feedback for an Akismet miss' do
+    discussion = discussions(:script_discussion)
+    comment = discussion.first_comment
+    submission = AkismetSubmission.create!(item: comment, akismet_params: ['127.0.0.1', 'Bot', { text: comment.text }], result_spam: false, result_blatant: false)
+    report = Report.create!(item: discussion, reason: Report::REASON_SPAM, reporter: users(:one))
+
+    assert_enqueued_with(job: AkismetSpamJob, args: [submission]) do
+      report.uphold!(moderator: users(:mod))
+    end
+  end
+
+  test 'automatic decisions and stale submissions are not sent as feedback' do
+    comment = comments(:non_script_comment_2)
+    AkismetSubmission.create!(item: comment, akismet_params: ['127.0.0.1', 'Bot', { text: comment.text }], result_spam: false, result_blatant: false)
+    report = Report.create!(item: comment, reason: Report::REASON_SPAM, auto_reporter: 'rainman')
+    assert_no_enqueued_jobs(only: AkismetSpamJob) { report.uphold!(automod: true) }
+
+    comment = comments(:script_comment)
+    AkismetSubmission.create!(item: comment, akismet_params: ['127.0.0.1', 'Bot', { text: 'old text' }], result_spam: true, result_blatant: false)
+    report = Report.create!(item: comment, reason: Report::REASON_SPAM, reporter: users(:one))
+    assert_no_enqueued_jobs(only: AkismetHamJob) { report.dismiss!(moderator: users(:mod), moderator_notes: '') }
+  end
+
+  test 'moderator override controls spam feedback' do
+    comment = comments(:non_script_comment_2)
+    submission = AkismetSubmission.create!(item: comment, akismet_params: ['127.0.0.1', 'Bot', { text: comment.text }], result_spam: false, result_blatant: false)
+    report = Report.create!(item: comment, reason: Report::REASON_ABUSE, reporter: users(:one))
+
+    assert_enqueued_with(job: AkismetSpamJob, args: [submission]) do
+      report.uphold!(moderator: users(:mod), moderator_reason_override: Report::REASON_SPAM)
+    end
+  end
+
   test 'upholding a comment report logs the moderator deletion' do
     comment = comments(:non_script_comment_2)
     report = Report.create!(item: comment, reason: Report::REASON_SPAM, reporter: users(:one))

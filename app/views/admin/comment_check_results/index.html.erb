@@ -10,6 +10,8 @@
   </p>
 <% end %>
 
+<p>Confirmed outcomes use human-resolved spam reports. Pending and unreviewed results are not counted as correct or incorrect.</p>
+
 <table style="width: 100%">
   <thead>
     <tr>
@@ -21,6 +23,8 @@
       <th class="numeric">False Pos.</th>
       <th class="numeric">True Neg.</th>
       <th class="numeric">False Neg.</th>
+      <th class="numeric">Pending</th>
+      <th class="numeric">Unreviewed</th>
     </tr>
   </thead>
   <tbody>
@@ -78,13 +82,18 @@
             <% end %>
           <% end %>
         </td>
+        <% [:pending, :unreviewed].each do |key| %>
+          <td class="numeric">
+            <%= link_to(result[key], detail_admin_comment_check_results_path(from: params[:from], to: params[:to], strategy:, result: key)) %>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
   <tfoot>
     <tr>
       <td>Total</td>
-      <% [:total, :skips, :processed, :true_positives, :false_positives, :true_negatives, :false_negatives].each do |key| %>
+      <% [:total, :skips, :processed, :true_positives, :false_positives, :true_negatives, :false_negatives, :pending, :unreviewed].each do |key| %>
         <td class="numeric">
           <%= link_to(@totals[key], detail_admin_comment_check_results_path(from: params[:from], to: params[:to], result: key == :total ? nil : key)) %>
         </td>

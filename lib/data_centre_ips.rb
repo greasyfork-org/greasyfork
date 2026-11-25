@@ -93,8 +93,8 @@ class DataCentreIps
   def binary_ip_search(search_array, ip_int)
     # With bsearch_index, we need to ensure the comparison's results for the rule is all falses first.
     # So we find the first range whose start is greater than the IP, and then check the previous one for an actual match.
-    potential_match_index = search_array.bsearch_index { |ip_start, _ip_end| ip_int < ip_start }
-    return nil unless potential_match_index && potential_match_index > 0
+    potential_match_index = search_array.bsearch_index { |ip_start, _ip_end| ip_int < ip_start } || search_array.length
+    return nil if potential_match_index == 0
 
     potential_match = search_array[potential_match_index - 1]
     return potential_match if potential_match && ip_int.between?(potential_match[0], potential_match[1])

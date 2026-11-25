@@ -4,7 +4,7 @@ module Admin
       params[:from] ||= 30.days.ago.to_date.to_s
       params[:to] ||= Time.zone.tomorrow.to_s
       @results = CommentCheckingStats.new(from: params[:from], to: params[:to]).overview
-      @totals = @results.map(&:last).reduce({ total: 0, processed: 0, skips: 0, true_positives: 0, false_positives: 0, true_negatives: 0, false_negatives: 0 }) do |sum, stats|
+      @totals = @results.map(&:last).reduce({ total: 0, processed: 0, skips: 0, true_positives: 0, false_positives: 0, true_negatives: 0, false_negatives: 0, pending: 0, unreviewed: 0 }) do |sum, stats|
         {
           total: sum[:total] + stats[:total],
           processed: sum[:processed] + stats[:processed],
@@ -13,6 +13,8 @@ module Admin
           false_positives: sum[:false_positives] + stats[:false_positives],
           true_negatives: sum[:true_negatives] + stats[:true_negatives],
           false_negatives: sum[:false_negatives] + stats[:false_negatives],
+          pending: sum[:pending] + stats[:pending],
+          unreviewed: sum[:unreviewed] + stats[:unreviewed],
         }
       end
       @miss_count = CommentCheckingStats.new(from: params[:from], to: params[:to]).misses.count('distinct comment_id')

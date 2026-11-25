@@ -5,6 +5,18 @@ class DataCentreIpTest < ActiveSupport::TestCase
     @data_centre_ips = DataCentreIps.new
   end
 
+  test 'binary search includes the last range and handles boundaries' do
+    ranges = [[10, 20], [30, 40]]
+
+    assert_nil @data_centre_ips.binary_ip_search([], 10)
+    assert_nil @data_centre_ips.binary_ip_search(ranges, 9)
+    assert_equal ranges.first, @data_centre_ips.binary_ip_search(ranges, 20)
+    assert_nil @data_centre_ips.binary_ip_search(ranges, 29)
+    assert_equal ranges.last, @data_centre_ips.binary_ip_search(ranges, 30)
+    assert_equal ranges.last, @data_centre_ips.binary_ip_search(ranges, 40)
+    assert_nil @data_centre_ips.binary_ip_search(ranges, 41)
+  end
+
   test 'data_centre_according_to_ipcat? ipv4 positive' do
     assert @data_centre_ips.data_centre_according_to_dbip?(IPAddr.new('1.178.174.0').to_i)
   end

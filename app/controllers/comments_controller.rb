@@ -32,7 +32,7 @@ class CommentsController < ApplicationController
     notification_job = notification_job.set(wait: Comment::EDITABLE_PERIOD) unless Rails.env.local?
     notification_job.perform_later(@comment)
 
-    CommentSpamCheckJob.perform_later(@comment, request.ip, request.user_agent, request.referer) unless current_user.comments.count > 3
+    CommentSpamCheckJob.perform_later(@comment, request.ip, request.user_agent, request.referer, @comment.spam_check_digest) unless current_user.comments.count > 3
 
     redirect_to @comment.path(locale: request_locale.code)
   rescue ActiveRecord::RecordInvalid
@@ -52,12 +52,15 @@ class CommentsController < ApplicationController
     end
 
     begin
+      text_changed = false
+      title_changed = false
       Comment.transaction do
         if comment.first_comment? && @discussion.poster == current_user
           rating = params.dig(:comment, :discussion, :rating)
           title = params.dig(:comment, :discussion, :title)
           @discussion.update!(rating:) if rating && @discussion.for_script?
           @discussion.update!(title:) if title && !@discussion.for_script?
+          title_changed = @discussion.saved_change_to_title? if title && !@discussion.for_script?
           params[:comment].delete(:discussion)
         end
         comment.edited_at = Time.current
@@ -65,7 +68,9 @@ class CommentsController < ApplicationController
         comment.attachments.reject(&:new_record?).select { |attachment| params["remove-attachment-#{attachment.signed_id}"] == '1' }.each(&:destroy!)
         comment.construct_mentions(detect_possible_mentions(comment.text, comment.text_markup))
         comment.save!
+        text_changed = comment.saved_change_to_text? || comment.saved_change_to_text_markup?
       end
+      CommentSpamCheckJob.perform_later(comment, request.ip, request.user_agent, request.referer, comment.spam_check_digest) if (text_changed || title_changed) && comment.spam_check_eligible?
     rescue ActiveRecord::RecordInvalid
       flash[:alert] = comment.errors.full_messages.to_sentence
     end

@@ -7,7 +7,7 @@ module CommentChecking
     end
 
     def check
-      akismet_submission = AkismetSubmission.find_by(item: @comment) || submit_to_akismet
+      akismet_submission = AkismetSubmission.for_current_text(@comment) || submit_to_akismet
 
       return CommentChecking::Result.ham(self) unless akismet_submission.result_spam
 

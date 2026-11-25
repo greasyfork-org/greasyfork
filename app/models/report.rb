@@ -115,7 +115,7 @@ class Report < ApplicationRecord
       end
     end
     reporter&.update_trusted_report!
-    AkismetSubmission.mark_as_ham(item)
+    AkismetSubmission.mark_as_ham(item) if reason == REASON_SPAM
   end
 
   def fixed!(moderator:, moderator_notes:)
@@ -171,9 +171,11 @@ class Report < ApplicationRecord
         raise "Unknown report item #{item}"
       end
 
-      update_columns(result: RESULT_UPHELD, resolver_id: moderator&.id, automod_resolved: automod, moderator_notes:, self_upheld:, moderator_reason_override: (moderator_reason_override if moderator_reason_override != reason))
+      update_columns(result: RESULT_UPHELD, resolver_id: moderator&.id, automod_resolved: automod, moderator_notes:, self_upheld:, moderator_reason_override: (moderator_reason_override if moderator_reason_override != reason), updated_at: Time.current)
       reporter&.update_trusted_report!
     end
+
+    AkismetSubmission.mark_as_spam(item) if moderator && !automod && !self_upheld && (moderator_reason_override || reason) == REASON_SPAM
 
     return if reason == REASON_WRONG_CATEGORY
 
