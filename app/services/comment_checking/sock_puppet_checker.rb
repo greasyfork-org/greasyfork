@@ -5,7 +5,7 @@ module CommentChecking
     end
 
     def check
-      recent_discussions_by_same_ip = Discussion.joins(:poster).where(script: @comment.script, poster: { current_sign_in_ip: @comment.poster.current_sign_in_ip }, created_at: 1.day.ago..).where.not(poster: @comment.poster).load
+      recent_discussions_by_same_ip = Discussion.joins(:poster).where(script: @comment.script, poster: { current_sign_in_ip: @comment.poster.current_sign_in_ip }, created_at: 1.day.ago..).where.not(poster: @comment.poster).reject(&:poster_deleted?)
 
       return CommentChecking::Result.ham(self) if recent_discussions_by_same_ip.none?
 

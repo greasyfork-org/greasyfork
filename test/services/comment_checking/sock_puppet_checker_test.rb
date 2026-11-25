@@ -23,6 +23,38 @@ class SockPuppetCheckerTest < ActiveSupport::TestCase
     assert checker.check.spam?
   end
 
+  test 'ignores a previous discussion deleted by its poster' do
+    comment = comments(:script_comment)
+    comment.poster.update!(current_sign_in_ip: '127.0.0.1')
+
+    second_comment = duplicate_comment(comment)
+    second_comment_user = User.where.not(id: comment.poster_id).first
+    second_comment_user.update!(current_sign_in_ip: '127.0.0.1')
+    second_comment.discussion.update!(poster: second_comment_user)
+    second_comment.update!(poster: second_comment_user)
+    comment.discussion.soft_destroy!(by_user: comment.poster)
+
+    checker = CommentChecking::SockPuppetChecker.new(second_comment, ip: '127.0.0.1', referrer: nil, user_agent: 'Bot')
+    assert_not checker.check.spam?
+  end
+
+  test 'matches a previous discussion deleted by someone else' do
+    comment = comments(:script_comment)
+    comment.poster.update!(current_sign_in_ip: '127.0.0.1')
+
+    second_comment = duplicate_comment(comment)
+    second_comment_user = User.where.not(id: comment.poster_id).first
+    second_comment_user.update!(current_sign_in_ip: '127.0.0.1')
+    second_comment.discussion.update!(poster: second_comment_user)
+    second_comment.update!(poster: second_comment_user)
+    comment.discussion.soft_destroy!(by_user: second_comment_user)
+
+    checker = CommentChecking::SockPuppetChecker.new(second_comment, ip: '127.0.0.1', referrer: nil, user_agent: 'Bot')
+    result = checker.check
+    assert result.spam?
+    assert_includes result.text, comment.discussion.url
+  end
+
   test 'when two users with the same IP post on different scripts' do
     comment = comments(:script_comment)
     comment.poster.update!(current_sign_in_ip: '127.0.0.1')
