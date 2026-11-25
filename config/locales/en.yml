@@ -1313,7 +1313,7 @@ en:
         <p>%{site_name} logs all requests in a typical server log fashion. Information logged includes pages visited, IP address, and user agent string. These logs are for debugging and server analysis. The data is retained for one week. This data is not shared or made publicly available.</p>
       script_statistics_html: >
         <h2>Script statistics</h2>
-        <p>For the purposes of generating statistics, %{site_name} records install and update requests with IP address information. This information is retained for one day, and then is aggregated to no longer include the IP address. The IP-address-specific data is not shared or made publicly available, but the aggregated data is.</p>
+        <p>For the purposes of generating statistics, %{site_name} records install and update requests with IP address information. This information is retained for up to one week and is aggregated without the IP address. The IP-address-specific data is not shared or made publicly available, but the aggregated data is.</p>
       cookies_html: >
         <h2>Cookies (when not logged in)</h2>
         <p>%{site_name} may set temporary session cookies to allow for some site features. These cookies are not set to persist and may cleared when the browser is closed (depending on browser settings).</p>
