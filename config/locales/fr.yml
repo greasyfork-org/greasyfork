@@ -696,7 +696,6 @@ fr:
         one: "Votre jeu de scripts va être supprimé."
         many: "Vos %{count} jeux de scripts vont être supprimés."
         other: "Vos %{count} jeux de scripts vont être supprimés."
-      forum_effect: "Vos contributions sur le forum resteront, mais l'utilisateur associé sera renommé \"%{user_name}\"."
       email_confirmation: "Avant de supprimer votre compte, %{site_name} nous allons envoyer un email à %{email} afin de confirmer votre demande."
       submit: "Supprimer le compte"
       confirmation_email_sent: "Un email de confirmation de la suppression du compte a été envoyé"
@@ -716,7 +715,6 @@ fr:
       with_report: "Votre compte a été banni en réponse à %{report_link:ce rapport}. Vous pouvez %{delete_link:supprimer votre compte}, si vous le souhaitez."
       with_reason: "Votre compte a été banni. Un modérateur a donné la raison suivante: \"%{reason}\". Vous pouvez %{delete_link:supprimer votre compte}, si vous le souhaitez."
     banned_delete:
-      intro: "La suppression de votre compte supprimera également tous les scripts que vous avez posté. Toutes les contributions que vous avez apportées au forum resteront et votre nom d'utilisateur sera anonymisé. Même après la suppression, vous ne pourrez plus vous enregistrer avec la même adresse email. Connectez-vous ci-dessous pour supprimer votre compte."
       complete: "Votre compte a été supprimé."
     deleted_user_with_id: "(Utilisateur %{id} supprimé)"
     deleted_user_without_id: "(Utilisateur supprimé)"
@@ -1015,41 +1013,11 @@ fr:
           journaux sont destinés au débogage et à l'analyse du serveur. Les données
           sont conservées pendant une semaine. Ces données ne sont ni partagées ni
           rendues publiques.</p>
-      script_statistics_html: >
-          <h2>Statistiques de script</h2> <p>Afin de générer des statistiques,  %{site_name}
-          enregistre les demandes d'installation et de mise à jour avec les informations
-          d'adresse IP. Ces informations sont conservées pendant une journée, puis
-          sont agrégées pour ne plus inclure l'adresse IP. Les données spécifiques
-          à l'adresse IP ne sont pas partagées ni rendues publiques, contrairement
-          aux données agrégées.</p>
       cookies_html: >
           <h2>Cookies (lorsque vous n'êtes pas connecté)</h2> <p>%{site_name}  peut
           définir des cookies de session temporaires pour permettre certaines fonctionnalités
           du site. Ces cookies ne sont pas configurés pour persister et peuvent être
           effacés à la fermeture du navigateur (en fonction des paramètres du navigateur).</p>
-      user_accounts_html: >
-          <h2>Comptes d'utilisateurs</h2> <p>%{site_name} oblige les utilisateurs
-          à créer un compte pour publier des scripts, participer à des discussions
-          et accéder à certaines autres fonctionnalités du site.  Lors de la création
-          d'un compte, des informations telles que le nom d'utilisateur, l'adresse
-          IP, l'adresse e-mail et l'agent utilisateur peuvent être stockées.  Le nom
-          d'utilisateur sera affiché publiquement.  Aucune autre donnée ne sera affichée
-          publiquement ou partagée avec des tiers.  Ces données peuvent être supprimées
-          en supprimant le compte.</p> <p>%{site_name} utilisera l'adresse e-mail
-          fournie lors de la création d'un compte pour envoyer des informations importantes
-          telles que des demandes de réinitialisation de mot de passe.  Dans des situations
-          particulières, l'administrateur de %{site_name} peut également utiliser
-          cette adresse e-mail pour contacter les utilisateurs.</p> <p>%{site_name}
-          enverra par défaut des e-mails de notification à l'adresse fournie lors
-          de la création d'un compte.  Ces e-mails de notification couvrent des sujets
-          tels que les nouveaux commentaires sur les discussions auxquelles vous êtes
-          abonné et les nouvelles critiques publiées sur les scripts créés.  Ces notifications
-          peuvent être désactivées à partir des paramètres du profil de l'utilisateur.</p>
-          <p>Les actions effectuées lors de la connexion, par exemple la publication
-          de scripts et de commentaires, seront rendues visibles aux autres utilisateurs.</p>
-          <p>Si l'option "Se souvenir de moi" est cochée lors de la connexion à un
-          compte, %{site_name} définira un cookie persistant pour conserver l'état
-          de connexion. </p>
       external_logins_html: >
           <h2>Connexions externes</h2> <p>%{site_name}  permet aux utilisateurs de
           se connecter à l'aide de services externes tels que Google, GitHub et GitLab.
@@ -1061,14 +1029,6 @@ fr:
           <h2>Les scripts publiés sur %{site_name}</h2> <p>%{site_name}  contiennent
           du contenu généré par les utilisateurs, et les scripts publiés peuvent être
           en mesure de suivre les utilisateurs s'ils installent ce script.</p>
-      data_retention_html: >
-          <h2>Rétention des données</h2> <p>%{site_name}  conserve indéfiniment les
-          données du compte utilisateur et le contenu publié par l'utilisateur (tel
-          que les scripts et les commentaires). Les utilisateurs peuvent supprimer
-          leurs comptes et les données publiées à tout moment  %{delete_user_link:ici}.</p>
-          <p>Les données de navigation anonymes, telles que l'adresse IP, l'agent
-          utilisateur et les pages visitées, sont conservées pendant une semaine après
-          l'accès.</p>
       third_party_libraries_html: >
           <h2>Bibliothèques tierces</h2> <p>%{site_name}  peuvent inclure du code
           tiers pour collecter des statistiques ou afficher des publicités sur le
