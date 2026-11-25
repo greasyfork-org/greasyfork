@@ -121,16 +121,12 @@ en:
       <p>Your script will be permanently deleted 7 days after your request. You can cancel the permanent deletion in this time. If you do not, no one, not even moderators, will be able to recover your script.</p>
     # confirmation on pressing the permanent deletion button
     delete_permanently_confirm: "Are you sure you want to permanently delete your script?"
-    # text for the permanent deletion button
-    delete_permanently_submit: "Request permanent deletion"
     # text for the permanent deletion button when it would take effect immediately
     delete_permanently_immediate_submit: "Permanently delete"
     # notice after requesting permanent deletion
     delete_permanently_notice: "Request for permanent deletion has been recorded. Your script will be permanently deleted in 7 days."
     # text on the delete page after permanently deletion was requested
     delete_permanently_already_requested: "You requested permanent deletion on %{datetime}."
-    # notice after permanently deletion
-    delete_permanently_notice_immediate: "Script permanently deleted."
     # text for cancelling a permanent deletion request
     cancel_delete_permanently_submit: "Cancel permanent deletion request"
     # notice after cancelling a permanent deletion request
@@ -179,12 +175,8 @@ en:
     code_title: "%{script_name} - Source code"
     # HTML title of the script feedback page
     feedback_title: "%{script_name} - Feedback"
-    # text to show when no discussions are posted. start_discussion_first_link is a link with the text from feedback_start_first_discussion_link
-    feedback_no_discussions_html: "No discussions posted yet. %{start_first_discussion_link}"
     feedback_no_discussions_on_page_form: "No discussions posted yet."
     feedback_report_instead: "If you think this script is breaking %{rules_link:%{site_name}'s rules}, please %{report_link:report it for removal}."
-    feedback_start_first_discussion_link: "Be the first to discuss this script."
-    feedback_discussion_or_report: "%{new_discussion_link:Start a new discussion on this script} or %{report_link:report it for removal}."
     # html title for script stats page
     stats_title: "%{script_name} - Stats"
     # heading for daily install stats on stats page
@@ -217,8 +209,6 @@ en:
     derivatives_heading: "Derivatives"
     # text explaining the derivatives page and what to do if the user finds unauthorized copies
     derivatives_intro: "These scripts may be based on yours (or yours may be based on them). If you find an unauthorized use of your code, report it from that script's feedback tab."
-    # format for scripts listed on the derivatives page. script_link is a link to the derivative's page, user_link is a link to the user who created the derivative, license is text, link to the license, or scripts.no_license
-    derivatives_script_html: "%{script} by %{user}, license: %{license} %{diff_link:[Diff]}"
     derivatives_exact_copies_heading: "Exact copies"
     derivatives_exact_copies_list_intro: "The following scripts have the exact same code as yours:"
     derivatives_exact_copies_item_html: "%{script_link} by %{author_links} - versions: %{version_list}"
@@ -324,20 +314,6 @@ en:
     locale_explanation_html: "Should match the language of <code>@name</code>, <code>@description</code>, and the first additional info."
     # the default value for the locale box, if submitted the site will attempt to detect the language of the entry
     locale_auto_select: "(Automatically detect)"
-    # label which lists the sets this script is in, which is followed by controls to change its inclusions
-    sets_label: "In script sets:"
-    # label for when the script is not in any sets, which is followed by controls to change its inclusions
-    sets_label_no_sets: "Script sets:"
-    # option to remove the script from the set
-    sets_remove_inclusion: "Remove from %{set_name}"
-    # option to remove the script's exclusion from the set
-    sets_remove_exclusion: "Remove exclusion from %{set_name}"
-    # option to add the script to the set
-    sets_add_inclusion: "Add to %{set_name}"
-    # option to exclude the script from the set (when it's been included as part of a sub set)
-    sets_add_exclusion: "Exclude from %{set_name}"
-    # option to add the script to a new set
-    sets_add_to_new: "Add to new set"
     # summary of %{site_name}'s rules for posting scripts. full_rules_link is a link to the full rules with text of rules_summary_link_to_full
     rules_summary_html: "Scripts must be <strong>properly described</strong>, cannot be <strong>obfuscated</strong> or <strong>minified</strong>, must respect <strong>copyright</strong>, and are limited in the <strong>external code</strong> used. %{full_rules_link}"
     # full rules link text used in the rules summary
@@ -537,7 +513,6 @@ en:
     updated: "Script updated."
     preview_additional_info: "Preview"
     must_confirm: "You must confirm your account before you can post scripts. You have two confirmation options - add an external sign-in or send a confirmation email."
-    must_confirm_external_sign_in: ""
     must_confirm_email_button: "Send confirmation link to %{email}"
     needs_secure_login:
       intro: "You must set up your account with a secure login method before you can post scripts."
@@ -817,8 +792,6 @@ en:
     control_panel: "Control panel"
     # heading for the list of discussions about a user's own scripts
     discussions_on_scripts: "Discussions on your scripts"
-    # alt text for the RSS feed icon for discussions about a user's own scripts
-    discussions_on_scripts_feed_alt: "RSS Feed"
     # text to show in the section for discussions about a user's own scripts if there are no discussions yet
     discussions_on_scripts_none: "None yet!"
     # link to more discussions on a user's own scripts, as the initial list is limited in number
@@ -861,8 +834,6 @@ en:
     set_password: "Set password"
     # button to set a password when one is already set
     update_password: "Update password"
-    # error message when the password and the confirmation don't match
-    update_password_no_match: "Passwords don't match."
     # notice after a password was updated successfully
     password_updated: "Password updated."
     # information text saying the user can unset their password and use just external sign ins
@@ -1536,7 +1507,6 @@ en:
     submit_rebuttal: "Submit rebuttal"
     rebuttal_submitted: A moderator will review this report and your explanation and make a decision.
     delete_script: "Delete script"
-    view_discussion: "View discussion"
     load_diff: "Load diff"
     load_cleaned_diff: "Load cleaned code diff"
     load_similarity_comparison: "Load similarity comparison"
