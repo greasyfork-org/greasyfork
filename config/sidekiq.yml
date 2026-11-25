@@ -31,6 +31,9 @@
     delete_old_notifications_job:
       interval: '1h'
       class: DeleteOldNotificationsJob
+    soft_deleted_forum_content_delete_job:
+      interval: '1h'
+      class: SoftDeletedForumContentDeleteJob
     inactive_user_notification_job:
       interval: '1h'
       class: InactiveUserNotificationJob
