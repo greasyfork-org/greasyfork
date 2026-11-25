@@ -3,6 +3,7 @@ class Conversation < ApplicationRecord
   belongs_to :starting_user, class_name: 'User'
 
   has_many :messages, dependent: :destroy
+  has_many :notifications, as: :item, dependent: :destroy
 
   has_and_belongs_to_many :users, autosave: false
 

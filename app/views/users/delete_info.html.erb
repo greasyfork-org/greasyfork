@@ -17,6 +17,9 @@
   if script_set_count > 0 %>
     <li><%= t('users.delete.script_sets_effect', count: script_set_count) %></li>
   <% end
+  if @user.conversations.exists? %>
+    <li><%= t('users.delete.conversations_effect') %></li>
+  <% end
   if @user.comments.not_deleted.any? %>
     <li><%= t('users.delete.forum_effect', user_name: "Deleted User #{@user.id}") %></li>
   <% end %>

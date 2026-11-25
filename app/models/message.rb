@@ -5,6 +5,9 @@ class Message < ApplicationRecord
   belongs_to :conversation
   belongs_to :poster, class_name: 'User'
 
+  has_many :notifications, as: :item, dependent: :destroy
+  has_many :reports, as: :item, dependent: :destroy
+
   validates :content, presence: true, length: { maximum: 10_000 }
   validates :content_markup, presence: true, inclusion: { in: %w[html markdown] }
 

@@ -47,6 +47,8 @@ class User < ApplicationRecord
   generates_token_for(:one_click_unsubscribe)
 
   before_destroy(prepend: true) do
+    conversations.find_each(&:destroy!)
+
     scripts.select { |script| script.authors.where.not(user_id: id).none? }.each do |script|
       if banned?
         # Retain the evidence

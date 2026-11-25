@@ -982,6 +982,7 @@ en:
       script_sets_effect:
         one: "Your %{count} script sets will be deleted."
         other: "Your %{count} script sets will be deleted."
+      conversations_effect: "Your conversations and their messages will be deleted for all participants."
       forum_effect: "Your contributions to the forum will remain, but the associated user will be renamed \"%{user_name}\"."
       email_confirmation: "Before deleting your account, %{site_name} will send an email to %{email} to confirm your request."
       submit: "Delete account"
@@ -1002,7 +1003,7 @@ en:
       with_report: "Your account has been banned in response to %{report_link:this report}. You may %{delete_link:delete your account}, if you wish."
       with_reason: "Your account has been banned. A moderator gave the following reason: \"%{reason}\". You may %{delete_link:delete your account}, if you wish."
     banned_delete:
-      intro: "Deleting your account will also delete any scripts you posted. Any forum contributions you made will remain, but your username will be anonymized. Even after deleting, you will not be able to register again with the same email address. Sign in below to delete your account."
+      intro: "Deleting your account will also delete any scripts you posted. Your conversations and their messages will be deleted for all participants. Any forum contributions you made will remain, but your username will be anonymized. Even after deleting, you will not be able to register again with the same email address. Sign in below to delete your account."
       complete: "Your account has been deleted."
     deleted_user_with_id: "(Deleted user %{id})"
     deleted_user_without_id: "(Deleted user)"
@@ -1334,6 +1335,7 @@ en:
       data_retention_html: >
         <h2>Data retention</h2>
         <p>%{site_name} retains user account data and user-posted content (such as scripts and comments) indefinitely. Users may delete their accounts and posted data at any time %{delete_user_link:here}.</p>
+        <p>When an account is deleted, its conversations and messages are deleted for all participants.</p>
         <p>Anonymous browsing data, such as IP address, user agent, and pages visited, is retained for one week after access.</p>
         <p>Database records of comment spam-check submissions sent to Akismet are normally deleted after one week, but are retained while a related report is pending.</p>
       third_party_libraries_html: >

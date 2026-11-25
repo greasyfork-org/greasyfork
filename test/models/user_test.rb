@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
+  include ActiveJob::TestHelper
+
   setup do
     EmailAddress.stubs(:valid?).returns(true)
   end
@@ -17,6 +19,36 @@ class UserTest < ActiveSupport::TestCase
     assert_equal user, Script.find(2).users.first
     user.destroy!
     assert_not_nil Script.find_by(id: 2)
+  end
+
+  [:geoff, :junior].each do |participant|
+    test "deleting #{participant} deletes their conversations and related records" do
+      conversation = conversations(:geoff_and_junior)
+      message = messages(:geoff_and_junior_1)
+      other_user = users((participant == :geoff) ? :junior : :geoff)
+      conversation_notification = Notification.create!(user: other_user, item: conversation, notification_type: :new_conversation)
+      message_notification = Notification.create!(user: other_user, item: message, notification_type: :new_message)
+      report = Report.create!(item: message, reason: Report::REASON_SPAM, reporter: other_user)
+      unrelated = Conversation.create!(starting_user: users(:one), users: [users(:one), users(:mod)])
+
+      users(participant).destroy!
+
+      assert_not Conversation.exists?(conversation.id)
+      assert_not Message.exists?(message.id)
+      assert_not Notification.exists?(conversation_notification.id)
+      assert_not Notification.exists?(message_notification.id)
+      assert_not Report.exists?(report.id)
+      assert Conversation.exists?(unrelated.id)
+    end
+  end
+
+  test 'pending message notifications are discarded after account deletion' do
+    message = messages(:geoff_and_junior_1)
+    MessageNotificationJob.perform_later(message)
+
+    users(:geoff).destroy!
+
+    assert_nothing_raised { perform_enqueued_jobs(only: MessageNotificationJob) }
   end
 
   test 'deleting a banned user' do
