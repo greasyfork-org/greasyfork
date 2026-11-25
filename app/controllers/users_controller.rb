@@ -324,7 +324,8 @@ class UsersController < ApplicationController
     @user = current_user
     @user.delete_confirmation_key = SecureRandom.hex
     @user.delete_confirmation_expiry = 1.day.from_now
-    @user.save(validate: false)
+    @user.delete_confirmation_forum_content = params[:delete_forum_content] == '1'
+    @user.save!(validate: false)
     UserMailer.delete_confirm(@user, site_name).deliver_later
     flash[:notice] = t('users.delete.confirmation_email_sent')
     redirect_to @user
@@ -342,14 +343,20 @@ class UsersController < ApplicationController
   def delete_complete
     @user = current_user
     if params[:cancel].present?
-      @user.update(delete_confirmation_key: nil, delete_confirmation_expiry: nil)
+      @user.update!(delete_confirmation_key: nil, delete_confirmation_expiry: nil, delete_confirmation_forum_content: false)
       flash[:notice] = t('users.delete.confirmation.cancelled')
     elsif params[:key].blank? || @user.delete_confirmation_key.blank? || params[:key] != @user.delete_confirmation_key
       flash[:alert] = t('users.delete.confirmation.key_mismatch')
     elsif @user.delete_confirmation_expiry.nil? || DateTime.now > @user.delete_confirmation_expiry
       flash[:alert] = t('users.delete.confirmation.request_expired')
     else
-      @user.destroy!
+      User.transaction do
+        if @user.delete_confirmation_forum_content?
+          @user.discussions.find_each(&:destroy!)
+          @user.comments.find_each(&:destroy!)
+        end
+        @user.destroy!
+      end
       sign_out @user
       flash[:alert] = t('users.delete.confirmation.completed')
     end

@@ -118,6 +118,17 @@ dt[title] > span {
   max-width: calc(100% - 38px);
   vertical-align: top;
 }
+#forum-content-options label.radio-label {
+  display: flex;
+  align-items: flex-start;
+  max-width: 100%;
+  font-size: small;
+}
+#forum-content-options input[type="radio"] {
+  flex: none;
+  margin: 0.1em 0 0;
+  margin-inline-end: 0.4em;
+}
 label.subselection-radio-title {
   font-weight: normal;
   font-size: small;

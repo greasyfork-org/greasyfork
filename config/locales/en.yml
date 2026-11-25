@@ -983,7 +983,9 @@ en:
         one: "Your %{count} script sets will be deleted."
         other: "Your %{count} script sets will be deleted."
       conversations_effect: "Your conversations and their messages will be deleted for all participants."
-      forum_effect: "Your contributions to the forum will remain, but the associated user will be renamed \"%{user_name}\"."
+      forum_content_choice: "What should happen to your forum contributions?"
+      retain_forum_content: "Retain discussions I started and comments I posted, but remove my username from them."
+      delete_forum_content: "Permanently delete discussions I started and comments I posted."
       email_confirmation: "Before deleting your account, %{site_name} will send an email to %{email} to confirm your request."
       submit: "Delete account"
       confirmation_email_sent: "Deletion confirmation email has been sent."
@@ -992,6 +994,8 @@ en:
         body: "A request was made to delete your account '%{user_name}' on %{site_name}. To confirm this request and delete your account, go to %{url} . This must be completed in the next 24 hours or the request will be cancelled."
       confirmation:
         intro: "You are about to delete the account '%{user_name}'. This action cannot be undone."
+        forum_content_delete: "Discussions you started and comments you posted will be permanently deleted."
+        forum_content_retain: "You chose to retain discussions you started and comments you posted, but remove your username from them."
         confirm: "Delete '%{user_name}'"
         cancel: "Cancel deletion"
         key_mismatch: "Could not delete user - keys do not match."
@@ -1334,7 +1338,7 @@ en:
         <p>%{site_name} contains user-generated content, and scripts posted may be able to track users if they install that script.</p>
       data_retention_html: >
         <h2>Data retention</h2>
-        <p>%{site_name} retains user account data and user-posted content (such as scripts and comments) indefinitely. Users may delete their accounts and posted data at any time %{delete_user_link:here}.</p>
+        <p>%{site_name} retains user account data and user-posted content (such as scripts and comments) indefinitely. Users may delete their accounts and content %{delete_user_link:here}.</p>
         <p>When an account is deleted, its conversations and messages are deleted for all participants.</p>
         <p>Anonymous browsing data, such as IP address, user agent, and pages visited, is retained for one week after access.</p>
         <p>Database records of comment spam-check submissions sent to Akismet are normally deleted after one week, but are retained while a related report is pending.</p>

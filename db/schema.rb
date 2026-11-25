@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_25_170000) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_25_180000) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -729,6 +729,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_25_170000) do
     t.boolean "otp_required_for_login"
     t.boolean "require_secure_login_for_author", default: true, null: false
     t.datetime "inactive_notification_sent_at"
+    t.boolean "delete_confirmation_forum_content", default: false, null: false
     t.index ["canonical_email"], name: "index_users_on_canonical_email"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true

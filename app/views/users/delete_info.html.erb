@@ -19,14 +19,23 @@
   <% end
   if @user.conversations.exists? %>
     <li><%= t('users.delete.conversations_effect') %></li>
-  <% end
-  if @user.comments.not_deleted.any? %>
-    <li><%= t('users.delete.forum_effect', user_name: "Deleted User #{@user.id}") %></li>
   <% end %>
 </ul>
 
-<p><%= t('users.delete.email_confirmation', email: @user.email, site_name: site_name) %></p>
-
 <%= form_tag(user_delete_start_path) do %>
+  <% if @user.comments.exists? %>
+    <div id="forum-content-options" class="form-control" role="group" aria-labelledby="forum-content-choice">
+      <span id="forum-content-choice"><%= t('users.delete.forum_content_choice') %></span><br>
+      <%= label_tag :delete_forum_content_0, class: 'radio-label' do %>
+        <%= radio_button_tag :delete_forum_content, '0', true %>
+        <span><%= t('users.delete.retain_forum_content') %></span>
+      <% end %>
+      <%= label_tag :delete_forum_content_1, class: 'radio-label' do %>
+        <%= radio_button_tag :delete_forum_content, '1' %>
+        <span><%= t('users.delete.delete_forum_content') %></span>
+      <% end %>
+    </div>
+  <% end %>
+  <p><%= t('users.delete.email_confirmation', email: @user.email, site_name: site_name) %></p>
   <input type="submit" value="<%= t('users.delete.submit') %>">
 <% end %>

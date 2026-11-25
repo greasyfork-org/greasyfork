@@ -11,6 +11,7 @@ require_relative 'support/inspector_error_retry'
 
 class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   include InspectorErrorRetry
+
   driven_by :headless_chrome
   include Warden::Test::Helpers
 
