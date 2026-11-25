@@ -9,7 +9,7 @@ module CommentChecking
 
       if previous_comments_by_same_user.any?
         reports = previous_comments_by_same_user.filter_map { |c| c.reports.upheld.take }
-        return CommentChecking::Result.new(true, strategy: self, text: "Matched previous comments by same user: #{previous_comments_by_same_user.map(&:url).join(' ')}", reports:)
+        return CommentChecking::Result.new(true, strategy: self, text: "Matched previous comments by same user: #{previous_comments_by_same_user.map(&:url).join(' ')}", reports:, duplicate: true)
       end
 
       CommentChecking::Result.ham(self)

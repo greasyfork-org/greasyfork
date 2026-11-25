@@ -16,7 +16,7 @@
     </p>
 
     <div class="form-control radio-group">
-      <% Report::NON_SCRIPT_REASONS.each do |reason| %>
+      <% Report::USER_AND_MESSAGE_REASONS.each do |reason| %>
         <div>
           <%= f.radio_button(:reason, reason, required: true) %> <%= f.label :reason, it("reports.reason.#{reason}", antifeature_link: help_antifeatures_path), class: 'radio-label', value: reason %>
         </div>

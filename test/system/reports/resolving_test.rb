@@ -95,7 +95,7 @@ class ReportsResolvingTest < ApplicationSystemTestCase
       assert_changes -> { report.item.reload.deleted? }, from: false, to: true do
         assert_enqueued_emails(2) do
           assert_difference -> { Notification.count } => 2 do
-            select 'Other'
+            select 'Duplicate'
             click_on 'Delete script'
             assert_content 'There are currently no actionable reports.'
           end
@@ -105,10 +105,10 @@ class ReportsResolvingTest < ApplicationSystemTestCase
 
     report.reload
     assert_equal Report::REASON_MALWARE, report.reason
-    assert_equal Report::REASON_OTHER, report.moderator_reason_override
+    assert_equal Report::REASON_DUPLICATE, report.moderator_reason_override
 
     visit report_url(report, locale: :en)
-    assert_content 'but they upheld it as Other'
+    assert_content 'but they upheld it as Duplicate'
   end
 
   test 'reported script author self-deleting' do

@@ -28,7 +28,8 @@ class CommentCheckingService
 
     return if spam_results.empty?
 
-    report_attributes = { auto_reporter: 'rainman', reason: Report::REASON_SPAM, private_explanation: spam_results.map(&:text).map { |t| "- #{t}" }.join("\n").truncate_bytes(65_535) }
+    reason = spam_results.any?(&:duplicate?) ? Report::REASON_DUPLICATE : Report::REASON_SPAM
+    report_attributes = { auto_reporter: 'rainman', reason:, private_explanation: spam_results.map(&:text).map { |t| "- #{t}" }.join("\n").truncate_bytes(65_535) }
     report = Report.create!(item: comment.reportable_item, **report_attributes)
 
     if spam_results.sum(&:weight) >= 3 && strict_results?(comment)

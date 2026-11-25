@@ -8,7 +8,8 @@ class ScriptPreviouslyDeletedCheckJob < ApplicationJob
 
     return if script.locked?
 
-    similar_locked_scripts = (check_by_code(script) + check_by_name(script) + check_by_exact_code(script)).uniq
+    exact_code_scripts = check_by_exact_code(script)
+    similar_locked_scripts = (check_by_code(script) + check_by_name(script) + exact_code_scripts).uniq
 
     return unless similar_locked_scripts.many?
 
@@ -23,7 +24,12 @@ class ScriptPreviouslyDeletedCheckJob < ApplicationJob
     scripts_and_reports = similar_locked_scripts.map { |similar_script| [similar_script, other_reports.select { |report| similar_script == report.item }] }
 
     # Use the most common non-'other' reason.
-    reason = other_reports.map(&:upheld_reason).reject { |r| r == Report::REASON_OTHER }.tally.max_by(&:last)&.first || Report::REASON_OTHER
+    duplicate = exact_code_scripts.any? { |other_script| (other_script.users & script.users).any? }
+    reason = if duplicate
+               Report::REASON_DUPLICATE
+             else
+               other_reports.map(&:upheld_reason).reject { |r| r == Report::REASON_OTHER }.tally.max_by(&:last)&.first || Report::REASON_OTHER
+             end
 
     # If it's happened a lot, we'll be more strict on it. "No code" has a lot of false positives, so exempt that.
     blatant = scripts_and_reports.count >= 10 && reason != Report::REASON_NO_CODE

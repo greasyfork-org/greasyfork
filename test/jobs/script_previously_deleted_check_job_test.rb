@@ -166,7 +166,7 @@ class ScriptPreviouslyDeletedCheckTest < ActiveSupport::TestCase
     script_3 = Script.third
 
     [script, script_2, script_3].each do |s|
-      s.newest_saved_script_version.script_code.update(code_hash: 'abc123')
+      s.newest_saved_script_version.script_code.update_column(:code_hash, 'abc123')
     end
 
     [script_2, script_3].each do |s|
@@ -177,5 +177,28 @@ class ScriptPreviouslyDeletedCheckTest < ActiveSupport::TestCase
     assert_difference -> { Report.count } => 1 do
       ScriptPreviouslyDeletedCheckJob.perform_now(script.id)
     end
+    assert_equal Report::REASON_DUPLICATE, Report.last.reason
+  end
+
+  test 'when there is an exact code match by another user, it keeps the original reason' do
+    script = Script.first
+    script_2 = Script.second
+    script_3 = Script.third
+
+    [script, script_2, script_3].each do |s|
+      s.newest_saved_script_version.script_code.update_column(:code_hash, 'abc123')
+    end
+
+    [script_2, script_3].each do |s|
+      s.authors.delete_all
+      s.authors.create!(user: users(:geoff))
+      s.update_columns(delete_type: 'keep', deleted_at: Time.zone.now, locked: true)
+      Report.create!(item: s, result: Report::RESULT_UPHELD, reason: Report::REASON_MALWARE, reporter: User.first, explanation: 'virus')
+    end
+
+    assert_difference -> { Report.count } => 1 do
+      ScriptPreviouslyDeletedCheckJob.perform_now(script.id)
+    end
+    assert_equal Report::REASON_MALWARE, Report.last.reason
   end
 end

@@ -38,6 +38,24 @@ class ReportTest < ActiveSupport::TestCase
     assert_equal category, discussion.reload.discussion_category
   end
 
+  test 'duplicate is omitted from manually selectable report reasons' do
+    assert_includes Report::SCRIPT_REASONS, Report::REASON_DUPLICATE
+    assert_includes Report::DISCUSSION_REASONS, Report::REASON_DUPLICATE
+    assert_includes Report::COMMENT_REASONS, Report::REASON_DUPLICATE
+    assert_not_includes Report::USER_AND_MESSAGE_REASONS, Report::REASON_DUPLICATE
+
+    comment_report = Report.new(item: comments(:non_script_comment_2), reporter: users(:one))
+    script_report = Report.new(item: scripts(:one), reporter: users(:one))
+    discussion_report = Report.new(item: discussions(:non_script_discussion), reporter: users(:one))
+    user_report = Report.new(item: users(:consumer), reporter: users(:one))
+    [comment_report, script_report, discussion_report].each do |report|
+      assert_not_includes report.possible_reasons, Report::REASON_DUPLICATE
+      assert_includes report.possible_moderator_reasons, Report::REASON_DUPLICATE
+    end
+    assert_not_includes user_report.possible_reasons, Report::REASON_DUPLICATE
+    assert_not_includes user_report.possible_moderator_reasons, Report::REASON_DUPLICATE
+  end
+
   test 'dismiss akismet report on discussion sends notification' do
     discussion = discussions(:script_discussion)
     discussion.update!(review_reason: Discussion::REVIEW_REASON_AKISMET)

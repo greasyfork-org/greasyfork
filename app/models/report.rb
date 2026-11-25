@@ -2,6 +2,7 @@ class Report < ApplicationRecord
   include HasAttachments
 
   REASON_SPAM = 'spam'.freeze
+  REASON_DUPLICATE = 'duplicate'.freeze
   REASON_ABUSE = 'abuse'.freeze
   REASON_ILLEGAL = 'illegal'.freeze
   REASON_UNAUTHORIZED_CODE = 'unauthorized_code'.freeze
@@ -18,6 +19,7 @@ class Report < ApplicationRecord
 
   SCRIPT_REASONS = [
     REASON_SPAM,
+    REASON_DUPLICATE,
     REASON_ABUSE,
     REASON_ILLEGAL,
     REASON_UNAUTHORIZED_CODE,
@@ -32,8 +34,9 @@ class Report < ApplicationRecord
     REASON_OTHER,
   ].freeze
 
-  DISCUSSION_REASONS = [REASON_SPAM, REASON_ABUSE, REASON_ILLEGAL, REASON_WRONG_CATEGORY, REASON_OTHER].freeze
-  NON_SCRIPT_REASONS = [REASON_SPAM, REASON_ABUSE, REASON_ILLEGAL, REASON_OTHER].freeze
+  DISCUSSION_REASONS = [REASON_SPAM, REASON_DUPLICATE, REASON_ABUSE, REASON_ILLEGAL, REASON_WRONG_CATEGORY, REASON_OTHER].freeze
+  USER_AND_MESSAGE_REASONS = [REASON_SPAM, REASON_ABUSE, REASON_ILLEGAL, REASON_OTHER].freeze
+  COMMENT_REASONS = (USER_AND_MESSAGE_REASONS + [REASON_DUPLICATE]).freeze
 
   GRACE_PERIOD = 3.days
   GRACE_PERIOD_REASONS = [REASON_UNAUTHORIZED_CODE, REASON_UNDISCLOSED_ANTIFEATURE, REASON_OTHER, REASON_EXTERNAL_CODE, REASON_MINIFIED, REASON_OBFUSCATED, REASON_NO_DESCRIPTION, REASON_NO_CODE].freeze
@@ -65,8 +68,10 @@ class Report < ApplicationRecord
   has_many :script_lock_appeals
   has_many :notifications, inverse_of: :item, dependent: :destroy
 
-  validates :reason, inclusion: { in: NON_SCRIPT_REASONS }, presence: true, unless: -> { item.is_a?(Script) || item.is_a?(Discussion) }
-  validates :moderator_reason_override, inclusion: { in: NON_SCRIPT_REASONS }, allow_nil: true, unless: -> { item.is_a?(Script) || item.is_a?(Discussion) }
+  validates :reason, inclusion: { in: USER_AND_MESSAGE_REASONS }, presence: true, unless: -> { item.is_a?(Script) || item.is_a?(Discussion) || item.is_a?(Comment) }
+  validates :moderator_reason_override, inclusion: { in: USER_AND_MESSAGE_REASONS }, allow_nil: true, unless: -> { item.is_a?(Script) || item.is_a?(Discussion) || item.is_a?(Comment) }
+  validates :reason, inclusion: { in: COMMENT_REASONS }, presence: true, if: -> { item.is_a?(Comment) }
+  validates :moderator_reason_override, inclusion: { in: COMMENT_REASONS }, allow_nil: true, if: -> { item.is_a?(Comment) }
   validates :reason, inclusion: { in: SCRIPT_REASONS, message: :invalid }, presence: true, if: -> { item.is_a?(Script) }
   validates :moderator_reason_override, inclusion: { in: SCRIPT_REASONS, message: :invalid }, allow_nil: true, if: -> { item.is_a?(Script) }
   validates :reason, inclusion: { in: DISCUSSION_REASONS, message: :invalid }, presence: true, if: -> { item.is_a?(Discussion) }
@@ -287,10 +292,15 @@ class Report < ApplicationRecord
   end
 
   def possible_reasons
+    possible_moderator_reasons - [Report::REASON_DUPLICATE]
+  end
+
+  def possible_moderator_reasons
     reasons = case item
               when Script then Report::SCRIPT_REASONS
               when Discussion then Report::DISCUSSION_REASONS
-              else Report::NON_SCRIPT_REASONS
+              when Comment then Report::COMMENT_REASONS
+              else Report::USER_AND_MESSAGE_REASONS
               end
     reasons -= Report::ADMIN_ONLY_REASONS unless reporter&.administrator?
     reasons

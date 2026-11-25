@@ -79,10 +79,59 @@ class CommentCheckingServiceTest < ActiveSupport::TestCase
     assert_equal Discussion::REVIEW_REASON_RAINMAN, second_discussion.reload.review_reason
   end
 
+  test 'when the same user repeats a comment it is reported as a duplicate' do
+    comment = comments(:script_comment)
+    comment.update!(text: 'totally unique content')
+    comment.poster.update!(created_at: 1.day.ago)
+    repeated_comment = comment.dup
+    repeated_comment.save!
+    mock_comment_checkers_except(CommentChecking::RepeatedTextChecker)
+
+    CommentCheckingService.check(repeated_comment, ip: '127.0.0.1', referrer: nil, user_agent: 'Bot')
+
+    assert_equal Report::REASON_DUPLICATE, Report.last.reason
+  end
+
+  test 'when another user repeats a deleted comment it remains spam' do
+    comment = comments(:script_comment)
+    comment.update!(text: 'totally unique content', deleted_at: Time.zone.now)
+    repeated_comment = comment.dup
+    repeated_comment.poster = users(:one)
+    repeated_comment.poster.update!(created_at: 1.day.ago)
+    repeated_comment.save!
+    mock_comment_checkers_except(CommentChecking::DeletedRepeatedTextChecker)
+
+    CommentCheckingService.check(repeated_comment, ip: '127.0.0.1', referrer: nil, user_agent: 'Bot')
+
+    assert_equal Report::REASON_SPAM, Report.last.reason
+  end
+
+  test 'when the same user repeats a deleted comment it is reported as a duplicate' do
+    comment = comments(:script_comment)
+    comment.update!(text: 'totally unique content', deleted_at: Time.zone.now)
+    comment.poster.update!(created_at: 1.day.ago)
+    repeated_comment = comment.dup
+    repeated_comment.save!
+    mock_comment_checkers_except(CommentChecking::DeletedRepeatedTextChecker)
+
+    CommentCheckingService.check(repeated_comment, ip: '127.0.0.1', referrer: nil, user_agent: 'Bot')
+
+    assert_equal Report::REASON_DUPLICATE, Report.last.reason
+  end
+
   def mock_comment_spam_results(*spam_returning_strategies)
     CommentCheckingService::STRATEGIES.each { |strategy_class| strategy_class.any_instance.expects(:skip?).returns(false) }
     non_spam_returning_strategies = CommentCheckingService::STRATEGIES - spam_returning_strategies
     non_spam_returning_strategies.each { |strategy_class| strategy_class.any_instance.expects(:check).returns(CommentChecking::Result.ham(strategy_class.new(nil, ip: nil, referrer: nil, user_agent: nil))) }
     spam_returning_strategies.each { |strategy_class| strategy_class.any_instance.expects(:check).returns(CommentChecking::Result.new(true, strategy: strategy_class.new(nil, ip: nil, referrer: nil, user_agent: nil))) }
+  end
+
+  def mock_comment_checkers_except(*real_checkers)
+    CommentCheckingService::STRATEGIES.each do |strategy_class|
+      strategy_class.any_instance.expects(:skip?).returns(false)
+      next if real_checkers.include?(strategy_class)
+
+      strategy_class.any_instance.expects(:check).returns(CommentChecking::Result.ham(strategy_class.new(nil, ip: nil, referrer: nil, user_agent: nil)))
+    end
   end
 end
