@@ -10,12 +10,12 @@ class AkismetSubmission < ApplicationRecord
 
   def self.mark_as_ham(item)
     submission = for_reported_item(item)
-    AkismetHamJob.perform_later(submission) if submission&.result_spam?
+    AkismetHamJob.perform_later(submission.akismet_params) if submission&.result_spam?
   end
 
   def self.mark_as_spam(item)
     submission = for_reported_item(item)
-    AkismetSpamJob.perform_later(submission) if submission && !submission.result_spam?
+    AkismetSpamJob.perform_later(submission.akismet_params) if submission && !submission.result_spam?
   end
 
   def self.for_reported_item(item)

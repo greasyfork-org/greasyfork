@@ -82,7 +82,7 @@ class ReportTest < ActiveSupport::TestCase
     submission = AkismetSubmission.create!(item: comment, akismet_params: ['127.0.0.1', 'Bot', { text: comment.text }], result_spam: true, result_blatant: false)
     report = Report.create!(item: discussion, reason: Report::REASON_SPAM, reporter: users(:one))
 
-    assert_enqueued_with(job: AkismetHamJob, args: [submission]) do
+    assert_enqueued_with(job: AkismetHamJob, args: [submission.akismet_params]) do
       report.dismiss!(moderator: users(:mod), moderator_notes: '')
     end
   end
@@ -93,7 +93,7 @@ class ReportTest < ActiveSupport::TestCase
     submission = AkismetSubmission.create!(item: comment, akismet_params: ['127.0.0.1', 'Bot', { text: comment.text }], result_spam: false, result_blatant: false)
     report = Report.create!(item: discussion, reason: Report::REASON_SPAM, reporter: users(:one))
 
-    assert_enqueued_with(job: AkismetSpamJob, args: [submission]) do
+    assert_enqueued_with(job: AkismetSpamJob, args: [submission.akismet_params]) do
       report.uphold!(moderator: users(:mod))
     end
   end
@@ -115,7 +115,7 @@ class ReportTest < ActiveSupport::TestCase
     submission = AkismetSubmission.create!(item: comment, akismet_params: ['127.0.0.1', 'Bot', { text: comment.text }], result_spam: false, result_blatant: false)
     report = Report.create!(item: comment, reason: Report::REASON_ABUSE, reporter: users(:one))
 
-    assert_enqueued_with(job: AkismetSpamJob, args: [submission]) do
+    assert_enqueued_with(job: AkismetSpamJob, args: [submission.akismet_params]) do
       report.uphold!(moderator: users(:mod), moderator_reason_override: Report::REASON_SPAM)
     end
   end
