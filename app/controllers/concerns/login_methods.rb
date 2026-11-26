@@ -13,6 +13,13 @@ module LoginMethods
     return if params[:return_to].nil?
 
     v = clean_redirect_param(:return_to)
-    session[:user_return_to] = v unless v.nil?
+    return if v.nil?
+
+    if v.bytesize > SafeStoreLocation::MAX_LOCATION_SIZE
+      session.delete(:user_return_to)
+      Rails.logger.warn("Discarding oversized sign-in return location (#{v.bytesize} bytes)")
+    else
+      session[:user_return_to] = v
+    end
   end
 end
