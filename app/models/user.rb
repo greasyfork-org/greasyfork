@@ -9,6 +9,8 @@ class User < ApplicationRecord
   include InactiveUser
   prepend MemoWise
 
+  self.ignored_columns += [:require_secure_login_for_author]
+
   serialize :announcements_seen, type: Array, coder: YAML
 
   scope :moderators, -> { joins(:roles).where(roles: { name: 'moderator' }) }
@@ -511,7 +513,7 @@ class User < ApplicationRecord
   end
 
   def require_secure_login?
-    moderator? || (require_secure_login_for_author? && scripts.any?)
+    moderator? || scripts.any?
   end
 
   def missing_secure_login?
@@ -519,7 +521,7 @@ class User < ApplicationRecord
   end
 
   def missing_secure_login_for_author?
-    require_secure_login_for_author? && encrypted_password && (!confirmed? || !otp_required_for_login)
+    encrypted_password && (!confirmed? || !otp_required_for_login)
   end
 
   protected

@@ -73,7 +73,9 @@ class ImportTest < ApplicationSystemTestCase
       let foo = 'bar has enough characters to reach the minimum'
     JS
 
-    login_as(User.first, scope: :user)
+    user = User.first
+    user.update!(otp_required_for_login: true)
+    login_as(user, scope: :user)
     visit import_start_url
     fill_in 'Provide URLs to import from, separated by newlines.', with: 'https://example.com'
     click_button 'Import'

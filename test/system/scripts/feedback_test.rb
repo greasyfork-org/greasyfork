@@ -2,7 +2,8 @@ require 'application_system_test_case'
 
 class FeedbackTest < ApplicationSystemTestCase
   test 'reaching the report form' do
-    user = users(:consumer)
+    user = users(:one)
+    user.scripts.delete_all
     user.password = 'password'
     user.save!
 

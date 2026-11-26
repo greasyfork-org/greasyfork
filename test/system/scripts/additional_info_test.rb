@@ -1,6 +1,10 @@
 require 'application_system_test_case'
 
 class AdditionalInfoTest < ApplicationSystemTestCase
+  setup do
+    User.first.update!(otp_required_for_login: true)
+  end
+
   test 'mentions' do
     user = User.first
     login_as(user, scope: :user)

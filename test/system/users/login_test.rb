@@ -59,7 +59,7 @@ module Users
       user = users(:one)
       assert user.scripts.any?
       log_in(user, assert_success: false)
-      assert_content 'As a script author, we suggest you use a more secure sign-in method.'
+      assert_content 'Your account is required to use a more secure sign-in method.'
     end
 
     test 'login does not show secure message when the user has no scripts' do

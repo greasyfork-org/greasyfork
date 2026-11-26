@@ -3,6 +3,10 @@ require 'test_helper'
 class ScriptVersionParamsTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
 
+  setup do
+    users(:one).update!(otp_required_for_login: true)
+  end
+
   test 'rejecting missing or malformed script parameters on creation' do
     sign_in users(:one)
     get new_script_version_path(locale: :en)

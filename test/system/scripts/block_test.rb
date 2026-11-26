@@ -47,7 +47,9 @@ class BlockTest < ApplicationSystemTestCase
 
   test 'not blocked when same author' do
     origin = scripts(:copy_origin)
-    login_as(origin.users.first, scope: :user)
+    user = origin.users.first
+    user.update!(otp_required_for_login: true)
+    login_as(user, scope: :user)
     visit new_script_version_url
     code = <<~JS
       // ==UserScript==

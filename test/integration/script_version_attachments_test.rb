@@ -3,6 +3,10 @@ require 'test_helper'
 class ScriptVersionAttachmentsTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
 
+  setup do
+    users(:one).update!(otp_required_for_login: true)
+  end
+
   test 'creating a script without an attachments parameter' do
     sign_in users(:one)
     get new_script_version_path(locale: :en)

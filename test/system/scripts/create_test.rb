@@ -3,6 +3,10 @@ require 'application_system_test_case'
 class CreateTest < ApplicationSystemTestCase
   include ActiveJob::TestHelper
 
+  setup do
+    User.first.update!(otp_required_for_login: true)
+  end
+
   test 'script creation' do
     user = User.first
     login_as(user, scope: :user)
@@ -152,15 +156,15 @@ class CreateTest < ApplicationSystemTestCase
     assert_content 'You must confirm your account before you can post scripts.'
   end
 
-  test 'suspicious email domain, not confirmed' do
+  test 'suspicious email domain, not confirmed requires secure login' do
     user = User.first
     user.skip_reconfirmation!
-    user.update(email: 'salomon@fishy.hut', confirmed_at: nil)
+    user.update(email: 'salomon@fishy.hut', confirmed_at: nil, otp_required_for_login: false)
     user.scripts.delete_all
     login_as(user, scope: :user)
     visit new_script_version_url
     click_link "I've written a script"
-    assert_content 'You must confirm your account before you can post scripts.'
+    assert_content 'You must set up your account with a secure login method before you can post scripts.'
   end
 
   test 'confirmed, disposable email' do
@@ -218,8 +222,7 @@ class CreateTest < ApplicationSystemTestCase
 
   test 'script creation when secure requirements not met' do
     user = User.first
-    user.update!(confirmed_at: nil)
-    User.any_instance.expects(:require_secure_login_for_author?).returns(true).at_least_once
+    user.update!(confirmed_at: nil, otp_required_for_login: false)
     login_as(user, scope: :user)
     visit new_script_version_url
     assert_content 'You must set up your account with a secure login method before you can post scripts.'
@@ -228,7 +231,7 @@ class CreateTest < ApplicationSystemTestCase
 
   test 'script creation when only confirmed email secure requirement is met' do
     user = User.first
-    User.any_instance.expects(:require_secure_login_for_author?).returns(true).at_least_once
+    user.update!(otp_required_for_login: false)
     login_as(user, scope: :user)
     visit new_script_version_url
     assert_content '✓ Confirm your email address'
@@ -236,7 +239,6 @@ class CreateTest < ApplicationSystemTestCase
 
   test 'script creation when only 2fa secure requirement is met' do
     user = User.first
-    User.any_instance.expects(:require_secure_login_for_author?).returns(true).at_least_once
     user.update!(otp_required_for_login: true, confirmed_at: nil)
     login_as(user, scope: :user)
     visit new_script_version_url
@@ -246,7 +248,6 @@ class CreateTest < ApplicationSystemTestCase
   test 'script creation when confirmed email and 2fa secure requirements are met' do
     user = User.first
     user.update!(confirmed_at: Time.zone.now, otp_required_for_login: true)
-    User.any_instance.expects(:require_secure_login_for_author?).returns(true).at_least_once
     login_as(user, scope: :user)
     visit new_script_version_url
     assert_content 'Scripts must be properly described, cannot be obfuscated or minified, must respect copyright, and are limited in the external code used.'
@@ -254,8 +255,7 @@ class CreateTest < ApplicationSystemTestCase
 
   test 'script creation when only external login requirement is met' do
     user = User.first
-    User.any_instance.expects(:require_secure_login_for_author?).returns(true).at_least_once
-    user.update!(confirmed_at: nil)
+    user.update!(confirmed_at: nil, otp_required_for_login: false)
     user.identities.create!(provider: 'google', uid: '12345', syncing: false)
     login_as(user, scope: :user)
     visit new_script_version_url
@@ -264,7 +264,6 @@ class CreateTest < ApplicationSystemTestCase
 
   test 'script creation when only external login and no password requirements are met' do
     user = User.first
-    User.any_instance.expects(:require_secure_login_for_author?).returns(true).at_least_once
     user.update!(confirmed_at: nil, encrypted_password: nil)
     user.identities.create!(provider: 'google', uid: '12345', syncing: false)
     login_as(user, scope: :user)

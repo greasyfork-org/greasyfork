@@ -1,6 +1,10 @@
 require 'application_system_test_case'
 
 class AttachmentsTest < ApplicationSystemTestCase
+  setup do
+    User.first.update!(otp_required_for_login: true)
+  end
+
   test 'adding and removing attachments' do
     user = User.first
     login_as(user, scope: :user)

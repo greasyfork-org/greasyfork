@@ -67,6 +67,7 @@ class TwoFactorAuthenticationTest < ApplicationSystemTestCase
 
   test 'disabling 2FA' do
     user = User.first
+    user.scripts.delete_all
     user.password = user.password_confirmation = 'password'
     user.otp_secret = User.generate_otp_secret
     user.otp_required_for_login = true
