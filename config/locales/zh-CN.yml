@@ -75,11 +75,9 @@ zh-CN:
         <p>永久删除您的脚本将删除 “管理员操作记录” 与 “论坛讨论帖” 以外的所有数据。</p> <p>您的脚本会在 7 日后永久删除，如果反悔，您可以在此期间内撤销删除。若未在
         7 日内撤销操作，脚本将会被永久删除，即使是管理员也不能还原您的脚本。</p>
     delete_permanently_confirm: "您确定您想要永久删除您的脚本吗？"
-    delete_permanently_submit: "请求永久删除"
     delete_permanently_immediate_submit: "永久删除"
     delete_permanently_notice: "已记录您的永久删除请求。您的脚本将在 7 天后永久删除。"
     delete_permanently_already_requested: "您已于 %{datetime} 请求永久删除。"
-    delete_permanently_notice_immediate: "脚本已永久删除"
     cancel_delete_permanently_submit: "取消永久删除的请求"
     cancel_delete_permanently_notice: "您的永久删除请求已取消，您的脚本仍对其他人不可见。"
     delete_permanently_rejected_locked: "此脚本已被锁定并且不能永久删除"
@@ -117,11 +115,8 @@ zh-CN:
     list_all_script_versions: "显示所有脚本版本"
     code_title: "%{script_name} - 源代码"
     feedback_title: "%{script_name} - 反馈"
-    feedback_no_discussions_html: "暂无相关讨论。您可以%{start_first_discussion_link}"
     feedback_no_discussions_on_page_form: "暂无相关讨论帖。"
     feedback_report_instead: "如果您觉得这个脚本违反了 %{rules_link:%{site_name} 规则}，请%{report_link:举报这个脚本}。"
-    feedback_start_first_discussion_link: "成为第一个讨论此脚本的人。"
-    feedback_discussion_or_report: "%{new_discussion_link:围绕此脚本发起一个新的讨论}或者%{report_link:举报这个脚本}。"
     stats_title: "%{script_name} - 统计"
     stats_daily_installs_heading: "日安装量"
     stats_weekly_installs_heading: "本周安装"
@@ -137,10 +132,11 @@ zh-CN:
       month: 最近 30 日
       year: 最近 365 日
       all: 所有时间
+    stats_library_usages_intro_html: "以下脚本在 <code>@require</code> 中使用了此库的 %{site_name} 链接："
     stats_library_usages_script_column: 脚本
+    diff_title: "%{script} - 差异"
     derivatives_heading: "相似"
     derivatives_intro: "这些脚本可能基于您的脚本开发（或者您的代码是基于他们的代码开发）。如果您发现有人未经授权使用了您的代码，请从其脚本的反馈选项卡进行举报。"
-    derivatives_script_html: "%{script}，作者 %{user}，许可证：%{license} %{diff_link:[Diff]}"
     derivatives_exact_copies_heading: "完全相同"
     derivatives_exact_copies_list_intro: "以下脚本代码与您的脚本代码完全相同："
     derivatives_exact_copies_item_html: "%{author_links}发布的%{script_link}，版本：%{version_list}"
@@ -152,6 +148,7 @@ zh-CN:
       medium: 比较相似
       low: 略微相似
       none: 并不相似
+    derivatives_similar_none: "没有任何脚本的最新版本与此脚本有至少 %{threshold} 的相似度。\U0001F984"
     derivatives_similar_item: "%{score}: %{diff_link:[查看差别]} %{script}"
     listing_title_all_sites: "适用于所有网站的用户脚本"
     listing_description_all_sites: "针对所有网站添加功能或解决问题的用户脚本"
@@ -207,13 +204,6 @@ zh-CN:
     contribution_bitcoin_with_amount_html: "捐赠比特币到 %{address} 以感谢 %{author}，建议的捐赠数额为 %{amount}。"
     locale_explanation_html: "应当匹配 <code>@name</code>、<code>@description</code> 和第一个附加信息的语言。"
     locale_auto_select: "（自动检测）"
-    sets_label: "位于脚本集："
-    sets_label_no_sets: "脚本集："
-    sets_remove_inclusion: "从 %{set_name} 中移除"
-    sets_remove_exclusion: "从 %{set_name} 的排除列表中移除"
-    sets_add_inclusion: "添加到 %{set_name}"
-    sets_add_exclusion: "添加到 %{set_name} 的排除列表"
-    sets_add_to_new: "添加到新脚本集"
     rules_summary_html: "提交的脚本必须<strong>准确描述其功能</strong>，不得<strong>混淆</strong>或<strong>压缩</strong>，尊重<strong>版权</strong>，并有限制的使用 <strong>外部代码</strong>。%{full_rules_link}"
     rules_summary_link_to_full: "参阅完整规则。"
     syncing_notice_html: "此脚本为%{syncing_notice_sync_type}。您对代码所做的任何更改都会在同步时被覆盖掉。"
@@ -226,6 +216,7 @@ zh-CN:
     post_new_script: "发布脚本"
     post_updated_script: "发布新版本"
     type_1_html: "公开用户脚本 - 任何人都可以查看和使用的用户脚本。"
+    type_2_html: "未上架用户脚本 - 未链接到 %{site_name} 的任何位置的用户脚本。适用于正在开发中或对其他用户来说通常用处不大的脚本。知道链接的用户仍然可以访问该脚本。"
     type_3_html: "库 - 用于被其他脚本以 <code>@require</code> 调用而非直接安装的脚本。"
     override_warning_checkbox_label: "仍要保存"
     warning_version_not_incremented_html: "您更新了脚本代码但是没有增加 <code>@version</code> 版本号，之前安装了您的脚本的用户可能不会自动更新到更新后的代码。"
@@ -285,7 +276,13 @@ zh-CN:
     diff_new_version: "新版："
     diff_lines_of_context: "上下文显示行数："
     diff_ignore_whitespace: "忽略空白字符更改"
+    common_snippets_none: "未找到共同代码片段。"
+    common_source_summary: "我们在 %{sample_count} 个代码片段样本中找到了 %{count} 个匹配项。"
+    common_source_snippet: "片段 %{index}"
+    diff_view_title: "比较方式"
     diff_view_diff: "对比"
+    diff_view_clean: "格式化后对比"
+    diff_view_snippets: "共同代码片段"
     diff_refresh: "刷新"
     diff_no_change: "二者没有区别。"
     good_rating_explanation: "评级为好评或已加入到收藏的人数。"
@@ -370,6 +367,7 @@ zh-CN:
     install_help_dialog:
       js:
         firefox: 您需要先安装一款用户脚本管理器扩展，例如 %{tampermonkey_link:Tampermonkey 篡改猴}、%{greasemonkey_link:Greasemonkey 油猴子} 或 %{violentmonkey_link:Violentmonkey 暴力猴}，才能安装此脚本。
+        chrome: 您需要先安装一个扩展，例如 %{tampermonkey_link:篡改猴} 或 %{violentmonkey_link:暴力猴} 才能安装此脚本。
         opera: 您需要先安装一款用户脚本管理器扩展，例如 %{tampermonkey_link:Tampermonkey 篡改猴} 或 %{violentmonkey_link:Violentmonkey 暴力猴}，才能安装此脚本。
         safari: 您需要先安装一款用户脚本管理器扩展，例如 %{tampermonkey_link:Tampermonkey 篡改猴} 或 %{userscripts_link:Userscripts} ，才能安装此脚本。
         edge: 您需要先安装一款用户脚本管理器扩展，例如 %{tampermonkey_link:Tampermonkey 篡改猴}，才能安装此脚本。
@@ -480,6 +478,7 @@ zh-CN:
       for_language_exclude: "排除"
     calculated_list: "计算后的脚本列表"
     calculated_list_none: "（无）"
+    calculated_list_timeout: "计算后的脚本列表的加载时间过长。您仍然可以保存此脚本集，但使用时可能会遇到问题。"
     calculated_list_more:
       other: "还有 %{count} 条未显示的结果…"
     already_included: "“%{name}”已经包含。"
@@ -503,15 +502,41 @@ zh-CN:
     explain_user_scripts_heading: "用户脚本是什么？"
     explain_user_scripts_html: "用户脚本可让您完全掌控自己的浏览体验。一经安装，它们便自动优化您访问的网站——添加实用功能、简化操作流程或去除烦人元素。%{site_name} 上的用户脚本由全球用户编写并分享，免费安装，轻松上手。"
     installing_step1_header: "第 1 步：安装一个用户脚本管理器"
+    browser_no_additional_software_indicator: "%{browser_link: %{browser_name}}（无需额外软件）"
     installing_step1_caption: "Chrome 上的 Tampermonkey 篡改猴"
     installing_step1_description_html: >
         <p>要使用用户脚本，您首先需要安装一个用户脚本管理器。您可以根据您当前使用的浏览器来选择一个用户脚本管理器。</p>
     desktop_browsers:
       title: 桌面端
+      browser_list_html: |
+          <ul>
+          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} or %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, or %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} or %{safari_userscripts_link:Userscripts}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} or %{edge_violentmonkey_link:Violentmonkey}</li>
+          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} or %{opera_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          %{standalone_managers_html}
+          </ul>
     android_browsers:
       title: 移动端（Android）
+      browser_list_html: |
+          <ul>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, or %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+          <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+          %{standalone_managers_html}
+          %{locale_specific_browsers}
+          </ul>
     ios_browsers:
       title: 移动端（iOS）
+      browser_list_html: |
+          <ul>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} or %{safari_userscripts_link:Userscripts}</li>
+          %{standalone_managers_html}
+          </ul>
     installing_step2_header: "第 2 步：安装一个用户脚本"
     installing_step2_caption: "用户脚本的安装按钮"
     installing_step2_description_html: >
@@ -538,7 +563,6 @@ zh-CN:
     sign_in_github_unavailable: "Sleazy Fork 不支持通过 GitHub 登录，但您可以%{sign_in_url:在 Greasy Fork 上通过 GitHub 登录}。"
     control_panel: "控制台"
     discussions_on_scripts: "您脚本的相关讨论"
-    discussions_on_scripts_feed_alt: "RSS 订阅"
     discussions_on_scripts_none: "还没有呢！"
     discussions_on_scripts_more: "更多讨论…"
     script_list: "脚本"
@@ -565,7 +589,6 @@ zh-CN:
     no_password_set_info: "您的账号尚未启用密码登录。"
     set_password: "设置密码"
     update_password: "更新密码"
-    update_password_no_match: "密码不匹配。"
     password_updated: "密码已更新"
     remove_password_info: "您可以移除登录密码，仅使用第三方登录。"
     remove_password: "移除登录密码"
@@ -641,6 +664,10 @@ zh-CN:
         other: "您的 %{count} 个脚本将被删除。"
       script_sets_effect:
         other: "您的 %{count} 个脚本集将被删除。"
+      conversations_effect: "您的私信和消息将对所有参与者一并删除"
+      forum_content_choice: "您在论坛上发表的内容应该如何处理？"
+      retain_forum_content: "保留我发起的讨论和发布的留言，但移除我的用户名。"
+      delete_forum_content: "永久删除我发起的讨论和发布的留言。"
       email_confirmation: "在删除您的账号前，%{site_name} 将发送一封邮件至 %{email} 来确认您的请求。"
       submit: "删除账号"
       confirmation_email_sent: "确认删除邮件已发送。"
@@ -649,6 +676,8 @@ zh-CN:
         body: "%{site_name} 收到了一个关于删除您的账号 “%{user_name}” 的请求。若要确认请求并删除您的账号，请访问 %{url}。此操作必须于在 24 小时内确认，否则请求将被取消。"
       confirmation:
         intro: "您即将删除账号 “%{user_name}”。该操作无法撤销。"
+        forum_content_delete: "您发起的讨论和发布的留言将被永久删除。"
+        forum_content_retain: "您选择保留发起的讨论和发布的留言，但从中移除您的用户名。"
         confirm: "删除 “%{user_name}”"
         cancel: "取消操作"
         key_mismatch: "无法删除用户 - 键值不匹配。"
@@ -660,6 +689,7 @@ zh-CN:
       with_report: "您的账号已因%{report_link:此举报}而被封禁。如果需要，您可以%{delete_link:删除此账号}。"
       with_reason: "您的账号已被封禁。管理员给出的原因为：“%{reason}”。如果需要，您可以%{delete_link:删除此账号}。"
     banned_delete:
+      intro: "删除您的账号也将同时删除您所发布的所有脚本。您的私信和消息将对所有参与者一并删除，您在论坛上发表的内容都将保留，但您的用户名会被匿名化处理。即便删除了账号，您也不能再使用同一邮箱地址进行注册。请在下方登录以删除您的账号。"
       complete: "您的账号已被删除。"
     deleted_user_with_id: "（已删除的用户 %{id}）"
     deleted_user_without_id: "（已删除用户）"
@@ -915,8 +945,11 @@ zh-CN:
       developers_credit: "%{site_name} 网站由 %{developers_link:这些开发者} 构建，并得到了所有报告漏洞和提出改进建议者的技术支持。"
       translators_credit: "%{site_name} 的简体中文翻译由 %{translators_link:Transifex 上的 Greasy 翻译小组} 提供："
       icons_credit: "浏览器图标来源于 %{browserlogos}。"
+      donors_credit: "%{site_name} 已获得 %{donor_links} 的资助。如果您也想提供资助，%{admin_email_link:请联系我们}。"
+      ip_credit: "基于 DB-IP 的 IP 地理位置查询"
     help_with_greasymonkey: "Greasemonkey 的相关帮助"
     help_with_tampermonkey: "Tampermonkey 篡改猴的相关帮助"
+    help_with_violentmonkey: "Violentmonkey 暴力猴的相关帮助"
     contact:
       title: "与某个人取得联系"
       content_html: >
@@ -926,6 +959,10 @@ zh-CN:
           GitHub 提交反馈。}</p><p>您有只希望管理员能看到的私人问题或留言吗？%{admin_email_link:可以发送邮件。}</p>
     privacy_policy:
       title: "隐私政策"
+      intro_html: >
+          本页面描述了 %{site_name} 将如何记录或跟踪用户。如果您有任何疑问，%{admin_email_link:联系管理员}。
+      server_logs_html: >
+          <h2>服务器日志</h2> <p>%{site_name} 会按照典型的服务器日志格式记录所有请求。记录的信息包括访问的页面、IP 地址和用户代理字符串。这些日志用于调试和服务器分析，数据保留一周。这些数据不会被共享或公开。
     user_css_to_user_js:
       title: 将用户样式转换为用户脚本
       content_html: |
@@ -995,6 +1032,8 @@ zh-CN:
     code_search:
       title: "代码搜索"
       description: "搜索脚本代码。不区分大小写，不支持通配符，仅支持搜索纯文本。"
+      minimum_length: "代码搜索至少需要 %{count} 个字符。"
+      timed_out: "代码搜索超时。请尝试更具体的搜索或稍后再试。"
     user_search:
       title: "用户搜索"
       description: "搜索用户名。"
@@ -1052,6 +1091,7 @@ zh-CN:
       non_functional: "脚本无法使用"
       paid_benefits: "已为功能支付费用，但未收到购买的内容"
       spam: "灌水垃圾内容"
+      duplicate: "重复"
       abuse: "滥用反感内容"
       illegal: "违法违规内容"
       unauthorized_code: "未授权的代码副本"
@@ -1099,10 +1139,11 @@ zh-CN:
     submit_rebuttal: "提交申诉"
     rebuttal_submitted: 将有管理员审核该则举报，然后参考您所提供的解释来作出决定。
     delete_script: "删除脚本"
-    view_discussion: "查看讨论"
     load_diff: "查看差异"
-    load_cleaned_diff: "加载洁净的代码差异"
+    load_cleaned_diff: "加载清理后的代码差异"
+    load_similarity_comparison: "加载相似度比较"
     loading_diff: "加载中…"
+    similarity_unavailable: "这些脚本无法进行相似度比较。"
     reported_user_activity_html: "%{user}（被举报用户）已有："
     script_updated_since_report: "此次举报提交后，此脚本已被更新。"
     script_previous_reports:
@@ -1272,6 +1313,7 @@ zh-CN:
     edit_message_header: 编辑消息
     update_message_submit: 更新消息
     moderator_notice: 如果您想报告违反 %{site_name} 规则的行为，请使用脚本、用户或留言上的举报链接。管理员无法基于通过私信进行的举报来移除内容。
+    rate_limited: 您已达到可发起对话私信的上限。请稍后再试。
   screenshots:
     requirements: "最多上传 %{number} 张 PNG、GIF、JPEG 或 WebP 图片，且每张图片大小不得超过 %{size}。"
   moderator_actions:
@@ -1353,6 +1395,12 @@ zh-CN:
         content: 消息内容
       script_lock_appeal:
         text: 申诉
+    errors:
+      models:
+        report:
+          attributes:
+            reference_script:
+              language_mismatch: "必须与所举报的脚本使用相同的语言"
   errors:
     messages:
       script_missing_name: "必填 - 请通过 <code>@name</code> 指定"
@@ -1406,6 +1454,8 @@ zh-CN:
       needs_description: "以下脚本需要描述才能导入："
       existing: "以下脚本已导入："
       failure: "以下脚本无法导入："
+      notuserscript: "以下脚本无法导入。如果它们是不应直接安装的 JS 库，您可以点击链接将其添加为库。"
+      addlibrary: "作为库添加"
   mailers:
     script_report:
       report_created_offender:
@@ -1500,3 +1550,9 @@ zh-CN:
         intro_html: 您对删除 %{script} 操作的申诉已被管理员通过，该脚本现已取消删除并可公开访问。
         moderator_notes: "管理员意见："
         outro: 避免再次被删除，请查阅 %{rules_link:%{site_name} 规则}。
+    inactive_user:
+      subject: "您在 Greasy Fork 的账号"
+      intro: "您收到此邮件是因为您于 %{signup_date} 创建了 %{user_link:一个 Greasy Fork 的账号}，但已 5 年未登录。为了减少 Greasy Fork 上存储的数据量，如果您不再打算使用该账号，我们希望将其删除。"
+      option_retain: "如果您想继续保持您的账号，请 %{login_link:登录}，以保留它。"
+      option_delete: "如果您同意删除您的账号，什么都不必做，您的账号将在 %{deletion_date} 自动删除。在此之后，如果您选择再次使用 Greasy Fork，您将可以创建一个新账号。"
+      outro: "无论哪种情况，我们都不会再就此账号删除事宜发送任何邮件。如果您有任何疑问，%{contact_link:请联系我们}.。"

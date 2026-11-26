@@ -80,11 +80,9 @@ sk:
         odstránený po 7 dňoch od žiadosti. Počas tejto doby môžete žiadosť o odstránenie
         zrušiť. Ak tak neurobíte, nikto, ani moderátor, nebude môcť skript obnoviť.</p>
     delete_permanently_confirm: "Naozaj chcete natrvalo odstrániť skript?"
-    delete_permanently_submit: "Žiadosť o trvalé odstránenie"
     delete_permanently_immediate_submit: "Trvale vymazať"
     delete_permanently_notice: "Žiadosť o trvalé odstránenie bola zaznamenaná. Skript bude natrvalo odstránený o 7 dní."
     delete_permanently_already_requested: "Žiadosť o trvalé odstránenie zo dňa %{datetime}."
-    delete_permanently_notice_immediate: "Skript bol trvale vymazaný."
     cancel_delete_permanently_submit: "Zrušiť žiadosť o trvalé odstránenie"
     cancel_delete_permanently_notice: "Žiadosť o trvalé odstránenie bola zrušená. Skript sa nebude naďalej ostatným zobrazovať."
     delete_permanently_rejected_locked: "Tento skript je uzamknutý a nemôže byť trvalo odstránený"
@@ -122,11 +120,8 @@ sk:
     list_all_script_versions: "Zobraziť všetky verzie skriptu"
     code_title: "%{script_name} - Zdrojový kód"
     feedback_title: "%{script_name} - Spätná väzba"
-    feedback_no_discussions_html: "Zatiaľ žiadna diskusia. %{start_first_discussion_link}"
     feedback_no_discussions_on_page_form: "Zatiaľ nie sú zverejnené žiadne diskusie."
     feedback_report_instead: "Ak si myslíte, že skript porušuje %{rules_link:Pravidlá %{site_name}}, prosím, %{report_link:nahláste ho na odstránenie}."
-    feedback_start_first_discussion_link: "Buďte prvý, kto začne diskusiu o tomto skripte."
-    feedback_discussion_or_report: "%{new_discussion_link:Začať diskusiu pre tento skript} alebo %{report_link:nahlásiť ho na odstránenie}."
     stats_title: "%{script_name} - Štatistika"
     stats_daily_installs_heading: "Denne inštalácií"
     stats_weekly_installs_heading: "Počet inštalácií za týždeň"
@@ -147,7 +142,6 @@ sk:
     diff_title: "%{script} - Rozdiel"
     derivatives_heading: "Deriváty"
     derivatives_intro: "Tieto skripty môžu byť založené na vašich (alebo vaše môžu byť založené na ich). Ak zistíte neoprávnené použitie vášho kódu, nahláste ho na cez spätnú väzbu daného skriptu."
-    derivatives_script_html: "%{script} od používateľa %{user}, licencia: %{license} %{diff_link:[Diff]}"
     derivatives_exact_copies_heading: "Presné kópie"
     derivatives_exact_copies_list_intro: "Nasledujúce skripty majú rovnaký kód ako vaše:"
     derivatives_exact_copies_item_html: "%{script_link} od %{author_links} - verzie: %{version_list}"
@@ -215,13 +209,6 @@ sk:
     contribution_bitcoin_with_amount_html: "Poďakovať %{author} odoslaním finančného príspevku cez Bitcoin na %{address}. Navrhovaná čiastka je %{amount}."
     locale_explanation_html: "Hodnota by mala zodpovedať jazyku <code>@name</code>, <code>@description</code>, a prvej doplňujúcej informácii."
     locale_auto_select: "(Automaticky detegovať)"
-    sets_label: "V zbierke skriptov:"
-    sets_label_no_sets: "Zbierka skriptov:"
-    sets_remove_inclusion: "Odobrať z %{set_name}"
-    sets_remove_exclusion: "Odobrať výnimku z %{set_name}"
-    sets_add_inclusion: "Pridať do %{set_name}"
-    sets_add_exclusion: "Vylúčiť z %{set_name}"
-    sets_add_to_new: "Pridať do novej zbierky"
     rules_summary_html: "Skript musí byť <strong>správne popísaný</strong>, nemôže byť <strong>zmätočný</strong> alebo <strong>minifikovaný</strong>, musí rešpektovať <strong>autorské právo</strong>, a používať minimálne množstvo <strong>externého kódu</strong>. %{full_rules_link}"
     rules_summary_link_to_full: "Prečítajte si plné znenie pravidiel."
     syncing_notice_html: "Tento skript je %{syncing_notice_sync_type}. Každá aktualizácia, ktorú vykonáte v kóde bude prepísaná počas synchronizácie."
@@ -599,7 +586,6 @@ sk:
     sign_in_github_unavailable: "Prihlásenie pomocou GitHubu nie je dostupné na Sleazy Fork, ale môžete sa %{sign_in_url:prihlásiť pomocou GitHubu na Greasy Fork}."
     control_panel: "Ovládací panel"
     discussions_on_scripts: "Diskusia o vašich skriptoch"
-    discussions_on_scripts_feed_alt: "RSS zdroj"
     discussions_on_scripts_none: "Zatiaľ žiadna!"
     discussions_on_scripts_more: "Viac diskusií..."
     script_list: "Skripty"
@@ -626,7 +612,6 @@ sk:
     no_password_set_info: "Váš účet nepoužíva heslo."
     set_password: "Nastaviť heslo"
     update_password: "Aktualizovať heslo"
-    update_password_no_match: "Heslá sa nezhodujú."
     password_updated: "Heslo bolo aktualizované."
     remove_password_info: "Heslo môžete odstrániť a spoliehať sa na prihlásenie cez externé služby."
     remove_password: "Odstrániť heslo"
@@ -720,6 +705,10 @@ sk:
         few: "Vaše %{count} zbierky skriptov budú vymazané."
         many: "Vašich %{count} zbierok skriptov bude vymazaných."
         other: "Vašich %{count} zbierok skriptov bude vymazaných."
+      conversations_effect: "Vaše konverzácie a ich správy budú odstránené pre všetkých účastníkov."
+      forum_content_choice: "Čo by sa malo stať s vašimi príspevkami na fóre?"
+      retain_forum_content: "Ponechať diskusie, ktoré som začal, a komentáre, ktoré som uverejnil, ale odstrániť z nich moje používateľské meno."
+      delete_forum_content: "Natrvalo odstrániť diskusie, ktoré som začal, a komentáre, ktoré som uverejnil."
       email_confirmation: "Pred odstránením vášho účtu, %{site_name} odošle email na %{email} pre potvrdenie vašej požiadavky."
       submit: "Odstrániť účet"
       confirmation_email_sent: "E-mail s potvrdením odstránenia bol odoslaný."
@@ -728,6 +717,8 @@ sk:
         body: "Požiadavka na odstránenie vášho účtu %{user_name} z %{site_name} bola vykonaná. Pre potvrdenie požiadavky a odstránenie účtu prejdite na tento odkaz %{url}. Urobte tak do 24 hodín inak bude požiadavka zrušená."
       confirmation:
         intro: "Chystáte sa odstrániť účet '%{user_name}'. Táto akcia sa nedá vrátiť späť."
+        forum_content_delete: "Diskusie, ktoré ste začali, a komentáre, ktoré ste uverejnili, budú natrvalo odstránené."
+        forum_content_retain: "Rozhodli ste sa zachovať diskusie, ktoré ste začali, a komentáre, ktoré ste uverejnili, ale odstrániť z nich svoje používateľské meno."
         confirm: "Odstrániť '%{user_name}'"
         cancel: "Zrušiť odstránenie"
         key_mismatch: "Nepodarilo sa odstrániť používateľa - kľúče sa nezhodujú."
@@ -739,6 +730,7 @@ sk:
       with_report: "Váš účet bol zablokovaný ako odpoveď na %{report_link:toto hlásenie}. Môžete váš %{delete_link:účet odstrániť}, ak chcete."
       with_reason: "Váš účet bol zablokovaný. Moderátor uviedol nasledujúci dôvod: \"%{reason}\". Môžete váš %{delete_link:účet odstrániť}, ak chcete."
     banned_delete:
+      intro: "Odstránením účtu sa odstránia aj všetky skripty, ktoré ste uverejnili. Vaše konverzácie a ich správy budú odstránené pre všetkých účastníkov. Všetky vaše príspevky do fóra zostanú zachované, ale vaše používateľské meno bude anonymizované. Ani po odstránení sa nebudete môcť znova zaregistrovať s rovnakou e-mailovou adresou. Ak chcete svoj účet odstrániť, prihláste sa nižšie."
       complete: "Váš účet bol odstránený."
     deleted_user_with_id: "(Odstránený používateľ %{id})"
     deleted_user_without_id: "(Odstránený použivateľ)"
@@ -1035,11 +1027,39 @@ sk:
           patria navštívené stránky, IP adresa a reťazec používateľského agenta. Tieto
           záznamy slúžia na odstraňovanie chýb a analýzu servera. Údaje sa uchovávajú
           jeden týždeň. Tieto údaje sa nezdieľajú ani nezverejňujú.</p>
+      script_statistics_html: >
+          <h2>Štatistika skriptu</h2> <p>Pre účely generovania štatistík %{site_name}
+          zaznamenáva požiadavky na inštaláciu a aktualizáciu s informáciami o IP
+          adrese. Tieto informácie sa uchovávajú až jeden týždeň a sú agregované bez
+          IP adresy. Údaje špecifické pre IP adresu sa nezdieľajú ani nesprístupňujú
+          verejnosti, ale súhrnné údaje áno.</p>
       cookies_html: >
           <h2>Cookies (ak nie ste prihlásení) <p>%{site_name} môže ukladať dočasné
           relácie cookies, aby mohli fungovať niektoré funkcie stránky. Tieto cookies
           nie sú trvalo uložené a môžu sa odstrániť pri zatvorení prehliadača (v závislosti
           od nastavení prehliadača).</p>
+      user_accounts_html: >
+          <h2>Používateľské účty</h2> <p>%{site_name} vyžaduje, aby si používatelia
+          vytvorili účet na uverejňovanie skriptov, zapájanie sa do diskusií a prístup
+          k niektorým ďalším funkciám stránky. Pri vytváraní účtu môžu byť uložené
+          informácie ako používateľské meno, IP adresa, e-mailová adresa a používateľský
+          agent. Používateľské meno sa zobrazí verejne. Žiadne ďalšie údaje o účte
+          nebudú verejne zobrazené. Tieto údaje môžu byť odstránené odstránením účtu.</p>
+          <p>Na zistenie spamu môže %{site_name} odoslať obsah komentárov a súvisiace
+          informácie, vrátane používateľského mena, e-mailovej adresy, IP adresy,
+          používateľského agenta a referrera, do služieb na kontrolu spamu, ako je
+          Akismet.</p> <p>%{site_name} použije e-mailovú adresu poskytnutú pri vytváraní
+          hesla, ako napríklad žiadosti o obnovenie hesla, na odosielanie dôležitých
+          informácií. V špeciálnych situáciách môže správca %{site_name} tiež použiť
+          túto e-mailovú adresu na kontaktovanie používateľov.</p> <p>%{site_name}
+          bude štandardne posielať e-maily s upozornením na adresu uvedenú pri vytváraní
+          účtu. Tieto e-maily s upozornením sa týkajú tém, ako sú nové komentáre k
+          odoberaným diskusiám a nové recenzie uverejnené na vytvorených skriptoch.
+          Tieto upozornenia je možné vypnúť v nastaveniach profilu používateľa.</p>
+          <p>Akcie vykonané po prihlásení, napríklad uverejňovanie skriptov a komentárov,
+          budú viditeľné pre ostatných používateľov.</p> <p>Ak je pri prihlasovaní
+          do účtu začiarknutá možnosť "Zapamätať si ma", %{site_name} nastaví trvalý
+          súbor cookie, aby sa zachoval stav prihlásenia.</p>
       external_logins_html: >
           <h2>Externé prihlásenia</h2> <p>%{site_name} umožňuje používateľom prihlásiť
           sa pomocou externých služieb, ako sú Google, GitHub a GitLab. Keď sa prihlásite
@@ -1050,6 +1070,16 @@ sk:
           <h2>Skripty uverejnené na %{site_name}</h2> <p>%{site_name} obsahuje obsah
           generovaný používateľmi a odoslané skripty môžu byť schopné sledovať používateľov,
           ak si tento skript nainštalujú.</p>
+      data_retention_html: >
+          <h2>Uchovávanie údajov</h2> <p>%{site_name} uchováva údaje používateľských
+          účtov a obsah uverejnený používateľmi (ako sú skripty a komentáre) na neurčito.
+          Používatelia môžu odstrániť svoje účty a obsah %{delete_user_link:tu}.</p>
+          <p>Keď je účet odstránený, jeho konverzácie a správy sa odstránia všetkým
+          účastníkom.</p> <p>Anonymné údaje prehliadania, ako je IP adresa, používateľský
+          agent a navštívené stránky, sa uchovávajú jeden týždeň po prístupe.</p>
+          <p>Záznamy v databáze týkajúce sa podaní na kontrolu spamových komentárov
+          odoslaných do služby Akismet sa zvyčajne odstránia po uplynutí jedného týždňa,
+          avšak zostávajú uchované, pokiaľ je príslušná správa v riešení.</p>
       third_party_libraries_html: >
           <h2>Knižnice tretích strán</h2> <p>%{site_name} môže obsahovať kód tretích
           strán slúžiaci na zbieranie štatistických údajov alebo zobrazovanie reklám
@@ -1257,7 +1287,6 @@ sk:
     submit_rebuttal: "Odoslať obhajobu"
     rebuttal_submitted: Moderátor túto sťažnosť a vaše vysvetlenie preskúma a rozhodne.
     delete_script: "Odstrániť skript"
-    view_discussion: "Zobraziť diskusiu"
     load_diff: "Načítať rozdiel"
     load_cleaned_diff: "Načítať vyčistený kód s rozdielom"
     load_similarity_comparison: "Načítať porovnanie podobnosti"
