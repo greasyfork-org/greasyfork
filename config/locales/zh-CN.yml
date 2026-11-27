@@ -277,6 +277,7 @@ zh-CN:
     diff_lines_of_context: "上下文显示行数："
     diff_ignore_whitespace: "忽略空白字符更改"
     common_snippets_none: "未找到共同代码片段。"
+    by_author_html: "%{authors} 的 %{script}"
     common_source_summary: "我们在 %{sample_count} 个代码片段样本中找到了 %{count} 个匹配项。"
     common_source_snippet: "片段 %{index}"
     diff_view_title: "比较方式"
@@ -963,6 +964,30 @@ zh-CN:
           本页面描述了 %{site_name} 将如何记录或跟踪用户。如果您有任何疑问，%{admin_email_link:联系管理员}。
       server_logs_html: >
           <h2>服务器日志</h2> <p>%{site_name} 会按照典型的服务器日志格式记录所有请求。记录的信息包括访问的页面、IP 地址和用户代理字符串。这些日志用于调试和服务器分析，数据保留一周。这些数据不会被共享或公开。
+      script_statistics_html: >
+          <h2> 脚本统计 </h2> <p>为了生成统计数据，%{site_name} 会记录安装和更新请求及其 IP 地址信息。这些信息最多保留一周，并在汇总后去除
+          IP 地址。IP 地址相关的数据不会被共享或公开，但汇总后的数据会被公开。</p>
+      cookies_html: >
+          <h2> Cookies（未登录时）</h2> <p> %{site_name} 可能会设置临时会话 cookies 以启用某些网站功能。这些
+          cookies 不会持久保存，可能会在浏览器关闭时被清除（取决于浏览器设置）。</p>
+      user_accounts_html: >
+          <h2>用户账号</h2> <p>%{site_name} 要求用户创建账号后才能发布脚本、参与讨论以及使用网站的其他部分功能。创建账号时，网站可能会存储用户名、IP
+          地址、电子邮箱地址和用户代理等信息。用户名将公开显示，其他账号信息不会公开显示。删除账号后，这些数据也可以随之删除。</p> <p>为了检测垃圾信息，%{site_name}
+          可能会将留言内容及相关信息（包括用户名、电子邮箱地址、IP 地址、用户代理和来源页面）发送给 Akismet 等垃圾信息检测服务。</p> <p>%{site_name}会使用用户注册时提供的电子邮箱地址发送密码重置请求等重要信息。在特殊情况下，%{site_name}
+          的管理员也可能使用该电子邮箱地址联系用户。</p> <p>%{site_name} 默认会向用户注册时提供的电子邮箱地址发送通知邮件。通知内容包括用户订阅的讨论中的新留言，以及用户所发布脚本的新评价等。可以在个人信息设置中关闭这些通知。</p>
+          <p>用户登录后执行的操作，例如发布脚本和留言，将对其他用户可见。</p> <p>如果用户登录时勾选了“记住登录信息”选项，%{site_name}
+          将设置一个持久性 Cookie 以保持登录状态。</p>
+      external_logins_html: >
+          <h2>第三方登录</h2><p>%{site_name} 允许用户通过 Google、GitHub 和 GitLab 等第三方服务登录。 使用第三方服务登录时，%{site_name}
+          将从该服务获取用户名和电子邮箱信息，并使用这些信息创建账号。这些信息的使用方式与“用户账号”部分所述相同。</p>
+      posted_scripts_html: >
+          <h2>发布在 %{site_name} 上的脚本</h2> <p>%{site_name} 包含用户生成的内容。用户安装发布在该网站上的脚本后，这些脚本可能会跟踪用户。</p>
+      data_retention_html: >
+          <h2>数据保留</h2> <p>%{site_name} 会永久保留用户账号数据以及用户发布的内容（例如脚本和留言）。用户可以在 %{delete_user_link:此处}
+          删除自己的账号及内容。</p> <p>删除账号后，该账号的所有私信和消息将对所有参与者一并删除。</p> <p>匿名浏览数据，例如 IP 地址、用户代理和访问过的页面，将在访问发生后保留一周。</p>
+          <p>发送给 Akismet 的留言垃圾信息检测的数据库记录通常会在一周后删除，但如果相关举报仍在处理中，则会继续保留。</p>
+      third_party_libraries_html: >
+          <h2>第三方库</h2> <p>%{site_name} 可能会引入第三方代码用于收集网站统计数据或展示广告。这些库可能包含跟踪功能。</p>
     user_css_to_user_js:
       title: 将用户样式转换为用户脚本
       content_html: |
@@ -1022,6 +1047,26 @@ zh-CN:
           <p>此脚本的部分行为会使作者在用户购买时获得佣金抽成。包括但不限于内置推荐或联盟链接、修改现有链接到推荐或联盟链接、或能为脚本作者提供佣金抽成的优惠券代码的脚本。</p>
       tracking_html: |
           <p>此脚本含有追踪用户信息的代码，包括但不限于 Google Analytics 在内的服务商与其他使用自定义代码来报告用户信息给脚本作者的代码。</p>
+    api:
+      title: "%{site_name} API"
+      json_api_html: |
+          <h3>JSON API</h3>
+          <p>%{site_name} 提供只读的 JSON 和 JSONP API，用于访问数据。要获取相关链接，请在 %{site_name}页面的 HTML 源代码中查找 %{json_reference} 和 %{jsonp_reference}。</p>
+      prefilled_updates_html: |
+          <h3>预填充式更新</h3>
+
+          <p>虽然网站没有提供更新 API，但您可以使用特定的预填充链接来填充更新表单。用户随后可以查看和提交更新。此 链接会绕过 POST 请求的常规反 XSS 防护。</p>
+
+          <ul>
+          <li>链接：%{new_script_prefill_snippet}（用于发布新脚本），%{existing_script_prefill_snippet}（用于更新已有脚本）</li>
+          <li>请求方法：%{method_snippet}</li>
+          <li>代码参数：%{code_parameter_snippet}</li>
+          <li>内容类型：</li>
+          <li>请求必须包含用户的会话 cookie。</li>
+          </ul>
+      webhook_notifications_html: |
+          <h3>Webhook 通知</h3>
+          <p>%{site_name} 可以根据来自 GitHub、GitLab 和 Bitbucket 的推送及发布的 Webhook 通知来检查更新。%{webhook_info_link:了解更多有关 Webhooks 的信息。}</p>
   search:
     script_search:
       title: "脚本搜索"
