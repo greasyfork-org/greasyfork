@@ -22,6 +22,10 @@ class Git
     return :same if current_revision == incoming_revision
 
     with_repo(repo_url) do |directory|
+      raise Git::Exception, "Revision #{incoming_revision} not found in #{repo_url}" unless commit_exists?(directory, incoming_revision)
+      # History was rewritten, so the saved revision can no longer be ordered against anything.
+      return :current_missing unless commit_exists?(directory, current_revision)
+
       return :incoming_newer if ancestor?(directory, current_revision, incoming_revision)
       return :incoming_older if ancestor?(directory, incoming_revision, current_revision)
 
@@ -57,6 +61,12 @@ class Git
       system('rm', '-rf', directory)
     end
   end
+
+  def self.commit_exists?(directory, revision)
+    _output, _stderr, status = Open3.capture3(GIT_PATH, 'rev-parse', '--verify', '--quiet', "#{revision}^{commit}", chdir: directory)
+    status.success?
+  end
+  private_class_method :commit_exists?
 
   def self.ancestor?(directory, older_revision, newer_revision)
     _output, stderr, status = Open3.capture3(GIT_PATH, 'merge-base', '--is-ancestor', older_revision, newer_revision, chdir: directory)

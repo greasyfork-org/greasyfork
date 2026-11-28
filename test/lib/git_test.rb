@@ -21,6 +21,21 @@ class GitTest < ActiveSupport::TestCase
     end
   end
 
+  test 'revision order treats a missing saved revision as replaceable but a missing incoming revision as an error' do
+    Dir.mktmpdir('git-revision-order') do |directory|
+      repository = File.join(directory, 'repository')
+      git!('init', [repository])
+      git!('config', ['user.email', 'test@example.com'], chdir: repository)
+      git!('config', ['user.name', 'Test User'], chdir: repository)
+      git!('commit', ['--allow-empty', '-m', 'A'], chdir: repository)
+      revision_a = git!('rev-parse', ['HEAD'], chdir: repository).strip
+      missing_revision = 'f' * 40
+
+      assert_equal :current_missing, Git.revision_order(repository, missing_revision, revision_a)
+      assert_raises(Git::Exception) { Git.revision_order(repository, revision_a, missing_revision) }
+    end
+  end
+
   private
 
   def git!(command, arguments = [], chdir: nil)
